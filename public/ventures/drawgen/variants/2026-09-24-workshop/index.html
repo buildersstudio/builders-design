@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>drawgen · Workshop</title>
+<meta name="description" content="drawgen is a SOLIDWORKS add-in that turns a 3D assembly into a dimensioned manufacturing drawing for every part, as a PDF and a DXF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/engineer-cad-workstation.jpg">
+<style>
+:root{
+  --paper:#F3F3F1;
+  --paper-2:#E9EAE7;
+  --white:#FFFFFF;
+  --ink:#0F1215;
+  --ink-2:#4A5058;
+  --ink-3:#7C828A;
+  --rule:rgba(15,18,21,.12);
+  --graphite:#15181C;
+  --graphite-2:#1D2126;
+  --on-dark:#ECEDEE;
+  --on-dark-2:#9EA4AB;
+  --rule-dark:rgba(255,255,255,.12);
+  --accent:#E3A21A;
+  --max:1320px;
+  --gut:56px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper);-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;font-size:17px;line-height:1.55;font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,video,svg{display:block}
+img{max-width:100%}
+.wrap{max-width:calc(var(--max) + var(--gut)*2);margin:0 auto;padding:0 var(--gut)}
+.num{font-variant-numeric:tabular-nums}
+.label{font-size:12px;font-weight:550;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.disp{font-stretch:92%;font-weight:520;letter-spacing:-.032em;line-height:1.02}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:12px;height:50px;padding:0 22px;border-radius:2px;font-size:16px;font-weight:550;letter-spacing:-.005em;white-space:nowrap;transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease)}
+.btn svg{width:13px;height:13px;transition:transform .3s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn-light{background:var(--white);color:var(--ink)}
+.btn-light:hover{background:var(--paper-2)}
+.btn-dark{background:var(--ink);color:var(--white)}
+.btn-dark:hover{background:#262B31}
+.btn-ghost{border:1px solid rgba(255,255,255,.34);color:var(--white);cursor:default}
+.btn-ghost-d{border:1px solid var(--rule);color:var(--ink);cursor:default}
+.soon{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.62}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;color:var(--white);transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease);border-bottom:1px solid transparent}
+.nav .wrap{display:flex;align-items:center;height:76px;gap:40px}
+.nav.solid{background:rgba(243,243,241,.9);-webkit-backdrop-filter:saturate(1.1) blur(14px);backdrop-filter:saturate(1.1) blur(14px);color:var(--ink);border-bottom-color:var(--rule)}
+.brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:600;letter-spacing:-.03em}
+.brand svg{width:22px;height:22px}
+.nav nav{display:flex;gap:30px;font-size:15px;font-weight:450;margin-left:24px}
+.nav nav a{opacity:.82;transition:opacity .2s}
+.nav nav a:hover{opacity:1}
+.nav .right{margin-left:auto;display:flex;align-items:center;gap:22px;font-size:15px}
+.nav .right .muted{opacity:.72}
+.nav .btn{height:40px;padding:0 16px;font-size:15px}
+.nav .btn-light{transition:background .35s var(--ease),color .35s var(--ease)}
+.nav.solid .btn-light{background:var(--ink);color:var(--white)}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:720px;max-height:980px;color:var(--white);overflow:hidden;background:#20252B}
+.hero .ph{position:absolute;inset:0}
+.hero .ph img{width:100%;height:100%;object-fit:cover;object-position:100% 50%;transform:scale(1.045);transition:transform 2.4s var(--ease)}
+.hero.ready .ph img{transform:scale(1)}
+.hero .scrim{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(12,14,17,.8) 0%,rgba(12,14,17,.6) 30%,rgba(12,14,17,.12) 52%,rgba(12,14,17,0) 70%),
+  linear-gradient(0deg,rgba(12,14,17,.62) 0%,rgba(12,14,17,0) 42%),
+  linear-gradient(180deg,rgba(12,14,17,.45) 0%,rgba(12,14,17,0) 18%)}
+.hero .wrap{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:72px}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.eyebrow i{width:7px;height:7px;background:var(--accent);border-radius:50%}
+.eyebrow .label{color:rgba(255,255,255,.78)}
+.hero h1{font-size:clamp(44px,5.3vw,78px);max-width:6.7em}
+.hero-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:48px;margin-top:40px}
+.hero-foot p{max-width:34em;font-size:19px;line-height:1.5;color:rgba(255,255,255,.78)}
+.hero-foot p b{color:var(--white);font-weight:550}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+
+/* section scaffolding */
+.sec{padding:144px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:22px;border-bottom:1px solid var(--rule);margin-bottom:64px}
+.h2{font-size:clamp(34px,4.2vw,60px)}
+.lede{font-size:20px;line-height:1.55;color:var(--ink-2);max-width:34em}
+
+/* film */
+.film{padding:120px 0 0}
+.film-top{display:grid;grid-template-columns:7fr 5fr;gap:48px;align-items:end;margin-bottom:56px}
+.film-top .lede{justify-self:end;font-size:18px}
+.screen{position:relative;background:#0B0D10;padding:10px;border-radius:6px;box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 40px 90px -40px rgba(15,18,21,.55),0 12px 30px -18px rgba(15,18,21,.4)}
+.screen video{width:100%;aspect-ratio:1280/719;object-fit:cover;border-radius:2px;background:#DADBD8}
+.film-cap{display:flex;justify-content:space-between;align-items:center;padding:18px 2px 0;font-size:14px;color:var(--ink-3)}
+.film-cap b{color:var(--ink);font-weight:550}
+.film-cap .l{display:flex;gap:28px}
+.play{appearance:none;border:1px solid var(--rule);background:transparent;color:var(--ink);height:34px;padding:0 14px;border-radius:2px;font:inherit;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:9px;cursor:pointer}
+.play svg{width:10px;height:10px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule);margin-top:72px}
+.facts div{padding:26px 24px 0 0}
+.facts div+div{padding-left:24px;border-left:1px solid var(--rule)}
+.facts .label{display:block;margin-bottom:8px}
+.facts span:last-child{font-size:18px;font-weight:500;letter-spacing:-.01em}
+
+/* built for */
+.built{padding:160px 0 0}
+.built .statement{font-size:clamp(28px,3.3vw,46px);font-weight:480;letter-spacing:-.025em;line-height:1.16;max-width:24em;text-wrap:pretty}
+.built .statement span{color:var(--ink-3)}
+.band{margin-top:88px;position:relative}
+.band img{width:100%;height:min(66vw,820px);object-fit:cover;object-position:50% 58%}
+.band figcaption{position:absolute;left:var(--gut);bottom:26px;font-size:13px;color:rgba(255,255,255,.8)}
+
+/* pipeline */
+.pipe{display:grid;grid-template-columns:6fr 6fr;gap:80px;align-items:start}
+.pipe-ph{position:sticky;top:112px;aspect-ratio:4/5;overflow:hidden;background:var(--paper-2)}
+.pipe-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s var(--ease)}
+.pipe-ph img.on{opacity:1}
+.pipe-ph::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;background:linear-gradient(0deg,rgba(12,14,17,.62),rgba(12,14,17,0));z-index:1}
+.pipe-ph .tag{position:absolute;left:24px;right:24px;bottom:22px;color:var(--white);font-size:15px;display:flex;gap:14px;align-items:baseline;z-index:2}
+.pipe-ph .tag i{width:6px;height:6px;border-radius:50%;background:var(--accent);align-self:center}
+.pipe-ph .tag em{font-style:normal;margin-left:auto;font-size:12px;font-weight:550;letter-spacing:.14em;text-transform:uppercase;opacity:.72}
+.pipe-ph .tag b{font-weight:600}
+.pipe-intro{margin-bottom:56px}
+.pipe-intro .h2{margin-bottom:24px}
+.steps{list-style:none;border-top:1px solid var(--rule)}
+.step{display:grid;grid-template-columns:72px 1fr;gap:8px 16px;padding:34px 0 36px;border-bottom:1px solid var(--rule);transition:opacity .4s var(--ease)}
+.step .n{font-size:15px;font-weight:550;color:var(--ink-3);padding-top:9px;transition:color .4s}
+.step h3{font-size:30px;font-weight:540;letter-spacing:-.022em;line-height:1.2}
+.step p{grid-column:2;color:var(--ink-2);max-width:30em}
+.step.on .n{color:var(--ink)}
+.step.on .n::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:10px;vertical-align:2px}
+.pipe-note{display:flex;gap:28px;margin-top:36px;font-size:14px;color:var(--ink-3)}
+
+/* measured */
+.measured{background:var(--white)}
+.m-grid{display:grid;grid-template-columns:7fr 5fr;gap:80px;align-items:center}
+.m-ph{aspect-ratio:3/2.2;overflow:hidden}
+.m-ph img{width:100%;height:100%;object-fit:cover;object-position:46% 50%}
+.m-copy .h2{margin:22px 0 28px}
+.m-copy .h2 span{color:var(--ink-3)}
+.m-copy p{color:var(--ink-2);font-size:18px;max-width:28em}
+.m-rows{margin-top:44px;border-top:1px solid var(--rule)}
+.m-rows div{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--rule);font-size:16px}
+.m-rows dt{font-size:12px;font-weight:550;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+.m-rows dd{font-weight:500}
+.m-rows .flag dd{display:flex;align-items:center;gap:10px}
+.m-rows .flag dd::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+
+/* private */
+.private{background:var(--graphite);color:var(--on-dark)}
+.private .label{color:var(--on-dark-2)}
+.private .sec-head{border-bottom-color:var(--rule-dark)}
+.p-grid{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:stretch}
+.p-copy .h2{margin-bottom:0}
+.p-copy .h2 span{color:var(--on-dark-2)}
+.p-items{margin-top:64px;display:grid;gap:0;border-top:1px solid var(--rule-dark)}
+.p-item{padding:30px 0 32px;border-bottom:1px solid var(--rule-dark)}
+.p-item .label{display:block;margin-bottom:12px}
+.p-item h3{font-size:24px;font-weight:540;letter-spacing:-.018em;line-height:1.25;margin-bottom:10px;color:var(--white)}
+.p-item p{color:var(--on-dark-2);max-width:30em}
+.p-ph{position:relative;overflow:hidden;min-height:620px}
+.p-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.p-ph figcaption{position:absolute;left:20px;bottom:18px;font-size:13px;color:rgba(255,255,255,.78)}
+
+/* roadmap */
+.road-top{display:grid;grid-template-columns:6fr 6fr;gap:80px;align-items:end;margin-bottom:64px}
+.road-top .lede{justify-self:end}
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.road figure{display:flex;flex-direction:column}
+.road .ph{aspect-ratio:4/5;overflow:hidden;background:var(--paper-2)}
+.road .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.road figure:hover .ph img{transform:scale(1.025)}
+.road figcaption{display:grid;grid-template-columns:40px 1fr;gap:4px 8px;padding-top:22px}
+.road figcaption .n{font-size:14px;font-weight:550;color:var(--ink-3);padding-top:3px}
+.road figcaption h3{font-size:22px;font-weight:540;letter-spacing:-.018em}
+.road figcaption p{grid-column:2;color:var(--ink-2);font-size:16px}
+.road figcaption .label{grid-column:2;margin-top:10px}
+
+/* closing */
+.close{position:relative;min-height:760px;color:var(--white);overflow:hidden;display:flex;align-items:flex-end;background:#20252B}
+.close .ph{position:absolute;inset:0}
+.close .ph img{width:100%;height:100%;object-fit:cover;object-position:72% 60%}
+.close .scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,14,17,.74) 0%,rgba(12,14,17,.46) 45%,rgba(12,14,17,.1) 100%),linear-gradient(0deg,rgba(12,14,17,.5),rgba(12,14,17,0) 50%)}
+.close .wrap{position:relative;width:100%;padding-top:140px;padding-bottom:96px}
+.close .label{color:rgba(255,255,255,.72)}
+.close h2{font-size:clamp(44px,6vw,88px);margin:24px 0 28px}
+.close p{max-width:30em;font-size:19px;color:rgba(255,255,255,.8);margin-bottom:40px}
+
+/* footer */
+footer{background:var(--graphite);color:var(--on-dark-2);font-size:14px}
+footer .wrap{display:grid;grid-template-columns:5fr 7fr;gap:48px;padding-top:72px;padding-bottom:40px}
+footer .brand{color:var(--white);margin-bottom:18px}
+footer .tag{max-width:26em;line-height:1.5}
+footer .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+footer .cols .label{color:var(--on-dark-2);opacity:.7;display:block;margin-bottom:14px}
+footer .cols a{display:block;color:var(--on-dark);padding:4px 0}
+footer .base{grid-column:1/-1;display:flex;justify-content:space-between;gap:24px;border-top:1px solid var(--rule-dark);padding-top:24px;margin-top:40px;font-size:13px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero .ph img{transform:none;transition:none}.pipe-ph img{transition:none}}
+
+/* responsive */
+@media (max-width:1100px){
+  :root{--gut:36px}
+  .nav nav{display:none}
+  .pipe,.m-grid,.p-grid,.film-top,.road-top{grid-template-columns:1fr;gap:48px}
+  .film-top .lede,.road-top .lede{justify-self:start}
+  .pipe-ph{position:relative;top:0;aspect-ratio:16/10}
+  .p-ph{min-height:420px}
+  .hero-foot{grid-template-columns:1fr;gap:32px}
+}
+@media (max-width:720px){
+  :root{--gut:20px}
+  body{font-size:16px}
+  .nav .wrap{height:64px}
+  .nav .right .muted{display:none}
+  .hero{min-height:680px;height:92vh;max-height:860px}
+  .hero .ph img{object-position:72% 50%}
+  .hero .scrim{background:linear-gradient(0deg,rgba(12,14,17,.88) 0%,rgba(12,14,17,.74) 55%,rgba(12,14,17,.2) 80%),linear-gradient(180deg,rgba(12,14,17,.5) 0%,rgba(12,14,17,0) 20%)}
+  .hero .wrap{padding-bottom:40px}
+  .hero h1{font-size:43px;letter-spacing:-.03em}
+  .hero-foot{margin-top:24px}
+  .hero-foot p{font-size:17px}
+  .ctas .btn{flex:1 1 auto;justify-content:center}
+  .sec{padding:96px 0}
+  .film{padding-top:80px}
+  .screen{padding:5px;border-radius:4px}
+  .film-cap{flex-wrap:wrap;gap:12px}
+  .film-cap .l{gap:16px;flex-wrap:wrap}
+  .facts{grid-template-columns:1fr 1fr;margin-top:48px}
+  .facts div{padding:20px 12px 20px 0}
+  .facts div+div{padding-left:0;border-left:0}
+  .facts div:nth-child(even){padding-left:16px;border-left:1px solid var(--rule)}
+  .facts div:nth-child(n+3){border-top:1px solid var(--rule)}
+  .built{padding-top:112px}
+  .band{margin-top:56px}
+  .band img{height:420px}
+  .step{grid-template-columns:44px 1fr;padding:26px 0 28px}
+  .step h3{font-size:24px}
+  .pipe-ph{aspect-ratio:4/3}
+  .m-rows div{grid-template-columns:100px 1fr}
+  .road{grid-template-columns:1fr;gap:48px}
+  .road .ph{aspect-ratio:4/3}
+  .close{min-height:760px}
+  .close .ph img{object-position:74% 30%;height:62%}
+  .close .scrim{background:linear-gradient(0deg,rgba(21,24,28,1) 44%,rgba(21,24,28,.6) 50%,rgba(21,24,28,0) 62%)}
+  .close .ph{background:var(--graphite)}
+  .close .wrap{padding-bottom:56px}
+  .close h2{font-size:44px}
+  footer .wrap{grid-template-columns:1fr}
+  footer .cols{grid-template-columns:1fr 1fr}
+  footer .base{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <mask id="mkcut" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="m24 28 34-14v32L24 60Z" fill="#000" stroke="#000" stroke-width="8.5"/></mask>
+    <symbol id="arrow" viewBox="0 0 12 12"><path d="M1 6h9.2M6.6 2.2 10.4 6l-3.8 3.8" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="drawgen"><svg class="mk" viewBox="0 0 64 64" aria-hidden="true"><path d="M6 18 39 4v38L6 56Z" fill="currentColor" mask="url(#mkcut)"/><path d="m24 28 34-14v32L24 60Z" fill="none" stroke="currentColor" stroke-width="3.25"/></svg><span>drawgen</span></a>
+    <nav aria-label="Primary">
+      <a href="#film">Product</a>
+      <a href="#pipeline">How it works</a>
+      <a href="#measured">Principles</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+    <div class="right">
+      <span class="muted">For SOLIDWORKS</span>
+      <a class="btn btn-light" href="https://drawgen.co">Talk to us</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero" id="hero">
+  <div class="ph"><img src="img/engineer-cad-workstation.jpg" alt="A design engineer at a CAD workstation with a machine assembly on screen, in an office overlooking a machine builder's assembly hall" width="2000" height="1116" fetchpriority="high"></div>
+  <div class="scrim"></div>
+  <div class="wrap">
+    <div class="eyebrow"><i></i><span class="label">SOLIDWORKS add-in</span></div>
+    <h1 class="disp">From 3D model to dimensioned manufacturing drawing.</h1>
+    <div class="hero-foot">
+      <p><b>One click, inside SOLIDWORKS.</b> drawgen reads the assembly and returns a finished, dimensioned drawing for every part in it, as a PDF and a DXF.</p>
+      <div class="ctas">
+        <a class="btn btn-light" href="https://drawgen.co">Talk to us <svg><use href="#arrow"/></svg></a>
+        <span class="btn btn-ghost" aria-disabled="true">Try it on your own part <span class="soon">Soon</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="film" id="film">
+  <div class="wrap">
+    <div class="film-top">
+      <div class="rv">
+        <span class="label">Product film</span>
+        <h2 class="h2 disp" style="margin-top:20px">One assembly in.<br>A drawing for every part out.</h2>
+      </div>
+      <p class="lede rv">The film is drawgen running inside SOLIDWORKS on a real assembly: the add-in reads the model where it already lives and writes a PDF and a DXF for each part.</p>
+    </div>
+    <div class="screen rv">
+      <video id="vid" autoplay muted loop playsinline preload="auto" poster="../_assets/drawgen-demo-poster.webp" aria-label="drawgen running inside SOLIDWORKS, producing a dimensioned drawing for each part">
+        <source src="../_assets/drawgen-demo.webm" type="video/webm">
+        <source src="../_assets/drawgen-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="film-cap">
+      <div class="l"><span><b>drawgen</b> running inside SOLIDWORKS</span><span class="num">Assembly Practice · Film, 0:45</span></div>
+      <button class="play" id="play" type="button" aria-pressed="false"><svg viewBox="0 0 10 10" id="pi"><rect x="1.5" y="1" width="2.2" height="8" fill="currentColor"/><rect x="6.3" y="1" width="2.2" height="8" fill="currentColor"/></svg><span id="pl">Pause</span></button>
+    </div>
+    <div class="facts rv">
+      <div><span class="label">Input</span><span>A SOLIDWORKS assembly</span></div>
+      <div><span class="label">Output</span><span>A PDF and a DXF per part</span></div>
+      <div><span class="label">Runs</span><span>In-process, on your machine</span></div>
+      <div><span class="label">Repeats</span><span>Same model, same sheet</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="built" id="built">
+  <div class="wrap">
+    <span class="label rv">Built for</span>
+    <p class="statement rv" style="margin-top:24px">Engineers at engineer-to-order manufacturers and machine builders who design in SOLIDWORKS, <span>and still redraw every part by hand after the 3D model is finished.</span></p>
+  </div>
+  <figure class="band rv">
+    <img src="img/assembly-hall.jpg" alt="A custom automation machine partly assembled in a machine builder's hall, two technicians fitting components to the frame" width="2000" height="1116" loading="lazy" decoding="async">
+  </figure>
+</section>
+
+<section class="sec" id="pipeline">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="label">How it works</span><span class="label num">Six steps</span></div>
+    <div class="pipe">
+      <figure class="pipe-ph" id="pipeph" aria-hidden="true">
+        <img class="on" src="img/cnc-fixture.jpg" alt="" loading="lazy" decoding="async">
+        <img src="img/lathe-turning.jpg" alt="" loading="lazy" decoding="async">
+        <img src="img/turret-tooling.jpg" alt="" loading="lazy" decoding="async">
+        <span class="tag"><i></i><b id="curn" class="num">01</b><span id="curt">Resolve</span><em class="num">Step <span id="curk">1</span> of 6</em></span>
+      </figure>
+      <div>
+        <div class="pipe-intro rv">
+          <h2 class="h2 disp">Six steps between the finished model and the finished sheet.</h2>
+          <p class="lede">The assembly goes in once. Each unique part comes out as its own dimensioned drawing, and the last step checks the result before anything is written.</p>
+        </div>
+        <ol class="steps">
+          <li class="step on"><span class="n num">01</span><h3>Resolve</h3><p>Read the open assembly and resolve every unique part inside it.</p></li>
+          <li class="step"><span class="n num">02</span><h3>Classify</h3><p>Work out what kind of part each one is, so it is drawn the way that kind of part should be.</p></li>
+          <li class="step"><span class="n num">03</span><h3>Project</h3><p>Project the views from the solid and place them on the sheet.</p></li>
+          <li class="step"><span class="n num">04</span><h3>Dimension</h3><p>Measure every dimension off the solid model. Nothing is estimated or typed in by hand.</p></li>
+          <li class="step"><span class="n num">05</span><h3>Annotate</h3><p>Complete the sheet with its notes and title block.</p></li>
+          <li class="step"><span class="n num">06</span><h3>Gate</h3><p>Check the sheet before it is released. Anything unclear is flagged for you rather than filled in.</p></li>
+        </ol>
+        <div class="pipe-note"><span>Runs in-process, inside SOLIDWORKS</span><span>Output per part: PDF and DXF</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec measured" id="measured">
+  <div class="wrap">
+    <div class="m-grid">
+      <figure class="m-ph rv"><img src="img/drawing-on-workbench.jpg" alt="A printed engineering drawing of a flange on a steel workbench, with the machined aluminium flange and a digital caliper beside it" width="2000" height="1342" loading="lazy" decoding="async"></figure>
+      <div class="m-copy">
+        <span class="label rv">Principle</span>
+        <h2 class="h2 disp rv">Measured, <span>not estimated.</span></h2>
+        <p class="rv">Every dimension is measured off the solid. Nothing estimated, nothing invented. Anything unclear is flagged for you rather than filled in, so the sheet you check is the sheet you can trust.</p>
+        <dl class="m-rows rv">
+          <div><dt>Source</dt><dd>The solid model, never a guess</dd></div>
+          <div><dt>Typed in</dt><dd>Nothing typed in by hand</dd></div>
+          <div class="flag"><dt>Unclear</dt><dd>Flagged for your engineering judgement</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec private" id="private">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="label">Private and repeatable</span><span class="label">On your machine</span></div>
+    <div class="p-grid">
+      <div class="p-copy">
+        <h2 class="h2 disp rv">Your geometry stays with you. <span>Your drawings stay the same.</span></h2>
+        <div class="p-items">
+          <div class="p-item rv">
+            <span class="label">In-process</span>
+            <h3>The geometry never leaves the engineer's machine.</h3>
+            <p>drawgen runs in-process inside SOLIDWORKS. The model is read where it already lives, and the PDF and DXF are written to a local folder.</p>
+          </div>
+          <div class="p-item rv">
+            <span class="label">Deterministic</span>
+            <h3>The same model gives the same sheet on every run.</h3>
+            <p>Run it again on an unchanged assembly and the drawings come back identical, so a sheet can be checked once and relied on.</p>
+          </div>
+        </div>
+      </div>
+      <figure class="p-ph rv"><img src="img/machined-manifold.jpg" alt="A machined aluminium manifold block on a grey surface" width="2000" height="1335" loading="lazy" decoding="async"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="roadmap">
+  <div class="wrap">
+    <div class="road-top">
+      <div class="rv">
+        <span class="label">In development</span>
+        <h2 class="h2 disp" style="margin-top:20px">More from the same assembly.</h2>
+      </div>
+      <p class="lede rv">The drawing is the first thing drawgen derives from the model. Parts lists, cut lists with material, and quotations from the same assembly are in development.</p>
+    </div>
+    <div class="road">
+      <figure class="rv">
+        <div class="ph"><img src="img/parts-on-bench.jpg" alt="A technician laying a sheet-metal bracket beside a row of finished machined parts on a steel workbench" width="2000" height="1116" loading="lazy" decoding="async" style="object-position:52% 50%"></div>
+        <figcaption><span class="n num">01</span><h3>Parts lists</h3><p>Derived from the assembly drawgen already reads.</p><span class="label">In development</span></figcaption>
+      </figure>
+      <figure class="rv">
+        <div class="ph"><img src="img/press-brake.jpg" alt="A gloved hand feeding a steel sheet into a press brake" width="2000" height="1125" loading="lazy" decoding="async" style="object-position:30% 50%"></div>
+        <figcaption><span class="n num">02</span><h3>Cut lists, with material</h3><p>Derived from the same solid model.</p><span class="label">In development</span></figcaption>
+      </figure>
+      <figure class="rv">
+        <div class="ph"><img src="img/parts-on-drawings.jpg" alt="Two machined steel parts resting on printed engineering drawings" width="2000" height="1125" loading="lazy" decoding="async" style="object-position:60% 50%"></div>
+        <figcaption><span class="n num">03</span><h3>Quotations</h3><p>Derived from the same assembly.</p><span class="label">In development</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="talk">
+  <div class="ph"><img src="img/finished-machine.jpg" alt="A finished custom machine standing in an empty assembly hall in cool daylight" width="2000" height="1116" loading="lazy" decoding="async"></div>
+  <div class="scrim"></div>
+  <div class="wrap">
+    <span class="label rv">Early access</span>
+    <h2 class="disp rv">Finish the model.<br>Get the drawings.</h2>
+    <p class="rv">If you design in SOLIDWORKS and still redraw every part by hand once the 3D model is finished, we would like to hear from you.</p>
+    <div class="ctas rv">
+      <a class="btn btn-light" href="https://drawgen.co">Talk to us <svg><use href="#arrow"/></svg></a>
+      <span class="btn btn-ghost" aria-disabled="true">Try it on your own part <span class="soon">Soon</span></span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top" aria-label="drawgen"><svg class="mk" viewBox="0 0 64 64" aria-hidden="true"><path d="M6 18 39 4v38L6 56Z" fill="currentColor" mask="url(#mkcut)"/><path d="m24 28 34-14v32L24 60Z" fill="none" stroke="currentColor" stroke-width="3.25"/></svg><span>drawgen</span></a>
+      <p class="tag">From 3D model to dimensioned manufacturing drawing, in one click inside SOLIDWORKS.</p>
+    </div>
+    <div class="cols">
+      <div><span class="label">Product</span><a href="#film">Film</a><a href="#pipeline">How it works</a><a href="#measured">Principles</a></div>
+      <div><span class="label">Next</span><a href="#roadmap">Roadmap</a><a href="#private">Security</a></div>
+      <div><span class="label">Company</span><a href="https://drawgen.co">Talk to us</a><a href="https://drawgen.co">drawgen.co</a></div>
+    </div>
+    <div class="base"><span>© 2026 drawgen</span><span>SOLIDWORKS is a trademark of Dassault Systèmes.</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav'),hero=document.getElementById('hero');
+  requestAnimationFrame(function(){hero.classList.add('ready')});
+  var onS=function(){nav.classList.toggle('solid',window.scrollY>hero.offsetHeight-80)};
+  onS();window.addEventListener('scroll',onS,{passive:true});window.addEventListener('resize',onS);
+
+  var v=document.getElementById('vid'),b=document.getElementById('play'),pl=document.getElementById('pl'),pi=document.getElementById('pi');
+  var pauseIcon=pi.innerHTML,playIcon='<path d="M2 1l7 4-7 4z" fill="currentColor"/>';
+  b.addEventListener('click',function(){
+    if(v.paused){v.play();pl.textContent='Pause';pi.innerHTML=pauseIcon;b.setAttribute('aria-pressed','false')}
+    else{v.pause();pl.textContent='Play';pi.innerHTML=playIcon;b.setAttribute('aria-pressed','true')}
+  });
+
+  var rv=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    rv.forEach(function(el){io.observe(el)});
+  } else rv.forEach(function(el){el.classList.add('in')});
+
+  var steps=[].slice.call(document.querySelectorAll('.step'));
+  var phs=[].slice.call(document.querySelectorAll('#pipeph img'));
+  var curn=document.getElementById('curn'),curt=document.getElementById('curt'),curk=document.getElementById('curk');
+  var names=['Resolve','Classify','Project','Dimension','Annotate','Gate'],active=1;
+  function set(n){
+    if(n===active)return;active=n;
+    steps.forEach(function(s,i){s.classList.toggle('on',i+1===n)});
+    var p=Math.floor((n-1)/2);phs.forEach(function(im,i){im.classList.toggle('on',i===p)});
+    curn.textContent='0'+n;curt.textContent=names[n-1];curk.textContent=n;
+  }
+  function pick(){
+    var mid=window.innerHeight*.55,best=1,bd=1e9;
+    steps.forEach(function(s,i){var r=s.getBoundingClientRect(),d=Math.abs(r.top+r.height/2-mid);if(d<bd){bd=d;best=i+1}});
+    set(best);
+  }
+  pick();window.addEventListener('scroll',pick,{passive:true});window.addEventListener('resize',pick);
+})();
+</script>
+</body>
+</html>

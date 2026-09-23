@@ -1,0 +1,18 @@
+{
+  "title": "Workshop",
+  "created": "2026-09-24",
+  "note": "The buyer's own shop floor, photographed in one cool, desaturated daylight treatment, carries the brand, and the real SOLIDWORKS film sits among it as the engineer's screen.",
+  "credits": [
+    { "file": "img/engineer-cad-workstation.jpg", "source": "Higgsfield", "author": "Generated with Nano Banana 2 (nano_banana_2); monitor brand mark softened", "url": "https://higgsfield.ai" },
+    { "file": "img/assembly-hall.jpg", "source": "Higgsfield", "author": "Generated with Nano Banana 2 (nano_banana_2)", "url": "https://higgsfield.ai" },
+    { "file": "img/drawing-on-workbench.jpg", "source": "Higgsfield", "author": "Generated with Nano Banana 2 (nano_banana_2), caliper brand removed with a Nano Banana 2 edit", "url": "https://higgsfield.ai" },
+    { "file": "img/finished-machine.jpg", "source": "Higgsfield", "author": "Generated with Nano Banana 2 (nano_banana_2)", "url": "https://higgsfield.ai" },
+    { "file": "img/parts-on-bench.jpg", "source": "Higgsfield", "author": "Generated with Nano Banana 2 (nano_banana_2)", "url": "https://higgsfield.ai" },
+    { "file": "img/cnc-fixture.jpg", "source": "Unsplash", "author": "aluminum Zheng ji", "url": "https://unsplash.com/photos/a-machine-that-is-cutting-a-piece-of-metal-sxtClAGwRck" },
+    { "file": "img/lathe-turning.jpg", "source": "Unsplash", "author": "Sven Daniel", "url": "https://unsplash.com/photos/metal-rod-machining-on-lathe-eaanLTG7TCU" },
+    { "file": "img/turret-tooling.jpg", "source": "Unsplash", "author": "Guick", "url": "https://unsplash.com/photos/a-close-up-of-a-machine-that-is-working-on-a-piece-of-metal-j_kCqJ4KusY" },
+    { "file": "img/machined-manifold.jpg", "source": "Unsplash", "author": "Mastars", "url": "https://unsplash.com/photos/silver-and-black-computer-part-Uvj8utkx9Lo" },
+    { "file": "img/press-brake.jpg", "source": "Unsplash", "author": "Cemrecan Yurtman", "url": "https://unsplash.com/photos/a-man-working-on-a-machine-in-a-factory-RLDjPI-r5fU" },
+    { "file": "img/parts-on-drawings.jpg", "source": "Unsplash", "author": "EnCata PD", "url": "https://unsplash.com/photos/two-metal-mechanical-parts-on-engineering-blueprints-SRqJ3eli-4I" }
+  ]
+}

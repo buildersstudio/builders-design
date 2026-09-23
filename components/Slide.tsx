@@ -740,11 +740,14 @@ function PixelSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: T
 
 /* ---------- field style (Krans): cream or full brand colour, quantised-square patterns from the site ---------- */
 
-const DEFAULT_FIELD: Record<string, string> = { cover: "bloom", statement: "scatter", points: "ledger", metrics: "twin", section: "horizon", split: "ring", quote: "halo", closing: "horizon", photo: "edge", cards: "ridge", mosaic: "twin", equation: "ring" };
+const DEFAULT_FIELD: Record<string, string> = { cover: "horizon", statement: "edge-right", points: "corner", metrics: "corner", section: "horizon", split: "edge-right", quote: "edge-right", closing: "horizon", photo: "edge-right", cards: "horizon", mosaic: "edge-right", equation: "horizon" };
 
-function Field({ kind, color, cols, rows, floor, style }: { kind: string; color: string; cols: number; rows: number; floor?: number; style: CSSProperties }) {
-  const svg = fieldSVG({ kind, color, cols, rows, width: cols * 40, height: rows * 40, floor: floor ?? 0.04, fluid: true });
-  return <div aria-hidden style={{ position: "absolute", ...style }} dangerouslySetInnerHTML={{ __html: svg }} />;
+/** A field on the slide's own 40px cell grid, so every pattern lines up and empty cells vanish into the page. */
+function Field({ kind, color, box, floor = 0 }: { kind: string; color: string; box: { left?: number; right?: number; top?: number; bottom?: number; width: number; height: number }; floor?: number }) {
+  const C = 40, cols = Math.round(box.width / C), rows = Math.round(box.height / C);
+  const svg = fieldSVG({ kind, color, cols, rows, width: cols * C, height: rows * C, floor, gap: 0.2 });
+  const { width, height, ...pos } = box;
+  return <div aria-hidden style={{ position: "absolute", width: cols * C, height: rows * C, ...pos, lineHeight: 0 }} dangerouslySetInnerHTML={{ __html: svg }} />;
 }
 
 function FieldSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: Theme; logo?: string; n: number; total: number; edit?: Edit }) {
@@ -772,11 +775,11 @@ function FieldSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: T
   const cols = (k: number) => `repeat(${Math.min(k, 4)}, 1fr)`;
   const rule = painted ? "rgba(239,233,219,.4)" : "rgba(33,34,39,.16)";
 
-  // where the pattern sits: beside the copy on cream, across the slide on colour
-  const f = (st: CSSProperties, c = 26, r = 15, floor?: number) => fieldOpt && <Field kind={kind} color={hue} cols={c} rows={r} floor={floor} style={st} />;
-  const right = f({ top: 110, bottom: 110, right: X, width: 820 });
-  const band = f({ top: 90, right: X, width: 760, height: 380 }, 26, 13);
-  const fullField = f({ left: X, right: X, top: 660, bottom: 110 }, 48, 9, 0);
+  // where the pattern sits: always against an edge of the slide, never floating
+  const f = (box: { left?: number; right?: number; top?: number; bottom?: number; width: number; height: number }, k = kind) => fieldOpt && <Field kind={k} color={hue} box={box} />;
+  const right = f({ right: 0, top: 0, width: 840, height: H });
+  const band = f({ right: 0, top: 0, width: 920, height: 520 });
+  const fullField = f({ left: 0, bottom: 0, width: W, height: 440 });
 
   let inner: React.ReactNode = null;
   switch (slide.layout) {
@@ -857,19 +860,17 @@ function FieldSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: T
     case "split":
       inner = (
         <>
-          <div style={{ position: "absolute", left: X, top: 0, bottom: 0, width: 760, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          {f({ right: 0, top: 0, width: 1160, height: H })}
+          <div style={{ position: "absolute", left: X, top: 0, bottom: 0, width: 700, display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />
             <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 84 }} />
             <T v={slide.body} p={e("body")} edit={edit} style={{ ...body, fontSize: 28 }} />
           </div>
-          <div style={{ position: "absolute", top: 90, bottom: 90, right: 90, width: 960, borderRadius: 28, background: painted ? "rgba(255,255,255,.1)" : "#F5F1E7", overflow: "hidden" }}>
-            {fieldOpt && <Field kind={kind} color={hue} cols={24} rows={22} style={{ inset: 0 }} />}
-            {slide.image && (
-              <div style={{ position: "absolute", inset: 70, display: "grid", placeItems: "center" }}>
-                <img src={slide.image} alt="" style={{ maxWidth: "100%", maxHeight: "100%", borderRadius: 14, boxShadow: "0 30px 70px -30px rgba(33,34,39,.45), 0 0 0 1px rgba(33,34,39,.08)" }} />
-              </div>
-            )}
-          </div>
+          {slide.image && (
+            <div style={{ position: "absolute", top: 150, bottom: 150, right: 150, width: 860, display: "grid", placeItems: "center" }}>
+              <img src={slide.image} alt="" style={{ maxWidth: "100%", maxHeight: "100%", borderRadius: 14, boxShadow: "0 40px 90px -30px rgba(33,34,39,.5), 0 0 0 1px rgba(33,34,39,.08)" }} />
+            </div>
+          )}
         </>
       );
       break;
