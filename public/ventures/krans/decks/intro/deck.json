@@ -6,7 +6,31 @@
       "layout": "cover",
       "eyebrow": "Introduction · 2026",
       "title": "Evidence-based venture intelligence.",
-      "subtitle": "Everything your ventures already produce, turned into positions you can check: where each venture stands, and the evidence behind it."
+      "subtitle": "Everything your ventures already produce, turned into positions you can check: where each venture stands, and the evidence behind it.",
+      "color": "orange",
+      "field": {
+        "kind": "horizon"
+      }
+    },
+    {
+      "layout": "cover",
+      "eyebrow": "Introduction · 2026",
+      "title": "Evidence-based venture intelligence.",
+      "subtitle": "Everything your ventures already produce, turned into positions you can check: where each venture stands, and the evidence behind it.",
+      "color": "purple",
+      "field": {
+        "kind": "ledger"
+      }
+    },
+    {
+      "layout": "cover",
+      "eyebrow": "Introduction · 2026",
+      "title": "Evidence-based venture intelligence.",
+      "subtitle": "Everything your ventures already produce, turned into positions you can check: where each venture stands, and the evidence behind it.",
+      "color": "blue",
+      "field": {
+        "kind": "thread"
+      }
     },
     {
       "layout": "statement",
@@ -43,7 +67,11 @@
     {
       "layout": "section",
       "eyebrow": "02",
-      "title": "Connect the dots."
+      "title": "Connect the dots.",
+      "color": "orange",
+      "field": {
+        "kind": "horizon"
+      }
     },
     {
       "layout": "points",
@@ -94,12 +122,20 @@
       "layout": "statement",
       "eyebrow": "Who it is for",
       "title": "For portfolios that run more ventures than anyone can sit in calls for.",
-      "body": "Venture studios, corporate venture builders, and funds and platform teams. Built on learnings from a decade of ventures built inside Builders."
+      "body": "Venture studios, corporate venture builders, and funds and platform teams. Built on learnings from a decade of ventures built inside Builders.",
+      "color": "blue",
+      "field": {
+        "kind": "twin"
+      }
     },
     {
       "layout": "closing",
       "title": "Instinct starts ventures. Evidence compounds them.",
-      "subtitle": "krans.ai · Book a walkthrough"
+      "subtitle": "krans.ai · Book a walkthrough",
+      "color": "purple",
+      "field": {
+        "kind": "ledger"
+      }
     }
   ]
 }

@@ -9,7 +9,9 @@ export type Face = {
 /** Optional per-brand deck direction, applied to every deck of that venture. */
 export type DeckStyle = {
   /** "imagery": every slide sits on a full-bleed picture with a dark scrim. */
-  style?: "plain" | "imagery" | "gradient" | "pixel";
+  style?: "plain" | "imagery" | "gradient" | "pixel" | "field";
+  /** "field": named brand colours slides can be painted in (slide "color"), and the hues fields cycle through */
+  palette?: Record<string, string>;
   /** "pixel": colour of the pixel grid, and partner logos shown bottom right on every slide */
   pixel?: string;
   partners?: string[];
@@ -45,7 +47,8 @@ export type Brand = {
 /** background: a picture for this slide. mode: light or dark ground ("gradient" style; the cover is always dark). */
 export type Person = { name: string; role?: string; photo?: string };
 
-type Bg = { background?: string; mode?: "light" | "dark"; /** gradient colourway for this slide (gradient-style brands) */ gradient?: string; /** a photo behind the gradient (gradient style) */ photo?: string };
+type Bg = { background?: string; mode?: "light" | "dark"; /** gradient colourway for this slide (gradient-style brands) */ gradient?: string; /** a photo behind the gradient (gradient style) */ photo?: string;
+  /** "field" style: paint the slide in a named brand colour, and choose its pattern */ color?: string; field?: { kind?: string; color?: string } | false };
 
 export type Slide = Bg & (
   | { layout: "cover"; eyebrow?: string; title: string; subtitle?: string; presenter?: Person }

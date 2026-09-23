@@ -5,6 +5,7 @@ import { useRef, useState, type CSSProperties } from "react";
 import type { Picture } from "@/lib/content";
 import type { Brand, Theme } from "@/lib/types";
 import { rich } from "./Slide";
+import { fieldSVG } from "@/lib/fields.mjs";
 import { toast, useFit } from "./ui";
 
 const FORMATS = [
@@ -22,6 +23,8 @@ type Post = {
   format: (typeof FORMATS)[number]["key"];
   layout: (typeof LAYOUTS)[number]["key"];
   dark: boolean;
+  /** darken or lighten the picture behind the headline */
+  shade: boolean;
   label: string;
   title: string;
   photo?: string;
@@ -36,7 +39,8 @@ export function Social({ slug, name, brand, theme, pictures }: { slug: string; n
   const [post, setPost] = useState<Post>({
     format: "portrait",
     layout: "type",
-    dark: theme.deck.style !== "pixel",
+    dark: theme.deck.style !== "pixel" && theme.deck.style !== "field",
+    shade: true,
     label: name,
     title: brand.tagline ?? `${name}.`,
     photo: photos.find((p) => p.group === "photos" || p.group === "backgrounds")?.href ?? photos[0]?.href,
@@ -82,6 +86,11 @@ export function Social({ slug, name, brand, theme, pictures }: { slug: string; n
         <Field label="Ground">
           <Seg options={[["dark", "Dark"], ["light", "Light"]]} value={post.dark ? "dark" : "light"} onChange={(v) => set("dark", v === "dark")} />
         </Field>
+        {(post.layout === "photo" || (post.layout === "type" && theme.deck.style === "imagery")) && (
+          <Field label="Shade">
+            <Seg options={[["on", "On"], ["off", "Off"]]} value={post.shade ? "on" : "off"} onChange={(v) => set("shade", v === "on")} />
+          </Field>
+        )}
         <Field label="Label">
           <input className="social-input" value={post.label} onChange={(e) => set("label", e.target.value)} />
         </Field>
@@ -168,9 +177,9 @@ function Artwork({ post, w, h, theme, brand }: { post: Post; w: number; h: numbe
   const label: CSSProperties = { fontFamily: caps ? theme.label : theme.text, fontSize: 20 * u, letterSpacing: "0.16em", textTransform: "uppercase", color: soft };
   const logoH = 34 * u;
   const logo = brand.logo && (
-    <img src={brand.logo} alt="" style={{ height: logoH, filter: dark || post.layout === "photo" ? "brightness(0) invert(1)" : undefined }} />
+    <img src={brand.logo} alt="" style={{ height: logoH, filter: dark ? "brightness(0) invert(1)" : undefined }} />
   );
-  const bmark = style === "gradient" && <img src="/ventures/builders/gallery/illustrations/builders-b-mark-white.png" alt="" style={{ position: "absolute", right: pad, bottom: pad, height: 54 * u, filter: dark || post.layout === "photo" ? undefined : "brightness(0)" }} />;
+  const bmark = style === "gradient" && <img src="/ventures/builders/gallery/illustrations/builders-b-mark-white.png" alt="" style={{ position: "absolute", right: pad, bottom: pad, height: 54 * u, filter: dark ? undefined : "brightness(0)" }} />;
 
   const text = (extra: CSSProperties = {}) => (
     <div style={{ position: "absolute", left: pad, right: pad, bottom: pad + (style === "gradient" ? 70 * u : 0), ...extra }}>
@@ -184,15 +193,20 @@ function Artwork({ post, w, h, theme, brand }: { post: Post; w: number; h: numbe
   const layers: React.ReactNode[] = [];
   if (post.layout === "photo" && photo) {
     layers.push(<div key="p" style={{ position: "absolute", inset: 0, background: `center / cover url("${photo}")` }} />);
-    layers.push(<div key="s" style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,0) 35%, rgba(0,0,0,.7))" }} />);
+    if (post.shade) layers.push(<div key="s" style={{ position: "absolute", inset: 0, background: dark ? "linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,0) 35%, rgba(0,0,0,.7))" : "linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,0) 35%, rgba(255,255,255,.82))" }} />);
     if (style === "gradient" && grad) layers.push(<div key="g" style={{ position: "absolute", inset: 0, background: `center bottom / cover url("${grad.overlay}")` }} />);
   } else if (post.layout === "type") {
     if (style === "gradient" && grad) layers.push(<div key="g" style={{ position: "absolute", inset: 0, background: `center bottom / cover url("${dark ? grad.full : grad.overlay}")` }} />);
     if (style === "imagery" && pool.length) {
       layers.push(<div key="i" style={{ position: "absolute", inset: 0, background: `center / cover url("${photo}")` }} />);
-      layers.push(<div key="s" style={{ position: "absolute", inset: 0, background: dark ? "linear-gradient(180deg, rgba(10,10,10,.2), rgba(10,10,10,.75))" : "linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.85))" }} />);
+      if (post.shade) layers.push(<div key="s" style={{ position: "absolute", inset: 0, background: dark ? "linear-gradient(180deg, rgba(10,10,10,.2), rgba(10,10,10,.75))" : "linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.85))" }} />);
     }
     if (style === "pixel") layers.push(<Pixels key="px" w={w} h={h} x0={w * 0.62} color={d.pixel ?? theme.accent} />);
+    if (style === "field") {
+      const hues = Object.values(d.palette ?? { a: theme.accent });
+      const svg = fieldSVG({ kind: "horizon", color: dark ? "#EFE9DB" : hues[0], cols: 24, rows: 12, width: 960, height: 480, floor: 0, fluid: true });
+      layers.push(<div key="f" aria-hidden style={{ position: "absolute", left: pad, right: pad, top: h * 0.36, height: h * 0.3 }} dangerouslySetInnerHTML={{ __html: svg }} />);
+    }
     if (style === "plain") layers.push(<div key="a" style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 14 * u, background: theme.accent }} />);
   }
 

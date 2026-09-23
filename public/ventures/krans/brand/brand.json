@@ -1,12 +1,36 @@
 {
   "tagline": "Evidence-based venture intelligence.",
   "colors": [
-    { "name": "Ink", "hex": "#212227", "role": "ink" },
-    { "name": "Cream", "hex": "#EFE9DB", "role": "paper" },
-    { "name": "Krans Orange", "hex": "#F95738", "role": "accent" },
-    { "name": "Signal Blue", "hex": "#30BCED", "role": "support" },
-    { "name": "Position Purple", "hex": "#5E239D", "role": "support" },
-    { "name": "Cream Lift", "hex": "#F5F1E7", "role": "support" }
+    {
+      "name": "Ink",
+      "hex": "#212227",
+      "role": "ink"
+    },
+    {
+      "name": "Cream",
+      "hex": "#EFE9DB",
+      "role": "paper"
+    },
+    {
+      "name": "Krans Orange",
+      "hex": "#F95738",
+      "role": "accent"
+    },
+    {
+      "name": "Signal Blue",
+      "hex": "#30BCED",
+      "role": "support"
+    },
+    {
+      "name": "Position Purple",
+      "hex": "#5E239D",
+      "role": "support"
+    },
+    {
+      "name": "Cream Lift",
+      "hex": "#F5F1E7",
+      "role": "support"
+    }
   ],
   "type": [
     {
@@ -28,5 +52,13 @@
       "url": "https://www.fontshare.com/fonts/switzer"
     }
   ],
-  "source": "Live krans.ai computed styles (2026-09-23): body #EFE9DB on #212227, Switzer 500 headlines and 400 copy from Fontshare, primary CTA #F95738, data marks #30BCED and #5E239D, card fill #F5F1E7; same tokens as ~/dev/krans-website-v2 app/globals.css. Logo is the live nav wordmark (four overlapping rings plus krans), strokes converted to filled rings; mark is the ring symbol, also the live favicon. Tagline is the krans.ai hero h1. The live site sets small uppercase labels in Geist Mono; that face is left out on purpose, since the latest repo moves those labels to Switzer uppercase and tracked, and Builders Design uses no monospace."
+  "source": "Live krans.ai computed styles (2026-09-23): body #EFE9DB on #212227, Switzer 500 headlines and 400 copy from Fontshare, primary CTA #F95738, data marks #30BCED and #5E239D, card fill #F5F1E7; same tokens as ~/dev/krans-website-v2 app/globals.css. Logo is the live nav wordmark (four overlapping rings plus krans), strokes converted to filled rings; mark is the ring symbol, also the live favicon. Tagline is the krans.ai hero h1. The live site sets small uppercase labels in Geist Mono; that face is left out on purpose, since the latest repo moves those labels to Switzer uppercase and tracked, and Builders Design uses no monospace.",
+  "deck": {
+    "style": "field",
+    "palette": {
+      "orange": "#F95738",
+      "blue": "#30BCED",
+      "purple": "#5E239D"
+    }
+  }
 }

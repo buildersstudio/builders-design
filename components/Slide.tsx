@@ -2,6 +2,8 @@
 
 import { Fragment, type CSSProperties, type ElementType } from "react";
 import type { Slide as S, Theme } from "@/lib/types";
+import { luminance } from "@/lib/types";
+import { fieldSVG } from "@/lib/fields.mjs";
 
 export const W = 1920;
 export const H = 1080;
@@ -39,6 +41,7 @@ export function Slide(props: { slide: S; theme: Theme; logo?: string; n: number;
   if (style === "imagery") return <ImagerySlide {...props} />;
   if (style === "gradient") return <GradientSlide {...props} />;
   if (style === "pixel") return <PixelSlide {...props} />;
+  if (style === "field") return <FieldSlide {...props} />;
   return <PlainSlide {...props} />;
 }
 
@@ -731,6 +734,163 @@ function PixelSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: T
     <div className="slide" style={root}>
       {inner}
       {footer}
+    </div>
+  );
+}
+
+/* ---------- field style (Krans): cream or full brand colour, quantised-square patterns from the site ---------- */
+
+const DEFAULT_FIELD: Record<string, string> = { cover: "bloom", statement: "scatter", points: "ledger", metrics: "twin", section: "horizon", split: "ring", quote: "halo", closing: "horizon", photo: "edge", cards: "ridge", mosaic: "twin", equation: "ring" };
+
+function Field({ kind, color, cols, rows, floor, style }: { kind: string; color: string; cols: number; rows: number; floor?: number; style: CSSProperties }) {
+  const svg = fieldSVG({ kind, color, cols, rows, width: cols * 40, height: rows * 40, floor: floor ?? 0.04, fluid: true });
+  return <div aria-hidden style={{ position: "absolute", ...style }} dangerouslySetInnerHTML={{ __html: svg }} />;
+}
+
+function FieldSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: Theme; logo?: string; n: number; total: number; edit?: Edit }) {
+  const d = theme.deck;
+  const pal = d.palette ?? { orange: theme.accent };
+  const hues = Object.values(pal);
+  const ground = slide.color ? pal[slide.color] ?? slide.color : theme.paper;
+  const painted = !!slide.color;
+  const fg = painted ? (luminance(ground) > 0.56 ? theme.ink : theme.paper) : theme.ink;
+  const soft = painted ? (fg === theme.paper ? "rgba(239,233,219,.8)" : "rgba(33,34,39,.7)") : "rgba(33,34,39,.58)";
+  const fieldOpt = slide.field === false ? null : slide.field ?? {};
+  const kind = fieldOpt?.kind ?? DEFAULT_FIELD[slide.layout] ?? "bloom";
+  const hue = fieldOpt?.color ? pal[fieldOpt.color] ?? fieldOpt.color : painted ? fg : hues[(n - 1) % hues.length];
+  const e = (k: string) => [k];
+  const X = 110;
+
+  const root: CSSProperties = {
+    width: W, height: H, position: "relative", overflow: "hidden", background: ground, color: fg, fontFamily: theme.text,
+    ["--em-font" as string]: "inherit", ["--em-style" as string]: "normal", ["--em-weight" as string]: "inherit",
+    ["--em-color" as string]: painted ? fg : theme.accent, ["--em-track" as string]: "inherit",
+  };
+  const display: CSSProperties = { fontFamily: theme.display, fontWeight: 500, letterSpacing: "-0.035em", lineHeight: 1.02, margin: 0 };
+  const label: CSSProperties = { fontSize: 19, letterSpacing: "0.16em", textTransform: "uppercase", color: soft, marginBottom: 30 };
+  const body: CSSProperties = { fontSize: 30, lineHeight: 1.45, color: soft, maxWidth: 900, marginTop: 36 };
+  const cols = (k: number) => `repeat(${Math.min(k, 4)}, 1fr)`;
+  const rule = painted ? "rgba(239,233,219,.4)" : "rgba(33,34,39,.16)";
+
+  // where the pattern sits: beside the copy on cream, across the slide on colour
+  const f = (st: CSSProperties, c = 26, r = 15, floor?: number) => fieldOpt && <Field kind={kind} color={hue} cols={c} rows={r} floor={floor} style={st} />;
+  const right = f({ top: 110, bottom: 110, right: X, width: 820 });
+  const band = f({ top: 90, right: X, width: 760, height: 380 }, 26, 13);
+  const fullField = f({ left: X, right: X, top: 660, bottom: 110 }, 48, 9, 0);
+
+  let inner: React.ReactNode = null;
+  switch (slide.layout) {
+    case "cover":
+      inner = (
+        <>
+          {painted ? fullField : right}
+          <div style={{ position: "absolute", left: X, top: painted ? 150 : 300, width: painted ? 1500 : 860 }}>
+            <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />
+            <T as="h1" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: painted ? 150 : 124 }} />
+            <T v={slide.subtitle} p={e("subtitle")} edit={edit} style={{ ...body, maxWidth: 860 }} />
+          </div>
+        </>
+      );
+      break;
+    case "section":
+      inner = (
+        <>
+          {fullField}
+          <div style={{ position: "absolute", left: X, top: 150 }}>
+            <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />
+            <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 230, letterSpacing: "-0.045em", lineHeight: 0.95 }} />
+          </div>
+        </>
+      );
+      break;
+    case "closing":
+      inner = (
+        <>
+          {fullField}
+          <div style={{ position: "absolute", left: X, top: 150, right: X }}>
+            <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 124, maxWidth: 1600 }} />
+            <T v={slide.subtitle} p={e("subtitle")} edit={edit} style={{ ...body, marginTop: 40 }} />
+          </div>
+        </>
+      );
+      break;
+    case "statement":
+      inner = (
+        <>
+          {painted ? fullField : right}
+          <div style={{ position: "absolute", left: X, top: painted ? 170 : 0, bottom: painted ? "auto" : 0, width: painted ? 1500 : 880, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />
+            <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 92 }} />
+            <T v={slide.body} p={e("body")} edit={edit} style={body} />
+          </div>
+        </>
+      );
+      break;
+    case "points":
+    case "metrics":
+      inner = (
+        <>
+          {band}
+          <div style={{ position: "absolute", left: X, top: 150, width: 900 }}>
+            <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />
+            <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 80 }} />
+          </div>
+          <div style={{ position: "absolute", left: X, right: X, bottom: 150, display: "grid", gridTemplateColumns: cols(slide.layout === "points" ? slide.points.length : slide.metrics.length), gap: 60 }}>
+            {slide.layout === "points"
+              ? slide.points.map((pt, i) => (
+                  <div key={i} style={{ borderTop: `2px solid ${painted ? rule : hues[i % hues.length]}`, paddingTop: 28 }}>
+                    <div style={{ fontSize: 18, letterSpacing: "0.14em", color: soft, marginBottom: 20, fontFeatureSettings: '"tnum" 1' }}>{String(i + 1).padStart(2, "0")}</div>
+                    <T v={pt.title} p={["points", i, "title"]} edit={edit} style={{ fontFamily: theme.display, fontSize: 40, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.1 }} />
+                    <T v={pt.body} p={["points", i, "body"]} edit={edit} style={{ fontSize: 25, lineHeight: 1.42, color: soft, marginTop: 14 }} />
+                  </div>
+                ))
+              : slide.metrics.map((m, i) => (
+                  <div key={i} style={{ borderTop: `2px solid ${hues[i % hues.length]}`, paddingTop: 28 }}>
+                    <T v={m.value} p={["metrics", i, "value"]} edit={edit} style={{ ...display, fontSize: 150, fontFeatureSettings: '"tnum" 1' }} />
+                    <T v={m.label} p={["metrics", i, "label"]} edit={edit} style={{ fontSize: 25, color: soft, marginTop: 18 }} />
+                  </div>
+                ))}
+          </div>
+        </>
+      );
+      break;
+    case "split":
+      inner = (
+        <>
+          <div style={{ position: "absolute", left: X, top: 0, bottom: 0, width: 760, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />
+            <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 84 }} />
+            <T v={slide.body} p={e("body")} edit={edit} style={{ ...body, fontSize: 28 }} />
+          </div>
+          <div style={{ position: "absolute", top: 90, bottom: 90, right: 90, width: 960, borderRadius: 28, background: painted ? "rgba(255,255,255,.1)" : "#F5F1E7", overflow: "hidden" }}>
+            {fieldOpt && <Field kind={kind} color={hue} cols={24} rows={22} style={{ inset: 0 }} />}
+            {slide.image && (
+              <div style={{ position: "absolute", inset: 70, display: "grid", placeItems: "center" }}>
+                <img src={slide.image} alt="" style={{ maxWidth: "100%", maxHeight: "100%", borderRadius: 14, boxShadow: "0 30px 70px -30px rgba(33,34,39,.45), 0 0 0 1px rgba(33,34,39,.08)" }} />
+              </div>
+            )}
+          </div>
+        </>
+      );
+      break;
+    case "quote":
+      inner = (
+        <>
+          {painted ? fullField : right}
+          <div style={{ position: "absolute", left: X, top: painted ? 170 : 0, bottom: painted ? "auto" : 0, width: 1100, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <T as="blockquote" v={slide.quote} p={e("quote")} edit={edit} style={{ ...display, fontSize: 84, lineHeight: 1.1 }} />
+            <T v={slide.author} p={e("author")} edit={edit} style={{ ...label, marginTop: 44 }} />
+          </div>
+        </>
+      );
+      break;
+  }
+
+  return (
+    <div className="slide" style={root}>
+      {inner}
+      {logo && <img src={logo} alt="" style={{ position: "absolute", left: X, top: 70, height: 36, filter: painted && fg === theme.paper ? "brightness(0) invert(.93) sepia(.2)" : undefined }} />}
+      <div style={{ position: "absolute", right: X, bottom: 60, fontSize: 18, color: soft, fontFeatureSettings: '"tnum" 1' }}>{String(n).padStart(2, "0")} / {String(total).padStart(2, "0")}</div>
     </div>
   );
 }
