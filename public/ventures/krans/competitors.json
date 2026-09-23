@@ -1,0 +1,14 @@
+[
+  { "name": "Affinity", "url": "https://www.affinity.co", "kind": "direct" },
+  { "name": "Visible", "url": "https://visible.vc", "kind": "direct" },
+  { "name": "Standard Metrics", "url": "https://standardmetrics.io", "kind": "direct" },
+  { "name": "Dovetail", "url": "https://dovetail.com", "kind": "direct" },
+  { "name": "Gong", "url": "https://www.gong.io", "kind": "direct" },
+  { "name": "Sybill", "url": "https://www.sybill.ai", "kind": "direct" },
+  { "name": "ITONICS", "url": "https://www.itonics-innovation.com", "kind": "direct" },
+  { "name": "Attio", "url": "https://attio.com", "kind": "adjacent" },
+  { "name": "Granola", "url": "https://www.granola.ai", "kind": "adjacent" },
+  { "name": "Enterpret", "url": "https://www.enterpret.com", "kind": "adjacent" },
+  { "name": "Glean", "url": "https://www.glean.com", "kind": "adjacent" },
+  { "name": "Harmonic", "url": "https://harmonic.ai", "kind": "adjacent" }
+]

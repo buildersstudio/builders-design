@@ -1,0 +1,32 @@
+{
+  "tagline": "Evidence-based venture intelligence.",
+  "colors": [
+    { "name": "Ink", "hex": "#212227", "role": "ink" },
+    { "name": "Cream", "hex": "#EFE9DB", "role": "paper" },
+    { "name": "Krans Orange", "hex": "#F95738", "role": "accent" },
+    { "name": "Signal Blue", "hex": "#30BCED", "role": "support" },
+    { "name": "Position Purple", "hex": "#5E239D", "role": "support" },
+    { "name": "Cream Lift", "hex": "#F5F1E7", "role": "support" }
+  ],
+  "type": [
+    {
+      "name": "Switzer",
+      "role": "display",
+      "weight": 500,
+      "css": null,
+      "src": "https://cdn.fontshare.com/wf/OYB4CXKJQXKTNSLJMTDQOIVUL2V5EL7S/WYO2P7DQVV5RNXGMCUO2HL4RJP4VFUAS/6XPIMU23OJVRY676OG5YVJMWEHWICATX.ttf",
+      "license": "open",
+      "url": "https://www.fontshare.com/fonts/switzer"
+    },
+    {
+      "name": "Switzer",
+      "role": "text",
+      "weight": 400,
+      "css": null,
+      "src": "https://cdn.fontshare.com/wf/BLNB4FAQFNK56DWWNF7PMGTCOTZHOEII/ST3WKSSDMBK2MIQQO3MAVYWLF4FTOLFV/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.ttf",
+      "license": "open",
+      "url": "https://www.fontshare.com/fonts/switzer"
+    }
+  ],
+  "source": "Live krans.ai computed styles (2026-09-23): body #EFE9DB on #212227, Switzer 500 headlines and 400 copy from Fontshare, primary CTA #F95738, data marks #30BCED and #5E239D, card fill #F5F1E7; same tokens as ~/dev/krans-website-v2 app/globals.css. Logo is the live nav wordmark (four overlapping rings plus krans), strokes converted to filled rings; mark is the ring symbol, also the live favicon. Tagline is the krans.ai hero h1. The live site sets small uppercase labels in Geist Mono; that face is left out on purpose, since the latest repo moves those labels to Switzer uppercase and tracked, and Builders Design uses no monospace."
+}
