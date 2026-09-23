@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>drawgen · From 3D model to dimensioned manufacturing drawing</title>
+<meta name="description" content="drawgen is a SOLIDWORKS add-in that returns a finished, dimensioned drawing for every part in an assembly, as a PDF and a DXF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#EDEDEA;
+  --panel:#FFFFFF;
+  --ink:#16181B;
+  --ink-2:#55585D;
+  --ink-3:#8A8D91;
+  --line:rgba(22,24,27,.12);
+  --line-2:rgba(22,24,27,.07);
+  --col-rule:rgba(22,24,27,.06);
+  --accent:#F2540F;
+  --pad:40px;
+  --max:1440px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ground);color:var(--ink);
+  font-family:"Inter Tight",system-ui,sans-serif;font-size:16px;line-height:1.5;
+  font-feature-settings:"ss01","cv11";
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+.num,.tnum{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+
+/* frame + visible 12-column rules */
+.frame{position:relative;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.rules{position:absolute;inset:0 var(--pad);pointer-events:none;z-index:0;
+  background-image:linear-gradient(to right,var(--col-rule) 1px,transparent 1px);
+  background-size:calc(100% / 12) 100%;
+  border-right:1px solid var(--col-rule)}
+.page{position:relative}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));position:relative;z-index:1}
+.c{padding:0 20px}
+
+.label{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.label.ink{color:var(--ink)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(237,237,234,.94);border-bottom:1px solid var(--line)}
+.nav .grid{height:64px;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;grid-column:1/4}
+.brand svg{display:block}
+.wordmark{font-weight:600;font-size:21px;letter-spacing:-.035em;line-height:1}
+.links{grid-column:4/10;display:flex;gap:32px;font-size:14px;color:var(--ink-2);font-weight:500}
+.links a:hover{color:var(--ink)}
+.nav-cta{grid-column:10/13;display:flex;justify-content:flex-end;gap:8px;align-items:center}
+
+.btn{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 18px;font-size:14.5px;font-weight:600;letter-spacing:-.005em;border:1px solid var(--ink);transition:background .2s,color .2s}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.dark:hover{background:#000}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.btn.sm{height:36px;padding:0 14px;font-size:13.5px}
+.btn .arr{width:14px;height:14px}
+
+/* hero */
+.hero{padding:64px 0 48px}
+.hero .eyebrow{grid-column:1/13;display:flex;gap:28px;align-items:center;margin-bottom:28px}
+.hero .eyebrow .sep{width:28px;height:1px;background:var(--ink-3)}
+h1{grid-column:1/12;font-size:clamp(44px,6.1vw,88px);line-height:1;letter-spacing:-.035em;font-weight:600}
+h1 .soft{color:var(--ink-3)}
+.hero-sub{grid-column:1/7;margin-top:32px;font-size:19px;line-height:1.45;color:var(--ink-2);letter-spacing:-.01em;max-width:560px}
+.hero-sub b{color:var(--ink);font-weight:600}
+.hero-ctas{grid-column:9/13;margin-top:32px;display:flex;gap:8px;justify-content:flex-end;align-items:flex-end}
+
+/* film */
+.film-wrap{grid-column:1/13}
+.film{background:var(--panel);border:1px solid var(--line);position:relative}
+.film-head{display:flex;align-items:center;justify-content:space-between;height:48px;padding:0 20px;border-bottom:1px solid var(--line-2)}
+.film-head .l,.film-head .r{display:flex;gap:28px;align-items:center}
+.dot{width:7px;height:7px;background:var(--ink);display:inline-block;margin-right:10px;vertical-align:1px}
+.film-stage{position:relative;aspect-ratio:1116/591;overflow:hidden;background:#dfe3e8}
+.film-stage video{position:absolute;width:114.7%;height:121.83%;left:-7.35%;top:-12.18%;display:block;object-fit:cover}
+.film-progress{height:2px;background:var(--line-2);position:relative}
+.film-progress i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--ink)}
+.spec{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-2)}
+.spec > div{padding:20px 20px 22px;border-left:1px solid var(--line-2)}
+.spec > div:first-child{border-left:0}
+.spec .v{font-size:17px;font-weight:500;letter-spacing:-.015em;margin-top:8px}
+
+/* sections */
+section{position:relative}
+.sec{padding:152px 0 0}
+.sec-head{grid-column:1/13;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:start;margin-bottom:56px}
+.sec-head .label{grid-column:1/4;padding:14px 20px 0}
+.sec-head .label::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);margin-right:10px;vertical-align:1px}
+.sec-head h2{grid-column:4/11;padding:0 20px}
+h2{font-size:clamp(34px,3.9vw,56px);line-height:1.02;letter-spacing:-.03em;font-weight:600}
+h2 .soft{color:var(--ink-3)}
+.lede{font-size:19px;line-height:1.5;color:var(--ink-2);letter-spacing:-.01em}
+
+/* who */
+.who{padding-top:136px}
+.who .label{grid-column:1/4;padding-top:12px}
+.who p{grid-column:4/12;font-size:clamp(24px,2.5vw,36px);line-height:1.22;letter-spacing:-.03em;font-weight:500}
+.who p .soft{color:var(--ink-3)}
+
+/* pipeline rail */
+.rail{grid-column:1/13;display:grid;grid-template-columns:repeat(6,1fr);background:var(--panel);border:1px solid var(--line)}
+.stage{position:relative;padding:28px 20px 36px;border-left:1px solid var(--line-2);min-height:300px;display:flex;flex-direction:column}
+.stage:first-child{border-left:0}
+.stage .n{font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--ink-3)}
+.stage .track{position:relative;height:1px;background:var(--ink);margin:28px -20px 0;}
+.stage:first-child .track{margin-left:20px}
+.stage:last-child .track{margin-right:20px}
+.stage .node{position:absolute;left:0;top:-5px;width:11px;height:11px;background:var(--panel);border:1.5px solid var(--ink)}
+.stage:first-child .node{left:0}
+.stage:not(:first-child) .node{left:20px}
+.stage.gate .node{background:var(--ink)}
+.stage h3{font-size:27px;letter-spacing:-.035em;font-weight:600;margin-top:40px;line-height:1}
+.stage p{font-size:15px;line-height:1.5;color:var(--ink-2);margin-top:14px;max-width:190px}
+.stage .io{margin-top:auto;padding-top:28px}
+.rail-foot{grid-column:1/13;display:flex;justify-content:space-between;padding:18px 20px 0}
+
+/* fan diagram */
+.fan{grid-column:1/13;background:var(--panel);border:1px solid var(--line)}
+.fan-head{display:flex;justify-content:space-between;align-items:center;height:48px;padding:0 20px;border-bottom:1px solid var(--line-2)}
+.fan svg{display:block;width:100%;height:auto}
+.fan-foot{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-2)}
+.fan-foot > div{padding:18px 20px 20px;border-left:1px solid var(--line-2)}
+.fan-foot > div:first-child{border-left:0}
+.fan-foot .v{font-size:30px;font-weight:600;letter-spacing:-.035em;margin-top:6px;line-height:1}
+.fan-foot .v.flag{color:var(--accent)}
+.fan .fan-mobile{display:none}
+
+/* principle */
+.principle .l{grid-column:1/6}
+.principle .r{grid-column:7/13}
+.principle h2{font-size:clamp(40px,5vw,72px);line-height:.98}
+.principle .lede{margin-top:28px;max-width:470px}
+.principle ul{list-style:none;margin-top:44px;border-top:1px solid var(--line)}
+.principle li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.principle li .label{padding-top:3px}
+.sheet{background:var(--panel);border:1px solid var(--line)}
+.sheet svg{display:block;width:100%;height:auto}
+
+/* privacy */
+.two{grid-column:1/13;display:grid;grid-template-columns:1fr 1fr;background:var(--panel);border:1px solid var(--line)}
+.two > div{padding:36px 40px 40px}
+.two > div + div{border-left:1px solid var(--line-2)}
+.two h3{font-size:clamp(26px,2.5vw,36px);line-height:1.08;letter-spacing:-.035em;font-weight:600;margin-top:18px;max-width:440px}
+.two p{margin-top:16px;color:var(--ink-2);font-size:16.5px;max-width:470px}
+.two svg{display:block;width:100%;height:auto;margin-top:40px}
+
+/* roadmap */
+.road{grid-column:1/13;border-top:1px solid var(--ink)}
+.road-row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:center;border-bottom:1px solid var(--line);min-height:84px}
+.road-row > *{padding:0 20px}
+.road-row .n{grid-column:1/2;color:var(--ink-3);font-weight:600;font-size:14px}
+.road-row .t{grid-column:2/7;font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.03em}
+.road-row .d{grid-column:7/11;color:var(--ink-2);font-size:15.5px}
+.road-row .s{grid-column:11/13;justify-self:end;display:flex;align-items:center;gap:10px}
+.road-row .s i{width:22px;height:1px;background:var(--ink-3);display:inline-block}
+
+/* close */
+.close{padding:168px 0 0}
+.close-panel{grid-column:1/13;background:var(--ink);color:#fff;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));padding:88px 0 40px;position:relative;overflow:hidden}
+.close-panel .rules-dark{position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.07) 1px,transparent 1px);background-size:calc(100% / 12) 100%;pointer-events:none}
+.close-panel > *:not(.rules-dark){position:relative}
+.close-panel .label{color:rgba(255,255,255,.5);grid-column:1/13;padding:0 20px}
+.close-panel h2{grid-column:1/11;padding:0 20px;margin-top:28px;font-size:clamp(44px,6.2vw,92px);line-height:1;letter-spacing:-.035em}
+.close-panel h2 .soft{color:rgba(255,255,255,.42)}
+.close-panel .ctas{grid-column:1/13;padding:0 20px;margin-top:56px;display:flex;gap:8px}
+.btn.light{background:#fff;color:var(--ink);border-color:#fff}
+.btn.light:hover{background:#e9e9e6}
+.btn.outline-l{background:transparent;color:#fff;border-color:rgba(255,255,255,.28)}
+.btn.outline-l:hover{border-color:#fff}
+.close-panel .meta{grid-column:1/13;display:grid;grid-template-columns:repeat(4,1fr);margin-top:104px;border-top:1px solid rgba(255,255,255,.14)}
+.close-panel .meta div{padding:18px 20px 0;font-size:14.5px;color:rgba(255,255,255,.72)}
+.close-panel .meta .label{padding:0;margin-bottom:6px;display:block}
+
+footer{padding:40px 0 48px}
+footer .grid{align-items:start}
+.f-brand{grid-column:1/5;display:flex;flex-direction:column;gap:14px}
+.f-brand p{color:var(--ink-2);font-size:14.5px;max-width:280px}
+.f-col{grid-column:span 2;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:var(--ink-2)}
+.f-col .label{margin-bottom:6px}
+.f-col a:hover{color:var(--ink)}
+.f-col.first{grid-column:7/9}
+.f-legal{grid-column:1/13;display:flex;justify-content:space-between;margin-top:64px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+
+/* responsive */
+@media (max-width:1100px){
+  .links{display:none}
+  .nav-cta{grid-column:6/13}
+  .hero-sub{grid-column:1/9}
+  .hero-ctas{grid-column:1/13;justify-content:flex-start;margin-top:28px}
+  .rail{grid-template-columns:repeat(3,1fr)}
+  .stage:nth-child(4){border-left:0}
+  .stage:nth-child(n+4){border-top:1px solid var(--line-2)}
+  .stage .track{margin-left:20px!important;margin-right:20px!important}
+  .stage .node{left:0!important}
+  .principle .l,.principle .r{grid-column:1/13}
+  .principle .r{margin-top:56px}
+  .road-row .d{display:none}
+  .road-row .t{grid-column:2/10}
+  .road-row .s{grid-column:10/13}
+}
+@media (max-width:760px){
+  :root{--pad:16px}
+  .rules{background-size:25% 100%}
+  .close-panel .rules-dark{background-size:25% 100%}
+  .c{padding:0 14px}
+  .nav .grid{height:58px}
+  .brand{grid-column:1/7}
+  .nav-cta{grid-column:7/13}
+  .nav-cta .ghost{display:none}
+  .hero{padding:48px 0 36px}
+  .hero .eyebrow{gap:14px;margin-bottom:22px;flex-wrap:wrap}
+  .hero .eyebrow .sep{display:none}
+  h1{grid-column:1/13;font-size:43px;line-height:1;letter-spacing:-.032em}
+  .hero-sub{grid-column:1/13;font-size:17px;margin-top:22px}
+  .hero-ctas{flex-wrap:wrap}
+  .film-head{padding:0 14px;height:42px}
+  .film-head .hide-s{display:none}
+  .spec{grid-template-columns:1fr 1fr}
+  .spec > div:nth-child(3){border-left:0}
+  .spec > div:nth-child(n+3){border-top:1px solid var(--line-2)}
+  .spec > div{padding:16px 14px}
+  .spec .v{font-size:15px}
+  .who{padding-top:96px}
+  .who .label,.who p{grid-column:1/13}
+  .who p{margin-top:18px;font-size:24px}
+  .sec{padding-top:112px}
+  .sec-head{margin-bottom:32px}
+  .sec-head .label,.sec-head h2{grid-column:1/13;padding:0 14px}
+  .sec-head h2{margin-top:16px}
+  h2{font-size:34px}
+  .rail{grid-template-columns:1fr}
+  .stage{min-height:0;border-left:0!important;border-top:1px solid var(--line-2);padding:22px 14px 24px;display:grid;grid-template-columns:48px 1fr;column-gap:8px}
+  .stage:first-child{border-top:0}
+  .stage .track{display:none}
+  .stage .n{grid-row:1/3;padding-top:4px}
+  .stage h3{margin-top:0;font-size:24px}
+  .stage p{max-width:none;margin-top:8px}
+  .stage .io{display:none}
+  .rail-foot{padding:14px 14px 0;flex-direction:column;gap:6px}
+  .fan-head{padding:0 14px}
+  .fan-head .hide-s{display:none}
+  .fan-desktop{display:none!important}
+  .fan .fan-mobile{display:block}
+  .fan-foot{grid-template-columns:1fr 1fr}
+  .fan-foot > div{padding:14px}
+  .fan-foot > div:nth-child(3){border-left:0}
+  .fan-foot > div:nth-child(n+3){border-top:1px solid var(--line-2)}
+  .fan-foot .v{font-size:24px}
+  .principle h2{font-size:42px}
+  .principle li{grid-template-columns:96px 1fr}
+  .two{grid-template-columns:1fr}
+  .two > div{padding:24px 14px 28px}
+  .two > div + div{border-left:0;border-top:1px solid var(--line-2)}
+  .two svg{margin-top:28px}
+  .road-row{min-height:72px}
+  .road-row .n{grid-column:1/3}
+  .road-row .t{grid-column:3/13;font-size:21px}
+  .road-row .s{display:none}
+  .close{padding-top:112px}
+  .close-panel{padding:52px 0 28px}
+  .close-panel .label,.close-panel h2,.close-panel .ctas{padding:0 14px}
+  .close-panel h2{grid-column:1/13;font-size:44px}
+  .close-panel .ctas{flex-direction:column;align-items:flex-start;margin-top:36px}
+  .close-panel .meta{grid-template-columns:1fr 1fr;margin-top:56px}
+  .close-panel .meta div{padding:14px 14px 10px}
+  .f-brand{grid-column:1/13}
+  .f-col,.f-col.first{grid-column:span 6;margin-top:36px}
+  .f-legal{flex-direction:column;gap:6px;margin-top:40px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="frame">
+    <div class="grid">
+      <a class="brand c" href="#top" aria-label="drawgen home">
+        <svg width="30" height="18" viewBox="0 0 30 18" fill="none" aria-hidden="true">
+          <path d="M1.5 5.25 L11 1.25 V16.75 L1.5 12.75 Z" stroke="#16181B" stroke-width="1.8" stroke-linejoin="miter"/>
+          <circle cx="21.25" cy="9" r="7.25" stroke="#16181B" stroke-width="1.8"/>
+          <circle cx="21.25" cy="9" r="3.1" stroke="#16181B" stroke-width="1.8"/>
+        </svg>
+        <span class="wordmark">drawgen</span>
+      </a>
+      <nav class="links c" aria-label="Primary">
+        <a href="#film">Product</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#measured">Principles</a>
+        <a href="#local">Security</a>
+        <a href="#roadmap">Roadmap</a>
+      </nav>
+      <div class="nav-cta c">
+        <a class="btn ghost sm" href="#talk">Talk to us</a>
+        <a class="btn dark sm" href="#talk">Try it on your part</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="page" id="top">
+  <div class="frame">
+    <div class="rules" aria-hidden="true"></div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="grid">
+        <div class="eyebrow c">
+          <span class="label ink">SOLIDWORKS add-in</span><span class="sep"></span>
+          <span class="label">PDF and DXF for every part</span>
+        </div>
+        <h1 class="c">From 3D model to dimensioned manufacturing drawing.</h1>
+        <p class="hero-sub c"><b>One click, inside SOLIDWORKS.</b> drawgen reads the assembly and returns a finished, dimensioned drawing for every part in it, as a PDF and a DXF.</p>
+        <div class="hero-ctas c">
+          <a class="btn dark" href="#talk">Try it on your own part, soon
+            <svg class="arr" viewBox="0 0 14 14" fill="none"><path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          <a class="btn ghost" href="#talk">Talk to us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILM -->
+    <section id="film">
+      <div class="grid">
+        <div class="film-wrap">
+          <div class="film">
+            <div class="film-head">
+              <div class="l"><span class="label ink"><span class="dot"></span>Product film</span><span class="label hide-s">drawgen running inside SOLIDWORKS</span></div>
+              <div class="r"><span class="label hide-s">Assembly Practice</span><span class="label ink tnum" id="tc">00:00 / 00:45</span></div>
+            </div>
+            <div class="film-stage">
+              <video id="v" autoplay muted loop playsinline preload="auto" poster="../_assets/drawgen-demo-poster.webp">
+                <source src="../_assets/drawgen-demo.webm" type="video/webm">
+                <source src="../_assets/drawgen-demo.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="film-progress"><i id="pg"></i></div>
+            <div class="spec">
+              <div><span class="label">Input</span><div class="v">A SOLIDWORKS assembly</div></div>
+              <div><span class="label">Output</span><div class="v">A PDF and a DXF per part</div></div>
+              <div><span class="label">Runs</span><div class="v">In-process, on your machine</div></div>
+              <div><span class="label">Repeats</span><div class="v">Same model, same sheet</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO -->
+    <section class="who">
+      <div class="grid">
+        <span class="label c">Built for</span>
+        <p class="c">Engineers at engineer-to-order manufacturers and machine builders who design in SOLIDWORKS, <span class="soft">and still redraw every part by hand after the 3D model is finished.</span></p>
+      </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section class="sec" id="pipeline">
+      <div class="grid">
+        <div class="sec-head">
+          <span class="label">Pipeline</span>
+          <h2>Six stages, from solid to sheet. <span class="soft">One click starts all of them.</span></h2>
+        </div>
+        <div class="rail">
+          <div class="stage"><span class="n tnum">01</span><div class="track"><span class="node"></span></div><h3>Resolve</h3><p>The assembly is resolved into every unique part it contains.</p><span class="label io">Assembly</span></div>
+          <div class="stage"><span class="n tnum">02</span><div class="track"><span class="node"></span></div><h3>Classify</h3><p>Each part is identified and classified on its own terms.</p><span class="label io">Part</span></div>
+          <div class="stage"><span class="n tnum">03</span><div class="track"><span class="node"></span></div><h3>Project</h3><p>Each part becomes its own drawing, with views projected from the solid.</p><span class="label io">Views</span></div>
+          <div class="stage"><span class="n tnum">04</span><div class="track"><span class="node"></span></div><h3>Dimension</h3><p>Every dimension is measured directly off the solid model.</p><span class="label io">Dimensions</span></div>
+          <div class="stage"><span class="n tnum">05</span><div class="track"><span class="node"></span></div><h3>Annotate</h3><p>Annotations are applied to each sheet.</p><span class="label io">Sheet</span></div>
+          <div class="stage gate"><span class="n tnum">06</span><div class="track"><span class="node"></span></div><h3>Gate</h3><p>Anything unclear is flagged for you rather than filled in.</p><span class="label io ink">PDF + DXF</span></div>
+        </div>
+        <div class="rail-foot"><span class="label">Runs in-process, inside SOLIDWORKS</span><span class="label">Output per part: PDF and DXF</span></div>
+      </div>
+    </section>
+
+    <!-- ONE IN, MANY OUT -->
+    <section class="sec">
+      <div class="grid">
+        <div class="sec-head">
+          <span class="label">Output</span>
+          <h2>One assembly in. <span class="soft">A drawing for every part out.</span></h2>
+        </div>
+        <div class="fan">
+          <div class="fan-head">
+            <span class="label ink">Assembly Practice, as run in the film</span>
+            <span class="label hide-s">6 unique parts · 12 files</span>
+          </div>
+
+          <!-- desktop diagram -->
+          <svg class="fan-desktop" viewBox="0 0 1358 600" fill="none" role="img" aria-label="One assembly with six parts fans out into six dimensioned drawing sheets, one flagged for review.">
+            <defs>
+              <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#16181B" stroke-width=".6" opacity=".35"/></pattern>
+              <g id="tb">
+                <rect x="0" y="0" width="74" height="22" stroke="#16181B" stroke-width=".8" fill="#fff"/>
+                <line x1="0" y1="11" x2="74" y2="11" stroke="#16181B" stroke-width=".6"/>
+                <line x1="40" y1="0" x2="40" y2="22" stroke="#16181B" stroke-width=".6"/>
+              </g>
+            </defs>
+            <style>
+              .t{font-family:"Inter Tight",sans-serif;fill:#16181B}
+              .tl{font-size:10.5px;font-weight:600;letter-spacing:.14em}
+              .tm{font-size:15px;font-weight:600;letter-spacing:-.01em}
+              .ts{font-size:12.5px;fill:#8A8D91;font-weight:500}
+              .dim{stroke:#16181B;stroke-width:.7}
+              .obj{stroke:#16181B;stroke-width:1.4}
+              .cl{stroke:#16181B;stroke-width:.5;stroke-dasharray:8 2 2 2;opacity:.6}
+            </style>
+
+            <!-- left: assembly card -->
+            <g transform="translate(40,48)">
+              <rect x="0" y="16" width="360" height="488" fill="#F6F6F4" stroke="rgba(22,24,27,.12)"/>
+              <!-- side elevation of the assembly -->
+              <g transform="translate(30,52)">
+                <line class="cl" x1="-10" y1="40" x2="310" y2="40"/>
+                <line class="cl" x1="-10" y1="104" x2="310" y2="104"/>
+                <!-- upper barrel -->
+                <rect class="obj" x="0" y="26" width="46" height="28" rx="0" fill="#fff"/>
+                <rect class="obj" x="46" y="22" width="12" height="36" fill="#16181B"/>
+                <rect class="obj" x="58" y="24" width="150" height="32" fill="#fff"/>
+                <rect class="obj" x="208" y="20" width="10" height="40" fill="#fff"/>
+                <path class="obj" d="M218 40 L262 18 L262 62 Z" fill="#fff"/>
+                <rect class="obj" x="240" y="34" width="66" height="12" fill="#fff"/>
+                <!-- lower barrel -->
+                <rect class="obj" x="0" y="90" width="46" height="28" fill="#fff"/>
+                <rect class="obj" x="46" y="86" width="12" height="36" fill="#16181B"/>
+                <rect class="obj" x="58" y="88" width="150" height="32" fill="#fff"/>
+                <rect class="obj" x="208" y="84" width="10" height="40" fill="#fff"/>
+                <path class="obj" d="M218 104 L262 82 L262 126 Z" fill="#fff"/>
+                <rect class="obj" x="240" y="98" width="66" height="12" fill="#fff"/>
+                <!-- body plate -->
+                <path class="obj" d="M96 56 V88 M170 56 V88" />
+                <rect x="96" y="56" width="74" height="32" fill="url(#hatch)" stroke="#16181B" stroke-width="1.4"/>
+                <rect class="obj" x="118" y="6" width="22" height="18" fill="#fff"/>
+              </g>
+              <line x1="0" y1="232" x2="360" y2="232" stroke="rgba(22,24,27,.12)"/>
+              <text class="t tl" x="24" y="262">ASSEMBLY PRACTICE.SLDASM</text>
+              <!-- tree rows -->
+              <g id="rows">
+                <g transform="translate(24,296)"><rect width="8" height="8" y="-8" stroke="#16181B" stroke-width="1.2"/><text class="t tm" x="22" y="0">Main Body</text></g>
+                <g transform="translate(24,332)"><rect width="8" height="8" y="-8" stroke="#16181B" stroke-width="1.2"/><text class="t tm" x="22" y="0">Plunger</text></g>
+                <g transform="translate(24,368)"><rect width="8" height="8" y="-8" stroke="#16181B" stroke-width="1.2"/><text class="t tm" x="22" y="0">Pull Ring</text></g>
+                <g transform="translate(24,404)"><rect width="8" height="8" y="-8" stroke="#16181B" stroke-width="1.2"/><text class="t tm" x="22" y="0">End Cap</text></g>
+                <g transform="translate(24,440)"><rect width="8" height="8" y="-8" stroke="#16181B" stroke-width="1.2"/><text class="t tm" x="22" y="0">Nozzle</text></g>
+                <g transform="translate(24,476)"><rect width="8" height="8" y="-8" stroke="#16181B" stroke-width="1.2"/><text class="t tm" x="22" y="0">Arrow</text></g>
+              </g>
+              <g stroke="rgba(22,24,27,.1)">
+                <line x1="24" y1="314" x2="336" y2="314"/><line x1="24" y1="350" x2="336" y2="350"/><line x1="24" y1="386" x2="336" y2="386"/><line x1="24" y1="422" x2="336" y2="422"/><line x1="24" y1="458" x2="336" y2="458"/>
+              </g>
+              <!-- port -->
+              <g fill="#16181B">
+                <circle cx="360" cy="292" r="2.5"/><circle cx="360" cy="328" r="2.5"/><circle cx="360" cy="364" r="2.5"/><circle cx="360" cy="400" r="2.5"/><circle cx="360" cy="436" r="2.5"/><circle cx="360" cy="472" r="2.5"/>
+              </g>
+            </g>
+
+            <!-- connectors: orthogonal routing, tree rows to drawgen to sheets -->
+            <g stroke="#16181B" stroke-width="1" fill="none">
+              <path d="M400 340 H424 M400 376 H424 M400 412 H424 M400 448 H424 M400 484 H424 M400 520 H424"/>
+              <path d="M424 340 V520 M424 430 H452"/>
+              <path d="M584 430 H606 M606 34 V430 M606 34 H1193 M733 34 V64 M963 34 V64 M1193 34 V64"/>
+              <path d="M606 296 H1193 M733 296 V328 M963 296 V328 M1193 296 V328"/>
+            </g>
+            <g fill="#16181B">
+              <circle cx="424" cy="430" r="3"/><circle cx="606" cy="296" r="3"/><circle cx="606" cy="34" r="3"/>
+              <circle cx="733" cy="34" r="2.5"/><circle cx="963" cy="34" r="2.5"/><circle cx="733" cy="296" r="2.5"/><circle cx="963" cy="296" r="2.5"/>
+            </g>
+            <g transform="translate(452,404)">
+              <rect width="132" height="52" fill="#16181B"/>
+              <text x="14" y="23" style="font-family:'Inter Tight',sans-serif;font-size:15px;font-weight:600;letter-spacing:-.02em;fill:#fff">drawgen</text>
+              <text x="14" y="40" style="font-family:'Inter Tight',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:.14em;fill:rgba(255,255,255,.55)">6 STAGES</text>
+            </g>
+
+            <!-- sheets: 3 x 2, each 210 x 148 (A-series ratio) -->
+            <!-- sheet template drawn per part -->
+            <!-- Sheet 1: Main Body (flagged) -->
+            <g transform="translate(628,64)">
+              <rect width="210" height="148" fill="#fff" stroke="#F2540F" stroke-width="1.6"/>
+              <rect x="6" y="6" width="198" height="136" stroke="#16181B" stroke-width=".6"/>
+              <use href="#tb" x="124" y="114"/>
+              <rect class="obj" x="30" y="44" width="72" height="42" fill="url(#hatch)"/>
+              <rect class="obj" x="50" y="30" width="20" height="14" fill="#fff"/>
+              <circle class="obj" cx="44" cy="66" r="4" fill="#fff"/><circle class="obj" cx="88" cy="66" r="4" fill="#fff"/>
+              <rect class="obj" x="128" y="44" width="42" height="42" fill="#fff"/>
+              <path class="dim" d="M30 98 V104 M102 98 V104 M30 102 H102"/><rect x="58" y="97" width="16" height="3" fill="#16181B" opacity=".55"/>
+              <path class="dim" d="M20 44 H14 M20 86 H14 M16 44 V86"/>
+              <path class="dim" d="M178 44 H184 M178 86 H184 M182 44 V86"/>
+              <!-- flag -->
+              <g transform="translate(160,20)">
+                <rect x="0" y="0" width="44" height="16" fill="#F2540F"/>
+                <text class="t" x="22" y="11.3" text-anchor="middle" style="font-size:8.5px;font-weight:700;letter-spacing:.12em;fill:#fff">REVIEW</text>
+              </g>
+              <circle cx="182" cy="65" r="9" stroke="#F2540F" stroke-width="1.3" fill="none"/>
+            </g>
+            <!-- Sheet 2: Plunger -->
+            <g transform="translate(858,64)">
+              <rect width="210" height="148" fill="#fff" stroke="rgba(22,24,27,.25)"/>
+              <rect x="6" y="6" width="198" height="136" stroke="#16181B" stroke-width=".6"/>
+              <use href="#tb" x="124" y="114"/>
+              <line class="cl" x1="18" y1="58" x2="190" y2="58"/>
+              <rect class="obj" x="26" y="50" width="120" height="16" fill="#fff"/>
+              <rect class="obj" x="146" y="44" width="16" height="28" fill="#fff"/>
+              <path class="dim" d="M26 80 V88 M162 80 V88 M26 86 H162"/><rect x="86" y="81" width="16" height="3" fill="#16181B" opacity=".55"/>
+              <path class="dim" d="M170 44 H178 M170 72 H178 M176 44 V72"/>
+              <path class="dim" d="M26 36 V44 M146 36 V44 M26 40 H146" opacity=".6"/>
+            </g>
+            <!-- Sheet 3: Pull Ring -->
+            <g transform="translate(1088,64)">
+              <rect width="210" height="148" fill="#fff" stroke="rgba(22,24,27,.25)"/>
+              <rect x="6" y="6" width="198" height="136" stroke="#16181B" stroke-width=".6"/>
+              <use href="#tb" x="124" y="114"/>
+              <line class="cl" x1="40" y1="64" x2="116" y2="64"/><line class="cl" x1="78" y1="26" x2="78" y2="102"/>
+              <circle class="obj" cx="78" cy="64" r="30" fill="#fff"/><circle class="obj" cx="78" cy="64" r="21" fill="#fff"/>
+              <rect class="obj" x="140" y="34" width="10" height="60" fill="url(#hatch)"/>
+              <path class="dim" d="M56 42 L100 86"/><rect x="100" y="84" width="16" height="3" fill="#16181B" opacity=".55"/>
+              <path class="dim" d="M140 102 V108 M150 102 V108 M132 106 H158"/>
+            </g>
+            <!-- Sheet 4: End Cap -->
+            <g transform="translate(628,328)">
+              <rect width="210" height="148" fill="#fff" stroke="rgba(22,24,27,.25)"/>
+              <rect x="6" y="6" width="198" height="136" stroke="#16181B" stroke-width=".6"/>
+              <use href="#tb" x="124" y="114"/>
+              <circle class="obj" cx="64" cy="64" r="28" fill="#fff"/><circle class="obj" cx="64" cy="64" r="12" fill="#fff"/>
+              <line class="cl" x1="28" y1="64" x2="100" y2="64"/><line class="cl" x1="64" y1="28" x2="64" y2="100"/>
+              <path class="obj" d="M126 36 H150 V92 H126 Z" fill="url(#hatch)"/>
+              <path class="dim" d="M126 26 V32 M150 26 V32 M126 30 H150"/>
+              <path class="dim" d="M44 44 L84 84"/><rect x="84" y="86" width="16" height="3" fill="#16181B" opacity=".55"/>
+            </g>
+            <!-- Sheet 5: Nozzle -->
+            <g transform="translate(858,328)">
+              <rect width="210" height="148" fill="#fff" stroke="rgba(22,24,27,.25)"/>
+              <rect x="6" y="6" width="198" height="136" stroke="#16181B" stroke-width=".6"/>
+              <use href="#tb" x="124" y="114"/>
+              <line class="cl" x1="18" y1="62" x2="186" y2="62"/>
+              <rect class="obj" x="30" y="52" width="24" height="20" fill="#fff"/>
+              <path class="obj" d="M54 62 L118 36 V88 Z" fill="#fff"/>
+              <rect class="obj" x="118" y="56" width="48" height="12" fill="#fff"/>
+              <path class="dim" d="M30 96 V102 M166 96 V102 M30 100 H166"/><rect x="92" y="95" width="16" height="3" fill="#16181B" opacity=".55"/>
+              <path class="dim" d="M84 44 A 40 40 0 0 1 84 80" />
+            </g>
+            <!-- Sheet 6: Arrow -->
+            <g transform="translate(1088,328)">
+              <rect width="210" height="148" fill="#fff" stroke="rgba(22,24,27,.25)"/>
+              <rect x="6" y="6" width="198" height="136" stroke="#16181B" stroke-width=".6"/>
+              <use href="#tb" x="124" y="114"/>
+              <line class="cl" x1="18" y1="60" x2="186" y2="60"/>
+              <rect class="obj" x="28" y="55" width="110" height="10" fill="#fff"/>
+              <path class="obj" d="M138 60 L176 40 L168 60 L176 80 Z" fill="#fff"/>
+              <path class="dim" d="M28 90 V98 M176 90 V98 M28 94 H176"/><rect x="94" y="89" width="16" height="3" fill="#16181B" opacity=".55"/>
+              <path class="dim" d="M184 40 H190 M184 80 H190 M188 40 V80"/>
+            </g>
+
+            <!-- captions -->
+            <g>
+              <text class="t tm" x="628" y="240">Main Body</text><text class="t ts" x="838" y="240" text-anchor="end" style="fill:#F2540F;font-weight:600">Flagged for review</text>
+              <text class="t tm" x="858" y="240">Plunger</text><text class="t ts" x="1068" y="240" text-anchor="end">PDF · DXF</text>
+              <text class="t tm" x="1088" y="240">Pull Ring</text><text class="t ts" x="1298" y="240" text-anchor="end">PDF · DXF</text>
+              <text class="t tm" x="628" y="504">End Cap</text><text class="t ts" x="838" y="504" text-anchor="end">PDF · DXF</text>
+              <text class="t tm" x="858" y="504">Nozzle</text><text class="t ts" x="1068" y="504" text-anchor="end">PDF · DXF</text>
+              <text class="t tm" x="1088" y="504">Arrow</text><text class="t ts" x="1298" y="504" text-anchor="end">PDF · DXF</text>
+            </g>
+          </svg>
+
+          <!-- mobile list version -->
+          <svg class="fan-mobile" viewBox="0 0 358 420" fill="none" role="img" aria-label="Six parts, each with its own drawing sheet.">
+            <style>.mt{font-family:"Inter Tight",sans-serif;fill:#16181B;font-size:14px;font-weight:600}.ms{font-family:"Inter Tight",sans-serif;fill:#8A8D91;font-size:11.5px;font-weight:500}</style>
+            <text x="14" y="30" class="ms" style="letter-spacing:.14em;font-weight:600;font-size:10px">ASSEMBLY PRACTICE.SLDASM</text>
+            <g id="mrows">
+              <g transform="translate(0,52)"><rect x="14" y="0" width="8" height="8" stroke="#16181B" stroke-width="1.2"/><text x="32" y="9" class="mt">Main Body</text><path d="M130 4 H232" stroke="#16181B"/><rect x="236" y="-14" width="52" height="36" fill="#fff" stroke="#F2540F" stroke-width="1.4"/><rect x="246" y="-4" width="20" height="14" stroke="#16181B" stroke-width="1"/><rect x="294" y="-3" width="50" height="14" fill="#F2540F"/><text x="319" y="7.5" text-anchor="middle" style="font-family:'Inter Tight';font-size:8px;font-weight:700;letter-spacing:.1em;fill:#fff">REVIEW</text></g>
+              <g transform="translate(0,114)"><rect x="14" y="0" width="8" height="8" stroke="#16181B" stroke-width="1.2"/><text x="32" y="9" class="mt">Plunger</text><path d="M130 4 H232" stroke="#16181B"/><rect x="236" y="-14" width="52" height="36" fill="#fff" stroke="rgba(22,24,27,.3)"/><rect x="244" y="1" width="30" height="6" stroke="#16181B" stroke-width="1"/><text x="296" y="8" class="ms">PDF · DXF</text></g>
+              <g transform="translate(0,176)"><rect x="14" y="0" width="8" height="8" stroke="#16181B" stroke-width="1.2"/><text x="32" y="9" class="mt">Pull Ring</text><path d="M130 4 H232" stroke="#16181B"/><rect x="236" y="-14" width="52" height="36" fill="#fff" stroke="rgba(22,24,27,.3)"/><circle cx="256" cy="4" r="10" stroke="#16181B" stroke-width="1"/><circle cx="256" cy="4" r="6" stroke="#16181B" stroke-width="1"/><text x="296" y="8" class="ms">PDF · DXF</text></g>
+              <g transform="translate(0,238)"><rect x="14" y="0" width="8" height="8" stroke="#16181B" stroke-width="1.2"/><text x="32" y="9" class="mt">End Cap</text><path d="M130 4 H232" stroke="#16181B"/><rect x="236" y="-14" width="52" height="36" fill="#fff" stroke="rgba(22,24,27,.3)"/><circle cx="256" cy="4" r="10" stroke="#16181B" stroke-width="1"/><circle cx="256" cy="4" r="4" stroke="#16181B" stroke-width="1"/><text x="296" y="8" class="ms">PDF · DXF</text></g>
+              <g transform="translate(0,300)"><rect x="14" y="0" width="8" height="8" stroke="#16181B" stroke-width="1.2"/><text x="32" y="9" class="mt">Nozzle</text><path d="M130 4 H232" stroke="#16181B"/><rect x="236" y="-14" width="52" height="36" fill="#fff" stroke="rgba(22,24,27,.3)"/><path d="M244 4 L264 -4 V12 Z M264 2 H280 V6 H264" stroke="#16181B" stroke-width="1"/><text x="296" y="8" class="ms">PDF · DXF</text></g>
+              <g transform="translate(0,362)"><rect x="14" y="0" width="8" height="8" stroke="#16181B" stroke-width="1.2"/><text x="32" y="9" class="mt">Arrow</text><path d="M130 4 H232" stroke="#16181B"/><rect x="236" y="-14" width="52" height="36" fill="#fff" stroke="rgba(22,24,27,.3)"/><path d="M244 4 H270 M270 4 L280 -3 L277 4 L280 11 Z" stroke="#16181B" stroke-width="1"/><text x="296" y="8" class="ms">PDF · DXF</text></g>
+            </g>
+          </svg>
+
+          <div class="fan-foot">
+            <div><span class="label">Unique parts</span><div class="v tnum">6</div></div>
+            <div><span class="label">Clean</span><div class="v tnum">5</div></div>
+            <div><span class="label">Flagged for review</span><div class="v flag tnum">1</div></div>
+            <div><span class="label">Files written</span><div class="v tnum">12</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEASURED -->
+    <section class="sec principle" id="measured">
+      <div class="grid">
+        <div class="l c">
+          <span class="label">Principle</span>
+          <h2 style="margin-top:24px">Measured,<br>not estimated.</h2>
+          <p class="lede">Every dimension is measured off the solid. Nothing estimated, nothing invented. Anything unclear is flagged for you rather than filled in.</p>
+          <ul>
+            <li><span class="label">Source</span><span>The solid model, never a guess</span></li>
+            <li><span class="label">Typed in</span><span>Nothing typed in by hand</span></li>
+            <li><span class="label">Unclear</span><span>Flagged for your engineering judgement</span></li>
+          </ul>
+        </div>
+        <div class="r c">
+          <div class="sheet">
+            <svg viewBox="0 0 640 520" fill="none" role="img" aria-label="Detail of a drawing: dimensions taken from the solid, one flagged for review.">
+              <style>
+                .o{stroke:#16181B;stroke-width:2}
+                .d{stroke:#16181B;stroke-width:1}
+                .c2{stroke:#16181B;stroke-width:.8;stroke-dasharray:14 3 3 3;opacity:.55}
+                .dt{font-family:"Inter Tight",sans-serif;font-size:15px;font-weight:500;fill:#16181B;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+                .lb{font-family:"Inter Tight",sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.14em;fill:#8A8D91}
+              </style>
+              <defs>
+                <marker id="ar" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 1.5 L10 5 L0 8.5 Z" fill="#16181B"/></marker>
+                <marker id="arA" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 1.5 L10 5 L0 8.5 Z" fill="#F2540F"/></marker>
+                <pattern id="h2" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#16181B" stroke-width=".8" opacity=".4"/></pattern>
+              </defs>
+              <rect x="16" y="16" width="608" height="488" stroke="#16181B" stroke-width=".8"/>
+              <text class="lb" x="36" y="46">SECTION A–A</text>
+              <text class="lb" x="604" y="46" text-anchor="end">MAIN BODY</text>
+
+              <!-- part: a stepped bracket in section -->
+              <line class="c2" x1="80" y1="262" x2="560" y2="262"/>
+              <path class="o" d="M150 170 H330 V200 H470 V324 H330 V354 H150 Z" fill="url(#h2)"/>
+              <rect class="o" x="210" y="236" width="70" height="52" fill="#fff"/>
+              <path class="o" d="M470 226 H500 V298 H470" fill="#fff"/>
+
+              <!-- dimensions measured -->
+              <path class="d" d="M150 160 V120 M470 190 V120"/>
+              <line class="d" x1="150" y1="130" x2="470" y2="130" marker-start="url(#ar)" marker-end="url(#ar)"/>
+              <text class="dt" x="310" y="122" text-anchor="middle">160.00</text>
+
+              <path class="d" d="M140 170 H96 M140 354 H96"/>
+              <line class="d" x1="106" y1="170" x2="106" y2="354" marker-start="url(#ar)" marker-end="url(#ar)"/>
+              <text class="dt" x="98" y="266" text-anchor="middle" transform="rotate(-90 98 266)">92.00</text>
+
+              <path class="d" d="M210 298 V398 M280 298 V398"/>
+              <line class="d" x1="210" y1="388" x2="280" y2="388" marker-start="url(#ar)" marker-end="url(#ar)"/>
+              <text class="dt" x="245" y="412" text-anchor="middle">35.00</text>
+
+              <path class="d" d="M330 364 V440 M470 334 V440"/>
+              <line class="d" x1="330" y1="430" x2="470" y2="430" marker-start="url(#ar)" marker-end="url(#ar)"/>
+              <text class="dt" x="400" y="454" text-anchor="middle">70.00</text>
+
+              <!-- flagged -->
+              <path d="M500 226 H560 M500 298 H560" stroke="#F2540F" stroke-width="1" stroke-dasharray="4 3"/>
+              <line x1="550" y1="226" x2="550" y2="298" stroke="#F2540F" stroke-width="1.2" marker-start="url(#arA)" marker-end="url(#arA)"/>
+              <circle cx="485" cy="262" r="30" stroke="#F2540F" stroke-width="1.5"/>
+              <g transform="translate(472,322)">
+                <rect width="132" height="28" fill="#F2540F"/>
+                <text x="12" y="18.5" style="font-family:'Inter Tight',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.14em;fill:#fff">FLAGGED · REVIEW</text>
+              </g>
+
+              <!-- legend -->
+              <line x1="16" y1="470" x2="624" y2="470" stroke="#16181B" stroke-width=".6"/>
+              <line x1="36" y1="487" x2="60" y2="487" stroke="#16181B" stroke-width="1"/><text class="lb" x="70" y="491">MEASURED OFF THE SOLID</text>
+              <line x1="290" y1="487" x2="314" y2="487" stroke="#F2540F" stroke-width="1.2" stroke-dasharray="4 3"/><text class="lb" x="324" y="491">LEFT FOR THE ENGINEER</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCAL + DETERMINISTIC -->
+    <section class="sec" id="local">
+      <div class="grid">
+        <div class="sec-head">
+          <span class="label">Security and repeatability</span>
+          <h2>Your geometry stays with you. <span class="soft">Your drawings stay the same.</span></h2>
+        </div>
+        <div class="two">
+          <div>
+            <span class="label ink">In-process</span>
+            <h3>The geometry never leaves the engineer's machine.</h3>
+            <p>drawgen runs in-process inside SOLIDWORKS. The model is read where it already lives, and the PDF and DXF are written to a local folder.</p>
+            <svg viewBox="0 0 560 220" fill="none" aria-hidden="true">
+              <style>.bx{font-family:"Inter Tight",sans-serif;font-size:13.5px;font-weight:600;fill:#16181B}.bl{font-family:"Inter Tight",sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;fill:#8A8D91}</style>
+              <rect x="1" y="1" width="558" height="218" stroke="#16181B" stroke-width="1" stroke-dasharray="5 4"/>
+              <text class="bl" x="18" y="26">YOUR WORKSTATION</text>
+              <rect x="30" y="62" width="200" height="120" fill="#F6F6F4" stroke="rgba(22,24,27,.2)"/>
+              <text class="bl" x="46" y="86">SOLIDWORKS</text>
+              <rect x="46" y="104" width="168" height="58" fill="#fff" stroke="#16181B" stroke-width="1.2"/>
+              <text class="bx" x="62" y="138">drawgen</text>
+              <line x1="230" y1="122" x2="330" y2="122" stroke="#16181B" stroke-width="1"/>
+              <path d="M324 117 L332 122 L324 127" stroke="#16181B" stroke-width="1" fill="none"/>
+              <rect x="340" y="80" width="84" height="84" fill="#fff" stroke="#16181B" stroke-width="1.2"/><text class="bx" x="382" y="127" text-anchor="middle">PDF</text>
+              <rect x="436" y="80" width="84" height="84" fill="#fff" stroke="#16181B" stroke-width="1.2"/><text class="bx" x="478" y="127" text-anchor="middle">DXF</text>
+              <text class="bl" x="340" y="192">WRITTEN LOCALLY</text>
+            </svg>
+          </div>
+          <div>
+            <span class="label ink">Deterministic</span>
+            <h3>The same model gives the same sheet on every run.</h3>
+            <p>drawgen is deterministic. Run it again on the same model and it returns the same sheet, line for line.</p>
+            <svg viewBox="0 0 560 220" fill="none" aria-hidden="true">
+              <style>.bl2{font-family:"Inter Tight",sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;fill:#8A8D91}.eq{font-family:"Inter Tight",sans-serif;font-size:22px;font-weight:500;fill:#16181B}</style>
+              <g id="ms">
+                <rect x="0" y="40" width="148" height="104" fill="#fff" stroke="#16181B" stroke-width="1.2"/>
+                <rect x="6" y="46" width="136" height="92" stroke="#16181B" stroke-width=".5"/>
+                <rect x="20" y="70" width="52" height="30" stroke="#16181B" stroke-width="1.2" fill="#F6F6F4"/>
+                <rect x="84" y="70" width="30" height="30" stroke="#16181B" stroke-width="1.2"/>
+                <path d="M20 112 V118 M72 112 V118 M20 115 H72" stroke="#16181B" stroke-width=".7"/>
+                <rect x="94" y="120" width="44" height="14" stroke="#16181B" stroke-width=".6"/>
+              </g>
+              <use href="#ms" x="206"/>
+              <use href="#ms" x="412"/>
+              <text class="eq" x="177" y="100" text-anchor="middle">=</text>
+              <text class="eq" x="383" y="100" text-anchor="middle">=</text>
+              <text class="bl2" x="0" y="172">RUN 1</text>
+              <text class="bl2" x="206" y="172">RUN 2</text>
+              <text class="bl2" x="412" y="172">RUN 3</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="sec" id="roadmap">
+      <div class="grid">
+        <div class="sec-head">
+          <span class="label">In development</span>
+          <h2>Next, from the same assembly.</h2>
+        </div>
+        <div class="road">
+          <div class="road-row"><span class="n tnum">01</span><span class="t">Parts lists</span><span class="d">Derived from the assembly drawgen already reads.</span><span class="s label"><i></i>In development</span></div>
+          <div class="road-row"><span class="n tnum">02</span><span class="t">Cut lists, with material</span><span class="d">Derived from the same solid model.</span><span class="s label"><i></i>In development</span></div>
+          <div class="road-row"><span class="n tnum">03</span><span class="t">Quotations</span><span class="d">Derived from the same assembly.</span><span class="s label"><i></i>In development</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSE -->
+    <section class="close" id="talk">
+      <div class="grid">
+        <div class="close-panel">
+          <div class="rules-dark" aria-hidden="true"></div>
+          <span class="label">Next step</span>
+          <h2>Try it on your own part, soon. <span class="soft">Until then, talk to us.</span></h2>
+          <div class="ctas">
+            <a class="btn light" href="https://drawgen.co">Talk to us
+              <svg class="arr" viewBox="0 0 14 14" fill="none"><path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></a>
+            <a class="btn outline-l" href="#film">Watch the film again</a>
+          </div>
+          <div class="meta">
+            <div><span class="label">Works in</span>SOLIDWORKS</div>
+            <div><span class="label">Delivers</span>PDF and DXF per part</div>
+            <div><span class="label">Runs</span>On your machine</div>
+            <div><span class="label">Built for</span>Engineer-to-order teams</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="grid">
+        <div class="f-brand c">
+          <a class="brand" href="#top" aria-label="drawgen home">
+            <svg width="30" height="18" viewBox="0 0 30 18" fill="none" aria-hidden="true">
+              <path d="M1.5 5.25 L11 1.25 V16.75 L1.5 12.75 Z" stroke="#16181B" stroke-width="1.8"/>
+              <circle cx="21.25" cy="9" r="7.25" stroke="#16181B" stroke-width="1.8"/>
+              <circle cx="21.25" cy="9" r="3.1" stroke="#16181B" stroke-width="1.8"/>
+            </svg>
+            <span class="wordmark">drawgen</span>
+          </a>
+          <p>From 3D model to dimensioned manufacturing drawing, in one click inside SOLIDWORKS.</p>
+        </div>
+        <div class="f-col first c"><span class="label">Product</span><a href="#film">Film</a><a href="#pipeline">Pipeline</a><a href="#measured">Principles</a><a href="#roadmap">Roadmap</a></div>
+        <div class="f-col c"><span class="label">Company</span><a href="#talk">Talk to us</a><a href="https://drawgen.co">drawgen.co</a></div>
+        <div class="f-legal c"><span class="tnum">© 2026 drawgen</span><span>SOLIDWORKS is a trademark of Dassault Systèmes.</span></div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function(){
+  var v=document.getElementById('v'),tc=document.getElementById('tc'),pg=document.getElementById('pg');
+  if(!v) return;
+  function f(s){s=Math.max(0,Math.floor(s||0));var m=Math.floor(s/60),r=s%60;return (m<10?'0':'')+m+':'+(r<10?'0':'')+r}
+  v.addEventListener('timeupdate',function(){
+    var d=v.duration||45;tc.textContent=f(v.currentTime)+' / '+f(d);
+    pg.style.width=(v.currentTime/d*100)+'%';
+  });
+})();
+</script>
+</body>
+</html>

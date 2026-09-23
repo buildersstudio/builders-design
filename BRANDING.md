@@ -12,19 +12,27 @@ The reference point is award-level work of the current moment (the kind of sites
 
 - **Read the venture.** Start from `venture.md`, and write nothing that is not grounded in it or in the venture's live site. The copy on a variant is real copy for this company, never lorem ipsum, and never an invented metric, customer, logo wall or testimonial.
 - **Read the category.** Open the competitor grid (`competitors.json` and the screenshots next to it) and name, for yourself, what the category looks like: its default colours, its default type, its default hero. The variant should then differ from that default on purpose, because a brand that looks like its category is a brand that has to outspend it.
-- **Find the one idea.** Each variant starts from a single sentence about what the brand is (for example, "the calm ledger" or "the recruiter's field notes"), and every choice that follows has to be explainable by that sentence. A palette swap on the same layout is not a new variant.
+- **Find the one idea.** Each variant starts from a single plain sentence about how the brand presents the product (for example, "the drawing is the hero, on white, measured to the millimetre" or "a dark, cinematic stage for the product film"), and every choice that follows has to be explainable by that sentence. A palette swap on the same layout is not a new variant.
+
+## The bar
+
+Every variant should be able to sit next to the landing pages of the best-funded companies of the moment (Linear, Vercel, Stripe, Figma, Anthropic, and the leading Y Combinator companies of its own category) without looking like the junior member of the group. The test I apply is simple: a senior buyer in the venture's market, an engineer or a finance director rather than a designer, should read the page as the work of a serious, well-funded company that understands their job, and a Y Combinator partner should see nothing on it that needs explaining away. Taste is shown through restraint, precision and the quality of a few decisions, never through a clever idea that the visitor has to decode.
+
+That rules out the things that make generated brands recognisable. **Serif display type, and serif italics used as an accent inside sans headlines, are banned unless the founder explicitly asks for them**, because that combination has become the clearest signature of AI-made design. So are literary or poetic concepts (proofreading marks, inkblots, mirrored layouts, metaphors the product does not actually contain), and so is any concept that has to be explained before the page makes sense.
 
 ## A round of variants
 
-A round is three variants unless asked otherwise, and the three should span a real range rather than cluster: one quiet and typographic, one where colour carries the identity, and one that takes a genuine risk. It is better that one of the three is wrong in an interesting way than that all three are safe in the same way.
+A round is three variants unless asked otherwise. The three should be genuinely different directions, differing in their ground (light or dark), their typographic system and the way the product is shown, while all three remain serious and credible for the category; none of them should be the gimmick that makes the other two look sensible.
 
-Each variant is delivered as a single landing page, because a brand is only judged fairly when it is seen doing its job. The page carries the logo, the palette and the type in use, a hero with the real one-liner, two or three sections drawn from the product and customer description, and one product moment (a stylised interface fragment, a diagram or a typographic device) that shows what the company actually does.
+Each concept starts from the product and its buyer rather than from a metaphor: what the product does, what its output looks like, and what the buyer trusts. For a technical product, the product itself is usually the best visual, so leave room for large, beautiful product film and real interface or output, and build the page around it rather than decorating around it.
+
+Each variant is delivered as a single landing page, because a brand is only judged fairly when it is seen doing its job. The page carries the logo, the palette and the type in use, a hero with the real one-liner, two or three sections drawn from the product and customer description, and at least one large product moment (the venture's real product film when one exists, otherwise a precise rendering of its real output).
 
 ## The elements
 
 - **Logo.** A wordmark first, drawn or carefully set, that survives in one colour at small sizes. A separate mark is added only when it earns its place, and it has to work as an app icon on its own.
 - **Colour.** One dominant colour, one accent and a small set of neutrals is usually enough. Avoid the category clichés (fintech blue, AI purple gradients, recruiting teal) unless the variant is deliberately reclaiming one, and check that text contrast holds.
-- **Type.** One family where possible, two at most, chosen for character at display sizes and for quiet legibility at text sizes. Fonts must load from Google Fonts or another CORS-open source. Monospace is never used, including for labels or numbers: small labels are set in the sans in uppercase with open letterspacing, and numbers use tabular figures.
+- **Type.** One sans family where possible, two at most, chosen for precision at display sizes and quiet legibility at text sizes (Inter Tight, Geist, Manrope, Instrument Sans, Figtree, Hanken Grotesk and similar grotesks are the usual territory). No serif and no monospace, including for labels, numbers or accents: small labels are set in the sans in uppercase with open letterspacing, and numbers use tabular figures. Fonts must load from Google Fonts or another CORS-open source.
 - **Layout.** A clear grid, generous whitespace, large confident type and very few elements per screen. Hierarchy should come from scale and space before it comes from colour or weight.
 - **Motion.** Subtle and purposeful, revealing content rather than decorating it, and absent entirely if the page is stronger without it.
 

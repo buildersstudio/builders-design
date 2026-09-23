@@ -53,7 +53,7 @@ async function shoot({ v, url, out, host }) {
     await page.addStyleTag({ content: HIDE }).catch(() => {});
     await page.waitForLoadState("networkidle", { timeout: 8000 }).catch(() => {});
     // Dismiss consent banners the polite way first, then hide whatever is left.
-    for (const label of [/reject all/i, /decline/i, /only necessary|necessary only|essential only/i]) {
+    for (const label of [/reject all/i, /^deny$/i, /decline/i, /only necessary|necessary only|essential only/i]) {
       const b = page.getByRole("button", { name: label }).first();
       if (await b.isVisible().catch(() => false)) { await b.click({ timeout: 1500 }).catch(() => {}); break; }
     }

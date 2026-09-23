@@ -20,6 +20,21 @@
     "kind": "direct"
   },
   {
+    "name": "Tacto",
+    "url": "https://www.tacto.ai/en",
+    "kind": "adjacent"
+  },
+  {
+    "name": "CADDi",
+    "url": "https://caddi.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Parsio",
+    "url": "https://parsio.ai",
+    "kind": "adjacent"
+  },
+  {
     "name": "Tacton",
     "url": "https://www.tacton.com",
     "kind": "adjacent"

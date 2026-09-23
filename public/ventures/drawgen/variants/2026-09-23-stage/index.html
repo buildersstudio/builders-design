@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>drawgen · From 3D model to dimensioned drawing</title>
+<meta name="description" content="drawgen is a SOLIDWORKS add-in that turns a 3D assembly into a dimensioned manufacturing drawing for every part, as a PDF and a DXF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#0A0B0D;
+  --panel:#101215;
+  --panel-2:#15171B;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.14);
+  --ink:#EDEEF0;
+  --ink-2:#A3A7AE;
+  --ink-3:#6B7079;
+  --accent:#8EB2FF;
+  --paper:#F3F3F1;
+  --paper-ink:#1A1C20;
+  --max:1280px;
+  --gut:40px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--ground);-webkit-text-size-adjust:100%}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,sans-serif;font-weight:400;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;font-feature-settings:"ss01" 0}
+a{color:inherit;text-decoration:none}
+img,video,svg{display:block}
+.wrap{max-width:calc(var(--max) + var(--gut)*2);margin:0 auto;padding:0 var(--gut)}
+.num{font-variant-numeric:tabular-nums}
+.label{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:40;background:rgba(10,11,13,.86);-webkit-backdrop-filter:saturate(1.2) blur(12px);backdrop-filter:saturate(1.2) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.scrolled{border-bottom-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;height:68px;gap:40px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink)}
+.brand svg{width:22px;height:22px}
+.brand span{font-size:19px;font-weight:600;letter-spacing:-.045em;line-height:1}
+.nav nav{display:flex;gap:30px;font-size:14px;color:var(--ink-2)}
+.nav nav a:hover{color:var(--ink)}
+.nav .right{margin-left:auto;display:flex;align-items:center;gap:22px;font-size:14px}
+.nav .right .muted{color:var(--ink-2)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 18px;border-radius:999px;font-size:14px;font-weight:500;letter-spacing:-.005em;transition:background .2s,border-color .2s,color .2s;white-space:nowrap}
+.btn-w{background:var(--ink);color:var(--ground)}
+.btn-w:hover{background:#fff}
+.btn-g{border:1px solid var(--line-2);color:var(--ink)}
+.btn-g:hover{border-color:rgba(255,255,255,.3)}
+.btn .soon{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.btn-sm{height:34px;padding:0 14px;font-size:13px}
+.arr{width:12px;height:12px}
+
+/* hero */
+.hero{padding:72px 0 0}
+.hero-top{display:grid;grid-template-columns:1.6fr 1fr;gap:64px;align-items:end}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--accent);display:block}
+h1{font-size:58px;line-height:1.02;font-weight:500;letter-spacing:-.045em;color:var(--ink);max-width:17ch}
+.hero-side p{font-size:18px;line-height:1.5;color:var(--ink-2);max-width:40ch;letter-spacing:-.01em}
+.hero-side p strong{color:var(--ink);font-weight:500}
+.hero-side .ctas{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+
+.stage{margin:56px auto 0;position:relative;width:min(1360px,calc(100vw - 48px));left:50%;transform:translateX(-50%)}
+.stage::before{content:"";position:absolute;left:8%;right:8%;top:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);z-index:2}
+.bezel{position:relative;border-radius:18px;padding:10px;background:linear-gradient(180deg,#1A1C20 0%,#111316 38%,#0E1013 100%);box-shadow:0 0 0 1px rgba(255,255,255,.09) inset,0 1px 0 rgba(255,255,255,.12) inset,0 40px 120px -40px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6)}
+.screen{position:relative;border-radius:9px;overflow:hidden;aspect-ratio:1116/594;background:#0d0f12;box-shadow:0 0 0 1px rgba(0,0,0,.6)}
+.screen video{position:absolute;width:114.7%;height:auto;left:-7.35%;top:-12.12%;max-width:none}
+.screen::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.03),transparent 30%);border-radius:9px}
+.floor{height:120px;margin:0 6%;background:radial-gradient(60% 100% at 50% 0%,rgba(190,205,230,.07),transparent 70%);position:relative}
+.stage-cap{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding:0 4px;gap:20px}
+.stage-cap .l{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.stage-cap .l span{font-size:13px;color:var(--ink-2)}
+.stage-cap .l span b{font-weight:500;color:var(--ink)}
+.play{display:inline-flex;align-items:center;gap:10px;background:none;border:1px solid var(--line-2);color:var(--ink-2);height:32px;padding:0 14px;border-radius:999px;font:500 12px/1 "Geist",sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.play:hover{color:var(--ink);border-color:rgba(255,255,255,.3)}
+.play svg{width:10px;height:10px}
+
+/* statement */
+.sec{padding:160px 0}
+.rule{border-top:1px solid var(--line)}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:56px}
+.statement{font-size:56px;line-height:1.06;font-weight:500;letter-spacing:-.04em;max-width:20ch}
+.statement .dim{color:var(--ink-3)}
+.measure{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+.measure .statement{font-size:52px}
+.measure p:not(.statement){margin-top:32px}
+.measure p:not(.statement){font-size:18px;line-height:1.55;color:var(--ink-2);max-width:42ch}
+.measure p b{color:var(--ink);font-weight:500}
+.detail{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px 28px 22px;position:relative}
+.detail svg{width:100%;height:auto}
+.detail .foot{display:flex;justify-content:space-between;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.detail .foot span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.detail .foot .fl{color:var(--accent)}
+
+/* pipeline */
+.pipe{display:grid;grid-template-columns:5fr 7fr;gap:80px;position:relative}
+.steps{padding:4vh 0 8vh}
+.step{min-height:46vh;display:flex;flex-direction:column;justify-content:center;opacity:.22;transition:opacity .5s var(--ease)}
+.step.on{opacity:1}
+.step .n{font-size:13px;font-weight:500;letter-spacing:.14em;color:var(--ink-3);display:flex;align-items:center;gap:14px}
+.step.on .n{color:var(--accent)}
+.step .n::after{content:"";height:1px;width:40px;background:currentColor;opacity:.6}
+.step h3{font-size:44px;font-weight:500;letter-spacing:-.04em;line-height:1.05;margin:18px 0 16px}
+.step p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:34ch}
+.sticky{position:sticky;top:108px;height:calc(100vh - 150px);max-height:720px;display:flex;flex-direction:column;justify-content:center}
+.sheet-wrap{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.sheet{background:var(--paper);border-radius:6px;overflow:hidden}
+.sheet svg{width:100%;height:auto}
+.sheet svg .ly{opacity:0;transition:opacity .6s var(--ease)}
+.sheet svg .ly.show{opacity:1}
+.sheet-meta{display:flex;justify-content:space-between;align-items:center;padding:16px 4px 2px}
+.sheet-meta .cur{font-size:14px;color:var(--ink)}
+.sheet-meta .cur em{font-style:normal;color:var(--ink-3);margin-right:10px}
+.rail{display:flex;gap:6px}
+.rail i{display:block;width:26px;height:2px;border-radius:2px;background:rgba(255,255,255,.12);transition:background .4s}
+.rail i.on{background:var(--ink)}
+
+/* spec */
+.spec{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-2);margin-top:96px}
+.spec div{padding:28px 28px 0 0;border-right:1px solid var(--line);margin-right:28px}
+.spec div:last-child{border-right:0;margin-right:0}
+.spec dt{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
+.spec dd{font-size:22px;line-height:1.3;letter-spacing:-.02em;font-weight:500}
+.spec dd small{display:block;font-size:14px;letter-spacing:0;font-weight:400;color:var(--ink-2);margin-top:10px;line-height:1.5}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.pair .statement{font-size:44px;max-width:16ch}
+.pair p:not(.statement){margin-top:24px;font-size:17px;color:var(--ink-2);max-width:40ch;line-height:1.55}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:220px 1fr auto;gap:40px;align-items:center;padding:36px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.road .t{font-size:24px;letter-spacing:-.025em;font-weight:500;line-height:1.3}
+.road .t span{color:var(--ink-3)}
+.tag{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.tag i{width:6px;height:6px;border-radius:50%;border:1px solid var(--ink-2);display:block}
+
+/* close */
+.close{padding:180px 0 140px;text-align:center}
+.close h2{font-size:72px;line-height:1.02;font-weight:500;letter-spacing:-.05em;margin:0 auto}
+.close p{font-size:18px;color:var(--ink-2);max-width:46ch;margin:28px auto 0;line-height:1.55}
+.close .ctas{display:flex;gap:12px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.close .btn{height:46px;padding:0 22px;font-size:15px}
+
+footer{border-top:1px solid var(--line);padding:40px 0 48px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+footer .fl{display:flex;gap:28px;font-size:13px;color:var(--ink-3)}
+footer .fl a:hover{color:var(--ink)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.sheet svg .ly,.step{transition:none}}
+
+/* responsive */
+@media (max-width:1100px){
+  h1{font-size:54px}
+  .statement{font-size:46px}
+  .pipe{gap:48px}
+  .step h3{font-size:36px}
+  .close h2{font-size:60px}
+}
+@media (max-width:900px){
+  :root{--gut:24px}
+  .nav nav{display:none}
+  .hero{padding-top:56px}
+  .hero-top{grid-template-columns:1fr;gap:28px}
+  .stage{margin-top:44px}
+  .measure{grid-template-columns:1fr;gap:48px}
+  .measure .statement{font-size:46px}
+  .pipe{grid-template-columns:1fr;gap:0}
+  .pipe .sticky{order:-1;top:68px;height:auto;max-height:none;z-index:5;background:var(--ground);padding:14px 0 12px;margin:0 calc(var(--gut)*-1);padding-left:var(--gut);padding-right:var(--gut)}
+  .steps{padding:4vh 0 10vh}
+  .step{min-height:44vh}
+  .spec{grid-template-columns:1fr 1fr;row-gap:36px}
+  .spec div:nth-child(2){border-right:0;margin-right:0}
+  .pair{grid-template-columns:1fr;gap:64px}
+  .road{grid-template-columns:1fr;gap:16px}
+  .road > .label{display:none}
+  .sec{padding:112px 0}
+}
+@media (max-width:560px){
+  :root{--gut:16px}
+  .nav .wrap{height:60px}
+  .nav .right .muted{display:none}
+  h1{font-size:40px;letter-spacing:-.04em}
+  .hero-side p{font-size:16px}
+  .eyebrow{margin-bottom:20px}
+  .bezel{padding:5px;border-radius:12px}
+  .screen{border-radius:7px}
+  .floor{height:60px}
+  .stage{width:100%;left:0;transform:none}
+  .stage-cap{flex-direction:column;align-items:flex-start;gap:14px}
+  .stage-cap .l{gap:8px 18px}
+  .statement{font-size:34px;letter-spacing:-.035em}
+  .pair .statement{font-size:32px}
+  .measure p:not(.statement){font-size:16px}
+  .measure .statement{font-size:34px}
+  .detail{padding:18px 16px 14px}
+  .step{min-height:38vh}
+  .step h3{font-size:30px;margin:12px 0 10px}
+  .step p{font-size:16px}
+  .sheet-wrap{padding:8px;border-radius:12px}
+  .sheet-meta{padding:10px 2px 0}
+  .rail i{width:16px}
+  .sec{padding:88px 0}
+  .sec-head{margin-bottom:36px}
+  .spec{grid-template-columns:1fr;margin-top:64px}
+  .spec div{border-right:0;margin-right:0;padding:22px 0;border-bottom:1px solid var(--line)}
+  .spec div:last-child{border-bottom:0}
+  .spec dd{font-size:20px}
+  .road .t{font-size:20px}
+  .close{padding:120px 0 96px}
+  .close h2{font-size:42px}
+  .close p{font-size:16px}
+  footer .wrap{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 64 64">
+      <path d="M6 18 39 4v38L6 56Z" fill="currentColor"/>
+      <path d="m24 28 34-14v32L24 60Z" fill="var(--ground)" stroke="var(--ground)" stroke-width="8.5"/>
+      <path d="m24 28 34-14v32L24 60Z" fill="var(--ground)" stroke="currentColor" stroke-width="3.25"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 12 12"><path d="M1 6h9.2M6.6 2.2 10.4 6l-3.8 3.8" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="drawgen"><svg><use href="#mark"/></svg><span>drawgen</span></a>
+    <nav aria-label="Primary">
+      <a href="#film">Product</a>
+      <a href="#pipeline">How it works</a>
+      <a href="#principles">Principles</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+    <div class="right">
+      <span class="muted">For SOLIDWORKS</span>
+      <a class="btn btn-w btn-sm" href="#talk">Talk to us</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <div class="eyebrow"><i></i><span class="label">SOLIDWORKS add-in</span></div>
+        <h1>From 3D model to dimensioned manufacturing drawing.</h1>
+      </div>
+      <div class="hero-side">
+        <p><strong>One click, inside SOLIDWORKS.</strong> drawgen reads the assembly and returns a finished drawing for every part in it, as a PDF and a DXF.</p>
+        <div class="ctas">
+          <a class="btn btn-w" href="#talk">Talk to us <svg class="arr"><use href="#arrow"/></svg></a>
+          <span class="btn btn-g" aria-disabled="true">Try it on your own part <span class="soon">Soon</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage" id="film">
+      <div class="bezel">
+        <div class="screen">
+          <video id="vid" autoplay muted loop playsinline preload="auto" poster="../_assets/drawgen-demo-poster.webp" aria-label="drawgen running inside SOLIDWORKS, producing a dimensioned drawing for each part">
+            <source src="../_assets/drawgen-demo.webm" type="video/webm">
+            <source src="../_assets/drawgen-demo.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="stage-cap">
+        <div class="l">
+          <span><b>drawgen</b> running inside SOLIDWORKS</span>
+          <span class="num">Film, 0:45</span>
+        </div>
+        <button class="play" id="play" type="button" aria-pressed="false"><svg viewBox="0 0 10 10" id="pi"><rect x="1.5" y="1" width="2.2" height="8" fill="currentColor"/><rect x="6.3" y="1" width="2.2" height="8" fill="currentColor"/></svg><span id="pl">Pause</span></button>
+      </div>
+      <div class="floor" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="principles" style="padding-top:96px">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="label">Measured, not estimated</span><span class="label num">01</span></div>
+    <div class="measure">
+      <div>
+      <p class="statement rv">Every dimension measured off the solid. <span class="dim">Nothing estimated, nothing invented.</span></p>
+      <p class="rv">drawgen takes every value on the sheet directly from the geometry of the model, so there is nothing typed in by hand. <b>Anything unclear is flagged for you rather than filled in</b>, because the calls that need engineering judgement stay with the engineer.</p>
+      </div>
+      <figure class="detail rv" aria-label="Detail of a drawing: measured dimensions and one flagged dimension">
+        <svg viewBox="0 0 520 260" fill="none" stroke-linecap="square">
+          <g stroke="#EDEEF0" stroke-width="1.4">
+            <rect x="200" y="45" width="61" height="160"/>
+            <path d="M261 79h29v92h-29"/>
+          </g>
+          <g stroke="#6B7079" stroke-width="1"><path d="M170 125h150" stroke-dasharray="12 4 2 4"/><path d="M200 100h90M200 150h90" stroke-dasharray="5 4"/></g>
+          <g stroke="#A3A7AE" stroke-width="1">
+            <path d="M196 45h-52M196 205h-52M156 51v148"/>
+            <path d="M156 45l-3.5 10h7zM156 205l-3.5-10h7z" fill="#A3A7AE" stroke="none"/>
+            <path d="M200 209v34M290 175v68M206 235h78"/>
+            <path d="M200 235l10-3.5v7zM290 235l-10-3.5v7z" fill="#A3A7AE" stroke="none"/>
+          </g>
+          <text x="144" y="129" fill="#EDEEF0" text-anchor="end" font-family="Geist, sans-serif" font-size="13" style="font-variant-numeric:tabular-nums">Ø 38.00</text>
+          <text x="245" y="228" fill="#EDEEF0" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" style="font-variant-numeric:tabular-nums">21.50</text>
+          <g stroke="#8EB2FF" stroke-width="1">
+            <path d="M294 100h52M294 150h52" stroke-dasharray="3 3"/>
+            <path d="M338 106v38"/>
+            <path d="M338 100l-3.5 10h7zM338 150l-3.5-10h7z" fill="#8EB2FF" stroke="none"/>
+            <rect x="352" y="112" width="30" height="26" rx="3" stroke-dasharray="3 3"/>
+            <path d="M382 125h22"/>
+          </g>
+          <text x="367" y="130" fill="#8EB2FF" text-anchor="middle" font-family="Geist, sans-serif" font-size="13">?</text>
+          <text x="412" y="129" fill="#8EB2FF" font-family="Geist, sans-serif" font-size="11" letter-spacing="1.4">FLAGGED</text>
+        </svg>
+        <figcaption class="foot"><span>Measured off the solid</span><span class="fl">1 flagged</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec rule" id="pipeline">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="label">How it works</span><span class="label num">02</span></div>
+    <h2 class="statement rv" style="max-width:18ch">Six steps between the finished model and the <span class="dim">finished sheet.</span></h2>
+
+    <div class="pipe" style="margin-top:40px">
+      <div class="steps" id="steps">
+        <div class="step" data-s="1"><span class="n num">01</span><h3>Resolve</h3><p>Read the open assembly and resolve every unique part inside it.</p></div>
+        <div class="step" data-s="2"><span class="n num">02</span><h3>Classify</h3><p>Work out what kind of part each one is, so it is drawn the way that kind of part should be.</p></div>
+        <div class="step" data-s="3"><span class="n num">03</span><h3>Project</h3><p>Project the views from the solid and place them on the sheet.</p></div>
+        <div class="step" data-s="4"><span class="n num">04</span><h3>Dimension</h3><p>Measure every dimension off the solid model. Nothing is estimated or typed in by hand.</p></div>
+        <div class="step" data-s="5"><span class="n num">05</span><h3>Annotate</h3><p>Complete the sheet with its notes and title block.</p></div>
+        <div class="step" data-s="6"><span class="n num">06</span><h3>Gate</h3><p>Check the sheet before it is released. Anything unclear is flagged for you rather than filled in.</p></div>
+      </div>
+      <div class="sticky">
+        <div class="sheet-wrap">
+          <div class="sheet">
+            <svg id="sheet" viewBox="0 0 840 594" fill="none" stroke-linecap="square" font-family="Geist, sans-serif" aria-label="A drawing sheet being built step by step">
+              <!-- frame -->
+              <g stroke="#1A1C20">
+                <rect x="14" y="14" width="812" height="566" stroke-width="1"/>
+                <rect x="30" y="30" width="780" height="534" stroke-width="1.6"/>
+                <path d="M225 14v16M420 14v16M615 14v16M225 564v16M420 564v16M615 564v16M14 163.5h16M14 297h16M14 430.5h16M810 163.5h16M810 297h16M810 430.5h16" stroke-width="1"/>
+              </g>
+              <!-- 1 resolve: iso view -->
+              <g class="ly" data-l="1">
+                <g stroke="#1A1C20" stroke-width="1.3">
+                  <ellipse cx="672" cy="112" rx="58" ry="30"/>
+                  <ellipse cx="672" cy="112" rx="22" ry="11.4"/>
+                  <path d="M614 112v34M730 112v34"/>
+                  <path d="M614 146a58 30 0 0 0 116 0"/>
+                  <path d="M694 112v10a22 11.4 0 0 1-44 0v-10" stroke-width="1" opacity=".5"/>
+                </g>
+              </g>
+              <!-- 2 classify -->
+              <g class="ly" data-l="2">
+                <path d="M714 99 732 80h60" stroke="#1A1C20" stroke-width="1"/>
+                <text x="792" y="60" fill="#1A1C20" font-size="10" letter-spacing="1.3" text-anchor="end" font-weight="500">END CAP</text>
+                <text x="792" y="73" fill="#6B7079" font-size="9" letter-spacing="1.2" text-anchor="end">REVOLVED PART</text>
+              </g>
+              <!-- 3 project: front + side views -->
+              <g class="ly" data-l="3">
+                <g stroke="#1A1C20" stroke-width="1.5">
+                  <circle cx="220" cy="270" r="92"/>
+                  <circle cx="220" cy="270" r="54"/>
+                  <circle cx="220" cy="270" r="30"/>
+                  <rect x="400" y="178" width="70" height="184"/>
+                  <path d="M470 216h34v108h-34"/>
+                </g>
+                <g stroke="#1A1C20" stroke-width=".8" opacity=".55">
+                  <path d="M400 216h70M400 324h70" stroke-dasharray="6 4"/>
+                  <path d="M400 240h104M400 300h104" stroke-dasharray="6 4"/>
+                  <path d="M104 270h232M220 154v232M384 270h136" stroke-dasharray="14 4 2 4"/>
+                </g>
+              </g>
+              <!-- 4 dimension -->
+              <g class="ly" data-l="4" stroke="#1A1C20" stroke-width=".9">
+                <path d="M300 178h56M300 362h56M348 184v172"/>
+                <path d="M348 178l-3 9h6zM348 362l-3-9h6z" fill="#1A1C20" stroke="none"/>
+                <path d="M199 249 164 196h-50"/>
+                <path d="M199 249l-7.5-4.5 4.6-3z" fill="#1A1C20" stroke="none"/>
+                <path d="M400 372v32M504 330v74M406 396h92"/>
+                <path d="M400 396l9-3v6zM504 396l-9-3v6z" fill="#1A1C20" stroke="none"/>
+                <path d="M400 172v-26M470 172v-26M406 154h58"/>
+                <path d="M400 154l9-3v6zM470 154l-9-3v6z" fill="#1A1C20" stroke="none"/>
+                <path d="M510 216h40M510 324h40M540 222v96"/>
+                <path d="M540 216l-3 9h6zM540 324l-3-9h6z" fill="#1A1C20" stroke="none"/>
+                <g stroke="none" fill="#1A1C20" font-size="12" style="font-variant-numeric:tabular-nums">
+                  <text x="340" y="270" transform="rotate(-90 340 270)" text-anchor="middle">Ø 38.00</text>
+                  <text x="114" y="191">Ø 12.00</text>
+                  <text x="452" y="390" text-anchor="middle">21.50</text>
+                  <text x="435" y="148" text-anchor="middle">14.50</text>
+                  <text x="552" y="274">Ø 22.00</text>
+                </g>
+              </g>
+              <!-- 5 annotate: title block + notes -->
+              <g class="ly" data-l="5">
+                <g stroke="#1A1C20" stroke-width="1">
+                  <rect x="556" y="470" width="254" height="94"/>
+                  <path d="M556 500h254M556 532h254M690 470v62M750 500v32"/>
+                </g>
+                <g fill="#1A1C20" font-size="9" letter-spacing="1.1">
+                  <text x="566" y="482" fill="#6B7079">PART</text>
+                  <text x="566" y="494" font-weight="500">END CAP</text>
+                  <text x="700" y="482" fill="#6B7079">GENERATED BY</text>
+                  <text x="700" y="494" font-weight="500">DRAWGEN</text>
+                  <text x="566" y="512" fill="#6B7079">OUTPUT</text>
+                  <text x="566" y="524" font-weight="500">PDF + DXF</text>
+                  <text x="700" y="512" fill="#6B7079">SCALE</text>
+                  <text x="700" y="524" font-weight="500" style="font-variant-numeric:tabular-nums">1:1</text>
+                  <text x="760" y="512" fill="#6B7079">SHEET</text>
+                  <text x="760" y="524" font-weight="500" style="font-variant-numeric:tabular-nums">1/1</text>
+                  <text x="566" y="544" fill="#6B7079">SOURCE</text>
+                  <text x="566" y="556" font-weight="500">ASSEMBLY, SOLIDWORKS</text>
+                </g>
+                <g fill="#6B7079" font-size="9" letter-spacing="1.1">
+                  <text x="46" y="512">NOTES</text>
+                  <text x="46" y="528" fill="#1A1C20">ALL DIMENSIONS MEASURED OFF THE SOLID MODEL.</text>
+                </g>
+              </g>
+              <!-- 6 gate -->
+              <g class="ly" data-l="6">
+                <g stroke="#2F6BFF" stroke-width="1.1">
+                  <path d="M241 291 L275 441"/>
+                  <circle cx="241" cy="291" r="2.4" fill="#2F6BFF" stroke="none"/>
+                  <rect x="250" y="441" width="50" height="22" rx="3" stroke-dasharray="3 3"/>
+                </g>
+                <text x="275" y="456" fill="#2F6BFF" font-size="11" text-anchor="middle">?</text>
+                <text x="312" y="456" fill="#2F6BFF" font-size="9" letter-spacing="1.2">FLAGGED FOR REVIEW</text>
+                <g transform="translate(46 44)">
+                  <rect width="112" height="26" rx="13" fill="#1A1C20"/>
+                  <path d="M14 13.5l3.6 3.6L25 9.6" stroke="#F3F3F1" stroke-width="1.6" fill="none"/>
+                  <text x="34" y="17" fill="#F3F3F1" font-size="9" letter-spacing="1.2" font-weight="500">SHEET GATED</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="sheet-meta">
+            <span class="cur num" id="cur"><em id="curn">01</em><span id="curt">Resolve</span></span>
+            <span class="rail" id="rail"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec rule" id="private">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="label">Private and repeatable</span><span class="label num">03</span></div>
+    <div class="pair">
+      <div class="rv">
+        <p class="statement">Runs in-process. <span class="dim">The geometry never leaves the machine.</span></p>
+        <p>drawgen works inside SOLIDWORKS on the engineer's own computer, so the model is never uploaded anywhere to be drawn.</p>
+      </div>
+      <div class="rv">
+        <p class="statement">Same model, <span class="dim">same sheet, on every run.</span></p>
+        <p>Run it twice on the same assembly and you get the same drawings, so a sheet can be checked once and trusted afterwards.</p>
+      </div>
+    </div>
+    <dl class="spec rv">
+      <div><dt>Input</dt><dd>SOLIDWORKS assembly<small>The model you have already finished.</small></dd></div>
+      <div><dt>Output</dt><dd>PDF and DXF per part<small>One dimensioned drawing for every part in the assembly.</small></dd></div>
+      <div><dt>Runs</dt><dd>In-process<small>On the engineer's machine, inside SOLIDWORKS.</small></dd></div>
+      <div><dt>Result</dt><dd>Same sheet every run<small>Deterministic from the same model.</small></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="roadmap" style="padding:0 0 40px">
+  <div class="wrap">
+    <div class="road rv">
+      <span class="tag"><i></i>In development</span>
+      <p class="t">Parts lists, cut lists with material, and quotations. <span>Derived from the same assembly.</span></p>
+      <span class="label">Next</span>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="talk">
+  <div class="wrap">
+    <span class="label rv" style="display:block;margin-bottom:28px">For engineer-to-order manufacturers and machine builders</span>
+    <h2 class="rv">Finish the model.<br>Get the drawings.</h2>
+    <p class="rv">Built for engineers who design in SOLIDWORKS and still redraw every part by hand after the 3D model is finished.</p>
+    <div class="ctas rv">
+      <a class="btn btn-w" href="https://drawgen.co">Talk to us <svg class="arr"><use href="#arrow"/></svg></a>
+      <span class="btn btn-g" aria-disabled="true">Try it on your own part <span class="soon">Soon</span></span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="drawgen"><svg><use href="#mark"/></svg><span>drawgen</span></a>
+    <div class="fl">
+      <a href="#film">Product</a>
+      <a href="#pipeline">How it works</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="https://drawgen.co">drawgen.co</a>
+    </div>
+    <span class="label num" style="letter-spacing:.12em">© 2026 drawgen</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  var onS=function(){nav.classList.toggle('scrolled',window.scrollY>8)};
+  onS();window.addEventListener('scroll',onS,{passive:true});
+
+  var v=document.getElementById('vid'),b=document.getElementById('play'),pl=document.getElementById('pl'),pi=document.getElementById('pi');
+  var pauseIcon=pi.innerHTML,playIcon='<path d="M2 1l7 4-7 4z" fill="currentColor"/>';
+  b.addEventListener('click',function(){
+    if(v.paused){v.play();pl.textContent='Pause';pi.innerHTML=pauseIcon;b.setAttribute('aria-pressed','false')}
+    else{v.pause();pl.textContent='Play';pi.innerHTML=playIcon;b.setAttribute('aria-pressed','true')}
+  });
+
+  var rv=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    rv.forEach(function(el){io.observe(el)});
+  } else rv.forEach(function(el){el.classList.add('in')});
+
+  var steps=[].slice.call(document.querySelectorAll('.step'));
+  var layers=[].slice.call(document.querySelectorAll('#sheet .ly'));
+  var rail=[].slice.call(document.querySelectorAll('#rail i'));
+  var curn=document.getElementById('curn'),curt=document.getElementById('curt');
+  var names=['Resolve','Classify','Project','Dimension','Annotate','Gate'];
+  var active=0;
+  function setStep(n){
+    if(n===active)return;active=n;
+    steps.forEach(function(s,i){s.classList.toggle('on',i+1===n)});
+    layers.forEach(function(l){l.classList.toggle('show',+l.getAttribute('data-l')<=n)});
+    rail.forEach(function(r,i){r.classList.toggle('on',i<n)});
+    curn.textContent='0'+n;curt.textContent=names[n-1];
+  }
+  function pick(){
+    var mid=window.innerHeight*(window.innerWidth<=900?0.66:0.5),best=1,bd=1e9;
+    steps.forEach(function(s,i){var r=s.getBoundingClientRect(),c=r.top+r.height/2,d=Math.abs(c-mid);if(d<bd){bd=d;best=i+1}});
+    setStep(best);
+  }
+  setStep(1);pick();
+  window.addEventListener('scroll',pick,{passive:true});
+  window.addEventListener('resize',pick);
+})();
+</script>
+</body>
+</html>
