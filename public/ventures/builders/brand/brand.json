@@ -52,5 +52,31 @@
       "url": "https://abcdinamo.com/typefaces/favorit"
     }
   ],
-  "source": "~/dev/builders-website-latest/website-vsi src/index.css tokens (--color-ink, --color-cream, --color-studio, --color-network, --color-capital, --color-deep); tagline from the builders.studio hero h1 (src/pages/Home.tsx); fonts served CORS-open from builders.studio/fonts; logo from public/brand/builders-logo.svg; mark is the Builders spark"
+  "source": "~/dev/builders-website-latest/website-vsi src/index.css tokens (--color-ink, --color-cream, --color-studio, --color-network, --color-capital, --color-deep); tagline from the builders.studio hero h1 (src/pages/Home.tsx); fonts served CORS-open from builders.studio/fonts; logo from public/brand/builders-logo.svg; mark is the Builders spark",
+  "deck": {
+    "style": "gradient",
+    "gradient": "/ventures/builders/gallery/backgrounds/brand-gradient-bottom-transparent.png",
+    "dark": "#000000",
+    "light": "#FAF7F2",
+    "closing": {
+      "image": "/ventures/builders/gallery/photos/rotterdam-office-building-exterior.jpg",
+      "tiles": [
+        {
+          "title": "For founders",
+          "body": "We build the companies",
+          "image": "/ventures/builders/gallery/photos/founder-pitching-at-whiteboard.jpg"
+        },
+        {
+          "title": "For investors",
+          "body": "We put the capital in",
+          "image": "/ventures/builders/gallery/photos/investor-house-panel-audience.jpg"
+        },
+        {
+          "title": "For technical leaders",
+          "body": "We keep the room open",
+          "image": "/ventures/builders/gallery/photos/cto-network-event-conversation.jpg"
+        }
+      ]
+    }
+  }
 }

@@ -43,15 +43,22 @@
       "role": "display",
       "weight": 600,
       "css": "https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap",
-      "src": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZ9hiJ-Ek-_EeA.woff2"
+      "src": null
     },
     {
       "name": "Inter",
       "role": "text",
       "weight": 400,
       "css": "https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap",
-      "src": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2"
+      "src": null
+    },
+    {
+      "name": "JetBrains Mono",
+      "role": "accent",
+      "weight": 600,
+      "css": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap",
+      "src": null
     }
   ],
-  "source": "~/dev/cortena-site-next src/styles/tokens.css + DESIGN.md, confirmed against live cortena.ai CSS; logo from public/assets/img/logos/logo-black.svg (the live nav wordmark); tagline from the cortena.ai hero h1"
+  "source": "~/dev/cortena-site-next src/styles/tokens.css + DESIGN.md, confirmed against live cortena.ai CSS; logo from public/assets/img/logos/logo-black.svg (the live nav wordmark); tagline from the cortena.ai hero h1 Fonts rechecked 2026-09-23 against the live cortena.ai: Inter 600/400 for all copy, JetBrains Mono 600 for labels and small caps text (Caveat appears once on About, Newsreader is loaded but unused)."
 }

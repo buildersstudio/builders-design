@@ -9,13 +9,21 @@ export type Face = {
 /** Optional per-brand deck direction, applied to every deck of that venture. */
 export type DeckStyle = {
   /** "imagery": every slide sits on a full-bleed picture with a dark scrim. */
-  style?: "plain" | "imagery";
+  style?: "plain" | "imagery" | "gradient";
+  /** "gradient": picture anchored to the bottom of every slide (transparent top). */
+  gradient?: string;
+  dark?: string;
+  light?: string;
   backgrounds?: string[];
   /** Font for *emphasis* inside slide copy (rendered italic). */
   serif?: string;
   displayWeight?: number;
   /** Closing slide art and the callout labels drawn over it (x/y in %, angle in deg). */
-  closing?: { image: string; labels?: { text: string; x: number; y: number; angle: number }[] };
+  closing?: {
+    image: string;
+    labels?: { text: string; x: number; y: number; angle: number }[];
+    tiles?: { title: string; body?: string; image: string }[];
+  };
 };
 
 export type Brand = {
@@ -27,7 +35,8 @@ export type Brand = {
   mark?: string;
 };
 
-type Bg = { background?: string };
+/** background: a picture for this slide. mode: light or dark ground ("gradient" style; the cover is always dark). */
+type Bg = { background?: string; mode?: "light" | "dark" };
 
 export type Slide = Bg & (
   | { layout: "cover"; eyebrow?: string; title: string; subtitle?: string }

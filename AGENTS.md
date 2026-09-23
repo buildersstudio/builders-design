@@ -18,9 +18,9 @@ public/ventures/<slug>/
   brand/logo.svg, mark.svg    single-colour SVGs
   gallery/<group>/<file>      pictures: founders, photos, product, illustrations, backgrounds
   decks/<id>/deck.json        presentations (see templates/deck.json)
-  landing/<id>/index.html     landing pages, same shape as variants
+  landing/<id>/index.html     landing pages, same shape as variants (hidden from the menu for now)
   landing/<id>/meta.json
-  social/<file>.png|jpg|svg   social assets (or social/<id>/index.html)
+  social/<file>.png|jpg|svg   social assets (hidden from the menu for now)
 templates/deck.json           the presentation template, always start from it
 ```
 
@@ -91,6 +91,8 @@ Once a variant is chosen, write `brand/brand.json`:
 }
 ```
 
+List every family the brand really uses (a third `"role": "accent"` for label or script faces is fine). The brand book offers each font as a download: Google Fonts as TTF, CORS-open `src` files as they are. Mark paid fonts `"license": "commercial"` with the foundry `"url"`, and they link out instead of downloading. Optional `"deck"` sets the deck style (see Presentations).
+
 Exactly one `ink`, one `paper`, one `accent`; up to three `support`. Add `brand/logo.svg` (single colour, tight viewBox) and `brand/mark.svg` if the brand has a symbol. The brand book page, the decks and the PNG exports are all generated from these files.
 
 ## Gallery
@@ -106,6 +108,16 @@ In the platform, clicking a picture copies its public URL (`https://<site>/ventu
 Every deck starts from [templates/deck.json](templates/deck.json) and keeps its structure, so all decks across the studio look like one family. Copy it to `decks/<id>/deck.json`, keep the layouts, and replace the copy. Colours, fonts and logo come from the venture's brand book automatically, so never put styling in a deck.
 
 Layouts: `cover`, `statement`, `points` (2 to 4), `metrics` (2 to 4, real numbers only), `section`, `split` (optional `image`: a gallery path or a file inside the deck folder), `quote` (real quotes only), `closing`. Keep titles under about ten words and bodies to one or two sentences. Six to twelve slides is the normal range.
+
+Copy can mark a phrase as `*emphasis*`; it renders in serif italic in brands whose deck style sets a `serif`.
+
+### Deck style per brand
+
+A venture's decks can take a direction from `brand.json` → `"deck"`, so every deck of that venture shares it:
+
+- `"style": "plain"` (default): paper ground, the accent colour on section slides.
+- `"style": "imagery"` (Trigger): every slide sits on a full-bleed picture with a dark scrim. Pictures cycle from `"backgrounds"` (gallery paths), or a slide sets its own `"background"`. `"serif"` sets the emphasis face, `"displayWeight"` the headline weight, and `"closing": { "image", "labels": [{ "text", "x", "y", "angle" }] }` builds the last slide like the site footer, with callout lines over the art. A closing slide can carry `"cta": ["Start for free", "Log in"]` and `"contact"`.
+- `"style": "gradient"` (Builders): the cover is always dark; other slides are light by default (section and quote slides dark), and any slide can set `"mode": "light" | "dark"`. `"gradient"` is a picture with a transparent top that rises from the bottom of every slide; `"dark"` and `"light"` set the grounds. `"closing": { "image", "tiles": [{ "title", "body", "image" }] }` builds the last slide like the builders.studio footer card; its `subtitle` is the small label above the title.
 
 If the template itself should change (a new layout, a different rhythm), change `templates/deck.json` and `components/Slide.tsx` together, and say so in the commit.
 
