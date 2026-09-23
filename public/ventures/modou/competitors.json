@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Building Radar",
+    "url": "https://www.buildingradar.com",
+    "kind": "direct"
+  },
+  {
+    "name": "ibau",
+    "url": "https://www.ibau.de",
+    "kind": "direct"
+  },
+  {
+    "name": "Glenigan",
+    "url": "https://www.glenigan.com",
+    "kind": "direct"
+  },
+  {
+    "name": "BCI Central",
+    "url": "https://www.bcicentral.com",
+    "kind": "direct"
+  },
+  {
+    "name": "ConstructConnect",
+    "url": "https://www.constructconnect.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Dodge Construction Network",
+    "url": "https://www.construction.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Stotles",
+    "url": "https://www.stotles.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Tendium",
+    "url": "https://tendium.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Altura",
+    "url": "https://altura.io",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Clay",
+    "url": "https://www.clay.com",
+    "kind": "adjacent"
+  }
+]

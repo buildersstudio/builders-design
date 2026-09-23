@@ -1,0 +1,57 @@
+[
+  {
+    "name": "TechWolf",
+    "url": "https://www.techwolf.ai",
+    "kind": "direct"
+  },
+  {
+    "name": "Eightfold",
+    "url": "https://eightfold.ai",
+    "kind": "direct"
+  },
+  {
+    "name": "Gloat",
+    "url": "https://gloat.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Beamery",
+    "url": "https://beamery.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Neobrain",
+    "url": "https://www.neobrain.io",
+    "kind": "direct"
+  },
+  {
+    "name": "Fuel50",
+    "url": "https://fuel50.com",
+    "kind": "direct"
+  },
+  {
+    "name": "iMocha",
+    "url": "https://www.imocha.io",
+    "kind": "direct"
+  },
+  {
+    "name": "Lightcast",
+    "url": "https://lightcast.io",
+    "kind": "adjacent"
+  },
+  {
+    "name": "HiBob",
+    "url": "https://www.hibob.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Personio",
+    "url": "https://www.personio.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Lattice",
+    "url": "https://lattice.com",
+    "kind": "adjacent"
+  }
+]

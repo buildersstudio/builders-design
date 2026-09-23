@@ -1,0 +1,57 @@
+{
+  "tagline": "Payables, on autopilot.",
+  "colors": [
+    {
+      "name": "Ink",
+      "hex": "#14161A",
+      "role": "ink"
+    },
+    {
+      "name": "Paper",
+      "hex": "#FFFFFF",
+      "role": "paper"
+    },
+    {
+      "name": "Cortena Green",
+      "hex": "#10AC52",
+      "role": "accent"
+    },
+    {
+      "name": "Deep Green",
+      "hex": "#0C8F43",
+      "role": "support"
+    },
+    {
+      "name": "Bright Green",
+      "hex": "#2FD07A",
+      "role": "support"
+    },
+    {
+      "name": "Forest",
+      "hex": "#0F2C1D",
+      "role": "support"
+    },
+    {
+      "name": "Green Wash",
+      "hex": "#E3F7EC",
+      "role": "support"
+    }
+  ],
+  "type": [
+    {
+      "name": "Inter",
+      "role": "display",
+      "weight": 600,
+      "css": "https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap",
+      "src": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZ9hiJ-Ek-_EeA.woff2"
+    },
+    {
+      "name": "Inter",
+      "role": "text",
+      "weight": 400,
+      "css": "https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap",
+      "src": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2"
+    }
+  ],
+  "source": "~/dev/cortena-site-next src/styles/tokens.css + DESIGN.md, confirmed against live cortena.ai CSS; logo from public/assets/img/logos/logo-black.svg (the live nav wordmark); tagline from the cortena.ai hero h1"
+}

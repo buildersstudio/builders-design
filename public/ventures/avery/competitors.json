@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Juicebox",
+    "url": "https://juicebox.ai",
+    "kind": "direct"
+  },
+  {
+    "name": "Pin",
+    "url": "https://www.pin.com",
+    "kind": "direct"
+  },
+  {
+    "name": "SeekOut",
+    "url": "https://www.seekout.com",
+    "kind": "direct"
+  },
+  {
+    "name": "hireEZ",
+    "url": "https://hireez.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Findem",
+    "url": "https://www.findem.ai",
+    "kind": "direct"
+  },
+  {
+    "name": "Leonar",
+    "url": "https://www.leonar.app",
+    "kind": "direct"
+  },
+  {
+    "name": "Textkernel",
+    "url": "https://www.textkernel.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Loxo",
+    "url": "https://loxo.co",
+    "kind": "direct"
+  },
+  {
+    "name": "Gem",
+    "url": "https://www.gem.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Metaview",
+    "url": "https://www.metaview.ai",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Ashby",
+    "url": "https://www.ashbyhq.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Teamtailor",
+    "url": "https://www.teamtailor.com",
+    "kind": "adjacent"
+  }
+]

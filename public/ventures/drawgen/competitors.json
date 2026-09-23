@@ -1,0 +1,52 @@
+[
+  {
+    "name": "DraftAid",
+    "url": "https://draftaid.io",
+    "kind": "direct"
+  },
+  {
+    "name": "SOLIDWORKS",
+    "url": "https://www.3ds.com/products/solidworks",
+    "kind": "direct"
+  },
+  {
+    "name": "DriveWorks",
+    "url": "https://www.driveworks.co.uk",
+    "kind": "direct"
+  },
+  {
+    "name": "Leo AI",
+    "url": "https://www.getleo.ai",
+    "kind": "direct"
+  },
+  {
+    "name": "Tacton",
+    "url": "https://www.tacton.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "CoLab",
+    "url": "https://www.colabsoftware.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Onshape",
+    "url": "https://www.onshape.com/en/",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Zoo",
+    "url": "https://zoo.dev",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Backflip",
+    "url": "https://www.backflip.ai",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Paperless Parts",
+    "url": "https://www.paperlessparts.com",
+    "kind": "adjacent"
+  }
+]

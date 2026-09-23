@@ -1,0 +1,52 @@
+{
+  "tagline": "Ask anything about content",
+  "colors": [
+    {
+      "name": "Ink",
+      "hex": "#0A0A0A",
+      "role": "ink"
+    },
+    {
+      "name": "Paper",
+      "hex": "#FFFFFF",
+      "role": "paper"
+    },
+    {
+      "name": "Primary Beige",
+      "hex": "#F8F7F3",
+      "role": "accent"
+    },
+    {
+      "name": "Muted",
+      "hex": "#6B6B6B",
+      "role": "support"
+    },
+    {
+      "name": "Grey 400",
+      "hex": "#9CA3AF",
+      "role": "support"
+    },
+    {
+      "name": "Graphite",
+      "hex": "#2C2C2C",
+      "role": "support"
+    }
+  ],
+  "type": [
+    {
+      "name": "Stack Sans Headline",
+      "role": "display",
+      "weight": 500,
+      "css": "https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@500&display=swap",
+      "src": "https://fonts.gstatic.com/s/stacksansheadline/v1/1PtFg9jZXvmMnkLnuURbaukKZJTyrDV326uH6mSinjBIwc5fIjFAoAQi2ICWZHU.woff2"
+    },
+    {
+      "name": "Stack Sans Headline",
+      "role": "text",
+      "weight": 400,
+      "css": "https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@400&display=swap",
+      "src": "https://fonts.gstatic.com/s/stacksansheadline/v1/1PtFg9jZXvmMnkLnuURbaukKZJTyrDV326uH6mSinjBIwc5tIjFAoAQi2ICWZHU.woff2"
+    }
+  ],
+  "source": "Live trigger.online :root and Webflow design tokens (--ink, --mut, --_colors---primary--beige, --_typography---font-family--primary), fonts cross-checked with ~/dev/trigger-frontend src/app/layout.tsx; logo and asterisk mark from src/components/ui/trigger-logo.tsx; tagline from the hero h1"
+}

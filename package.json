@@ -1,0 +1,24 @@
+{
+  "name": "builders-design",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev -p 4330",
+    "build": "next build",
+    "start": "next start -p 4330",
+    "shots": "node scripts/shots.mjs"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "next": "^15.5.26",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "playwright": "^1.63.0",
+    "typescript": "^6.0.3"
+  }
+}

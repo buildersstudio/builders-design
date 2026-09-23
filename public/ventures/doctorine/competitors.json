@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Mintlify",
+    "url": "https://www.mintlify.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Fern",
+    "url": "https://buildwithfern.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Stainless",
+    "url": "https://www.stainless.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Speakeasy",
+    "url": "https://www.speakeasy.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Scalar",
+    "url": "https://scalar.com",
+    "kind": "direct"
+  },
+  {
+    "name": "ReadMe",
+    "url": "https://readme.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Redocly",
+    "url": "https://redocly.com",
+    "kind": "direct"
+  },
+  {
+    "name": "APIMatic",
+    "url": "https://www.apimatic.io",
+    "kind": "direct"
+  },
+  {
+    "name": "Bump.sh",
+    "url": "https://bump.sh",
+    "kind": "direct"
+  },
+  {
+    "name": "Postman",
+    "url": "https://www.postman.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "GitBook",
+    "url": "https://www.gitbook.com",
+    "kind": "adjacent"
+  }
+]

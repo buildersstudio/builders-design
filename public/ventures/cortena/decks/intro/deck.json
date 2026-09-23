@@ -1,0 +1,22 @@
+{
+  "title": "Cortena intro",
+  "created": "2026-09-23",
+  "slides": [
+    { "layout": "cover", "eyebrow": "Introduction · 2026", "title": "The AI operator for accounts payable", "subtitle": "Every invoice, from receipt to booking-ready, without adding headcount." },
+    { "layout": "statement", "eyebrow": "The work", "title": "Finance teams still move invoices by hand, one line at a time", "body": "Capture, coding, approvals and export are four separate jobs that Cortena runs as one flow." },
+    { "layout": "points", "eyebrow": "How it works", "title": "From inbox to ledger", "points": [
+      { "title": "Capture", "body": "Invoices from email, drives and e-invoices, including UBL, CII, ZUGFeRD and Factur-X." },
+      { "title": "Code", "body": "Each line coded to account, cost center and VAT against your own chart of accounts." },
+      { "title": "Approve", "body": "Workflows the team can rearrange, with people kept in the loop." },
+      { "title": "Export", "body": "Booking-ready data into DATEV, Exact and Twinfield." }
+    ] },
+    { "layout": "metrics", "eyebrow": "Coverage", "title": "Built for European finance", "metrics": [
+      { "value": "2,000+", "label": "banks connected via Yapily" },
+      { "value": "4", "label": "e-invoice standards read natively" },
+      { "value": "3", "label": "independent segments where the pain point was confirmed" }
+    ] },
+    { "layout": "section", "eyebrow": "02", "title": "Who it is for" },
+    { "layout": "split", "eyebrow": "Customer", "title": "SME finance teams and accounting firms", "body": "Teams that want to do more without adding headcount, and firms that want to serve more clients per accountant." },
+    { "layout": "closing", "title": "cortena.ai", "subtitle": "Multi-entity from one inbox, with a GoBD-aligned audit trail of every step." }
+  ]
+}

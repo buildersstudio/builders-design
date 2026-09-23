@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Candis",
+    "url": "https://www.candis.io",
+    "kind": "direct"
+  },
+  {
+    "name": "Moss",
+    "url": "https://www.getmoss.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Vic.ai",
+    "url": "https://www.vic.ai",
+    "kind": "direct"
+  },
+  {
+    "name": "Medius",
+    "url": "https://www.medius.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Rillion",
+    "url": "https://www.rillion.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Stampli",
+    "url": "https://www.stampli.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Basware",
+    "url": "https://www.basware.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Payhawk",
+    "url": "https://payhawk.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Ramp",
+    "url": "https://ramp.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Rillet",
+    "url": "https://www.rillet.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Spendesk",
+    "url": "https://www.spendesk.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Pleo",
+    "url": "https://www.pleo.io",
+    "kind": "adjacent"
+  }
+]

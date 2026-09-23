@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Hexa",
+    "url": "https://www.hexa.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Atomic",
+    "url": "https://www.atomic.vc",
+    "kind": "direct"
+  },
+  {
+    "name": "High Alpha",
+    "url": "https://www.highalpha.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Pioneer Square Labs",
+    "url": "https://www.psl.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Idealab",
+    "url": "https://www.idealab.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Flagship Pioneering",
+    "url": "https://www.flagshippioneering.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Rocket Internet",
+    "url": "https://www.rocket-internet.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Founders Factory",
+    "url": "https://foundersfactory.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Antler",
+    "url": "https://www.antler.co",
+    "kind": "direct"
+  },
+  {
+    "name": "Entrepreneur First",
+    "url": "https://www.joinef.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Y Combinator",
+    "url": "https://www.ycombinator.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "a16z",
+    "url": "https://a16z.com",
+    "kind": "adjacent"
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "tagline": "People decisions, run on evidence.",
+  "colors": [
+    {
+      "name": "Ink",
+      "hex": "#1D2332",
+      "role": "ink"
+    },
+    {
+      "name": "Paper",
+      "hex": "#FFFFFF",
+      "role": "paper"
+    },
+    {
+      "name": "Indigo",
+      "hex": "#4338CA",
+      "role": "accent"
+    },
+    {
+      "name": "Sun",
+      "hex": "#FFC873",
+      "role": "support"
+    },
+    {
+      "name": "Leaf",
+      "hex": "#4F8F3E",
+      "role": "support"
+    },
+    {
+      "name": "Sky",
+      "hex": "#4FA9D6",
+      "role": "support"
+    }
+  ],
+  "type": [
+    {
+      "name": "Space Grotesk",
+      "role": "display",
+      "weight": 600,
+      "css": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&display=swap",
+      "src": "https://fonts.gstatic.com/s/spacegrotesk/v22/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj42VnskPMBBSSJLm2E.woff2"
+    },
+    {
+      "name": "Geist",
+      "role": "text",
+      "weight": 400,
+      "css": "https://fonts.googleapis.com/css2?family=Geist:wght@400&display=swap",
+      "src": "https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RnOMImpna6VEdtaiL.woff2"
+    }
+  ],
+  "source": "Live ever.day (no local repo): CSS custom properties (--color-ink, --color-indigo, --color-sun, --color-leaf, --color-sky-method) and self-hosted font files identified by their name tables; logo and mark from ever.day/brand/lockup-black.svg (sun disc knocked out for single-color); tagline from the hero h1"
+}

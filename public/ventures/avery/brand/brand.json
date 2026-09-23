@@ -1,0 +1,57 @@
+{
+  "tagline": "Your next hire is one search away.",
+  "colors": [
+    {
+      "name": "Navy Ink",
+      "hex": "#011627",
+      "role": "ink"
+    },
+    {
+      "name": "White",
+      "hex": "#FFFFFF",
+      "role": "paper"
+    },
+    {
+      "name": "Avery Indigo",
+      "hex": "#4E54FF",
+      "role": "accent"
+    },
+    {
+      "name": "Squiggle Orange",
+      "hex": "#FCAF58",
+      "role": "support"
+    },
+    {
+      "name": "Green",
+      "hex": "#3BB273",
+      "role": "support"
+    },
+    {
+      "name": "Sky",
+      "hex": "#08B2E3",
+      "role": "support"
+    },
+    {
+      "name": "Soft Slate",
+      "hex": "#F1F5F9",
+      "role": "support"
+    }
+  ],
+  "type": [
+    {
+      "name": "Plus Jakarta Sans",
+      "role": "display",
+      "weight": 800,
+      "css": "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&display=swap",
+      "src": "https://fonts.gstatic.com/s/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_KUn9TR_VMq2oRsWk.woff2"
+    },
+    {
+      "name": "Inter",
+      "role": "text",
+      "weight": 500,
+      "css": "https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap",
+      "src": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2"
+    }
+  ],
+  "source": "~/dev/avery-website src/styles/tokens.css + DESIGN.md (values extracted from getavery.ai); logo from public/logos/Avery-logo-black.svg; tagline from the getavery.ai hero h1"
+}

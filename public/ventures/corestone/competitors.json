@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Civils.ai",
+    "url": "https://civils.ai",
+    "kind": "direct"
+  },
+  {
+    "name": "BoreholeAI",
+    "url": "https://www.boreholeai.com",
+    "kind": "direct"
+  },
+  {
+    "name": "GeoLayer",
+    "url": "https://geolayer.tech",
+    "kind": "direct"
+  },
+  {
+    "name": "BoreDM",
+    "url": "https://boredm.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Datarock",
+    "url": "https://datarock.com.au",
+    "kind": "direct"
+  },
+  {
+    "name": "StratoBayes",
+    "url": "https://www.stratobayes.com",
+    "kind": "direct"
+  },
+  {
+    "name": "OpenGround",
+    "url": "https://www.bentley.com/products/openground/",
+    "kind": "direct"
+  },
+  {
+    "name": "Seequent",
+    "url": "https://www.seequent.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Veracio",
+    "url": "https://www.veracio.com",
+    "kind": "adjacent"
+  }
+]

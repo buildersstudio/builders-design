@@ -1,0 +1,22 @@
+{
+  "title": "Deck title",
+  "created": "YYYY-MM-DD",
+  "slides": [
+    { "layout": "cover", "eyebrow": "Context · Month Year", "title": "One sentence that names the company and the change it brings", "subtitle": "The one-line product description" },
+    { "layout": "statement", "eyebrow": "The problem", "title": "The problem as the customer would say it, in one sentence", "body": "Optional second sentence with the mechanism behind it." },
+    { "layout": "points", "eyebrow": "How it works", "title": "What the product does, in one line", "points": [
+      { "title": "Step or capability", "body": "One or two sentences." },
+      { "title": "Step or capability", "body": "One or two sentences." },
+      { "title": "Step or capability", "body": "One or two sentences." }
+    ] },
+    { "layout": "section", "eyebrow": "02", "title": "Section name" },
+    { "layout": "metrics", "eyebrow": "Evidence", "title": "What the numbers say", "metrics": [
+      { "value": "00", "label": "Only real, sourced numbers" },
+      { "value": "00", "label": "Only real, sourced numbers" },
+      { "value": "00", "label": "Only real, sourced numbers" }
+    ] },
+    { "layout": "split", "eyebrow": "Product", "title": "A product moment", "body": "What the image shows and why it matters.", "image": "optional: /ventures/<slug>/decks/<id>/image.jpg" },
+    { "layout": "quote", "quote": "A real quote from a customer or discovery call", "author": "Name, role, company" },
+    { "layout": "closing", "title": "The ask, or the next step", "subtitle": "name@venture.com · venture.com" }
+  ]
+}

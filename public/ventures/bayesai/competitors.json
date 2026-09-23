@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Trackingplan",
+    "url": "https://www.trackingplan.com",
+    "kind": "direct"
+  },
+  {
+    "name": "ObservePoint",
+    "url": "https://www.observepoint.com",
+    "kind": "direct"
+  },
+  {
+    "name": "DataTrue",
+    "url": "https://datatrue.com/en/",
+    "kind": "direct"
+  },
+  {
+    "name": "Avo",
+    "url": "https://www.avo.app",
+    "kind": "direct"
+  },
+  {
+    "name": "Segment Protocols",
+    "url": "https://www.twilio.com/en-us/segment",
+    "kind": "direct"
+  },
+  {
+    "name": "Stape",
+    "url": "https://stape.io",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Monte Carlo",
+    "url": "https://montecarlo.ai",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Anomalo",
+    "url": "https://www.anomalo.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Northbeam",
+    "url": "https://www.northbeam.io",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Collibra",
+    "url": "https://www.collibra.com",
+    "kind": "adjacent"
+  }
+]

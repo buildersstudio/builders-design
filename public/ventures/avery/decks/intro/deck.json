@@ -1,0 +1,21 @@
+{
+  "title": "Avery intro",
+  "created": "2026-09-23",
+  "slides": [
+    { "layout": "cover", "eyebrow": "Introduction · 2026", "title": "Hiring intelligence for Europe", "subtitle": "Agentic AI that sources, screens and matches candidates." },
+    { "layout": "statement", "eyebrow": "The shift", "title": "Describe the role in plain language, not boolean strings", "body": "Avery finds, evaluates and reaches candidates, and explains every match." },
+    { "layout": "metrics", "eyebrow": "Scale", "title": "What sits behind a search", "metrics": [
+      { "value": "125M+", "label": "European professionals searchable" },
+      { "value": "7", "label": "dimensions scored on every match" },
+      { "value": "50+", "label": "ATS and recruiting tools in two-way sync" }
+    ] },
+    { "layout": "points", "eyebrow": "How it works", "title": "Find, judge, reach", "points": [
+      { "title": "Search", "body": "Plain-language role briefs over the whole European market." },
+      { "title": "Score", "body": "Written reasons a recruiter can share with the hiring manager." },
+      { "title": "Talent Hub", "body": "Every past candidate stays searchable and is re-matched when a new role fits." }
+    ] },
+    { "layout": "section", "eyebrow": "02", "title": "Who it is for" },
+    { "layout": "split", "eyebrow": "Customer", "title": "Agencies, freelancers and in-house teams", "body": "Recruiters hiring in Europe, with human checks on outreach wherever the team wants them." },
+    { "layout": "closing", "title": "getavery.ai", "subtitle": "ICP validated across 47 discovery calls." }
+  ]
+}

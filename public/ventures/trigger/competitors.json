@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Socialinsider",
+    "url": "https://www.socialinsider.io",
+    "kind": "direct"
+  },
+  {
+    "name": "Dash Social",
+    "url": "https://www.dashsocial.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Rival IQ",
+    "url": "https://www.rivaliq.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Iconosquare",
+    "url": "https://www.iconosquare.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Metricool",
+    "url": "https://metricool.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Virlo",
+    "url": "https://virlo.ai",
+    "kind": "direct"
+  },
+  {
+    "name": "Sprout Social",
+    "url": "https://sproutsocial.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Emplifi",
+    "url": "https://emplifi.io",
+    "kind": "direct"
+  },
+  {
+    "name": "Later",
+    "url": "https://later.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Brandwatch",
+    "url": "https://www.brandwatch.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Buffer",
+    "url": "https://buffer.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Sandcastles",
+    "url": "https://sandcastles.ai",
+    "kind": "adjacent"
+  }
+]

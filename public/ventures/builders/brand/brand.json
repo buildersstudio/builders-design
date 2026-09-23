@@ -1,0 +1,16 @@
+{
+  "tagline": "Where bold founders build Stellar Companies.",
+  "colors": [
+    { "name": "Ink", "hex": "#1A1A2E", "role": "ink" },
+    { "name": "Cream", "hex": "#FAF7F2", "role": "paper" },
+    { "name": "Studio", "hex": "#8193FF", "role": "accent" },
+    { "name": "Network", "hex": "#E986B4", "role": "support" },
+    { "name": "Capital", "hex": "#D4A574", "role": "support" },
+    { "name": "Deep", "hex": "#000000", "role": "support" }
+  ],
+  "type": [
+    { "name": "Favorit Std", "role": "display", "weight": 500, "css": null, "src": "https://builders.studio/fonts/FavoritStd-Medium.otf" },
+    { "name": "Favorit Std", "role": "text", "weight": 400, "css": null, "src": "https://builders.studio/fonts/FavoritStd-Book.otf" }
+  ],
+  "source": "~/dev/builders-website-latest/website-vsi src/index.css tokens (--color-ink, --color-cream, --color-studio, --color-network, --color-capital, --color-deep); tagline from the builders.studio hero h1 (src/pages/Home.tsx); fonts served CORS-open from builders.studio/fonts; logo from public/brand/builders-logo.svg; mark is the Builders spark"
+}
