@@ -3,7 +3,7 @@ name: Avery
 url: https://getavery.ai
 sector: AI Hiring
 since: 2024
-order: 2
+order: 10
 ---
 
 Agentic AI that sources, screens, and matches candidates. Cutting mis-hire costs by €500K per 50 hires.

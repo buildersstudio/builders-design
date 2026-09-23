@@ -3,5 +3,5 @@ import { getVentures } from "@/lib/content";
 
 export default function Home() {
   const [first] = getVentures();
-  redirect(first ? `/${first.slug}/competitors` : "/_empty");
+  redirect(first ? `/${first.slug}/brand` : "/_empty");
 }

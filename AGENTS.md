@@ -129,6 +129,8 @@ Founders edit copy and remove slides in the platform. Anything else (new slides,
 
 Shareable link, no platform access needed: `/p/<slug>/<deck-id>`.
 
+A deck that was already fully designed elsewhere can be kept exactly as it is: put it in `decks/<id>/index.html` with its images next to it (and no `deck.json`). The platform shows it with a live preview and opens it as it is; it is edited by changing the HTML, not in the platform editor.
+
 ## Landing pages
 
 Same shape as variants, in `landing/<id>/`, but built from the brand book (`brand/brand.json`, `brand/logo.svg`) instead of inventing a new look. Self-contained, responsive, real copy. The page is publicly reachable at `/ventures/<slug>/landing/<id>/index.html`.

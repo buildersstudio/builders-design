@@ -3,7 +3,7 @@ name: Cortena
 url: https://www.cortena.ai
 sector: AI FinTech
 since: 2025
-order: 1
+order: 9
 ---
 
 AI agents that replace spreadsheet-driven FP&A. Real-time financial planning for fast-moving SMBs.

@@ -2,7 +2,7 @@
 name: Modou
 sector: AI Construction Sales
 since: 2026
-order: 8
+order: 6
 ---
 
 Which construction project to call today, why it is live now, and who decides.

@@ -1,8 +1,9 @@
 ---
+url: https://cto-fest-27.vercel.app
 name: "CTO FEST '27"
 sector: Tech Festival
 since: 2026
-order: 10
+order: 8
 ---
 
 The first Benelux CTO festival, where models meet machines: one day in Amsterdam in February 2027, and the night before it.

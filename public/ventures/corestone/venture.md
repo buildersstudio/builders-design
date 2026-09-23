@@ -2,7 +2,7 @@
 name: Corestone
 sector: AI Geotechnics
 since: 2026
-order: 9
+order: 7
 ---
 
 Field documents in, structured and decision-ready output out, starting with drillhole data.

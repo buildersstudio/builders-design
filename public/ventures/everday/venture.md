@@ -3,7 +3,7 @@ name: Everday
 url: https://ever.day
 sector: AI Workforce
 since: 2024
-order: 3
+order: 11
 ---
 
 AI-powered skill mapping that connects workforce data across your entire organization in real time.

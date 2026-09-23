@@ -2,7 +2,7 @@
 name: BayesAI
 sector: AI Marketing Data
 since: 2026
-order: 7
+order: 5
 ---
 
 Marketing data you can trust, checked against your own database truth.

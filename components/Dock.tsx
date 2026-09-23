@@ -10,7 +10,7 @@ type Item = { slug: string; name: string; badge?: string };
 export function Dock({ ventures, addPrompt }: { ventures: Item[]; addPrompt: string }) {
   const path = usePathname();
   const current = path.split("/")[1];
-  const section = path.split("/")[2] ?? "competitors";
+  const section = path.split("/")[2] ?? "brand";
 
   return (
     <nav className="dock" aria-label="Ventures">

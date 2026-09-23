@@ -3,7 +3,7 @@ name: Doctorine
 url: https://doctorine.xyz
 sector: Developer Tools
 since: 2026
-order: 6
+order: 4
 ---
 
 Ship docs, SDKs, CLI and agent skills from your OpenAPI spec, and publish only what passed.

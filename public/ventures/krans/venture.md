@@ -3,7 +3,7 @@ name: Krans
 url: https://krans.ai
 sector: Enterprise AI
 since: 2026
-order: 11
+order: 1
 ---
 
 Evidence-based venture intelligence. Everything a portfolio of ventures already produces, turned into positions you can check: where each venture stands, and the evidence behind it.

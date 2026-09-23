@@ -8,11 +8,11 @@ export * from "./types";
 const ROOT = path.join(process.cwd(), "public", "ventures");
 
 export const SECTIONS = [
-  { key: "competitors", label: "Competitors" },
-  { key: "variants", label: "Brand variants" },
   { key: "brand", label: "Brand book" },
   { key: "gallery", label: "Gallery" },
   { key: "presentations", label: "Presentations" },
+  { key: "variants", label: "Brand variants" },
+  { key: "competitors", label: "Competitors" },
   // Landing pages and Social are parked: their routes and folders still work, they are just not in the menu.
 ] as const;
 
@@ -149,8 +149,16 @@ export function getBrand(slug: string): Brand {
 export function getDecks(slug: string): (Deck & { id: string })[] {
   const base = path.join(ROOT, slug, "decks");
   return dirs(base)
-    .map((id) => ({ id, ...readJSON<Deck>(path.join(base, id, "deck.json"), { title: id, slides: [] }) }))
-    .filter((d) => d.slides.length)
+    .map((id) => {
+      const html = exists(path.join(base, id, "index.html")) && !exists(path.join(base, id, "deck.json"));
+      if (html) {
+        const meta = readJSON<{ title?: string; created?: string }>(path.join(base, id, "meta.json"), {});
+        const t = titleOf(fs.readFileSync(path.join(base, id, "index.html"), "utf8"))?.replace(/&mdash;/g, "·");
+        return { id, title: meta.title ?? t ?? id, created: meta.created, slides: [], html: pub(slug, "decks", id, "index.html") };
+      }
+      return { id, ...readJSON<Deck>(path.join(base, id, "deck.json"), { title: id, slides: [] }) };
+    })
+    .filter((d) => d.slides.length || d.html)
     .sort((a, b) => (b.created ?? b.id).localeCompare(a.created ?? a.id));
 }
 

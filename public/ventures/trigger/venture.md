@@ -3,7 +3,7 @@ name: Trigger
 url: https://trigger.online
 sector: AI Content
 since: 2026
-order: 4
+order: 2
 ---
 
 Agentic AI that analyzes content performance through behavioral and contextual signals. Learns what resonates.

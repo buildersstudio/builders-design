@@ -58,7 +58,7 @@ export type Slide = Bg & (
   | { layout: "equation"; eyebrow?: string; title?: string; terms: { label: string; caption?: string }[]; result: string; highlight?: number }
   | { layout: "closing"; title: string; subtitle?: string; cta?: string[]; contact?: string });
 
-export type Deck = { title: string; created?: string; slides: Slide[]; /** colourway key for gradient-style brands */ gradient?: string };
+export type Deck = { title: string; created?: string; slides: Slide[]; /** a fully designed HTML deck (decks/<id>/index.html), shown as it is */ html?: string; /** colourway key for gradient-style brands */ gradient?: string };
 
 /** The palette a slide or page is painted with, derived from a brand. */
 export type Theme = {
