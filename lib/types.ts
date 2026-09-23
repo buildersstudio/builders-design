@@ -42,7 +42,7 @@ export type Brand = {
 /** background: a picture for this slide. mode: light or dark ground ("gradient" style; the cover is always dark). */
 export type Person = { name: string; role?: string; photo?: string };
 
-type Bg = { background?: string; mode?: "light" | "dark" };
+type Bg = { background?: string; mode?: "light" | "dark"; /** gradient colourway for this slide (gradient-style brands) */ gradient?: string };
 
 export type Slide = Bg & (
   | { layout: "cover"; eyebrow?: string; title: string; subtitle?: string; presenter?: Person }

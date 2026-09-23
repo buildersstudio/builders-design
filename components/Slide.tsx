@@ -337,215 +337,165 @@ function ImagerySlide({ slide, theme, logo, n, total, edit }: { slide: S; theme:
   );
 }
 
-/* ---------- gradient style (Builders): black ground, the brand wave, Favorit ---------- */
+/* ---------- gradient style (Builders): one fixed grid, Favorit Expanded titles, the brand wave, B mark ---------- */
 
-function GradientSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: Theme; logo?: string; n: number; total: number; edit?: Edit }) {
+const GRID = { x: 110, label: 104, title: 150, content: 520, bottom: 190 };
+
+function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Theme; logo?: string; n: number; total: number; edit?: Edit }) {
   const d = theme.deck;
-  const g = d.gradients?.[d.variant ?? "builders"] ?? Object.values(d.gradients ?? {})[0];
+  const key = slide.gradient ?? d.variant ?? "builders";
+  const g = d.gradients?.[key] ?? d.gradients?.builders;
   const light = slide.mode === "light" && slide.layout !== "cover";
-  const fg = light ? theme.ink : "#FFFFFF";
-  const soft = light ? "rgba(26,26,46,.5)" : "rgba(255,255,255,.46)";
+  const fg = light ? "#0A0A0A" : "#FFFFFF";
+  const soft = light ? "rgba(10,10,10,.46)" : "rgba(255,255,255,.5)";
+  const rule = light ? "rgba(10,10,10,.16)" : "rgba(255,255,255,.2)";
   const e = (k: string) => [k];
 
-  // which picture: the full composition for covers, statements and closings; the overlay elsewhere; "glow" on request
-  const kind = slide.background === "glow" ? "glow" : ["cover", "statement", "section", "quote", "closing"].includes(slide.layout) ? "full" : "overlay";
-  const img = slide.background && !["glow", "full", "overlay"].includes(slide.background) ? slide.background : g?.[kind as "full"] ?? g?.overlay;
+  const full = !light && ["cover", "section", "closing"].includes(slide.layout);
+  const img = slide.background && !["glow", "full", "overlay"].includes(slide.background)
+    ? slide.background
+    : slide.background === "glow" ? g?.glow : full ? g?.full : g?.overlay;
 
   const root: CSSProperties = {
     width: W, height: H, position: "relative", overflow: "hidden", color: fg, fontFamily: theme.text,
-    background: light ? d.light ?? "#FAF7F2" : d.dark ?? "#000",
+    background: light ? d.light ?? "#F6F4EF" : d.dark ?? "#000",
     ["--em-font" as string]: "inherit", ["--em-style" as string]: "normal", ["--em-weight" as string]: "inherit",
     ["--em-color" as string]: soft, ["--em-track" as string]: "inherit",
   };
-  const display: CSSProperties = { fontFamily: theme.display, fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.12, margin: 0 };
-  const label: CSSProperties = { fontFamily: theme.label, fontSize: 18, letterSpacing: "0.16em", textTransform: "uppercase", color: soft, marginBottom: 30 };
-  const body: CSSProperties = { fontSize: 30, lineHeight: 1.45, color: soft, maxWidth: 1000, marginTop: 36 };
+  const title: CSSProperties = { fontFamily: theme.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "-0.005em", lineHeight: 1.04, margin: 0, fontSize: 76, maxWidth: 1480 };
+  const label: CSSProperties = { fontFamily: theme.label, fontSize: 17, letterSpacing: "0.18em", textTransform: "uppercase", color: soft };
+  const body: CSSProperties = { fontSize: 40, lineHeight: 1.32, maxWidth: 1180, letterSpacing: "-0.005em" };
+  const at = (top: number, extra: CSSProperties = {}): CSSProperties => ({ position: "absolute", left: GRID.x, right: GRID.x, top, ...extra });
+  const zone: CSSProperties = { position: "absolute", left: GRID.x, right: GRID.x, top: GRID.content, bottom: GRID.bottom };
   const cols = (k: number) => `repeat(${Math.min(k, 4)}, 1fr)`;
 
-  const art = img && (
-    <div style={{ position: "absolute", inset: 0, background: `center / cover no-repeat url("${img}")`, opacity: light ? 0.9 : 1 }} />
-  );
-  const head = (
-    <div style={{ position: "absolute", top: 58, left: 64, display: "flex", alignItems: "center", gap: 22 }}>
-      {logo && <img src={logo} alt="" style={{ height: 26, filter: light ? undefined : "brightness(0) invert(1)" }} />}
-      {d.tagline && <span style={{ fontSize: 18, color: soft }}>{d.tagline}</span>}
-    </div>
-  );
-  const person = (p?: { name: string; role?: string; photo?: string }) =>
-    p && (
-      <div style={{ display: "flex", alignItems: "center", gap: 34 }}>
-        {p.photo && <div style={{ width: 150, height: 150, background: `center / cover url("${p.photo}")` }} />}
-        <div>
-          <div style={{ fontFamily: theme.label, fontSize: 40, letterSpacing: "0.01em", textTransform: "uppercase", lineHeight: 1 }}>{p.name}</div>
-          {p.role && <div style={{ fontSize: 20, color: soft, marginTop: 14 }}>{p.role}</div>}
-        </div>
-      </div>
-    );
-  const bMark = <img src="/ventures/builders/gallery/illustrations/builders-b-mark-white.png" alt="" style={{ position: "absolute", right: 72, bottom: 72, height: 72 }} />;
-  const centred: CSSProperties = { position: "absolute", inset: "0 200px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", paddingBottom: 140 };
-  const pad: CSSProperties = { position: "absolute", inset: 0, padding: "160px 110px 150px", display: "flex", flexDirection: "column" };
+  const eyebrow = "eyebrow" in slide && <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={{ ...at(GRID.label), ...label }} />;
+  const heading = (v: string | undefined, extra: CSSProperties = {}) => <T as="h2" v={v} p={e("title")} edit={edit} style={{ ...at(GRID.title), ...title, ...extra }} />;
 
   let inner: React.ReactNode = null;
   switch (slide.layout) {
     case "cover":
-      return (
-        <div className="slide" style={root}>
-          {art}
-          <div style={{ position: "absolute", left: 96, top: 96, right: 300 }}>
-            <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />
-            <T as="h1" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 150, lineHeight: 1.0, letterSpacing: "-0.025em" }} />
-            <T v={slide.subtitle} p={e("subtitle")} edit={edit} style={{ ...body, marginTop: 40 }} />
-          </div>
-          <div style={{ position: "absolute", left: 96, bottom: 96 }}>{person(slide.presenter)}</div>
-          {bMark}
-        </div>
-      );
-    case "section":
       inner = (
-        <div style={centred}>
-          <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />
-          <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 200, letterSpacing: "-0.03em", lineHeight: 1 }} />
-        </div>
+        <>
+          {eyebrow}
+          <T as="h1" v={slide.title} p={e("title")} edit={edit} style={{ ...at(GRID.title), ...title, fontSize: 132, lineHeight: 1.0 }} />
+          <T v={slide.subtitle} p={e("subtitle")} edit={edit} style={{ ...zone, top: GRID.content + 90, ...body, fontSize: 34, color: soft, maxWidth: 1000 }} />
+        </>
       );
+      break;
+    case "section":
+      inner = <>{eyebrow}{heading(slide.title, { fontSize: 190, lineHeight: 0.98 })}</>;
       break;
     case "statement":
       inner = (
-        <div style={centred}>
-          <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />
-          <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 78, maxWidth: 1400 }} />
-          <T v={slide.body} p={e("body")} edit={edit} style={{ ...body, maxWidth: 1100 }} />
-        </div>
+        <>
+          {eyebrow}
+          {heading(slide.title)}
+          <T v={slide.body} p={e("body")} edit={edit} style={{ ...zone, ...body }} />
+        </>
       );
       break;
-    case "equation": {
-      const D = 250, over = 30;
-      inner = (
-        <div style={{ ...centred, inset: "0 80px" }}>
-          {slide.title && <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 64, marginBottom: 90 }} />}
-          <div style={{ display: "flex", alignItems: "center" }}>
-            {slide.terms.map((t, i) => {
-              const hi = slide.highlight === i;
-              return (
-                <Fragment key={i}>
-                {i > 0 && <span style={{ position: "relative", zIndex: 10, width: 0, left: -over / 2 - 8, fontSize: 30, color: slide.highlight === i || slide.highlight === i - 1 ? "#000" : "#fff" }}>+</span>}
-                <div style={{ display: "flex", alignItems: "center", marginLeft: i ? -over : 0, position: "relative", zIndex: hi ? 2 : 1 }}>
-                  <div style={{ width: hi ? D + 30 : D, height: hi ? D + 30 : D, borderRadius: "50%", display: "grid", placeItems: "center",
-                    background: hi ? "#fff" : "rgba(255,255,255,.07)", color: hi ? "#000" : "#fff", backdropFilter: "blur(20px)",
-                    boxShadow: hi ? "0 0 80px rgba(255,255,255,.25)" : "inset 0 0 0 1px rgba(255,255,255,.05)", fontSize: hi ? 34 : 30 }}>
-                    <T v={t.label} p={["terms", i, "label"]} edit={edit} />
-                  </div>
-                  {t.caption && <T v={t.caption} p={["terms", i, "caption"]} edit={edit} style={{ position: "absolute", top: "100%", left: 0, right: 0, marginTop: 34, fontSize: 18, lineHeight: 1.4, color: soft, textAlign: "center", padding: "0 30px" }} />}
-                </div>
-                </Fragment>
-              );
-            })}
-            <span style={{ fontSize: 34, margin: "0 34px" }}>=</span>
-            <div style={{ width: D, height: D, borderRadius: "50%", display: "grid", placeItems: "center", background: "rgba(255,255,255,.07)", backdropFilter: "blur(20px)", fontSize: 30 }}>
-              <T v={slide.result} p={e("result")} edit={edit} />
-            </div>
-          </div>
-        </div>
-      );
-      break;
-    }
     case "points":
     case "metrics":
       inner = (
         <>
-          <div>
-            <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />
-            <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 76, maxWidth: 1400 }} />
-          </div>
-          <div style={{ marginTop: "auto", marginBottom: 150, display: "grid", gridTemplateColumns: cols(slide.layout === "points" ? slide.points.length : slide.metrics.length), gap: 56 }}>
+          {eyebrow}
+          {heading(slide.title)}
+          <div style={{ ...zone, display: "grid", gridTemplateColumns: cols(slide.layout === "points" ? slide.points.length : slide.metrics.length), gap: 60, alignContent: "start" }}>
             {slide.layout === "points"
               ? slide.points.map((pt, i) => (
-                  <div key={i} style={{ borderTop: `1px solid ${light ? "rgba(26,26,46,.2)" : "rgba(255,255,255,.22)"}`, paddingTop: 28 }}>
-                    <div style={{ fontFamily: theme.label, fontSize: 16, letterSpacing: "0.16em", color: soft, marginBottom: 22 }}>{String(i + 1).padStart(2, "0")}</div>
-                    <T v={pt.title} p={["points", i, "title"]} edit={edit} style={{ fontSize: 38, fontWeight: 500, letterSpacing: "-0.01em", lineHeight: 1.15 }} />
-                    <T v={pt.body} p={["points", i, "body"]} edit={edit} style={{ fontSize: 23, lineHeight: 1.45, color: soft, marginTop: 14 }} />
+                  <div key={i} style={{ borderTop: `1px solid ${rule}`, paddingTop: 30 }}>
+                    <div style={{ ...label, marginBottom: 26 }}>{String(i + 1).padStart(2, "0")}</div>
+                    <T v={pt.title} p={["points", i, "title"]} edit={edit} style={{ fontSize: 38, fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.01em" }} />
+                    <T v={pt.body} p={["points", i, "body"]} edit={edit} style={{ fontSize: 25, lineHeight: 1.42, color: soft, marginTop: 14 }} />
                   </div>
                 ))
               : slide.metrics.map((m, i) => (
-                  <div key={i}>
-                    <T v={m.value} p={["metrics", i, "value"]} edit={edit} style={{ ...display, fontSize: 150, lineHeight: 1, fontFeatureSettings: '"tnum" 1' }} />
-                    <T v={m.label} p={["metrics", i, "label"]} edit={edit} style={{ fontSize: 24, color: soft, marginTop: 18, maxWidth: 420 }} />
+                  <div key={i} style={{ borderTop: `1px solid ${rule}`, paddingTop: 30 }}>
+                    <T v={m.value} p={["metrics", i, "value"]} edit={edit} style={{ fontFamily: theme.label, fontSize: 84, fontWeight: 500, lineHeight: 1, whiteSpace: "nowrap" }} />
+                    <T v={m.label} p={["metrics", i, "label"]} edit={edit} style={{ fontSize: 25, color: soft, marginTop: 22, maxWidth: 440 }} />
                   </div>
                 ))}
           </div>
         </>
       );
       break;
+    case "equation": {
+      const D = 230, over = 26;
+      inner = (
+        <>
+          {eyebrow}
+          {heading(slide.title)}
+          <div style={{ ...zone, display: "flex", alignItems: "flex-start" }}>
+            {slide.terms.map((t, i) => {
+              const hi = slide.highlight === i;
+              return (
+                <Fragment key={i}>
+                  {i > 0 && <span style={{ position: "relative", zIndex: 10, width: 0, left: -over / 2 - 8, top: D / 2 - 20, fontSize: 30, color: hi || slide.highlight === i - 1 ? (light ? "#fff" : "#000") : fg }}>+</span>}
+                  <div style={{ position: "relative", marginLeft: i ? -over : 0, zIndex: hi ? 2 : 1 }}>
+                    <div style={{ width: D, height: D, borderRadius: "50%", display: "grid", placeItems: "center", fontSize: 28, backdropFilter: "blur(20px)",
+                      background: hi ? fg : light ? "rgba(10,10,10,.06)" : "rgba(255,255,255,.08)", color: hi ? (light ? "#fff" : "#000") : fg }}>
+                      <T v={t.label} p={["terms", i, "label"]} edit={edit} />
+                    </div>
+                    {t.caption && <T v={t.caption} p={["terms", i, "caption"]} edit={edit} style={{ position: "absolute", top: D + 28, left: 0, right: 0, fontSize: 19, lineHeight: 1.4, color: soft, textAlign: "center", padding: "0 24px" }} />}
+                  </div>
+                </Fragment>
+              );
+            })}
+            <span style={{ fontSize: 32, margin: `${D / 2 - 22}px 32px 0` }}>=</span>
+            <div style={{ width: D, height: D, borderRadius: "50%", display: "grid", placeItems: "center", fontSize: 28, background: light ? "rgba(10,10,10,.06)" : "rgba(255,255,255,.08)", backdropFilter: "blur(20px)" }}>
+              <T v={slide.result} p={e("result")} edit={edit} />
+            </div>
+          </div>
+        </>
+      );
+      break;
+    }
     case "split":
       inner = (
-        <div style={{ margin: "auto 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 90, alignItems: "center", paddingBottom: 40 }}>
-          <div>
-            <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />
-            <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ ...display, fontSize: 76 }} />
-            <T v={slide.body} p={e("body")} edit={edit} style={body} />
-          </div>
-          <div style={{ height: 600, background: slide.image ? `center / cover url("${slide.image}")` : "rgba(255,255,255,.07)" }} />
-        </div>
+        <>
+          {eyebrow}
+          {heading(slide.title, { right: 960, maxWidth: 850, fontSize: 64 })}
+          <T v={slide.body} p={e("body")} edit={edit} style={{ ...zone, right: 960, ...body, fontSize: 32, color: soft }} />
+          <div style={{ position: "absolute", top: GRID.label, bottom: GRID.bottom - 60, right: GRID.x, width: 760, background: slide.image ? `center / cover url("${slide.image}")` : "rgba(127,127,127,.12)" }} />
+        </>
       );
       break;
     case "quote":
       inner = (
         <>
-          <div style={{ marginTop: 10 }}>
-            <T as="blockquote" v={slide.quote} p={e("quote")} edit={edit} style={{ ...display, fontSize: 84, maxWidth: 1300, lineHeight: 1.15, margin: 0 }} />
-            {!slide.presenter && <T v={slide.author} p={e("author")} edit={edit} style={{ ...label, marginTop: 48, marginBottom: 0 }} />}
-          </div>
-          <div style={{ marginTop: "auto" }}>{person(slide.presenter)}</div>
-          {slide.presenter && bMark}
+          <T v={slide.author} p={e("author")} edit={edit} style={{ ...at(GRID.label), ...label }} />
+          <T as="blockquote" v={slide.quote} p={e("quote")} edit={edit} style={{ ...at(GRID.title), ...body, fontSize: 64, lineHeight: 1.18, maxWidth: 1450, margin: 0 }} />
         </>
       );
       break;
-    case "closing": {
-      const tiles = d.closing?.tiles ?? [];
-      return (
-        <div className="slide" style={root}>
-          {art}
-          <div style={{ position: "absolute", inset: "64px 64px 64px", display: "grid", gridTemplateColumns: tiles.length ? "1fr 540px" : "1fr", gridTemplateRows: "1fr auto", gap: 18 }}>
-            <div style={{ position: "relative", overflow: "hidden", borderRadius: 28, background: `linear-gradient(90deg, rgba(0,0,0,.8), rgba(0,0,0,.3)), center / cover url("${d.closing?.image ?? ""}") #111`, padding: "0 70px 70px", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
-              <T v={slide.subtitle} p={e("subtitle")} edit={edit} style={{ ...label, color: "rgba(255,255,255,.72)", marginBottom: 22 }} />
-              <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ fontFamily: theme.label, fontSize: 84, lineHeight: 1.0, textTransform: "uppercase", margin: 0, maxWidth: 1000 }} />
-              {!!slide.cta?.length && (
-                <div style={{ display: "flex", gap: 16, marginTop: 50 }}>
-                  {slide.cta.map((c, i) => (
-                    <span key={c} style={{ display: "inline-flex", alignItems: "center", gap: 14, height: 76, padding: "0 40px", borderRadius: 99, fontFamily: theme.label, fontSize: 17, letterSpacing: "0.2em", textTransform: "uppercase",
-                      background: i === 0 ? "#fff" : "transparent", color: i === 0 ? "#000" : "#fff", boxShadow: i === 0 ? "none" : "inset 0 0 0 1.5px rgba(255,255,255,.35)" }}>{c} →</span>
-                  ))}
-                  {slide.contact && <span style={{ alignSelf: "center", marginLeft: 18, fontSize: 24, color: "rgba(255,255,255,.72)" }}>{slide.contact}</span>}
-                </div>
-              )}
-            </div>
-            {!!tiles.length && (
-              <div style={{ display: "grid", gridTemplateRows: `repeat(${tiles.length}, 1fr)`, gap: 18 }}>
-                {tiles.map((t) => (
-                  <div key={t.title} style={{ position: "relative", overflow: "hidden", borderRadius: 22, padding: "0 30px 26px", display: "flex", flexDirection: "column", justifyContent: "flex-end",
-                    background: `linear-gradient(0deg, rgba(0,0,0,.82), rgba(0,0,0,.15)), center / cover url("${t.image}")` }}>
-                    <svg width="34" height="34" viewBox="0 0 50 51" style={{ position: "absolute", top: 22, right: 24 }}><path d="M46.55 23.65C35.51 23.65 26.52 14.64 26.52 3.47V0H23.48v3.47c0 11.12-8.95 20.18-20.03 20.18H0v3.06h3.45c11.04 0 20.03 9.01 20.03 20.18v3.47h3.04v-3.47c0-11.12 8.95-20.18 20.03-20.18H50v-3.06h-3.45Z" fill="#fff" /></svg>
-                    <div style={{ fontFamily: theme.label, fontSize: 21, letterSpacing: "0.14em", textTransform: "uppercase" }}>{t.title}</div>
-                    {t.body && <div style={{ fontSize: 23, opacity: 0.75, marginTop: 10 }}>{t.body}</div>}
-                  </div>
+    case "closing":
+      inner = (
+        <>
+          <div style={{ ...at(GRID.label), ...label }}>builders.studio</div>
+          {heading(slide.title, { fontSize: 104, lineHeight: 1.02 })}
+          <div style={{ ...zone, top: GRID.content + 120, display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 80 }}>
+            <T v={slide.subtitle} p={e("subtitle")} edit={edit} style={{ ...body, fontSize: 32, color: soft, maxWidth: 900 }} />
+            {!!slide.cta?.length && (
+              <div style={{ display: "flex", gap: 14, flex: "none" }}>
+                {slide.cta.map((c, i) => (
+                  <span key={c} style={{ display: "inline-flex", alignItems: "center", height: 74, padding: "0 38px", borderRadius: 99, fontFamily: theme.label, fontSize: 16, letterSpacing: "0.18em", textTransform: "uppercase",
+                    background: i === 0 ? "#fff" : "transparent", color: i === 0 ? "#000" : "#fff", boxShadow: i === 0 ? "none" : "inset 0 0 0 1.5px rgba(255,255,255,.4)" }}>{c}</span>
                 ))}
               </div>
             )}
-            <div style={{ gridColumn: "1 / -1", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 8px 0" }}>
-              {logo && <img src={logo} alt="" style={{ height: 34, filter: "brightness(0) invert(1)" }} />}
-              {slide.contact && !slide.cta?.length && <span style={{ fontSize: 22, color: soft }}>{slide.contact}</span>}
-            </div>
           </div>
-        </div>
+        </>
       );
-    }
+      break;
   }
 
   return (
     <div className="slide" style={root}>
-      {art}
-      {head}
-      <div style={pad}>{inner}</div>
-      <div style={{ position: "absolute", right: 64, top: 60, fontSize: 16, color: soft, fontFeatureSettings: '"tnum" 1', letterSpacing: "0.1em" }}>{String(n).padStart(2, "0")} / {String(total).padStart(2, "0")}</div>
+      {img && <div style={{ position: "absolute", inset: 0, background: `center / cover no-repeat url("${img}")` }} />}
+      {inner}
+      <div style={{ position: "absolute", left: GRID.x, bottom: 78, ...label, fontFeatureSettings: '"tnum" 1' }}>{String(n).padStart(2, "0")} / {String(total).padStart(2, "0")}</div>
+      <img src="/ventures/builders/gallery/illustrations/builders-b-mark-white.png" alt="" style={{ position: "absolute", right: GRID.x - 6, bottom: 70, height: 50, filter: light ? "brightness(0)" : undefined }} />
     </div>
   );
 }

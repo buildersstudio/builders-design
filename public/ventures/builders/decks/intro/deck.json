@@ -5,76 +5,148 @@
   "slides": [
     {
       "layout": "cover",
+      "eyebrow": "Builders · Rotterdam",
       "title": "AI ventures\nare built here.",
-      "subtitle": "Start a new company with us, or scale the one you already have."
+      "subtitle": "Builders is an AI venture studio. We co-found enterprise AI companies from day zero."
     },
     {
       "layout": "statement",
-      "title": "A batch at a time, on site in Rotterdam. *A senior team beside you and capital that follows the evidence.*"
+      "mode": "light",
+      "eyebrow": "The studio",
+      "title": "Not a program.\nA studio with a system.",
+      "body": "We bring firepower, network and on-the-ground execution. *Every venture runs on VSI, our operating system.*"
     },
     {
       "layout": "equation",
-      "title": "Three ways in.",
+      "mode": "light",
+      "eyebrow": "How it fits",
+      "title": "One studio,\nthree ways in.",
       "terms": [
         {
           "label": "Studio",
           "caption": "We build the companies"
         },
         {
-          "label": "Network",
-          "caption": "We keep the room open"
-        },
-        {
           "label": "Capital",
           "caption": "We put the capital in"
+        },
+        {
+          "label": "Network",
+          "caption": "We keep the room open"
         }
       ],
-      "result": "Builders",
-      "highlight": 0
+      "result": "Builders"
     },
     {
       "layout": "section",
-      "title": "The ventures"
+      "gradient": "studio",
+      "eyebrow": "01",
+      "title": "Studio"
     },
     {
       "layout": "points",
-      "eyebrow": "Built in the studio",
-      "title": "Companies we are building",
+      "mode": "light",
+      "gradient": "studio",
+      "eyebrow": "Build with Builders",
+      "title": "A batch of 20 founders,\nfour times a year.",
       "points": [
         {
-          "title": "Cortena",
-          "body": "The AI operator for accounts payable."
+          "title": "Earn your seat",
+          "body": "Signed design partners earn the build-week seat."
         },
         {
-          "title": "Avery",
-          "body": "Hiring intelligence for Europe."
+          "title": "The sprint",
+          "body": "Clear the pre-incorporation sprint before the company exists."
         },
         {
-          "title": "Everday",
-          "body": "AI agents that run daily inside the HR stack."
+          "title": "The team",
+          "body": "Build with a co-founding team and up to €500K behind you."
+        }
+      ]
+    },
+    {
+      "layout": "statement",
+      "gradient": "studio",
+      "eyebrow": "VSI",
+      "title": "An operating system\nthat closes the loop.",
+      "body": "VSI turns every conversation into decision-grade intelligence. *It scores the evidence behind every claim.*"
+    },
+    {
+      "layout": "section",
+      "gradient": "capital",
+      "eyebrow": "02",
+      "title": "Capital"
+    },
+    {
+      "layout": "statement",
+      "mode": "light",
+      "gradient": "capital",
+      "eyebrow": "Capital",
+      "title": "Day zero,\nthrough seed.",
+      "body": "Builders backs the companies it co-founds from day zero. *Fund II invests at seed, on studio terms.*"
+    },
+    {
+      "layout": "metrics",
+      "gradient": "capital",
+      "eyebrow": "Fund II",
+      "title": "The structure.",
+      "metrics": [
+        {
+          "value": "€25M+",
+          "label": "Fund II target"
         },
         {
-          "title": "Trigger",
-          "body": "The cognitive layer of content."
+          "value": "15–30%",
+          "label": "studio stake at incorporation"
+        },
+        {
+          "value": "Seed",
+          "label": "co-investing alongside institutional VCs"
+        }
+      ]
+    },
+    {
+      "layout": "section",
+      "gradient": "network",
+      "eyebrow": "03",
+      "title": "Network"
+    },
+    {
+      "layout": "statement",
+      "mode": "light",
+      "gradient": "network",
+      "eyebrow": "Network",
+      "title": "Not a directory.\nA room full of builders.",
+      "body": "Founders, operators, investors and domain experts, *with the CTO Network and Navigators on top.*"
+    },
+    {
+      "layout": "metrics",
+      "gradient": "network",
+      "eyebrow": "CTO Network",
+      "title": "Technical depth,\non call.",
+      "metrics": [
+        {
+          "value": "2,400+",
+          "label": "CTOs in enterprise AI"
+        },
+        {
+          "value": "50K+",
+          "label": "connections across the network"
         }
       ]
     },
     {
       "layout": "split",
+      "mode": "light",
       "eyebrow": "Rotterdam",
-      "title": "On site, *a batch at a time.*",
+      "title": "On site,\none batch at a time.",
       "body": "Founders build next to the studio team, every day, in the same room.",
       "image": "/ventures/builders/gallery/photos/core-team-2026-hq-group.jpg"
     },
     {
-      "layout": "statement",
-      "title": "New idea or early startup. *The next company can start here.*",
-      "background": "glow"
-    },
-    {
       "layout": "closing",
-      "subtitle": "The next company can start here",
-      "title": "Build the next one with us.",
+      "title": "The next company\ncan start here.",
+      "subtitle": "New idea or early startup. One batch, Rotterdam, a senior team building beside you and capital that follows the evidence.",
       "cta": [
         "Build with us",
         "Meet the ventures"
