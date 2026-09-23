@@ -194,12 +194,14 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .chips button:hover { color: var(--ink); }
 .chips button[aria-pressed="true"] { color: var(--ink); background: var(--wash); }
 .masonry { columns: 4 240px; column-gap: 14px; }
-.pic { position: relative; display: block; width: 100%; margin: 0 0 14px; break-inside: avoid; border-radius: var(--radius); overflow: hidden; background: var(--wash); box-shadow: 0 0 0 1px var(--line); cursor: copy; }
+.pic { position: relative; display: block; width: 100%; margin: 0 0 14px; break-inside: avoid; border-radius: var(--radius); overflow: hidden; background: var(--wash); box-shadow: 0 0 0 1px var(--line); }
 .pic img { display: block; width: 100%; height: auto; min-height: 80px; transition: transform 0.5s var(--ease); }
 .pic:hover img { transform: scale(1.02); }
-.pic span {
-  position: absolute; left: 8px; bottom: 8px; max-width: calc(100% - 16px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  font-size: 11px; padding: 3px 8px; border-radius: 99px; background: rgba(255, 255, 255, 0.92); color: var(--ink);
+.pic figcaption {
+  position: absolute; left: 8px; right: 8px; bottom: 8px; display: flex; gap: 4px; align-items: center;
   opacity: 0; transform: translateY(4px); transition: opacity 0.2s, transform 0.2s var(--ease);
 }
-.pic:hover span { opacity: 1; transform: none; }
+.pic:hover figcaption, .pic:focus-within figcaption { opacity: 1; transform: none; }
+.pic figcaption span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,0.5); padding-left: 4px; }
+.pic figcaption :is(button, a) { flex: none; font-size: 11px; padding: 5px 10px; border-radius: 99px; background: rgba(255, 255, 255, 0.94); color: var(--ink); transition: background 0.15s, color 0.15s; }
+.pic figcaption :is(button, a):hover { background: var(--ink); color: #fff; }

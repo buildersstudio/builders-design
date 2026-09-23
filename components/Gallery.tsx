@@ -7,7 +7,7 @@ import { copy } from "./ui";
 const ORDER = ["founders", "team", "photos", "product", "illustrations", "backgrounds", "icons", "other"];
 const rank = (g: string) => (ORDER.indexOf(g) + 1 || 50);
 
-/** Every picture a venture owns. Click copies its public URL, ready to paste into a prompt. */
+/** Every picture a venture owns: copy its public URL for a prompt, or download the file. */
 export function Gallery({ pictures }: { pictures: Picture[] }) {
   const groups = [...new Set(pictures.map((p) => p.group))].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
   const [group, setGroup] = useState<string | null>(null);
@@ -25,10 +25,14 @@ export function Gallery({ pictures }: { pictures: Picture[] }) {
       )}
       <div className="masonry">
         {shown.map((p) => (
-          <button key={p.id} className="pic" title={`Copy link to ${p.name}`} onClick={() => copy(location.origin + p.href, "Link copied")}>
+          <figure key={p.id} className="pic">
             <img src={p.href} alt={p.name} loading="lazy" />
-            <span>{p.name}</span>
-          </button>
+            <figcaption>
+              <span>{p.name}</span>
+              <button onClick={() => copy(location.origin + p.href, "Link copied")}>Copy link</button>
+              <a href={p.href} download={p.href.split("/").pop()}>Download</a>
+            </figcaption>
+          </figure>
         ))}
       </div>
     </>
