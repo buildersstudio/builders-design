@@ -34,6 +34,10 @@ Rules that apply everywhere:
 - No em dashes and no exclamation marks in any copy.
 - After adding files, run `npm run build` to check nothing broke, then commit and push.
 
+## Publishing
+
+Everything in this repo is public, and `main` is what the platform shows. To publish, commit and push to `main` (you need write access to github.com/buildersstudio/builders-design; otherwise open a pull request). Vercel rebuilds the site from `main` and the new files appear for everyone within about a minute.
+
 ## New venture
 
 1. Create `public/ventures/<slug>/venture.md`:
