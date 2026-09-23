@@ -1,0 +1,56 @@
+{
+  "tagline": "From 3D model to dimensioned manufacturing drawing.",
+  "colors": [
+    {
+      "name": "Ink",
+      "hex": "#141414",
+      "role": "ink"
+    },
+    {
+      "name": "Paper",
+      "hex": "#FAFAF8",
+      "role": "paper"
+    },
+    {
+      "name": "Slate teal",
+      "hex": "#245364",
+      "role": "accent"
+    },
+    {
+      "name": "Graphite",
+      "hex": "#555550",
+      "role": "support"
+    },
+    {
+      "name": "Stone",
+      "hex": "#686860",
+      "role": "support"
+    },
+    {
+      "name": "Rule",
+      "hex": "#E3E1DC",
+      "role": "support"
+    }
+  ],
+  "type": [
+    {
+      "name": "Arial",
+      "role": "display",
+      "weight": 700,
+      "css": null,
+      "src": null,
+      "license": "commercial",
+      "url": "https://www.monotype.com/fonts/arial"
+    },
+    {
+      "name": "Arial",
+      "role": "text",
+      "weight": 400,
+      "css": null,
+      "src": null,
+      "license": "commercial",
+      "url": "https://www.monotype.com/fonts/arial"
+    }
+  ],
+  "source": "Taken from the live drawgen.co on 2026-09-23: Arial throughout, the lowercase drawgen. wordmark, and the computed colours of the page."
+}

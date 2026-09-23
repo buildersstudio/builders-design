@@ -1,46 +1,43 @@
 {
   "title": "Builders intro",
   "created": "2026-09-23",
+  "gradient": "builders",
   "slides": [
     {
       "layout": "cover",
-      "eyebrow": "Builders · AI venture studio",
-      "title": "AI ventures are built here",
-      "subtitle": "Start a new company with us, or scale the one you already have. A batch at a time, on site in Rotterdam."
+      "title": "AI ventures\nare built here.",
+      "subtitle": "Start a new company with us, or scale the one you already have."
     },
     {
       "layout": "statement",
-      "eyebrow": "The model",
-      "title": "A senior team beside you, and capital that follows the evidence.",
-      "body": "New idea or early startup. One batch, one room, the people who have done it before."
+      "title": "A batch at a time, on site in Rotterdam. *A senior team beside you and capital that follows the evidence.*"
     },
     {
-      "layout": "points",
-      "eyebrow": "Three ways in",
-      "title": "Studio, network and capital",
-      "points": [
+      "layout": "equation",
+      "title": "Three ways in.",
+      "terms": [
         {
-          "title": "Studio",
-          "body": "We build the companies, co-founding with bold founders."
+          "label": "Studio",
+          "caption": "We build the companies"
         },
         {
-          "title": "Network",
-          "body": "We keep the room open for technical leaders."
+          "label": "Network",
+          "caption": "We keep the room open"
         },
         {
-          "title": "Capital",
-          "body": "We put the capital in, when the signals say go."
+          "label": "Capital",
+          "caption": "We put the capital in"
         }
-      ]
+      ],
+      "result": "Builders",
+      "highlight": 0
     },
     {
       "layout": "section",
-      "eyebrow": "02",
       "title": "The ventures"
     },
     {
       "layout": "points",
-      "mode": "dark",
       "eyebrow": "Built in the studio",
       "title": "Companies we are building",
       "points": [
@@ -65,9 +62,14 @@
     {
       "layout": "split",
       "eyebrow": "Rotterdam",
-      "title": "On site, a batch at a time",
+      "title": "On site, *a batch at a time.*",
       "body": "Founders build next to the studio team, every day, in the same room.",
       "image": "/ventures/builders/gallery/photos/core-team-2026-hq-group.jpg"
+    },
+    {
+      "layout": "statement",
+      "title": "New idea or early startup. *The next company can start here.*",
+      "background": "glow"
     },
     {
       "layout": "closing",

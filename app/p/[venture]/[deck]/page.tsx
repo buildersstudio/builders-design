@@ -25,7 +25,7 @@ export default async function Share({ params }: P) {
   return (
     <>
       <BrandFonts faces={brand.type} />
-      <Player deck={deck} theme={themeOf(brand)} logo={brand.logo} />
+      <Player deck={deck} theme={themeOf(brand, deck)} logo={brand.logo} />
     </>
   );
 }

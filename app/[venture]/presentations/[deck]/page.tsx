@@ -15,7 +15,7 @@ export default async function DeckPage({ params }: { params: Promise<{ venture: 
   return (
     <>
       <BrandFonts faces={brand.type} />
-      <DeckEditor initial={deck} theme={themeOf(brand)} logo={brand.logo} venture={venture} id={id} />
+      <DeckEditor initial={deck} theme={themeOf(brand, deck)} logo={brand.logo} venture={venture} id={id} />
     </>
   );
 }

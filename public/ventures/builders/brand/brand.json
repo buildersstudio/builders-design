@@ -50,14 +50,45 @@
       "src": "https://builders.studio/fonts/FavoritStd-Book.otf",
       "license": "commercial",
       "url": "https://abcdinamo.com/typefaces/favorit"
+    },
+    {
+      "name": "Favorit Expanded",
+      "role": "accent",
+      "weight": 500,
+      "css": null,
+      "src": "https://builders.studio/fonts/FavoritStd-MediumExpanded.otf",
+      "license": "commercial",
+      "url": "https://abcdinamo.com/typefaces/favorit"
     }
   ],
   "source": "~/dev/builders-website-latest/website-vsi src/index.css tokens (--color-ink, --color-cream, --color-studio, --color-network, --color-capital, --color-deep); tagline from the builders.studio hero h1 (src/pages/Home.tsx); fonts served CORS-open from builders.studio/fonts; logo from public/brand/builders-logo.svg; mark is the Builders spark",
   "deck": {
     "style": "gradient",
-    "gradient": "/ventures/builders/gallery/backgrounds/brand-gradient-bottom-transparent.png",
     "dark": "#000000",
     "light": "#FAF7F2",
+    "tagline": "AI venture studio",
+    "gradients": {
+      "builders": {
+        "full": "/ventures/builders/gallery/backgrounds/gradient-builders-full.jpg",
+        "overlay": "/ventures/builders/gallery/backgrounds/gradient-builders-overlay.webp",
+        "glow": "/ventures/builders/gallery/backgrounds/gradient-builders-glow-right.webp"
+      },
+      "studio": {
+        "full": "/ventures/builders/gallery/backgrounds/gradient-studio-full.jpg",
+        "overlay": "/ventures/builders/gallery/backgrounds/gradient-studio-overlay.webp",
+        "glow": "/ventures/builders/gallery/backgrounds/gradient-studio-glow-right.webp"
+      },
+      "capital": {
+        "full": "/ventures/builders/gallery/backgrounds/gradient-capital-full.jpg",
+        "overlay": "/ventures/builders/gallery/backgrounds/gradient-capital-overlay.webp",
+        "glow": "/ventures/builders/gallery/backgrounds/gradient-capital-glow-right.webp"
+      },
+      "network": {
+        "full": "/ventures/builders/gallery/backgrounds/gradient-network-full.jpg",
+        "overlay": "/ventures/builders/gallery/backgrounds/gradient-network-overlay.webp",
+        "glow": "/ventures/builders/gallery/backgrounds/gradient-network-glow-right.webp"
+      }
+    },
     "closing": {
       "image": "/ventures/builders/gallery/photos/rotterdam-office-building-exterior.jpg",
       "tiles": [
