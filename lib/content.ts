@@ -136,6 +136,7 @@ export function getBrand(slug: string): Brand {
   const file = (f: string) => (exists(path.join(ROOT, slug, "brand", f)) ? pub(slug, "brand", f) : undefined);
   return {
     tagline: b.tagline,
+    deck: b.deck,
     colors: b.colors ?? [
       { name: "Ink", hex: "#0A0A0A", role: "ink" },
       { name: "Paper", hex: "#FFFFFF", role: "paper" },

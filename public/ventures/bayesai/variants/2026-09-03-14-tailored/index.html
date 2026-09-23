@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BayesAI — Your numbers, quietly correct</title>
+<meta name="description" content="BayesAI watches every tool in your marketing stack, checks every number against your database and against plain arithmetic — and only speaks up when something is actually wrong." />
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><circle cx="13" cy="16" r="9" fill="none" stroke="%2315141a" stroke-width="2.6"/><circle cx="20" cy="16" r="9" fill="none" stroke="%23d8547f" stroke-width="2.8"/></svg>' />
+<link rel="preconnect" href="https://api.fontshare.com" />
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet" />
+<style>
+/* ————— tokens: Pop, tailored — desaturated, no stickers, hard shadows kept ————— */
+:root{
+  --cream:#f5f1e8; --white:#ffffff; --ink:#15141a;
+  --pink:#d8547f; --pinksoft:#e9a2ba; --red:#cf4f3f; --green:#1f6b52; --cobalt:#2f47b0;
+  --lilac:#c9bde6; --yellow:#e3bb4f;
+  --dim:rgba(21,20,26,.62); --hair:rgba(21,20,26,.12);
+  --disp:"Switzer",system-ui,sans-serif;
+  --sans:"Switzer",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.9,.3,1);
+  --pad:clamp(20px,4vw,56px);
+  --shadow:6px 6px 0 var(--ink);
+  --shadow-sm:4px 4px 0 var(--ink);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--white);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+::selection{background:var(--cobalt);color:#fff}
+a{color:inherit;text-decoration:none}
+img,svg,canvas{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+.label{font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.lede{font-size:clamp(16px,1.25vw,18px);color:var(--dim);max-width:56ch;font-weight:500}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--dim)}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--pink);flex:none}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+
+/* ————— buttons: hard shadow, no rotation ————— */
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;font-weight:700;font-size:15px;
+  padding:13px 24px;border-radius:12px;border:2px solid var(--ink);box-shadow:var(--shadow-sm);
+  transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.pink{background:var(--pink)}
+.btn.yellow{background:var(--yellow);color:var(--ink)}
+.btn.ghost{background:#fff;color:var(--ink)}
+.btn.lg{padding:16px 30px;font-size:16px}
+
+/* ————— nav: SaaS ————— */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
+.navin{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
+.wordmark{display:flex;align-items:center;gap:9px;font-weight:700;font-size:18.5px;letter-spacing:-.02em}
+.navlinks{display:flex;gap:4px;font-size:14.5px;font-weight:500;color:var(--ink)}
+.navlinks a{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:9px;transition:background .2s}
+.navlinks a svg{width:12px;height:12px;opacity:.55}
+.navlinks a:hover{background:var(--cream)}
+.navright{display:flex;align-items:center;gap:8px}
+.navright .signin{font-size:14.5px;font-weight:600;padding:7px 12px;border-radius:9px}
+.navright .signin:hover{background:var(--cream)}
+.navright .btn{padding:9px 16px;font-size:13.5px;border-radius:10px;box-shadow:3px 3px 0 var(--ink)}
+@media(max-width:960px){.navlinks,.navright .signin{display:none}}
+
+/* ————— hero: indigo field, mockup straddles into the white ————— */
+.hero{--ov:clamp(140px,17vw,240px);position:relative;background:var(--cobalt);color:#fff;text-align:center;
+  padding:clamp(56px,8vh,96px) 0 0;isolation:isolate}
+.hero:before{content:"";position:absolute;inset:0 0 var(--ov) 0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.075) 1px,transparent 1px);
+  background-size:64px 64px;background-position:center top;
+  -webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--ov);background:#fff;z-index:0}
+.heroin{position:relative;z-index:1;max-width:1040px;margin:0 auto}
+.hero .eyebrow{color:rgba(255,255,255,.78)}
+.hero .eyebrow i{background:var(--yellow)}
+.h1{font-weight:700;letter-spacing:-.035em;line-height:1.04;font-size:clamp(38px,4.5vw,66px);margin-top:22px}
+.h1 .hl{color:var(--lilac)}
+.hero .lede{margin:26px auto 34px;max-width:58ch;color:rgba(255,255,255,.82)}
+.ctarow{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.lptrust{margin-top:26px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.66)}
+
+/* stage: main frame centred, two flanking cards tucked behind its edges */
+.stage{position:relative;z-index:1;margin-top:clamp(48px,6vh,76px);text-align:left;padding:0 20px}
+.stage .frame{position:relative;z-index:2;max-width:900px;margin:0 auto}
+.sidecard{position:absolute;z-index:1;top:clamp(48px,6vw,84px);width:clamp(210px,19vw,272px);border:2px solid var(--ink);
+  border-radius:16px;padding:18px 18px 16px;box-shadow:var(--shadow)}
+.sidecard.l{left:max(20px,calc(50% - 450px - 226px));background:var(--pink);color:#fff}
+.sidecard.r{right:max(26px,calc(50% - 450px - 226px));background:var(--yellow);color:var(--ink)}
+.sidecard .label{display:block;font-size:10.5px;opacity:.78}
+.sidecard .big{display:block;font-weight:700;letter-spacing:-.035em;font-size:clamp(28px,2.6vw,38px);line-height:1;margin:8px 0 6px}
+.sidecard small{display:block;font-size:12.5px;font-weight:600;line-height:1.45;opacity:.92}
+.sidecard .tools{display:flex;gap:7px;margin-top:12px}
+.sidecard .tools span{width:28px;height:28px;border-radius:8px;background:#fff;border:1.5px solid var(--ink);display:grid;place-items:center}
+.sidecard .tools img{height:15px;width:auto}
+.sidecard ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:600}
+.sidecard li{display:flex;align-items:center;gap:8px}
+.sidecard li i{width:16px;height:16px;border-radius:50%;background:var(--green);color:#fff;border:1.5px solid var(--ink);font-size:9px;display:grid;place-items:center;font-style:normal;font-weight:700;flex:none}
+.sidecard li i.wait{background:#fff;color:var(--ink)}
+.sidecard.chart{padding:16px 16px 14px}
+.sidecard .spark{display:block;width:100%;height:58px;overflow:visible}
+.sidecard .bars{display:flex;align-items:flex-end;gap:5px;height:82px;margin-top:10px;border-bottom:2px solid var(--ink)}
+.sidecard .bars i{flex:1;background:var(--lilac);border:2px solid var(--ink);border-bottom:0;border-radius:4px 4px 0 0}
+.sidecard .bars i.hot{background:var(--pink)}
+.sidecard .keys{display:flex;gap:6px;margin-top:10px}
+.sidecard .keys i{width:22px;height:8px;border-radius:2px;border:1.5px solid var(--ink)}
+@media(max-width:1240px){.sidecard{display:none}}
+.frame{background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:16px;overflow:hidden;box-shadow:8px 8px 0 var(--ink)}
+.framebar{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:2px solid var(--ink);background:var(--cream)}
+.framebar i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--ink)}
+.framebar i:nth-child(1){background:var(--red)}.framebar i:nth-child(2){background:var(--yellow)}.framebar i:nth-child(3){background:var(--green)}
+.framebar span{margin:0 auto;font-size:12px;font-weight:700;background:#fff;border:1.5px solid var(--ink);padding:2px 14px;border-radius:999px}
+.framebody{padding:20px 22px 22px}
+.goodmorning{font-size:13px;font-weight:600;color:var(--dim)}
+.probcount{font-weight:700;letter-spacing:-.025em;font-size:clamp(20px,2vw,26px);margin:3px 0 16px}
+.mock-row{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:13px 14px;border:1.5px solid var(--ink);border-radius:12px;margin-top:10px;background:#fff;transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+.mock-row:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-sm)}
+.mock-row b{font-weight:700;font-size:14px;letter-spacing:-.01em;display:block}
+.mock-meta{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:12px;font-weight:600;color:var(--dim);flex-wrap:wrap}
+.mock-meta em{font-style:normal}
+.mock-tools{display:flex;gap:7px;flex:none;padding-top:3px}
+.mock-tools img{height:17px;width:auto;max-width:32px;object-fit:contain}
+.mock-body{flex:1;min-width:0}
+.plat{display:inline-flex;align-items:center;gap:5px;border:1.5px solid var(--hair);border-radius:999px;padding:2px 9px;color:var(--ink);background:var(--cream)}
+.plat img,.plat svg{height:11px;width:auto;max-width:14px;object-fit:contain}
+.geo{letter-spacing:.02em}
+.fl{margin-right:6px;letter-spacing:0}
+.mock-meta i{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--ink);flex:none}
+.mock-right{display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex:none}
+.mock-right b{font-weight:700;font-size:16px;letter-spacing:-.02em}
+.afx{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:#fff;background:var(--cobalt);
+  border:1.5px solid var(--ink);padding:3px 11px;border-radius:999px;box-shadow:2px 2px 0 var(--ink)}
+.afx svg{width:13px;height:13px}
+
+/* ————— sections ————— */
+.sec{padding:clamp(80px,11vh,140px) 0 0}
+.kicker-c{text-align:center}
+.h2{font-weight:700;letter-spacing:-.03em;line-height:1.04;font-size:clamp(32px,4vw,58px);margin-top:18px}
+.seclede{margin:18px auto 0;text-align:center}
+
+/* logos */
+.logosec{padding-top:clamp(64px,9vh,104px);text-align:center}
+.logorow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(24px,3vw,44px) clamp(30px,4vw,64px);margin-top:36px}
+.logorow img{height:clamp(30px,3.1vw,46px);width:auto;transition:transform .2s var(--ease)}
+.logorow img:hover{transform:translateY(-4px)}
+
+/* stats: color cards, no tilt */
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,28px);margin-top:clamp(44px,6vh,64px)}
+.stat{border:2px solid var(--ink);border-radius:20px;padding:30px 28px;box-shadow:var(--shadow)}
+.stat:nth-child(1){background:var(--lilac)}
+.stat:nth-child(2){background:var(--yellow)}
+.stat:nth-child(3){background:var(--pinksoft)}
+.stat b{font-weight:700;letter-spacing:-.04em;font-size:clamp(52px,5.4vw,84px);line-height:1;display:block}
+.stat p{font-size:14.5px;font-weight:600;margin-top:12px;max-width:32ch}
+.stat span{display:block;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:10px;color:rgba(21,20,26,.55)}
+@media(max-width:820px){.statrow{grid-template-columns:1fr}}
+
+/* ————— pillars: color slabs ————— */
+.slides{margin-top:clamp(44px,6vh,64px);display:flex;flex-direction:column;gap:clamp(20px,3vh,30px)}
+.slide{position:relative;border:2px solid var(--ink);border-radius:26px;box-shadow:var(--shadow);padding:clamp(36px,5vw,64px);overflow:hidden}
+.slide.blue{background:var(--cobalt);color:#fff}
+.slide.green{background:var(--green);color:var(--cream)}
+.slide.pinky{background:var(--pinksoft);color:var(--ink)}
+.slide .in2{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2vw,28px);align-items:center}
+.slide .stext{grid-column:1 / span 5}
+.slide .stext .label{opacity:.72}
+.slide h3{font-weight:700;letter-spacing:-.03em;line-height:1.02;font-size:clamp(34px,3.8vw,58px);margin:14px 0 16px}
+.slide p{font-size:15px;font-weight:500;max-width:44ch;opacity:.92}
+.slide .scard{grid-column:7 / span 6;justify-self:end;width:min(480px,100%)}
+.scard{background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+.scard .sctitle{font-weight:700;font-size:13.5px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.scard .sctitle em{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);
+  border:1.5px solid var(--hair);border-radius:999px;padding:2px 10px}
+@media(max-width:900px){
+  .slide .stext{grid-column:1 / -1}
+  .slide .scard{grid-column:1 / -1;justify-self:start;margin-top:24px}
+}
+
+/* snippet internals */
+.dbar{display:flex;align-items:center;gap:12px;margin-top:10px}
+.dbar:first-of-type{margin-top:0}
+.dbar .lab{font-size:12.5px;font-weight:700;width:100px;flex:none}
+.dbar .track{flex:1;height:16px;background:var(--cream);border:1.5px solid var(--ink);border-radius:8px;overflow:hidden}
+.dbar .track i{display:block;height:100%}
+.dbar .val{font-weight:700;font-size:14px;width:52px;text-align:right;letter-spacing:-.01em}
+.scnote{font-size:12px;font-weight:600;color:var(--dim);margin-top:14px}
+.hist{display:flex;align-items:flex-end;gap:6px;height:150px;padding-top:26px}
+.hist i{flex:1;background:var(--lilac);border:1.5px solid var(--ink);border-bottom:0;border-radius:4px 4px 0 0}
+.hist i.hot{position:relative;background:var(--red)}
+.hist i.hot::after{content:"127%";position:absolute;top:-26px;left:50%;transform:translateX(-50%);
+  background:var(--red);color:#fff;border:1.5px solid var(--ink);font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.histaxis{display:flex;justify-content:space-between;font-size:11px;font-weight:700;border-top:1.5px solid var(--ink);padding-top:8px;margin-top:2px}
+.leakrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;border:1.5px solid var(--ink);border-radius:10px;margin-top:8px;font-size:13px;background:#fff}
+.leakrow:first-of-type{margin-top:0}
+.leakrow code{font-family:inherit;font-weight:700;letter-spacing:-.01em}
+.leakrow .st{font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:2px 10px;border-radius:999px;border:1.5px solid var(--ink)}
+.leakrow .st.ok{background:#dcefe5;color:var(--green)}
+.leakrow .st.bad{background:var(--ink);color:#fff}
+.leakrow.bad{background:#fbe6ea}
+.leakfoot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1.5px solid var(--ink);font-size:12px;font-weight:600}
+
+/* ————— features ————— */
+.feat{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2vw,28px);align-items:center;margin-top:clamp(70px,10vh,120px)}
+.feat .fcopy{grid-column:1 / span 5}
+.feat .fart{grid-column:7 / span 6}
+.feat.rev .fcopy{grid-column:8 / span 5;order:2}
+.feat.rev .fart{grid-column:1 / span 6;order:1}
+.fart{position:relative;aspect-ratio:5/4;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  border:2px solid var(--ink);border-radius:22px;box-shadow:var(--shadow)}
+.fart.f1{background:var(--cobalt)}
+.fart.f2{background:var(--yellow)}
+.fart.f3{background:var(--green)}
+.fart .frame{position:relative;z-index:1;width:min(84%,470px)}
+.fcopy .h3{font-weight:700;letter-spacing:-.03em;line-height:1.06;font-size:clamp(28px,2.9vw,42px);margin:14px 0 14px}
+.fcopy p{font-size:15px;font-weight:500;color:var(--dim);max-width:46ch}
+@media(max-width:900px){
+  .feat .fcopy,.feat.rev .fcopy{grid-column:1 / -1;order:1}
+  .feat .fart,.feat.rev .fart{grid-column:1 / -1;order:2;margin-top:22px}
+}
+.mock-edit{display:flex;gap:11px;align-items:flex-start;padding:11px 12px;border:1.5px solid var(--ink);border-radius:10px;margin-top:8px;font-size:13px;background:#fff}
+.mock-edit:first-of-type{margin-top:0}
+.mock-edit span{width:22px;height:22px;flex:none;border-radius:50%;background:var(--green);color:#fff;border:1.5px solid var(--ink);font-size:11px;display:grid;place-items:center;font-weight:700}
+.mock-edit div{flex:1}
+.mock-edit b{font-weight:700;display:block;font-size:13px}
+.mock-edit small{display:block;font-size:11.5px;font-weight:600;color:var(--dim);margin-top:1px}
+.mock-edit em{font-style:normal;font-size:11.5px;font-weight:700;text-decoration:underline;cursor:pointer}
+.agentline{display:flex;gap:8px;align-items:center;font-size:12.5px;font-weight:700;margin-bottom:12px}
+.agentline i{width:12px;height:12px;border-radius:50%;background:var(--pink);border:1.5px solid var(--ink);flex:none}
+.mini-chat{max-width:84%;padding:11px 15px;border:1.5px solid var(--ink);border-radius:14px;font-size:13px;font-weight:500;line-height:1.5}
+.mini-chat.me{background:var(--ink);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.mini-chat.ai{background:var(--cream);border-bottom-left-radius:4px;margin-top:10px}
+
+/* ————— quote: lavender band ————— */
+.quotewrap{margin-top:clamp(80px,11vh,140px)}
+.quotecard{background:var(--lilac);border:2px solid var(--ink);border-radius:26px;box-shadow:var(--shadow);
+  padding:clamp(44px,5.5vw,84px) clamp(24px,5vw,72px)}
+.quote{max-width:880px;margin:0 auto;text-align:center}
+.quote h2{font-weight:700;letter-spacing:-.025em;line-height:1.2;font-size:clamp(26px,3vw,42px)}
+.quote h2 em{font-style:normal;color:var(--cobalt)}
+.quote p{font-size:15px;font-weight:500;color:rgba(21,20,26,.72);margin:24px auto 0;max-width:58ch}
+.qattr{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-weight:700;font-size:13.5px}
+
+/* ————— pricing ————— */
+.lpprice{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,28px);margin-top:clamp(48px,6vh,72px);align-items:stretch}
+.ptier{position:relative;background:#fff;border:2px solid var(--ink);border-radius:20px;padding:30px 28px;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.ptier.hot{background:var(--yellow)}
+.poptag{position:absolute;top:-13px;left:28px;background:var(--ink);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+.ptier > b{font-weight:700;font-size:18px;letter-spacing:-.01em}
+.pprice{font-weight:700;letter-spacing:-.035em;font-size:clamp(36px,3.2vw,50px);margin:10px 0 6px}
+.pprice span{font-size:14px;font-weight:600;color:var(--dim);letter-spacing:0}
+.ptier > p{font-size:13.5px;font-weight:500;color:var(--dim);min-height:42px}
+.ptier ul{list-style:none;margin:18px 0 26px;display:flex;flex-direction:column;font-size:14px;font-weight:500}
+.ptier ul li{padding:10px 0;border-top:1.5px solid rgba(21,20,26,.16)}
+.ptier .btn{margin-top:auto;justify-content:center}
+@media(max-width:940px){.lpprice{grid-template-columns:1fr;max-width:500px;margin-left:auto;margin-right:auto}}
+
+/* ————— footer: pre-footer CTA slab + white startup footer ————— */
+.ctaslab{margin-top:clamp(80px,11vh,140px);background:var(--pink);color:#fff;border:2px solid var(--ink);border-radius:26px;box-shadow:var(--shadow);
+  padding:clamp(36px,4.5vw,64px);display:grid;grid-template-columns:minmax(0,1.2fr) auto;gap:clamp(24px,4vw,64px);align-items:center}
+.ctaslab .h2{margin-top:0;font-size:clamp(32px,3.8vw,54px)}
+.ctaslab p{margin-top:14px;font-size:15.5px;font-weight:500;opacity:.92;max-width:48ch}
+.ctabtns{display:flex;flex-direction:column;gap:12px;min-width:220px}
+.ctabtns .btn{justify-content:center}
+.ctabtns small{font-size:12px;font-weight:600;text-align:center;opacity:.85}
+footer{margin-top:clamp(72px,10vh,120px);border-top:1px solid var(--hair);padding:clamp(48px,6vh,72px) 0 0}
+.footgrid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,1fr));gap:clamp(28px,3vw,48px)}
+.fbrand .wordmark{font-size:19px}
+.fbrand p{font-size:14px;color:var(--dim);font-weight:500;margin-top:14px;max-width:30ch}
+.fbrand .status{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:12.5px;font-weight:600;border:1.5px solid var(--hair);border-radius:999px;padding:5px 12px}
+.fbrand .status i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px #dcefe5}
+.fcol h4{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:14px}
+.fcol a{display:block;font-size:14.5px;font-weight:500;padding:5px 0;width:fit-content;transition:color .2s}
+.fcol a:hover{color:var(--cobalt)}
+.fcol a .new{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cobalt);margin-left:7px}
+.legalrow{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;
+  margin-top:clamp(40px,5vh,56px);padding:22px 0 32px;border-top:1px solid var(--hair);font-size:13px;font-weight:500;color:var(--dim)}
+.legalrow .links{display:flex;gap:18px;flex-wrap:wrap}
+.legalrow a:hover{color:var(--ink)}
+.legalrow .social{display:flex;gap:18px;font-weight:600;color:var(--ink)}
+@media(max-width:960px){
+  .ctaslab{grid-template-columns:1fr}
+  .ctabtns{flex-direction:row;flex-wrap:wrap}
+  .footgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fbrand{grid-column:1 / -1}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap navin">
+    <a class="wordmark" href="#top" aria-label="BayesAI home">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="13" cy="16" r="9" fill="none" stroke="#15141a" stroke-width="3"/>
+        <circle cx="20" cy="16" r="9" fill="none" stroke="#d8547f" stroke-width="3.2"/>
+      </svg>
+      BayesAI
+    </a>
+    <div class="navlinks">
+      <a href="#lp-product">Product <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="#lp-how">Solutions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="#lp-quote">Customers</a>
+      <a href="#lp-pricing">Pricing</a>
+      <a href="#lp-cta">Resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></a>
+    </div>
+    <div class="navright">
+      <a class="signin" href="#">Log in</a>
+      <a class="btn" href="#lp-cta">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ————— HERO ————— -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="heroin">
+      <span class="eyebrow label reveal"><i></i>Agents that audit your data, so you don't have to</span>
+      <h1 class="h1 reveal" style="--d:.06s">Marketing data auditor<br><span class="hl">for enterprises and scale-ups.</span></h1>
+      <p class="lede reveal" style="--d:.12s">BayesAI watches every tool in your marketing stack, checks every number against your database and against plain arithmetic — and only speaks up when something is actually wrong. With the fix already prepared.</p>
+      <div class="ctarow reveal" style="--d:.18s">
+        <a class="btn yellow lg" href="#lp-cta">Book a demo</a>
+        <a class="btn ghost lg" href="#lp-product">See how it works</a>
+      </div>
+      <p class="lptrust reveal" style="--d:.24s">Read-only access · EU-hosted · no code on your site · first findings in minutes</p>
+    </div>
+  </div>
+
+  <div class="stage reveal" id="lp-product" style="--d:.15s">
+      <aside class="sidecard l" aria-hidden="true">
+        <span class="label">Caught this week</span>
+        <span class="big">€48.2K</span>
+        <small>GTM double-fires purchase hits</small>
+        <div class="tools"><span><img src="../_assets/logos/googletagmanager.svg" alt=""></span><span><img src="../_assets/logos/mysql.svg" alt=""></span></div>
+      </aside>
+      <aside class="sidecard r chart" aria-hidden="true">
+        <svg class="spark" viewBox="0 0 228 64" preserveAspectRatio="none">
+          <path d="M2 50 L34 44 L66 47 L98 30 L130 34 L162 18 L194 22 L226 8" fill="none" stroke="#15141a" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <g fill="#fff" stroke="#15141a" stroke-width="2"><circle cx="98" cy="30" r="4"/><circle cx="162" cy="18" r="4"/><circle cx="226" cy="8" r="4.5" fill="#d8547f"/></g>
+        </svg>
+        <div class="bars"><i style="height:34%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:70%"></i><i style="height:58%"></i><i class="hot" style="height:92%"></i><i style="height:64%"></i><i style="height:78%"></i></div>
+        <div class="keys"><i style="background:var(--lilac)"></i><i style="background:var(--pink)"></i><i style="background:#fff"></i></div>
+      </aside>
+      <div class="frame">
+        <div class="framebar"><i></i><i></i><i></i><span>app.bayes.ai</span></div>
+        <div class="framebody">
+          <div class="goodmorning">Good morning, Sarah ☀️</div>
+          <div class="probcount">7 problems need your attention.</div>
+          <div class="mock-row"><span class="mock-tools"><img src="../_assets/logos/googletagmanager.svg" alt="Google Tag Manager" title="Google Tag Manager"><img src="../_assets/logos/mysql.svg" alt="MySQL" title="MySQL"></span>
+            <div class="mock-body"><b>GTM sends two purchase hits per transaction</b>
+              <div class="mock-meta"><i style="background:var(--red)"></i>Active now <em>Discrepancy</em> <span class="plat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>Web</span> <span class="geo"><span class="fl">🌍</span>All markets</span></div>
+            </div>
+            <div class="mock-right"><b>€48.2K</b><span class="afx"><svg viewBox="0 0 32 32" fill="none" stroke="#fff"><circle cx="13" cy="16" r="8.5" stroke-opacity=".5" stroke-width="2.6"/><circle cx="20" cy="16" r="8.5" stroke-width="2.8"/></svg>Autofix</span></div>
+          </div>
+          <div class="mock-row"><span class="mock-tools"><img src="../_assets/logos/hubspot.svg" alt="HubSpot" title="HubSpot"></span>
+            <div class="mock-body"><b>Email open rate at 127% — opens exceed deliveries</b>
+              <div class="mock-meta"><i style="background:var(--yellow)"></i>High <em>Anomaly</em> <span class="plat"><img src="../_assets/logos/apple.svg" alt="">iOS</span> <span class="geo"><span class="fl">🇸🇪 🇩🇰</span>SE · DK</span></div>
+            </div>
+            <div class="mock-right"><b>€8.4K</b><span class="afx"><svg viewBox="0 0 32 32" fill="none" stroke="#fff"><circle cx="13" cy="16" r="8.5" stroke-opacity=".5" stroke-width="2.6"/><circle cx="20" cy="16" r="8.5" stroke-width="2.8"/></svg>Autofix</span></div>
+          </div>
+          <div class="mock-row" style="opacity:.62"><span class="mock-tools"><img src="../_assets/logos/googleanalytics.svg" alt="Google Analytics 4" title="Google Analytics 4"></span>
+            <div class="mock-body"><b>GA4 order coverage below the consent-aware range</b>
+              <div class="mock-meta"><i style="background:var(--yellow)"></i>High <em>Discrepancy</em> <span class="plat"><img src="../_assets/logos/android.svg" alt="">Android</span> <span class="geo"><span class="fl">🇪🇺</span>EU</span></div>
+            </div>
+            <div class="mock-right"><b>€18.4K</b><span class="afx"><svg viewBox="0 0 32 32" fill="none" stroke="#fff"><circle cx="13" cy="16" r="8.5" stroke-opacity=".5" stroke-width="2.6"/><circle cx="20" cy="16" r="8.5" stroke-width="2.8"/></svg>Autofix</span></div>
+          </div>
+        </div>
+      </div>
+  </div>
+</header>
+
+<!-- ————— LOGOS ————— -->
+<section class="logosec">
+  <div class="wrap">
+    <span class="eyebrow label reveal"><i></i>Watches every tool you already use</span>
+    <div class="logorow reveal" style="--d:.08s">
+      <img src="../_assets/logos/googleanalytics.svg" alt="GA4" title="GA4">
+      <img src="../_assets/logos/meta.svg" alt="Meta" title="Meta">
+      <img src="../_assets/logos/tiktok.svg" alt="TikTok" title="TikTok">
+      <img src="../_assets/logos/googleads.svg" alt="Google Ads" title="Google Ads">
+      <img src="../_assets/logos/googletagmanager.svg" alt="GTM" title="GTM">
+      <img src="../_assets/logos/mysql.svg" alt="MySQL" title="MySQL">
+      <img src="../_assets/logos/postgresql.svg" alt="PostgreSQL" title="PostgreSQL">
+      <img src="../_assets/logos/googlebigquery.svg" alt="BigQuery" title="BigQuery">
+      <img src="../_assets/logos/snowflake.svg" alt="Snowflake" title="Snowflake">
+      <img src="../_assets/logos/looker.svg" alt="Looker" title="Looker">
+      <img src="../_assets/logos/shopify.svg" alt="Shopify" title="Shopify">
+      <img src="../_assets/logos/hubspot.svg" alt="HubSpot" title="HubSpot">
+    </div>
+  </div>
+</section>
+
+<!-- ————— STATS ————— -->
+<section class="sec">
+  <div class="wrap">
+    <div class="statrow">
+      <div class="stat reveal"><b data-count="15" data-suffix="%">0%</b><p>of revenue is what poor data quality costs the average business</p><span>Experian, 2023</span></div>
+      <div class="stat reveal" style="--d:.08s"><b data-count="21" data-suffix="%">0%</b><p>of ad budgets are wasted on inaccurate or incomplete data</p><span>Monte Carlo</span></div>
+      <div class="stat reveal" style="--d:.16s"><b data-count="67" data-suffix="%">0%</b><p>of data professionals don't fully trust their own numbers</p><span>Lebow Report, 2024</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— THREE PILLARS ————— -->
+<section class="sec" id="lp-how">
+  <div class="wrap">
+    <div class="kicker-c reveal"><span class="eyebrow label"><i></i>How it works</span>
+      <h2 class="h2">Three failure modes.<br>We catch all of them.</h2>
+      <p class="lede seclede" style="margin-left:auto;margin-right:auto">Every tool is totalled against your database truth, judged against its own arithmetic, and scanned for data that should never be there. Nothing else on the market does all three.</p>
+    </div>
+
+    <div class="slides">
+      <div class="slide blue reveal">
+        <div class="in2">
+          <div class="stext">
+            <span class="label">What we catch · 01</span>
+            <h3>Discrepancies</h3>
+            <p>Two tools record the same phenomenon and disagree. We total every source against your database and flag the gap — with the expected range your consent rate allows.</p>
+          </div>
+          <div class="scard">
+            <div class="sctitle">Orders, last 30 days <em>All sources</em></div>
+            <div class="dbar"><span class="lab">Your database</span><span class="track"><i style="width:38%;background:var(--green)"></i></span><span class="val" style="color:var(--green)">1,650</span></div>
+            <div class="dbar"><span class="lab">GA4 reports</span><span class="track"><i style="width:76%;background:var(--red)"></i></span><span class="val" style="color:var(--red)">3,300</span></div>
+            <div class="scnote">Exactly 2× is a double-fired tag, not a business change.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide green reveal">
+        <div class="in2">
+          <div class="stext">
+            <span class="label">What we catch · 02</span>
+            <h3>Anomalies</h3>
+            <p>One tool contradicts its own arithmetic or history — no second source needed. Opens can't exceed deliveries; purchases can't exceed checkouts.</p>
+          </div>
+          <div class="scard">
+            <div class="sctitle">Email open rate, distribution <em>12 months</em></div>
+            <div class="hist">
+              <i style="height:10%"></i><i style="height:22%"></i><i style="height:42%"></i><i style="height:66%"></i><i style="height:84%"></i><i style="height:74%"></i><i style="height:52%"></i><i style="height:32%"></i><i style="height:16%"></i><i style="height:8%"></i><i style="height:4%"></i><i class="hot" style="height:58%"></i>
+            </div>
+            <div class="histaxis"><span>0%</span><span>50%</span><span>100%</span><span style="color:var(--red)">127%</span></div>
+            <div class="scnote">An open rate past 100% sits beyond the edge of arithmetic. Flagged instantly.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide pinky reveal">
+        <div class="in2">
+          <div class="stext">
+            <span class="label">What we catch · 03</span>
+            <h3>Leakages</h3>
+            <p>Personal data where it must never be. BayesAI scans URL parameters, search terms, DOM attributes and logs for names, emails and card data — while it's still on staging, where it costs nothing.</p>
+          </div>
+          <div class="scard">
+            <div class="sctitle">PII scan · staging <em>Live</em></div>
+            <div class="leakrow"><code>utm_email = j.****@gmail.com</code><span class="st ok">masked</span></div>
+            <div class="leakrow bad"><code>card_number = 4519 ••••</code><span class="st bad">LEAK</span></div>
+            <div class="leakrow"><code>search_q = "red dress"</code><span class="st ok">clean</span></div>
+            <div class="leakfoot"><span>Caught in staging — never reached production</span><span style="font-weight:700">GDPR-critical</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— FEATURES ————— -->
+<section class="sec">
+  <div class="wrap">
+
+    <div class="feat">
+      <div class="fcopy reveal">
+        <span class="eyebrow label"><i></i>The inbox</span>
+        <h3 class="h3">An inbox of findings,<br>not a wall of charts.</h3>
+        <p>Every issue is one line: what broke, where it applies, what it's worth, and who should hear about it. Sorted by what to fix first — and silent when there's nothing to fix.</p>
+      </div>
+      <div class="fart f1 reveal" style="--d:.08s">
+        <div class="frame">
+          <div class="framebar"><i></i><i></i><i></i></div>
+          <div class="framebody">
+            <div class="mock-row" style="margin-top:0"><div class="mock-body"><b>banner_view stopped firing after v2.31</b><div class="mock-meta"><i style="background:var(--yellow)"></i>New today · DE · NL · SE</div></div><div class="mock-right"><b>€9.1K</b></div></div>
+            <div class="mock-row"><div class="mock-body"><b>Purchases exceed checkouts — impossible funnel</b><div class="mock-meta"><i style="background:var(--red)"></i>Critical · Anomaly</div></div><div class="mock-right"><b>€12.3K</b></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="fcopy reveal">
+        <span class="eyebrow label"><i></i>Autofix</span>
+        <h3 class="h3">The fix arrives<br>with the problem.</h3>
+        <p>One click, and the agent applies what it safely can — tag manager changes, tool settings — opens merge requests for the rest, and shows you every edit it made. Revert any of them, individually. Then it re-checks your numbers until they hold.</p>
+      </div>
+      <div class="fart f2 reveal" style="--d:.08s">
+        <div class="frame">
+          <div class="framebar"><i></i><i></i><i></i></div>
+          <div class="framebody">
+            <div class="agentline"><i></i>BayesAI agent is applying the fix</div>
+            <div class="mock-edit"><span>✓</span><div><b>Pause the legacy purchase tag</b><small>Applied via Google Tag Manager</small></div><em>Revert</em></div>
+            <div class="mock-edit"><span>✓</span><div><b>Set a transaction_id on the remaining tag</b><small>Code change · merge request #121</small></div><em>Revert</em></div>
+            <div class="mock-edit" style="opacity:.65"><span>…</span><div><b>Re-verifying against your database</b><small>closes automatically when numbers hold</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat">
+      <div class="fcopy reveal">
+        <span class="eyebrow label"><i></i>Ask anything</span>
+        <h3 class="h3">Chat with the finding.<br>Route it anywhere.</h3>
+        <p>Each finding carries its own evidence — the deploy log, the affected campaigns, the math behind the euro figure. Ask it questions, send it to Slack, or turn it into a pre-filled Jira ticket with one click.</p>
+      </div>
+      <div class="fart f3 reveal" style="--d:.08s">
+        <div class="frame">
+          <div class="framebar"><i></i><i></i><i></i></div>
+          <div class="framebody">
+            <div class="mini-chat me">Which campaigns are affected?</div>
+            <div class="mini-chat ai">10 Google campaigns bid on the doubled conversions — the largest is Google_Search_Brand (€31K/mo). Want the full list as CSV?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ————— QUOTE ————— -->
+<section class="quotewrap" id="lp-quote">
+  <div class="wrap">
+    <div class="quotecard reveal">
+    <div class="quote">
+      <h2>Every existing tool tells you whether your data <em>moved</em>. BayesAI tells you whether your data is <em>right</em>.</h2>
+      <p>Every check in BayesAI comes from a decade of data audits at global brands like L'Oréal and Under Armour. In ten years, we never met a company whose data wasn't broken somewhere they couldn't see.</p>
+      <span class="qattr"><svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="16" r="9" fill="none" stroke="#15141a" stroke-width="3"/><circle cx="20" cy="16" r="9" fill="none" stroke="#d8547f" stroke-width="3.2"/></svg>Ten years of enterprise data audits</span>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— PRICING ————— -->
+<section class="sec" id="lp-pricing">
+  <div class="wrap">
+    <div class="kicker-c reveal"><span class="eyebrow label"><i></i>Pricing</span>
+      <h2 class="h2">Start where it hurts.</h2>
+    </div>
+    <div class="lpprice">
+      <div class="ptier reveal">
+        <b>Essentials</b><div class="pprice">€499<span>/mo</span></div>
+        <p>For brands that suspect their data is broken but can't prove it.</p>
+        <ul><li>Cross-source discrepancy checker</li><li>dataLayer change alerts</li><li>Basic PII scanning</li><li>5 sources · 10M events/mo</li></ul>
+        <a class="btn ghost" href="#lp-cta">Get your scan</a>
+      </div>
+      <div class="ptier hot reveal" style="--d:.08s">
+        <span class="poptag">Most popular</span>
+        <b>Growth</b><div class="pprice">€1,499<span>/mo</span></div>
+        <p>Automated QA across your whole stack, consent-aware.</p>
+        <ul><li>Everything in Essentials</li><li>Consent-aware + backend-vs-frontend logic</li><li>Anomaly detection &amp; Autofix</li><li>15 sources · 50M events/mo · 5 workspaces</li></ul>
+        <a class="btn" href="#lp-cta">Get your scan</a>
+      </div>
+      <div class="ptier reveal" style="--d:.16s">
+        <b>Enterprise</b><div class="pprice">€4,999<span>+/mo</span></div>
+        <p>Multi-brand groups and agencies with compliance needs.</p>
+        <ul><li>Unified FE+BE+CRM attribution</li><li>Server-side &amp; payment data scanning</li><li>GDPR audit reports · SLA · CSM</li><li>Unlimited everything</li></ul>
+        <a class="btn ghost" href="#lp-cta">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— CTA SLAB + FOOTER ————— -->
+<div class="wrap" id="lp-cta">
+  <div class="ctaslab reveal">
+    <div>
+      <h2 class="h2">See what your numbers have been hiding.</h2>
+      <p>Connect your sources and scan the last 12 months. First findings in minutes, priced in euros, read-only from day one.</p>
+    </div>
+    <div class="ctabtns">
+      <a class="btn lg" href="mailto:hello@bayes.ai?subject=Book%20a%20demo">Book a demo</a>
+      <a class="btn ghost lg" href="mailto:hello@bayes.ai?subject=Get%20my%20scan">Get your scan</a>
+      <small>No code on your site · EU-hosted</small>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footgrid">
+      <div class="fbrand">
+        <a class="wordmark" href="#top" aria-label="BayesAI home">
+          <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="16" r="9" fill="none" stroke="#15141a" stroke-width="3"/><circle cx="20" cy="16" r="9" fill="none" stroke="#d8547f" stroke-width="3.2"/></svg>
+          BayesAI
+        </a>
+        <p>Agents that audit your marketing data against your database — and prepare the fix.</p>
+        <span class="status"><i></i>All systems operational</span>
+      </div>
+      <div class="fcol">
+        <h4>Product</h4>
+        <a href="#lp-product">Overview</a>
+        <a href="#lp-how">Discrepancy checker</a>
+        <a href="#lp-how">PII finder</a>
+        <a href="#lp-how">Autofix<span class="new">New</span></a>
+        <a href="#lp-product">Integrations</a>
+        <a href="#">Changelog</a>
+      </div>
+      <div class="fcol">
+        <h4>Solutions</h4>
+        <a href="#">E-commerce</a>
+        <a href="#">Agencies</a>
+        <a href="#">Multi-brand groups</a>
+        <a href="#">Data teams</a>
+      </div>
+      <div class="fcol">
+        <h4>Resources</h4>
+        <a href="#">Documentation</a>
+        <a href="#">Security</a>
+        <a href="#">Trust center</a>
+        <a href="#">Blog</a>
+        <a href="#">Status</a>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <a href="#lp-quote">Why us</a>
+        <a href="#">Customers</a>
+        <a href="#">Careers</a>
+        <a href="mailto:hello@bayes.ai">Contact</a>
+        <a href="#">Press</a>
+      </div>
+    </div>
+    <div class="legalrow">
+      <span class="links">
+        <span>© 2026 BayesAI · Made in Europe</span>
+        <a href="#">Privacy</a><a href="#">Terms</a><a href="#">DPA</a><a href="#">Cookie settings</a>
+      </span>
+      <span class="social"><a href="#">X</a><a href="#">LinkedIn</a><a href="#">GitHub</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);
+    e.target.querySelectorAll('[data-count]').forEach(countUp);}
+}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const eased=t=>1-Math.pow(1-t,4);
+function countUp(el){
+  if(el.dataset.done)return; el.dataset.done=1;
+  const target=parseFloat(el.dataset.count),suf=el.dataset.suffix||'',t0=performance.now(),D=1400;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=target+suf;return}
+  (function f(now){const p=Math.min((now-t0)/D,1);
+    el.textContent=Math.round(target*eased(p))+suf;
+    if(p<1)requestAnimationFrame(f)})(t0);
+}
+</script>
+</body>
+</html>

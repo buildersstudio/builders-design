@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import type { Brand } from "@/lib/types";
+import type { Brand, Face } from "@/lib/types";
 import { themeOf } from "@/lib/types";
 import { BrandFonts } from "./BrandFonts";
 import { copy, toast } from "./ui";
@@ -31,6 +31,34 @@ async function saveSVG(src: string, name: string) {
   toast(`${name}.svg saved`);
 }
 
+async function saveBlob(url: string, name: string) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(String(r.status));
+  const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(await r.blob()), download: name });
+  a.click();
+}
+
+/** Google fonts come as TTF through /api/font; CORS-open files download as they are; commercial fonts link out. */
+async function saveFaces(faces: Face[]) {
+  const f0 = faces[0];
+  if (f0.license === "commercial") {
+    if (f0.url) window.open(f0.url, "_blank", "noopener");
+    else copy(f0.name, `${f0.name} is a licensed font. Name copied`);
+    return;
+  }
+  toast(`Downloading ${f0.name}`);
+  try {
+    for (const f of faces) {
+      const w = f.weight ?? 400;
+      if (f.css) await saveBlob(`/api/font?family=${encodeURIComponent(f.name)}&weight=${w}`, `${f.name.replace(/ /g, "")}-${w}.ttf`);
+      else if (f.src) await saveBlob(f.src, decodeURIComponent(f.src.split("/").pop()!.split("?")[0]));
+    }
+    toast(`${f0.name} saved`);
+  } catch {
+    copy(f0.name, `Could not download. ${f0.name} copied`);
+  }
+}
+
 const lum = (hex: string) => {
   const n = parseInt(hex.replace("#", "").padEnd(6, "0").slice(0, 6), 16);
   return (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
@@ -46,7 +74,7 @@ export function BrandBook({ brand, slug, name }: { brand: Brand; slug: string; n
   const accent = brand.colors.find((c) => c.role === "accent") ?? { name: "Ink", hex: t.ink };
   const swatches = brand.colors;
   const display = brand.type.find((f) => f.role === "display") ?? brand.type[0];
-  const text = brand.type.find((f) => f.role === "text") ?? brand.type[1];
+  const families = [...brand.type.reduce((m, f) => m.set(f.name, [...(m.get(f.name) ?? []), f]), new Map<string, Face[]>())];
 
   // 12 × 6 grid. Top half: logo and mark. Bottom: colours, type, line.
   const area = (c: string, r: string): CSSProperties => ({ gridColumn: c, gridRow: r });
@@ -89,19 +117,25 @@ export function BrandBook({ brand, slug, name }: { brand: Brand; slug: string; n
         return (
           <div key={c.hex + i} className="tile swatch" style={{ ...area(`${start} / ${end}`, "4 / 7"), background: c.hex, color: on(c.hex), boxShadow: lum(c.hex) > 0.95 ? "inset 0 0 0 1px var(--line)" : undefined }}
             onClick={() => copy(c.hex.toUpperCase(), `${c.hex.toUpperCase()} copied`)} title="Click to copy">
-            <span className="hex">{c.hex}</span>
-            <span className="nm">{c.name}</span>
+            <span className="sw-label"><span className="nm">{c.name}</span><span className="hex">{c.hex.toUpperCase()}</span></span>
           </div>
         );
       })}
 
-      <div className="tile face" style={{ ...area(`${1 + Math.round(sw.length * swCols)} / 10`, "4 / 7"), background: "var(--wash)", color: t.ink }}
-        onClick={() => display && copy(display.name, `${display.name} copied`)} title="Click to copy">
+      <div className="tile face" style={{ ...area(`${1 + Math.round(sw.length * swCols)} / 10`, "4 / 7"), background: "var(--wash)", color: t.ink, cursor: "default" }}>
         <span className="aa" style={{ fontFamily: t.display, fontWeight: display?.weight ?? 500 }}>Aa</span>
-        <span style={{ fontSize: 12 }}>
-          {display?.name ?? "Favorit"}
-          {text && text.name !== display?.name && <span style={{ opacity: 0.5 }}> · {text.name}</span>}
-        </span>
+        <ul className="faces">
+          {families.map(([fam, faces]) => (
+            <li key={fam}>
+              <button onClick={() => saveFaces(faces)} title={faces[0].license === "commercial" ? "Licensed font" : "Download font"}>
+                <span style={{ fontFamily: `'${fam}', var(--font)`, fontWeight: faces[0].weight ?? 400 }}>{fam}</span>
+                <small>{faces.map((f) => f.weight ?? 400).join(" · ")}</small>
+                <i aria-hidden>{faces[0].license === "commercial" ? "↗" : <DownloadIcon />}</i>
+              </button>
+            </li>
+          ))}
+          {!families.length && <li><span>Favorit</span></li>}
+        </ul>
       </div>
 
       <div className="tile line" style={{ ...area("10 / 13", "4 / 7"), background: t.ink, color: t.paper }}
@@ -111,3 +145,9 @@ export function BrandBook({ brand, slug, name }: { brand: Brand; slug: string; n
     </div>
   );
 }
+
+const DownloadIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 4v11" /><path d="m7 10 5 5 5-5" /><path d="M5 20h14" />
+  </svg>
+);

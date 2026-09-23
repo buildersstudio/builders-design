@@ -2,15 +2,67 @@
   "title": "Trigger intro",
   "created": "2026-09-23",
   "slides": [
-    { "layout": "cover", "eyebrow": "Introduction · 2026", "title": "The cognitive layer of content", "subtitle": "Reading posts through behavioral science rather than counting likes." },
-    { "layout": "statement", "eyebrow": "The idea", "title": "Likes say what happened. Trigger says why it worked.", "body": "It reads what is actually in the image, not only the engagement numbers." },
-    { "layout": "points", "eyebrow": "In the chat", "title": "Three things to ask it", "points": [
-      { "title": "Dissect a post", "body": "Understand the signals behind its performance." },
-      { "title": "Generate hooks", "body": "Openers grounded in what your audience responds to." },
-      { "title": "Compare outliers", "body": "Your best posts against a cohort of peer accounts." }
-    ] },
-    { "layout": "section", "eyebrow": "02", "title": "Who it is for" },
-    { "layout": "split", "eyebrow": "Customer", "title": "Creators, social managers and strategists", "body": "People who want to understand why their posts perform and how they compare with their peers." },
-    { "layout": "closing", "title": "trigger.online", "subtitle": "Connect Instagram and start free." }
+    {
+      "layout": "cover",
+      "eyebrow": "Introduction · 2026",
+      "title": "Human-grade *content intelligence*",
+      "subtitle": "The cognitive layer of content, reading posts through behavioural science rather than counting likes.",
+      "background": "/ventures/trigger/gallery/backgrounds/art-36-poppies-motion.jpg"
+    },
+    {
+      "layout": "statement",
+      "eyebrow": "The idea",
+      "title": "Nothing online happens for no reason. *Every action has a trigger.*",
+      "body": "It reads what is actually in the image, not only the engagement numbers."
+    },
+    {
+      "layout": "points",
+      "eyebrow": "In the chat",
+      "title": "Ask Trigger *anything about content*",
+      "points": [
+        {
+          "title": "Understand competitors",
+          "body": "See what the accounts you compete with are actually doing that works."
+        },
+        {
+          "title": "See what worked",
+          "body": "Dissect a post and the signals behind its performance."
+        },
+        {
+          "title": "Create better content",
+          "body": "Hooks, captions and scripts written from what your account has already proven."
+        },
+        {
+          "title": "Improve your strategy",
+          "body": "Topics, formats and rhythms ranked by what your own numbers say."
+        }
+      ]
+    },
+    {
+      "layout": "section",
+      "eyebrow": "02",
+      "title": "A century of *behavioural science*"
+    },
+    {
+      "layout": "statement",
+      "eyebrow": "Why it works",
+      "title": "Trends come and go. What people do underneath them *does not.*",
+      "body": "Stopping, feeling something, passing it on: the part Trigger reads is older than the feed."
+    },
+    {
+      "layout": "split",
+      "eyebrow": "Customer",
+      "title": "Creators, social managers and *strategists*",
+      "body": "People who want to understand why their posts perform and how they compare with their peers."
+    },
+    {
+      "layout": "closing",
+      "title": "The cognitive layer of content. A century of behavioural science pointed at one account: *what your audience responds to, why a post worked, and what is worth making next.*",
+      "cta": [
+        "Start for free",
+        "Log in"
+      ],
+      "contact": "hello@trigger.online"
+    }
   ]
 }

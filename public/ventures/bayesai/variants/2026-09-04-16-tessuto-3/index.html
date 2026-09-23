@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BayesAI — Your numbers, quietly correct</title>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><clipPath id="c"><rect width="32" height="32" rx="8"/></clipPath><g clip-path="url(%23c)"><rect width="32" height="32" fill="%23ff6b57"/><path fill="%232f4df2" d="M0 0h6v32H0zM11 0h5v32h-5zM21 0h6v32h-6z"/></g></svg>'>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
+<style>
+/* ————————————————— TESSUTO — woven patchwork, flat retro palette ————————————————— */
+:root{
+  --ink:#181410; --white:#fff;
+  --cobalt:#2f4df2; --coral:#ff6b57; --violet:#6d4df5; --lime:#c9f26b; --teal:#14a58a; --sun:#ffcf4d; --paper:#f2f3f7;
+  --red:var(--coral); --lilac:#d9d5ff; --pink:#ffd9d2; --green:var(--teal); --maroon:var(--violet); --mustard:var(--sun); --cream:var(--paper);
+  --disp:'Switzer',system-ui,sans-serif; --body:'Switzer',system-ui,sans-serif;
+  --line:rgba(24,20,16,.55); --hair:rgba(24,20,16,.16);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--white);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+
+/* —— the loom: every pattern is a static grid of spans —— */
+.weave{position:absolute;inset:0;display:grid;overflow:hidden}
+.weave span{margin:-.5px;transform:scaleY(0);transform-origin:50% 100%}
+.weave.ax-row span{transform:scaleX(0);transform-origin:0 50%}
+.weave.woven span{animation:bar .75s cubic-bezier(.2,.85,.25,1) both}
+.weave.ax-row.woven span{animation-name:barx}
+@keyframes bar{0%{transform:scaleY(0)}62%{transform:scaleY(1.09)}100%{transform:scaleY(1)}}
+@keyframes barx{0%{transform:scaleX(0)}62%{transform:scaleX(1.09)}100%{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.weave span,.weave.ax-row span{transform:none;animation:none!important}}
+
+/* —— motion —— */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .9s ease var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+.lift{transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease}
+.lift:hover{transform:translateY(-4px);box-shadow:0 22px 44px -28px rgba(24,20,16,.35)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.lift,.lift:hover{transform:none;transition:none}}
+
+/* —— the mark: type only. Now and then the letters flip into pattern tiles, one by one, then the tiles slide away —— */
+.wordmark{display:inline-flex;gap:.05em;font-weight:700;font-size:19px;line-height:1;letter-spacing:0;text-transform:uppercase}
+.lt{position:relative;display:inline-grid;place-items:center;width:.82em;height:1.06em;overflow:hidden;perspective:220px}
+.lt i{position:absolute;inset:0;border-radius:.14em;opacity:0;transform:rotateX(90deg);backface-visibility:hidden}
+.wordmark.go .lt i{animation:flip 2s cubic-bezier(.3,.7,.2,1) both;animation-delay:calc(var(--i)*75ms)}
+@keyframes flip{0%{transform:rotateX(90deg);opacity:0}13%{transform:rotateX(0);opacity:1}60%{transform:translateY(0);opacity:1}86%,100%{transform:translateY(-118%);opacity:1}}
+.lt .p0{background:repeating-linear-gradient(90deg,var(--cobalt) 0 .16em,var(--coral) .16em .32em)}
+.lt .p1{background:repeating-conic-gradient(var(--violet) 0 25%,var(--lime) 0 50%) 0 0/.3em .3em}
+.lt .p2{background:repeating-linear-gradient(0deg,var(--teal) 0 .16em,var(--sun) .16em .32em)}
+.lt .p3{background:repeating-linear-gradient(90deg,var(--coral) 0 .12em,var(--sun) .12em .34em)}
+.lt .p4{background:repeating-conic-gradient(var(--cobalt) 0 25%,var(--lime) 0 50%) 0 0/.36em .36em}
+.lt .p5{background:repeating-linear-gradient(0deg,var(--violet) 0 .1em,var(--paper) .1em .3em)}
+.lt .p6{background:repeating-linear-gradient(90deg,var(--teal) 0 .18em,var(--coral) .18em .36em)}
+.swatch{display:inline-block;width:18px;height:18px;border-radius:5px;flex:none;
+  background:repeating-linear-gradient(90deg,var(--cobalt) 0 3px,var(--coral) 3px 6px)}
+@media(prefers-reduced-motion:reduce){.wordmark.go .lt i{animation:none}}
+
+/* —— type —— */
+.h1t{font-family:var(--disp);font-weight:700;font-size:clamp(38px,4.5vw,66px);line-height:1.04;letter-spacing:-.035em}
+.h2t{font-family:var(--disp);font-weight:700;font-size:clamp(30px,3.6vw,50px);line-height:1.06;letter-spacing:-.03em}
+.h3t{font-family:var(--disp);font-weight:700;font-size:clamp(22px,2.2vw,30px);line-height:1.15;letter-spacing:-.02em}
+.label{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.kchip{display:inline-flex;align-items:center;gap:9px;color:#6d655b}
+.kchip:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cobalt);flex:none}
+.lede{font-size:clamp(17px,1.4vw,19px);color:#4c453d}
+
+/* —— buttons —— */
+.btn{display:inline-block;font-weight:600;font-size:15px;border-radius:12px;padding:13px 26px;border:1px solid var(--ink);transition:background .3s ease,color .3s ease,border-color .3s ease,transform .3s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn.solid{background:var(--ink);color:#fff}
+.btn.solid:hover{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.lg{padding:16px 34px;font-size:17px}
+
+/* —— reveals —— */
+
+/* —— nav —— */
+nav{position:sticky;top:0;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--hair);z-index:50}
+.navin{display:flex;align-items:center;gap:24px;height:64px}
+.navlinks{display:flex;gap:4px;margin:0 auto}
+.navlinks a{display:inline-flex;align-items:center;gap:5px;font-weight:500;font-size:14.5px;padding:7px 12px;border-radius:9px;transition:background .25s ease}
+.navlinks a svg{width:12px;height:12px;opacity:.55}
+.navlinks a:hover{background:var(--cream)}
+.navright{display:flex;align-items:center;gap:8px}
+.signin{font-weight:600;font-size:14.5px;padding:7px 12px;border-radius:9px}
+.signin:hover{background:var(--cream)}
+.navright .btn{padding:9px 16px;font-size:13.5px;border-radius:10px}
+@media(max-width:860px){.navlinks,.signin{display:none}.navin{justify-content:space-between}}
+
+/* —— hero —— */
+.hero{text-align:center;padding:clamp(56px,8vh,96px) 0 0}
+.heroin{max-width:1040px;margin:0 auto;position:relative;z-index:1}
+.heropill{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6d655b}
+.heropill i{width:8px;height:8px;border-radius:50%;background:var(--cobalt);display:inline-block}
+.h1t{margin:26px 0 0}
+.uw{color:var(--cobalt)}
+.hero .lede{margin:26px auto 34px;max-width:56ch}
+.ctarow{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.lptrust{margin-top:22px;font-size:13.5px;letter-spacing:.05em;color:#6d655b;font-weight:500}
+
+/* —— hero patchwork band + floating mockup —— */
+.band{--ov:clamp(120px,15vw,220px);position:relative;margin-top:clamp(48px,7vh,80px);border-top:1px solid var(--hair)}
+.bandtiles{position:absolute;inset:0 0 var(--ov) 0;display:grid;grid-template-columns:1.15fr .7fr 1fr 1.5fr .8fr 1.2fr .9fr;border-bottom:1px solid var(--hair)}
+.bandtiles .tile{position:relative;overflow:hidden}
+.mockfloat{position:relative;z-index:1;padding:clamp(40px,6vh,72px) clamp(16px,3vw,40px) 0}
+@media(max-width:860px){.bandtiles{grid-template-columns:1.1fr .8fr 1.3fr 1fr}.bandtiles .tile:nth-child(n+5){display:none}}
+
+/* —— product frame —— */
+.frame{background:var(--white);color:var(--ink);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  max-width:1000px;margin:0 auto;box-shadow:0 30px 70px -34px rgba(24,20,16,.4);text-align:left}
+.mockfloat .frame{position:relative;z-index:2}
+/* findings table inside the hero frame */
+.thead,.trow{display:grid;grid-template-columns:60px minmax(0,1fr) 84px 106px 88px 116px 96px;align-items:center;gap:14px}
+.thead{padding:4px 14px 8px;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8a8175}
+.thead .r{text-align:right}
+.trow{padding:12px 14px;border:1px solid var(--hair);border-radius:12px;margin-top:8px;background:var(--white);transition:border-color .3s ease,background .3s ease}
+.trow:hover{border-color:var(--line);background:#fffdf9}
+.trow.dim{opacity:.62}
+.ttitle{font-size:14px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prio{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600}
+.prio i{width:8px;height:8px;border-radius:50%;flex:none}
+.ttype{font-size:12px;font-weight:600;border:1px solid var(--hair);border-radius:999px;padding:3px 10px;justify-self:start;white-space:nowrap}
+.tplat{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:#4c453d;white-space:nowrap}
+.tplat svg,.tplat img{width:13px;height:13px}
+.tgeo{font-size:12.5px;color:#4c453d;white-space:nowrap}
+.tgeo .fl{margin-right:6px}
+.timpact{text-align:right}
+.timpact b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.01em}
+.timpact .afx{margin-top:4px}
+@media(max-width:900px){
+  .thead,.trow{grid-template-columns:48px minmax(0,1fr) 88px;gap:10px}
+  .thead span:nth-child(n+3):not(.r),.trow .prio,.trow .ttype,.trow .tplat,.trow .tgeo{display:none}
+}
+/* flanking cards */
+.sidecard{position:absolute;z-index:1;top:clamp(56px,7vw,96px);width:clamp(210px,19vw,272px);border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;
+  background:var(--white);box-shadow:0 24px 50px -30px rgba(24,20,16,.35)}
+.sidecard.l{left:max(20px,calc(50% - 500px - 226px));padding-right:64px}
+.sidecard.r{right:max(26px,calc(50% - 500px - 226px))}
+.sidecard .label{display:block;font-size:10.5px;color:#8a8175}
+.sidecard .big{display:block;font-weight:700;letter-spacing:-.035em;font-size:clamp(28px,2.6vw,38px);line-height:1;margin:8px 0 6px}
+.sidecard small{display:block;font-size:12.5px;font-weight:500;line-height:1.45;color:#4c453d}
+.sidecard .tools{display:flex;gap:7px;margin-top:12px}
+.sidecard .tools span{width:28px;height:28px;border-radius:8px;background:var(--cream);border:1px solid var(--hair);display:grid;place-items:center}
+.sidecard .tools img{height:15px;width:auto}
+.sidecard .spark{display:block;width:100%;height:58px;overflow:visible}
+.sidecard .bars{display:flex;align-items:flex-end;gap:5px;height:82px;margin-top:10px;border-bottom:1px solid var(--line)}
+.sidecard .bars i{flex:1;background:var(--lilac);border-radius:3px 3px 0 0}
+.sidecard .bars i.hot{background:var(--coral)}
+.sidecard .keys{display:flex;gap:6px;margin-top:10px}
+.sidecard .keys i{width:22px;height:8px;border-radius:2px}
+@media(max-width:1240px){.sidecard{display:none}}
+.framebar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--hair);background:var(--cream)}
+.framebar i{width:10px;height:10px;border-radius:50%}
+.framebar i:nth-child(1){background:var(--red)}.framebar i:nth-child(2){background:var(--mustard)}.framebar i:nth-child(3){background:var(--green)}
+.framebar span{margin:0 auto;font-size:12.5px;font-weight:600;letter-spacing:.04em;border:1px solid var(--hair);border-radius:999px;padding:3px 14px;background:var(--white)}
+.framebody{padding:20px clamp(16px,2.4vw,28px) 24px}
+.goodmorning{font-size:13.5px;color:#6d655b;font-weight:500}
+.probcount{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;font-size:clamp(20px,2vw,26px);margin:2px 0 14px}
+.mock-row{display:flex;align-items:center;gap:14px;padding:13px 14px;border:1px solid var(--hair);border-radius:12px;margin-top:10px;background:var(--white)}
+.mock-tools{display:flex;gap:8px;align-items:center;flex:none}
+.mock-tools img{height:17px;width:auto;object-fit:contain}
+.mock-body{flex:1;min-width:0}
+.mock-body b{font-size:14.5px;font-weight:600;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock-meta{display:flex;align-items:center;gap:9px;font-size:12px;color:#6d655b;margin-top:3px;flex-wrap:wrap}
+.mock-meta i{width:8px;height:8px;border-radius:50%;flex:none}
+.mock-meta em{font-style:normal;font-weight:600;border:1px solid #c9c1b4;border-radius:999px;padding:1px 8px}
+.plat{display:inline-flex;align-items:center;gap:4px}
+.plat svg,.plat img{width:12px;height:12px}
+.fl{margin-right:5px}
+.mock-right{text-align:right;flex:none}
+.mock-right b{font-size:15.5px;font-weight:700;display:block}
+.afx{display:inline-flex;align-items:center;gap:5px;background:var(--cobalt);color:#fff;font-size:11.5px;font-weight:600;border-radius:999px;padding:3px 10px;margin-top:4px}
+.afx svg{width:13px;height:13px}
+@media(max-width:640px){.mock-right .afx{display:none}.mock-meta em{display:none}}
+
+/* —— logos —— */
+.logosec{padding:clamp(48px,7vh,72px) 0;text-align:center}
+.logorow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(22px,2.8vw,40px) clamp(22px,2.8vw,42px);margin-top:36px}
+.logorow img{height:clamp(30px,3.1vw,46px);width:auto}
+
+/* —— stats —— */
+.statsec{padding:clamp(30px,4vh,48px) 0 clamp(56px,8vh,88px)}
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,48px)}
+.stat b{font-family:var(--disp);font-weight:700;letter-spacing:-.035em;font-size:clamp(46px,4.8vw,68px);line-height:1;display:block}
+.stat .sw{display:block;width:70px;height:10px;margin:12px 0 14px}
+.stat:nth-child(1) .sw{background:repeating-linear-gradient(90deg,var(--cobalt) 0 12px,var(--coral) 12px 24px)}
+.stat:nth-child(2) .sw{background:repeating-conic-gradient(var(--violet) 0 25%,var(--lime) 0 50%) 0 0/10px 10px}
+.stat:nth-child(3) .sw{background:repeating-linear-gradient(90deg,var(--teal) 0 5px,var(--sun) 5px 17px)}
+.stat p{font-size:15.5px;color:#4c453d;max-width:30ch}
+.stat span{display:block;font-size:12px;color:#8a8175;margin-top:8px;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+@media(max-width:760px){.statrow{grid-template-columns:1fr;gap:34px}}
+
+/* —— section headers —— */
+.kicker-c{text-align:center;margin-bottom:clamp(36px,5vh,56px)}
+.kicker-c .h2t{margin:20px 0 16px}
+.seclede{max-width:62ch;margin:0 auto}
+
+/* —— pillars: three cards, woven headband, static —— */
+.howsec{padding:clamp(56px,8vh,96px) 0}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px)}
+.pillar{border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;background:var(--white);box-shadow:0 1px 2px rgba(24,20,16,.05)}
+.pillar .pband{position:relative;height:clamp(150px,15vw,210px);margin:14px 14px 0;border-radius:14px;border:0;overflow:hidden}
+.pbody{padding:clamp(22px,2.4vw,30px);display:flex;flex-direction:column;flex:1}
+.pbody .label{opacity:.75}
+.pbody h3{margin:12px 0 12px}
+.pbody>p{font-size:15px;line-height:1.55;color:#332d26;margin-bottom:22px}
+.scard{margin-top:auto;background:var(--paper);border:1px solid var(--hair);border-radius:14px;padding:18px}
+.sctitle{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:14px;margin-bottom:14px}
+.sctitle em{font-style:normal;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8a8175}
+.dbar{display:grid;grid-template-columns:98px 1fr 52px;align-items:center;gap:10px;margin-top:10px;font-size:13px}
+.dbar .lab{color:#6d655b;font-weight:500}
+.dbar .track{height:14px;background:#fff;border:1px solid var(--hair);border-radius:99px;overflow:hidden}
+.dbar .track i{display:block;height:100%}
+.dbar .val{font-weight:700;text-align:right}
+.scnote{margin-top:14px;font-size:12.5px;color:#6d655b;border-top:1px dashed #c9c1b4;padding-top:10px}
+.hist{display:flex;align-items:flex-end;gap:5px;height:88px}
+.hist i{flex:1;background:var(--lilac);border-radius:4px 4px 0 0}
+.hist i.hot{background:var(--coral)}
+.histaxis{display:flex;justify-content:space-between;font-size:11px;color:#8a8175;margin-top:6px;font-weight:600}
+.leakrow{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--hair);border-radius:9px;padding:9px 12px;margin-top:8px;font-size:12.5px;background:#fff}
+.leakrow code{font-family:var(--body);font-weight:500}
+.leakrow.bad{border-color:var(--coral);background:#fff1ee}
+.st{font-size:10.5px;font-weight:700;letter-spacing:.08em;border-radius:99px;padding:2px 9px;text-transform:uppercase}
+.st.ok{background:var(--lime);color:var(--ink)}
+.st.bad{background:var(--coral);color:#fff}
+.leakfoot{display:flex;justify-content:space-between;font-size:11.5px;color:#6d655b;margin-top:12px}
+@media(max-width:980px){.pillars{grid-template-columns:1fr}}
+
+/* —— features —— */
+.featsec{padding:clamp(40px,6vh,80px) 0}
+.feat{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,4vw,64px);align-items:center;margin-top:clamp(56px,8vh,96px)}
+.feat:first-child{margin-top:0}
+.feat.rev .fcopy{order:2}
+.feat.rev .fart{order:1}
+.fcopy .h3t{margin:18px 0 14px;font-size:clamp(26px,2.8vw,38px)}
+.fcopy p{color:#4c453d;max-width:46ch}
+.fart{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;padding:clamp(24px,3vw,44px)}
+.fart .frame{position:relative;z-index:1;box-shadow:none;max-width:none}
+.agentline{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;margin-bottom:12px}
+.agentline i{width:9px;height:9px;border-radius:50%;background:var(--green)}
+.mock-edit{display:flex;align-items:center;gap:12px;border:1px solid var(--hair);border-radius:12px;padding:12px 14px;margin-top:9px;background:var(--white)}
+.mock-edit span{width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px;flex:none}
+.mock-edit div{flex:1}
+.mock-edit b{font-size:14px;display:block}
+.mock-edit small{font-size:12px;color:#6d655b}
+.mock-edit em{font-style:normal;font-size:12.5px;font-weight:700;color:var(--cobalt)}
+.mini-chat{max-width:82%;border:1px solid var(--hair);border-radius:14px;padding:12px 16px;font-size:14px;line-height:1.5}
+.mini-chat.me{margin-left:auto;background:var(--cream);border-bottom-right-radius:4px}
+.mini-chat.ai{background:var(--white);border-bottom-left-radius:4px;margin-top:10px}
+@media(max-width:900px){.feat{grid-template-columns:1fr}.feat.rev .fcopy{order:1}.feat.rev .fart{order:2}}
+
+/* —— quote —— */
+.quotewrap{margin:clamp(56px,8vh,96px) 0}
+.quotecard{position:relative;background:#efedff;border:1px solid var(--line);border-radius:24px;overflow:hidden;
+  padding:clamp(52px,6.5vw,92px) clamp(24px,5vw,72px) clamp(44px,5.5vw,80px)}
+.quotecard:before{content:"";position:absolute;left:0;right:0;top:0;height:12px;
+  background:repeating-conic-gradient(var(--violet) 0 25%,var(--sun) 0 50%) 0 0/24px 24px}
+.quote{max-width:880px;margin:0 auto;text-align:center}
+.quote h2{font-family:var(--disp);font-weight:700;font-size:clamp(26px,3vw,42px);line-height:1.2;letter-spacing:-.025em}
+.quote .chip{color:var(--cobalt)}
+.quote p{margin:26px auto 26px;max-width:62ch;color:#3a3550;font-size:16.5px}
+.qattr{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:14px}
+
+/* —— pricing —— */
+.pricesec{padding:clamp(40px,6vh,80px) 0 clamp(64px,9vh,110px)}
+.lpprice{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px)}
+.ptier{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--white);display:flex;flex-direction:column;position:relative;box-shadow:0 1px 2px rgba(24,20,16,.05)}
+.pband{position:relative;height:66px;margin:12px 12px 0;border-radius:10px;overflow:hidden}
+.poptab{position:absolute;top:22px;right:22px;z-index:2;background:var(--ink);color:#fff;border-radius:999px;padding:5px 12px;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.pin{padding:24px 24px 28px;display:flex;flex-direction:column;flex:1}
+.ptier b{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:-.01em}
+.pprice{font-family:var(--disp);font-weight:700;letter-spacing:-.035em;font-size:clamp(34px,3vw,44px);margin:8px 0 10px}
+.pprice span{font-size:16px;font-weight:500;font-family:var(--body);color:#6d655b}
+.ptier>.pin>p{font-size:14.5px;color:#4c453d;min-height:44px}
+.ptier ul{list-style:none;margin:16px 0 22px;flex:1}
+.ptier li{font-size:14.5px;padding:7px 0 7px 24px;position:relative;border-top:1px dashed #d8d0c2}
+.ptier li:before{content:"";position:absolute;left:2px;top:14px;width:10px;height:10px;border-radius:3px;background:var(--tick,var(--lilac))}
+.ptier .btn{text-align:center}
+@media(max-width:920px){.lpprice{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
+
+/* —— pre-footer CTA: lilac card with a woven panel —— */
+.ctawrap{margin-top:clamp(80px,11vh,140px)}
+.ctaslab{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);border-radius:24px;overflow:hidden;background:var(--violet);color:#fff}
+.ctacopy{padding:clamp(36px,4.5vw,64px)}
+.ctacopy .h2t{font-size:clamp(30px,3.4vw,48px)}
+.ctacopy p{margin:16px 0 26px;font-size:16px;color:rgba(255,255,255,.85);max-width:46ch}
+.ctabtns{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ctabtns small{display:block;width:100%;font-size:12.5px;font-weight:500;color:rgba(255,255,255,.75);margin-top:4px}
+.ctafabric{position:relative;min-height:280px}
+.ctaslab .btn.ghost{color:#fff;border-color:rgba(255,255,255,.7)}
+.ctaslab .btn.ghost:hover{background:#fff;color:var(--violet)}
+.ctaslab .btn.solid:hover{background:#fff;color:var(--violet);border-color:#fff}
+@media(max-width:860px){.ctaslab{grid-template-columns:1fr}.ctafabric{min-height:120px}}
+
+/* —— footer: white, columns —— */
+footer{margin-top:clamp(72px,10vh,120px);border-top:1px solid var(--hair);padding:clamp(48px,6vh,72px) 0 0}
+.footgrid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,1fr));gap:clamp(28px,3vw,48px)}
+.fbrand p{font-size:14px;color:#6d655b;margin-top:14px;max-width:30ch}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:12.5px;font-weight:600;border:1px solid var(--hair);border-radius:999px;padding:5px 12px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.fcol h4{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6d655b;margin-bottom:14px}
+.fcol h4:after{content:"";display:block;width:36px;height:6px;margin-top:10px;border-radius:2px;background:var(--tick)}
+.fcol:nth-of-type(2) h4:after{background:repeating-linear-gradient(90deg,var(--cobalt) 0 6px,var(--coral) 6px 12px)}
+.fcol:nth-of-type(3) h4:after{background:repeating-conic-gradient(var(--violet) 0 25%,var(--lime) 0 50%) 0 0/6px 6px}
+.fcol:nth-of-type(4) h4:after{background:repeating-linear-gradient(90deg,var(--teal) 0 3px,var(--sun) 3px 9px)}
+.fcol:nth-of-type(5) h4:after{background:repeating-linear-gradient(90deg,var(--coral) 0 4px,var(--sun) 4px 10px)}
+.hem{position:relative;height:16px;overflow:hidden;border-top:1px solid var(--hair)}
+.fbrand .wordmark{font-size:28px}
+.fcol a{display:block;font-size:14.5px;font-weight:500;padding:5px 0;width:fit-content}
+.fcol a:hover{color:var(--cobalt)}
+.legalrow{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;margin-top:clamp(40px,5vh,56px);padding:22px 0 28px;border-top:1px solid var(--hair);font-size:13px;color:#6d655b}
+.legalrow .links{display:flex;gap:18px;flex-wrap:wrap}
+.legalrow a:hover{color:var(--cobalt)}
+.legalrow .social{display:flex;gap:18px;font-weight:600;color:var(--ink)}
+@media(max-width:960px){.footgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.fbrand{grid-column:1 / -1}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap navin">
+    <a class="wordmark" href="#top" aria-label="BayesAI home"><span class="lt" style="--i:0">B<i class="p0"></i></span><span class="lt" style="--i:1">A<i class="p1"></i></span><span class="lt" style="--i:2">Y<i class="p2"></i></span><span class="lt" style="--i:3">E<i class="p3"></i></span><span class="lt" style="--i:4">S<i class="p4"></i></span><span class="lt" style="--i:5">A<i class="p5"></i></span><span class="lt" style="--i:6">I<i class="p6"></i></span></a>
+    <div class="navlinks">
+      <a href="#lp-product">Product <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="#lp-how">Solutions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="#lp-quote">Customers</a>
+      <a href="#lp-pricing">Pricing</a>
+      <a href="#lp-cta">Resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></a>
+    </div>
+    <div class="navright">
+      <a class="signin" href="#">Log in</a>
+      <a class="btn solid" href="#lp-cta">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ————— HERO ————— -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="heroin">
+      <span class="heropill reveal"><i></i>Agents that audit your data, so you don't have to</span>
+      <h1 class="h1t reveal" style="--d:.06s">Marketing data auditor<br><span class="uw">for enterprises and scale-ups.</span></h1>
+      <p class="lede reveal" style="--d:.12s">BayesAI watches every tool in your marketing stack, checks every number against your database and against plain arithmetic — and only speaks up when something is actually wrong. With the fix already prepared.</p>
+      <div class="ctarow reveal" style="--d:.18s">
+        <a class="btn solid lg" href="#lp-cta">Book a demo</a>
+        <a class="btn ghost lg" href="#lp-product">See how it works</a>
+      </div>
+      <p class="lptrust reveal" style="--d:.24s">Read-only access · EU-hosted · no code on your site · first findings in minutes</p>
+    </div>
+  </div>
+
+  <div class="band" id="lp-product">
+    <div class="bandtiles" aria-hidden="true">
+      <div class="tile" data-weave="cobalt,coral" data-seq="vstripe"></div>
+      <div class="tile" data-weave="violet,lime" data-seq="checker"></div>
+      <div class="tile" data-weave="teal,sun" data-seq="hstripe"></div>
+      <div class="tile" data-weave="coral,sun" data-seq="gingham"></div>
+      <div class="tile" data-weave="cobalt,lime" data-seq="bars"></div>
+      <div class="tile" data-weave="violet,paper" data-seq="rows"></div>
+      <div class="tile" data-weave="teal,coral" data-seq="quilt"></div>
+    </div>
+    <aside class="sidecard l reveal" style="--d:.35s" aria-hidden="true">
+      <span class="label">Caught this week</span>
+      <span class="big">€48.2K</span>
+      <small>GTM double-fires purchase hits</small>
+      <div class="tools"><span><img src="../_assets/logos/googletagmanager.svg" alt=""></span><span><img src="../_assets/logos/mysql.svg" alt=""></span></div>
+    </aside>
+    <aside class="sidecard r reveal" style="--d:.45s" aria-hidden="true">
+      <svg class="spark" viewBox="0 0 228 64" preserveAspectRatio="none">
+        <path d="M2 50 L34 44 L66 47 L98 30 L130 34 L162 18 L194 22 L226 8" fill="none" stroke="#181410" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <g fill="#fff" stroke="#181410" stroke-width="1.5"><circle cx="98" cy="30" r="3.5"/><circle cx="162" cy="18" r="3.5"/><circle cx="226" cy="8" r="4" fill="#ff6b57"/></g>
+      </svg>
+      <div class="bars"><i style="height:34%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:70%"></i><i style="height:58%"></i><i class="hot" style="height:92%"></i><i style="height:64%"></i><i style="height:78%"></i></div>
+      <div class="keys"><i style="background:var(--lilac)"></i><i style="background:var(--coral)"></i><i style="background:var(--paper)"></i></div>
+    </aside>
+    <div class="mockfloat reveal" style="--d:.25s">
+      <div class="frame">
+        <div class="framebar"><i></i><i></i><i></i><span>app.bayes.ai</span></div>
+        <div class="framebody">
+          <div class="goodmorning">Good morning, Sarah ☀️</div>
+          <div class="probcount">7 problems need your attention.</div>
+          <div class="thead"><span>Source</span><span>Finding</span><span>Priority</span><span>Type</span><span>Platform</span><span>Market</span><span class="r">Impact</span></div>
+          <div class="trow">
+            <span class="mock-tools"><img src="../_assets/logos/googletagmanager.svg" alt="Google Tag Manager" title="Google Tag Manager"><img src="../_assets/logos/mysql.svg" alt="MySQL" title="MySQL"></span>
+            <span class="ttitle">GTM sends two purchase hits per transaction</span>
+            <span class="prio"><i style="background:var(--red)"></i>Active</span>
+            <span class="ttype">Discrepancy</span>
+            <span class="tplat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>Web</span>
+            <span class="tgeo"><span class="fl">🌍</span>All markets</span>
+            <span class="timpact"><b>€48.2K</b><span class="afx"><svg viewBox="0 0 32 32" fill="none" stroke="#fff"><circle cx="13" cy="16" r="8.5" stroke-opacity=".5" stroke-width="2.6"/><circle cx="20" cy="16" r="8.5" stroke-width="2.8"/></svg>Autofix</span></span>
+          </div>
+          <div class="trow">
+            <span class="mock-tools"><img src="../_assets/logos/hubspot.svg" alt="HubSpot" title="HubSpot"></span>
+            <span class="ttitle">Email open rate at 127% — opens exceed deliveries</span>
+            <span class="prio"><i style="background:var(--mustard)"></i>High</span>
+            <span class="ttype">Anomaly</span>
+            <span class="tplat"><img src="../_assets/logos/apple.svg" alt="">iOS</span>
+            <span class="tgeo"><span class="fl">🇸🇪 🇩🇰</span>SE · DK</span>
+            <span class="timpact"><b>€8.4K</b><span class="afx"><svg viewBox="0 0 32 32" fill="none" stroke="#fff"><circle cx="13" cy="16" r="8.5" stroke-opacity=".5" stroke-width="2.6"/><circle cx="20" cy="16" r="8.5" stroke-width="2.8"/></svg>Autofix</span></span>
+          </div>
+          <div class="trow dim">
+            <span class="mock-tools"><img src="../_assets/logos/googleanalytics.svg" alt="Google Analytics 4" title="Google Analytics 4"></span>
+            <span class="ttitle">GA4 order coverage below the consent-aware range</span>
+            <span class="prio"><i style="background:var(--mustard)"></i>High</span>
+            <span class="ttype">Discrepancy</span>
+            <span class="tplat"><img src="../_assets/logos/android.svg" alt="">Android</span>
+            <span class="tgeo"><span class="fl">🇪🇺</span>EU</span>
+            <span class="timpact"><b>€18.4K</b><span class="afx"><svg viewBox="0 0 32 32" fill="none" stroke="#fff"><circle cx="13" cy="16" r="8.5" stroke-opacity=".5" stroke-width="2.6"/><circle cx="20" cy="16" r="8.5" stroke-width="2.8"/></svg>Autofix</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ————— LOGOS ————— -->
+<section class="logosec">
+  <div class="wrap">
+    <span class="kchip label">Watches every tool you already use</span>
+    <div class="logorow reveal">
+      <img src="../_assets/logos/googleanalytics.svg" alt="GA4" title="GA4">
+      <img src="../_assets/logos/meta.svg" alt="Meta" title="Meta">
+      <img src="../_assets/logos/tiktok.svg" alt="TikTok" title="TikTok">
+      <img src="../_assets/logos/googleads.svg" alt="Google Ads" title="Google Ads">
+      <img src="../_assets/logos/googletagmanager.svg" alt="GTM" title="GTM">
+      <img src="../_assets/logos/mysql.svg" alt="MySQL" title="MySQL">
+      <img src="../_assets/logos/postgresql.svg" alt="PostgreSQL" title="PostgreSQL">
+      <img src="../_assets/logos/googlebigquery.svg" alt="BigQuery" title="BigQuery">
+      <img src="../_assets/logos/snowflake.svg" alt="Snowflake" title="Snowflake">
+      <img src="../_assets/logos/looker.svg" alt="Looker" title="Looker">
+      <img src="../_assets/logos/shopify.svg" alt="Shopify" title="Shopify">
+      <img src="../_assets/logos/hubspot.svg" alt="HubSpot" title="HubSpot">
+    </div>
+  </div>
+</section>
+
+<!-- ————— STATS ————— -->
+<section class="statsec">
+  <div class="wrap">
+    <div class="statrow">
+      <div class="stat reveal lift" style="--d:0.00s"><b data-count="15" data-suffix="%">0%</b><span class="sw" aria-hidden="true"></span><p>of revenue is what poor data quality costs the average business</p><span>Experian, 2023</span></div>
+      <div class="stat reveal lift" style="--d:0.08s"><b data-count="21" data-suffix="%">0%</b><span class="sw" aria-hidden="true"></span><p>of ad budgets are wasted on inaccurate or incomplete data</p><span>Monte Carlo</span></div>
+      <div class="stat reveal lift" style="--d:0.16s"><b data-count="67" data-suffix="%">0%</b><span class="sw" aria-hidden="true"></span><p>of data professionals don't fully trust their own numbers</p><span>Lebow Report, 2024</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— PILLARS: click to unweave ————— -->
+<section class="howsec" id="lp-how">
+  <div class="wrap">
+    <div class="kicker-c reveal"><span class="kchip label">How it works</span>
+      <h2 class="h2t">Three failure modes.<br>We catch all of them.</h2>
+      <p class="lede seclede">Every tool is totalled against your database truth, judged against its own arithmetic, and scanned for data that should never be there. Nothing else on the market does all three.</p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar reveal lift" style="--d:0.00s">
+        <div class="pband" data-weave="cobalt,coral" data-seq="vstripe"></div>
+        <div class="pbody">
+          <span class="label">What we catch · 01</span>
+          <h3 class="h3t">Discrepancies</h3>
+          <p>Two tools record the same phenomenon and disagree. We total every source against your database and flag the gap — with the expected range your consent rate allows.</p>
+          <div class="scard">
+            <div class="sctitle">Orders, last 30 days <em>All sources</em></div>
+            <div class="dbar"><span class="lab">Your database</span><span class="track"><i style="width:38%;background:var(--green)"></i></span><span class="val">1,650</span></div>
+            <div class="dbar"><span class="lab">GA4 reports</span><span class="track"><i style="width:76%;background:var(--red)"></i></span><span class="val" style="color:var(--red)">3,300</span></div>
+            <div class="scnote">Exactly 2× is a double-fired tag, not a business change.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar reveal lift" style="--d:0.08s">
+        <div class="pband" data-weave="violet,lime" data-seq="hstripe"></div>
+        <div class="pbody">
+          <span class="label">What we catch · 02</span>
+          <h3 class="h3t">Anomalies</h3>
+          <p>One tool contradicts its own arithmetic or history — no second source needed. Opens can't exceed deliveries; purchases can't exceed checkouts.</p>
+          <div class="scard">
+            <div class="sctitle">Email open rate, distribution <em>12 months</em></div>
+            <div class="hist">
+              <i style="height:10%"></i><i style="height:22%"></i><i style="height:42%"></i><i style="height:66%"></i><i style="height:84%"></i><i style="height:74%"></i><i style="height:52%"></i><i style="height:32%"></i><i style="height:16%"></i><i style="height:8%"></i><i style="height:4%"></i><i class="hot" style="height:58%"></i>
+            </div>
+            <div class="histaxis"><span>0%</span><span>50%</span><span>100%</span><span style="color:var(--red)">127%</span></div>
+            <div class="scnote">An open rate past 100% sits beyond the edge of arithmetic. Flagged instantly.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar reveal lift" style="--d:0.16s">
+        <div class="pband" data-weave="teal,sun" data-seq="gingham"></div>
+        <div class="pbody">
+          <span class="label">What we catch · 03</span>
+          <h3 class="h3t">Leakages</h3>
+          <p>Personal data where it must never be. BayesAI scans URL parameters, search terms, DOM attributes and logs for names, emails and card data — while it's still on staging, where it costs nothing.</p>
+          <div class="scard">
+            <div class="sctitle">PII scan · staging <em>Live</em></div>
+            <div class="leakrow"><code>utm_email = j.****@gmail.com</code><span class="st ok">masked</span></div>
+            <div class="leakrow bad"><code>card_number = 4519 ••••</code><span class="st bad">LEAK</span></div>
+            <div class="leakrow"><code>search_q = "red dress"</code><span class="st ok">clean</span></div>
+            <div class="leakfoot"><span>Caught in staging — never reached production</span><span style="font-weight:700">GDPR-critical</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— FEATURES ————— -->
+<section class="featsec">
+  <div class="wrap">
+
+    <div class="feat">
+      <div class="fcopy reveal">
+        <span class="kchip label">The inbox</span>
+        <h3 class="h3t">An inbox of findings,<br>not a wall of charts.</h3>
+        <p>Every issue is one line: what broke, where it applies, what it's worth, and who should hear about it. Sorted by what to fix first — and silent when there's nothing to fix.</p>
+      </div>
+      <div class="fart reveal" data-weave="violet,paper" data-seq="gingham">
+        <div class="frame">
+          <div class="framebar"><i></i><i></i><i></i></div>
+          <div class="framebody">
+            <div class="mock-row" style="margin-top:0"><div class="mock-body"><b>banner_view stopped firing after v2.31</b><div class="mock-meta"><i style="background:var(--mustard)"></i>New today · DE · NL · SE</div></div><div class="mock-right"><b>€9.1K</b></div></div>
+            <div class="mock-row"><div class="mock-body"><b>Purchases exceed checkouts — impossible funnel</b><div class="mock-meta"><i style="background:var(--red)"></i>Critical · Anomaly</div></div><div class="mock-right"><b>€12.3K</b></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="fcopy reveal">
+        <span class="kchip label">Autofix</span>
+        <h3 class="h3t">The fix arrives<br>with the problem.</h3>
+        <p>One click, and the agent applies what it safely can — tag manager changes, tool settings — opens merge requests for the rest, and shows you every edit it made. Revert any of them, individually. Then it re-checks your numbers until they hold.</p>
+      </div>
+      <div class="fart reveal" data-weave="teal,sun" data-seq="checker">
+        <div class="frame">
+          <div class="framebar"><i></i><i></i><i></i></div>
+          <div class="framebody">
+            <div class="agentline"><i></i>BayesAI agent is applying the fix</div>
+            <div class="mock-edit"><span>✓</span><div><b>Pause the legacy purchase tag</b><small>Applied via Google Tag Manager</small></div><em>Revert</em></div>
+            <div class="mock-edit"><span>✓</span><div><b>Set a transaction_id on the remaining tag</b><small>Code change · merge request #121</small></div><em>Revert</em></div>
+            <div class="mock-edit" style="opacity:.65"><span>…</span><div><b>Re-verifying against your database</b><small>closes automatically when numbers hold</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat">
+      <div class="fcopy reveal">
+        <span class="kchip label">Ask anything</span>
+        <h3 class="h3t">Chat with the finding.<br>Route it anywhere.</h3>
+        <p>Each finding carries its own evidence — the deploy log, the affected campaigns, the math behind the euro figure. Ask it questions, send it to Slack, or turn it into a pre-filled Jira ticket with one click.</p>
+      </div>
+      <div class="fart reveal" data-weave="cobalt,coral" data-seq="rows">
+        <div class="frame">
+          <div class="framebar"><i></i><i></i><i></i></div>
+          <div class="framebody">
+            <div class="mini-chat me">Which campaigns are affected?</div>
+            <div class="mini-chat ai">10 Google campaigns bid on the doubled conversions — the largest is Google_Search_Brand (€31K/mo). Want the full list as CSV?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ————— QUOTE ————— -->
+<section class="quotewrap" id="lp-quote">
+  <div class="wrap">
+    <div class="quotecard reveal">
+    <div class="quote">
+      <h2>Every existing tool tells you whether your data <span class="chip">moved</span>. BayesAI tells you whether your data is <span class="chip y">right</span>.</h2>
+      <p>Every check in BayesAI comes from a decade of data audits at global brands like L'Oréal and Under Armour. In ten years, we never met a company whose data wasn't broken somewhere they couldn't see.</p>
+      <span class="qattr"><i class="swatch" aria-hidden="true"></i>Ten years of enterprise data audits</span>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— PRICING ————— -->
+<section class="pricesec" id="lp-pricing">
+  <div class="wrap">
+    <div class="kicker-c reveal"><span class="kchip label">Pricing</span>
+      <h2 class="h2t">Start where it hurts.</h2>
+    </div>
+    <div class="lpprice">
+      <div class="ptier reveal lift" style="--tick:var(--teal)">
+        <div class="pband" data-weave="teal,paper" data-seq="vstripe"></div>
+        <div class="pin">
+          <b>Essentials</b><div class="pprice">€499<span>/mo</span></div>
+          <p>For brands that suspect their data is broken but can't prove it.</p>
+          <ul><li>Cross-source discrepancy checker</li><li>dataLayer change alerts</li><li>Basic PII scanning</li><li>5 sources · 10M events/mo</li></ul>
+          <a class="btn ghost" href="#lp-cta">Get your scan</a>
+        </div>
+      </div>
+      <div class="ptier reveal lift" style="--d:0.00s;--tick:var(--coral)">
+        <div class="pband" data-weave="cobalt,coral" data-seq="gingham"></div>
+        <span class="poptab">Most popular</span>
+        <div class="pin">
+          <b>Growth</b><div class="pprice">€1,499<span>/mo</span></div>
+          <p>Automated QA across your whole stack, consent-aware.</p>
+          <ul><li>Everything in Essentials</li><li>Consent-aware + backend-vs-frontend logic</li><li>Anomaly detection &amp; Autofix</li><li>15 sources · 50M events/mo · 5 workspaces</li></ul>
+          <a class="btn solid" href="#lp-cta">Get your scan</a>
+        </div>
+      </div>
+      <div class="ptier reveal lift" style="--d:0.08s;--tick:var(--violet)">
+        <div class="pband" data-weave="violet,lime" data-seq="hstripe"></div>
+        <div class="pin">
+          <b>Enterprise</b><div class="pprice">€4,999<span>+/mo</span></div>
+          <p>Multi-brand groups and agencies with compliance needs.</p>
+          <ul><li>Unified FE+BE+CRM attribution</li><li>Server-side &amp; payment data scanning</li><li>GDPR audit reports · SLA · CSM</li><li>Unlimited everything</li></ul>
+          <a class="btn ghost" href="#lp-cta">Talk to us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— CTA + FOOTER ————— -->
+<section class="ctawrap" id="lp-cta">
+  <div class="wrap">
+    <div class="ctaslab reveal">
+      <div class="ctacopy">
+        <h2 class="h2t">See what your numbers have been hiding.</h2>
+        <p>Connect your sources and scan the last 12 months. First findings in minutes, priced in euros, read-only from day one.</p>
+        <div class="ctabtns">
+          <a class="btn solid lg" href="mailto:hello@bayes.ai?subject=Book%20a%20demo">Book a demo</a>
+          <a class="btn ghost lg" href="mailto:hello@bayes.ai?subject=Get%20my%20scan">Get your scan</a>
+          <small>No code on your site · EU-hosted · GDPR-native</small>
+        </div>
+      </div>
+      <div class="ctafabric" data-weave="coral,sun" data-seq="vstripe" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footgrid reveal">
+      <div class="fbrand">
+        <a class="wordmark" href="#top" aria-label="BayesAI home"><span class="lt" style="--i:0">B<i class="p0"></i></span><span class="lt" style="--i:1">A<i class="p1"></i></span><span class="lt" style="--i:2">Y<i class="p2"></i></span><span class="lt" style="--i:3">E<i class="p3"></i></span><span class="lt" style="--i:4">S<i class="p4"></i></span><span class="lt" style="--i:5">A<i class="p5"></i></span><span class="lt" style="--i:6">I<i class="p6"></i></span></a>
+        <p>Agents that audit your marketing data against your database — and prepare the fix.</p>
+        <span class="status"><i></i>All systems operational</span>
+      </div>
+      <div class="fcol">
+        <h4>Product</h4>
+        <a href="#lp-product">Overview</a>
+        <a href="#lp-how">Discrepancy checker</a>
+        <a href="#lp-how">PII finder</a>
+        <a href="#lp-how">Autofix</a>
+        <a href="#lp-product">Integrations</a>
+        <a href="#">Changelog</a>
+      </div>
+      <div class="fcol">
+        <h4>Solutions</h4>
+        <a href="#">E-commerce</a>
+        <a href="#">Agencies</a>
+        <a href="#">Multi-brand groups</a>
+        <a href="#">Data teams</a>
+      </div>
+      <div class="fcol">
+        <h4>Resources</h4>
+        <a href="#">Documentation</a>
+        <a href="#">Security</a>
+        <a href="#">Trust center</a>
+        <a href="#">Blog</a>
+        <a href="#">Status</a>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <a href="#lp-quote">Why us</a>
+        <a href="#">Customers</a>
+        <a href="#">Careers</a>
+        <a href="mailto:hello@bayes.ai">Contact</a>
+        <a href="#">Press</a>
+      </div>
+    </div>
+    <div class="legalrow">
+      <span class="links">
+        <span>© 2026 BayesAI · Made in Europe</span>
+        <a href="#">Privacy</a><a href="#">Terms</a><a href="#">DPA</a><a href="#">Cookie settings</a>
+      </span>
+      <span class="social"><a href="#">X</a><a href="#">LinkedIn</a><a href="#">GitHub</a></span>
+    </div>
+  </div>
+  <div class="hem" data-weave="cobalt,coral" data-seq="vstripe" aria-hidden="true"></div>
+</footer>
+
+<script>
+/* ———— reveals + counters ———— */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);
+    e.target.querySelectorAll('[data-count]').forEach(countUp);}
+}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const eased=t=>1-Math.pow(1-t,4), RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function countUp(el){
+  if(el.dataset.done)return; el.dataset.done=1;
+  const target=parseFloat(el.dataset.count),suf=el.dataset.suffix||'',t0=performance.now(),D=1600;
+  if(RM){el.textContent=target+suf;return}
+  (function f(now){const p=Math.min((now-t0)/D,1);el.textContent=Math.round(target*eased(p))+suf;if(p<1)requestAnimationFrame(f)})(t0);
+}
+
+/* ———— the loom: woven once, bar by bar, as each fabric comes into view ———— */
+const C={ink:'#181410',cobalt:'#2f4df2',coral:'#ff6b57',violet:'#6d4df5',lime:'#c9f26b',teal:'#14a58a',sun:'#ffcf4d',paper:'#f2f3f7',
+         lilac:'#d9d5ff',pink:'#ffd9d2',white:'#ffffff'};
+const N=8, ones=Array(N).fill(1);
+const st=(c,r,p)=>({c,r,p});
+const LIB={
+  checker:st(ones,ones,(r,c)=>(r+c)%2),
+  gingham:st([1,3,1,3,1,3,1,3],[3,1,3,1,3,1,3,1],(r,c)=>(r+c)%2),
+  vstripe:st([2,1,3,1,2,1,4,1],ones,(r,c)=>c%2),
+  hstripe:st(ones,[2,1,3,1,2,1,4,1],(r,c)=>r%2),
+  bars:st([1,1,5,1,1,5,1,1],ones,(r,c)=>c%2),
+  rows:st(ones,[1,1,5,1,1,5,1,1],(r,c)=>r%2),
+  quilt:st([4,1,1,4,1,1,4,1],[1,4,1,1,4,1,1,4],(r,c)=>(r*3+c)%2)
+};
+const ROWWISE={hstripe:1,rows:1};
+const weaves=[];
+document.querySelectorAll('[data-weave]').forEach(host=>{
+  const colors=host.dataset.weave.split(',').map(k=>C[k]);
+  const name=(host.dataset.seq||'checker').split(',')[0], S=LIB[name], rowwise=!!ROWWISE[name];
+  const el=document.createElement('div');el.className='weave'+(rowwise?' ax-row':'');el.setAttribute('aria-hidden','true');
+  el.style.gridTemplateColumns=S.c.map(v=>v+'fr').join(' ');
+  el.style.gridTemplateRows=S.r.map(v=>v+'fr').join(' ');
+  for(let i=0;i<N*N;i++){const r=Math.floor(i/N),c=i%N,sp=document.createElement('span');
+    sp.style.background=colors[S.p(r,c)%colors.length];
+    sp.style.animationDelay=((rowwise?r:c)*70+(rowwise?c:r)*6)+'ms';   /* one bar after another */
+    el.appendChild(sp)}
+  host.prepend(el);weaves.push(el);
+});
+const wio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('woven');wio.unobserve(e.target)}}),{threshold:.2});
+weaves.forEach(w=>wio.observe(w));
+setTimeout(()=>weaves.forEach(w=>w.classList.add('woven')),2500);   /* safety net: previews and odd viewports */
+
+/* ———— the logotype flips into pattern tiles now and then ———— */
+if(!RM){
+  const marks=[...document.querySelectorAll('.wordmark')];
+  const go=m=>{m.classList.remove('go');void m.offsetWidth;m.classList.add('go')};
+  const flip=()=>marks.forEach(m=>{const r=m.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight)go(m)});
+  setTimeout(flip,1400);
+  setInterval(flip,9000);
+  marks.forEach(m=>m.addEventListener('mouseenter',()=>go(m)));
+}
+</script>
+</body>
+</html>

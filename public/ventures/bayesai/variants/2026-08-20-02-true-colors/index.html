@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BayesAI — Trust every number</title>
+<meta name="description" content="BayesAI audits every marketing tool against your own database and against plain arithmetic. Same campaign, five different numbers: we find the true one." />
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M3 25 C9.5 25 9.5 7 16 7 C21.5 7 20 20 23.5 24.5" fill="none" stroke="%23221c14" stroke-width="3.4" stroke-linecap="round"/><path d="M23.5 24.5 L29 12.5" fill="none" stroke="%23d9482b" stroke-width="3.4" stroke-linecap="round"/></svg>' />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,401,700,701,800&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+/* ————————————————————— tokens ————————————————————— */
+:root{
+  --ecru:#f2ecdf; --ecru2:#f7f2e6; --paper:#fdfaf0;
+  --ink:#221c14; --ink2:#312a1f;
+  --dim:rgba(34,28,20,.66); --faint:rgba(34,28,20,.42);
+  --line:rgba(34,28,20,.16); --line2:rgba(34,28,20,.32);
+  --vermilion:#d9482b; --cobalt:#2b50c8; --marigold:#eda812; --viridian:#1e7a52; --plum:#a4408f;
+  --vermilion-soft:#f4d9d0; --cobalt-soft:#dbe1f6; --marigold-soft:#f7e8c4; --viridian-soft:#d5e8dd; --plum-soft:#eed7e8;
+  --on-ink:#f2ecdf; --on-ink-dim:rgba(242,236,223,.62); --on-ink-faint:rgba(242,236,223,.36); --on-ink-line:rgba(242,236,223,.18);
+  --display:"Zodiak",Georgia,serif; --sans:"General Sans",system-ui,sans-serif; --mono:"Fragment Mono",monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --pad:clamp(24px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ecru);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--vermilion);color:var(--ecru)}
+a{color:inherit;text-decoration:none}
+img,svg,canvas{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--vermilion);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1280px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+/* ————————————————————— shared type ————————————————————— */
+.h-display{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.02}
+.h-sec{font-family:var(--display);font-weight:800;letter-spacing:-.015em;line-height:1.06;font-size:clamp(34px,4.4vw,58px)}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+.lede{font-size:clamp(16px,1.35vw,18.5px);color:var(--dim);max-width:58ch}
+
+/* ————————————————————— reveal motion ————————————————————— */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .tick-track{animation:none!important}
+}
+
+/* ————————————————————— thread strip ————————————————————— */
+.threads{display:flex;height:6px}
+.threads span{flex:1}
+.threads .t1{background:var(--vermilion)}.threads .t2{background:var(--marigold)}.threads .t3{background:var(--viridian)}
+.threads .t4{background:var(--cobalt)}.threads .t5{background:var(--plum)}
+
+/* ————————————————————— nav ————————————————————— */
+nav{position:sticky;top:0;z-index:50;background:rgba(242,236,223,.92);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.scrolled{border-bottom-color:var(--line)}
+.navin{display:flex;align-items:center;justify-content:space-between;height:68px}
+.wordmark{display:flex;align-items:center;gap:9px;font-weight:600;font-size:17px;letter-spacing:-.02em}
+.navlinks{display:flex;gap:clamp(16px,2.6vw,34px);font-size:14px;font-weight:500;color:var(--dim)}
+.navlinks a{position:relative;padding:4px 0}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--vermilion);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a:hover::after{transform:scaleX(1)}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:var(--ecru);border:1.5px solid var(--ink);
+  font-size:14.5px;font-weight:600;padding:11px 22px;border-radius:999px;transition:background .3s,border-color .3s,transform .3s var(--ease)}
+.btn:hover{background:var(--vermilion);border-color:var(--vermilion);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--ecru);border-color:var(--ink)}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--vermilion);width:0;z-index:60}
+@media(max-width:900px){.navlinks{display:none}}
+
+/* ————————————————————— hero ————————————————————— */
+.hero{padding:clamp(48px,7vh,96px) 0 clamp(40px,6vh,72px)}
+.herogrid{display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);gap:clamp(28px,4vw,64px);align-items:center}
+h1{font-size:clamp(46px,6.2vw,92px)}
+h1 .true-line{display:block;font-style:italic;font-weight:400;color:var(--dim);font-size:.62em;margin-top:.32em;letter-spacing:-.01em}
+.uword{position:relative;white-space:nowrap}
+.uword::after{content:"";position:absolute;left:.02em;right:.02em;bottom:.04em;height:.075em;background:var(--uc,var(--vermilion))}
+.hero .lede{margin:26px 0 34px}
+.ctarow{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.btn.big{padding:15px 30px;font-size:16px}
+.arrowlink{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:var(--ink)}
+.arrowlink svg{width:16px;height:16px;transition:transform .35s var(--ease)}
+.arrowlink:hover svg{transform:translateY(3px)}
+.microproof{margin-top:30px;font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.04em}
+.microproof b{color:var(--dim);font-weight:400}
+
+.loom{position:relative}
+.loomframe{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;box-shadow:0 30px 70px -46px rgba(34,28,20,.45)}
+.loomhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.loomhead .mono{color:var(--faint)}
+.livedot{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;color:var(--viridian)}
+.livedot i{width:7px;height:7px;border-radius:50%;background:var(--viridian);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+#weave{width:100%;height:300px;border-radius:8px}
+.legend{display:flex;flex-wrap:wrap;gap:12px 18px;margin-top:12px;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.legend i{display:inline-block;width:16px;height:5px;border-radius:3px;margin-right:6px;vertical-align:2px}
+@media(max-width:900px){.herogrid{grid-template-columns:1fr}#weave{height:240px}h1{font-size:clamp(40px,10vw,64px)}}
+
+/* ————————————————————— ticker ————————————————————— */
+.ticker{background:var(--ink);color:var(--on-ink);overflow:hidden;padding:15px 0;position:relative}
+.tick-track{display:flex;gap:56px;width:max-content;animation:tick 46s linear infinite}
+.ticker:hover .tick-track{animation-play-state:paused}
+.tick-item{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:13px;white-space:nowrap;color:var(--on-ink-dim)}
+.tick-item b{font-weight:400;color:var(--on-ink)}
+.tick-item .ast{font-size:15px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ————————————————————— problem mosaic ————————————————————— */
+.problem{padding:clamp(72px,10vh,130px) 0 clamp(64px,9vh,110px)}
+.sechead{display:flex;align-items:baseline;justify-content:space-between;gap:12px 24px;margin-bottom:14px;flex-wrap:wrap}
+.secnum{font-family:var(--mono);font-size:13px;color:var(--faint);letter-spacing:.14em;white-space:nowrap}
+.problem .lede{margin-bottom:46px}
+.mosaic{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:150px;gap:14px}
+.tile{border-radius:14px;padding:24px 26px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}
+.tile .num{font-family:var(--display);font-weight:800;letter-spacing:-.02em;font-size:clamp(40px,4.6vw,68px);line-height:.95}
+.tile .src{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;opacity:.85;max-width:30ch}
+.tile.v{background:var(--vermilion);color:var(--ecru);grid-column:span 2;grid-row:span 2}
+.tile.c{background:var(--cobalt);color:var(--ecru);grid-column:span 2}
+.tile.m{background:var(--marigold);color:var(--ink);grid-column:span 2}
+.tile.g{background:var(--viridian);color:var(--ecru);grid-column:span 2}
+.tile.p{background:var(--plum);color:var(--ecru);grid-column:span 2}
+.tile.art{grid-column:span 2;grid-row:span 2;padding:0;background:var(--ecru2)}
+.tile.art img{width:100%;height:100%;object-fit:cover}
+.tile.thesis{background:var(--ink);color:var(--on-ink);grid-column:span 2;grid-row:span 1}
+.tile.thesis p{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(16px,1.5vw,20px);line-height:1.35;color:var(--on-ink)}
+@media(max-width:980px){.mosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .tile.v{grid-column:span 2;grid-row:span 1}.tile.art{grid-column:span 2;grid-row:span 2}}
+@media(max-width:560px){.mosaic{grid-template-columns:1fr;grid-auto-rows:auto}
+  .tile{min-height:140px}.tile.v,.tile.c,.tile.m,.tile.g,.tile.p,.tile.art,.tile.thesis{grid-column:span 1;grid-row:span 1}
+  .tile.art{min-height:280px}}
+
+/* ————————————————————— loom / how it works ————————————————————— */
+.how{background:var(--ecru2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(72px,10vh,130px) 0}
+.howgrid{display:grid;grid-template-columns:minmax(0,52fr) minmax(0,48fr);gap:clamp(32px,5vw,80px);align-items:start}
+.howart{position:sticky;top:110px}
+.howart img{border:1px solid var(--line);border-radius:16px;background:var(--paper)}
+.howart figcaption{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-top:12px;letter-spacing:.06em}
+.steps{margin-top:44px;display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:74px 1fr;gap:20px;padding:30px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .n{font-family:var(--mono);font-size:14px;color:var(--sc,var(--vermilion));padding-top:7px}
+.step .n::after{content:"";display:block;width:34px;height:4px;border-radius:2px;background:var(--sc,var(--vermilion));margin-top:9px}
+.step h3{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.2vw,28px);letter-spacing:-.01em;margin-bottom:8px}
+.step p{color:var(--dim);font-size:15.5px;max-width:52ch}
+.srcchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.srcchips span{font-family:var(--mono);font-size:11px;padding:5px 11px;border-radius:999px;border:1px solid var(--line2);background:var(--paper)}
+.srcchips span i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px}
+@media(max-width:980px){.howgrid{grid-template-columns:1fr}.howart{position:static;max-width:560px}}
+
+/* ————————————————————— features / swatch book ————————————————————— */
+.collection{padding:clamp(72px,10vh,130px) 0}
+.collection .lede{margin-bottom:52px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+.swatch{background:var(--paper);border:1px solid var(--line);border-radius:14px 14px 0 0;overflow:visible;position:relative;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.swatch:hover{transform:translateY(-6px) rotate(-.4deg);box-shadow:0 34px 60px -38px rgba(34,28,20,.5)}
+.fabric{height:150px;border-radius:13px 13px 0 0;background-size:var(--bgs,36px 36px);transition:background-position .8s var(--ease)}
+.swatch:hover .fabric{background-position:40px 8px}
+.swatchbody{padding:20px 22px 26px;position:relative}
+.swatchbody::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:12px;
+  background:linear-gradient(-45deg,var(--paper) 8px,transparent 0),linear-gradient(45deg,var(--paper) 8px,transparent 0);
+  background-size:16px 16px;background-repeat:repeat-x;filter:drop-shadow(0 1px 0 var(--line))}
+.swatch h3{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:-.01em;margin-bottom:6px}
+.swatch p{font-size:14px;color:var(--dim);line-height:1.55}
+.swtag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;display:inline-block;margin-bottom:12px;
+  padding:4px 10px;border-radius:999px;background:var(--tagbg,var(--vermilion-soft));color:var(--tagc,var(--vermilion))}
+.swatch.v2{opacity:.92}
+.swatch.v2 .fabric{opacity:.45}
+.swatch.v2::before{content:"next collection";position:absolute;top:12px;right:12px;z-index:2;font-family:var(--mono);font-size:10px;
+  letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:var(--ecru);padding:5px 10px;border-radius:999px}
+.compnote{margin-top:40px;font-family:var(--mono);font-size:12.5px;color:var(--dim);letter-spacing:.03em}
+.compnote b{color:var(--vermilion);font-weight:400}
+
+/* ————————————————————— evidence (ink gallery) ————————————————————— */
+.evidence{background:var(--ink);color:var(--on-ink);position:relative;padding:clamp(80px,11vh,140px) 0}
+.evidence::before,.evidence::after{content:"";position:absolute;left:0;right:0;height:13px;
+  background:linear-gradient(-45deg,var(--ink) 8px,transparent 0),linear-gradient(45deg,var(--ink) 8px,transparent 0);
+  background-size:18px 18px;background-repeat:repeat-x}
+.evidence::before{top:-12px}
+.evidence::after{bottom:-12px;transform:scaleY(-1)}
+.evidence .kicker{color:var(--on-ink-faint)}
+.evidence .h-sec{color:var(--on-ink)}
+.evidence .lede{color:var(--on-ink-dim)}
+.plaques{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--on-ink-line);border:1px solid var(--on-ink-line);margin-top:52px}
+.plaque{background:var(--ink);padding:clamp(26px,3vw,44px);display:flex;flex-direction:column;gap:14px;transition:background .4s}
+.plaque:hover{background:var(--ink2)}
+.plaque .no{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-ink-faint)}
+.plaque h3{font-family:var(--display);font-weight:700;font-size:clamp(21px,2vw,27px);letter-spacing:-.01em;line-height:1.2}
+.plaque p{font-size:14.5px;color:var(--on-ink-dim);max-width:52ch}
+.plaque .out{margin-top:auto;padding-top:10px;font-family:var(--mono);font-size:12.5px;color:var(--pc,var(--vermilion))}
+.axiom{margin-top:64px;text-align:center}
+.axiom p{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(24px,3.2vw,40px);line-height:1.25;color:var(--on-ink)}
+.axiom .mono{color:var(--on-ink-faint);margin-top:14px;display:block}
+@media(max-width:880px){.plaques{grid-template-columns:1fr}}
+
+/* ————————————————————— manifesto ————————————————————— */
+.manifesto{padding:clamp(80px,11vh,140px) 0}
+.mangrid{display:grid;grid-template-columns:minmax(0,44fr) minmax(0,56fr);gap:clamp(32px,5vw,80px);align-items:center}
+.mangrid img{border-radius:16px;border:1px solid var(--line)}
+.manifesto blockquote{font-family:var(--display);font-weight:400;font-style:italic;font-size:clamp(26px,3vw,40px);line-height:1.28;letter-spacing:-.01em}
+.manifesto blockquote em{font-style:italic;color:var(--vermilion)}
+.manifesto figcaption{margin-top:26px;font-size:14.5px;color:var(--dim)}
+.manifesto figcaption b{display:block;font-weight:600;color:var(--ink);font-size:15.5px}
+.mannote{margin-top:34px;font-family:var(--mono);font-size:12.5px;color:var(--faint);letter-spacing:.05em}
+@media(max-width:880px){.mangrid{grid-template-columns:minmax(0,1fr)}.mangrid img{width:100%;max-width:440px}}
+
+/* ————————————————————— pricing ————————————————————— */
+.pricing{background:var(--ecru2);border-top:1px solid var(--line);padding:clamp(72px,10vh,130px) 0}
+.pricing .lede{margin-bottom:52px}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.tier{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;position:relative;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.tier:hover{transform:translateY(-5px);box-shadow:0 34px 64px -40px rgba(34,28,20,.45)}
+.tier.hot{border:2px solid var(--ink)}
+.tier.hot::before{content:"most chosen";position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;background:var(--ink);color:var(--ecru);padding:5px 11px;border-radius:999px;z-index:2}
+.tierband{height:14px}
+.tier .tin{padding:28px 28px 30px;display:flex;flex-direction:column;flex:1}
+.tier h3{font-family:var(--display);font-weight:700;font-size:23px;letter-spacing:-.01em}
+.tier .for{font-size:13.5px;color:var(--dim);margin:6px 0 20px;min-height:42px}
+.tier .price{font-family:var(--display);font-weight:800;font-size:clamp(34px,3vw,44px);letter-spacing:-.02em}
+.tier .price small{font-family:var(--mono);font-size:12px;font-weight:400;color:var(--faint);letter-spacing:.04em;margin-left:6px}
+.tier ul{list-style:none;margin:22px 0 28px;display:flex;flex-direction:column;gap:11px;font-size:14px;color:var(--dim)}
+.tier ul li{display:flex;gap:10px;align-items:flex-start}
+.tier ul li svg{width:15px;height:15px;flex:none;margin-top:3.5px}
+.tier .btn{margin-top:auto;justify-content:center}
+@media(max-width:980px){.tiers{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+
+/* ————————————————————— final CTA ————————————————————— */
+.finale{background:var(--vermilion);color:var(--ecru);text-align:center;padding:clamp(88px,13vh,160px) 0;position:relative;overflow:hidden}
+.finale .h-display{font-size:clamp(42px,5.6vw,80px)}
+.finale .h-display em{font-style:italic;font-weight:400}
+.finale p.sub{font-size:clamp(16px,1.5vw,19px);color:rgba(242,236,223,.85);margin:22px auto 40px;max-width:46ch}
+.finale .btn{background:var(--ecru);color:var(--ink);border-color:var(--ecru)}
+.finale .btn:hover{background:var(--ink);color:var(--ecru);border-color:var(--ink)}
+.finale .mono{display:block;margin-top:26px;color:rgba(242,236,223,.6)}
+.weaveband{display:block;width:100%;height:64px;background:var(--ink)}
+
+/* ————————————————————— footer ————————————————————— */
+footer{padding:56px 0 40px}
+.footgrid{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start}
+.footgrid .fcol{display:flex;flex-direction:column;gap:10px;font-size:14px;color:var(--dim)}
+.footgrid .fcol a:hover{color:var(--vermilion)}
+.footnote{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11.5px;color:var(--faint);letter-spacing:.05em}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="threads" aria-hidden="true"><span class="t1"></span><span class="t2"></span><span class="t3"></span><span class="t4"></span><span class="t5"></span></div>
+
+<nav id="nav">
+  <div class="wrap navin">
+    <a class="wordmark" href="#top" aria-label="BayesAI home">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M3 25 C9.5 25 9.5 7 16 7 C21.5 7 20 20 23.5 24.5" fill="none" stroke="#221c14" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M23.5 24.5 L29 12.5" fill="none" stroke="#d9482b" stroke-width="3.4" stroke-linecap="round"/>
+      </svg>
+      BayesAI
+    </a>
+    <div class="navlinks">
+      <a href="#problem">The problem</a>
+      <a href="#how">How it works</a>
+      <a href="#collection">Features</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <a class="btn" href="#book">Book an audit</a>
+  </div>
+</nav>
+
+<!-- ————————————————— HERO ————————————————— -->
+<header class="hero" id="top">
+  <div class="wrap herogrid">
+    <div>
+      <p class="kicker reveal">Marketing data verification</p>
+      <h1 class="h-display reveal" style="--d:.08s;margin-top:18px">
+        Same campaign,
+        <span class="uword" style="--uc:var(--marigold)">five</span>
+        <span class="uword" style="--uc:var(--cobalt)">different</span>
+        <span class="uword" style="--uc:var(--plum)">numbers.</span>
+        <span class="true-line">Your database knows which one is true.</span>
+      </h1>
+      <p class="lede reveal" style="--d:.16s">BayesAI audits every tool in your marketing stack against your own backend, and against plain arithmetic. It flags the moment numbers stop making sense, names the root cause, and drafts the fix in plain English.</p>
+      <div class="ctarow reveal" style="--d:.24s">
+        <a class="btn big" href="#book">Book a data audit</a>
+        <a class="arrowlink" href="#evidence">See it catch a lie
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </a>
+      </div>
+      <p class="microproof reveal" style="--d:.32s">BUILT FROM 10 YEARS OF AUDITS AT <b>L'ORÉAL · UNDER ARMOUR · HYPEROPTIC</b></p>
+    </div>
+
+    <div class="loom reveal" style="--d:.2s">
+      <div class="loomframe">
+        <div class="loomhead">
+          <span class="mono">LIVE SCAN · ALL SOURCES vs DATABASE</span>
+          <span class="livedot"><i></i>scanning</span>
+        </div>
+        <canvas id="weave" aria-label="Animated diagram: five colored source threads run parallel to the database line; one drifts off and is flagged, then reconciled."></canvas>
+        <div class="legend" aria-hidden="true">
+          <span><i style="background:var(--marigold)"></i>GA4</span>
+          <span><i style="background:var(--cobalt)"></i>Meta</span>
+          <span><i style="background:var(--plum)"></i>TikTok</span>
+          <span><i style="background:var(--vermilion)"></i>Google Ads</span>
+          <span><i style="background:var(--viridian)"></i>CRM</span>
+          <span><i style="background:var(--ink);height:7px"></i>Your database</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ————————————————— TICKER ————————————————— -->
+<div class="ticker" aria-label="Findings from real audits">
+  <div class="tick-track" id="ticktrack">
+    <span class="tick-item"><span class="ast" style="color:var(--marigold)">✱</span><b>/checkout/error</b> fired purchase events: GA4 above database</span>
+    <span class="tick-item"><span class="ast" style="color:var(--viridian)">✱</span><b>43% of Add-to-Carts</b> fired on the cart page, feeding every campaign</span>
+    <span class="tick-item"><span class="ast" style="color:var(--plum)">✱</span><b>full cardholder name + expiry</b> found in GA4, caught in staging</span>
+    <span class="tick-item"><span class="ast" style="color:var(--vermilion)">✱</span><b>frontend AOV half of backend</b>: double-fired GTM tag</span>
+    <span class="tick-item"><span class="ast" style="color:var(--cobalt)">✱</span><b>begin_checkout 2.7× per session</b>: mathematically impossible</span>
+    <span class="tick-item"><span class="ast" style="color:var(--marigold)">✱</span><b>zero-revenue reseller orders</b> skewing AOV across every site</span>
+  </div>
+</div>
+
+<!-- ————————————————— PROBLEM MOSAIC ————————————————— -->
+<section class="problem" id="problem">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <h2 class="h-sec">Bad data is a line item.</h2>
+      <span class="secnum">Nº 01 · THE PROBLEM</span>
+    </div>
+    <p class="lede reveal" style="--d:.08s">You just haven't put it on the P&amp;L yet. Every figure below is sourced; none of them is the scary one, which is whatever your own stack is misreporting right now.</p>
+
+    <div class="mosaic" style="margin-top:46px">
+      <div class="tile v reveal"><span class="num" data-count="15" data-suffix="%">0%</span><span class="src">of revenue lost to poor data quality, on average · Experian, 2023</span></div>
+      <div class="tile art reveal" style="--d:.06s"><img src="../_assets/klee-grid.jpg" alt="Gridded color-field painting in the BayesAI palette: small luminous blocks of vermilion, cobalt, marigold, viridian and plum on warm cream" loading="lazy"></div>
+      <div class="tile c reveal" style="--d:.1s"><span class="num" data-count="12.9" data-prefix="$" data-suffix="M" data-decimals="1">$0M</span><span class="src">average annual loss per organisation · Gartner, 2021</span></div>
+      <div class="tile m reveal" style="--d:.14s"><span class="num" data-count="21" data-suffix="%">0%</span><span class="src">of media budgets wasted on inaccurate data · Monte Carlo</span></div>
+      <div class="tile g reveal" style="--d:.18s"><span class="num" data-count="67" data-suffix="%">0%</span><span class="src">of data professionals don't fully trust their org's data · Precisely, 2024</span></div>
+      <div class="tile p reveal" style="--d:.22s"><span class="num" data-count="3" data-prefix="$" data-suffix="T">$0T</span><span class="src">yearly cost of bad data, US alone · Gartner via HBR</span></div>
+      <div class="tile thesis reveal" style="--d:.26s"><p>These weren't startups. They were global brands with full analytics teams. The problem is structural, not a hiring issue.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ————————————————— HOW IT WORKS ————————————————— -->
+<section class="how" id="how">
+  <div class="wrap howgrid">
+    <div>
+      <div class="sechead reveal">
+        <h2 class="h-sec">The loom.</h2>
+        <span class="secnum">Nº 02 · HOW IT WORKS</span>
+      </div>
+      <p class="lede reveal" style="--d:.08s">Every source is a thread. BayesAI weaves them against the one thread that cannot lie: your own database.</p>
+
+      <div class="steps">
+        <div class="step reveal" style="--sc:var(--marigold)">
+          <span class="n">01</span>
+          <div>
+            <h3>Connect</h3>
+            <p>Read-only links to your analytics, ad platforms, CRM, consent platform, and the backend database itself. No tags to install, nothing to break.</p>
+            <div class="srcchips">
+              <span><i style="background:var(--marigold)"></i>GA4</span>
+              <span><i style="background:var(--cobalt)"></i>Meta</span>
+              <span><i style="background:var(--plum)"></i>TikTok</span>
+              <span><i style="background:var(--vermilion)"></i>Google Ads</span>
+              <span><i style="background:var(--viridian)"></i>CRM</span>
+              <span><i style="background:var(--ink)"></i>Database</span>
+              <span><i style="background:var(--faint)"></i>CMP</span>
+            </div>
+          </div>
+        </div>
+        <div class="step reveal" style="--sc:var(--cobalt)">
+          <span class="n">02</span>
+          <div>
+            <h3>Baseline</h3>
+            <p>Consent-aware expected ranges, per source. A 40% gap between site and GA4 can be perfectly normal, or a disaster: it depends on your consent rate, and BayesAI knows yours.</p>
+          </div>
+        </div>
+        <div class="step reveal" style="--sc:var(--vermilion)">
+          <span class="n">03</span>
+          <div>
+            <h3>Scan</h3>
+            <p>Every number is cross-checked against every source and against plain arithmetic. A tool reporting more sales than your database made is flagged on sight. 2.7 checkouts per session cannot happen. Averages that halve overnight don't lie.</p>
+          </div>
+        </div>
+        <div class="step reveal" style="--sc:var(--viridian)">
+          <span class="n">04</span>
+          <div>
+            <h3>Fix</h3>
+            <p>Root cause named in plain English, fix drafted for your team or your agency, and the check keeps running so the same lie never comes back quietly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <figure class="howart reveal" style="--d:.12s">
+      <img src="../_assets/loom-threads.svg" alt="Illustration: five tangled colored threads enter a dark loom and leave as one orderly woven fabric" loading="lazy">
+      <figcaption>FIVE SOURCES IN · ONE TRUTH OUT</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ————————————————— FEATURES / SWATCH BOOK ————————————————— -->
+<section class="collection" id="collection">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <h2 class="h-sec">The collection.</h2>
+      <span class="secnum">Nº 03 · FEATURES</span>
+    </div>
+    <p class="lede reveal" style="--d:.08s">Five checks in production, three on the loom. Each one exists because a real audit found the failure it now prevents.</p>
+
+    <div class="swatches">
+      <div class="swatch reveal" style="--d:0s">
+        <div class="fabric" style="background-image:repeating-linear-gradient(0deg,var(--vermilion) 0 10px,var(--ecru2) 10px 20px,var(--ink) 20px 24px,var(--ecru2) 24px 34px);--bgs:auto"></div>
+        <div class="swatchbody">
+          <span class="swtag">V1 · shipping</span>
+          <h3>Discrepancy Checker</h3>
+          <p>Every source against every other, and against the database. Consent-aware ranges, so real gaps aren't noise and noise isn't ignored.</p>
+        </div>
+      </div>
+      <div class="swatch reveal" style="--d:.05s">
+        <div class="fabric" style="background-image:radial-gradient(circle at 10px 10px,var(--plum) 4.5px,transparent 5px),radial-gradient(circle at 28px 28px,var(--ink) 3px,transparent 3.5px);background-color:var(--plum-soft)"></div>
+        <div class="swatchbody">
+          <span class="swtag" style="--tagbg:var(--plum-soft);--tagc:var(--plum)">V1 · shipping</span>
+          <h3>PII Finder</h3>
+          <p>Scans URL params, search terms, DOM and logs for names, emails, cards. A staging alert is a risk; a production alert is a leak. Catch it in staging.</p>
+        </div>
+      </div>
+      <div class="swatch reveal" style="--d:.1s">
+        <div class="fabric" style="background-image:repeating-linear-gradient(90deg,var(--marigold) 0 26px,var(--ecru2) 26px 34px,var(--marigold) 34px 48px,var(--ecru2) 48px 70px,var(--ink) 70px 74px,var(--ecru2) 74px 92px);--bgs:auto"></div>
+        <div class="swatchbody">
+          <span class="swtag" style="--tagbg:var(--marigold-soft);--tagc:#8a6108">V1 · shipping</span>
+          <h3>Average Comparison</h3>
+          <p>AOV, item price, ARPU, order frequency: database versus every tool. A halved frontend AOV is the loudest red flag double-counting ever waves.</p>
+        </div>
+      </div>
+      <div class="swatch reveal" style="--d:.15s">
+        <div class="fabric" style="background-image:linear-gradient(var(--cobalt) 1.5px,transparent 1.5px),linear-gradient(90deg,var(--cobalt) 1.5px,transparent 1.5px);background-size:22px 22px;background-color:var(--cobalt-soft)"></div>
+        <div class="swatchbody">
+          <span class="swtag" style="--tagbg:var(--cobalt-soft);--tagc:var(--cobalt)">V1 · shipping</span>
+          <h3>dataLayer Checker</h3>
+          <p>Watches every push against your critical-event list, and alerts when an element your tracking depends on quietly changes underneath it.</p>
+        </div>
+      </div>
+      <div class="swatch reveal" style="--d:.2s">
+        <div class="fabric" style="background-image:repeating-linear-gradient(90deg,var(--viridian) 0 4px,transparent 4px 10px,var(--viridian) 10px 14px,transparent 14px 30px,var(--viridian) 30px 34px,transparent 34px 60px);background-color:var(--viridian-soft);--bgs:auto"></div>
+        <div class="swatchbody">
+          <span class="swtag" style="--tagbg:var(--viridian-soft);--tagc:var(--viridian)">V1 · shipping</span>
+          <h3>Frequency Logic</h3>
+          <p>Events per session, per user, per order, checked against their siblings. begin_checkout at 2.7 per session isn't behaviour, it's a bug.</p>
+        </div>
+      </div>
+      <div class="swatch v2 reveal" style="--d:.25s">
+        <div class="fabric" style="background-image:repeating-linear-gradient(45deg,var(--ink) 0 3px,transparent 3px 16px)"></div>
+        <div class="swatchbody">
+          <span class="swtag" style="--tagbg:var(--ecru2);--tagc:var(--dim)">V2 · on the loom</span>
+          <h3>Hierarchical Logic</h3>
+          <p>AI walks your funnels like a real user and validates each step's data. Earlier steps reporting less than later ones is how it caught six broken checkouts.</p>
+        </div>
+      </div>
+      <div class="swatch v2 reveal" style="--d:.3s">
+        <div class="fabric" style="background-image:repeating-linear-gradient(-45deg,var(--ink) 0 3px,transparent 3px 16px)"></div>
+        <div class="swatchbody">
+          <span class="swtag" style="--tagbg:var(--ecru2);--tagc:var(--dim)">V2 · on the loom</span>
+          <h3>Supreme Attribution</h3>
+          <p>The only attribution model anchored to validated database numbers: ad platforms, analytics, CRM and CMP normalised against reality.</p>
+        </div>
+      </div>
+      <div class="swatch v2 reveal" style="--d:.35s">
+        <div class="fabric" style="background-image:repeating-linear-gradient(0deg,var(--ink) 0 3px,transparent 3px 16px)"></div>
+        <div class="swatchbody">
+          <span class="swtag" style="--tagbg:var(--ecru2);--tagc:var(--dim)">V2 · on the loom</span>
+          <h3>Marketing Intelligence</h3>
+          <p>Cohorts, CAC, CLTV, profit-based ROAS: the hardest numbers in marketing, computed only on data that passed the checks. Every figure carries a health status.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="compnote reveal">MARKET NOTE · TAG MONITORS WATCH THE PLUMBING; WAREHOUSE TOOLS WATCH STORAGE. <b>4 OF THESE 6 CHECKS HAVE NO COMPETITOR AT ALL.</b></p>
+  </div>
+</section>
+
+<!-- ————————————————— EVIDENCE ————————————————— -->
+<section class="evidence" id="evidence">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <h2 class="h-sec">We didn't invent these.</h2>
+      <span class="secnum" style="color:var(--on-ink-faint)">Nº 04 · EVIDENCE</span>
+    </div>
+    <p class="lede reveal" style="--d:.08s">Seven audits at global enterprises, anonymised. Every feature in the collection exists because one of these happened.</p>
+
+    <div class="plaques">
+      <article class="plaque reveal" style="--pc:var(--plum)">
+        <span class="no"><span>Case Nº 06 · Company Δ</span><span>PII Finder</span></span>
+        <h3>Full cardholder names and card expiry dates, sitting in GA4.</h3>
+        <p>Name, surname, email, address and partial card numbers leaked into analytics. UK GDPR exposure: up to £17.5M or 4% of turnover, with a 72-hour notification duty.</p>
+        <span class="out">→ caught in staging, it would have cost nothing</span>
+      </article>
+      <article class="plaque reveal" style="--pc:var(--viridian);--d:.06s">
+        <span class="no"><span>Case Nº 04 · Company Z</span><span>Frequency Logic</span></span>
+        <h3>43% of Add-to-Cart events fired on the cart page itself.</h3>
+        <p>A free-sample picker triggered ATC on every visit. Google, Meta and TikTok campaigns spent months optimising toward an event that was one-third fiction.</p>
+        <span class="out">→ every downstream campaign was re-optimised</span>
+      </article>
+      <article class="plaque reveal" style="--pc:var(--marigold);--d:.12s">
+        <span class="no"><span>Case Nº 03 · Company Y</span><span>Discrepancy Checker</span></span>
+        <h3>GA4 reported more transactions than the database had made.</h3>
+        <p>An error page was firing purchase events from the backend, so failed payments counted as sales, right as the company launched in Italy on those numbers.</p>
+        <span class="out">→ backend ≥ frontend, always: flagged on sight</span>
+      </article>
+      <article class="plaque reveal" style="--pc:var(--vermilion);--d:.18s">
+        <span class="no"><span>Case Nº 05 · Company Z</span><span>Average Comparison</span></span>
+        <h3>Reported AOV suddenly half of what the database showed.</h3>
+        <p>A GTM tag fired twice per purchase for a quarter. Totals looked plausible; the averages betrayed it. Four red flags, one root cause, dated to the exact release.</p>
+        <span class="out">→ halved frontend AOV: the loudest red flag there is</span>
+      </article>
+    </div>
+
+    <div class="axiom reveal">
+      <p>"Every existing tool tells you whether your data <em style="color:var(--on-ink-dim)">moved</em>.<br>BayesAI tells you whether your data is <em style="color:var(--vermilion)">right</em>."</p>
+      <span class="mono">THE ONE-SENTENCE VERSION OF EVERYTHING ABOVE</span>
+    </div>
+  </div>
+</section>
+
+<!-- ————————————————— MANIFESTO ————————————————— -->
+<section class="manifesto">
+  <div class="wrap mangrid">
+    <img class="reveal" src="../_assets/matisse-cut.svg" alt="Matisse-style paper cut-out composition: organic vermilion, cobalt, marigold, viridian and plum shapes dancing on warm ecru" loading="lazy">
+    <figure class="reveal" style="--d:.1s">
+      <blockquote>"I have never seen a company whose data wasn't broken in ways they couldn't see. Not startups: <em>L'Oréal, Under Armour, global enterprises with full analytics teams.</em> The problem is structural. So I built the auditor."</blockquote>
+      <figcaption>
+        <b>Merve Cebi Šafránek, founder</b>
+        10+ years in data. Built a €1M e-commerce business on a €20K budget, then spent a decade finding the errors every tool and every team had already missed.
+      </figcaption>
+      <p class="mannote">SERIOUS ABOUT NUMBERS · ALLERGIC TO GRAY</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ————————————————— PRICING ————————————————— -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <h2 class="h-sec">Three sizes of certainty.</h2>
+      <span class="secnum">Nº 05 · PRICING</span>
+    </div>
+    <p class="lede reveal" style="--d:.08s">Priced against what bad data already costs you. One recovered discrepancy typically pays for the year.</p>
+
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="tierband" style="background:repeating-linear-gradient(90deg,var(--marigold) 0 18px,var(--ecru) 18px 24px)"></div>
+        <div class="tin">
+          <h3>Essentials</h3>
+          <p class="for">For mid-market brands that suspect their data is broken but can't prove it.</p>
+          <p class="price">€499<small>/MO · €5,988/YR</small></p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--marigold)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>Cross-source discrepancy checker</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--marigold)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>dataLayer change alerts</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--marigold)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>Basic PII scanning</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--marigold)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>5 data sources · 10M events/mo</li>
+          </ul>
+          <a class="btn ghost" href="#book">Start with Essentials</a>
+        </div>
+      </div>
+
+      <div class="tier hot reveal" style="--d:.08s">
+        <div class="tierband" style="background:repeating-linear-gradient(90deg,var(--vermilion) 0 14px,var(--ecru) 14px 18px,var(--cobalt) 18px 32px,var(--ecru) 32px 36px)"></div>
+        <div class="tin">
+          <h3>Growth</h3>
+          <p class="for">For scale-ups and agencies that need automated QA across the whole stack.</p>
+          <p class="price">€1,499<small>/MO · €17,988/YR</small></p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--vermilion)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>Consent-aware, backend-vs-frontend logic</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--vermilion)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>Full client-side PII scanning</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--vermilion)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>Anomaly detection + advanced dataLayer rules</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--vermilion)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>15 sources · 50M events/mo · 5 workspaces</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--vermilion)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>Priority Slack support, guided onboarding</li>
+          </ul>
+          <a class="btn" href="#book">Talk to us about Growth</a>
+        </div>
+      </div>
+
+      <div class="tier reveal" style="--d:.16s">
+        <div class="tierband" style="background:repeating-linear-gradient(90deg,var(--ink) 0 10px,var(--ecru) 10px 13px,var(--plum) 13px 23px,var(--ecru) 23px 26px,var(--viridian) 26px 36px,var(--ecru) 36px 39px)"></div>
+        <div class="tin">
+          <h3>Enterprise</h3>
+          <p class="for">For multi-brand groups and global agencies with compliance on the line.</p>
+          <p class="price">€4,999+<small>/MO · FROM €59,988/YR</small></p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--plum)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>Supreme Attribution: FE + BE + CRM unified</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--plum)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>Hierarchical AI user-journey validation</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--plum)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>Server-side + payment data scanning</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--plum)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>Unlimited sources · GDPR audit reports</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--plum)" stroke-width="3"><path d="M4 13l5 5L20 7"/></svg>Dedicated CSM + SLA, white-glove onboarding</li>
+          </ul>
+          <a class="btn ghost" href="#book">Design your rollout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————————————————— FINALE ————————————————— -->
+<section class="finale" id="book">
+  <div class="wrap">
+    <h2 class="h-display reveal">Your database already<br>knows the truth. <em>Let it speak.</em></h2>
+    <p class="sub reveal" style="--d:.08s">A 45-minute audit call. We come with findings from your own stack, not slides.</p>
+    <a class="btn big reveal" style="--d:.16s" href="mailto:hello@bayes.ai?subject=Data%20audit">Book a data audit</a>
+    <span class="mono reveal" style="--d:.24s">READ-ONLY ACCESS · GDPR-NATIVE · YOUR DATA STAYS IN YOUR WAREHOUSE</span>
+  </div>
+</section>
+<svg class="weaveband" role="presentation" aria-hidden="true">
+  <defs>
+    <pattern id="chev" width="48" height="64" patternUnits="userSpaceOnUse">
+      <rect width="48" height="64" fill="#221c14"/>
+      <path d="M-2 10 l12 -7 l12 7 l12 -7 l12 7 l4 -2.5" fill="none" stroke="#d9482b" stroke-width="4.5"/>
+      <path d="M-2 21 l12 -7 l12 7 l12 -7 l12 7 l4 -2.5" fill="none" stroke="#eda812" stroke-width="4.5"/>
+      <path d="M-2 32 l12 -7 l12 7 l12 -7 l12 7 l4 -2.5" fill="none" stroke="#f2ecdf" stroke-width="2.5"/>
+      <path d="M-2 43 l12 -7 l12 7 l12 -7 l12 7 l4 -2.5" fill="none" stroke="#1e7a52" stroke-width="4.5"/>
+      <path d="M-2 54 l12 -7 l12 7 l12 -7 l12 7 l4 -2.5" fill="none" stroke="#2b50c8" stroke-width="4.5"/>
+      <path d="M-2 65 l12 -7 l12 7 l12 -7 l12 7 l4 -2.5" fill="none" stroke="#a4408f" stroke-width="4.5"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="64" fill="url(#chev)"/>
+</svg>
+
+<!-- ————————————————— FOOTER ————————————————— -->
+<footer>
+  <div class="wrap">
+    <div class="footgrid">
+      <div class="fcol" style="max-width:300px">
+        <a class="wordmark" href="#top">
+          <svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M3 25 C9.5 25 9.5 7 16 7 C21.5 7 20 20 23.5 24.5" fill="none" stroke="#221c14" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M23.5 24.5 L29 12.5" fill="none" stroke="#d9482b" stroke-width="3.4" stroke-linecap="round"/>
+          </svg>
+          BayesAI
+        </a>
+        <p style="font-size:13.5px;color:var(--dim)">The data platform that checks every marketing tool against your database truth, and against plain arithmetic.</p>
+      </div>
+      <div class="fcol">
+        <b style="font-size:13px;color:var(--ink)">Product</b>
+        <a href="#how">How it works</a>
+        <a href="#collection">Features</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="fcol">
+        <b style="font-size:13px;color:var(--ink)">Company</b>
+        <a href="#evidence">Evidence</a>
+        <a href="mailto:hello@bayes.ai">Contact</a>
+      </div>
+    </div>
+    <div class="footnote">
+      <span>© 2026 BAYESAI · A BUILDERS STUDIO VENTURE</span>
+      <span>WOVEN, NOT WELDED</span>
+    </div>
+  </div>
+</footer>
+<div class="threads" aria-hidden="true"><span class="t1"></span><span class="t2"></span><span class="t3"></span><span class="t4"></span><span class="t5"></span></div>
+
+<script>
+/* ————————————————— scroll chrome ————————————————— */
+const nav=document.getElementById('nav'),prog=document.getElementById('progress');
+addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>10);
+  const h=document.documentElement, max=h.scrollHeight-innerHeight;
+  prog.style.width=(max>0?(scrollY/max)*100:0)+'%';
+},{passive:true});
+
+/* ————————————————— reveals ————————————————— */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);
+    e.target.querySelectorAll('[data-count]').forEach(countUp);
+  }
+}),{threshold:.18,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ————————————————— count-up ————————————————— */
+const eased=t=>1-Math.pow(1-t,4);
+function countUp(el){
+  if(el.dataset.done)return; el.dataset.done=1;
+  const target=parseFloat(el.dataset.count),dec=parseInt(el.dataset.decimals||0),
+        pre=el.dataset.prefix||'',suf=el.dataset.suffix||'',t0=performance.now(),D=1500;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=pre+target.toFixed(dec)+suf;return}
+  (function f(now){const p=Math.min((now-t0)/D,1);
+    el.textContent=pre+(target*eased(p)).toFixed(dec)+suf;
+    if(p<1)requestAnimationFrame(f)})(t0);
+}
+
+/* ————————————————— ticker: duplicate for seamless loop ————————————————— */
+const track=document.getElementById('ticktrack');
+track.innerHTML+=track.innerHTML;
+
+/* ————————————————— the weave (hero canvas) ————————————————— */
+(function(){
+  const cv=document.getElementById('weave');if(!cv)return;
+  const ctx=cv.getContext('2d');
+  const COL={ga4:'#eda812',meta:'#2b50c8',tiktok:'#a4408f',ads:'#d9482b',crm:'#1e7a52',db:'#221c14'};
+  const threads=[
+    {c:COL.ga4, name:'GA4'},
+    {c:COL.meta, name:'META'},
+    {c:COL.tiktok,name:'TIKTOK'},
+    {c:COL.ads, name:'ADS'},
+    {c:COL.crm, name:'CRM'},
+  ];
+  const scenarios=[
+    {t:1,label:'META · ATC +43% vs DB'},
+    {t:0,label:'GA4 · transactions > DB'},
+    {t:3,label:'ADS · AOV half of backend'},
+    {t:2,label:'TIKTOK · PII in URL param'},
+    {t:4,label:'CRM · 2.7 checkouts / session'},
+  ];
+  let W,H,dpr;
+  function size(){
+    dpr=Math.min(devicePixelRatio||1,2);
+    W=cv.clientWidth;H=cv.clientHeight;
+    cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  size();addEventListener('resize',size);
+  const SCENE=7000,DEV_IN=1200,DEV_HOLD=3200,DEV_OUT=1200;
+  const easeIO=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  function laneY(i){return H*0.14+i*(H*0.62/(threads.length-1))}
+  const dbY=()=>H*0.88;
+  function draw(now){
+    ctx.clearRect(0,0,W,H);
+    const scene=Math.floor(now/SCENE)%scenarios.length;
+    const local=now%SCENE;
+    const sc=scenarios[scene];
+    // deviation envelope over time
+    let dev=0;
+    if(local<DEV_IN)dev=easeIO(local/DEV_IN);
+    else if(local<DEV_IN+DEV_HOLD)dev=1;
+    else if(local<DEV_IN+DEV_HOLD+DEV_OUT)dev=1-easeIO((local-DEV_IN-DEV_HOLD)/DEV_OUT);
+    const cx=W*0.6; // deviation center x
+    // database line first (under)
+    ctx.lineWidth=9;ctx.lineCap='round';ctx.strokeStyle=COL.db;
+    ctx.beginPath();
+    for(let x=8;x<=W-8;x+=6){
+      const y=dbY()+Math.sin(x*0.015+now*0.0011)*1.6;
+      x===8?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+    // source threads
+    threads.forEach((th,i)=>{
+      const isDev=i===sc.t;
+      ctx.lineWidth=6.5;ctx.strokeStyle=th.c;ctx.beginPath();
+      for(let x=8;x<=W-8;x+=5){
+        let y=laneY(i)+Math.sin(x*0.02+now*0.0013+i*1.7)*4;
+        if(isDev&&dev>0){
+          const g=Math.exp(-Math.pow((x-cx)/(W*0.14),2)); // gaussian bump
+          y-=g*dev*Math.min(H*0.17,laneY(i)-H*0.05); // pull up, away from the database line
+        }
+        x===8?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    });
+    // hatch gap marks + flag while deviating
+    if(dev>0.25){
+      const i=sc.t;
+      const gTop=laneY(i)-dev*Math.min(H*0.17,laneY(i)-H*0.05);
+      // flag chip
+      ctx.font='10.5px "Fragment Mono",monospace';
+      const label='✕ '+sc.label;
+      const tw=ctx.measureText(label).width;
+      const bx=Math.min(Math.max(cx-tw/2-10,8),W-tw-28),by=Math.max(gTop-38,6);
+      ctx.globalAlpha=Math.min(dev*1.4,1);
+      ctx.fillStyle=COL.db;
+      ctx.beginPath();ctx.roundRect(bx,by,tw+20,24,12);ctx.fill();
+      ctx.fillStyle='#f2ecdf';ctx.fillText(label,bx+10,by+16);
+      ctx.globalAlpha=1;
+    }
+    // reconciled tick between scenes
+    if(local>DEV_IN+DEV_HOLD+DEV_OUT+200&&local<SCENE-300){
+      ctx.font='10.5px "Fragment Mono",monospace';
+      const label='✓ reconciled vs database';
+      const tw=ctx.measureText(label).width;
+      ctx.fillStyle='#1e7a52';
+      ctx.beginPath();ctx.roundRect(W*0.6-tw/2-10,H*0.42,tw+20,24,12);ctx.fill();
+      ctx.fillStyle='#f2ecdf';ctx.fillText(label,W*0.6-tw/2,H*0.42+16);
+    }
+    // DB label
+    ctx.font='10px "Fragment Mono",monospace';ctx.fillStyle=COL.db;
+    ctx.fillText('YOUR DATABASE · THE TRUTH',10,dbY()-12);
+  }
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){draw(2000);return}
+  (function loop(now){draw(now);requestAnimationFrame(loop)})(0);
+})();
+</script>
+</body>
+</html>

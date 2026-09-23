@@ -143,8 +143,15 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .tile.logo img { max-width: 58%; max-height: 38%; }
 .tile.mark img { max-width: 34%; max-height: 42%; margin: auto; }
 .tile.swatch { flex-direction: column; justify-content: flex-end; }
-.tile.swatch .hex { font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; }
-.tile.swatch .nm { font-size: 12px; opacity: 0.6; }
+.tile.swatch { padding: 16px 14px; }
+.sw-label { writing-mode: vertical-rl; transform: rotate(180deg); display: flex; gap: 10px; align-items: flex-start; white-space: nowrap; font-size: 12px; }
+.sw-label .hex { letter-spacing: 0.06em; opacity: 0.6; font-feature-settings: "tnum" 1; }
+.tile.face .faces { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.tile.face .faces button { width: 100%; display: flex; align-items: baseline; gap: 8px; padding: 6px 8px; margin: 0 -8px; border-radius: 8px; text-align: left; transition: background 0.15s; }
+.tile.face .faces button:hover { background: rgba(0, 0, 0, 0.05); }
+.tile.face .faces button > span { font-size: 15px; flex: none; }
+.tile.face .faces small { font-size: 11px; opacity: 0.5; flex: 1; font-feature-settings: "tnum" 1; }
+.tile.face .faces i { font-style: normal; font-size: 12px; opacity: 0.6; }
 .tile.face { flex-direction: column; justify-content: space-between; }
 .tile.face .aa { font-size: clamp(64px, 9vw, 150px); line-height: 0.9; letter-spacing: -0.03em; }
 .tile.line { align-items: flex-end; }
@@ -198,10 +205,12 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .pic img { display: block; width: 100%; height: auto; min-height: 80px; transition: transform 0.5s var(--ease); }
 .pic:hover img { transform: scale(1.02); }
 .pic figcaption {
-  position: absolute; left: 8px; right: 8px; bottom: 8px; display: flex; gap: 4px; align-items: center;
+  position: absolute; right: 8px; bottom: 8px; display: flex; gap: 6px;
   opacity: 0; transform: translateY(4px); transition: opacity 0.2s, transform 0.2s var(--ease);
 }
 .pic:hover figcaption, .pic:focus-within figcaption { opacity: 1; transform: none; }
-.pic figcaption span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,0.5); padding-left: 4px; }
-.pic figcaption :is(button, a) { flex: none; font-size: 11px; padding: 5px 10px; border-radius: 99px; background: rgba(255, 255, 255, 0.94); color: var(--ink); transition: background 0.15s, color 0.15s; }
-.pic figcaption :is(button, a):hover { background: var(--ink); color: #fff; }
+.pic figcaption :is(button, a) {
+  width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--ink); color: #fff; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25); transition: transform 0.15s var(--ease), background 0.15s;
+}
+.pic figcaption :is(button, a):hover { background: #333; transform: scale(1.06); }

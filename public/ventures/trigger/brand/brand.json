@@ -48,5 +48,47 @@
       "src": "https://fonts.gstatic.com/s/stacksansheadline/v1/1PtFg9jZXvmMnkLnuURbaukKZJTyrDV326uH6mSinjBIwc5tIjFAoAQi2ICWZHU.woff2"
     }
   ],
-  "source": "Live trigger.online :root and Webflow design tokens (--ink, --mut, --_colors---primary--beige, --_typography---font-family--primary), fonts cross-checked with ~/dev/trigger-frontend src/app/layout.tsx; logo and asterisk mark from src/components/ui/trigger-logo.tsx; tagline from the hero h1"
+  "source": "Live trigger.online :root and Webflow design tokens (--ink, --mut, --_colors---primary--beige, --_typography---font-family--primary), fonts cross-checked with ~/dev/trigger-frontend src/app/layout.tsx; logo and asterisk mark from src/components/ui/trigger-logo.tsx; tagline from the hero h1",
+  "deck": {
+    "style": "imagery",
+    "serif": "Georgia, 'Times New Roman', serif",
+    "displayWeight": 300,
+    "backgrounds": [
+      "/ventures/trigger/gallery/backgrounds/art-06-dancer-orange-bloom.jpg",
+      "/ventures/trigger/gallery/backgrounds/art-13-daisies-blue-red.jpg",
+      "/ventures/trigger/gallery/backgrounds/art-12-sun-over-dunes.jpg",
+      "/ventures/trigger/gallery/backgrounds/art-09-profile-silhouette-magenta.jpg",
+      "/ventures/trigger/gallery/backgrounds/art-39-poppies-under-clouds.jpg",
+      "/ventures/trigger/gallery/backgrounds/art-19-walker-sunset-shrubs.jpg",
+      "/ventures/trigger/gallery/backgrounds/art-26-glowing-crowd-heads.jpg",
+      "/ventures/trigger/gallery/backgrounds/art-33-walker-vinyl-record.jpg",
+      "/ventures/trigger/gallery/backgrounds/art-05-comet-spray-horizon.jpg",
+      "/ventures/trigger/gallery/backgrounds/art-43-couple-sunset-bicycle.jpg",
+      "/ventures/trigger/gallery/backgrounds/art-31-festival-walkers.jpg",
+      "/ventures/trigger/gallery/backgrounds/art-17-blue-shadow-red-field.jpg"
+    ],
+    "closing": {
+      "image": "/ventures/trigger/gallery/backgrounds/footer-dancers-circle.jpg",
+      "labels": [
+        {
+          "text": "Self",
+          "x": 10.5,
+          "y": 19,
+          "angle": 33
+        },
+        {
+          "text": "Relatability",
+          "x": 78,
+          "y": 18,
+          "angle": 150
+        },
+        {
+          "text": "Social",
+          "x": 60,
+          "y": 80,
+          "angle": -70
+        }
+      ]
+    }
+  }
 }

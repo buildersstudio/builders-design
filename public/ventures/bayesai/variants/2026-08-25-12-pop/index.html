@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BayesAI — Your numbers, quietly correct</title>
+<meta name="description" content="BayesAI watches every tool in your marketing stack, checks every number against your database and against plain arithmetic — and only speaks up when something is actually wrong." />
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><circle cx="13" cy="16" r="9" fill="none" stroke="%23131015" stroke-width="2.6"/><circle cx="20" cy="16" r="9" fill="none" stroke="%23ff3d8c" stroke-width="2.8"/></svg>' />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=tanker@400&f[]=switzer@400,500,600,700&display=swap" rel="stylesheet" />
+<style>
+/* ————— tokens: bold & fun ————— */
+:root{
+  --cream:#f7f0dd; --white:#ffffff; --ink:#131015;
+  --pink:#ff3d8c; --pinksoft:#ff77b7; --red:#ee2f2f; --green:#128a4b; --cobalt:#2447d6;
+  --lilac:#cdb6f2; --yellow:#ffd23f;
+  --dim:rgba(19,16,21,.6); --hair:rgba(19,16,21,.14);
+  --disp:"Tanker",Impact,sans-serif;
+  --sans:"Switzer",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,1.2,.35,1);
+  --pad:clamp(20px,4vw,56px);
+  --shadow:6px 6px 0 var(--ink);
+  --shadow-sm:4px 4px 0 var(--ink);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--white);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+::selection{background:var(--pink);color:#fff}
+a{color:inherit;text-decoration:none}
+img,svg,canvas{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1280px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+.disp{font-family:var(--disp);font-weight:400;letter-spacing:.01em;line-height:.94;text-transform:uppercase}
+.label{font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.lede{font-size:clamp(16px,1.3vw,18.5px);color:var(--dim);max-width:56ch;font-weight:500}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+@keyframes bob{from{transform:rotate(var(--rot,0deg)) translateY(-4px)}to{transform:rotate(var(--rot,0deg)) translateY(4px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .burst,.stkr{animation:none!important}
+  .mqt{animation:none!important}
+}
+
+/* ————— buttons: chunky stickers ————— */
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;font-weight:700;font-size:15px;
+  padding:14px 26px;border-radius:14px;border:2px solid var(--ink);box-shadow:var(--shadow-sm);
+  transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.pink{background:var(--pink)}
+.btn.yellow{background:var(--yellow);color:var(--ink)}
+.btn.ghost{background:#fff;color:var(--ink)}
+.btn.lg{padding:17px 32px;font-size:16.5px}
+
+/* ————— nav ————— */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:2px solid var(--ink)}
+.navin{display:flex;align-items:center;justify-content:space-between;height:68px}
+.wordmark{display:flex;align-items:center;gap:9px;font-family:var(--disp);font-size:22px;letter-spacing:.02em;text-transform:uppercase}
+.navlinks{display:flex;gap:clamp(14px,2.4vw,32px);font-size:14.5px;font-weight:700;color:var(--ink)}
+.navlinks a{padding:6px 10px;border-radius:10px;transition:background .2s,color .2s}
+.navlinks a:hover{background:var(--yellow)}
+.navright{display:flex;align-items:center;gap:16px}
+.navright .signin{font-size:14.5px;font-weight:700}
+.navright .btn{padding:10px 18px;font-size:13.5px;box-shadow:3px 3px 0 var(--ink)}
+@media(max-width:900px){.navlinks,.navright .signin{display:none}}
+
+/* ————— hero: pink split ————— */
+.hero{position:relative;background:#fff;overflow:visible;padding:clamp(52px,8vh,96px) 0 clamp(56px,8vh,92px);text-align:center}
+.heroin{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.heropill{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:700;background:#fff;
+  border:2px solid var(--ink);border-radius:999px;padding:8px 16px;box-shadow:var(--shadow-sm);margin-bottom:30px;transform:rotate(-1deg)}
+.heropill i{width:14px;height:14px;border-radius:50%;background:var(--pink);border:2px solid var(--ink)}
+.h1pop{font-family:var(--disp);text-transform:uppercase;line-height:.95;letter-spacing:.01em;
+  font-size:clamp(46px,6.1vw,94px);color:var(--ink)}
+.h1pop .hl{display:inline-block;background:var(--yellow);color:var(--ink);text-shadow:none;border:2.5px solid var(--ink);
+  border-radius:16px;padding:.04em .18em .02em;box-shadow:var(--shadow-sm);transform:rotate(-1.6deg);margin-top:.12em}
+.hero .lede{margin:28px auto 34px;font-weight:500;max-width:56ch}
+.ctarow{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.lptrust{margin-top:26px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+
+/* floating stickers */
+.stkr{position:absolute;z-index:2;animation:bob 3.4s ease-in-out infinite alternate}
+.burst{width:clamp(90px,9vw,140px);filter:drop-shadow(4px 4px 0 rgba(19,16,21,1))}
+.burst svg{animation:spin 24s linear infinite}
+.bursttxt{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--disp);text-transform:uppercase;
+  font-size:clamp(12px,1.1vw,16px);line-height:1.05;color:var(--ink);text-align:center;transform:rotate(-8deg)}
+.s1{top:-40px;left:-38px;--rot:-6deg}
+.s2{bottom:-38px;right:-30px;--rot:7deg;animation-delay:-1.4s}
+.pillstkr{background:#fff;border:2px solid var(--ink);border-radius:999px;box-shadow:var(--shadow-sm);
+  padding:9px 16px;font-weight:700;font-size:13.5px;white-space:nowrap}
+@media(max-width:760px){
+  .s1{left:-18px;top:-26px;width:100px}
+  .s2{right:-14px;bottom:-24px;width:100px}
+}
+
+/* mockup on a color slab */
+.mockwrap{position:relative;background:var(--pink);border:2.5px solid var(--ink);border-radius:28px;box-shadow:var(--shadow);
+  padding:clamp(22px,2.8vw,44px);max-width:1060px;margin:clamp(52px,7vh,84px) auto 0;text-align:left}
+.mockstage{position:relative;text-align:left;transform:rotate(1.4deg)}
+.frame{background:#fff;border:2.5px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:10px 10px 0 var(--ink)}
+.framebar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:2px solid var(--ink);background:var(--lilac)}
+.framebar i{width:11px;height:11px;border-radius:50%;border:2px solid var(--ink)}
+.framebar i:nth-child(1){background:var(--pink)}.framebar i:nth-child(2){background:var(--yellow)}.framebar i:nth-child(3){background:var(--green)}
+.framebar span{margin:0 auto;font-size:12px;font-weight:700;background:#fff;border:2px solid var(--ink);padding:3px 16px;border-radius:999px}
+.framebody{padding:20px 22px 22px}
+.goodmorning{font-size:13px;font-weight:600;color:var(--dim)}
+.probcount{font-family:var(--disp);text-transform:uppercase;font-size:26px;margin:4px 0 16px}
+.mock-row{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:14px;border:2px solid var(--ink);border-radius:14px;margin-top:10px;background:#fff;transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+.mock-row:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-sm)}
+.mock-row b{font-weight:700;font-size:14px;letter-spacing:-.01em;display:block}
+.mock-meta{display:flex;align-items:center;gap:8px;margin-top:7px;font-size:12px;font-weight:600;color:var(--dim);flex-wrap:wrap}
+.mock-meta em{font-style:normal}
+.mock-tools{display:flex;gap:7px;flex:none;padding-top:3px}
+.mock-tools img{height:17px;width:auto;max-width:32px;object-fit:contain}
+.mock-body{flex:1;min-width:0}
+.plat{display:inline-flex;align-items:center;gap:5px;border:2px solid var(--ink);border-radius:999px;padding:2px 9px;color:var(--ink);background:var(--cream)}
+.plat img,.plat svg{height:11px;width:auto;max-width:14px;object-fit:contain}
+.geo{letter-spacing:.04em}
+.fl{margin-right:6px;letter-spacing:0}
+.mock-meta i{width:9px;height:9px;border-radius:50%;border:2px solid var(--ink);flex:none}
+.mock-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none}
+.mock-right b{font-family:var(--disp);font-size:18px}
+.afx{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:#fff;background:var(--pink);
+  border:2px solid var(--ink);padding:4px 12px;border-radius:999px;box-shadow:2.5px 2.5px 0 var(--ink)}
+.afx svg{width:13px;height:13px}
+
+
+/* ————— marquee ribbon ————— */
+.ribbon{background:var(--red);border-top:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);
+  transform:rotate(-1.4deg) scale(1.02);margin:34px 0;overflow:hidden;padding:13px 0}
+.mqt{display:flex;gap:52px;width:max-content;animation:mq 40s linear infinite}
+.mqi{font-family:var(--disp);text-transform:uppercase;font-size:17px;color:var(--cream);white-space:nowrap;display:flex;align-items:center;gap:52px}
+.mqi svg{width:16px;height:16px;flex:none}
+
+/* ————— sections ————— */
+.sec{padding:clamp(80px,11vh,150px) 0 0}
+.kicker-c{text-align:center}
+.kchip{display:inline-block;background:var(--yellow);border:2px solid var(--ink);border-radius:999px;
+  padding:6px 16px;box-shadow:var(--shadow-sm);transform:rotate(-1.2deg)}
+.h2{font-family:var(--disp);text-transform:uppercase;line-height:.96;font-size:clamp(34px,4.6vw,66px);margin-top:20px}
+.seclede{margin:18px auto 0;text-align:center}
+
+/* logos: sticker pills */
+.logosec{padding-top:clamp(64px,9vh,110px);text-align:center}
+.logorow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;margin-top:30px}
+.logorow .lpill{display:inline-flex;align-items:center;gap:9px;background:#fff;border:2px solid var(--ink);border-radius:999px;
+  padding:9px 16px;font-weight:700;font-size:13.5px;box-shadow:var(--shadow-sm);transition:transform .18s var(--ease)}
+.logorow .lpill:nth-child(odd){transform:rotate(-1.4deg)}
+.logorow .lpill:nth-child(even){transform:rotate(1.2deg)}
+.logorow .lpill:hover{transform:rotate(0) translateY(-3px)}
+.logorow .lpill img{height:17px;width:auto;max-width:26px;object-fit:contain}
+
+/* stats: fat sticker cards */
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px);margin-top:clamp(44px,6vh,64px)}
+.stat{border:2.5px solid var(--ink);border-radius:22px;padding:30px 28px;box-shadow:var(--shadow)}
+.stat:nth-child(1){background:var(--lilac);transform:rotate(-1.2deg)}
+.stat:nth-child(2){background:var(--yellow);transform:rotate(.9deg)}
+.stat:nth-child(3){background:var(--pinksoft);transform:rotate(-.8deg)}
+.stat b{font-family:var(--disp);font-size:clamp(56px,6vw,96px);line-height:1;display:block}
+.stat p{font-size:14px;font-weight:600;margin-top:12px;max-width:32ch}
+.stat span{display:block;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:10px;color:rgba(19,16,21,.55)}
+@media(max-width:820px){.statrow{grid-template-columns:1fr}}
+
+/* ————— pillars: color slabs ————— */
+.slides{margin-top:clamp(44px,6vh,64px);display:flex;flex-direction:column;gap:clamp(20px,3vh,32px)}
+.slide{position:relative;border:2.5px solid var(--ink);border-radius:30px;box-shadow:var(--shadow);
+  padding:clamp(36px,5vw,64px);overflow:hidden}
+.slide.blue{background:var(--cobalt);color:#fff}
+.slide.green{background:var(--green);color:var(--cream)}
+.slide.pinky{background:var(--pinksoft);color:var(--ink)}
+.slide .in2{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2vw,28px);align-items:center}
+.slide .stext{grid-column:1 / span 5}
+.slide .stext .label{opacity:.7}
+.slide h3{font-family:var(--disp);text-transform:uppercase;line-height:.94;font-size:clamp(40px,4.8vw,72px);margin:14px 0 16px}
+.slide p{font-size:15px;font-weight:500;max-width:44ch;opacity:.92}
+.slide .scard{grid-column:7 / span 6;justify-self:end;width:min(480px,100%)}
+.scard{background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-radius:18px;padding:20px;box-shadow:var(--shadow);transform:rotate(1deg)}
+.scard .sctitle{font-weight:700;font-size:13.5px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.scard .sctitle em{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--yellow);border:2px solid var(--ink);border-radius:999px;padding:2px 10px}
+.deco{position:absolute;z-index:0;pointer-events:none}
+@media(max-width:900px){
+  .slide .stext{grid-column:1 / -1}
+  .slide .scard{grid-column:1 / -1;justify-self:start;margin-top:24px}
+}
+
+/* snippet internals */
+.dbar{display:flex;align-items:center;gap:12px;margin-top:10px}
+.dbar:first-of-type{margin-top:0}
+.dbar .lab{font-size:12.5px;font-weight:700;width:100px;flex:none}
+.dbar .track{flex:1;height:18px;background:var(--cream);border:2px solid var(--ink);border-radius:9px;overflow:hidden}
+.dbar .track i{display:block;height:100%}
+.dbar .val{font-family:var(--disp);font-size:15px;width:52px;text-align:right}
+.scnote{font-size:12px;font-weight:600;color:var(--dim);margin-top:14px}
+.hist{display:flex;align-items:flex-end;gap:6px;height:150px;padding-top:26px}
+.hist i{flex:1;background:var(--lilac);border:2px solid var(--ink);border-bottom:0;border-radius:6px 6px 0 0}
+.hist i.hot{position:relative;background:var(--red)}
+.hist i.hot::after{content:"127% ⚠";position:absolute;top:-26px;left:50%;transform:translateX(-50%) rotate(-4deg);
+  background:var(--red);color:#fff;border:2px solid var(--ink);font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.histaxis{display:flex;justify-content:space-between;font-size:11px;font-weight:700;border-top:2px solid var(--ink);padding-top:8px;margin-top:2px}
+.leakrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 12px;border:2px solid var(--ink);border-radius:12px;margin-top:8px;font-size:13px;background:#fff}
+.leakrow:first-of-type{margin-top:0}
+.leakrow code{font-family:inherit;font-weight:700;letter-spacing:-.01em}
+.leakrow .st{font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;border:2px solid var(--ink)}
+.leakrow .st.ok{background:#d9f2e2;color:var(--green)}
+.leakrow .st.bad{background:var(--ink);color:#fff}
+.leakrow.bad{background:#ffe3ef}
+.leakfoot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:2px solid var(--ink);font-size:12px;font-weight:600}
+
+/* ————— features ————— */
+.feat{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2vw,28px);align-items:center;margin-top:clamp(70px,10vh,130px)}
+.feat .fcopy{grid-column:1 / span 5}
+.feat .fart{grid-column:7 / span 6}
+.feat.rev .fcopy{grid-column:8 / span 5;order:2}
+.feat.rev .fart{grid-column:1 / span 6;order:1}
+.fart{position:relative;aspect-ratio:5/4;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  border:2.5px solid var(--ink);border-radius:26px;box-shadow:var(--shadow)}
+.fart.f1{background:var(--cobalt)}
+.fart.f2{background:var(--yellow)}
+.fart.f3{background:var(--green)}
+.fart .frame{position:relative;z-index:1;width:min(84%,470px);transform:rotate(-1.2deg);box-shadow:8px 8px 0 var(--ink)}
+.fart.f2 .frame,.fcopy h3 em{transform:rotate(1deg)}
+.fcopy .h3{font-family:var(--disp);text-transform:uppercase;line-height:.96;font-size:clamp(28px,3vw,44px);margin:14px 0 14px}
+.fcopy p{font-size:15px;font-weight:500;color:var(--dim);max-width:46ch}
+@media(max-width:900px){
+  .feat .fcopy,.feat.rev .fcopy{grid-column:1 / -1;order:1}
+  .feat .fart,.feat.rev .fart{grid-column:1 / -1;order:2;margin-top:22px}
+}
+.mock-edit{display:flex;gap:11px;align-items:flex-start;padding:11px 12px;border:2px solid var(--ink);border-radius:12px;margin-top:8px;font-size:13px;background:#fff}
+.mock-edit:first-of-type{margin-top:0}
+.mock-edit span{width:22px;height:22px;flex:none;border-radius:50%;background:var(--green);color:#fff;border:2px solid var(--ink);font-size:11px;display:grid;place-items:center;font-weight:700}
+.mock-edit div{flex:1}
+.mock-edit b{font-weight:700;display:block;font-size:13px}
+.mock-edit small{display:block;font-size:11.5px;font-weight:600;color:var(--dim);margin-top:1px}
+.mock-edit em{font-style:normal;font-size:11.5px;font-weight:700;text-decoration:underline;cursor:pointer}
+.agentline{display:flex;gap:8px;align-items:center;font-size:12.5px;font-weight:700;margin-bottom:12px}
+.agentline i{width:13px;height:13px;border-radius:50%;background:var(--pink);border:2px solid var(--ink);flex:none}
+.mini-chat{max-width:84%;padding:11px 15px;border:2px solid var(--ink);border-radius:16px;font-size:13px;font-weight:500;line-height:1.5}
+.mini-chat.me{background:var(--ink);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.mini-chat.ai{background:var(--cream);border-bottom-left-radius:4px;margin-top:10px}
+
+/* ————— quote: lilac poster ————— */
+.quotewrap{margin-top:clamp(80px,11vh,150px);background:var(--lilac);border-top:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);
+  padding:clamp(64px,9vh,120px) 0;position:relative;overflow:hidden}
+.quote{max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.qmark{font-family:var(--disp);font-size:clamp(90px,10vw,160px);line-height:.5;display:block;margin-bottom:26px;
+  color:var(--pink);text-shadow:4px 4px 0 var(--ink)}
+.quote h2{font-weight:700;line-height:1.28;font-size:clamp(24px,2.9vw,40px);letter-spacing:-.015em}
+.quote h2 .chip{display:inline-block;background:var(--cream);border:2px solid var(--ink);border-radius:12px;
+  padding:0 .28em;box-shadow:3px 3px 0 var(--ink);transform:rotate(-1.2deg)}
+.quote h2 .chip.y{background:var(--yellow);transform:rotate(1.2deg)}
+.quote p{font-size:14.5px;font-weight:600;color:rgba(19,16,21,.72);margin:26px auto 0;max-width:56ch}
+.qattr{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:#fff;border:2px solid var(--ink);
+  border-radius:999px;padding:8px 18px;box-shadow:var(--shadow-sm);font-weight:700;font-size:13.5px}
+
+/* ————— pricing ————— */
+.lpprice{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px);margin-top:clamp(48px,6vh,72px);align-items:stretch}
+.ptier{position:relative;background:#fff;border:2.5px solid var(--ink);border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.ptier:nth-child(1){transform:rotate(-.8deg)}
+.ptier:nth-child(3){transform:rotate(.8deg)}
+.ptier.hot{background:var(--yellow)}
+.ptier .popburst{position:absolute;top:-34px;right:-20px;width:110px;animation:spin 26s linear infinite}
+.ptier .popburst text{font-family:var(--sans);font-weight:800}
+.ptier > b{font-family:var(--disp);text-transform:uppercase;font-size:20px}
+.pprice{font-family:var(--disp);font-size:clamp(38px,3.4vw,52px);margin:12px 0 6px}
+.pprice span{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--dim)}
+.ptier > p{font-size:13.5px;font-weight:600;color:var(--dim);min-height:42px}
+.ptier ul{list-style:none;margin:18px 0 26px;display:flex;flex-direction:column;font-size:14px;font-weight:600}
+.ptier ul li{padding:10px 0;border-top:2px dashed rgba(19,16,21,.25)}
+.ptier .btn{margin-top:auto;justify-content:center}
+@media(max-width:940px){.lpprice{grid-template-columns:1fr;max-width:500px;margin-left:auto;margin-right:auto}}
+
+
+
+/* ————— black closer: one slab, CTA → links → colossus ————— */
+footer{background:var(--ink);color:var(--cream);border-radius:48px 48px 0 0;margin-top:clamp(80px,11vh,150px);
+  padding:clamp(64px,9vh,110px) 0 0;position:relative;overflow:hidden}
+footer .wrap{position:relative;z-index:1}
+
+/* CTA: asymmetric, headline left / action card right */
+.ctablock{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,4vw,72px);
+  align-items:center;padding-bottom:clamp(48px,7vh,80px)}
+.ctablock .h2{color:var(--cream);margin-top:18px;font-size:clamp(38px,4.9vw,74px)}
+.ctablock .h2 .hl2{display:inline-block;background:var(--pink);color:#fff;border-radius:14px;
+  padding:.02em .18em;transform:rotate(-1.6deg)}
+.actioncard{background:var(--cream);color:var(--ink);border:2.5px solid var(--cream);border-radius:24px;
+  padding:clamp(24px,2.6vw,34px);box-shadow:10px 10px 0 var(--pink);transform:rotate(1.2deg)}
+.actioncard p{font-size:15px;font-weight:600;color:rgba(19,16,21,.72);margin-bottom:20px}
+.actioncard .btn{width:100%;justify-content:center}
+.actionlist{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:20px;font-size:13.5px;font-weight:700}
+.actionlist li{display:flex;align-items:center;gap:9px}
+.actionlist i{width:12px;height:12px;border-radius:4px;border:2px solid var(--ink);flex:none}
+
+/* link columns */
+.footcols{display:grid;grid-template-columns:repeat(3,auto) 1fr;gap:clamp(24px,4vw,72px);
+  padding:clamp(36px,5vh,56px) 0;border-top:2px dashed rgba(247,240,221,.28)}
+.fcol h4{display:flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(247,240,221,.6);margin-bottom:14px}
+.fcol h4 i{width:11px;height:11px;border-radius:3px;flex:none}
+.fcol a{display:block;font-size:16px;font-weight:700;color:var(--cream);padding:5px 0;width:fit-content;
+  transition:transform .2s var(--ease),color .2s}
+.fcol a:hover{transform:translateX(5px);color:var(--yellow)}
+.fmail{justify-self:end;align-self:start;text-align:right}
+.fmail span{display:block;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,240,221,.6)}
+.fmail a{font-family:var(--disp);text-transform:uppercase;font-size:clamp(20px,2.1vw,30px);color:var(--yellow);
+  display:inline-block;margin-top:8px}
+.fmail a:hover{color:#fff}
+
+/* legal + colossus */
+.legalrow{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;
+  padding:20px 0 clamp(28px,4vh,44px);border-top:2px dashed rgba(247,240,221,.28)}
+.legalrow .links{display:flex;gap:20px;font-size:13px;font-weight:700;flex-wrap:wrap}
+.legalrow .links a{color:rgba(247,240,221,.75)}
+.legalrow .links a:hover{color:var(--yellow)}
+.fine{font-size:12.5px;font-weight:700;color:rgba(247,240,221,.55)}
+.colossus{height:clamp(58px,8.8vw,140px);overflow:hidden;display:flex;align-items:flex-start;justify-content:center;
+  padding-left:var(--pad);padding-right:var(--pad)}
+.bigmark{display:flex;align-items:center;gap:.08em;font-family:var(--disp);text-transform:uppercase;
+  font-size:clamp(92px,14.2vw,228px);line-height:1;color:var(--cream);white-space:nowrap}
+.bigmark svg{width:.76em;height:.76em;flex:none}
+@media(max-width:860px){
+  .ctablock{grid-template-columns:1fr;gap:32px}
+  .actioncard{transform:none}
+  .footcols{grid-template-columns:1fr 1fr;gap:28px 32px}
+  .fmail{grid-column:1 / -1;justify-self:start;text-align:left}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap navin">
+    <a class="wordmark" href="#top" aria-label="BayesAI home">
+      <svg width="27" height="27" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="13" cy="16" r="9" fill="none" stroke="#131015" stroke-width="3"/>
+        <circle cx="20" cy="16" r="9" fill="none" stroke="#ff3d8c" stroke-width="3.2"/>
+      </svg>
+      BayesAI
+    </a>
+    <div class="navlinks">
+      <a href="#lp-product">Product</a>
+      <a href="#lp-how">How it works</a>
+      <a href="#lp-pricing">Pricing</a>
+      <a href="#lp-quote">Why us</a>
+    </div>
+    <div class="navright">
+      <a class="signin" href="#">Sign in</a>
+      <a class="btn pink" href="#lp-cta">Get started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ————— HERO ————— -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="heroin">
+      <span class="heropill reveal"><i></i>Agents that audit your data, so you don't have to</span>
+      <h1 class="h1pop reveal" style="--d:.06s">Your numbers,<br><span class="hl">quietly correct.</span></h1>
+      <p class="lede reveal" style="--d:.12s">BayesAI watches every tool in your marketing stack, checks every number against your database and against plain arithmetic — and only speaks up when something is actually wrong. With the fix already prepared.</p>
+      <div class="ctarow reveal" style="--d:.18s">
+        <a class="btn pink lg" href="#lp-cta">Get your scan</a>
+        <a class="btn ghost lg" href="#lp-product">See how it works</a>
+      </div>
+      <p class="lptrust reveal" style="--d:.24s">Read-only access · EU-hosted · no code on your site · first findings in minutes</p>
+    </div>
+
+    <div class="mockwrap reveal" id="lp-product" style="--d:.15s">
+      <span class="stkr s1 burst">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><path fill="#ffd23f" stroke="#131015" stroke-width="3" d="M60 4l9 18 17-11-2 20 20-2-11 17 18 9-18 9 11 17-20-2 2 20-17-11-9 18-9-18-17 11 2-20-20 2 11-17-18-9 18-9-11-17 20 2-2-20 17 11z"/></svg>
+        <span class="bursttxt">First findings in minutes</span>
+      </span>
+      <span class="stkr s2 burst">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><path fill="#f7f0dd" stroke="#131015" stroke-width="3" d="M60 4l9 18 17-11-2 20 20-2-11 17 18 9-18 9 11 17-20-2 2 20-17-11-9 18-9-18-17 11 2-20-20 2 11-17-18-9 18-9-11-17 20 2-2-20 17 11z"/></svg>
+        <span class="bursttxt">€48.2K caught</span>
+      </span>
+      <div class="mockstage">
+      <div class="frame">
+        <div class="framebar"><i></i><i></i><i></i><span>app.bayes.ai</span></div>
+        <div class="framebody">
+          <div class="goodmorning">Good morning, Sarah ☀️</div>
+          <div class="probcount">7 problems need your attention.</div>
+          <div class="mock-row"><span class="mock-tools"><img src="../_assets/logos/googletagmanager.svg" alt="Google Tag Manager" title="Google Tag Manager"><img src="../_assets/logos/mysql.svg" alt="MySQL" title="MySQL"></span>
+            <div class="mock-body"><b>GTM sends two purchase hits per transaction</b>
+              <div class="mock-meta"><i style="background:var(--red)"></i>Active now <em>Discrepancy</em> <span class="plat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>Web</span> <span class="geo"><span class="fl">🌍</span>All markets</span></div>
+            </div>
+            <div class="mock-right"><b>€48.2K</b><span class="afx"><svg viewBox="0 0 32 32" fill="none" stroke="#fff"><circle cx="13" cy="16" r="8.5" stroke-opacity=".5" stroke-width="2.6"/><circle cx="20" cy="16" r="8.5" stroke-width="2.8"/></svg>Autofix</span></div>
+          </div>
+          <div class="mock-row"><span class="mock-tools"><img src="../_assets/logos/hubspot.svg" alt="HubSpot" title="HubSpot"></span>
+            <div class="mock-body"><b>Email open rate at 127% — opens exceed deliveries</b>
+              <div class="mock-meta"><i style="background:var(--yellow)"></i>High <em>Anomaly</em> <span class="plat"><img src="../_assets/logos/apple.svg" alt="">iOS</span> <span class="geo"><span class="fl">🇸🇪 🇩🇰</span>SE · DK</span></div>
+            </div>
+            <div class="mock-right"><b>€8.4K</b><span class="afx"><svg viewBox="0 0 32 32" fill="none" stroke="#fff"><circle cx="13" cy="16" r="8.5" stroke-opacity=".5" stroke-width="2.6"/><circle cx="20" cy="16" r="8.5" stroke-width="2.8"/></svg>Autofix</span></div>
+          </div>
+          <div class="mock-row" style="opacity:.6"><span class="mock-tools"><img src="../_assets/logos/googleanalytics.svg" alt="Google Analytics 4" title="Google Analytics 4"></span>
+            <div class="mock-body"><b>GA4 order coverage below the consent-aware range</b>
+              <div class="mock-meta"><i style="background:var(--yellow)"></i>High <em>Discrepancy</em> <span class="plat"><img src="../_assets/logos/android.svg" alt="">Android</span> <span class="geo"><span class="fl">🇪🇺</span>EU</span></div>
+            </div>
+            <div class="mock-right"><b>€18.4K</b><span class="afx"><svg viewBox="0 0 32 32" fill="none" stroke="#fff"><circle cx="13" cy="16" r="8.5" stroke-opacity=".5" stroke-width="2.6"/><circle cx="20" cy="16" r="8.5" stroke-width="2.8"/></svg>Autofix</span></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ————— RIBBON ————— -->
+<div class="ribbon" aria-label="Findings from real audits">
+  <div class="mqt" id="mqt">
+    <span class="mqi">✱ /checkout/error fired purchase events <svg viewBox="0 0 24 24" fill="#ffd23f" stroke="#131015" stroke-width="1.6"><path d="M12 2l2.4 7.2H22l-6 4.6 2.3 7.2-6.3-4.4-6.3 4.4L8 13.8 2 9.2h7.6z"/></svg> 43% of Add-to-Carts fired on the cart page <svg viewBox="0 0 24 24" fill="#ffd23f" stroke="#131015" stroke-width="1.6"><path d="M12 2l2.4 7.2H22l-6 4.6 2.3 7.2-6.3-4.4-6.3 4.4L8 13.8 2 9.2h7.6z"/></svg> full cardholder name found in GA4 — caught in staging <svg viewBox="0 0 24 24" fill="#ffd23f" stroke="#131015" stroke-width="1.6"><path d="M12 2l2.4 7.2H22l-6 4.6 2.3 7.2-6.3-4.4-6.3 4.4L8 13.8 2 9.2h7.6z"/></svg> begin_checkout 2.7× per session: mathematically impossible <svg viewBox="0 0 24 24" fill="#ffd23f" stroke="#131015" stroke-width="1.6"><path d="M12 2l2.4 7.2H22l-6 4.6 2.3 7.2-6.3-4.4-6.3 4.4L8 13.8 2 9.2h7.6z"/></svg></span>
+  </div>
+</div>
+
+<!-- ————— LOGO STICKERS ————— -->
+<section class="logosec">
+  <div class="wrap">
+    <span class="kchip label reveal">Watches every tool you already use</span>
+    <div class="logorow reveal" style="--d:.08s">
+      <span class="lpill"><img src="../_assets/logos/googleanalytics.svg" alt="">GA4</span>
+      <span class="lpill"><img src="../_assets/logos/meta.svg" alt="">Meta</span>
+      <span class="lpill"><img src="../_assets/logos/tiktok.svg" alt="">TikTok</span>
+      <span class="lpill"><img src="../_assets/logos/googleads.svg" alt="">Google Ads</span>
+      <span class="lpill"><img src="../_assets/logos/googletagmanager.svg" alt="">GTM</span>
+      <span class="lpill"><img src="../_assets/logos/mysql.svg" alt="">MySQL</span>
+      <span class="lpill"><img src="../_assets/logos/postgresql.svg" alt="">PostgreSQL</span>
+      <span class="lpill"><img src="../_assets/logos/googlebigquery.svg" alt="">BigQuery</span>
+      <span class="lpill"><img src="../_assets/logos/snowflake.svg" alt="">Snowflake</span>
+      <span class="lpill"><img src="../_assets/logos/looker.svg" alt="">Looker</span>
+      <span class="lpill"><img src="../_assets/logos/shopify.svg" alt="">Shopify</span>
+      <span class="lpill"><img src="../_assets/logos/hubspot.svg" alt="">HubSpot</span>
+    </div>
+  </div>
+</section>
+
+<!-- ————— STATS ————— -->
+<section class="sec">
+  <div class="wrap">
+    <div class="statrow">
+      <div class="stat reveal"><b data-count="15" data-suffix="%">0%</b><p>of revenue is what poor data quality costs the average business</p><span>Experian, 2023</span></div>
+      <div class="stat reveal" style="--d:.08s"><b data-count="21" data-suffix="%">0%</b><p>of ad budgets are wasted on inaccurate or incomplete data</p><span>Monte Carlo</span></div>
+      <div class="stat reveal" style="--d:.16s"><b data-count="67" data-suffix="%">0%</b><p>of data professionals don't fully trust their own numbers</p><span>Lebow Report, 2024</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— THREE PILLARS ————— -->
+<section class="sec" id="lp-how">
+  <div class="wrap">
+    <div class="kicker-c reveal"><span class="kchip label">How it works</span>
+      <h2 class="h2">Three failure modes.<br>We catch all of them.</h2>
+      <p class="lede seclede" style="margin-left:auto;margin-right:auto">Every tool is totalled against your database truth, judged against its own arithmetic, and scanned for data that should never be there. Nothing else on the market does all three.</p>
+    </div>
+
+    <div class="slides">
+      <div class="slide blue reveal">
+        <svg class="deco" style="right:-40px;top:-40px;width:220px" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#ffd23f" stroke="#131015" stroke-width="2.5"/></svg>
+        <svg class="deco" style="left:38%;bottom:-30px;width:150px" viewBox="0 0 100 100" aria-hidden="true"><g fill="#ff3d8c" stroke="#131015" stroke-width="2.5"><circle cx="30" cy="30" r="18"/><circle cx="70" cy="30" r="18"/><circle cx="30" cy="70" r="18"/><circle cx="70" cy="70" r="18"/></g></svg>
+        <div class="in2">
+          <div class="stext">
+            <span class="label">What we catch · 01</span>
+            <h3>Discrepancies</h3>
+            <p>Two tools record the same phenomenon and disagree. We total every source against your database and flag the gap — with the expected range your consent rate allows.</p>
+          </div>
+          <div class="scard">
+            <div class="sctitle">Orders, last 30 days <em>All sources</em></div>
+            <div class="dbar"><span class="lab">Your database</span><span class="track"><i style="width:38%;background:var(--green)"></i></span><span class="val" style="color:var(--green)">1,650</span></div>
+            <div class="dbar"><span class="lab">GA4 reports</span><span class="track"><i style="width:76%;background:var(--red)"></i></span><span class="val" style="color:var(--red)">3,300</span></div>
+            <div class="scnote">Exactly 2× is a double-fired tag, not a business change.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide green reveal">
+        <svg class="deco" style="left:-50px;bottom:-50px;width:230px;transform:rotate(14deg)" viewBox="0 0 120 120" aria-hidden="true"><path fill="#ffd23f" stroke="#131015" stroke-width="2.5" d="M60 4l9 18 17-11-2 20 20-2-11 17 18 9-18 9 11 17-20-2 2 20-17-11-9 18-9-18-17 11 2-20-20 2 11-17-18-9 18-9-11-17 20 2-2-20 17 11z"/></svg>
+        <svg class="deco" style="right:36%;top:-34px;width:160px" viewBox="0 0 100 50" aria-hidden="true"><g fill="#ff77b7" stroke="#131015" stroke-width="2.5"><path d="M2 50a23 23 0 0 1 46 0z"/><path d="M52 50a23 23 0 0 1 46 0z"/></g></svg>
+        <div class="in2">
+          <div class="stext">
+            <span class="label">What we catch · 02</span>
+            <h3>Anomalies</h3>
+            <p>One tool contradicts its own arithmetic or history — no second source needed. Opens can't exceed deliveries; purchases can't exceed checkouts.</p>
+          </div>
+          <div class="scard">
+            <div class="sctitle">Email open rate, distribution <em>12 months</em></div>
+            <div class="hist">
+              <i style="height:10%"></i><i style="height:22%"></i><i style="height:42%"></i><i style="height:66%"></i><i style="height:84%"></i><i style="height:74%"></i><i style="height:52%"></i><i style="height:32%"></i><i style="height:16%"></i><i style="height:8%"></i><i style="height:4%"></i><i class="hot" style="height:58%"></i>
+            </div>
+            <div class="histaxis"><span>0%</span><span>50%</span><span>100%</span><span style="color:var(--red)">127%</span></div>
+            <div class="scnote">An open rate past 100% sits beyond the edge of arithmetic. Flagged instantly.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide pinky reveal">
+        <svg class="deco" style="right:-36px;bottom:-46px;width:200px" viewBox="0 0 100 100" aria-hidden="true"><path fill="#2447d6" stroke="#131015" stroke-width="2.5" d="M8 92C8 44 44 8 92 8v84z"/></svg>
+        <svg class="deco" style="left:34%;top:-26px;width:130px" viewBox="0 0 100 40" aria-hidden="true"><g fill="#ee2f2f" stroke="#131015" stroke-width="2.5"><circle cx="14" cy="20" r="11"/><circle cx="50" cy="20" r="11"/><circle cx="86" cy="20" r="11"/></g></svg>
+        <div class="in2">
+          <div class="stext">
+            <span class="label">What we catch · 03</span>
+            <h3>Leakages</h3>
+            <p>Personal data where it must never be. BayesAI scans URL parameters, search terms, DOM attributes and logs for names, emails and card data — while it's still on staging, where it costs nothing.</p>
+          </div>
+          <div class="scard">
+            <div class="sctitle">PII scan · staging <em>Live</em></div>
+            <div class="leakrow"><code>utm_email = j.****@gmail.com</code><span class="st ok">masked</span></div>
+            <div class="leakrow bad"><code>card_number = 4519 ••••</code><span class="st bad">LEAK</span></div>
+            <div class="leakrow"><code>search_q = "red dress"</code><span class="st ok">clean</span></div>
+            <div class="leakfoot"><span>Caught in staging — never reached production</span><span style="font-weight:700">GDPR-critical</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— FEATURES ————— -->
+<section class="sec">
+  <div class="wrap">
+
+    <div class="feat">
+      <div class="fcopy reveal">
+        <span class="kchip label">The inbox</span>
+        <h3 class="h3">An inbox of findings,<br>not a wall of charts.</h3>
+        <p>Every issue is one line: what broke, where it applies, what it's worth, and who should hear about it. Sorted by what to fix first — and silent when there's nothing to fix.</p>
+      </div>
+      <div class="fart f1 reveal" style="--d:.08s">
+        <svg class="deco" style="left:-30px;top:-30px;width:140px" viewBox="0 0 100 100" aria-hidden="true"><g fill="#ffd23f" stroke="#131015" stroke-width="2.5"><circle cx="30" cy="30" r="18"/><circle cx="70" cy="30" r="18"/><circle cx="30" cy="70" r="18"/><circle cx="70" cy="70" r="18"/></g></svg>
+        <div class="frame">
+          <div class="framebar"><i></i><i></i><i></i></div>
+          <div class="framebody">
+            <div class="mock-row" style="margin-top:0"><div class="mock-body"><b>banner_view stopped firing after v2.31</b><div class="mock-meta"><i style="background:var(--yellow)"></i>New today · DE · NL · SE</div></div><div class="mock-right"><b>€9.1K</b></div></div>
+            <div class="mock-row"><div class="mock-body"><b>Purchases exceed checkouts — impossible funnel</b><div class="mock-meta"><i style="background:var(--red)"></i>Critical · Anomaly</div></div><div class="mock-right"><b>€12.3K</b></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat rev">
+      <div class="fcopy reveal">
+        <span class="kchip label">Autofix</span>
+        <h3 class="h3">The fix arrives<br>with the problem.</h3>
+        <p>One click, and the agent applies what it safely can — tag manager changes, tool settings — opens merge requests for the rest, and shows you every edit it made. Revert any of them, individually. Then it re-checks your numbers until they hold.</p>
+      </div>
+      <div class="fart f2 reveal" style="--d:.08s">
+        <svg class="deco" style="right:-40px;bottom:-40px;width:180px" viewBox="0 0 120 120" aria-hidden="true"><path fill="#ff3d8c" stroke="#131015" stroke-width="2.5" d="M60 4l9 18 17-11-2 20 20-2-11 17 18 9-18 9 11 17-20-2 2 20-17-11-9 18-9-18-17 11 2-20-20 2 11-17-18-9 18-9-11-17 20 2-2-20 17 11z"/></svg>
+        <div class="frame">
+          <div class="framebar"><i></i><i></i><i></i></div>
+          <div class="framebody">
+            <div class="agentline"><i></i>BayesAI agent is applying the fix</div>
+            <div class="mock-edit"><span>✓</span><div><b>Pause the legacy purchase tag</b><small>Applied via Google Tag Manager</small></div><em>Revert</em></div>
+            <div class="mock-edit"><span>✓</span><div><b>Set a transaction_id on the remaining tag</b><small>Code change · merge request #121</small></div><em>Revert</em></div>
+            <div class="mock-edit" style="opacity:.65"><span>…</span><div><b>Re-verifying against your database</b><small>closes automatically when numbers hold</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat">
+      <div class="fcopy reveal">
+        <span class="kchip label">Ask anything</span>
+        <h3 class="h3">Chat with the finding.<br>Route it anywhere.</h3>
+        <p>Each finding carries its own evidence — the deploy log, the affected campaigns, the math behind the euro figure. Ask it questions, send it to Slack, or turn it into a pre-filled Jira ticket with one click.</p>
+      </div>
+      <div class="fart f3 reveal" style="--d:.08s">
+        <svg class="deco" style="left:-40px;bottom:-30px;width:170px" viewBox="0 0 100 50" aria-hidden="true"><g fill="#ffd23f" stroke="#131015" stroke-width="2.5"><path d="M2 50a23 23 0 0 1 46 0z"/><path d="M52 50a23 23 0 0 1 46 0z"/></g></svg>
+        <div class="frame">
+          <div class="framebar"><i></i><i></i><i></i></div>
+          <div class="framebody">
+            <div class="mini-chat me">Which campaigns are affected?</div>
+            <div class="mini-chat ai">10 Google campaigns bid on the doubled conversions — the largest is Google_Search_Brand (€31K/mo). Want the full list as CSV?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ————— QUOTE ————— -->
+<section class="quotewrap" id="lp-quote">
+  <svg class="deco" style="left:-56px;top:-56px;width:210px" viewBox="0 0 100 100" aria-hidden="true"><g fill="#ffd23f" stroke="#131015" stroke-width="2.5"><circle cx="30" cy="30" r="18"/><circle cx="70" cy="30" r="18"/><circle cx="30" cy="70" r="18"/><circle cx="70" cy="70" r="18"/></g></svg>
+  <svg class="deco" style="right:-60px;bottom:-70px;width:230px;transform:rotate(18deg)" viewBox="0 0 120 120" aria-hidden="true"><path fill="#ff3d8c" stroke="#131015" stroke-width="2.5" d="M60 4l9 18 17-11-2 20 20-2-11 17 18 9-18 9 11 17-20-2 2 20-17-11-9 18-9-18-17 11 2-20-20 2 11-17-18-9 18-9-11-17 20 2-2-20 17 11z"/></svg>
+  <div class="wrap">
+    <div class="quote reveal">
+      <span class="qmark" aria-hidden="true">"</span>
+      <h2>Every existing tool tells you whether your data <span class="chip">moved</span>. BayesAI tells you whether your data is <span class="chip y">right</span>.</h2>
+      <p>Every check in BayesAI comes from a decade of data audits at global brands like L'Oréal and Under Armour. In ten years, we never met a company whose data wasn't broken somewhere they couldn't see.</p>
+      <span class="qattr"><svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="16" r="9" fill="none" stroke="#131015" stroke-width="3"/><circle cx="20" cy="16" r="9" fill="none" stroke="#ff3d8c" stroke-width="3.2"/></svg>Ten years of enterprise data audits</span>
+    </div>
+  </div>
+</section>
+
+<!-- ————— PRICING ————— -->
+<section class="sec" id="lp-pricing">
+  <div class="wrap">
+    <div class="kicker-c reveal"><span class="kchip label">Pricing</span>
+      <h2 class="h2">Start where it hurts.</h2>
+    </div>
+    <div class="lpprice">
+      <div class="ptier reveal">
+        <b>Essentials</b><div class="pprice">€499<span>/mo</span></div>
+        <p>For brands that suspect their data is broken but can't prove it.</p>
+        <ul><li>Cross-source discrepancy checker</li><li>dataLayer change alerts</li><li>Basic PII scanning</li><li>5 sources · 10M events/mo</li></ul>
+        <a class="btn ghost" href="#lp-cta">Get your scan</a>
+      </div>
+      <div class="ptier hot reveal" style="--d:.08s">
+        <span class="popburst" aria-label="Most popular">
+          <svg viewBox="0 0 120 120"><path fill="#ff3d8c" stroke="#131015" stroke-width="3" d="M60 4l9 18 17-11-2 20 20-2-11 17 18 9-18 9 11 17-20-2 2 20-17-11-9 18-9-18-17 11 2-20-20 2 11-17-18-9 18-9-11-17 20 2-2-20 17 11z"/><text x="60" y="55" text-anchor="middle" font-size="14" font-weight="800" fill="#fff" transform="rotate(-8 60 60)">MOST</text><text x="60" y="72" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" transform="rotate(-8 60 60)">POPULAR</text></svg>
+        </span>
+        <b>Growth</b><div class="pprice">€1,499<span>/mo</span></div>
+        <p>Automated QA across your whole stack, consent-aware.</p>
+        <ul><li>Everything in Essentials</li><li>Consent-aware + backend-vs-frontend logic</li><li>Anomaly detection &amp; Autofix</li><li>15 sources · 50M events/mo · 5 workspaces</li></ul>
+        <a class="btn pink" href="#lp-cta">Get your scan</a>
+      </div>
+      <div class="ptier reveal" style="--d:.16s">
+        <b>Enterprise</b><div class="pprice">€4,999<span>+/mo</span></div>
+        <p>Multi-brand groups and agencies with compliance needs.</p>
+        <ul><li>Unified FE+BE+CRM attribution</li><li>Server-side &amp; payment data scanning</li><li>GDPR audit reports · SLA · CSM</li><li>Unlimited everything</li></ul>
+        <a class="btn ghost" href="#lp-cta">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ————— CTA/FOOTER ————— -->
+<footer id="lp-cta">
+  <svg class="deco" style="left:-80px;top:-60px;width:230px" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#2447d6"/></svg>
+  <svg class="deco" style="right:-46px;bottom:-46px;width:170px;transform:rotate(16deg)" viewBox="0 0 120 120" aria-hidden="true"><path fill="#128a4b" d="M60 4l9 18 17-11-2 20 20-2-11 17 18 9-18 9 11 17-20-2 2 20-17-11-9 18-9-18-17 11 2-20-20 2 11-17-18-9 18-9-11-17 20 2-2-20 17 11z"/></svg>
+  <div class="wrap">
+    <div class="ctablock">
+      <div>
+        <h2 class="h2 reveal" style="margin-top:0">See what your numbers have been <span class="hl2">hiding</span>.</h2>
+      </div>
+      <div class="actioncard reveal" style="--d:.08s">
+        <p>Connect your sources and scan the last 12 months — first findings in minutes, priced in euros.</p>
+        <a class="btn pink lg" href="mailto:hello@bayes.ai?subject=Get%20my%20scan">Get your scan</a>
+        <ul class="actionlist">
+          <li><i style="background:var(--green)"></i>Read-only access</li>
+          <li><i style="background:var(--cobalt)"></i>EU-hosted, GDPR-native</li>
+          <li><i style="background:var(--yellow)"></i>No code on your site</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footcols">
+      <div class="fcol">
+        <h4><i style="background:var(--pink)"></i>Product</h4>
+        <a href="#lp-product">Overview</a>
+        <a href="#lp-how">How it works</a>
+        <a href="#lp-pricing">Pricing</a>
+      </div>
+      <div class="fcol">
+        <h4><i style="background:var(--yellow)"></i>Company</h4>
+        <a href="#lp-quote">Why us</a>
+        <a href="#">Security</a>
+        <a href="mailto:hello@bayes.ai">Contact</a>
+      </div>
+      <div class="fcol">
+        <h4><i style="background:var(--green)"></i>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">DPA</a>
+      </div>
+      <div class="fmail">
+        <span>Talk to a human</span>
+        <a href="mailto:hello@bayes.ai">hello@bayes.ai</a>
+      </div>
+    </div>
+
+    <div class="legalrow">
+      <span class="fine">© 2026 BayesAI · Made in Europe · Read-only by design</span>
+      <span class="links"><a href="#top">Back to top ↑</a></span>
+    </div>
+  </div>
+
+  <div class="colossus" aria-hidden="true">
+    <span class="bigmark">
+      <svg viewBox="0 0 32 32"><circle cx="13" cy="16" r="9" fill="none" stroke="#f7f0dd" stroke-width="3"/><circle cx="20" cy="16" r="9" fill="none" stroke="#ff3d8c" stroke-width="3.2"/></svg>
+      BayesAI
+    </span>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);
+    e.target.querySelectorAll('[data-count]').forEach(countUp);}
+}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const eased=t=>1-Math.pow(1-t,4);
+function countUp(el){
+  if(el.dataset.done)return; el.dataset.done=1;
+  const target=parseFloat(el.dataset.count),suf=el.dataset.suffix||'',t0=performance.now(),D=1400;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=target+suf;return}
+  (function f(now){const p=Math.min((now-t0)/D,1);
+    el.textContent=Math.round(target*eased(p))+suf;
+    if(p<1)requestAnimationFrame(f)})(t0);
+}
+const t=document.getElementById('mqt');t.innerHTML+=t.innerHTML;
+</script>
+</body>
+</html>
