@@ -109,7 +109,7 @@ Every deck starts from [templates/deck.json](templates/deck.json) and keeps its 
 
 Layouts: `cover`, `statement`, `points` (2 to 4), `metrics` (2 to 4, real numbers only), `section`, `split` (optional `image`: a gallery path or a file inside the deck folder), `quote` (real quotes only), `closing`. Keep titles under about ten words and bodies to one or two sentences. Six to twelve slides is the normal range.
 
-Copy can mark a phrase as `*emphasis*`; it renders in serif italic in brands whose deck style sets a `serif`.
+Copy can mark a phrase as `*emphasis*`; how it renders depends on the brand's deck style (serif italic in the imagery style, grey in the gradient style). A `\n` in a title forces a line break.
 
 ### Deck style per brand
 
