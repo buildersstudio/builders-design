@@ -4,7 +4,7 @@ import { DeckEditor } from "@/components/Deck";
 import { getBrand, getDeck, getDecks, getVentures, themeOf } from "@/lib/content";
 
 export function generateStaticParams() {
-  return getVentures().flatMap((v) => getDecks(v.slug).filter((d) => !d.html).map((d) => ({ venture: v.slug, deck: d.id })));
+  return getVentures().flatMap((v) => getDecks(v.slug).map((d) => ({ venture: v.slug, deck: d.id })));
 }
 
 export default async function DeckPage({ params }: { params: Promise<{ venture: string; deck: string }> }) {

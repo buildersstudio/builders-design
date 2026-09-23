@@ -122,14 +122,13 @@ A venture's decks can take a direction from `brand.json` → `"deck"`, so every 
 - `"style": "plain"` (default): paper ground, the accent colour on section slides.
 - `"style": "imagery"` (Trigger): every slide sits on a full-bleed picture with a dark scrim. Pictures cycle from `"backgrounds"` (gallery paths), or a slide sets its own `"background"`. `"serif"` sets the emphasis face, `"displayWeight"` the headline weight, and `"closing": { "image", "labels": [{ "text", "x", "y", "angle" }] }` builds the last slide like the site footer, with callout lines over the art. A closing slide can carry `"cta": ["Start for free", "Log in"]` and `"contact"`.
 - `"style": "gradient"` (Builders): one fixed grid on every slide. The small label always sits top left, the title just below it in Favorit Expanded caps, and the copy in the same content zone, with the B mark bottom right and the page number bottom left. Slides are dark or `"mode": "light"` (the cover is always dark; most inner slides should be light). The brand wave comes from `"gradients"`, four colourways of the exact same image set (`builders`, `studio` blue, `capital` gold, `network` pink), each with `full`, `overlay` and `glow`. The deck picks one with `"gradient"` in deck.json, and any slide can switch with its own `"gradient"` (for example the Studio slides in blue). `"background": "glow"` swaps in the side glow. Emphasis (`*...*`) turns grey. Extra layout: `"equation"` (frosted circles: `terms` with `label` and `caption`, `result`, optional `highlight` index).
+- `"style": "pixel"` (CTO FEST): white slides, Sora headlines whose `*second half*` turns pink, and the pixel face (the brand's `"accent"` font, Handjet) for cover, section and closing titles. The cover and closing are half copy, half photo (slide `"photo"`, or `"closing": { "image" }`), with a seeded pink pixel grid (`"pixel"` colour) cascading over the photo. Any statement, points or metrics slide can take a `"photo"` that fills the right column. Metrics whose values are all percentages render as pink bars. `"partners"` lists the logos shown bottom right on every slide, next to the page number.
 
 If the template itself should change (a new layout, a different rhythm), change `templates/deck.json` and `components/Slide.tsx` together, and say so in the commit.
 
 Founders edit copy and remove slides in the platform. Anything else (new slides, reordering, images) is done by editing `deck.json`.
 
 Shareable link, no platform access needed: `/p/<slug>/<deck-id>`.
-
-A deck that was already fully designed elsewhere can be kept exactly as it is: put it in `decks/<id>/index.html` with its images next to it (and no `deck.json`). The platform shows it with a live preview and opens it as it is; it is edited by changing the HTML, not in the platform editor.
 
 ## Landing pages
 

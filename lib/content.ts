@@ -149,16 +149,8 @@ export function getBrand(slug: string): Brand {
 export function getDecks(slug: string): (Deck & { id: string })[] {
   const base = path.join(ROOT, slug, "decks");
   return dirs(base)
-    .map((id) => {
-      const html = exists(path.join(base, id, "index.html")) && !exists(path.join(base, id, "deck.json"));
-      if (html) {
-        const meta = readJSON<{ title?: string; created?: string }>(path.join(base, id, "meta.json"), {});
-        const t = titleOf(fs.readFileSync(path.join(base, id, "index.html"), "utf8"))?.replace(/&mdash;/g, "·");
-        return { id, title: meta.title ?? t ?? id, created: meta.created, slides: [], html: pub(slug, "decks", id, "index.html") };
-      }
-      return { id, ...readJSON<Deck>(path.join(base, id, "deck.json"), { title: id, slides: [] }) };
-    })
-    .filter((d) => d.slides.length || d.html)
+    .map((id) => ({ id, ...readJSON<Deck>(path.join(base, id, "deck.json"), { title: id, slides: [] }) }))
+    .filter((d) => d.slides.length)
     .sort((a, b) => (b.created ?? b.id).localeCompare(a.created ?? a.id));
 }
 

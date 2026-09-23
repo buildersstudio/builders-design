@@ -7,7 +7,7 @@ import { getBrand, getDeck, getDecks, getVenture, getVentures, themeOf } from "@
 type P = { params: Promise<{ venture: string; deck: string }> };
 
 export function generateStaticParams() {
-  return getVentures().flatMap((v) => getDecks(v.slug).filter((d) => !d.html).map((d) => ({ venture: v.slug, deck: d.id })));
+  return getVentures().flatMap((v) => getDecks(v.slug).map((d) => ({ venture: v.slug, deck: d.id })));
 }
 
 export async function generateMetadata({ params }: P): Promise<Metadata> {

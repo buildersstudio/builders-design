@@ -9,7 +9,10 @@ export type Face = {
 /** Optional per-brand deck direction, applied to every deck of that venture. */
 export type DeckStyle = {
   /** "imagery": every slide sits on a full-bleed picture with a dark scrim. */
-  style?: "plain" | "imagery" | "gradient";
+  style?: "plain" | "imagery" | "gradient" | "pixel";
+  /** "pixel": colour of the pixel grid, and partner logos shown bottom right on every slide */
+  pixel?: string;
+  partners?: string[];
   /** "gradient": colourways of the brand gradient, each as a full slide image, a transparent overlay and a side glow. */
   gradients?: Record<string, { full: string; overlay: string; glow?: string }>;
   /** the colourway this deck uses (a key of gradients); set per deck in deck.json */
@@ -58,7 +61,7 @@ export type Slide = Bg & (
   | { layout: "equation"; eyebrow?: string; title?: string; terms: { label: string; caption?: string }[]; result: string; highlight?: number }
   | { layout: "closing"; title: string; subtitle?: string; cta?: string[]; contact?: string });
 
-export type Deck = { title: string; created?: string; slides: Slide[]; /** a fully designed HTML deck (decks/<id>/index.html), shown as it is */ html?: string; /** colourway key for gradient-style brands */ gradient?: string };
+export type Deck = { title: string; created?: string; slides: Slide[]; /** colourway key for gradient-style brands */ gradient?: string };
 
 /** The palette a slide or page is painted with, derived from a brand. */
 export type Theme = {

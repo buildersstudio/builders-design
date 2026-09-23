@@ -38,6 +38,7 @@ export function Slide(props: { slide: S; theme: Theme; logo?: string; n: number;
   const style = props.theme.deck.style;
   if (style === "imagery") return <ImagerySlide {...props} />;
   if (style === "gradient") return <GradientSlide {...props} />;
+  if (style === "pixel") return <PixelSlide {...props} />;
   return <PlainSlide {...props} />;
 }
 
@@ -545,6 +546,191 @@ function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Them
       {inner}
       <div style={{ position: "absolute", left: GRID.x, bottom: 78, ...label, fontFeatureSettings: '"tnum" 1' }}>{String(n).padStart(2, "0")} / {String(total).padStart(2, "0")}</div>
       <img src="/ventures/builders/gallery/illustrations/builders-b-mark-white.png" alt="" style={{ position: "absolute", right: GRID.x - 6, bottom: 70, height: 50, filter: light ? "brightness(0)" : undefined }} />
+    </div>
+  );
+}
+
+/* ---------- pixel style (CTO FEST): white, Sora with pink emphasis, pixel-font titles, pink pixel grid over photos ---------- */
+
+/** Pink squares cascading over a photo and spilling past its left edge; seeded so a slide always looks the same. */
+function PixelGrid({ seed, x0, width, color, cell = 56, spill = 420, bottom = 0 }: { seed: number; x0: number; width: number; color: string; cell?: number; spill?: number; bottom?: number }) {
+  let r = (seed * 9301 + 49297) % 233280;
+  const rnd = () => ((r = (r * 9301 + 49297) % 233280) / 233280);
+  const cols = Math.ceil((width + spill) / cell), rows = Math.floor((H - bottom) / cell);
+  const out: React.ReactNode[] = [];
+  for (let c = 0; c < cols; c++) {
+    const x = x0 - spill + c * cell;
+    const edge = Math.abs(x - x0) / 520;            // near the seam between copy and photo
+    for (let rr = 0; rr < rows; rr++) {
+      const y = rr * cell, low = y / H;               // denser towards the bottom
+      const onPhoto = x >= x0;
+      const p = onPhoto ? 0.02 + 0.62 * low ** 1.7 * Math.max(0, 1 - edge * 0.85) : 0.4 * low ** 2.4 * Math.max(0, 1 - edge * 1.6);
+      if (rnd() < p) out.push(<div key={`${c}-${rr}`} style={{ position: "absolute", left: x, top: y, width: cell, height: cell, background: color }} />);
+    }
+  }
+  return <>{out}</>;
+}
+
+function PixelSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: Theme; logo?: string; n: number; total: number; edit?: Edit }) {
+  const d = theme.deck;
+  const pink = d.pixel ?? theme.accent;
+  const ink = theme.ink;
+  const grey = "rgba(15,14,17,.55)";
+  const e = (k: string) => [k];
+  const X = 110;
+
+  const root: CSSProperties = {
+    width: W, height: H, position: "relative", overflow: "hidden", background: "#fff", color: ink, fontFamily: theme.display,
+    ["--em-font" as string]: "inherit", ["--em-style" as string]: "normal", ["--em-weight" as string]: "inherit", ["--em-color" as string]: theme.accent, ["--em-track" as string]: "inherit",
+  };
+  const pixelFont = theme.label;
+  const label: CSSProperties = { fontFamily: theme.text, fontSize: 17, letterSpacing: "0.16em", textTransform: "uppercase", color: grey };
+  const title: CSSProperties = { fontFamily: theme.display, fontWeight: 400, fontSize: 64, lineHeight: 1.12, letterSpacing: "-0.02em", margin: 0 };
+  const body: CSSProperties = { fontFamily: theme.text, fontSize: 26, lineHeight: 1.5, color: grey, maxWidth: 1000 };
+  const head = (maxWidth = 1500) => (
+    <div style={{ position: "absolute", left: X, top: 110, right: X, maxWidth }}>
+      {"eyebrow" in slide && <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={{ ...label, marginBottom: 26 }} />}
+      {"title" in slide && <T as="h2" v={slide.title} p={e("title")} edit={edit} style={title} />}
+      {"body" in slide && <T v={slide.body} p={e("body")} edit={edit} style={{ ...body, marginTop: 30 }} />}
+    </div>
+  );
+  const zone: CSSProperties = { position: "absolute", left: X, right: X, top: 560, bottom: 180 };
+  const cols = (k: number) => `repeat(${Math.min(k, 4)}, 1fr)`;
+  const photo = slide.photo ?? ("image" in slide ? slide.image : undefined);
+
+  const footer = (
+    <div style={{ position: "absolute", left: X, right: X, bottom: 56, display: "flex", alignItems: "center", justifyContent: "space-between", zIndex: 3 }}>
+      {logo ? <img src={logo} alt="" style={{ height: 26 }} /> : <span />}
+      <div style={{ display: "flex", alignItems: "center", gap: 34 }}>
+        {(d.partners ?? []).map((u) => <img key={u} src={u} alt="" style={{ height: 24 }} />)}
+        <span style={{ ...label, letterSpacing: "0.08em", fontFeatureSettings: '"tnum" 1' }}>{String(n).padStart(2, "0")}</span>
+      </div>
+    </div>
+  );
+
+  let inner: React.ReactNode = null;
+  switch (slide.layout) {
+    case "cover":
+    case "closing": {
+      const img = photo ?? d.closing?.image;
+      inner = (
+        <>
+          {img && <div style={{ position: "absolute", top: 0, bottom: 0, left: W / 2, right: 0, background: `center / cover url("${img}")` }} />}
+          <PixelGrid seed={n + 7} x0={W / 2} width={W / 2} color={pink} />
+          <div style={{ position: "absolute", left: X, top: 96, display: "flex", alignItems: "center", gap: 26 }}>
+            {logo && <img src={logo} alt="" style={{ height: 34 }} />}
+            {slide.layout === "cover" && <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={label} />}
+          </div>
+          <div style={{ position: "absolute", left: X, top: 330, width: W / 2 - X - 80 }}>
+            <T as="h1" v={slide.title} p={e("title")} edit={edit} style={{ fontFamily: pixelFont, fontWeight: 700, fontSize: 172, lineHeight: 0.9, letterSpacing: "-0.01em", margin: 0 }} />
+            {edit ? (
+              <T v={slide.subtitle} p={e("subtitle")} edit={edit} style={{ fontFamily: theme.display, fontSize: 30, color: grey, marginTop: 40, lineHeight: 1.35 }} />
+            ) : (
+              (() => {
+                const [lead, ...rest] = (slide.subtitle ?? "").split(/(?<=\.)\s+/);
+                return (
+                  <>
+                    {lead && <div style={{ fontFamily: theme.display, fontSize: 42, color: grey, marginTop: 40, lineHeight: 1.2 }}>{lead}</div>}
+                    {!!rest.length && <div style={{ ...body, fontSize: 24, marginTop: 22, maxWidth: 620 }}>{rest.join(" ")}</div>}
+                  </>
+                );
+              })()
+            )}
+          </div>
+        </>
+      );
+      return <div className="slide" style={root}>{inner}</div>;
+    }
+    case "section":
+      inner = (
+        <>
+          <PixelGrid seed={n + 3} x0={W - 560} width={560} color={pink} />
+          <div style={{ position: "absolute", left: X, top: 110 }}>
+            <T v={slide.eyebrow} p={e("eyebrow")} edit={edit} style={{ ...label, marginBottom: 30 }} />
+            <T as="h2" v={slide.title} p={e("title")} edit={edit} style={{ fontFamily: pixelFont, fontWeight: 700, fontSize: 220, lineHeight: 0.9, margin: 0 }} />
+          </div>
+        </>
+      );
+      break;
+    case "statement":
+      inner = photo ? (
+        <>
+          {head(1050)}
+          <div style={{ position: "absolute", top: 0, bottom: 150, right: 0, width: 700, background: `center / cover url("${photo}")` }} />
+        </>
+      ) : head();
+      break;
+    case "points":
+      inner = (
+        <>
+          {head(photo ? 1050 : 1500)}
+          {photo && <div style={{ position: "absolute", top: 0, bottom: 150, right: 0, width: 700, background: `center / cover url("${photo}")` }} />}
+          <div style={{ ...zone, right: photo ? 700 + 80 : X, display: "grid", gridTemplateColumns: cols(slide.points.length), gap: 44, alignContent: "start" }}>
+            {slide.points.map((pt, i) => (
+              <div key={i} style={{ borderTop: "1px solid rgba(15,14,17,.14)", paddingTop: 26 }}>
+                <T v={pt.title} p={["points", i, "title"]} edit={edit} style={{ fontSize: 28, fontWeight: 500, lineHeight: 1.2, letterSpacing: "-0.01em" }} />
+                <T v={pt.body} p={["points", i, "body"]} edit={edit} style={{ fontFamily: theme.text, fontSize: 20, lineHeight: 1.5, color: grey, marginTop: 12 }} />
+              </div>
+            ))}
+          </div>
+        </>
+      );
+      break;
+    case "metrics": {
+      const bars = slide.metrics.every((m) => /%$/.test(m.value.trim()));
+      inner = (
+        <>
+          {head(photo ? 1050 : 1500)}
+          {photo && <div style={{ position: "absolute", top: 0, bottom: 150, right: 0, width: 700, background: `center / cover url("${photo}")` }} />}
+          {bars ? (
+            <div style={{ ...zone, right: photo ? 700 + 80 : X, display: "flex", flexDirection: "column", gap: 26 }}>
+              {slide.metrics.map((m, i) => (
+                <div key={i} style={{ display: "grid", gridTemplateColumns: "380px 1fr 90px", alignItems: "center", gap: 26 }}>
+                  <T v={m.label} p={["metrics", i, "label"]} edit={edit} style={{ fontFamily: theme.text, fontSize: 21 }} />
+                  <div style={{ height: 10, background: "rgba(15,14,17,.07)" }}><div style={{ height: "100%", width: m.value, background: pink }} /></div>
+                  <T v={m.value} p={["metrics", i, "value"]} edit={edit} style={{ fontSize: 21, textAlign: "right", fontFeatureSettings: '"tnum" 1' }} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div style={{ ...zone, right: photo ? 700 + 80 : X, display: "grid", gridTemplateColumns: cols(slide.metrics.length), gap: 44, alignContent: "start" }}>
+              {slide.metrics.map((m, i) => (
+                <div key={i} style={{ borderTop: "1px solid rgba(15,14,17,.14)", paddingTop: 26 }}>
+                  <T v={m.value} p={["metrics", i, "value"]} edit={edit} style={{ fontSize: 84, fontWeight: 300, lineHeight: 1, letterSpacing: "-0.03em", whiteSpace: "nowrap" }} />
+                  <T v={m.label} p={["metrics", i, "label"]} edit={edit} style={{ fontFamily: theme.text, fontSize: 20, lineHeight: 1.45, color: grey, marginTop: 16 }} />
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      );
+      break;
+    }
+    case "split":
+      inner = (
+        <>
+          {head(1000)}
+          <div style={{ position: "absolute", top: 0, bottom: 150, right: 0, width: 760, background: photo ? `center / cover url("${photo}")` : "rgba(15,14,17,.06)" }} />
+          <PixelGrid seed={n + 11} x0={W - 760} width={760} color={pink} cell={48} spill={150} bottom={150} />
+        </>
+      );
+      break;
+    case "quote":
+      inner = (
+        <div style={{ position: "absolute", left: X, top: 110, right: X }}>
+          <T v={slide.author} p={e("author")} edit={edit} style={{ ...label, marginBottom: 30 }} />
+          <T as="blockquote" v={slide.quote} p={e("quote")} edit={edit} style={{ ...title, fontSize: 80, maxWidth: 1500 }} />
+        </div>
+      );
+      break;
+    default:
+      inner = head();
+  }
+
+  return (
+    <div className="slide" style={root}>
+      {inner}
+      {footer}
     </div>
   );
 }

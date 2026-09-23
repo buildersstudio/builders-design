@@ -1,0 +1,358 @@
+{
+  "title": "CTO FEST '27 partnership",
+  "created": "2026-09-23",
+  "slides": [
+    {
+      "layout": "cover",
+      "eyebrow": "Partnership packages · First edition",
+      "title": "Models meet machines.",
+      "subtitle": "Amsterdam, February 2027. The first Benelux CTO festival. Five hundred technical leaders, one day, and the night before it.",
+      "photo": "/ventures/cto-festival/gallery/photos/robot-arm-workshop-monochrome.jpg"
+    },
+    {
+      "layout": "points",
+      "eyebrow": "The gap",
+      "title": "Most technology events are not built for *the people building it.*",
+      "points": [
+        {
+          "title": "Built for the wrong room.",
+          "body": "Conferences are programmed around chief executives, investors, and the people selling to them. Technical leaders end up in panels that perform."
+        },
+        {
+          "title": "Drowning in noise.",
+          "body": "Recruiter spam, vendor pitches, surface-level debate. The signal that matters, how peers are actually shipping, never reaches the people who need it."
+        },
+        {
+          "title": "No shared frontier.",
+          "body": "AI, regulation, infrastructure shifts, European technology sovereignty. The hardest questions of the next decade, and no forum built for them."
+        }
+      ]
+    },
+    {
+      "layout": "metrics",
+      "eyebrow": "The Builders CTO Network",
+      "title": "A trusted room, *two years in the making.*",
+      "metrics": [
+        {
+          "value": "2,400+",
+          "label": "CTOs and VP Engineering in the network"
+        },
+        {
+          "value": "100%",
+          "label": "hands-on builders, no consultants"
+        },
+        {
+          "value": "0",
+          "label": "sales pitches from the stage"
+        }
+      ],
+      "photo": "/ventures/cto-festival/gallery/photos/cto-network-event-audience.webp"
+    },
+    {
+      "layout": "points",
+      "eyebrow": "The one rule",
+      "title": "The room is worth being in *because of what we do not sell.*",
+      "points": [
+        {
+          "title": "No list, ever.",
+          "body": "No attendee data leaves the building for cold outreach, and no mass mailing afterwards."
+        },
+        {
+          "title": "No pitch from the stage.",
+          "body": "Partners send a senior technical voice rather than a sales lead."
+        },
+        {
+          "title": "Introductions, opt-in.",
+          "body": "Connections happen in the room, and through matching people agree to."
+        }
+      ]
+    },
+    {
+      "layout": "statement",
+      "eyebrow": "The festival",
+      "title": "AI is leaving the browser. Robotics is leaving the lab. *This is the room where they touch.*"
+    },
+    {
+      "layout": "metrics",
+      "eyebrow": "The festival",
+      "title": "Five hundred technical leaders, *one day, and the night before it.*",
+      "metrics": [
+        {
+          "value": "500",
+          "label": "technical leaders in the room, plus fifty at the build the night before"
+        },
+        {
+          "value": "1",
+          "label": "day in Amsterdam, February 2027, with the night before it"
+        },
+        {
+          "value": "6",
+          "label": "themes, three confirmed and three shaped with imec.istart"
+        },
+        {
+          "value": "2,400+",
+          "label": "CTOs in the Builders network standing behind the invitation"
+        }
+      ]
+    },
+    {
+      "layout": "points",
+      "eyebrow": "The shape of the day",
+      "title": "Designed for depth, *not for scale.*",
+      "points": [
+        {
+          "title": "09:00 · The film, then a keynote that sets the table.",
+          "body": "The overnight build opens the day, cut before sunrise. Then one sharp opening from a builder a few steps ahead, on what they actually shipped this year."
+        },
+        {
+          "title": "12:30 · Roundtables of around ten.",
+          "body": "Specific, real questions, and long enough to go deep. The format the community asked for, free to drift where the conversation wants to go."
+        },
+        {
+          "title": "16:00 · Hands-on stations, 1:1s, then drinks.",
+          "body": "Partner technology on the table, opt-in and pitch-free, curated introductions between people facing the same problem, and the part where the follow-up gets arranged."
+        }
+      ]
+    },
+    {
+      "layout": "points",
+      "eyebrow": "Six themes",
+      "title": "Three confirmed *from the network.*",
+      "points": [
+        {
+          "title": "AI as substitution, not augmentation",
+          "body": "Confirmed"
+        },
+        {
+          "title": "Zero code, spec-driven",
+          "body": "Confirmed"
+        },
+        {
+          "title": "AI where latency is physical",
+          "body": "Confirmed"
+        }
+      ]
+    },
+    {
+      "layout": "points",
+      "eyebrow": "Six themes",
+      "title": "Three shaped *with imec.istart.*",
+      "points": [
+        {
+          "title": "The hardware and software seam",
+          "body": "Shaping with imec.istart"
+        },
+        {
+          "title": "The organisation after agents",
+          "body": "Shaping with imec.istart"
+        },
+        {
+          "title": "Supply and sovereignty",
+          "body": "Proposed wildcard"
+        }
+      ]
+    },
+    {
+      "layout": "split",
+      "eyebrow": "Twelve hours to takeoff · The night before",
+      "title": "Fifty engineers. One airframe. *Twelve hours.*",
+      "body": "The brief is to give it a mind of its own and get it airborne before the doors open. The whole night is filmed and cut before sunrise, and that film opens the festival.",
+      "image": "/ventures/cto-festival/gallery/illustrations/hand-robot-reaching-on-night.webp"
+    },
+    {
+      "layout": "statement",
+      "eyebrow": "Twelve hours to takeoff",
+      "title": "Partners do not sponsor the night, *they are in it.*",
+      "body": "Their hardware, models and compute go into the build, and their engineers into the room as mentors."
+    },
+    {
+      "layout": "points",
+      "eyebrow": "How the night works",
+      "title": "Optional, capped, and *the part people talk about.*",
+      "points": [
+        {
+          "title": "Real problems, real teams.",
+          "body": "One real challenge on the table, brought by a partner or sourced from the network. No toy briefs, real constraints, real data, real shipping decisions."
+        },
+        {
+          "title": "A curated room.",
+          "body": "Around fifty hands-on CTOs and senior engineers, capped on purpose, in mixed teams of four or five paired across companies and stacks."
+        },
+        {
+          "title": "It opens the festival.",
+          "body": "The cut plays at kick-off in front of five hundred people, and the teams take the stage for questions. Builders judged by builders."
+        }
+      ]
+    },
+    {
+      "layout": "metrics",
+      "eyebrow": "The room",
+      "title": "Curated, not sold. *Five hundred people who ship.*",
+      "metrics": [
+        {
+          "value": "40%",
+          "label": "CTOs and VPs of Engineering"
+        },
+        {
+          "value": "25%",
+          "label": "Technical founders"
+        },
+        {
+          "value": "20%",
+          "label": "Staff and principal engineers"
+        },
+        {
+          "value": "15%",
+          "label": "Heads of robotics, hardware and data"
+        }
+      ],
+      "photo": "/ventures/cto-festival/gallery/photos/cto-network-event-listening.webp"
+    },
+    {
+      "layout": "points",
+      "eyebrow": "Why these two",
+      "title": "A startup studio in Rotterdam *and Europe’s deep-tech accelerator.*",
+      "points": [
+        {
+          "title": "What Builders brings",
+          "body": "The CTO Network of 2,400 verified technical leaders, format design and moderation, ecosystem partners already on the bench, and the production and video playbook from every CTO Network event so far."
+        },
+        {
+          "title": "What imec.istart brings",
+          "body": "The imec name, portfolio CTOs across Belgium, the Netherlands, Germany and Spain, corporate and hardware partners who can co-fund and co-programme, and the pan-European spine for step two."
+        }
+      ]
+    },
+    {
+      "layout": "points",
+      "eyebrow": "Partner packages",
+      "title": "Six ways in, and *deliberately few of each.*",
+      "points": [
+        {
+          "title": "Ecosystem",
+          "body": "One slot, category exclusive. The festival, presented with you. Then a year in both communities."
+        },
+        {
+          "title": "Presenting",
+          "body": "One slot, category exclusive. The festival, presented with you."
+        },
+        {
+          "title": "Stage",
+          "body": "Three to four slots. Own a moment on stage and a piece of the overnight build."
+        }
+      ]
+    },
+    {
+      "layout": "points",
+      "eyebrow": "Partner packages",
+      "title": "One anchor slot only.",
+      "points": [
+        {
+          "title": "Track",
+          "body": "Four to six slots. Host a track or roundtable and a hands-on station."
+        },
+        {
+          "title": "Community",
+          "body": "Six to eight slots. Be in the room, with brand presence and a team of seats."
+        },
+        {
+          "title": "Capital",
+          "body": "Four to six slots. Visibility and curated founder and CTO introductions."
+        }
+      ]
+    },
+    {
+      "layout": "points",
+      "eyebrow": "Partner packages",
+      "title": "What each tier includes.",
+      "points": [
+        {
+          "title": "Passes and build seats",
+          "body": "From two festival passes on Community to twelve on Presenting and Ecosystem, and up to six seats at the overnight build."
+        },
+        {
+          "title": "Stage and station",
+          "body": "From one roundtable on Track to a main-stage keynote, with a hands-on station from Stage upward."
+        },
+        {
+          "title": "The build and the film",
+          "body": "A component in the build, then mentors, then setting the challenge, with film credits up to co-presenting."
+        },
+        {
+          "title": "Follow-up and the year",
+          "body": "Opt-in introductions up to priority matching, and category exclusivity for Presenting and Ecosystem."
+        }
+      ]
+    },
+    {
+      "layout": "points",
+      "eyebrow": "Add-ons, stackable on any tier",
+      "title": "Buy the part *that matters to you.*",
+      "points": [
+        {
+          "title": "Into the build",
+          "body": "Hardware, a model, compute or tooling, in the airframe. Included from Stage upward."
+        },
+        {
+          "title": "Hands-on station",
+          "body": "An afternoon station for live work and 1:1s. Opt-in, no pitch."
+        },
+        {
+          "title": "Speakers’ dinner or breakfast",
+          "body": "Host an intimate meal for the speakers and a handful of CTOs."
+        },
+        {
+          "title": "Extra block of five passes",
+          "body": "More of your team in the room."
+        }
+      ]
+    },
+    {
+      "layout": "points",
+      "eyebrow": "The year-round upgrade",
+      "title": "The festival, *plus a year in both communities.*",
+      "points": [
+        {
+          "title": "One year in the CTO Network",
+          "body": "Summer drink, winter barbecue, the partner event, one hosted event of your own, and speaker slots."
+        },
+        {
+          "title": "One year of imec.istart, one country",
+          "body": "The Netherlands or Belgium: dealflow, events, investor days, curated introductions."
+        },
+        {
+          "title": "Multi-country",
+          "body": "Belgium and the Netherlands now, Germany, Spain and Italy behind that."
+        }
+      ]
+    },
+    {
+      "layout": "points",
+      "eyebrow": "Next step",
+      "title": "Let’s build the first one, *together.*",
+      "points": [
+        {
+          "title": "Pressure-tested with CTOs across both networks.",
+          "body": "Done."
+        },
+        {
+          "title": "Three partners signed.",
+          "body": "The milestone that locks the date and the venue."
+        },
+        {
+          "title": "Scope, venue and date announced.",
+          "body": "Amsterdam, February 2027. The list hears first."
+        },
+        {
+          "title": "The room opens.",
+          "body": "Partners, speakers and the referral chain, in that order."
+        }
+      ]
+    },
+    {
+      "layout": "closing",
+      "title": "Models meet machines.",
+      "subtitle": "CTO FEST '27 · Amsterdam, February 2027 · Builders CTO Network with imec.istart"
+    }
+  ]
+}

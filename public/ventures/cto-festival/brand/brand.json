@@ -1,16 +1,69 @@
 {
   "tagline": "Models meet machines.",
   "colors": [
-    { "name": "Ink", "hex": "#0F0E11", "role": "ink" },
-    { "name": "Paper", "hex": "#FFFFFF", "role": "paper" },
-    { "name": "Rose", "hex": "#E22A90", "role": "accent" },
-    { "name": "Pink", "hex": "#FF5FAE", "role": "support" },
-    { "name": "Violet", "hex": "#7D2490", "role": "support" },
-    { "name": "Night", "hex": "#0B0A0C", "role": "support" }
+    {
+      "name": "Ink",
+      "hex": "#0F0E11",
+      "role": "ink"
+    },
+    {
+      "name": "Paper",
+      "hex": "#FFFFFF",
+      "role": "paper"
+    },
+    {
+      "name": "Rose",
+      "hex": "#E22A90",
+      "role": "accent"
+    },
+    {
+      "name": "Pink",
+      "hex": "#FF5FAE",
+      "role": "support"
+    },
+    {
+      "name": "Violet",
+      "hex": "#7D2490",
+      "role": "support"
+    },
+    {
+      "name": "Night",
+      "hex": "#0B0A0C",
+      "role": "support"
+    }
   ],
   "type": [
-    { "name": "Sora", "role": "display", "weight": 400, "css": "https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap", "src": null },
-    { "name": "Geist", "role": "text", "weight": 400, "css": "https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap", "src": null },
-    { "name": "Handjet", "role": "accent", "weight": 700, "css": "https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap", "src": null }
-  ]
+    {
+      "name": "Sora",
+      "role": "display",
+      "weight": 400,
+      "css": "https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap",
+      "src": null
+    },
+    {
+      "name": "Geist",
+      "role": "text",
+      "weight": 400,
+      "css": "https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap",
+      "src": null
+    },
+    {
+      "name": "Handjet",
+      "role": "accent",
+      "weight": 700,
+      "css": "https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap",
+      "src": null
+    }
+  ],
+  "deck": {
+    "style": "pixel",
+    "pixel": "#FF5FAE",
+    "partners": [
+      "/ventures/cto-festival/brand/partners/builders.svg",
+      "/ventures/cto-festival/brand/partners/imec-istart.svg"
+    ],
+    "closing": {
+      "image": "/ventures/cto-festival/gallery/illustrations/hand-robot-reaching.jpg"
+    }
+  }
 }
