@@ -1,0 +1,105 @@
+{
+  "title": "Krans intro",
+  "created": "2026-09-23",
+  "slides": [
+    {
+      "layout": "cover",
+      "eyebrow": "Introduction · 2026",
+      "title": "Evidence-based venture intelligence.",
+      "subtitle": "Everything your ventures already produce, turned into positions you can check: where each venture stands, and the evidence behind it."
+    },
+    {
+      "layout": "statement",
+      "eyebrow": "The problem",
+      "title": "Your ventures produce more data than anyone can process.",
+      "body": "Customer calls, internal meetings, Slack threads, documents, pipeline numbers. Decisions wait for someone to piece the picture together, and momentum dies in the gap."
+    },
+    {
+      "layout": "split",
+      "eyebrow": "What Krans does",
+      "title": "Krans models each venture, and every signal moves it.",
+      "body": "A pricing objection, a churn number, a decision half-made in a Monday meeting: each one lands against the part of the model it touches.",
+      "image": "/ventures/krans/gallery/product/product-influx-memory-window.jpg"
+    },
+    {
+      "layout": "points",
+      "eyebrow": "01 · Context",
+      "title": "Every claim has to earn its place on the model.",
+      "points": [
+        {
+          "title": "Cited",
+          "body": "Each input becomes a passage in someone’s own words, pinned to who said it and when."
+        },
+        {
+          "title": "Graded",
+          "body": "Every learning sits on an evidence scale, from E0, vague, to E5, they put something at stake."
+        },
+        {
+          "title": "Ageing",
+          "body": "A claim nobody has repeated for sixty days loses weight, along with the positions built on it."
+        }
+      ]
+    },
+    {
+      "layout": "section",
+      "eyebrow": "02",
+      "title": "Connect the dots."
+    },
+    {
+      "layout": "points",
+      "eyebrow": "Three primitives",
+      "title": "Structure that meeting recorders, CRMs and chat products do not have.",
+      "points": [
+        {
+          "title": "Threads",
+          "body": "Nothing a buyer said gets lost, even months later."
+        },
+        {
+          "title": "Signals",
+          "body": "One buyer saying it is noise. Five buyers saying it is a signal."
+        },
+        {
+          "title": "Positions",
+          "body": "You see which of your bets are backed, and which are guesses."
+        }
+      ]
+    },
+    {
+      "layout": "split",
+      "eyebrow": "03 · Fill the gaps",
+      "title": "Where each venture stands, and what it needs next.",
+      "body": "Every morning, each venture gets a clear read, each relationship gets its next move, and every call gets an honest review.",
+      "image": "/ventures/krans/gallery/product/product-portfolio-overview-window.jpg"
+    },
+    {
+      "layout": "points",
+      "eyebrow": "Every morning",
+      "title": "Nobody updates anything by hand.",
+      "points": [
+        {
+          "title": "Ventures",
+          "body": "Monday morning, you know which venture needs you, and why."
+        },
+        {
+          "title": "Deals",
+          "body": "Next steps written before you have found your notes."
+        },
+        {
+          "title": "Calls",
+          "body": "You walk into the call knowing what killed the last three."
+        }
+      ]
+    },
+    {
+      "layout": "statement",
+      "eyebrow": "Who it is for",
+      "title": "For portfolios that run more ventures than anyone can sit in calls for.",
+      "body": "Venture studios, corporate venture builders, and funds and platform teams. Built on learnings from a decade of ventures built inside Builders."
+    },
+    {
+      "layout": "closing",
+      "title": "Instinct starts ventures. Evidence compounds them.",
+      "subtitle": "krans.ai · Book a walkthrough"
+    }
+  ]
+}

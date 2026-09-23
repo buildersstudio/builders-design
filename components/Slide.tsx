@@ -143,7 +143,7 @@ function PlainSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: T
               <T v={slide.body} p={e("body")} edit={edit} style={{ ...body, fontSize: 30 }} />
             </div>
           </div>
-          <div style={{ background: slide.image ? `center / cover url(${slide.image})` : theme.accent }} />
+          <div style={{ background: slide.image ? `left center / cover url(${slide.image})` : theme.accent }} />
         </div>
       );
       break;
