@@ -42,7 +42,7 @@ export type Brand = {
 /** background: a picture for this slide. mode: light or dark ground ("gradient" style; the cover is always dark). */
 export type Person = { name: string; role?: string; photo?: string };
 
-type Bg = { background?: string; mode?: "light" | "dark"; /** gradient colourway for this slide (gradient-style brands) */ gradient?: string };
+type Bg = { background?: string; mode?: "light" | "dark"; /** gradient colourway for this slide (gradient-style brands) */ gradient?: string; /** a photo behind the gradient (gradient style) */ photo?: string };
 
 export type Slide = Bg & (
   | { layout: "cover"; eyebrow?: string; title: string; subtitle?: string; presenter?: Person }
@@ -52,6 +52,9 @@ export type Slide = Bg & (
   | { layout: "metrics"; eyebrow?: string; title: string; metrics: { value: string; label: string }[] }
   | { layout: "split"; eyebrow?: string; title: string; body?: string; image?: string }
   | { layout: "quote"; quote: string; author?: string; presenter?: Person }
+  | { layout: "photo"; eyebrow?: string; title: string; body?: string; image: string }
+  | { layout: "cards"; eyebrow?: string; title: string; cards: { title: string; body?: string; image?: string }[] }
+  | { layout: "mosaic"; eyebrow?: string; title: string; body?: string; images: string[] }
   | { layout: "equation"; eyebrow?: string; title?: string; terms: { label: string; caption?: string }[]; result: string; highlight?: number }
   | { layout: "closing"; title: string; subtitle?: string; cta?: string[]; contact?: string });
 

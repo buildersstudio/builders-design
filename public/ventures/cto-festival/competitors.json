@@ -1,0 +1,13 @@
+[
+  { "name": "LDX3 by LeadDev", "url": "https://leaddev.com/leaddev-london/", "kind": "direct" },
+  { "name": "TNW Conference", "url": "https://thenextweb.com/conference", "kind": "direct" },
+  { "name": "AI Engineer", "url": "https://ai.engineer/", "kind": "direct" },
+  { "name": "Craft Conference", "url": "https://craft-conf.com/2027/", "kind": "direct" },
+  { "name": "GOTO Amsterdam", "url": "https://gotoams.nl/", "kind": "direct" },
+  { "name": "Deep Tech Momentum", "url": "https://www.deeptech.build/", "kind": "adjacent" },
+  { "name": "AUTONOMOUS Summit", "url": "https://www.autonomoussummit.ai/", "kind": "adjacent" },
+  { "name": "Slush", "url": "https://slush.org/", "kind": "adjacent" },
+  { "name": "Bits & Pretzels", "url": "https://www.bitsandpretzels.com/", "kind": "adjacent" },
+  { "name": "Humanoids Summit", "url": "https://humanoidssummit.com/", "kind": "adjacent" },
+  { "name": "Web Summit", "url": "https://websummit.com/", "kind": "adjacent" }
+]

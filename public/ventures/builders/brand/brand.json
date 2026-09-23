@@ -65,7 +65,7 @@
   "deck": {
     "style": "gradient",
     "dark": "#000000",
-    "light": "#FAF7F2",
+    "light": "#FFFFFF",
     "tagline": "AI venture studio",
     "gradients": {
       "builders": {

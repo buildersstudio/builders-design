@@ -351,14 +351,15 @@ function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Them
   const rule = light ? "rgba(10,10,10,.16)" : "rgba(255,255,255,.2)";
   const e = (k: string) => [k];
 
-  const full = !light && ["cover", "section", "closing"].includes(slide.layout);
+  const photoBg = slide.photo ?? (slide.layout === "photo" ? slide.image : undefined);
+  const full = !light && !photoBg && ["cover", "section", "closing", "cards"].includes(slide.layout);
   const img = slide.background && !["glow", "full", "overlay"].includes(slide.background)
     ? slide.background
     : slide.background === "glow" ? g?.glow : full ? g?.full : g?.overlay;
 
   const root: CSSProperties = {
     width: W, height: H, position: "relative", overflow: "hidden", color: fg, fontFamily: theme.text,
-    background: light ? d.light ?? "#F6F4EF" : d.dark ?? "#000",
+    background: light ? d.light ?? "#FFFFFF" : d.dark ?? "#000",
     ["--em-font" as string]: "inherit", ["--em-style" as string]: "normal", ["--em-weight" as string]: "inherit",
     ["--em-color" as string]: soft, ["--em-track" as string]: "inherit",
   };
@@ -469,6 +470,52 @@ function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Them
         </>
       );
       break;
+    case "photo":
+      inner = (
+        <>
+          {eyebrow}
+          {heading(slide.title, { maxWidth: 1100 })}
+          <T v={slide.body} p={e("body")} edit={edit} style={{ ...zone, ...body, fontSize: 34, maxWidth: 900, color: "rgba(255,255,255,.78)" }} />
+        </>
+      );
+      break;
+    case "cards":
+      inner = (
+        <>
+          {eyebrow}
+          {heading(slide.title)}
+          <div style={{ position: "absolute", left: GRID.x, right: GRID.x, top: 400, bottom: GRID.bottom, display: "grid", gridTemplateColumns: cols(slide.cards.length), gap: 24 }}>
+            {slide.cards.map((c, i) => (
+              <div key={i} style={{ background: "#fff", color: "#0A0A0A", borderRadius: 28, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 30px 80px -30px rgba(0,0,0,.45)" }}>
+                {c.image && <div style={{ flex: 1, minHeight: 0, background: `center / cover url("${c.image}")` }} />}
+                <div style={{ padding: "30px 34px 34px" }}>
+                  <T v={c.title} p={["cards", i, "title"]} edit={edit} style={{ fontFamily: theme.label, fontSize: 24, letterSpacing: "0.04em", textTransform: "uppercase" }} />
+                  <T v={c.body} p={["cards", i, "body"]} edit={edit} style={{ fontSize: 24, lineHeight: 1.4, color: "rgba(10,10,10,.55)", marginTop: 10 }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      );
+      break;
+    case "mosaic": {
+      const im = slide.images.slice(0, 4);
+      const cell = (u?: string, extra: CSSProperties = {}) => <div style={{ background: u ? `center / cover url("${u}")` : "rgba(127,127,127,.12)", borderRadius: 22, ...extra }} />;
+      inner = (
+        <>
+          {eyebrow}
+          {heading(slide.title, { right: 1010, maxWidth: 800, fontSize: 64 })}
+          <T v={slide.body} p={e("body")} edit={edit} style={{ ...zone, right: 1010, ...body, fontSize: 32, color: soft }} />
+          <div style={{ position: "absolute", top: GRID.label, bottom: GRID.bottom - 60, right: GRID.x, width: 860, display: "grid", gridTemplateColumns: "1.25fr 1fr", gridTemplateRows: "1fr 1fr 1fr", gap: 16 }}>
+            {cell(im[0], { gridRow: "1 / 3" })}
+            {cell(im[1])}
+            {cell(im[2], { gridRow: "2 / 4" })}
+            {cell(im[3])}
+          </div>
+        </>
+      );
+      break;
+    }
     case "closing":
       inner = (
         <>
@@ -492,6 +539,8 @@ function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Them
 
   return (
     <div className="slide" style={root}>
+      {photoBg && <div style={{ position: "absolute", inset: 0, background: `center / cover no-repeat url("${photoBg}")` }} />}
+      {photoBg && <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.55) 100%)" }} />}
       {img && <div style={{ position: "absolute", inset: 0, background: `center / cover no-repeat url("${img}")` }} />}
       {inner}
       <div style={{ position: "absolute", left: GRID.x, bottom: 78, ...label, fontFeatureSettings: '"tnum" 1' }}>{String(n).padStart(2, "0")} / {String(total).padStart(2, "0")}</div>

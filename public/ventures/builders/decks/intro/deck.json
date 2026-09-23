@@ -7,7 +7,8 @@
       "layout": "cover",
       "eyebrow": "Builders · Rotterdam",
       "title": "AI ventures\nare built here.",
-      "subtitle": "Builders is an AI venture studio. We co-found enterprise AI companies from day zero."
+      "subtitle": "Builders is an AI venture studio. We co-found enterprise AI companies from day zero.",
+      "photo": "/ventures/builders/gallery/photos/investor-house-talk-full-room.jpg"
     },
     {
       "layout": "statement",
@@ -38,6 +39,28 @@
       "result": "Builders"
     },
     {
+      "layout": "cards",
+      "eyebrow": "Who it is for",
+      "title": "Three rooms,\none studio.",
+      "cards": [
+        {
+          "title": "For founders",
+          "body": "We build the companies.",
+          "image": "/ventures/builders/gallery/photos/two-founders-at-whiteboard.jpg"
+        },
+        {
+          "title": "For investors",
+          "body": "We put the capital in.",
+          "image": "/ventures/builders/gallery/photos/investor-house-window-conversation.jpg"
+        },
+        {
+          "title": "For technical leaders",
+          "body": "We keep the room open.",
+          "image": "/ventures/builders/gallery/photos/cto-network-event-conversation.jpg"
+        }
+      ]
+    },
+    {
       "layout": "section",
       "gradient": "studio",
       "eyebrow": "01",
@@ -65,11 +88,33 @@
       ]
     },
     {
+      "layout": "photo",
+      "gradient": "studio",
+      "eyebrow": "In the batch",
+      "title": "Built in the same room,\nevery day.",
+      "body": "A co-founding team, capital and a network behind every founder in Rotterdam.",
+      "image": "/ventures/builders/gallery/photos/founder-pitching-at-whiteboard.jpg"
+    },
+    {
       "layout": "statement",
       "gradient": "studio",
       "eyebrow": "VSI",
       "title": "An operating system\nthat closes the loop.",
       "body": "VSI turns every conversation into decision-grade intelligence. *It scores the evidence behind every claim.*"
+    },
+    {
+      "layout": "mosaic",
+      "mode": "light",
+      "gradient": "studio",
+      "eyebrow": "Life at the studio",
+      "title": "Ten weeks,\none room.",
+      "body": "Founders, operators and the studio team, building side by side.",
+      "images": [
+        "/ventures/builders/gallery/photos/bootcamp-founders-at-laptops.jpg",
+        "/ventures/builders/gallery/photos/studio-lounge-team-conversation.jpg",
+        "/ventures/builders/gallery/photos/founders-building-at-kitchen-counter.jpg",
+        "/ventures/builders/gallery/photos/one-on-one-founder-session.jpg"
+      ]
     },
     {
       "layout": "section",
@@ -104,6 +149,14 @@
           "label": "co-investing alongside institutional VCs"
         }
       ]
+    },
+    {
+      "layout": "photo",
+      "gradient": "capital",
+      "eyebrow": "Investor House",
+      "title": "Where angels\nmeet founders.",
+      "body": "Quarterly events hosted at the headquarters of inspiring tech companies.",
+      "image": "/ventures/builders/gallery/photos/investor-house-panel-audience.jpg"
     },
     {
       "layout": "section",
