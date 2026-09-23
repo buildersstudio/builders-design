@@ -28,6 +28,10 @@ Each concept starts from the product and its buyer rather than from a metaphor: 
 
 Each variant is delivered as a single landing page, because a brand is only judged fairly when it is seen doing its job. The page carries the logo, the palette and the type in use, a hero with the real one-liner, two or three sections drawn from the product and customer description, and at least one large product moment (the venture's real product film when one exists, otherwise a precise rendering of its real output).
 
+## Photography and imagery
+
+A brand that is only type and diagrams feels unfinished, so most variants should carry real photography: people at work, the environments the product lives in, the objects it touches. Use the venture's own pictures first (its gallery), then royalty-free photography from Unsplash (unsplash.com) or a comparable royalty-free library such as Pexels, chosen with the same care as the type: consistent in light, colour and grain, specific to the venture's world rather than generic office stock, and never a staged handshake or a person pointing at a screen. When the right picture does not exist, generate it with the Higgsfield MCP, preferring its cheaper image models for exploration and keeping the look photographic and plausible rather than obviously synthetic. Download every picture into the variant's folder so the page is self-contained, and record its source and author in the variant's `meta.json` under `"credits"`.
+
 ## The elements
 
 - **Logo.** A wordmark first, drawn or carefully set, that survives in one colour at small sizes. A separate mark is added only when it earns its place, and it has to work as an app icon on its own.

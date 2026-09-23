@@ -75,6 +75,8 @@ Everything in this repo is public, and `main` is what the platform shows. To pub
 
 Follow [BRANDING.md](BRANDING.md). Each variant is `variants/<id>/index.html`: a single self-contained page (inline CSS and SVG, fonts from Google Fonts, images inside the folder), designed at 1440px wide and responsive. It is shown in the platform as a live scaled preview, so the first 900px must carry the idea. Add `meta.json` with `title` (the idea in two to four words) and `note` (one sentence on the idea).
 
+Pictures for variants (and for landing pages, decks and social posts) come, in this order, from the venture's gallery, from royalty-free libraries (Unsplash first: its search API at `https://unsplash.com/napi/search/photos?query=<terms>&per_page=30` returns image URLs on `images.unsplash.com`, sized with `&w=2000&q=80`; Pexels is fine too), or from the Higgsfield MCP (load it with ToolSearch "higgsfield generate_image"; use a cheap image model unless quality demands otherwise). Download them into the variant folder, web-sized, and list each one in `meta.json` as `"credits": [{ "file", "source", "author", "url" }]`. Royalty-free pictures belong to the variant, not the gallery: the gallery is for pictures the venture owns.
+
 ## Brand book
 
 Once a variant is chosen, write `brand/brand.json`:
@@ -103,7 +105,7 @@ Exactly one `ink`, one `paper`, one `accent`; up to three `support`. Add `brand/
 
 Every picture a venture owns, so models can reuse them: founder portraits, photography, product shots, illustrations, backgrounds. Put each file in `gallery/<group>/`, where group is one of `founders`, `team`, `photos`, `product`, `illustrations`, `backgrounds`, `icons` (others are allowed). Name files descriptively in kebab-case (`founder-jane-doe.jpg`, `hero-office-dusk.jpg`), because the name is what people see and what they paste into prompts.
 
-Keep files web-sized: JPG or WebP, longest side 2000px at most, ideally under 400 KB (`sips -Z 2000 -s format jpeg -s formatOptions 80 in.png --out out.jpg` on macOS). SVG for illustrations. Only pictures the venture owns or has the rights to, never scraped stock.
+Keep files web-sized: JPG or WebP, longest side 2000px at most, ideally under 400 KB (`sips -Z 2000 -s format jpeg -s formatOptions 80 in.png --out out.jpg` on macOS). SVG for illustrations. Only pictures the venture owns or has the rights to. Royalty-free stock used in a variant stays in that variant's folder, not here.
 
 In the platform, clicking a picture copies its public URL (`https://<site>/ventures/<slug>/gallery/<group>/<file>`). When a founder pastes such a URL into a request, use that exact file: reference it by that path in HTML and decks (`"image": "/ventures/<slug>/gallery/photos/x.jpg"` on a `split` slide), or copy it into the variant folder if the page must be self-contained.
 
