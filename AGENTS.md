@@ -136,7 +136,7 @@ Same shape as variants, in `landing/<id>/`, but built from the brand book (`bran
 
 ## Social assets
 
-Files in `social/`: PNG or JPG exports at the platform's native size (1080×1080, 1080×1350, 1200×627, 1920×1080), or an HTML source in `social/<id>/index.html` sized to the asset. Built from the brand book.
+The Social page of every venture is a small built-in tool: pick a LinkedIn format (4:5, 1:1, 1.91:1), a layout (Type, Photo, Split), dark or light, write a label and a headline (`*words*` for emphasis) and pick a picture from the venture's gallery; it renders in the brand (fonts, colours, logo and the brand's deck style: gradient, imagery or pixel) and downloads a 2× PNG. Nothing is stored. To improve how posts look for a venture, improve its brand book, gallery and deck style, not the tool.
 
 ## Running it
 

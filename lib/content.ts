@@ -11,9 +11,10 @@ export const SECTIONS = [
   { key: "brand", label: "Brand book" },
   { key: "gallery", label: "Gallery" },
   { key: "presentations", label: "Presentations" },
+  { key: "social", label: "Social" },
   { key: "variants", label: "Brand variants" },
   { key: "competitors", label: "Competitors" },
-  // Landing pages and Social are parked: their routes and folders still work, they are just not in the menu.
+  // Landing pages are parked: their routes and folders still work, they are just not in the menu.
 ] as const;
 
 export type SectionKey = (typeof SECTIONS)[number]["key"];
@@ -166,5 +167,6 @@ export function counts(slug: string): Record<SectionKey, number> {
     brand: exists(path.join(ROOT, slug, "brand", "brand.json")) ? 1 : 0,
     gallery: getGallery(slug).length,
     presentations: getDecks(slug).length,
+    social: 0,
   };
 }

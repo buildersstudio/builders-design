@@ -10,7 +10,7 @@ type Edit = (path: (string | number)[], value: string) => void;
 
 const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 /** Copy may mark a phrase as *emphasis*; it renders in the brand's serif italic when the deck style defines one. */
-const rich = (t = "") =>
+export const rich = (t = "") =>
   esc(t).replace(/\n/g, "<br>").replace(/\*([^*]+)\*/g, '<em style="font-family:var(--em-font,var(--serif,inherit));font-style:var(--em-style,italic);font-weight:var(--em-weight,400);color:var(--em-color,inherit);letter-spacing:var(--em-track,-0.01em)">$1</em>');
 
 /** A text node that becomes contentEditable when the deck is in edit mode. */

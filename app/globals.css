@@ -89,7 +89,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .menu-foot img { height: 12px; display: block; }
 
 .work { overflow-y: auto; padding: 26px 34px 60px 0; }
-.work:has(.book, .editor) { overflow: hidden; padding-bottom: 0; }
+.work:has(.book, .editor, .social) { overflow: hidden; padding-bottom: 0; }
 .work-head { display: flex; align-items: center; justify-content: space-between; height: 22px; margin-bottom: 26px; }
 .work-title { font-size: 15px; font-weight: 400; margin: 0; }
 .work-title span { color: var(--faint); margin-left: 8px; font-feature-settings: "tnum" 1; }
@@ -219,3 +219,18 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   background: var(--ink); color: #fff; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25); transition: transform 0.15s var(--ease), background 0.15s;
 }
 .pic figcaption :is(button, a):hover { background: #333; transform: scale(1.06); }
+
+/* ---------- Social ---------- */
+
+.social { display: grid; grid-template-columns: 1fr 300px; gap: 28px; height: calc(100vh - 100px); }
+.social-stage { min-width: 0; min-height: 0; display: grid; place-items: center; padding-bottom: 20px; }
+.social-panel { overflow-y: auto; display: flex; flex-direction: column; gap: 20px; padding: 4px 4px 26px; }
+.social-field { display: flex; flex-direction: column; gap: 8px; }
+.social-field > span { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; }
+.social-field > span em { font-style: normal; color: var(--faint); }
+.social-input { font: inherit; font-size: 14px; color: var(--ink); background: var(--wash); border: 0; border-radius: 10px; padding: 10px 12px; resize: vertical; outline: none; box-shadow: inset 0 0 0 1px transparent; transition: box-shadow 0.15s; }
+.social-input:focus { box-shadow: inset 0 0 0 1px #d6d6d6; background: #fff; }
+.social-pics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; max-height: 236px; overflow-y: auto; padding: 2px; }
+.social-pics button { aspect-ratio: 1; border-radius: 8px; background: center / cover no-repeat var(--wash); box-shadow: 0 0 0 1px var(--line); transition: box-shadow 0.15s; }
+.social-pics button[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--ink); }
+.social-dl { height: 40px; margin-top: auto; }
