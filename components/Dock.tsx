@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import { copy } from "./ui";
 
 type Item = { slug: string; name: string; badge?: string };
@@ -11,6 +12,18 @@ export function Dock({ ventures, addPrompt }: { ventures: Item[]; addPrompt: str
   const path = usePathname();
   const current = path.split("/")[1];
   const section = path.split("/")[2] ?? "brand";
+
+  // Arriving from the home screen: the app "opens" (the shell scales up into place).
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem("bd-open")) {
+        sessionStorage.removeItem("bd-open");
+        const shell = document.querySelector(".shell");
+        shell?.classList.add("app-enter");
+        setTimeout(() => shell?.classList.remove("app-enter"), 700);
+      }
+    } catch {}
+  }, []);
 
   return (
     <nav className="dock" aria-label="Ventures">
