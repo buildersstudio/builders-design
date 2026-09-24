@@ -5,6 +5,7 @@ import type { Brand, Theme } from "@/lib/types";
 import { isCutout, luminance } from "@/lib/types";
 import { fieldSVG } from "@/lib/fields.mjs";
 import { rich } from "./Slide";
+import { BootArtwork } from "./PostBoot";
 
 /* ---------- one engine for every social post, in the venture's brand ---------- */
 
@@ -22,8 +23,18 @@ export const LAYOUTS = [
   { key: "stat", label: "Stat" },
 ] as const;
 
+/** the "boot" style (Day Zero) has its own layouts: the Luma cover window, a README headline, code, and the guest card */
+export const BOOT_LAYOUTS = [
+  { key: "window", label: "Cover" },
+  { key: "headline", label: "Headline" },
+  { key: "code", label: "Code" },
+  { key: "guest", label: "Guest" },
+] as const;
+
+export const layoutsFor = (style?: string) => (style === "boot" ? BOOT_LAYOUTS : LAYOUTS);
+
 export type Format = (typeof FORMATS)[number]["key"];
-export type Layout = (typeof LAYOUTS)[number]["key"];
+export type Layout = (typeof LAYOUTS)[number]["key"] | (typeof BOOT_LAYOUTS)[number]["key"];
 
 export type Post = {
   format: Format;
@@ -67,6 +78,7 @@ export function Artwork({ post, theme, brand }: { post: Post; theme: Theme; bran
   const { w, h } = sizeOf(post.format);
   const d = theme.deck;
   const style = d.style ?? "plain";
+  if (style === "boot") return <BootArtwork post={post} theme={theme} brand={brand} />;
   const u = w / 1080;
   const wide = w / h > 1.4;
   const pad = Math.round(80 * u);

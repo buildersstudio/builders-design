@@ -1,0 +1,28 @@
+{
+  "title": "Day Zero",
+  "created": "2026-09-26",
+  "slides": [
+    { "layout": "cover", "eyebrow": "2026", "title": "The monthly build night of *Builders.*", "subtitle": "Founders and young technical talent, building AI ventures through the night." },
+    { "layout": "statement", "eyebrow": "README.md", "title": "The Builders studio, compressed into *one night.*", "body": "The same room, the same people and the same bias for shipping, once a month in Rotterdam." },
+    { "layout": "points", "eyebrow": "types.ts", "title": "Two types of people in the room", "points": [
+      { "title": "Founders", "body": "With an idea or an early product, looking for the people to build it with." },
+      { "title": "Builders", "body": "Engineers, designers and makers early in their careers who would rather ship than talk." }
+    ] },
+    { "layout": "section", "eyebrow": "01", "title": "The night", "gradient": "studio" },
+    { "layout": "points", "eyebrow": "run.log", "title": "How a night runs", "points": [
+      { "title": "One theme", "body": "A topic or industry that decides what gets built." },
+      { "title": "One guest", "body": "A person who can speak for that theme." },
+      { "title": "Teams", "body": "Founders and builders pair up in the room." },
+      { "title": "Build", "body": "Laptops open until late." }
+    ] },
+    { "layout": "split", "eyebrow": "ship()", "title": "Something that runs, *not a deck.*", "body": "The goal of the night is a working first version of an AI venture, built by the people who will carry it on.", "image": "/ventures/day-zero/gallery/photos/bootcamp-founders-at-laptops.jpg" },
+    { "layout": "statement", "eyebrow": "Edition 03", "title": "From edition 03, every night has a *theme* and a *guest.*" },
+    { "layout": "section", "eyebrow": "02", "title": "Be the guest", "gradient": "network" },
+    { "layout": "points", "eyebrow": "guest.exe", "title": "What we ask of a guest", "points": [
+      { "title": "Bring the theme", "body": "Speak for the topic or industry the night is about." },
+      { "title": "Be in the room", "body": "Founders and builders get to ask you what they need to know to build." },
+      { "title": "Get pixelated", "body": "Your portrait becomes the arcade avatar on the cover and the posts." }
+    ] },
+    { "layout": "closing", "title": "Build with us at *Day Zero.*", "subtitle": "builders.studio", "cta": ["rsvp --luma"], "gradient": "capital" }
+  ]
+}

@@ -4,6 +4,7 @@ import { Fragment, type CSSProperties, type ElementType } from "react";
 import type { Slide as S, Theme } from "@/lib/types";
 import { isCutout, luminance } from "@/lib/types";
 import { fieldSVG } from "@/lib/fields.mjs";
+import { BootSlide } from "./SlideBoot";
 
 export const W = 1920;
 export const H = 1080;
@@ -16,7 +17,7 @@ export const rich = (t = "") =>
   esc(t).replace(/\n/g, "<br>").replace(/\*([^*]+)\*/g, '<em style="font-family:var(--em-font,var(--serif,inherit));font-style:var(--em-style,italic);font-weight:var(--em-weight,400);color:var(--em-color,inherit);letter-spacing:var(--em-track,-0.01em)">$1</em>');
 
 /** A text node that becomes contentEditable when the deck is in edit mode. */
-function T({ as: Tag = "div", v, p, edit, style }: { as?: ElementType; v?: string; p: (string | number)[]; edit?: Edit; style?: CSSProperties }) {
+export function T({ as: Tag = "div", v, p, edit, style }: { as?: ElementType; v?: string; p: (string | number)[]; edit?: Edit; style?: CSSProperties }) {
   if (!v && !edit) return null;
   if (!edit) return <Tag style={style} dangerouslySetInnerHTML={{ __html: rich(v) }} />;
   return (
@@ -42,6 +43,7 @@ export function Slide(props: { slide: S; theme: Theme; logo?: string; n: number;
   if (style === "gradient") return <GradientSlide {...props} />;
   if (style === "pixel") return <PixelSlide {...props} />;
   if (style === "field") return <FieldSlide {...props} />;
+  if (style === "boot") return <BootSlide {...props} />;
   return <PlainSlide {...props} />;
 }
 

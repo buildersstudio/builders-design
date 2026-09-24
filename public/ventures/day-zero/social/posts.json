@@ -1,0 +1,542 @@
+[
+  {
+    "id": "c01",
+    "angle": "Luma cover · Edition 02 · Builders",
+    "format": "square",
+    "layout": "window",
+    "dark": false,
+    "shade": false,
+    "color": "builders",
+    "label": "day-zero.exe",
+    "stat": "02",
+    "title": "Edition 02",
+    "body": "Builders, Rotterdam",
+    "captions": [
+      "Day Zero is the monthly build night of Builders.\n\nFounders with an idea or an early product sit down with engineers, designers and makers early in their careers, and build AI ventures together through the night.\n\nAt Builders, Rotterdam. builders.studio",
+      "One night a month, the Builders studio in Rotterdam stays open late for people who would rather ship than talk.\n\nBring an idea, or bring the skills to build one. Teams form in the room.\n\nbuilders.studio",
+      "Edition 02 of Day Zero.\n\nThe same room, the same people and the same bias for shipping as the Builders studio, compressed into one night. Founders and technical builders work on AI ventures until late.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "c02",
+    "angle": "Luma cover · Edition 02 · Network",
+    "format": "square",
+    "layout": "window",
+    "dark": false,
+    "shade": false,
+    "color": "network",
+    "label": "day-zero.exe",
+    "stat": "02",
+    "title": "Edition 02",
+    "body": "Builders, Rotterdam",
+    "captions": [
+      "Day Zero is the monthly build night of Builders.\n\nFounders with an idea or an early product sit down with engineers, designers and makers early in their careers, and build AI ventures together through the night.\n\nAt Builders, Rotterdam. builders.studio",
+      "One night a month, the Builders studio in Rotterdam stays open late for people who would rather ship than talk.\n\nBring an idea, or bring the skills to build one. Teams form in the room.\n\nbuilders.studio",
+      "Edition 02 of Day Zero.\n\nThe same room, the same people and the same bias for shipping as the Builders studio, compressed into one night. Founders and technical builders work on AI ventures until late.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "c03",
+    "angle": "Luma cover · Edition 02 · Studio",
+    "format": "square",
+    "layout": "window",
+    "dark": false,
+    "shade": false,
+    "color": "studio",
+    "label": "day-zero.exe",
+    "stat": "02",
+    "title": "Edition 02",
+    "body": "Builders, Rotterdam",
+    "captions": [
+      "Day Zero is the monthly build night of Builders.\n\nFounders with an idea or an early product sit down with engineers, designers and makers early in their careers, and build AI ventures together through the night.\n\nAt Builders, Rotterdam. builders.studio",
+      "One night a month, the Builders studio in Rotterdam stays open late for people who would rather ship than talk.\n\nBring an idea, or bring the skills to build one. Teams form in the room.\n\nbuilders.studio",
+      "Edition 02 of Day Zero.\n\nThe same room, the same people and the same bias for shipping as the Builders studio, compressed into one night. Founders and technical builders work on AI ventures until late.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "c04",
+    "angle": "Luma cover · Edition 02 · Capital",
+    "format": "square",
+    "layout": "window",
+    "dark": false,
+    "shade": false,
+    "color": "capital",
+    "label": "day-zero.exe",
+    "stat": "02",
+    "title": "Edition 02",
+    "body": "Builders, Rotterdam",
+    "captions": [
+      "Day Zero is the monthly build night of Builders.\n\nFounders with an idea or an early product sit down with engineers, designers and makers early in their careers, and build AI ventures together through the night.\n\nAt Builders, Rotterdam. builders.studio",
+      "One night a month, the Builders studio in Rotterdam stays open late for people who would rather ship than talk.\n\nBring an idea, or bring the skills to build one. Teams form in the room.\n\nbuilders.studio",
+      "Edition 02 of Day Zero.\n\nThe same room, the same people and the same bias for shipping as the Builders studio, compressed into one night. Founders and technical builders work on AI ventures until late.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "c05",
+    "angle": "Luma cover · Edition 03 · Builders",
+    "format": "square",
+    "layout": "window",
+    "dark": false,
+    "shade": false,
+    "color": "builders",
+    "label": "day-zero.exe",
+    "stat": "03",
+    "title": "Edition 03",
+    "body": "Builders, Rotterdam",
+    "captions": [
+      "Day Zero 03 is the first themed edition.\n\nFrom this night on, every Day Zero has one theme and one guest who speaks for it. Both are announced here soon.\n\nFounders and technical builders, at Builders in Rotterdam. builders.studio",
+      "Edition 03 of the monthly build night of Builders.\n\nOne theme decides what gets built. One guest who knows that topic or industry opens the night and stays for the build.\n\nBring an idea or bring the skills. builders.studio",
+      "Day Zero turns three, and gets a theme.\n\nFounders with an idea or an early product, engineers, designers and makers early in their careers, one topic for the night and a guest to go with it.\n\nAt Builders, Rotterdam. builders.studio"
+    ]
+  },
+  {
+    "id": "c06",
+    "angle": "Luma cover · Edition 03 · Network",
+    "format": "square",
+    "layout": "window",
+    "dark": false,
+    "shade": false,
+    "color": "network",
+    "label": "day-zero.exe",
+    "stat": "03",
+    "title": "Edition 03",
+    "body": "Builders, Rotterdam",
+    "captions": [
+      "Day Zero 03 is the first themed edition.\n\nFrom this night on, every Day Zero has one theme and one guest who speaks for it. Both are announced here soon.\n\nFounders and technical builders, at Builders in Rotterdam. builders.studio",
+      "Edition 03 of the monthly build night of Builders.\n\nOne theme decides what gets built. One guest who knows that topic or industry opens the night and stays for the build.\n\nBring an idea or bring the skills. builders.studio",
+      "Day Zero turns three, and gets a theme.\n\nFounders with an idea or an early product, engineers, designers and makers early in their careers, one topic for the night and a guest to go with it.\n\nAt Builders, Rotterdam. builders.studio"
+    ]
+  },
+  {
+    "id": "c07",
+    "angle": "Luma cover · Edition 03 · Studio",
+    "format": "square",
+    "layout": "window",
+    "dark": false,
+    "shade": false,
+    "color": "studio",
+    "label": "day-zero.exe",
+    "stat": "03",
+    "title": "Edition 03",
+    "body": "Builders, Rotterdam",
+    "captions": [
+      "Day Zero 03 is the first themed edition.\n\nFrom this night on, every Day Zero has one theme and one guest who speaks for it. Both are announced here soon.\n\nFounders and technical builders, at Builders in Rotterdam. builders.studio",
+      "Edition 03 of the monthly build night of Builders.\n\nOne theme decides what gets built. One guest who knows that topic or industry opens the night and stays for the build.\n\nBring an idea or bring the skills. builders.studio",
+      "Day Zero turns three, and gets a theme.\n\nFounders with an idea or an early product, engineers, designers and makers early in their careers, one topic for the night and a guest to go with it.\n\nAt Builders, Rotterdam. builders.studio"
+    ]
+  },
+  {
+    "id": "c08",
+    "angle": "Luma cover · Edition 03 · Capital",
+    "format": "square",
+    "layout": "window",
+    "dark": false,
+    "shade": false,
+    "color": "capital",
+    "label": "day-zero.exe",
+    "stat": "03",
+    "title": "Edition 03",
+    "body": "Builders, Rotterdam",
+    "captions": [
+      "Day Zero 03 is the first themed edition.\n\nFrom this night on, every Day Zero has one theme and one guest who speaks for it. Both are announced here soon.\n\nFounders and technical builders, at Builders in Rotterdam. builders.studio",
+      "Edition 03 of the monthly build night of Builders.\n\nOne theme decides what gets built. One guest who knows that topic or industry opens the night and stays for the build.\n\nBring an idea or bring the skills. builders.studio",
+      "Day Zero turns three, and gets a theme.\n\nFounders with an idea or an early product, engineers, designers and makers early in their careers, one topic for the night and a guest to go with it.\n\nAt Builders, Rotterdam. builders.studio"
+    ]
+  },
+  {
+    "id": "c09",
+    "angle": "Luma cover · Edition 03 · Guest",
+    "format": "square",
+    "layout": "guest",
+    "dark": false,
+    "shade": false,
+    "color": "capital",
+    "label": "guest.exe",
+    "stat": "03",
+    "title": "announced\nsoon",
+    "body": "tba",
+    "captions": [
+      "Day Zero 03 is the first themed edition.\n\nFrom this night on, every Day Zero has one theme and one guest who speaks for it. Both are announced here soon.\n\nFounders and technical builders, at Builders in Rotterdam. builders.studio",
+      "Edition 03 of the monthly build night of Builders.\n\nOne theme decides what gets built. One guest who knows that topic or industry opens the night and stays for the build.\n\nBring an idea or bring the skills. builders.studio",
+      "Day Zero turns three, and gets a theme.\n\nFounders with an idea or an early product, engineers, designers and makers early in their careers, one topic for the night and a guest to go with it.\n\nAt Builders, Rotterdam. builders.studio"
+    ]
+  },
+  {
+    "id": "c10",
+    "angle": "Luma cover · Edition 03 · Guest",
+    "format": "square",
+    "layout": "guest",
+    "dark": true,
+    "shade": false,
+    "color": "network",
+    "label": "guest.exe",
+    "stat": "03",
+    "title": "announced\nsoon",
+    "body": "tba",
+    "captions": [
+      "Edition 03 of the monthly build night of Builders.\n\nOne theme decides what gets built. One guest who knows that topic or industry opens the night and stays for the build.\n\nBring an idea or bring the skills. builders.studio",
+      "Day Zero turns three, and gets a theme.\n\nFounders with an idea or an early product, engineers, designers and makers early in their careers, one topic for the night and a guest to go with it.\n\nAt Builders, Rotterdam. builders.studio",
+      "Day Zero 03 is the first themed edition.\n\nFrom this night on, every Day Zero has one theme and one guest who speaks for it. Both are announced here soon.\n\nFounders and technical builders, at Builders in Rotterdam. builders.studio"
+    ]
+  },
+  {
+    "id": "01",
+    "angle": "The invite",
+    "format": "portrait",
+    "layout": "headline",
+    "dark": false,
+    "shade": false,
+    "color": "builders",
+    "label": "README.md",
+    "stat": "02",
+    "title": "Bring an idea or bring the *skills.*",
+    "body": "rsvp --luma",
+    "captions": [
+      "Day Zero is the monthly build night of Builders.\n\nFounders bring an idea or an early product. Engineers, designers and makers bring the skills. Together they build AI ventures through the night.\n\nSeats go through Luma. builders.studio",
+      "You do not need a team to come to Day Zero. You need an idea, or the skills to build someone else's.\n\nOne night a month at Builders in Rotterdam, the teams form in the room.\n\nbuilders.studio",
+      "Two ways in: as a founder with an idea, or as a builder who would rather ship than talk.\n\nDay Zero, the monthly build night of Builders, Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "02",
+    "angle": "The night, as config",
+    "format": "portrait",
+    "layout": "code",
+    "dark": false,
+    "shade": false,
+    "color": "studio",
+    "label": "day-zero.ts",
+    "stat": "",
+    "title": "const night = new BuildNight({\n  host: \"Builders\",\n  city: \"Rotterdam\",\n  every: \"month\",\n  until: \"late\",\n});",
+    "body": "Edition 02",
+    "captions": [
+      "We wrote the spec for Day Zero.\n\nHost: Builders. City: Rotterdam. Frequency: once a month. End time: late.\n\nFounders and technical builders, building AI ventures in one room. builders.studio",
+      "Day Zero, in five lines of config.\n\nIt is the monthly build night of Builders: the same room, the same people and the same bias for shipping as the studio, compressed into one night.\n\nbuilders.studio",
+      "Some events are configured for networking. This one is configured for building.\n\nDay Zero runs once a month at Builders in Rotterdam, until late.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "03",
+    "angle": "The night, as a log",
+    "format": "portrait",
+    "layout": "code",
+    "dark": true,
+    "shade": false,
+    "color": "builders",
+    "label": "run.log",
+    "stat": "",
+    "title": "$ day-zero run\n\n> theme ..... ok\n> guest ..... ok\n> teams ..... ok\n> build ..... running\n> sleep ..... skipped\n\nexit 0",
+    "body": "Monthly",
+    "captions": [
+      "How a Day Zero night runs, from the logs.\n\nA theme and a guest to open. Teams of founders and builders. Then the build, until late. Sleep is optional.\n\nbuilders.studio",
+      "Every month, the same process, a different result.\n\nDay Zero is the build night of Builders in Rotterdam, where founders and young technical talent build AI ventures through the night.\n\nbuilders.studio",
+      "The one step that always gets skipped at Day Zero is sleep.\n\nThe monthly build night of Builders, for founders and builders early in their careers.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "04",
+    "angle": "Where and when",
+    "format": "portrait",
+    "layout": "headline",
+    "dark": false,
+    "shade": false,
+    "color": "network",
+    "label": "README.md",
+    "stat": "",
+    "title": "One night a month, at *Builders* in Rotterdam.",
+    "body": "open builders.studio",
+    "captions": [
+      "Day Zero happens once a month, at the Builders studio in Rotterdam.\n\nFounders with an idea or an early product, and engineers, designers and makers who want to build with them.\n\nbuilders.studio",
+      "Same place every month: the Builders studio in Rotterdam. Different ventures every time.\n\nDay Zero is where founders and technical builders build AI ventures through the night.\n\nbuilders.studio",
+      "If you want to see how Builders works, come on a Day Zero night.\n\nIt is the studio compressed into one evening: the same room, the same people, the same bias for shipping.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "05",
+    "angle": "Who it is for",
+    "format": "square",
+    "layout": "code",
+    "dark": false,
+    "shade": false,
+    "color": "capital",
+    "label": "types.ts",
+    "stat": "",
+    "title": "type Founder = {\n  idea: string;\n  stage: \"idea\" | \"early product\";\n};\n\ntype Builder = Engineer | Designer | Maker;",
+    "body": "",
+    "captions": [
+      "Day Zero has two types of guest.\n\nFounders, with an idea or an early product. And builders: engineers, designers and makers early in their careers who would rather ship than talk.\n\nbuilders.studio",
+      "Are you a Founder or a Builder? Day Zero needs both.\n\nThe monthly build night of Builders pairs them up to build AI ventures in one night, in Rotterdam.\n\nbuilders.studio",
+      "Strongly typed, loosely scheduled.\n\nDay Zero is for founders with an idea or an early product, and for young technical talent who want to build with them.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "06",
+    "angle": "Arrays start at zero",
+    "format": "portrait",
+    "layout": "code",
+    "dark": false,
+    "shade": false,
+    "color": "network",
+    "label": "day-zero.ts",
+    "stat": "",
+    "title": "// arrays start at zero.\n// so do ventures.\n\nconst team = [founder, ...builders];\nteam[0].idea;",
+    "body": "Day Zero",
+    "captions": [
+      "Every developer knows the first index is zero. Every venture has one too.\n\nDay Zero is the monthly build night of Builders, where founders and technical builders start AI ventures together.\n\nbuilders.studio",
+      "Index 0 is the founder with the idea. The rest of the array is the builders who make it run.\n\nOne night a month at Builders, Rotterdam.\n\nbuilders.studio",
+      "Why Day Zero? Because it comes before day one.\n\nFounders and young technical talent building AI ventures through the night, once a month, at Builders.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "07",
+    "angle": "Same table",
+    "format": "square",
+    "layout": "headline",
+    "dark": false,
+    "shade": false,
+    "color": "studio",
+    "label": "README.md",
+    "stat": "",
+    "title": "Founders and builders at the *same table.*",
+    "body": "join --tonight",
+    "captions": [
+      "At Day Zero, founders do not pitch to builders. They sit at the same table and build.\n\nThe monthly build night of Builders, Rotterdam.\n\nbuilders.studio",
+      "The fastest way to find a technical co-builder is to build something together for a night.\n\nThat is Day Zero: founders and engineers, designers and makers, one room, once a month.\n\nbuilders.studio",
+      "Founders bring the problem. Builders bring the skills. The teams form in the room.\n\nDay Zero, at Builders in Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "08",
+    "angle": "Themed nights begin",
+    "format": "portrait",
+    "layout": "guest",
+    "dark": false,
+    "shade": false,
+    "color": "capital",
+    "label": "guest.exe",
+    "stat": "03",
+    "title": "announced\nsoon",
+    "body": "tba",
+    "captions": [
+      "Starting with edition 03, every Day Zero has a guest.\n\nA person who can speak for the theme of the night, the topic or industry the teams will build for. The first one is announced soon.\n\nbuilders.studio",
+      "Player 1 is loading.\n\nFrom the third edition, Day Zero gets one theme and one guest per night. Watch this space for who opens edition 03.\n\nbuilders.studio",
+      "New in Day Zero 03: a guest on stage.\n\nThey open the night with the theme and stay for the build. Founders and builders take it from there.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "09",
+    "angle": "One theme, one guest",
+    "format": "portrait",
+    "layout": "headline",
+    "dark": false,
+    "shade": false,
+    "color": "capital",
+    "label": "README.md",
+    "stat": "03",
+    "title": "From edition 03, every night has a *theme* and a *guest.*",
+    "body": "theme.load()",
+    "captions": [
+      "Day Zero is changing, from edition 03.\n\nEvery night will have one theme, a topic or industry that decides what gets built, and one guest who speaks for it.\n\nbuilders.studio",
+      "Edition 03 is the first themed Day Zero.\n\nOne topic for the whole room, one guest who knows it well, and founders and builders building AI ventures around it.\n\nbuilders.studio",
+      "Themes make a build night sharper. So from the third edition, Day Zero has one per night, with a guest to match.\n\nAt Builders, Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "10",
+    "angle": "While the night is young",
+    "format": "portrait",
+    "layout": "code",
+    "dark": false,
+    "shade": false,
+    "color": "studio",
+    "label": "day-zero.ts",
+    "stat": "",
+    "title": "while (night.isYoung) {\n  team.build(ai.venture);\n}\n\nexport default ship(team);",
+    "body": "Rotterdam",
+    "captions": [
+      "The only loop that matters on a Day Zero night.\n\nFounders and technical builders, building AI ventures until late, once a month at Builders.\n\nbuilders.studio",
+      "Day Zero has one rule: keep building while the night is young, then ship.\n\nThe monthly build night of Builders in Rotterdam.\n\nbuilders.studio",
+      "No slides, no panels. One loop, one night, one team per idea.\n\nDay Zero, the monthly build night of Builders.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "11",
+    "angle": "What it is",
+    "format": "landscape",
+    "layout": "headline",
+    "dark": false,
+    "shade": false,
+    "color": "builders",
+    "label": "README.md",
+    "stat": "",
+    "title": "The monthly build night of *Builders.*",
+    "body": "rsvp --luma",
+    "captions": [
+      "Day Zero is the monthly build night of Builders.\n\nFounders and young technical talent come together in Rotterdam to build AI ventures through the night.\n\nbuilders.studio",
+      "Once a month, Builders opens its studio in Rotterdam for a night of building.\n\nFounders with an idea or an early product, and the engineers, designers and makers who build with them.\n\nbuilders.studio",
+      "Day Zero is a derivation of the Builders studio: the same room, the same people and the same bias for shipping, compressed into one night.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "12",
+    "angle": "Two ways in",
+    "format": "square",
+    "layout": "code",
+    "dark": false,
+    "shade": false,
+    "color": "network",
+    "label": "join.ts",
+    "stat": "",
+    "title": "if (idea) {\n  join(asFounder);\n} else {\n  join(asBuilder);\n}",
+    "body": "",
+    "captions": [
+      "Have an idea? Come as a founder. Have the skills? Come as a builder.\n\nDay Zero, the monthly build night of Builders in Rotterdam.\n\nbuilders.studio",
+      "There is no wrong branch at Day Zero.\n\nFounders bring ideas and early products, builders bring engineering, design and making. Teams form on the night.\n\nbuilders.studio",
+      "Both paths end in the same place: building an AI venture in one night, at Builders.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "13",
+    "angle": "Not a deck",
+    "format": "portrait",
+    "layout": "headline",
+    "dark": false,
+    "shade": false,
+    "color": "builders",
+    "label": "README.md",
+    "stat": "",
+    "title": "Something that runs, *not a deck.*",
+    "body": "ship()",
+    "captions": [
+      "The goal of a Day Zero night is something that runs.\n\nFounders and technical builders spend the night building AI ventures, not polishing slides.\n\nbuilders.studio",
+      "Decks can wait for another day. Day Zero is for building.\n\nOnce a month at Builders in Rotterdam, for founders and young technical talent.\n\nbuilders.studio",
+      "At most events you leave with business cards. At Day Zero the aim is to leave with something working.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "14",
+    "angle": "git init",
+    "format": "portrait",
+    "layout": "code",
+    "dark": true,
+    "shade": false,
+    "color": "capital",
+    "label": "tty0",
+    "stat": "",
+    "title": "$ mkdir venture && cd venture\n$ git init\nInitialized empty repository\n\n$ git commit -m \"day zero\"",
+    "body": "Day Zero",
+    "captions": [
+      "Every venture starts with an empty repository.\n\nDay Zero is the night you make the first commit: founders and technical builders, building AI ventures together at Builders.\n\nbuilders.studio",
+      "The first commit is the hardest one. Come make it in a room full of people doing the same.\n\nDay Zero, once a month, Rotterdam.\n\nbuilders.studio",
+      "git init, then build. The monthly build night of Builders.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "15",
+    "angle": "Ship, not talk",
+    "format": "square",
+    "layout": "headline",
+    "dark": false,
+    "shade": false,
+    "color": "network",
+    "label": "README.md",
+    "stat": "",
+    "title": "For builders who would rather *ship than talk.*",
+    "body": "join --builder",
+    "captions": [
+      "Day Zero is for engineers, designers and makers early in their careers who would rather ship than talk.\n\nOne night a month, building AI ventures with founders, at Builders.\n\nbuilders.studio",
+      "If you are early in your career and want to build real products with real founders, Day Zero is built for you.\n\nbuilders.studio",
+      "No experience threshold, one expectation: that you build.\n\nThe monthly build night of Builders in Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "16",
+    "angle": "The spec, wide",
+    "format": "landscape",
+    "layout": "code",
+    "dark": false,
+    "shade": false,
+    "color": "studio",
+    "label": "day-zero.ts",
+    "stat": "",
+    "title": "const night = {\n  host: \"Builders\",\n  every: \"month\",\n  build: \"AI ventures\",\n};",
+    "body": "Rotterdam",
+    "captions": [
+      "Day Zero, in one object.\n\nHosted by Builders, once a month, for founders and technical builders who want to build AI ventures together.\n\nbuilders.studio",
+      "The monthly build night of Builders, now with its own identity.\n\nFounders, engineers, designers and makers, one room in Rotterdam, one night.\n\nbuilders.studio",
+      "What Day Zero is, as a developer would write it.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "17",
+    "angle": "The cover, tall",
+    "format": "portrait",
+    "layout": "window",
+    "dark": false,
+    "shade": false,
+    "color": "studio",
+    "label": "day-zero.exe",
+    "stat": "02",
+    "title": "Edition 02",
+    "body": "Builders, Rotterdam",
+    "captions": [
+      "Day Zero is the monthly build night of Builders.\n\nFounders with an idea or an early product sit down with engineers, designers and makers early in their careers, and build AI ventures together through the night.\n\nAt Builders, Rotterdam. builders.studio",
+      "One night a month, the Builders studio in Rotterdam stays open late for people who would rather ship than talk.\n\nBring an idea, or bring the skills to build one. Teams form in the room.\n\nbuilders.studio",
+      "Edition 02 of Day Zero.\n\nThe same room, the same people and the same bias for shipping as the Builders studio, compressed into one night. Founders and technical builders work on AI ventures until late.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "18",
+    "angle": "TODO: sleep",
+    "format": "portrait",
+    "layout": "code",
+    "dark": false,
+    "shade": false,
+    "color": "builders",
+    "label": "day-zero.ts",
+    "stat": "",
+    "title": "function dayZero() {\n  founders.meet(builders);\n  build();\n  // TODO: sleep\n}",
+    "body": "",
+    "captions": [
+      "Known issue: Day Zero does not implement sleep yet.\n\nThe monthly build night of Builders, where founders and technical builders build AI ventures until late.\n\nbuilders.studio",
+      "Meet, build, and leave the TODO for tomorrow.\n\nDay Zero, once a month at Builders in Rotterdam.\n\nbuilders.studio",
+      "A night that goes on until late, on purpose.\n\nFounders and young technical talent building AI ventures at Builders.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "19",
+    "angle": "The studio, in one night",
+    "format": "portrait",
+    "layout": "headline",
+    "dark": false,
+    "shade": false,
+    "color": "studio",
+    "label": "README.md",
+    "stat": "",
+    "title": "Same room, same people, same bias for *shipping.*",
+    "body": "cd builders",
+    "captions": [
+      "Day Zero is the Builders studio compressed into one night.\n\nThe same room, the same people and the same bias for shipping, open to founders and young technical talent once a month.\n\nbuilders.studio",
+      "Builders builds AI ventures with founders every day. Day Zero opens that room for one night a month.\n\nbuilders.studio",
+      "If you have wondered what happens inside Builders, the easiest way in is a Day Zero night.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "20",
+    "angle": "Guest, edition 03",
+    "format": "square",
+    "layout": "guest",
+    "dark": true,
+    "shade": false,
+    "color": "network",
+    "label": "guest.exe",
+    "stat": "03",
+    "title": "announced\nsoon",
+    "body": "tba",
+    "captions": [
+      "Edition 03 of Day Zero has a guest. Who it is, and what the theme will be, comes next.\n\nbuilders.studio",
+      "One theme, one guest, one night of building. Day Zero 03 is loading.\n\nbuilders.studio",
+      "The third Day Zero is the first with a guest on stage, speaking for the theme of the night.\n\nAt Builders, Rotterdam. builders.studio"
+    ]
+  }
+]

@@ -1,0 +1,93 @@
+{
+  "tagline": "The monthly build night of Builders.",
+  "colors": [
+    {
+      "name": "Deep",
+      "hex": "#000000",
+      "role": "ink"
+    },
+    {
+      "name": "Cream",
+      "hex": "#FAF7F2",
+      "role": "paper"
+    },
+    {
+      "name": "Network",
+      "hex": "#E986B4",
+      "role": "accent"
+    },
+    {
+      "name": "Studio",
+      "hex": "#8193FF",
+      "role": "support"
+    },
+    {
+      "name": "Capital",
+      "hex": "#D4A574",
+      "role": "support"
+    },
+    {
+      "name": "Ink",
+      "hex": "#1A1A2E",
+      "role": "support"
+    }
+  ],
+  "type": [
+    {
+      "name": "Favorit Std",
+      "role": "display",
+      "weight": 500,
+      "css": null,
+      "src": "https://builders.studio/fonts/FavoritStd-Medium.otf",
+      "license": "commercial",
+      "url": "https://abcdinamo.com/typefaces/favorit"
+    },
+    {
+      "name": "Favorit Std",
+      "role": "text",
+      "weight": 400,
+      "css": null,
+      "src": "https://builders.studio/fonts/FavoritStd-Book.otf",
+      "license": "commercial",
+      "url": "https://abcdinamo.com/typefaces/favorit"
+    },
+    {
+      "name": "LisaTerminal Paper",
+      "role": "accent",
+      "weight": 400,
+      "css": null,
+      "src": "/ventures/day-zero/brand/fonts/LisaTerminalPaper2X3Y.ttf",
+      "license": "open",
+      "url": "https://www.kreativekorp.com/software/fonts/"
+    }
+  ],
+  "deck": {
+    "style": "boot",
+    "walls": {
+      "builders": {
+        "square": "/ventures/day-zero/gallery/backgrounds/pixel-wall-builders-square.png",
+        "portrait": "/ventures/day-zero/gallery/backgrounds/pixel-wall-builders-portrait.png",
+        "landscape": "/ventures/day-zero/gallery/backgrounds/pixel-wall-builders-landscape.png",
+        "slide": "/ventures/day-zero/gallery/backgrounds/pixel-wall-builders-slide.png"
+      },
+      "network": {
+        "square": "/ventures/day-zero/gallery/backgrounds/pixel-wall-network-square.png",
+        "portrait": "/ventures/day-zero/gallery/backgrounds/pixel-wall-network-portrait.png",
+        "landscape": "/ventures/day-zero/gallery/backgrounds/pixel-wall-network-landscape.png",
+        "slide": "/ventures/day-zero/gallery/backgrounds/pixel-wall-network-slide.png"
+      },
+      "studio": {
+        "square": "/ventures/day-zero/gallery/backgrounds/pixel-wall-studio-square.png",
+        "portrait": "/ventures/day-zero/gallery/backgrounds/pixel-wall-studio-portrait.png",
+        "landscape": "/ventures/day-zero/gallery/backgrounds/pixel-wall-studio-landscape.png",
+        "slide": "/ventures/day-zero/gallery/backgrounds/pixel-wall-studio-slide.png"
+      },
+      "capital": {
+        "square": "/ventures/day-zero/gallery/backgrounds/pixel-wall-capital-square.png",
+        "portrait": "/ventures/day-zero/gallery/backgrounds/pixel-wall-capital-portrait.png",
+        "landscape": "/ventures/day-zero/gallery/backgrounds/pixel-wall-capital-landscape.png",
+        "slide": "/ventures/day-zero/gallery/backgrounds/pixel-wall-capital-slide.png"
+      }
+    }
+  }
+}

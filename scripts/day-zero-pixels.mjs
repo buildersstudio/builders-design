@@ -7,7 +7,8 @@ import fs from "node:fs";
 
 const G = "public/ventures/builders/gallery/backgrounds";
 const out = process.argv[2] ?? "public/ventures/day-zero/variants/2026-09-26-boot-sequence/assets";
-fs.mkdirSync(out, { recursive: true });
+const gallery = "public/ventures/day-zero/gallery";
+for (const d of [out, `${gallery}/backgrounds`, `${gallery}/avatars`]) fs.mkdirSync(d, { recursive: true });
 
 const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
 // Builders palette (ink, deep, studio, network, capital, cream) with the tints between them
@@ -37,7 +38,7 @@ async function pixelate(input, { cols, rows, cell, spread = 44, pal = PALETTE, a
       const i = (y * cols + x) * 4, t = (BAYER[y % 8][x % 8] / 64 - 0.5) * spread;
       const a = data[i + 3];
       const [r, g, b] = nearest(data[i] + t, data[i + 1] + t, data[i + 2] + t, pal);
-      px.set([r, g, b, alpha ? (a > 110 ? 255 : 0) : 255], i);
+      px.set([r, g, b, alpha ? (a > 200 ? 255 : 0) : 255], i);
     }
   if (outline) {
     // a one-cell ink outline around the silhouette, like a game sprite
@@ -62,6 +63,10 @@ for (const [name, file] of walls) {
   await (await pixelate(band, { cols: 320, rows: 180, cell: 6 })).png({ palette: true }).toFile(`${out}/wall-${name}.png`);
   await (await pixelate(band, { cols: 180, rows: 180, cell: 6 })).png({ palette: true }).toFile(`${out}/wall-${name}-square.png`);
   await (await pixelate(band, { cols: 180, rows: 225, cell: 6 })).png({ palette: true }).toFile(`${out}/wall-${name}-portrait.png`);
+  // the gallery set, one per social format (square 1080, portrait 1080x1350, landscape 1200x627)
+  await (await pixelate(band, { cols: 180, rows: 180, cell: 6 })).png({ palette: true }).toFile(`${gallery}/backgrounds/pixel-wall-${name}-square.png`);
+  await (await pixelate(band, { cols: 180, rows: 225, cell: 6 })).png({ palette: true }).toFile(`${gallery}/backgrounds/pixel-wall-${name}-portrait.png`);
+  await (await pixelate(band, { cols: 200, rows: 105, cell: 6 })).png({ palette: true }).toFile(`${gallery}/backgrounds/pixel-wall-${name}-landscape.png`);
 }
 // The full frame with its dark sky, for the page hero
 await (await pixelate(path.join(G, "gradient-builders-full.jpg"), { cols: 320, rows: 180, cell: 6 })).png({ palette: true }).toFile(`${out}/wall-builders-night.png`);
@@ -71,9 +76,17 @@ const SKIN = ["#1A1A2E", "#3A2A2E", "#5A3E36", "#7E5646", "#A6735E", "#C99479", 
 for (const f of process.env.AVATARS?.split(",").filter(Boolean) ?? []) {
   const name = path.basename(f).replace(/\.[a-z]+$/i, "");
   // head and shoulders: trim the transparent margin, keep the top 95% so the face fills the sprite
-  const { data, info } = await sharp(f).trim().toBuffer({ resolveWithObject: true });
+  // erode the alpha by a few pixels: the soft edge of a cut-out still carries the old background colour
+  const src = sharp(f).ensureAlpha();
+  const { width: W, height: H } = await src.metadata();
+  const rgb = await sharp(f).removeAlpha().raw().toBuffer();
+  const mask = await sharp(f).extractChannel(3).blur(4).threshold(235).raw().toBuffer();
+  const cut = await sharp(rgb, { raw: { width: W, height: H, channels: 3 } }).joinChannel(mask, { raw: { width: W, height: H, channels: 1 } }).png().toBuffer();
+  const { data, info } = await sharp(cut).trim().toBuffer({ resolveWithObject: true });
   const side = Math.min(info.width, Math.round(info.height * 0.95));
   const crop = await sharp(data).extract({ left: Math.round((info.width - side) / 2), top: 0, width: side, height: side }).extend({ top: 24, left: 24, right: 24, background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
-  await (await pixelate(crop, { cols: 72, rows: 72, cell: 12, pal: SKIN, spread: 10, alpha: true, outline: true, fit: "cover", position: "top", modulate: { saturation: 1.15 } })).png({ palette: true }).toFile(`${out}/avatar-${name}.png`);
+  const sprite = (await pixelate(crop, { cols: 72, rows: 72, cell: 12, pal: SKIN, spread: 10, alpha: true, fit: "cover", position: "top", modulate: { saturation: 1.15 } })).png({ palette: true });
+  await sprite.toFile(`${out}/avatar-${process.env.AVATAR_OUT ?? name}.png`);
+  if (process.env.AVATAR_NAME) await sprite.toFile(`${gallery}/avatars/avatar-${process.env.AVATAR_NAME}.png`);
 }
 console.log("done", out);

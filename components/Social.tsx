@@ -4,7 +4,7 @@ import { toPng } from "html-to-image";
 import { useEffect, useRef, useState } from "react";
 import type { Picture } from "@/lib/content";
 import type { Brand, Theme } from "@/lib/types";
-import { Artwork, FORMATS, LAYOUTS, sizeOf, type Post } from "./PostArt";
+import { Artwork, FORMATS, layoutsFor, sizeOf, type Post } from "./PostArt";
 import { copy, toast, useFit } from "./ui";
 
 export type SavedPost = Post & { id: string; angle?: string; captions?: string[] };
@@ -17,8 +17,12 @@ export function PostEditor({ slug, name, brand, theme, pictures, initial, onSave
   slug: string; name: string; brand: Brand; theme: Theme; pictures: Picture[];
   initial?: SavedPost; onSave: (p: SavedPost) => void; onDelete?: () => void; onClose: () => void;
 }) {
-  const photos = pictures.filter((p) => !/\.svg$/i.test(p.href) && p.group !== "icons");
-  const [post, setPost] = useState<SavedPost>(initial ?? {
+  const boot = theme.deck.style === "boot";
+  const photos = pictures.filter((p) => !/\.svg$/i.test(p.href) && p.group !== "icons" && (!boot || p.group === "avatars"));
+  const [post, setPost] = useState<SavedPost>(initial ?? (boot ? {
+    id: `p${Date.now().toString(36)}`, format: "square", layout: "window", dark: false, shade: false,
+    label: "day-zero.exe", stat: "03", title: "Edition 03", body: "Builders, Rotterdam", color: Object.keys(theme.deck.walls ?? {})[0], captions: ["", "", ""],
+  } : {
     id: `p${Date.now().toString(36)}`,
     format: "portrait",
     layout: "type",
@@ -29,7 +33,7 @@ export function PostEditor({ slug, name, brand, theme, pictures, initial, onSave
     title: brand.tagline ?? `${name}.`,
     photo: photos.find((p) => p.group === "photos" || p.group === "backgrounds")?.href ?? photos[0]?.href,
     captions: ["", "", ""],
-  });
+  }));
   const set = <K extends keyof SavedPost>(k: K, v: SavedPost[K]) => setPost((p) => ({ ...p, [k]: v }));
   const caps = [...(post.captions ?? []), "", "", ""].slice(0, 3);
   const setCap = (i: number, v: string) => set("captions", caps.map((c, j) => (j === i ? v : c)));
@@ -85,9 +89,20 @@ export function PostEditor({ slug, name, brand, theme, pictures, initial, onSave
           <Seg options={FORMATS.map((x) => [x.key, x.label])} value={post.format} onChange={(v) => set("format", v as Post["format"])} />
         </Field>
         <Field label="Layout">
-          <Seg options={LAYOUTS.map((x) => [x.key, x.label])} value={post.layout} onChange={(v) => set("layout", v as Post["layout"])} />
+          <Seg options={layoutsFor(theme.deck.style).map((x) => [x.key, x.label])} value={post.layout} onChange={(v) => set("layout", v as Post["layout"])} />
         </Field>
-        {palette.length ? (
+        {boot ? (
+          <>
+            <Field label="Wallpaper">
+              <Seg options={Object.keys(theme.deck.walls ?? {}).map((k) => [k, k[0].toUpperCase() + k.slice(1)] as [string, string])} value={post.color ?? Object.keys(theme.deck.walls ?? {})[0]} onChange={(v) => set("color", v)} />
+            </Field>
+            {(post.layout === "code" || post.layout === "guest") && (
+              <Field label={post.layout === "code" ? "Window" : "Bar"}>
+                <Seg options={post.layout === "code" ? [["light", "Editor"], ["dark", "Terminal"]] : [["light", "Black"], ["dark", "Pink"]]} value={post.dark ? "dark" : "light"} onChange={(v) => set("dark", v === "dark")} />
+              </Field>
+            )}
+          </>
+        ) : palette.length ? (
           <Field label="Colour">
             <Seg options={[["", "Cream"], ...palette.map((k) => [k, k[0].toUpperCase() + k.slice(1)] as [string, string])]} value={post.color ?? ""} onChange={(v) => set("color", v || undefined)} />
           </Field>
@@ -101,18 +116,28 @@ export function PostEditor({ slug, name, brand, theme, pictures, initial, onSave
             <Seg options={[["on", "On"], ["off", "Off"]]} value={post.shade ? "on" : "off"} onChange={(v) => set("shade", v === "on")} />
           </Field>
         )}
-        <Field label="Label">
+        <Field label={boot ? "Window title" : "Label"}>
           <input className="social-input" value={post.label} onChange={(e) => set("label", e.target.value)} />
         </Field>
+        {boot && (
+          <Field label="Edition">
+            <input className="social-input" value={post.stat ?? ""} onChange={(e) => set("stat", e.target.value)} placeholder="03" />
+          </Field>
+        )}
         {post.layout === "stat" && (
           <Field label="Number">
             <input className="social-input" value={post.stat ?? ""} onChange={(e) => set("stat", e.target.value)} placeholder="125M+" />
           </Field>
         )}
-        <Field label="Headline" hint="*words* for emphasis">
-          <textarea className="social-input" rows={4} value={post.title} onChange={(e) => set("title", e.target.value)} />
+        <Field label={boot ? ({ window: "Left line", code: "Code", guest: "Guest name", headline: "Headline" } as Record<string, string>)[post.layout] ?? "Headline" : "Headline"} hint={post.layout === "code" ? "one line per row" : boot && post.layout !== "headline" ? "" : "*words* for emphasis"}>
+          <textarea className="social-input" rows={post.layout === "code" ? 9 : 4} value={post.title} onChange={(e) => set("title", e.target.value)} />
         </Field>
-        {post.layout !== "type" && post.layout !== "stat" && !!photos.length && (
+        {boot && (
+          <Field label={({ window: "Right line", code: "Footer", guest: "Theme", headline: "Prompt line" } as Record<string, string>)[post.layout] ?? "Line"}>
+            <input className="social-input" value={post.body ?? ""} onChange={(e) => set("body", e.target.value)} />
+          </Field>
+        )}
+        {(boot ? post.layout === "guest" : post.layout !== "type" && post.layout !== "stat") && !!photos.length && (
           <Field label="Picture">
             <div className="social-pics">
               {photos.slice(0, 40).map((p) => (

@@ -9,7 +9,9 @@ export type Face = {
 /** Optional per-brand deck direction, applied to every deck of that venture. */
 export type DeckStyle = {
   /** "imagery": every slide sits on a full-bleed picture with a dark scrim. */
-  style?: "plain" | "imagery" | "gradient" | "pixel" | "field";
+  style?: "plain" | "imagery" | "gradient" | "pixel" | "field" | "boot";
+  /** "boot": pixel wallpapers per colourway, one image per social format */
+  walls?: Record<string, Partial<Record<"square" | "portrait" | "landscape" | "slide", string>>>;
   /** "field": named brand colours slides can be painted in (slide "color"), and the hues fields cycle through */
   palette?: Record<string, string>;
   /** "pixel": colour of the pixel grid, and partner logos shown bottom right on every slide */
