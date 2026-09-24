@@ -345,18 +345,20 @@ function ImagerySlide({ slide, theme, logo, n, total, edit }: { slide: S; theme:
 
 const GRID = { x: 110, label: 104, title: 150, content: 520, bottom: 190 };
 
-function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Theme; logo?: string; n: number; total: number; edit?: Edit }) {
+function GradientSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: Theme; logo?: string; n: number; total: number; edit?: Edit }) {
   const d = theme.deck;
   const key = slide.gradient ?? d.variant ?? "builders";
   const g = d.gradients?.[key] ?? d.gradients?.builders;
-  const light = slide.mode === "light" && slide.layout !== "cover";
+  const light = (slide.mode ?? d.defaultMode) === "light" && slide.layout !== "cover";
+  const caps = d.titles !== "normal";
   const fg = light ? "#0A0A0A" : "#FFFFFF";
   const soft = light ? "rgba(10,10,10,.46)" : "rgba(255,255,255,.5)";
   const rule = light ? "rgba(10,10,10,.16)" : "rgba(255,255,255,.2)";
   const e = (k: string) => [k];
 
   const photoBg = slide.photo ?? (slide.layout === "photo" ? slide.image : undefined);
-  const full = !light && !photoBg && ["cover", "section", "closing", "cards"].includes(slide.layout);
+  const full = !light && !photoBg && (d.arc ? ["cover", "section", "closing"] : ["cover", "section", "closing", "cards"]).includes(slide.layout);
+  const paint = (u: string) => (u.includes("gradient(") ? u : `center / cover no-repeat url("${u}")`);
   const img = slide.background && !["glow", "full", "overlay"].includes(slide.background)
     ? slide.background
     : slide.background === "glow" ? g?.glow : full ? g?.full : g?.overlay;
@@ -365,9 +367,11 @@ function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Them
     width: W, height: H, position: "relative", overflow: "hidden", color: fg, fontFamily: theme.text,
     background: light ? d.light ?? "#FFFFFF" : d.dark ?? "#000",
     ["--em-font" as string]: "inherit", ["--em-style" as string]: "normal", ["--em-weight" as string]: "inherit",
-    ["--em-color" as string]: soft, ["--em-track" as string]: "inherit",
+    ["--em-color" as string]: caps || !light ? soft : theme.accent, ["--em-track" as string]: "inherit",
   };
-  const title: CSSProperties = { fontFamily: theme.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "-0.005em", lineHeight: 1.04, margin: 0, fontSize: 76, maxWidth: 1480 };
+  const title: CSSProperties = caps
+    ? { fontFamily: theme.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "-0.005em", lineHeight: 1.04, margin: 0, fontSize: 76, maxWidth: 1480 }
+    : { fontFamily: theme.display, fontWeight: 800, letterSpacing: "-0.035em", lineHeight: 1.04, margin: 0, fontSize: 84, maxWidth: 1480 };
   const label: CSSProperties = { fontFamily: theme.label, fontSize: 17, letterSpacing: "0.18em", textTransform: "uppercase", color: soft };
   const body: CSSProperties = { fontSize: 40, lineHeight: 1.32, maxWidth: 1180, letterSpacing: "-0.005em" };
   const at = (top: number, extra: CSSProperties = {}): CSSProperties => ({ position: "absolute", left: GRID.x, right: GRID.x, top, ...extra });
@@ -383,7 +387,7 @@ function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Them
       inner = (
         <>
           {eyebrow}
-          <T as="h1" v={slide.title} p={e("title")} edit={edit} style={{ ...at(GRID.title), ...title, fontSize: 132, lineHeight: 1.0 }} />
+          <T as="h1" v={slide.title} p={e("title")} edit={edit} style={{ ...at(GRID.title), ...title, fontSize: caps ? 132 : 118, lineHeight: 1.0 }} />
           <T v={slide.subtitle} p={e("subtitle")} edit={edit} style={{ ...zone, top: GRID.content + 90, ...body, fontSize: 34, color: soft, maxWidth: 1000 }} />
         </>
       );
@@ -462,7 +466,13 @@ function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Them
           {eyebrow}
           {heading(slide.title, { right: 960, maxWidth: 850, fontSize: 64 })}
           <T v={slide.body} p={e("body")} edit={edit} style={{ ...zone, right: 960, ...body, fontSize: 32, color: soft }} />
-          <div style={{ position: "absolute", top: GRID.label, bottom: GRID.bottom - 60, right: GRID.x, width: 760, background: slide.image ? `center / cover url("${slide.image}")` : "rgba(127,127,127,.12)" }} />
+          {slide.fit === "contain" && slide.image ? (
+            <div style={{ position: "absolute", top: GRID.label, bottom: GRID.bottom - 30, right: GRID.x, width: 820, display: "grid", placeItems: "center" }}>
+              <img src={slide.image} alt="" style={{ maxWidth: "100%", maxHeight: "100%", borderRadius: 18, boxShadow: "0 40px 90px -35px rgba(1,22,39,.45), 0 0 0 1px rgba(1,22,39,.06)" }} />
+            </div>
+          ) : (
+            <div style={{ position: "absolute", top: GRID.label, bottom: GRID.bottom - 60, right: GRID.x, width: 760, background: slide.image ? `center / cover url("${slide.image}")` : "rgba(127,127,127,.12)" }} />
+          )}
         </>
       );
       break;
@@ -523,7 +533,7 @@ function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Them
     case "closing":
       inner = (
         <>
-          <div style={{ ...at(GRID.label), ...label }}>builders.studio</div>
+          {d.site && <div style={{ ...at(GRID.label), ...label }}>{d.site}</div>}
           {heading(slide.title, { fontSize: 104, lineHeight: 1.02 })}
           <div style={{ ...zone, top: GRID.content + 120, display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 80 }}>
             <T v={slide.subtitle} p={e("subtitle")} edit={edit} style={{ ...body, fontSize: 32, color: soft, maxWidth: 900 }} />
@@ -531,7 +541,7 @@ function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Them
               <div style={{ display: "flex", gap: 14, flex: "none" }}>
                 {slide.cta.map((c, i) => (
                   <span key={c} style={{ display: "inline-flex", alignItems: "center", height: 74, padding: "0 38px", borderRadius: 99, fontFamily: theme.label, fontSize: 16, letterSpacing: "0.18em", textTransform: "uppercase",
-                    background: i === 0 ? "#fff" : "transparent", color: i === 0 ? "#000" : "#fff", boxShadow: i === 0 ? "none" : "inset 0 0 0 1.5px rgba(255,255,255,.4)" }}>{c}</span>
+                    background: i === 0 ? "#fff" : "transparent", color: i === 0 ? "#000" : d.arc ? theme.ink : "#fff", boxShadow: i === 0 ? (d.arc ? "0 10px 30px -12px rgba(1,22,39,.35)" : "none") : `inset 0 0 0 1.5px ${d.arc ? "rgba(1,22,39,.3)" : "rgba(255,255,255,.4)"}` }}>{c}</span>
                 ))}
               </div>
             )}
@@ -545,10 +555,14 @@ function GradientSlide({ slide, theme, n, total, edit }: { slide: S; theme: Them
     <div className="slide" style={root}>
       {photoBg && <div style={{ position: "absolute", inset: 0, background: `center / cover no-repeat url("${photoBg}")` }} />}
       {photoBg && <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.55) 100%)" }} />}
-      {img && <div style={{ position: "absolute", inset: 0, background: `center / cover no-repeat url("${img}")` }} />}
+      {img && full && d.arc ? (
+        <div style={{ position: "absolute", top: "-14%", bottom: "-14%", left: "-16%", width: "112%", background: paint(img), borderRadius: "0 34% 34% 0 / 0 50% 50% 0", filter: "blur(10px)" }} />
+      ) : img ? (
+        <div style={{ position: "absolute", inset: 0, background: paint(img) }} />
+      ) : null}
       {inner}
       <div style={{ position: "absolute", left: GRID.x, bottom: 78, ...label, fontFeatureSettings: '"tnum" 1' }}>{String(n).padStart(2, "0")} / {String(total).padStart(2, "0")}</div>
-      <img src="/ventures/builders/gallery/illustrations/builders-b-mark-white.png" alt="" style={{ position: "absolute", right: GRID.x - 6, bottom: 70, height: 50, filter: light ? "brightness(0)" : undefined }} />
+      {(d.mark ?? logo) && <img src={d.mark ?? logo} alt="" style={{ position: "absolute", right: GRID.x - 6, bottom: 70, height: d.mark ? 50 : 34, filter: light || (d.arc && full) ? "brightness(0)" : "brightness(0) invert(1)", opacity: d.arc && full ? 0.85 : 1 }} />}
     </div>
   );
 }

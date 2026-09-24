@@ -1,5 +1,5 @@
 ---
-badge_bg: "#FFFFFF"
+badge_fit: cover
 name: Trigger
 url: https://trigger.online
 sector: AI Content

@@ -53,5 +53,21 @@
       "src": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2"
     }
   ],
-  "source": "~/dev/avery-website src/styles/tokens.css + DESIGN.md (values extracted from getavery.ai); logo from public/logos/Avery-logo-black.svg; tagline from the getavery.ai hero h1"
+  "source": "~/dev/avery-website src/styles/tokens.css + DESIGN.md (values extracted from getavery.ai); logo from public/logos/Avery-logo-black.svg; tagline from the getavery.ai hero h1",
+  "deck": {
+    "style": "gradient",
+    "titles": "normal",
+    "arc": true,
+    "defaultMode": "light",
+    "dark": "#FFFFFF",
+    "light": "#FFFFFF",
+    "gradients": {
+      "avery": {
+        "full": "radial-gradient(60% 56% at -6% 50%, rgb(78,169,255) 0%, rgba(0,0,0,0) 62%), radial-gradient(70% 62% at 4% 10%, rgb(149,78,255) 0%, rgba(0,0,0,0) 58%), linear-gradient(90deg, rgb(78,96,242) 0%, rgb(98,114,245) 44%, rgb(140,152,248) 64%, rgb(200,207,252) 82%, rgb(255,255,255) 95%)",
+        "overlay": "radial-gradient(46% 26% at 18% 104%, rgba(78,169,255,.5) 0%, rgba(78,169,255,0) 100%), radial-gradient(46% 26% at 82% 104%, rgba(149,78,255,.42) 0%, rgba(149,78,255,0) 100%), radial-gradient(70% 20% at 50% 106%, rgba(78,96,242,.5) 0%, rgba(78,96,242,0) 100%)"
+      }
+    },
+    "variant": "avery",
+    "site": "getavery.ai"
+  }
 }

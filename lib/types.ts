@@ -21,6 +21,16 @@ export type DeckStyle = {
   variant?: string;
   /** small line next to the logo in the slide header */
   tagline?: string;
+  /** gradient style: "caps" titles in the label face (Builders) or "normal" titles in the display face */
+  titles?: "caps" | "normal";
+  /** gradient style: the mark bottom right of every slide (defaults to the brand logo) */
+  mark?: string;
+  /** gradient style: ground for slides without a mode */
+  defaultMode?: "light" | "dark";
+  /** gradient style: draw the cover as a curved arc of the colourway's `full` background instead of a full-bleed picture */
+  arc?: boolean;
+  /** gradient style: the site line on the closing slide (e.g. "builders.studio") */
+  site?: string;
   dark?: string;
   light?: string;
   backgrounds?: string[];
@@ -56,7 +66,7 @@ export type Slide = Bg & (
   | { layout: "statement"; eyebrow?: string; title: string; body?: string }
   | { layout: "points"; eyebrow?: string; title: string; points: { title: string; body?: string }[] }
   | { layout: "metrics"; eyebrow?: string; title: string; metrics: { value: string; label: string }[] }
-  | { layout: "split"; eyebrow?: string; title: string; body?: string; image?: string }
+  | { layout: "split"; eyebrow?: string; title: string; body?: string; image?: string; /** "contain" shows the whole picture (product shots) */ fit?: "cover" | "contain" }
   | { layout: "quote"; quote: string; author?: string; presenter?: Person }
   | { layout: "photo"; eyebrow?: string; title: string; body?: string; image: string }
   | { layout: "cards"; eyebrow?: string; title: string; cards: { title: string; body?: string; image?: string }[] }
