@@ -4,8 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { copy } from "./ui";
+import { BadgeArt, badgeStyle } from "./Badge";
 
-type Item = { slug: string; name: string; badge?: string };
+type Item = { slug: string; name: string; badge?: string; badgeBg?: string };
 
 /** macOS-style vertical dock of venture badges. */
 export function Dock({ ventures, addPrompt }: { ventures: Item[]; addPrompt: string }) {
@@ -30,8 +31,8 @@ export function Dock({ ventures, addPrompt }: { ventures: Item[]; addPrompt: str
       <Link href="/" title="Builders Design"><img className="dock-home" src="/brand/spark-black.svg" alt="Builders Design" /></Link>
       <div className="dock-rail">
         {ventures.map((v) => (
-          <Link key={v.slug} href={`/${v.slug}/${section}`} className="dock-item" aria-current={v.slug === current}>
-            {v.badge ? <img src={v.badge} alt={v.name} /> : <span className="mono">{v.name[0]}</span>}
+          <Link key={v.slug} href={`/${v.slug}/${section}`} className="dock-item" aria-current={v.slug === current} style={badgeStyle(v.badgeBg)}>
+            <BadgeArt name={v.name} badge={v.badge} badgeBg={v.badgeBg} />
             <span className="dock-tip">{v.name}</span>
           </Link>
         ))}

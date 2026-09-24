@@ -52,8 +52,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   position: relative; display: grid; place-items: center; width: 42px; height: 42px; margin: 5px 0; border-radius: 26%;
   background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 0.5px rgba(0, 0, 0, 0.09);
 }
-.dock-item img { width: 30px; height: 30px; border-radius: 24%; display: block; object-fit: cover; }
-.dock-item .mono { font-weight: 500; font-size: 15px; }
+.dock-item { overflow: hidden; }
 .dock-item::before {
   content: ""; position: absolute; left: -8px; top: 50%; width: 3px; height: 3px; margin-top: -1.5px;
   border-radius: 50%; background: var(--ink); opacity: 0; transition: opacity 0.2s;
@@ -245,7 +244,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .home-top img { height: 15px; display: block; }
 .home-top span { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; transform: translateY(-1px); }
 
-.home-grid { margin: auto 0; padding: 40px 32px 90px; display: grid; grid-template-columns: repeat(6, 124px); gap: 46px 52px; justify-content: center; }
+.home-grid { margin: auto 0; padding: 40px 32px 90px; display: grid; grid-template-columns: repeat(var(--cols, 6), 124px); gap: 46px 52px; justify-content: center; }
 @media (max-width: 1100px) { .home-grid { grid-template-columns: repeat(4, 112px); gap: 40px 40px; } }
 @media (max-width: 620px) { .home-grid { grid-template-columns: repeat(3, 92px); gap: 30px 26px; } }
 
@@ -255,8 +254,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .home-icon { position: relative; width: 124px; aspect-ratio: 1; border-radius: 23.5%; background: #fff; display: grid; place-items: center;
   box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 0 0 .5px rgba(0,0,0,.08), 0 18px 40px -22px rgba(0,0,0,.28);
   transition: transform .35s cubic-bezier(.2,.9,.3,1.2), box-shadow .35s var(--ease); }
-.home-icon img { width: 76%; height: 76%; object-fit: cover; border-radius: 22%; }
-.home-icon b { font-weight: 500; font-size: 42px; color: var(--ink); }
+.home-icon { overflow: hidden; }
 .home-app:hover .home-icon { transform: translateY(-3px) scale(1.03); box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 0 0 .5px rgba(0,0,0,.08), 0 26px 50px -24px rgba(0,0,0,.34); }
 .home-app:active .home-icon { transform: scale(.94); transition-duration: .12s; }
 .home-name { font-size: 13px; color: var(--muted); letter-spacing: .005em; transition: color .2s; }
@@ -270,8 +268,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .home-zoom { position: fixed; z-index: 100; background: #fff; display: grid; place-items: center; overflow: hidden;
   box-shadow: 0 0 0 .5px rgba(0,0,0,.08); transition: all .36s cubic-bezier(.3, 0, .1, 1); }
 .home-zoom-icon { display: grid; place-items: center; transition: opacity .2s ease .08s, transform .36s cubic-bezier(.3,0,.1,1); }
-.home-zoom-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 22%; }
-.home-zoom-icon b { font-weight: 500; font-size: 42px; }
+.home-zoom-icon { position: relative; overflow: hidden; }
 .home-zoom.open .home-zoom-icon { opacity: 0; transform: scale(1.6); }
 
 .shell.app-enter { animation: app-enter .55s cubic-bezier(.2, .8, .2, 1) both; }
@@ -282,3 +279,13 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .home-zoom, .home-zoom-icon { transition: none !important; }
   .shell.app-enter { animation: none; }
 }
+
+/* ---------- badges: the logo on its own colour, or artwork edge to edge ---------- */
+
+.badge-logo { width: 66%; height: 66%; object-fit: contain; display: block; }
+.badge-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.badge-mono { font-weight: 500; font-size: 36%; color: var(--ink); }
+.dock-item .badge-mono { font-size: 15px; }
+.home-icon .badge-mono, .home-zoom-icon .badge-mono { font-size: 42px; }
+@media (max-width: 620px) { .home-icon .badge-mono { font-size: 32px; } }
+.home-zoom-icon { display: grid; place-items: center; }

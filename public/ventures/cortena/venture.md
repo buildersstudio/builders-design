@@ -1,4 +1,5 @@
 ---
+badge_fit: cover
 name: Cortena
 url: https://www.cortena.ai
 sector: AI FinTech

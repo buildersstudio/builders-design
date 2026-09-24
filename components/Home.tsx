@@ -2,8 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
+import { BadgeArt, badgeStyle } from "./Badge";
 
-type Item = { slug: string; name: string; badge?: string };
+type Item = { slug: string; name: string; badge?: string; badgeBg?: string };
 
 /**
  * The home screen: every venture as an app badge. Badges fly in from the edges like an
@@ -13,7 +14,7 @@ export function Home({ ventures }: { ventures: Item[] }) {
   const router = useRouter();
   // Each badge starts pushed outwards from the centre of the grid (computed from its slot,
   // so the entrance is pure CSS and plays on first paint).
-  const COLS = 6, rows = Math.ceil(ventures.length / COLS);
+  const COLS = ventures.length > 12 ? 7 : 6, rows = Math.ceil(ventures.length / COLS);
   const from = (i: number): CSSProperties => {
     const inRow = Math.min(COLS, ventures.length - Math.floor(i / COLS) * COLS);
     const dx = (i % COLS - (inRow - 1) / 2) * 176, dy = (Math.floor(i / COLS) - (rows - 1) / 2) * 180;
@@ -45,18 +46,18 @@ export function Home({ ventures }: { ventures: Item[] }) {
         <span>Design</span>
       </header>
 
-      <div className="home-grid">
+      <div className="home-grid" style={{ ["--cols" as string]: COLS }}>
         {ventures.map((v, i) => (
           <button key={v.slug} className="home-app" style={from(i)} onClick={(e) => open(v, e.currentTarget.querySelector(".home-icon") as HTMLElement)} aria-label={v.name}>
-            <span className="home-icon">{v.badge ? <img src={v.badge} alt="" /> : <b>{v.name[0]}</b>}</span>
+            <span className="home-icon" style={badgeStyle(v.badgeBg)}><BadgeArt name={v.name} badge={v.badge} badgeBg={v.badgeBg} /></span>
             <span className="home-name">{v.name}</span>
           </button>
         ))}
       </div>
 
       {opening && (
-        <div className={`home-zoom${opening.open ? " open" : ""}`} style={zoom}>
-          <span className="home-zoom-icon" style={{ width: opening.from.width * 0.76, height: opening.from.width * 0.76 }}>{opening.item.badge ? <img src={opening.item.badge} alt="" /> : <b>{opening.item.name[0]}</b>}</span>
+        <div className={`home-zoom${opening.open ? " open" : ""}`} style={{ ...zoom, ...(opening.item.badgeBg && opening.item.badgeBg !== "cover" ? { background: opening.item.badgeBg } : {}) }}>
+          <span className="home-zoom-icon" style={{ width: opening.from.width, height: opening.from.width }}><BadgeArt name={opening.item.name} badge={opening.item.badge} badgeBg={opening.item.badgeBg} /></span>
         </div>
       )}
     </main>

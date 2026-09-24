@@ -1,4 +1,5 @@
 ---
+badge_bg: "#EFE9DB"
 name: Krans
 url: https://krans.ai
 sector: Enterprise AI

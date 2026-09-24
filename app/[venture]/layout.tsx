@@ -15,7 +15,7 @@ export default async function VentureLayout({ children, params }: { children: Re
   const n = counts(venture);
   return (
     <div className="shell">
-      <Dock ventures={getVentures().map(({ slug, name, badge }) => ({ slug, name, badge }))} addPrompt={prompt("venture", "", "")} />
+      <Dock ventures={getVentures().map(({ slug, name, badge, badgeBg }) => ({ slug, name, badge, badgeBg }))} addPrompt={prompt("venture", "", "")} />
       <Menu slug={v.slug} name={v.name} url={v.url} logo={getBrand(venture).logo} sections={SECTIONS.map((s) => ({ ...s, count: n[s.key] }))} />
       <main className="work">{children}</main>
     </div>

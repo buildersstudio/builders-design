@@ -1,4 +1,5 @@
 ---
+badge_bg: "#F7F3EC"
 name: Doctorine
 url: https://doctorine.xyz
 sector: Developer Tools

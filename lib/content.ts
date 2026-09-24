@@ -28,6 +28,8 @@ export type Venture = {
   order: number;
   brief: string;
   badge?: string;
+  /** the badge's own background colour (the logo sits smaller on it), or "cover" to fill the badge with the image */
+  badgeBg?: string;
 };
 
 export type Competitor = { name: string; url: string; kind?: string; host: string; shot?: string };
@@ -69,6 +71,7 @@ export function getVenture(slug: string): Venture | null {
     order: Number(data.order ?? 99),
     brief: content.trim(),
     badge: badge ? pub(slug, badge) : undefined,
+    badgeBg: data.badge_fit === "cover" ? "cover" : data.badge_bg,
   };
 }
 

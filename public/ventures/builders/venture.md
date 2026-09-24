@@ -1,4 +1,5 @@
 ---
+badge_fit: cover
 name: Builders
 url: https://builders.studio
 sector: AI Venture Studio

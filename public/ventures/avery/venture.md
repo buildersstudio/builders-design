@@ -1,4 +1,5 @@
 ---
+badge_bg: "#4E54FF"
 name: Avery
 url: https://getavery.ai
 sector: AI Hiring

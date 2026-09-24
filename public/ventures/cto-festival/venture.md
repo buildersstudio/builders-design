@@ -1,4 +1,5 @@
 ---
+badge_bg: "#0B0A0C"
 url: https://cto-fest-27.vercel.app
 name: "CTO FEST '27"
 sector: Tech Festival

@@ -1,4 +1,5 @@
 ---
+badge_bg: "#FFFFFF"
 name: Everday
 url: https://ever.day
 sector: AI Workforce

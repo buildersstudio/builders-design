@@ -1,4 +1,5 @@
 ---
+badge_bg: "#FAFAF8"
 name: drawgen
 url: https://drawgen.co
 sector: AI Engineering Software

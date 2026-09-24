@@ -1,4 +1,5 @@
 ---
+badge_bg: "#FFFFFF"
 name: Trigger
 url: https://trigger.online
 sector: AI Content
