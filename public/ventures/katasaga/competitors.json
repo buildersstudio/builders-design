@@ -1,0 +1,14 @@
+[
+  { "name": "Speak", "url": "https://www.speak.com", "kind": "direct" },
+  { "name": "Praktika", "url": "https://praktika.ai", "kind": "direct" },
+  { "name": "Langua", "url": "https://languatalk.com", "kind": "direct" },
+  { "name": "Univerbal", "url": "https://www.univerbal.app", "kind": "direct" },
+  { "name": "Talkpal", "url": "https://talkpal.ai", "kind": "direct" },
+  { "name": "Loora", "url": "https://www.loora.com", "kind": "direct" },
+  { "name": "Beelinguapp", "url": "https://beelinguapp.com", "kind": "adjacent" },
+  { "name": "LingQ", "url": "https://www.lingq.com", "kind": "adjacent" },
+  { "name": "Duolingo", "url": "https://www.duolingo.com", "kind": "adjacent" },
+  { "name": "Babbel", "url": "https://www.babbel.com", "kind": "adjacent" },
+  { "name": "Busuu", "url": "https://www.busuu.com", "kind": "adjacent" },
+  { "name": "Memrise", "url": "https://www.memrise.com", "kind": "adjacent" }
+]

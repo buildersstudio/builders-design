@@ -1,0 +1,18 @@
+{
+  "title": "Pick a story",
+  "created": "2026-09-26",
+  "note": "The page sells the stories first, like a shelf: a full-bleed Katasaga illustration with the real stories library in the hero, then three story covers, one story opened chapter by chapter, what happens inside a chapter and the deck of gaps each one leaves you with.",
+  "credits": [
+    { "file": "../../gallery/illustrations/hero-madrid-bridge-sunset.jpg", "source": "Katasaga", "author": "Katasaga hero illustration from katasaga.com", "url": "https://katasaga.com" },
+    { "file": "../../gallery/screenshots/app-stories-library.jpg", "source": "Katasaga", "author": "Katasaga app screen from katasaga.com", "url": "https://katasaga.com" },
+    { "file": "../../gallery/illustrations/story-cover-where-the-map-ends-portrait.jpg", "source": "Katasaga", "author": "Katasaga story art from katasaga.com", "url": "https://katasaga.com" },
+    { "file": "../../gallery/illustrations/story-cover-the-shadow-expansion.jpg", "source": "Katasaga", "author": "Katasaga story art from katasaga.com", "url": "https://katasaga.com" },
+    { "file": "../../gallery/illustrations/story-cover-love-between-departures.jpg", "source": "Katasaga", "author": "Katasaga story art from katasaga.com", "url": "https://katasaga.com" },
+    { "file": "../../gallery/screenshots/app-story-chapters.jpg", "source": "Katasaga", "author": "Katasaga app screen from katasaga.com", "url": "https://katasaga.com" },
+    { "file": "../../gallery/screenshots/app-chapter-07-briefing-the-wrong-turn.jpg", "source": "Katasaga", "author": "Katasaga chapter briefing from katasaga.com", "url": "https://katasaga.com" },
+    { "file": "../../gallery/screenshots/app-conversation-meet-the-contact.jpg", "source": "Katasaga", "author": "Katasaga app screen from katasaga.com", "url": "https://katasaga.com" },
+    { "file": "../../gallery/screenshots/app-conversation-vocabulary-card.jpg", "source": "Katasaga", "author": "Katasaga app screen from katasaga.com", "url": "https://katasaga.com" },
+    { "file": "../../gallery/screenshots/app-flashcards.jpg", "source": "Katasaga", "author": "Katasaga app screen from katasaga.com", "url": "https://katasaga.com" },
+    { "file": "../../gallery/illustrations/madrid-information-kiosk.jpg", "source": "Katasaga", "author": "Katasaga illustration from katasaga.com", "url": "https://katasaga.com" }
+  ]
+}

@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Katasaga: pick a story, speak it through</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#14201A; --green:#1E4532; --cream:#F3E8D6; --paper:#F8F1E6; --line:#E4D6C0; --ink:#1B211D; --muted:#6C675C;
+  --orange:#D35C22; --orange-d:#B44A17; --glow:#F2A36F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+button{font:inherit}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1312px;margin:0 auto;padding:0 48px}
+h1,h2,h3{font-weight:600;letter-spacing:-.035em;line-height:1.02}
+.label{font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--orange-d)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--orange);color:#fff;font-weight:600;font-size:16px;padding:15px 24px;border-radius:10px;transition:background .2s}
+.btn:hover{background:var(--orange-d)}
+.btn.sm{padding:10px 16px;font-size:15px}
+.btn.ghost{background:rgba(243,232,214,.12);color:var(--cream);box-shadow:inset 0 0 0 1px rgba(243,232,214,.3)}
+
+/* hero */
+.hero{position:relative;height:900px;min-height:640px;background:var(--night);color:var(--cream);overflow:hidden}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 55%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,32,26,.92) 0%,rgba(20,32,26,.72) 34%,rgba(20,32,26,.05) 62%),linear-gradient(0deg,rgba(20,32,26,.7) 0%,rgba(20,32,26,0) 30%)}
+.hero .in{position:relative;z-index:2;height:100%;display:flex;flex-direction:column}
+nav{height:84px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:22px;letter-spacing:-.03em}
+.logo svg{width:28px;height:28px}
+.links{display:flex;gap:36px;font-size:15.5px;font-weight:500;color:rgba(243,232,214,.75)}
+.copy{margin-top:auto;margin-bottom:auto;max-width:600px;padding-bottom:40px}
+.copy .label{color:var(--glow)}
+.copy h1{font-size:82px;margin-top:22px;color:#FBF4E8}
+.copy p{font-size:20px;color:rgba(243,232,214,.8);margin-top:24px;max-width:500px}
+.copy .cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+.meta{position:absolute;left:max(48px,calc((100% - 1312px)/2 + 48px));bottom:40px;z-index:2;display:flex;gap:36px;font-size:14.5px;color:rgba(243,232,214,.7)}
+.meta b{display:block;color:#FBF4E8;font-weight:600;font-size:15.5px}
+.hphone{position:absolute;z-index:3;right:72px;bottom:-120px;width:300px;border-radius:44px;background:#0d130f;padding:8px;box-shadow:0 40px 100px -20px rgba(0,0,0,.7)}
+.hphone img{border-radius:36px}
+
+/* shelf */
+section{padding:140px 0}
+.head{max-width:760px}
+.head h2{font-size:60px;margin-top:18px}
+.head p{font-size:19.5px;color:var(--muted);margin-top:22px;max-width:620px}
+.shelf{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.book .cover{aspect-ratio:3/4;border-radius:20px;overflow:hidden;background:var(--cream);box-shadow:0 30px 60px -36px rgba(27,33,29,.5)}
+.book .cover img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.book:hover .cover img{transform:scale(1.03)}
+.book .g{margin-top:22px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--orange-d)}
+.book h3{font-size:30px;margin-top:8px}
+.book p{color:var(--muted);font-size:16.5px;margin-top:8px;max-width:340px}
+.free{margin-top:48px;display:flex;justify-content:space-between;align-items:center;gap:30px;border-top:1px solid var(--line);padding-top:28px;font-size:17px}
+.free span{color:var(--muted)}
+.langs{display:flex;flex-wrap:wrap;gap:8px}
+.langs i{font-style:normal;font-size:14.5px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:#FBF6EE}
+
+/* inside a story */
+.inside{background:var(--green);color:var(--cream)}
+.inside .grid{display:grid;grid-template-columns:1fr 360px 1fr;gap:64px;align-items:center}
+.inside h2{color:#FBF4E8}
+.inside .head p{color:rgba(243,232,214,.72)}
+.inside .label{color:var(--glow)}
+.phone{border-radius:44px;background:#0d130f;padding:8px;box-shadow:0 40px 80px -30px rgba(0,0,0,.55)}
+.phone img{border-radius:36px;width:100%}
+.chapters li{list-style:none;display:grid;grid-template-columns:30px 1fr auto;gap:14px;align-items:center;padding:17px 0;border-top:1px solid rgba(243,232,214,.14);font-size:17px}
+.chapters li:first-child{border-top:0}
+.chapters .dot{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(243,232,214,.4)}
+.chapters .done .dot{background:var(--cream);border-color:var(--cream)}
+.chapters .now .dot{background:var(--orange);border-color:var(--orange);box-shadow:0 0 0 5px rgba(211,92,34,.25)}
+.chapters small{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,232,214,.55)}
+.chapters .now small{color:var(--glow)}
+.chapters .lock{color:rgba(243,232,214,.45)}
+
+/* scene */
+.scene{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;margin-top:64px;align-items:stretch}
+.scene .wide{border-radius:24px;overflow:hidden}
+.scene .wide img{width:100%;height:100%;object-fit:cover}
+.scene .talk{background:var(--cream);border-radius:24px;display:flex;justify-content:center;align-items:flex-end;padding:48px 0 0;overflow:hidden}
+.scene .talk .phone{width:300px;border-radius:44px 44px 0 0;padding:8px 8px 0;height:500px;overflow:hidden}
+.scene .talk .phone img{border-radius:36px 36px 0 0}
+.steps{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.steps div{border-top:2px solid var(--ink);padding-top:18px}
+.steps b{display:block;font-size:20px;font-weight:600;letter-spacing:-.01em}
+.steps span{color:var(--muted);font-size:16px;display:block;margin-top:6px}
+
+/* keep */
+.keep{background:var(--cream)}
+.keep .grid{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center}
+.keep .pair{display:flex;gap:24px;justify-content:center}
+.keep .pair .phone{width:280px}
+.keep .pair .phone:last-child{margin-top:80px}
+.ticks{margin-top:34px}
+.ticks li{list-style:none;padding:15px 0;border-top:1px solid var(--line);font-size:17px}
+
+/* exam + pricing */
+.exam{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:0}
+.card{border:1px solid var(--line);border-radius:24px;padding:44px;background:#FBF6EE}
+.card h3{font-size:36px;margin-top:14px}
+.card p{color:var(--muted);margin-top:14px;font-size:17px}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:30px;border-top:1px solid var(--line)}
+.prices div{padding:20px 20px 0 0}
+.prices b{display:block;font-size:34px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.prices span{font-size:14.5px;color:var(--muted)}
+.card.dark{background:var(--night);border-color:var(--night);color:var(--cream)}
+.card.dark p{color:rgba(243,232,214,.72)}
+.card.dark .label{color:var(--glow)}
+.card.dark h3{color:#FBF4E8}
+
+/* final */
+.final{position:relative;color:var(--cream);background:var(--night);overflow:hidden}
+.final img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;opacity:.4}
+.final::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(20,32,26,.75) 0%,rgba(20,32,26,.2) 75%)}
+.final .in{z-index:2}
+.final .in{position:relative;padding:150px 0;text-align:center}
+.final h2{font-size:68px;max-width:720px;margin:18px auto 0;color:#FBF4E8}
+.final p{color:rgba(243,232,214,.8);max-width:560px;margin:20px auto 0}
+.final .label{color:var(--glow)}
+.form{display:flex;gap:10px;max-width:500px;margin:34px auto 0}
+.form input{flex:1;font:inherit;font-size:16px;padding:14px 18px;border-radius:10px;border:1px solid rgba(243,232,214,.3);background:rgba(20,32,26,.55);color:#fff}
+.form input::placeholder{color:rgba(243,232,214,.6)}
+footer{padding:36px 0 50px;font-size:14.5px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer .f{display:flex;gap:26px;flex-wrap:wrap}
+
+@media (max-width:1100px){
+  .copy h1{font-size:66px}
+  .hphone{display:none}
+  .inside .grid{grid-template-columns:1fr 1fr}
+  .inside .grid > div:first-child{grid-column:1/-1}
+  .scene,.keep .grid,.exam{grid-template-columns:1fr}
+  .shelf{grid-template-columns:repeat(3,1fr);gap:16px}
+}
+@media (max-width:760px){
+  body{font-size:17px}
+  .wrap{padding:0 20px}
+  .links{display:none}
+  nav{height:68px}
+  .hero{height:auto;min-height:0}
+  .hero .bg{object-position:72% 50%}
+  .hero::after{background:linear-gradient(180deg,rgba(20,32,26,.85) 0%,rgba(20,32,26,.55) 55%,rgba(20,32,26,.85) 100%)}
+  .copy{padding:48px 0 44px}
+  .copy h1{font-size:48px}
+  .copy p{font-size:17.5px}
+  .meta{position:relative;left:auto;right:auto;bottom:auto;padding:0 20px 40px;gap:18px;flex-direction:column}
+  section{padding:90px 0}
+  .head h2{font-size:38px}
+  .head p{font-size:17.5px}
+  .shelf{grid-template-columns:1fr;gap:40px}
+  .free{flex-direction:column;align-items:flex-start}
+  .inside .grid{grid-template-columns:1fr}
+  .inside .phone{max-width:300px;margin:0 auto}
+  .steps{grid-template-columns:1fr;gap:20px}
+  .scene .talk .phone{width:260px;height:420px}
+  .keep .pair .phone{width:46%}
+  .keep .pair{gap:12px}
+  .keep .pair .phone:last-child{margin-top:40px}
+  .card{padding:28px}
+  .card h3{font-size:28px}
+  .prices b{font-size:26px}
+  .final .in{padding:100px 0}
+  .final h2{font-size:40px}
+  .form{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="bg" src="../../gallery/illustrations/hero-madrid-bridge-sunset.jpg" alt="Katasaga illustration: a traveller with a map on a bridge over the river in Madrid at sunset">
+  <div class="wrap in">
+    <nav>
+      <a class="logo" href="#"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="10" y="8" width="21" height="84" rx="3" fill="#F3E8D6"/><path d="M52 46 75 8h22L66 50l31 42H75L52 54z" fill="#F3E8D6"/><rect x="33" y="41" width="18" height="18" transform="rotate(45 42 50)" fill="#D35C22"/></svg>Katasaga</a>
+      <div class="links"><a href="#stories">Stories</a><a href="#inside">Inside a story</a><a href="#exams">Oral exams</a><a href="#pricing">Pricing</a></div>
+      <a class="btn sm" href="#waitlist">Join the waitlist</a>
+    </nav>
+    <div class="copy">
+      <div class="label">Stories you speak your way through</div>
+      <h1>Pick a story. Speak your way to the end.</h1>
+      <p>Katasaga is a language app built on illustrated stories. Every chapter is a place, a set of characters and a moment where the only way forward is to talk, out loud, in the language you are learning.</p>
+      <div class="cta"><a class="btn" href="#waitlist">Join the waitlist</a><a class="btn ghost" href="#stories">Browse the stories</a></div>
+    </div>
+  </div>
+  <div class="meta"><div><b>Madrid, Spain</b>Chapter 4, The Hidden Ruins</div><div><b>6 languages</b>Spanish, French, German, Italian, Portuguese, English</div></div>
+  <div class="hphone"><img src="../../gallery/screenshots/app-stories-library.jpg" alt="Katasaga stories library: The Barcelona Contact, Where the Map Ends, Love, Between Departures"></div>
+</header>
+
+<section id="stories">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">The stories</div>
+      <h2>Every story is its own world.</h2>
+      <p>Each one has its own theme, characters and challenges. Choose one, set the language you are learning, and it plays out chapter by chapter in that language.</p>
+    </div>
+    <div class="shelf">
+      <div class="book"><div class="cover"><img src="../../gallery/illustrations/story-cover-where-the-map-ends-portrait.jpg" alt="Where the Map Ends story art"></div><div class="g">Adventure &middot; Mystery</div><h3>Where the Map Ends</h3><p>A lost route, a hidden place, and a journey that keeps unfolding.</p></div>
+      <div class="book"><div class="cover"><img src="../../gallery/illustrations/story-cover-the-shadow-expansion.jpg" alt="The Shadow Expansion story art"></div><div class="g">Spy &middot; Thriller</div><h3>The Shadow Expansion</h3><p>Night streets, a classified file and someone following at a distance.</p></div>
+      <div class="book"><div class="cover"><img src="../../gallery/illustrations/story-cover-love-between-departures.jpg" alt="Love, Between Departures story art"></div><div class="g">Romance &middot; Travel</div><h3>Love, Between Departures</h3><p>Some meetings happen only because you were about to leave.</p></div>
+    </div>
+    <div class="free"><div>Start free with <b>the first three chapters of a story</b>. <span>No card required.</span></div><div class="langs"><i>Spanish</i><i>French</i><i>German</i><i>Italian</i><i>Portuguese</i><i>English</i></div></div>
+  </div>
+</section>
+
+<div class="inside" id="inside">
+  <section>
+    <div class="wrap grid">
+      <div>
+        <div class="label">Inside a story</div>
+        <div class="head"><h2>The Barcelona Contact, chapter by chapter.</h2>
+        <p>A routine language trip turns into a quiet mission in the heart of Barcelona. Each chapter unlocks the next, so the story moves as fast as your speaking does.</p></div>
+      </div>
+      <div class="phone"><img src="../../gallery/screenshots/app-story-chapters.jpg" alt="Katasaga story progress for The Barcelona Contact"></div>
+      <ul class="chapters">
+        <li class="done"><span class="dot"></span><div><small>Chapter 1</small><br>The Briefing</div><small>Completed</small></li>
+        <li class="done"><span class="dot"></span><div><small>Chapter 2</small><br>Meet the Contact</div><small>Completed</small></li>
+        <li class="now"><span class="dot"></span><div><small>Chapter 3</small><br>Exchange at the Market</div><small>In progress</small></li>
+        <li><span class="dot"></span><div class="lock"><small>Chapter 4</small><br>Locked</div><small></small></li>
+        <li><span class="dot"></span><div class="lock"><small>Chapter 5</small><br>Locked</div><small></small></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Inside a chapter</div>
+      <h2>A briefing, then a conversation you have to win.</h2>
+    </div>
+    <div class="scene">
+      <div class="wide"><img src="../../gallery/screenshots/app-chapter-07-briefing-the-wrong-turn.jpg" alt="Katasaga Chapter 07 briefing, The Wrong Turn, in Madrid"></div>
+      <div class="talk"><div class="phone"><img src="../../gallery/screenshots/app-conversation-meet-the-contact.jpg" alt="Katasaga conversation screen, Meet the Contact"></div></div>
+    </div>
+    <div class="steps">
+      <div><b>Read the briefing</b><span>Background information and the goals you need to complete the chapter.</span></div>
+      <div><b>Pay attention to details</b><span>Documents to read, and names, times and places that matter later.</span></div>
+      <div><b>Talk in real time</b><span>An unscripted voice tutor with native accents plays every character.</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="keep">
+  <section>
+    <div class="wrap grid">
+      <div class="pair">
+        <div class="phone"><img src="../../gallery/screenshots/app-conversation-vocabulary-card.jpg" alt="Katasaga explanation card during a conversation"></div>
+        <div class="phone"><img src="../../gallery/screenshots/app-flashcards.jpg" alt="Katasaga flashcards grouped by story"></div>
+      </div>
+      <div>
+        <div class="label">What the story leaves you with</div>
+        <div class="head"><h2>Every chapter ends with a deck of your own gaps.</h2>
+        <p>After each chapter you get an analysis of your performance. Words and grammar you did not know are captured automatically and kept, story by story, for spaced repetition.</p></div>
+        <ul class="ticks"><li>Explanation cards with when to use it and an example</li><li>Grammar patterns, not just vocabulary</li><li>Voice audio is never stored, only the transcript</li></ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="exams">
+  <div class="wrap exam" id="pricing">
+    <div class="card dark">
+      <div class="label">For students</div>
+      <h3>Approach your oral exam with confidence.</h3>
+      <p>Dedicated exam-prep sessions for GCSE, A-level and IB: you are given resources to analyse and read, then use them in the examination practice, the same format used in most oral exams, followed by a detailed review.</p>
+    </div>
+    <div class="card">
+      <div class="label">Pricing</div>
+      <h3>Every story, one plan.</h3>
+      <p>Premium opens every story, voice practice across stories, scenarios and freeform, and flashcards from every session. Monthly and yearly both start with a 7-day free trial.</p>
+      <div class="prices"><div><b>$0</b><span>First chapters</span></div><div><b>$19.99</b><span>Per month</span></div><div><b>$199</b><span>Per year</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="final" id="waitlist">
+  <img src="../../gallery/illustrations/madrid-information-kiosk.jpg" alt="">
+  <div class="wrap in">
+    <div class="label">Beta access</div>
+    <h2>Your first story starts in the beta.</h2>
+    <p>We are inviting a first cohort of 200 users when the beta opens at the start of the academic year. Founding members vote on the next stories, characters and languages.</p>
+    <form class="form" onsubmit="return false"><input type="email" placeholder="Email address" aria-label="Email address"><button class="btn" type="submit" style="border:0;cursor:pointer">Reserve my slot</button></form>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#" style="font-size:18px;color:#1E4532"><svg viewBox="0 0 100 100" aria-hidden="true" style="width:22px;height:22px"><rect x="10" y="8" width="21" height="84" rx="3" fill="#1E4532"/><path d="M52 46 75 8h22L66 50l31 42H75L52 54z" fill="#1E4532"/><rect x="33" y="41" width="18" height="18" transform="rotate(45 42 50)" fill="#D35C22"/></svg>Katasaga</a>
+    <div class="f"><a href="#stories">Stories</a><a href="#pricing">Pricing</a><a href="mailto:hello@katasaga.com">hello@katasaga.com</a><span>&copy; 2026 Katasaga</span></div>
+  </div>
+</footer>
+</body>
+</html>
