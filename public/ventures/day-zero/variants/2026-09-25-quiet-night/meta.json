@@ -1,0 +1,13 @@
+{
+  "title": "Quiet Night",
+  "created": "2026-09-25",
+  "note": "Builders after dark, told almost entirely in photographs: one deep blue grade with warm practical light and fine grain, Favorit Std set small and calm, Favorit Expanded caps kept to the Day Zero wordmark and one short line per section, one cream section for contrast, and the Builders gradient only as a low glow under the footer.",
+  "credits": [
+    { "file": "img/night-long-table.jpg", "source": "Generated with Higgsfield (Cinema Studio Image 2.5), graded", "author": "Higgsfield", "url": "https://higgsfield.ai" },
+    { "file": "img/night-phone-booth.jpg", "source": "Day Zero gallery, cropped inside the glass edges and regraded for night (PIL)", "author": "Builders", "url": "/ventures/day-zero/gallery/photos/founder-working-in-phone-booth.jpg" },
+    { "file": "img/night-whiteboard.jpg", "source": "Generated with Higgsfield (Cinema Studio Image 2.5), graded", "author": "Higgsfield", "url": "https://higgsfield.ai" },
+    { "file": "img/night-one-on-one.jpg", "source": "Day Zero gallery, regraded for night (PIL)", "author": "Builders", "url": "/ventures/day-zero/gallery/photos/one-on-one-founder-session.jpg" },
+    { "file": "img/night-lit-floor.jpg", "source": "Generated with Higgsfield (Cinema Studio Image 2.5), cropped to the facade, a pseudo-text sign retouched out, graded", "author": "Higgsfield", "url": "https://higgsfield.ai" },
+    { "file": "img/glow-builders.webp", "source": "Builders gallery, bottom band cropped and resized", "author": "Builders", "url": "/ventures/builders/gallery/backgrounds/gradient-builders-overlay.webp" }
+  ]
+}

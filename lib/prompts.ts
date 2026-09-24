@@ -21,6 +21,10 @@ export function prompt(section: string, name: string, slug: string) {
       return `${base} Create a new presentation for ${name} in ${at}/decks/<id>/deck.json, starting from templates/deck.json and using only the layouts AGENTS.md lists for ${name}'s deck style, so it looks exactly like the existing ${name} decks (look at ${at}/decks/ for examples). Put no styling in the deck. Topic: <what the deck is for>.`;
     case "landing":
       return `${base} Build a landing page for ${name} in ${at}/landing/<id>/ using its brand book (${at}/brand). Goal: <what the page is for>.`;
+    case "social-v2":
+      return `${base} Following the "Social v2" section of AGENTS.md, plan a campaign of 10 ready-to-post LinkedIn posts for ${name} in ${at}/social/campaigns/<date>-<slug>/campaign.json, and mark the idea in ${at}/social/ideas.json. Campaign: <what happened, or the idea from the backlog>.`;
+    case "social-idea":
+      return `${base} Following the "Social v2" section of AGENTS.md, turn this idea from ${at}/social/ideas.json into a campaign of 10 ready-to-post LinkedIn posts for ${name}: `;
     case "social":
       return `${base} Create social assets for ${name} in ${at}/social/ using its brand book. Format and message: <e.g. 3 LinkedIn posts, 1080×1350, launch announcement>.`;
     default:

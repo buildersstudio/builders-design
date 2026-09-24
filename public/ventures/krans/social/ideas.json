@@ -1,0 +1,20 @@
+[
+  {
+    "id": "rebrand",
+    "idea": "We rebranded: new name Krans, new website krans.ai.",
+    "status": "campaign",
+    "campaign": "2026-09-25-rebrand"
+  },
+  {
+    "id": "updates",
+    "idea": "A monthly product update series built from the releases on krans.ai/updates."
+  },
+  {
+    "id": "evidence",
+    "idea": "An explainer series on the evidence scale, one post per level from E0 to E5."
+  },
+  {
+    "id": "who",
+    "idea": "Who Krans is for: venture studios, corporate venture builders, and funds and platform teams, one post each."
+  }
+]
