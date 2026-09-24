@@ -129,7 +129,8 @@ export function BootArtwork({ post, theme }: { post: Post; theme: Theme; brand: 
     const pic = px(420);
     return (
       <div style={root}>
-        <Win bar={post.label || "guest.exe"} meta="Player 1" tone={post.dark ? "pink" : "black"} style={{ left: pad, right: pad, top: wide ? pad * 0.8 : px(post.format === "portrait" ? 150 : 120) }}>
+        <Stage>
+        <Win bar={post.label || "guest.exe"} meta="Player 1" tone={post.dark ? "pink" : "black"} style={{ position: "relative", width: "100%" }}>
           <div style={{ background: C.cream, display: "grid", gridTemplateColumns: `${pic}px 1fr` }}>
             <div style={{ height: pic, background: post.dark ? C.network : C.studio, borderRight: `${px(4)}px solid #000`, overflow: "hidden", display: "grid", placeItems: "end center" }}>
               {post.photo ? <img src={post.photo} alt="" style={{ width: pic, height: pic, display: "block", imageRendering: "pixelated" }} /> : <Unknown size={pic} />}
@@ -147,6 +148,7 @@ export function BootArtwork({ post, theme }: { post: Post; theme: Theme; brand: 
             </div>
           </div>
         </Win>
+        </Stage>
         {foot(edition)}
       </div>
     );

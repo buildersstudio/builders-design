@@ -72,7 +72,7 @@ for (const [name, file] of walls) {
 await (await pixelate(path.join(G, "gradient-builders-full.jpg"), { cols: 320, rows: 180, cell: 6 })).png({ palette: true }).toFile(`${out}/wall-builders-night.png`);
 
 // Arcade avatars: cut-out portraits (PNG with alpha) -> 64x64 sprites, 8 tone palette + Builders accents
-const SKIN = ["#1A1A2E", "#3A2A2E", "#5A3E36", "#7E5646", "#A6735E", "#C99479", "#E2B399", "#F2D2BC", "#FAF7F2", "#DEDBD6", "#8C8C96", "#8193FF", "#E986B4", "#D4A574", "#8E3A1C", "#B24A22", "#DE6A34"].map(hex);
+const SKIN = ["#1A1A2E", "#3A2A2E", "#5A3E36", "#7E5646", "#A6735E", "#C99479", "#E2B399", "#F2D2BC", "#FAF7F2", "#DEDBD6", "#8C8C96", "#D4A574", "#8E3A1C", "#B24A22", "#DE6A34"].map(hex);
 for (const f of process.env.AVATARS?.split(",").filter(Boolean) ?? []) {
   const name = path.basename(f).replace(/\.[a-z]+$/i, "");
   // head and shoulders: trim the transparent margin, keep the top 95% so the face fills the sprite

@@ -180,6 +180,177 @@
     ]
   },
   {
+    "id": "g01",
+    "angle": "Luma cover · Guest · sample: Giorgio Orsucci",
+    "format": "square",
+    "layout": "guest",
+    "dark": false,
+    "shade": false,
+    "color": "builders",
+    "label": "guest.exe",
+    "stat": "03",
+    "title": "Giorgio\nOrsucci",
+    "body": "tba",
+    "photo": "/ventures/day-zero/gallery/avatars/avatar-giorgio-orsucci.png",
+    "captions": [
+      "Our guest for Day Zero 03 is [Guest name], [role].\n\nThe theme of the night is [theme]. [Guest name] opens the night, and founders and builders build AI ventures around it until late.\n\nSeats go through Luma. builders.studio",
+      "Player 1 has entered the room: [Guest name] joins Day Zero 03 to speak for [theme].\n\nFounders with an idea, builders with the skills, one theme for the whole night.\n\nbuilders.studio",
+      "Day Zero 03: one theme, [theme], and one guest, [Guest name].\n\nThe monthly build night of Builders, in Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "g02",
+    "angle": "Guest announcement · sample: Giorgio Orsucci",
+    "format": "portrait",
+    "layout": "guest",
+    "dark": true,
+    "shade": false,
+    "color": "network",
+    "label": "guest.announce()",
+    "stat": "03",
+    "title": "Giorgio\nOrsucci",
+    "body": "tba",
+    "photo": "/ventures/day-zero/gallery/avatars/avatar-giorgio-orsucci.png",
+    "captions": [
+      "Our guest for Day Zero 03 is [Guest name], [role].\n\nThe theme of the night is [theme]. [Guest name] opens the night, and founders and builders build AI ventures around it until late.\n\nSeats go through Luma. builders.studio",
+      "Player 1 has entered the room: [Guest name] joins Day Zero 03 to speak for [theme].\n\nFounders with an idea, builders with the skills, one theme for the whole night.\n\nbuilders.studio",
+      "Day Zero 03: one theme, [theme], and one guest, [Guest name].\n\nThe monthly build night of Builders, in Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "g03",
+    "angle": "Luma cover · Guest · sample: Sharon Klaver",
+    "format": "square",
+    "layout": "guest",
+    "dark": true,
+    "shade": false,
+    "color": "network",
+    "label": "guest.exe",
+    "stat": "03",
+    "title": "Sharon\nKlaver",
+    "body": "tba",
+    "photo": "/ventures/day-zero/gallery/avatars/avatar-sharon-klaver.png",
+    "captions": [
+      "Our guest for Day Zero 03 is [Guest name], [role].\n\nThe theme of the night is [theme]. [Guest name] opens the night, and founders and builders build AI ventures around it until late.\n\nSeats go through Luma. builders.studio",
+      "Player 1 has entered the room: [Guest name] joins Day Zero 03 to speak for [theme].\n\nFounders with an idea, builders with the skills, one theme for the whole night.\n\nbuilders.studio",
+      "Day Zero 03: one theme, [theme], and one guest, [Guest name].\n\nThe monthly build night of Builders, in Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "g04",
+    "angle": "Guest announcement · sample: Sharon Klaver",
+    "format": "portrait",
+    "layout": "guest",
+    "dark": false,
+    "shade": false,
+    "color": "studio",
+    "label": "guest.announce()",
+    "stat": "03",
+    "title": "Sharon\nKlaver",
+    "body": "tba",
+    "photo": "/ventures/day-zero/gallery/avatars/avatar-sharon-klaver.png",
+    "captions": [
+      "Our guest for Day Zero 03 is [Guest name], [role].\n\nThe theme of the night is [theme]. [Guest name] opens the night, and founders and builders build AI ventures around it until late.\n\nSeats go through Luma. builders.studio",
+      "Player 1 has entered the room: [Guest name] joins Day Zero 03 to speak for [theme].\n\nFounders with an idea, builders with the skills, one theme for the whole night.\n\nbuilders.studio",
+      "Day Zero 03: one theme, [theme], and one guest, [Guest name].\n\nThe monthly build night of Builders, in Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "g05",
+    "angle": "Luma cover · Guest · sample: Megan Lee",
+    "format": "square",
+    "layout": "guest",
+    "dark": false,
+    "shade": false,
+    "color": "capital",
+    "label": "guest.exe",
+    "stat": "03",
+    "title": "Megan\nLee",
+    "body": "tba",
+    "photo": "/ventures/day-zero/gallery/avatars/avatar-megan-lee.png",
+    "captions": [
+      "Our guest for Day Zero 03 is [Guest name], [role].\n\nThe theme of the night is [theme]. [Guest name] opens the night, and founders and builders build AI ventures around it until late.\n\nSeats go through Luma. builders.studio",
+      "Player 1 has entered the room: [Guest name] joins Day Zero 03 to speak for [theme].\n\nFounders with an idea, builders with the skills, one theme for the whole night.\n\nbuilders.studio",
+      "Day Zero 03: one theme, [theme], and one guest, [Guest name].\n\nThe monthly build night of Builders, in Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "g06",
+    "angle": "Guest announcement · sample: Megan Lee",
+    "format": "portrait",
+    "layout": "guest",
+    "dark": true,
+    "shade": false,
+    "color": "builders",
+    "label": "guest.announce()",
+    "stat": "03",
+    "title": "Megan\nLee",
+    "body": "tba",
+    "photo": "/ventures/day-zero/gallery/avatars/avatar-megan-lee.png",
+    "captions": [
+      "Our guest for Day Zero 03 is [Guest name], [role].\n\nThe theme of the night is [theme]. [Guest name] opens the night, and founders and builders build AI ventures around it until late.\n\nSeats go through Luma. builders.studio",
+      "Player 1 has entered the room: [Guest name] joins Day Zero 03 to speak for [theme].\n\nFounders with an idea, builders with the skills, one theme for the whole night.\n\nbuilders.studio",
+      "Day Zero 03: one theme, [theme], and one guest, [Guest name].\n\nThe monthly build night of Builders, in Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "g07",
+    "angle": "Luma cover · Guest · sample: Michael van Lier",
+    "format": "square",
+    "layout": "guest",
+    "dark": true,
+    "shade": false,
+    "color": "studio",
+    "label": "guest.exe",
+    "stat": "03",
+    "title": "Michael\nvan Lier",
+    "body": "tba",
+    "photo": "/ventures/day-zero/gallery/avatars/avatar-michael-van-lier.png",
+    "captions": [
+      "Our guest for Day Zero 03 is [Guest name], [role].\n\nThe theme of the night is [theme]. [Guest name] opens the night, and founders and builders build AI ventures around it until late.\n\nSeats go through Luma. builders.studio",
+      "Player 1 has entered the room: [Guest name] joins Day Zero 03 to speak for [theme].\n\nFounders with an idea, builders with the skills, one theme for the whole night.\n\nbuilders.studio",
+      "Day Zero 03: one theme, [theme], and one guest, [Guest name].\n\nThe monthly build night of Builders, in Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "g08",
+    "angle": "Guest announcement · sample: Michael van Lier",
+    "format": "portrait",
+    "layout": "guest",
+    "dark": false,
+    "shade": false,
+    "color": "capital",
+    "label": "guest.announce()",
+    "stat": "03",
+    "title": "Michael\nvan Lier",
+    "body": "tba",
+    "photo": "/ventures/day-zero/gallery/avatars/avatar-michael-van-lier.png",
+    "captions": [
+      "Our guest for Day Zero 03 is [Guest name], [role].\n\nThe theme of the night is [theme]. [Guest name] opens the night, and founders and builders build AI ventures around it until late.\n\nSeats go through Luma. builders.studio",
+      "Player 1 has entered the room: [Guest name] joins Day Zero 03 to speak for [theme].\n\nFounders with an idea, builders with the skills, one theme for the whole night.\n\nbuilders.studio",
+      "Day Zero 03: one theme, [theme], and one guest, [Guest name].\n\nThe monthly build night of Builders, in Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
+    "id": "g09",
+    "angle": "Guest announcement, wide · sample: Sharon Klaver",
+    "format": "landscape",
+    "layout": "guest",
+    "dark": true,
+    "shade": false,
+    "color": "network",
+    "label": "guest.exe",
+    "stat": "03",
+    "title": "Sharon\nKlaver",
+    "body": "tba",
+    "photo": "/ventures/day-zero/gallery/avatars/avatar-sharon-klaver.png",
+    "captions": [
+      "Our guest for Day Zero 03 is [Guest name], [role].\n\nThe theme of the night is [theme]. [Guest name] opens the night, and founders and builders build AI ventures around it until late.\n\nSeats go through Luma. builders.studio",
+      "Player 1 has entered the room: [Guest name] joins Day Zero 03 to speak for [theme].\n\nFounders with an idea, builders with the skills, one theme for the whole night.\n\nbuilders.studio",
+      "Day Zero 03: one theme, [theme], and one guest, [Guest name].\n\nThe monthly build night of Builders, in Rotterdam.\n\nbuilders.studio"
+    ]
+  },
+  {
     "id": "01",
     "angle": "The invite",
     "format": "portrait",
