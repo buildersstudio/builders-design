@@ -1,0 +1,558 @@
+{
+  "updated": "2026-09-24",
+  "sources": {
+    "vsi": { "venture": "niklas-amir-bda663c5", "conversations": 16, "compiled": "2026-09-24" },
+    "web": [
+      { "title": "Engineer to Order ERP: Estimating and Quoting (Visibility)", "url": "https://www.visibility.com/blog/engineer-to-order-erp-estimating-quoting", "date": "2026-09-24" },
+      { "title": "KIAS: KI gestützte Angebotskalkulation im Sondermaschinenbau", "url": "https://demonstratoren.gfe-net.de/demonstratoren/kias-ki-gestuetzte-angebotskalkulation-im-sondermaschinenbau", "date": "2026-09-24" },
+      { "title": "Introduction to DimXpert in SOLIDWORKS (GoEngineer)", "url": "https://www.goengineer.com/blog/introduction-dimxpert-solidworks", "date": "2026-09-24" },
+      { "title": "DraftAid", "url": "https://draftaid.io", "date": "2026-09-24" },
+      { "title": "DriveWorks", "url": "https://www.driveworks.co.uk", "date": "2026-09-24" },
+      { "title": "Tacton CPQ", "url": "https://www.tacton.com", "date": "2026-09-24" },
+      { "title": "Paperless Parts", "url": "https://www.paperlessparts.com", "date": "2026-09-24" },
+      { "title": "Tacto", "url": "https://www.tacto.ai/en", "date": "2026-09-24" },
+      { "title": "CADDi", "url": "https://caddi.com", "date": "2026-09-24" },
+      { "title": "Leo AI", "url": "https://www.getleo.ai", "date": "2026-09-24" }
+    ]
+  },
+  "summary": "Drawings are the best evidenced part of drawgen: four trial or design-partner commitments and E3 to E4 pains on views, datums, tolerances and revision rework across nine firms, with SOLIDWORKS auto-dimensioning tried and dropped. Since 19 September the calls have moved to quoting, where the E4 pains are real but come from few firms and sit in two places: machine builders cannot turn a 3D concept into a costed parts list, and part suppliers wait days on subcontractors. The first is a bridge drawgen can own with its geometry engine; the second is another company's product.",
+  "icps": [
+    {
+      "id": "eto-machine-builder",
+      "name": "ETO machine builder, quoting side",
+      "segment": "Special-machine and handling-equipment builders, roughly 20 to 100 staff, UK, DACH and NZ",
+      "who": "Sales engineers, territory managers and managing directors who price one-off machines from a customer brief and a rough 3D concept.",
+      "trigger": "An RFQ for a bespoke machine lands, or a finished job just lost money because the quote missed a cost.",
+      "jobs": [
+        "Turn a customer brief into a price that still makes money",
+        "Break a 3D concept into parts, hours and bought-in costs",
+        "Hand a won job to design and purchasing without re-entering data"
+      ],
+      "evidence": "E4",
+      "notes": "E4 pains from three builders and a heavy-fabrication checker. One UK handling-equipment firm supplies five of sixteen calls and its contact is asking for equity, so weigh its enthusiasm with care."
+    },
+    {
+      "id": "bespoke-component-supplier",
+      "name": "Make-to-print part supplier",
+      "segment": "Bespoke component makers and machining shops that subcontract processes, UK and Central Europe",
+      "who": "Commercial and estimating staff who price every part individually from customer drawings plus subcontractor quotes.",
+      "trigger": "A drawing-based RFQ that cannot be priced until subcontractors return their own quotes.",
+      "jobs": [
+        "Price a bespoke part from a customer drawing",
+        "Collect subcontractor prices fast enough to quote",
+        "Answer repeat-order and delivery questions without digging through the ERP"
+      ],
+      "evidence": "E4",
+      "notes": "One supplier gives E4 pains and an E5 design-partner yes; a CAM reseller and a nuclear CTO add E3 context. Single-company evidence, and this buyer declined drawing automation."
+    },
+    {
+      "id": "design-drawing-office",
+      "name": "Design and drawing office",
+      "segment": "Design engineers, drafters and checkers in ETO machinery, heavy fabrication, mining equipment and aerospace",
+      "who": "The people who turn a finished SOLIDWORKS or Inventor model into dimensioned, checked and released manufacturing drawings.",
+      "trigger": "A model is finished and a project needs 100 to 200 drawings fast, or a late change forces a round of redraws.",
+      "jobs": [
+        "Produce drawings a shop can build from without calling back",
+        "Get drawings through checking and sign-off first time",
+        "Keep drawings in step with model changes"
+      ],
+      "evidence": "E5",
+      "notes": "Strongest base: four E5 trial or design-partner commitments and recurring E3 to E4 pains across nine firms. Two of the E5 trial partners draw in Inventor, not SOLIDWORKS."
+    }
+  ],
+  "journeys": [
+    {
+      "id": "rfq-to-profitable-order",
+      "title": "From RFQ to a quote that makes money",
+      "icp": "eto-machine-builder",
+      "question": "Can the assembly drawgen already reads become the costed parts list a machine quote is built from?",
+      "stages": [
+        {
+          "id": "brief-arrives",
+          "name": "Brief arrives",
+          "feel": 0,
+          "asis": [
+            { "text": "Customer brings a problem: throughput, pack format, load; engineers scope it in a meeting" },
+            { "text": "Most work is inbound, a customer with an odd problem nobody sells a machine for" }
+          ],
+          "pains": [
+            { "text": "Key facts go unasked, such as certification or heat treatment, and surface after the build", "tier": "E4", "quotes": ["q-handling-missing"] }
+          ],
+          "quotes": [
+            { "id": "q-packaging-scope", "text": "They'll come to us and say, you know, I want to be able to pack chocolate bars at this speed and this format", "who": "Executive chairman, NZ packaging-machinery builder", "tier": "E3", "kind": "workflow", "conv": "e52a98f8-9a5a-476b-b146-c0c055395c1d", "ms": 1083027, "date": "2026-09-24" },
+            { "id": "q-handling-missing", "text": "We can be very far off, like, to the point sometimes where it's we don't make money because something goes wrong.", "who": "Territory manager, UK handling-equipment builder", "tier": "E4", "kind": "pain_point", "conv": "ea93ab89-b15c-41ed-9738-580177e3b641", "ms": 781491, "date": "2026-09-19" }
+          ],
+          "ideas": [
+            { "text": "RFQ checklist per machine type that asks for the facts past jobs missed", "impact": 2, "effort": 1, "why": "Missing customer information is the named root cause of quote misses" }
+          ],
+          "tobe": [
+            { "text": "Brief captured against a checklist built from the builder's own past misses" }
+          ]
+        },
+        {
+          "id": "engineer-the-concept",
+          "name": "Engineer the concept",
+          "feel": -2,
+          "asis": [
+            { "text": "A sales engineer sizes the machine from experience, often without a check calculation" },
+            { "text": "Modular builders compose machines from modules of 100 to 200 parts costed before" }
+          ],
+          "pains": [
+            { "text": "Engineering knowledge gaps at pricing time turn into unpaid work after the order", "tier": "E4", "quotes": ["q-handling-knowledge"] },
+            { "text": "A lifting spec was quoted without the weight or counterweight it needed", "tier": "E3", "quotes": ["q-handling-200kg"] }
+          ],
+          "quotes": [
+            { "id": "q-handling-knowledge", "text": "Lack of knowledge or missing information.", "who": "Territory manager, UK handling-equipment builder", "tier": "E4", "kind": "pain_point", "conv": "ea93ab89-b15c-41ed-9738-580177e3b641", "ms": 837284, "date": "2026-09-19" },
+            { "id": "q-handling-200kg", "text": "I said it could pick up 200 kilos at 2 meters, and in order to be able to do that, the machine needs to be very, very heavy or weighted.", "who": "Territory manager, UK handling-equipment builder", "tier": "E3", "kind": "pain_point", "conv": "ea93ab89-b15c-41ed-9738-580177e3b641", "ms": 837284, "date": "2026-09-19" },
+            { "id": "q-packaging-bulletproof", "text": "we can go and quote a concept to a client about something reasonably serious and be relatively bulletproof on our costing", "who": "Executive chairman, NZ packaging-machinery builder", "tier": "E3", "kind": "workflow", "conv": "e52a98f8-9a5a-476b-b146-c0c055395c1d", "ms": 684552, "date": "2026-09-24" }
+          ],
+          "ideas": [
+            { "text": "Find the past machine or module closest to this concept, with its cost and hours", "impact": 3, "effort": 2, "why": "The builder that quotes reliably does it by reusing costed modules" },
+            { "text": "Mass, reach and counterweight sanity checks read from the concept model", "impact": 2, "effort": 3, "why": "Catches the misses heard in calls, but it is engineering software, far from drawings" }
+          ],
+          "tobe": [
+            { "text": "Concept starts from known modules, with their past cost and hours attached" }
+          ]
+        },
+        {
+          "id": "break-down-cost",
+          "name": "Break the assembly into cost",
+          "feel": -2,
+          "asis": [
+            { "text": "Parts are copied from the 3D model into Excel by hand, lengths and coating areas measured" },
+            { "text": "Estimates often live in Excel templates and quotes in ERP or Word, so data is typed twice", "source": "web" }
+          ],
+          "pains": [
+            { "text": "The BOM is unusable because parts are badly named, so extraction is manual", "tier": "E4", "quotes": ["q-checker-bom"] },
+            { "text": "Two to three hours to extract and verify 33 parts for one quote", "tier": "E4", "quotes": ["q-checker-33"] },
+            { "text": "Checkbox cost calculators were tried and do not fit bespoke machines", "tier": "E3", "quotes": ["q-handling-calc"] }
+          ],
+          "quotes": [
+            { "id": "q-checker-bom", "text": "Usually it should be easy using bill of materials, but apparently engineers didn't properly name them, so I have to do it customly and then name it everything.", "who": "Drawing checker, offshore heavy-fabrication department", "tier": "E4", "kind": "pain_point", "conv": "2f01f30a-07cd-4594-84d6-15f87787a806", "ms": 1405954, "date": "2026-09-18" },
+            { "id": "q-checker-33", "text": "there were like 33 parts to extract from a model. I had to verify everything, so it took roughly 2 to 3 hours for me to wrap it up and put it on Excel sheet", "who": "Drawing checker, offshore heavy-fabrication department", "tier": "E4", "kind": "pain_point", "conv": "2f01f30a-07cd-4594-84d6-15f87787a806", "ms": 1482023, "date": "2026-09-18" },
+            { "id": "q-handling-calc", "text": "Whereas you can't really do that with bespoke products. We've tried, we've tried.", "who": "Territory manager, UK handling-equipment builder", "tier": "E3", "kind": "pain_point", "conv": "ea93ab89-b15c-41ed-9738-580177e3b641", "ms": 1158553, "date": "2026-09-19" }
+          ],
+          "ideas": [
+            { "text": "Costed parts list from the assembly: classify, measure and export every part to Excel", "impact": 3, "effort": 2, "why": "Same geometry engine as drawings, and the clearest E4 time sink on the quote side" },
+            { "text": "Auto-name and group parts: profiles, plates, machined, bought-in", "impact": 2, "effort": 1, "why": "Bad naming is what forces the manual extraction today" }
+          ],
+          "tobe": [
+            { "text": "One click turns the concept assembly into a classified, measured parts list" },
+            { "text": "The estimator only adds rates; nothing is retyped" }
+          ]
+        },
+        {
+          "id": "set-the-price",
+          "name": "Set the price",
+          "feel": -1,
+          "asis": [
+            { "text": "Cost plus 30 to 60 percent on engineered work, about 10 percent on bought-in parts" },
+            { "text": "CADDi and research like KIAS mine past drawings and projects to predict new costs", "source": "web" }
+          ],
+          "pains": [
+            { "text": "No link from a new quote to what similar past jobs really cost", "tier": "E2", "quotes": ["q-handling-prevquotes", "q-handling-10pct"] },
+            { "text": "Forgotten cost items repeat from job to job", "tier": "E2", "quotes": ["q-handling-trolley"] }
+          ],
+          "quotes": [
+            { "id": "q-handling-prevquotes", "text": "could take all the information of previous quotes, see how much we made on them", "who": "Territory manager, UK handling-equipment builder", "tier": "E2", "kind": "product_request", "conv": "ea93ab89-b15c-41ed-9738-580177e3b641", "ms": 976736, "date": "2026-09-19" },
+            { "id": "q-handling-10pct", "text": "we've been quoting our projects 10% under what we should be, so we'll add 10% onto everything. It's a fix, not necessarily the right one", "who": "Territory manager, UK handling-equipment builder", "tier": "E2", "kind": "product_request", "conv": "ea93ab89-b15c-41ed-9738-580177e3b641", "ms": 976736, "date": "2026-09-19" },
+            { "id": "q-handling-trolley", "text": "trolley wheels are typically really expensive. So this was, you know, we needed to spend an extra £200 on the previous one.", "who": "Territory manager, UK handling-equipment builder", "tier": "E2", "kind": "product_request", "conv": "ea93ab89-b15c-41ed-9738-580177e3b641", "ms": 1031329, "date": "2026-09-19" }
+          ],
+          "ideas": [
+            { "text": "Flag cost items that similar past jobs needed but this quote lacks", "impact": 3, "effort": 2, "why": "Asked for directly, and deterministic, which sidesteps the AI trust objection" },
+            { "text": "Show quoted versus actual margin for comparable past machines", "impact": 2, "effort": 3, "why": "Needs job actuals, which small builders keep in Sage, MYOB or Excel" }
+          ],
+          "tobe": [
+            { "text": "Price starts from the nearest past jobs, with missed items flagged before it goes out" }
+          ]
+        },
+        {
+          "id": "win-the-order",
+          "name": "Win the order",
+          "feel": 0,
+          "asis": [
+            { "text": "The pre-order phase runs from days to years through layers of corporate approval" },
+            { "text": "DriveWorks and Tacton quote fast, but only for rule-defined product families", "source": "web" }
+          ],
+          "pains": [
+            { "text": "Buyers want quick, easy quotes, which bespoke work cannot give today", "tier": "E2", "quotes": ["q-handling-quick"] },
+            { "text": "Engineers distrust a price an LLM guessed, most of all at volume", "tier": "E2", "quotes": ["q-mining-guess", "q-mining-rough"] }
+          ],
+          "quotes": [
+            { "id": "q-handling-quick", "text": "every company wants the sales process to be quick and easy.", "who": "Territory manager, UK handling-equipment builder", "tier": "E2", "kind": "pain_point", "conv": "ea93ab89-b15c-41ed-9738-580177e3b641", "ms": 1103213, "date": "2026-09-19" },
+            { "id": "q-mining-guess", "text": "So to be relying on the LLM to guess things might not be so great.", "who": "Automation lead, mining-machinery OEM", "tier": "E2", "kind": "objection", "conv": "06a4d185-28fd-4fa2-8a91-f0930191741c", "ms": 799410, "date": "2026-09-17" },
+            { "id": "q-mining-rough", "text": "Someone like me, small company, bespoke projects, I don't mind rough estimates that, you know, could have mistakes.", "who": "Automation lead, mining-machinery OEM", "tier": "E2", "kind": "objection", "conv": "06a4d185-28fd-4fa2-8a91-f0930191741c", "ms": 799410, "date": "2026-09-17" }
+          ],
+          "ideas": [
+            { "text": "Itemised quote that shows its working, every line traced to the model and a rate", "impact": 2, "effort": 1, "why": "Engineers trust estimates they can audit; guessed totals are the stated objection" }
+          ],
+          "tobe": [
+            { "text": "The quote goes out sooner, and every line can be defended in the room" }
+          ]
+        },
+        {
+          "id": "hand-over",
+          "name": "Hand over to design and purchasing",
+          "feel": -1,
+          "asis": [
+            { "text": "Designers fill the BOM; one purchaser emails suppliers part by part" },
+            { "text": "Supplier choice follows designer habit and office word of mouth" }
+          ],
+          "pains": [
+            { "text": "Wrong deliveries go back and cost another four weeks", "tier": "E4", "quotes": ["q-handling-wrong"] },
+            { "text": "No preferred suppliers, so no negotiated discounts or delivery guarantees", "tier": "E3", "quotes": ["q-handling-standard"] }
+          ],
+          "quotes": [
+            { "id": "q-handling-wrong", "text": "the amount of stuff we've had arrive and it's wrong and we have to send it back and wait another 4 weeks.", "who": "Territory manager, UK handling-equipment builder", "tier": "E4", "kind": "pain_point", "conv": "ea93ab89-b15c-41ed-9738-580177e3b641", "ms": 696327, "date": "2026-09-19" },
+            { "id": "q-handling-standard", "text": "Preference of the designers, but it should be standardized.", "who": "Territory manager, UK handling-equipment builder", "tier": "E3", "kind": "pain_point", "conv": "ea93ab89-b15c-41ed-9738-580177e3b641", "ms": 377382, "date": "2026-09-19" },
+            { "id": "q-handling-oneclick", "text": "You maybe click that and it's already created the drawings, it's sent it, it's created the BOM, it's sent it to the supplier", "who": "Territory manager, UK handling-equipment builder", "tier": "E3", "kind": "product_request", "conv": "274185e3-255a-4a23-affd-f275b95a2479", "ms": 612556, "date": "2026-09-10" }
+          ],
+          "ideas": [
+            { "text": "The quoted parts list becomes the release BOM, so purchasing starts from the same data", "impact": 2, "effort": 2, "why": "Closes the loop from quote to order without a second extraction" },
+            { "text": "Leave supplier routing and auto-buying to PDM and ERP for now", "impact": 1, "effort": 1, "why": "A design engineer called it too wide; each firm already links suppliers in PDM" }
+          ],
+          "tobe": [
+            { "text": "A won job enters design with the quoted parts list already structured" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drawing-to-supplier-quote",
+      "title": "From customer drawing to part quote",
+      "icp": "bespoke-component-supplier",
+      "question": "Is quoting for make-to-print suppliers a drawgen job, or another company's product?",
+      "stages": [
+        {
+          "id": "rfq-lands",
+          "name": "RFQ lands",
+          "feel": -1,
+          "asis": [
+            { "text": "Each bespoke job is priced one by one, with no catalogue to lean on" },
+            { "text": "Repeat materials go back to suppliers known from years of similar jobs" }
+          ],
+          "pains": [
+            { "text": "Every job is different, so every price is built from scratch", "tier": "E3", "quotes": ["q-friction-bespoke"] },
+            { "text": "More RFQs arrive, and a smaller share of them is won", "tier": "E3", "quotes": ["q-cam-asking", "q-cam-winrate"] }
+          ],
+          "quotes": [
+            { "id": "q-friction-bespoke", "text": "because everything's so different, we have to price everything differently.", "who": "Business development lead, UK friction-component supplier", "tier": "E3", "kind": "pain_point", "conv": "ed23dd11-8f86-4387-a567-835f39807eeb", "ms": 1344661, "date": "2026-09-24" },
+            { "id": "q-cam-asking", "text": "quotation is not an easy topic, but more and more companies asking for it.", "who": "CAM product manager, Hungarian CAD/CAM reseller", "tier": "E3", "kind": "pain_point", "conv": "bdfeaeda-a0b4-4ac5-8b1d-4af04c60f628", "ms": 402576, "date": "2026-09-23" },
+            { "id": "q-cam-winrate", "text": "Nowadays they have a lot of queries for quotation and can win only a small unit.", "who": "CAM product manager, Hungarian CAD/CAM reseller", "tier": "E3", "kind": "pain_point", "conv": "bdfeaeda-a0b4-4ac5-8b1d-4af04c60f628", "ms": 946872, "date": "2026-09-23" }
+          ],
+          "ideas": [
+            { "text": "Triage: effort to quote against likely win, before anyone estimates", "impact": 2, "effort": 2, "why": "Win rates fell, so every lost full estimate now costs more" }
+          ],
+          "tobe": [
+            { "text": "Low-odds RFQs are spotted early and quoted rough, not in full" }
+          ]
+        },
+        {
+          "id": "read-the-part",
+          "name": "Read the part",
+          "feel": -1,
+          "asis": [
+            { "text": "Some engineers paste the drawing into Claude and ask for an itemised quote" },
+            { "text": "Paperless Parts reads CNC and sheet metal geometry for setups and features", "source": "web" }
+          ],
+          "pains": [
+            { "text": "Multi-side machined parts need stock and fixture checks before they can be priced", "tier": "E3", "quotes": ["q-cam-sides"] },
+            { "text": "Drawings here are simple, so drawing automation is not wanted at all", "tier": "E3", "quotes": ["q-friction-simple"] }
+          ],
+          "quotes": [
+            { "id": "q-mining-claude", "text": "sometimes I'm in a rush and I need to estimate a component, I actually put the drawing in Claude.", "who": "Automation lead, mining-machinery OEM", "tier": "E4", "kind": "workflow", "conv": "06a4d185-28fd-4fa2-8a91-f0930191741c", "ms": 775367, "date": "2026-09-17" },
+            { "id": "q-cam-sides", "text": "when you have more, uh, more sides to manufacture, it's more and more difficult because you have to check the, the stock, you have to check the, the fixture.", "who": "CAM product manager, Hungarian CAD/CAM reseller", "tier": "E3", "kind": "pain_point", "conv": "bdfeaeda-a0b4-4ac5-8b1d-4af04c60f628", "ms": 462953, "date": "2026-09-23" },
+            { "id": "q-friction-simple", "text": "I think we don't really need it because our drawings are quite simple. It's normally just 2 different parts.", "who": "Business development lead, UK friction-component supplier", "tier": "E3", "kind": "objection", "conv": "ed23dd11-8f86-4387-a567-835f39807eeb", "ms": 924472, "date": "2026-09-24" }
+          ],
+          "ideas": [
+            { "text": "Do not sell drawing generation to this buyer", "impact": 1, "effort": 1, "why": "The supplier declined a drawing tool outright: two-part drawings, no assemblies" },
+            { "text": "Feature read-out from the part: holes, setups, stock size, for the estimator", "impact": 2, "effort": 2, "why": "Reuses drawgen's geometry read, but meets Paperless Parts head on" }
+          ],
+          "tobe": [
+            { "text": "The estimator sees part features and stock size without opening CAD" }
+          ]
+        },
+        {
+          "id": "wait-on-subcontractors",
+          "name": "Wait on subcontractors",
+          "feel": -2,
+          "asis": [
+            { "text": "Processes the shop cannot do go out to subcontractors by email for a price" },
+            { "text": "Tacto parses supplier offer PDFs and builds cost models for negotiation", "source": "web" }
+          ],
+          "pains": [
+            { "text": "Waiting one to three days per subcontractor quote is the biggest pain", "tier": "E4", "quotes": ["q-friction-wait", "q-friction-days"] }
+          ],
+          "quotes": [
+            { "id": "q-friction-wait", "text": "that seems to be the biggest pain point for us, waiting for them to provide their quotation.", "who": "Business development lead, UK friction-component supplier", "tier": "E4", "kind": "pain_point", "conv": "ed23dd11-8f86-4387-a567-835f39807eeb", "ms": 105420, "date": "2026-09-24" },
+            { "id": "q-friction-days", "text": "normally we take around 1 to 3 days, depending on how responsive the subcontractor is, to get that quote.", "who": "Business development lead, UK friction-component supplier", "tier": "E4", "kind": "pain_point", "conv": "ed23dd11-8f86-4387-a567-835f39807eeb", "ms": 182907, "date": "2026-09-24" },
+            { "id": "q-checker-planners", "text": "So work planners always go there, search, request some people, or work with salespeople.", "who": "Drawing checker, offshore heavy-fabrication department", "tier": "E3", "kind": "workflow", "conv": "2f01f30a-07cd-4594-84d6-15f87787a806", "ms": 1292197, "date": "2026-09-18" }
+          ],
+          "ideas": [
+            { "text": "Placeholder subcontract cost from past invoices while the real quote is pending", "impact": 3, "effort": 3, "why": "Hits the named top pain, but depends on clean ERP history nobody has shown us" }
+          ],
+          "tobe": [
+            { "text": "A data-driven placeholder lets the quote move before suppliers reply" }
+          ]
+        },
+        {
+          "id": "cost-and-margin",
+          "name": "Build cost and margin",
+          "feel": -1,
+          "asis": [
+            { "text": "Cost plus margin: 30 to 40 percent on big orders, 40 to 50 on small ones, plus an MOQ charge" },
+            { "text": "CAM resellers link Excel or ERP to CAM macros for costing" }
+          ],
+          "pains": [
+            { "text": "Machining time drives cost and is hard to price without programming the part", "tier": "E3", "quotes": ["q-nuclear-machining"] },
+            { "text": "CAM-side quoting exists only as partial macros", "tier": "E4", "quotes": ["q-cam-macros"] }
+          ],
+          "quotes": [
+            { "id": "q-friction-breakdown", "text": "the processes are delivery, inspection, machining, tooling costs, all those types of things that break down how the part is sort of quoted.", "who": "Business development lead, UK friction-component supplier", "tier": "E4", "kind": "workflow", "conv": "ed23dd11-8f86-4387-a567-835f39807eeb", "ms": 182907, "date": "2026-09-24" },
+            { "id": "q-nuclear-machining", "text": "Machining is probably the most expensive step in the entire process, right?", "who": "CTO, US nuclear startup", "tier": "E3", "kind": "pain_point", "conv": "346ee32f-177b-4ca4-a468-ba335edbbdde", "ms": 1098000, "date": "2026-09-09" },
+            { "id": "q-cam-macros", "text": "But it's not a full solution, not the full solution which we would have.", "who": "CAM product manager, Hungarian CAD/CAM reseller", "tier": "E4", "kind": "pain_point", "conv": "bdfeaeda-a0b4-4ac5-8b1d-4af04c60f628", "ms": 1082347, "date": "2026-09-23" }
+          ],
+          "ideas": [
+            { "text": "Partner with CAM or quoting tools rather than build machining cost models", "impact": 2, "effort": 1, "why": "Machining cost is a CAM problem with incumbents; drawgen's edge is assemblies" }
+          ],
+          "tobe": [
+            { "text": "Cost lines come from tools that know machining; drawgen is not in this step" }
+          ]
+        },
+        {
+          "id": "send-and-chase",
+          "name": "Send and chase",
+          "feel": -1,
+          "asis": [
+            { "text": "The quote goes out once supplier prices return; inquiry to shipped part takes three weeks or more" }
+          ],
+          "pains": [
+            { "text": "Conservative management writes off AI quoting as not working", "tier": "E2", "quotes": ["q-cam-conservative"] }
+          ],
+          "quotes": [
+            { "id": "q-friction-dream", "text": "have something where it just formulates something data-driven so we can just do it in a matter of seconds.", "who": "Business development lead, UK friction-component supplier", "tier": "E2", "kind": "product_request", "conv": "ed23dd11-8f86-4387-a567-835f39807eeb", "ms": 624220, "date": "2026-09-24" },
+            { "id": "q-cam-conservative", "text": "Some customers are more old type or conservative and think AI is not working and it's not good.", "who": "CAM product manager, Hungarian CAD/CAM reseller", "tier": "E2", "kind": "objection", "conv": "bdfeaeda-a0b4-4ac5-8b1d-4af04c60f628", "ms": 777848, "date": "2026-09-23" }
+          ],
+          "ideas": [
+            { "text": "Run a paid pilot before building anything for this segment", "impact": 2, "effort": 1, "why": "One supplier asked; a design-partner form is interest, not a purchase" }
+          ],
+          "tobe": [
+            { "text": "The quote leaves in hours, subcontract lines marked estimated or confirmed" }
+          ]
+        },
+        {
+          "id": "repeat-and-admin",
+          "name": "Repeat orders and status",
+          "feel": -1,
+          "asis": [
+            { "text": "Cost history sits in a combined CRM and ERP, reached by drilling into each order" },
+            { "text": "A commercial lead is building his own Claude tool on the CRM API" }
+          ],
+          "pains": [
+            { "text": "Pulling cost history per customer and per reorder stacks up", "tier": "E4", "quotes": ["q-friction-stack"] },
+            { "text": "One person answers delivery-date emails by hand", "tier": "E4", "quotes": ["q-friction-admin"] }
+          ],
+          "quotes": [
+            { "id": "q-friction-stack", "text": "So you can imagine if you multiply that across how many customers you get, how many times they order a year, it can stack up.", "who": "Business development lead, UK friction-component supplier", "tier": "E4", "kind": "pain_point", "conv": "ed23dd11-8f86-4387-a567-835f39807eeb", "ms": 734200, "date": "2026-09-24" },
+            { "id": "q-friction-admin", "text": "I'm just trying to create something that deals with the front-end admin rather than one person dealing with that, writing individual emails.", "who": "Business development lead, UK friction-component supplier", "tier": "E4", "kind": "workflow", "conv": "ed23dd11-8f86-4387-a567-835f39807eeb", "ms": 624220, "date": "2026-09-24" }
+          ],
+          "ideas": [
+            { "text": "Leave CRM queries and status emails to the buyer's own Claude build", "impact": 1, "effort": 1, "why": "He is already building it himself, a zero-cost incumbent" }
+          ],
+          "tobe": [
+            { "text": "Out of scope for drawgen" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "model-to-release",
+      "title": "From finished model to released drawing",
+      "icp": "design-drawing-office",
+      "question": "Which part of the drawing job must drawgen own for a checker to sign without redrawing?",
+      "stages": [
+        {
+          "id": "set-up-views",
+          "name": "Set up sheets and views",
+          "feel": -1,
+          "asis": [
+            { "text": "A junior drafter opens the model, picks views and packs parts onto sheets" },
+            { "text": "SOLIDWORKS templates and macros pre-fill standard sheets and notes" },
+            { "text": "DraftAid claims automatic views, layout and dimensions to company templates", "source": "web" }
+          ],
+          "pains": [
+            { "text": "Wrong views and the checker sends the whole sheet back", "tier": "E3", "quotes": ["q-mining-views"] },
+            { "text": "Projects need about 200 fabrication drawings at one to two hours each", "tier": "E3", "quotes": ["q-mining-200"] },
+            { "text": "Assemblies are drawn part by part", "tier": "E2", "quotes": ["q-handling-assembly"] }
+          ],
+          "quotes": [
+            { "id": "q-mining-views", "text": "If you get that wrong, the whole drawing is crap, right?", "who": "Automation lead, mining-machinery OEM", "tier": "E3", "kind": "pain_point", "conv": "06a4d185-28fd-4fa2-8a91-f0930191741c", "ms": 547400, "date": "2026-09-17" },
+            { "id": "q-mining-200", "text": "But some of our projects, we'll make like 200 drawings.", "who": "Automation lead, mining-machinery OEM", "tier": "E3", "kind": "pain_point", "conv": "06a4d185-28fd-4fa2-8a91-f0930191741c", "ms": 937437, "date": "2026-09-17" },
+            { "id": "q-handling-assembly", "text": "Well, what happens if I've got a whole assembly that I need to draw?", "who": "Territory manager, UK handling-equipment builder", "tier": "E2", "kind": "pain_point", "conv": "a831e573-4a04-4352-b206-001b69b9a9f2", "ms": 363875, "date": "2026-09-17" }
+          ],
+          "ideas": [
+            { "text": "The designer nominates views, or confirms proposed ones, before dimensioning", "impact": 3, "effort": 1, "why": "Views are a hard gate for reviewers, and nominations become training data" },
+            { "text": "Whole assembly in one run, every part on its own sheet", "impact": 3, "effort": 2, "why": "The first question a design manager asked, and where the hours are" }
+          ],
+          "tobe": [
+            { "text": "The designer confirms views once for the assembly; drawgen lays out every sheet" }
+          ]
+        },
+        {
+          "id": "dimension-and-tolerance",
+          "name": "Dimension and tolerance",
+          "feel": -2,
+          "asis": [
+            { "text": "Dimensions are placed by hand, 5 to 45 minutes a part; GD&T now sits on most drawings" },
+            { "text": "SOLIDWORKS DimXpert needs the user to specify datums before it can dimension", "source": "web" }
+          ],
+          "pains": [
+            { "text": "Choosing tolerances between mating parts is the hardest step", "tier": "E3", "quotes": ["q-aero-tol"] },
+            { "text": "Wrong datums and missing dimensions drive most review time", "tier": "E3", "quotes": ["q-powertrain-datums"] },
+            { "text": "SOLIDWORKS auto-dimensioning was tried and dropped as unreadable", "tier": "E4", "quotes": ["q-handling-autodim"] }
+          ],
+          "quotes": [
+            { "id": "q-aero-tol", "text": "the most difficult part is to make the tolerances, to decide the tolerances between the 2 pieces.", "who": "Design engineer, aerospace rotor-blade team", "tier": "E3", "kind": "pain_point", "conv": "877cab45-7329-4223-87bd-4133dc90d424", "ms": 319629, "date": "2026-09-16" },
+            { "id": "q-powertrain-datums", "text": "The biggest issue I have when somebody else creates a drawing is they pick the wrong dimension, the wrong datums.", "who": "Freelance chief design engineer, powertrain", "tier": "E3", "kind": "pain_point", "conv": "4ece3dc9-db64-414b-84a3-8a7a7db3675b", "ms": 766000, "date": "2026-09-16" },
+            { "id": "q-handling-autodim", "text": "It just throws, it throws the dimensions on and there's loads of lines. It looks really confusing.", "who": "Territory manager, UK handling-equipment builder", "tier": "E4", "kind": "objection", "conv": "e0ab7275-9aeb-4a4a-a2d0-ba66d0ebd12e", "ms": 1661125, "date": "2026-09-19" }
+          ],
+          "ideas": [
+            { "text": "The designer clicks datums and a tolerance class; drawgen dimensions from them", "impact": 3, "effort": 2, "why": "Senior engineers say they will not use it until they control the datums" },
+            { "text": "Never invent GD&T: propose it marked unconfirmed, the engineer accepts", "impact": 3, "effort": 1, "why": "One absurd tolerance kills trust; abstention is already the product thesis" },
+            { "text": "Edge-to-hole and every-feature rules so fabricators never have to measure", "impact": 2, "effort": 1, "why": "Missing critical dimensions are the other top checker complaint" }
+          ],
+          "tobe": [
+            { "text": "The engineer spends minutes on datums and tolerances; drawgen places the rest" }
+          ]
+        },
+        {
+          "id": "check-and-sign-off",
+          "name": "Check and sign off",
+          "feel": -2,
+          "asis": [
+            { "text": "A senior engineer checks every drawing; aerospace needs three signatures" },
+            { "text": "The four-eye check covers manufacturability, tolerances and machinist-ready dimensions" }
+          ],
+          "pains": [
+            { "text": "A quarter of incoming drawings go back for rework", "tier": "E4", "quotes": ["q-checker-returns"] },
+            { "text": "Signature loops restart after every round of comments", "tier": "E3", "quotes": ["q-aero-signoff"] }
+          ],
+          "quotes": [
+            { "id": "q-checker-returns", "text": "like let's say if I receive 20, like at least 5 I send back.", "who": "Drawing checker, offshore heavy-fabrication department", "tier": "E4", "kind": "pain_point", "conv": "2f01f30a-07cd-4594-84d6-15f87787a806", "ms": 895984, "date": "2026-09-18" },
+            { "id": "q-mining-review", "text": "they get a very junior guy to do the drawing and a senior guy to check it.", "who": "Automation lead, mining-machinery OEM", "tier": "E3", "kind": "workflow", "conv": "06a4d185-28fd-4fa2-8a91-f0930191741c", "ms": 937437, "date": "2026-09-17" },
+            { "id": "q-aero-signoff", "text": "your drawings, at least in the aerospace, has to be signed by at least 3 other people.", "who": "Design engineer, aerospace rotor-blade team", "tier": "E3", "kind": "pain_point", "conv": "877cab45-7329-4223-87bd-4133dc90d424", "ms": 1033791, "date": "2026-09-16" }
+          ],
+          "ideas": [
+            { "text": "Pre-check report: standard violations and missing dimensions before a human opens it", "impact": 3, "effort": 2, "why": "Checker time is the bottleneck, and it helps on human-made drawings too" },
+            { "text": "Traceability note per dimension: which datum or rule placed it", "impact": 2, "effort": 2, "why": "Already decided as a manifest; lets a checker audit instead of redo" }
+          ],
+          "tobe": [
+            { "text": "The checker reviews flagged items, not a blank-slate drawing" }
+          ]
+        },
+        {
+          "id": "revise-after-change",
+          "name": "Revise after changes",
+          "feel": -2,
+          "asis": [
+            { "text": "Late 3D changes are marked up by hand and passed to designers to redraw" },
+            { "text": "A change to one part ripples to its mating parts and their tolerances" }
+          ],
+          "pains": [
+            { "text": "Redoing drawings after review comments is the most annoying part of the job", "tier": "E4", "quotes": ["q-aero-revision"] },
+            { "text": "Fabrication stalls while engineering finishes changes nobody can track", "tier": "E4", "quotes": ["q-checker-stuck"] },
+            { "text": "Overconfident juniors ship batches of drawings that all need changing", "tier": "E3", "quotes": ["q-powertrain-100"] }
+          ],
+          "quotes": [
+            { "id": "q-aero-revision", "text": "someone has some comments, so you have to modify some things, and then in that moment you have to redo the 2D drawings.", "who": "Design engineer, aerospace rotor-blade team", "tier": "E4", "kind": "pain_point", "conv": "877cab45-7329-4223-87bd-4133dc90d424", "ms": 465351, "date": "2026-09-16" },
+            { "id": "q-checker-stuck", "text": "we are kind of stuck in middle because the engineering department has to make 3D changes And then we don't know when they're gonna finish.", "who": "Drawing checker, offshore heavy-fabrication department", "tier": "E4", "kind": "pain_point", "conv": "2f01f30a-07cd-4594-84d6-15f87787a806", "ms": 959986, "date": "2026-09-18" },
+            { "id": "q-powertrain-100", "text": "I'd rather someone come and ask me than think they know what they're doing and give me 100 drawings that all have to be changed.", "who": "Freelance chief design engineer, powertrain", "tier": "E3", "kind": "pain_point", "conv": "4ece3dc9-db64-414b-84a3-8a7a7db3675b", "ms": 1314000, "date": "2026-09-16" }
+          ],
+          "ideas": [
+            { "text": "Revision diff: list every drawing a model change touches", "impact": 3, "effort": 2, "why": "Nobody can tell which drawings a change affects today" },
+            { "text": "Change propagation: update a changed part's drawing and its mates' drawings", "impact": 3, "effort": 3, "why": "Called amazing to have; revisions eat the time that first drafts save" }
+          ],
+          "tobe": [
+            { "text": "A model change produces a list of affected drawings and proposed updates" }
+          ]
+        },
+        {
+          "id": "release-through-pdm",
+          "name": "Release through PDM",
+          "feel": 0,
+          "asis": [
+            { "text": "Drawings are checked into PDM (Vault, Windchill, Teamcenter) and released as revisions" },
+            { "text": "Two of the trial partners draw in Inventor, not SOLIDWORKS" }
+          ],
+          "pains": [
+            { "text": "Drawings made from STEP files outside the CAD system have no value", "tier": "E4", "quotes": ["q-powertrain-step"] },
+            { "text": "Editing exported DXF leaves two versions of the same drawing", "tier": "E3", "quotes": ["q-crane-versions"] }
+          ],
+          "quotes": [
+            { "id": "q-powertrain-step", "text": "I don't think any company will want done drawings from step files.", "who": "Freelance chief design engineer, powertrain", "tier": "E4", "kind": "objection", "conv": "4ece3dc9-db64-414b-84a3-8a7a7db3675b", "ms": 1896000, "date": "2026-09-16" },
+            { "id": "q-crane-native", "text": "So like, it should be not like just lines. It should be really like the measurement tool from SolidWorks.", "who": "Design engineer, DACH crane retrofit", "tier": "E3", "kind": "product_request", "conv": "041afff6-550d-4759-84e8-b814dcc9700c", "ms": 1173529, "date": "2026-09-10" },
+            { "id": "q-crane-versions", "text": "you then have like 2 versions of like a drawing. It's always like a really mess.", "who": "Design engineer, DACH crane retrofit", "tier": "E3", "kind": "objection", "conv": "041afff6-550d-4759-84e8-b814dcc9700c", "ms": 1113739, "date": "2026-09-10" }
+          ],
+          "ideas": [
+            { "text": "Output native drawings with live SOLIDWORKS dimensions, checked into PDM", "impact": 3, "effort": 2, "why": "Native, editable, revision-controlled output is a stated must-have" },
+            { "text": "Scope Inventor as the second CAD system after SOLIDWORKS", "impact": 2, "effort": 3, "why": "Two E5 trial partners work in Inventor" }
+          ],
+          "tobe": [
+            { "text": "Drawgen output is just another native revision in the vault" }
+          ]
+        },
+        {
+          "id": "shop-builds-from-it",
+          "name": "Shop floor builds from it",
+          "feel": -1,
+          "asis": [
+            { "text": "The 2D drawing is the contract with the supplier or the shop" },
+            { "text": "Many shops program CNC from the 3D model and use the drawing to quote and inspect" }
+          ],
+          "pains": [
+            { "text": "Missing edge dimensions send fabricators back to the office", "tier": "E3", "quotes": ["q-checker-edge"] },
+            { "text": "Wrong drawings reach fabrication, where errors cost the most time", "tier": "E4", "quotes": ["q-handling-fab"] }
+          ],
+          "quotes": [
+            { "id": "q-crane-contract", "text": "the 2D is like the contract with your supplier or your manufacturing company.", "who": "Design engineer, DACH crane retrofit", "tier": "E4", "kind": "workflow", "conv": "041afff6-550d-4759-84e8-b814dcc9700c", "ms": 167723, "date": "2026-09-10" },
+            { "id": "q-checker-edge", "text": "when fabricator is fabricating certain part he doesn't have to come to me again says we are missing this dimension", "who": "Drawing checker, offshore heavy-fabrication department", "tier": "E3", "kind": "pain_point", "conv": "2f01f30a-07cd-4594-84d6-15f87787a806", "ms": 1017255, "date": "2026-09-18" },
+            { "id": "q-handling-fab", "text": "And if those parts get fabricated to those drawings and the drawings are wrong, it's, you know, you've got so much time there.", "who": "Territory manager, UK handling-equipment builder", "tier": "E4", "kind": "pain_point", "conv": "a831e573-4a04-4352-b206-001b69b9a9f2", "ms": 1024062, "date": "2026-09-17" }
+          ],
+          "ideas": [
+            { "text": "Drawing types per process: laser-cut, weldment, machined, each with its own rules", "impact": 2, "effort": 2, "why": "A milling drawing differs from a laser-cut one; start with the simple families" }
+          ],
+          "tobe": [
+            { "text": "The fabricator builds from the drawing with no call back to the office" }
+          ]
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "title": "Make the costed parts list the second product, not an AI price",
+      "why": "Manual BOM extraction and unusable part names are E4 pains on the quote side and reuse the drawing engine. AI-generated prices meet E2 trust objections from engineers and managers.",
+      "tier": "E4"
+    },
+    {
+      "title": "The designer picks views, datums and tolerance class; drawgen does the rest",
+      "why": "Engineers across four firms say they will not trust auto-chosen datums or tolerances, and SOLIDWORKS auto-dimensioning failed exactly there. Nominated choices also become training data.",
+      "tier": "E3"
+    },
+    {
+      "title": "Ship native drawings into PDM, then revision diffs, before anything else",
+      "why": "Drawings from STEP or DXF were called worthless because drawings live as revisions in PDM, and revisions, not first drafts, are the most annoying time sink. Check early whether Inventor must follow, since two E5 partners use it.",
+      "tier": "E4"
+    },
+    {
+      "title": "Prove quote value on past jobs before building any pricing logic",
+      "why": "Quote-side demand rests on one handling-equipment firm's anecdotes at E2 to E4. Next step: get ten past quotes with actual costs from design partners and replay them through a parts-list prototype.",
+      "tier": "E2"
+    },
+    {
+      "title": "Say no to subcontractor-quote and CRM admin automation",
+      "why": "The one supplier with this pain declined drawings, is building his own Claude tool, and Tacto and Paperless Parts already serve the job. Different buyer, different product.",
+      "tier": "E4"
+    }
+  ]
+}

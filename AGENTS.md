@@ -21,6 +21,7 @@ public/ventures/<slug>/
   landing/<id>/index.html     landing pages, same shape as variants (hidden from the menu for now)
   landing/<id>/meta.json
   social/posts.json           LinkedIn posts: visual + three captions each
+  journeys/journeys.json      ICPs and customer journeys, as a post-it wall
 templates/deck.json           the presentation template, always start from it
 ```
 
@@ -148,6 +149,15 @@ The Social page of every venture is a gallery of finished LinkedIn posts, each a
 - Each post: `{ "id", "angle", "format": "portrait" | "square" | "landscape", "layout": "type" | "photo" | "split" | "product" | "stat", "label", "title", "body"?, "stat"?, "photo"?, "dark"?, "shade"?, "color"?, "captions": ["", "", ""] }`. `id` is unique (`"01"`, `"02"` and so on). `photo` is a gallery path (a product cut-out for `product`, a photo for `photo` and `split`); `color` is a key of the brand's deck `palette` (Krans: orange, purple, blue; omit for cream); `stat` is the big number of a stat post; `*words*` in `title` get the brand's emphasis. Never put styling in a post.
 - Day Zero (brand deck style `boot`) has its own layouts: `window` (the Luma cover: wordmark in a window, `title` and `body` as the left and right lines, `stat` the edition), `headline` (a README window, `body` becomes a `> prompt` line), `code` (`title` is the code, one line per row; `dark: true` makes it a terminal) and `guest` (`photo` is an arcade avatar from `gallery/avatars/`, `title` the guest name, `body` the theme). `color` picks the wallpaper. Luma covers are `square` + `window`, and their captions are event descriptions. New guest avatars: cut the portrait out (background removed), then `AVATARS=cutout.png AVATAR_NAME=first-last node scripts/day-zero-pixels.mjs`.
 - `captions` holds three variants of the LinkedIn text for that visual, in the venture's voice, each with a different opening and emphasis: two to four short paragraphs separated by blank lines, the site at the end, real facts only (from `venture.md`, the live site, the brand book), no em dashes, no exclamation marks, no hashtags unless asked.
+
+## Journeys
+
+The Journeys section maps who the venture serves and how their work flows today, as a horizontal wall of post-its: for every journey, stage by stage, what they do now (as is), where it hurts (pains), what they said in calls (quotes), how the venture could solve it (ideas) and the flow with the venture (to be), ending with the product decisions the evidence points to. It exists to take product decisions, so be sharp: follow the evidence, say where it is thin, and propose what to learn next.
+
+- Sources: the venture's VSI MCP data first (context classes such as icp-state, workflow-map, pain-themes, pain-clusters, product-feedback, objection-pattern, hypothesis-state, decision-log, and the conversation intelligence of customer calls, which carries quotes, evidence tiers and the moment in the call), then online research on how the segment works today and how competitors approach it. List every web source in `sources.web`.
+- The file is public. Never write a person's or a customer company's name: describe speakers by role and segment ("Operations lead, German machine builder"). Keep quotes short and verbatim. Link quotes with the VSI conversation id (`conv`) and `ms`; the platform turns them into links into the VSI app, which needs a login.
+- Shape: `{ updated, sources: { vsi, web }, summary, icps: [{ id, name, segment, who, trigger, jobs, evidence, notes }], journeys: [{ id, title, icp, question, stages: [{ id, name, feel (-2 painful to 2 fine), asis: [{ text }], pains: [{ text, tier, quotes: [quote ids] }], quotes: [{ id, text, who, tier, kind, conv, ms, date }], ideas: [{ text, impact 1-3, effort 1-3, why }], tobe: [{ text }] }] }], decisions: [{ title, why, tier }] }` (types in `lib/journeys.ts`).
+- 2 to 3 ICPs and one journey each, 5 to 7 stages, 1 to 3 notes per lane. A note is at most about 110 characters so it fits a post-it. Evidence tiers only come from VSI; web-derived notes carry none.
 
 ## Running it
 

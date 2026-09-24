@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import type { JourneyFile } from "./journeys";
 import path from "node:path";
 import matter from "gray-matter";
 import type { Brand, Deck } from "./types";
@@ -12,6 +13,7 @@ export const SECTIONS = [
   { key: "gallery", label: "Gallery" },
   { key: "presentations", label: "Presentations" },
   { key: "social", label: "Social" },
+  { key: "journeys", label: "Journeys" },
   { key: "variants", label: "Brand variants" },
   { key: "competitors", label: "Competitors" },
   // Landing pages are parked: their routes and folders still work, they are just not in the menu.
@@ -139,6 +141,11 @@ export function getSocialPosts(slug: string): Record<string, unknown>[] {
   return readJSON<Record<string, unknown>[]>(path.join(ROOT, slug, "social", "posts.json"), []);
 }
 
+/** Customer journeys and ICPs (journeys/journeys.json), see the "Journeys" section of AGENTS.md. */
+export function getJourneys(slug: string): JourneyFile | null {
+  return readJSON<JourneyFile | null>(path.join(ROOT, slug, "journeys", "journeys.json"), null);
+}
+
 export function getBrand(slug: string): Brand {
   const b = readJSON<Partial<Brand>>(path.join(ROOT, slug, "brand", "brand.json"), {});
   const file = (f: string) => (exists(path.join(ROOT, slug, "brand", f)) ? pub(slug, "brand", f) : undefined);
@@ -176,5 +183,6 @@ export function counts(slug: string): Record<SectionKey, number> {
     gallery: getGallery(slug).length,
     presentations: getDecks(slug).length,
     social: getSocialPosts(slug).length,
+    journeys: getJourneys(slug)?.journeys?.length ?? 0,
   };
 }
