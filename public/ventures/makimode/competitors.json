@@ -1,0 +1,13 @@
+[
+  { "name": "Brick", "url": "https://getbrick.com", "kind": "direct" },
+  { "name": "Unpluq", "url": "https://www.unpluq.com", "kind": "direct" },
+  { "name": "Bloom", "url": "https://bloom.inc", "kind": "direct" },
+  { "name": "Blok", "url": "https://www.blok.so", "kind": "direct" },
+  { "name": "Apptoken", "url": "https://www.apptoken.co", "kind": "direct" },
+  { "name": "Focusaur", "url": "https://www.focusaur.com", "kind": "direct" },
+  { "name": "Opal", "url": "https://opalapp.com", "kind": "adjacent" },
+  { "name": "Freedom", "url": "https://freedom.to", "kind": "adjacent" },
+  { "name": "one sec", "url": "https://one-sec.app", "kind": "adjacent" },
+  { "name": "Forest", "url": "https://www.forestapp.cc", "kind": "adjacent" },
+  { "name": "Structured", "url": "https://www.structured.app", "kind": "adjacent" }
+]

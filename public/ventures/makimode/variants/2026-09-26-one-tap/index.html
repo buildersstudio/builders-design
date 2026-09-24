@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MakiMode: one tap, everything quiet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#071c52; --ink:#0d1733; --muted:#5d6479; --cream:#fbf3e8; --paper:#fffaf3;
+  --salmon:#e5763e; --salmon-d:#c85f2c; --line:#eadfce; --screen:#fb8763; --calm:#f5e6d8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.display{font-family:Fredoka,Nunito,sans-serif;font-weight:600;color:var(--navy);letter-spacing:-.02em;line-height:1.02}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.label{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--salmon-d)}
+.num{font-variant-numeric:tabular-nums}
+
+/* nav */
+nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-family:Fredoka;font-weight:600;font-size:23px;color:var(--navy);letter-spacing:-.01em}
+.logo svg{width:30px;height:30px}
+.links{display:flex;gap:34px;align-items:center;font-weight:600;font-size:16px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--salmon);color:#fff;font-family:Fredoka;font-weight:600;font-size:17px;padding:14px 24px;border-radius:999px;transition:background .2s,transform .2s}
+.btn:hover{background:var(--salmon-d);transform:translateY(-1px)}
+.btn.small{padding:10px 18px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--navy)}
+
+/* hero */
+.hero{text-align:center;padding-top:22px}
+.pill{display:inline-flex;gap:8px;align-items:center;background:#f7e2cf;color:var(--salmon-d);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:999px}
+.hero h1{font-size:72px;margin:20px auto 0;max-width:980px}
+.hero h1 .sw{color:var(--salmon)}
+.hero p.sub{max-width:700px;margin:16px auto 0;color:var(--muted);font-size:19px}
+
+/* stage */
+.stage{position:relative;height:440px;margin-top:18px;display:grid;grid-template-columns:1fr 330px 1fr;align-items:end;gap:40px;padding-bottom:40px}
+.wire{position:absolute;inset:0;pointer-events:none}
+.wire path{fill:none;stroke:#d9c9b4;stroke-width:2;stroke-dasharray:3 7;stroke-linecap:round;transition:stroke .5s}
+body.on .wire path{stroke:var(--salmon);animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-20}}
+
+.mac{justify-self:end;width:460px;height:300px;background:#fff;border-radius:14px;box-shadow:0 1px 0 #fff inset,0 30px 60px -30px rgba(7,28,82,.35),0 0 0 1px #e6dccd;overflow:hidden;margin-bottom:24px;text-align:left}
+.bar{height:38px;display:flex;align-items:center;gap:7px;padding:0 14px;background:#f5efe6;border-bottom:1px solid #ece2d3}
+.dot{width:10px;height:10px;border-radius:50%;background:#e2d6c5}
+.tabs{display:flex;gap:6px;margin-left:12px}
+.tab{font-size:12px;font-weight:700;padding:5px 10px;border-radius:7px;background:#fff;color:var(--ink);display:flex;gap:6px;align-items:center;transition:opacity .4s,filter .4s}
+.tab i{width:9px;height:9px;border-radius:3px;display:inline-block}
+.tab.work{background:#fff;box-shadow:0 0 0 1px #eadfce}
+body.on .tab.dist{opacity:.35;filter:grayscale(1)}
+.page{position:relative;height:262px}
+.feed{position:absolute;inset:16px;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:10px;transition:opacity .5s,transform .5s}
+.feed span{border-radius:8px}
+.feed span:nth-child(1){background:#ffd0bd}.feed span:nth-child(2){background:#c9d6ff}.feed span:nth-child(3){background:#ffe7a8}
+.feed span:nth-child(4){background:#d7f0e1}.feed span:nth-child(5){background:#ffc7d6}.feed span:nth-child(6){background:#e2d9ff}
+body.on .feed{opacity:0;transform:scale(.96)}
+.quiet{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;opacity:0;transition:opacity .5s .15s;color:var(--muted);font-size:15px;font-weight:600}
+.quiet b{font-family:Fredoka;font-weight:600;color:var(--navy);font-size:21px}
+body.on .quiet{opacity:1}
+.cap{position:absolute;bottom:-30px;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+.phone{justify-self:start;width:184px;height:386px;border-radius:40px;background:#0d1733;padding:9px;box-shadow:0 30px 60px -30px rgba(7,28,82,.45);position:relative;margin-bottom:0}
+.phone .scr{width:100%;height:100%;border-radius:32px;overflow:hidden;position:relative;background:#e9e1d4}
+.phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .5s}
+.phone img.focus{opacity:0} body.on .phone img.focus{opacity:1}
+
+/* the maki */
+.makiwrap{position:relative;align-self:end;justify-self:center;width:330px}
+.maki{position:relative;width:100%;aspect-ratio:521/527;cursor:pointer;transition:transform .25s cubic-bezier(.3,1.6,.5,1);-webkit-tap-highlight-color:transparent}
+.maki:hover{transform:translateY(-4px) rotate(-1deg)}
+.maki.press{transform:scale(.95) translateY(3px)}
+.maki img,.maki svg{position:absolute;inset:0;width:100%;height:100%}
+.maki img{filter:drop-shadow(0 30px 28px rgba(7,28,82,.22))}
+.screen{fill:var(--calm);transition:fill .45s}
+body.on .screen{fill:var(--screen)}
+.face{opacity:0;transition:opacity .25s}
+.f-calm{opacity:1} body.on .f-calm{opacity:0} body.on .f-focus{opacity:1}
+.eyes{transition:transform .15s}
+.tapme{position:absolute;top:-4px;left:-58px;font-family:Fredoka;font-weight:600;font-size:17px;color:var(--navy);background:#fff;padding:9px 15px;border-radius:16px 16px 4px 16px;box-shadow:0 10px 30px -12px rgba(7,28,82,.35);transition:opacity .3s,transform .3s;white-space:nowrap}
+.tapme:after{display:none}
+body.on .tapme .a{display:none} .tapme .b{display:none} body.on .tapme .b{display:inline}
+.ripple{position:absolute;left:50%;top:47%;width:30px;height:30px;margin:-15px;border-radius:50%;border:3px solid var(--salmon);opacity:0;pointer-events:none}
+.ripple.go{animation:rip .7s ease-out}
+@keyframes rip{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(9)}}
+.status{position:absolute;bottom:-30px;left:0;right:0;text-align:center;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.status .on{display:none;color:var(--salmon-d)} body.on .status .on{display:inline} body.on .status .off{display:none}
+
+/* sections */
+section{padding:150px 0 0}
+.head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:56px}
+.head h2{font-size:60px}
+.head p{color:var(--muted);font-size:20px;max-width:520px}
+
+.moments{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.moment{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:30px 28px 32px;position:relative}
+.moment .n{font-family:Fredoka;font-weight:600;color:var(--salmon);font-size:15px;font-variant-numeric:tabular-nums}
+.moment h3{font-size:28px;margin:14px 0 10px}
+.moment p{color:var(--muted);font-size:16px}
+.moment svg{width:96px;height:96px;display:block;margin:6px 0 18px}
+
+.split{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:center}
+.shots{position:relative;height:640px;background:var(--navy);border-radius:36px;overflow:hidden}
+.shots .phone{position:absolute;width:250px;height:524px;border-radius:46px;background:#000;padding:10px}
+.shots .phone .scr{border-radius:37px}
+.shots .p1{left:70px;top:70px;transform:rotate(-4deg)}
+.shots .p2{right:70px;top:46px;transform:rotate(3deg)}
+.shots .phone img{opacity:1}
+.list{display:grid;gap:0;margin-top:34px;border-top:1px solid var(--line)}
+.list div{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.list b{font-family:Fredoka;font-weight:600;color:var(--navy);font-size:20px}
+.list span{color:var(--muted);font-size:17px}
+.split h2{font-size:56px}
+.split p.lead{color:var(--muted);font-size:20px;margin-top:18px}
+
+table{width:100%;border-collapse:separate;border-spacing:0;background:var(--paper);border:1px solid var(--line);border-radius:28px;overflow:hidden}
+th,td{padding:18px 26px;text-align:center;border-bottom:1px solid var(--line);font-size:17px}
+tr:last-child td{border-bottom:0}
+th{font-family:Fredoka;font-weight:600;color:var(--navy);font-size:19px;padding-top:26px;padding-bottom:22px}
+td:first-child,th:first-child{text-align:left;font-weight:700;color:var(--ink)}
+.us{background:var(--salmon);color:#fff !important}
+th.us{border-radius:0}
+.y,.x{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;font-weight:800;font-size:15px}
+.y{background:#dff1e6;color:#207a52}.x{color:#c9483e}
+.us .y{background:#fff;color:var(--salmon-d)}
+
+.setup{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:34px}
+.card h3{font-size:30px}
+.card .req{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.card ol{list-style:none;counter-reset:s;margin-top:22px;display:grid;gap:12px}
+.card li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;font-size:16px;color:var(--ink)}
+.card li:before{content:counter(s);font-family:Fredoka;font-weight:600;color:var(--salmon);font-variant-numeric:tabular-nums}
+
+.price{margin-top:150px;background:var(--navy);color:#fff;border-radius:44px;padding:80px;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden}
+.price h2{color:#fff;font-size:62px}
+.price .big{font-family:Fredoka;font-weight:600;font-size:120px;line-height:1;letter-spacing:-.03em;margin-top:26px;font-variant-numeric:tabular-nums}
+.price .big s{font-size:40px;color:#8f9bc3;margin-left:14px;font-weight:500}
+.price p{color:#c4cce6;font-size:18px}
+.facts{display:grid;gap:0;border-top:1px solid rgba(255,255,255,.14)}
+.facts div{display:flex;justify-content:space-between;gap:20px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:17px}
+.facts span:first-child{color:#8f9bc3;font-weight:700}
+.facts span:last-child{text-align:right}
+.price .btn{margin-top:34px}
+footer{padding:90px 0 60px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:15px}
+
+@media (max-width:1100px){
+  .hero h1{font-size:60px}
+  .stage{grid-template-columns:1fr 280px 1fr;gap:20px}
+  .mac{width:100%;max-width:400px}
+  .makiwrap{width:280px}
+  .moments{grid-template-columns:1fr 1fr}
+  .price{grid-template-columns:1fr;padding:56px}
+}
+@media (max-width:760px){
+  .wrap{padding:0 16px}
+  .links a:not(.btn){display:none}
+  .hero h1{font-size:42px}
+  .hero p.sub{font-size:17px}
+  .stage{height:auto;grid-template-columns:1fr;gap:56px;justify-items:center}
+  .wire{display:none}
+  .mac{justify-self:center;order:2;margin:0;width:100%}
+  .makiwrap{order:1;width:250px}
+  .phone{justify-self:center;order:3}
+  .stage{margin-top:56px}
+  .tapme{left:auto;right:-6px;top:-34px}
+  .tab{white-space:nowrap;font-size:11px;padding:4px 7px}.tabs{margin-left:6px;gap:4px}
+  section{padding-top:96px}
+  .head{grid-template-columns:1fr;gap:16px}
+  .head h2,.split h2{font-size:40px}
+  .moments,.setup{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr;gap:40px}
+  .shots{height:460px}
+  .shots .phone{width:170px;height:360px;border-radius:32px;padding:7px}
+  .shots .phone .scr{border-radius:26px}
+  .shots .p1{left:18px;top:40px}.shots .p2{right:18px;top:60px}
+  .list div{grid-template-columns:1fr;gap:4px}
+  th,td{padding:12px 10px;font-size:14px}
+  th{font-size:14px}
+  .price{padding:36px 22px;border-radius:30px;margin-top:96px}
+  .price h2{font-size:40px}.price .big{font-size:80px}
+  footer{flex-direction:column;gap:14px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="glass" cx="36%" cy="26%" r="75%">
+      <stop offset="0" stop-color="#fff" stop-opacity=".28"/>
+      <stop offset=".55" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <symbol id="mark" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="15" fill="#1b2a22"/><circle cx="16" cy="16" r="11.5" fill="#f7f4ec"/><circle cx="16" cy="16" r="8" fill="#ff8056"/>
+      <circle cx="13" cy="15" r="1.6" fill="#3a1a12"/><circle cx="19" cy="15" r="1.6" fill="#3a1a12"/>
+      <path d="M13 18.4 Q16 21.2 19 18.4" stroke="#3a1a12" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#"><svg><use href="#mark"/></svg>MakiMode</a>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#setup">Setup</a>
+      <a href="#price">Price</a>
+      <a class="btn small" href="#price">Get the founder price</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="pill">Launching on Kickstarter this September</span>
+    <h1>Tap the maki. <span class="sw">Everything distracting goes quiet.</span></h1>
+    <p class="sub">MakiMode is a little sushi roll for your desk. One tap, and your most distracting apps and sites go quiet on your Mac, your iPhone and your browser.</p>
+
+    <div class="stage" id="stage">
+      
+      <div class="mac" aria-label="Browser on your Mac">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <div class="tabs">
+            <span class="tab dist"><i style="background:#ff4b3e"></i>youtube.com</span>
+            <span class="tab dist"><i style="background:#d6409f"></i>instagram.com</span>
+            <span class="tab work"><i style="background:#4a7cff"></i>Your work</span>
+          </div>
+        </div>
+        <div class="page">
+          <div class="feed"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="quiet">
+            <svg width="54" height="54" viewBox="0 0 32 32"><use href="#mark"/></svg>
+            <b>Quiet while you focus</b>
+            <span>Blocked by the MakiMode browser helper</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="makiwrap">
+        <div class="tapme"><span class="a">psst. tap me.</span><span class="b">focusing. shh.</span></div>
+        <div class="maki" id="maki" role="button" tabindex="0" aria-label="Tap to toggle focus">
+          <img src="img/device.png" alt="The MakiMode device, a sushi roll with a round face display">
+          <svg viewBox="0 0 521 527" aria-hidden="true">
+            <g transform="rotate(-0.6 201 249.5)">
+              <ellipse class="screen" cx="201" cy="249.5" rx="123" ry="144"/>
+              <!-- calm: content, eyes closed -->
+              <g class="face f-calm">
+                <path d="M146 243 Q161 229 176 243 M226 243 Q241 229 256 243" stroke="#3a1a12" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <ellipse cx="139" cy="275" rx="17" ry="10" fill="#f39aa6" opacity=".55"/><ellipse cx="263" cy="275" rx="17" ry="10" fill="#f39aa6" opacity=".55"/>
+                <path d="M189 280 Q201 290 213 280" stroke="#3a1a12" stroke-width="7" fill="none" stroke-linecap="round"/>
+              </g>
+              <!-- focus: wide awake, smiling -->
+              <g class="face f-focus">
+                <g class="eyes">
+                  <ellipse cx="161" cy="240" rx="14" ry="18" fill="#2a1510"/><ellipse cx="241" cy="240" rx="14" ry="18" fill="#2a1510"/>
+                  <circle cx="166" cy="233" r="5.5" fill="#fff"/><circle cx="246" cy="233" r="5.5" fill="#fff"/>
+                </g>
+                <ellipse cx="136" cy="276" rx="18" ry="10.5" fill="#f25d7a" opacity=".45"/><ellipse cx="266" cy="276" rx="18" ry="10.5" fill="#f25d7a" opacity=".45"/>
+                <path d="M178 279 Q201 303 224 279" stroke="#2a1510" stroke-width="8" fill="none" stroke-linecap="round"/>
+              </g>
+              <ellipse cx="201" cy="249.5" rx="123" ry="144" fill="url(#glass)"/>
+            </g>
+          </svg>
+          <span class="ripple" id="ripple"></span>
+        </div>
+        <div class="status"><span class="off">Calm. Tap to focus.</span><span class="on">Focusing</span></div>
+      </div>
+
+      <div class="phone" aria-label="The MakiMode iPhone app">
+        <div class="scr">
+          <img class="calm" src="img/iphone-app-calm-light.jpg" alt="MakiMode iPhone app, calm state">
+          <img class="focus" src="img/iphone-app-focusing.jpg" alt="MakiMode iPhone app, focusing state">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="how">
+    <div class="head">
+      <h2>The whole product is one tap, and what happens around it.</h2>
+      <p>No menus to open and no timer to set before you start. The tap on your desk switches every device you work on at once, and the face tells you, and the room, which mode you are in.</p>
+    </div>
+    <div class="moments">
+      <div class="moment">
+        <span class="n">01</span>
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="#1b2a22"/><circle cx="50" cy="50" r="38" fill="#f7f4ec"/><circle cx="50" cy="50" r="28" fill="#f5e6d8"/><path d="M36 48 Q41 43 46 48 M54 48 Q59 43 64 48" stroke="#3a1a12" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M46 57 Q50 60 54 57" stroke="#3a1a12" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+        <h3>Calm</h3>
+        <p>The maki waits on your desk. The app puts it plainly: tap your display to start focusing.</p>
+      </div>
+      <div class="moment">
+        <span class="n">02</span>
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="#1b2a22"/><circle cx="50" cy="50" r="38" fill="#f7f4ec"/><circle cx="50" cy="50" r="28" fill="#fb8763"/><ellipse cx="41" cy="47" rx="4" ry="5" fill="#2a1510"/><ellipse cx="59" cy="47" rx="4" ry="5" fill="#2a1510"/><circle cx="42.5" cy="45" r="1.6" fill="#fff"/><circle cx="60.5" cy="45" r="1.6" fill="#fff"/><path d="M43 56 Q50 63 57 56" stroke="#2a1510" stroke-width="2.8" fill="none" stroke-linecap="round"/></svg>
+        <h3>Tap</h3>
+        <p>Your chosen apps and sites go quiet on your Mac, your iPhone and your browser, in sync.</p>
+      </div>
+      <div class="moment">
+        <span class="n">03</span>
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="#1b2a22"/><circle cx="50" cy="50" r="38" fill="#f7f4ec"/><circle cx="50" cy="50" r="28" fill="#fb8763"/><path d="M36 46 Q41 41 46 46 M54 46 Q59 41 64 46" stroke="#2a1510" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="36" cy="55" rx="5" ry="3" fill="#f25d7a" opacity=".5"/><ellipse cx="64" cy="55" rx="5" ry="3" fill="#f25d7a" opacity=".5"/><path d="M44 56 Q50 61 56 56" stroke="#2a1510" stroke-width="2.8" fill="none" stroke-linecap="round"/></svg>
+        <h3>Focus</h3>
+        <p>The face shows the people around you that you are in focus, without you having to say a word.</p>
+      </div>
+      <div class="moment">
+        <span class="n">04</span>
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="#1b2a22"/><circle cx="50" cy="50" r="38" fill="#f7f4ec"/><circle cx="50" cy="50" r="28" fill="#f5e6d8"/><ellipse cx="41" cy="47" rx="4" ry="5" fill="#2a1510"/><ellipse cx="59" cy="47" rx="4" ry="5" fill="#2a1510"/><circle cx="42.5" cy="45" r="1.6" fill="#fff"/><circle cx="60.5" cy="45" r="1.6" fill="#fff"/><path d="M44 60 Q50 55 56 60" stroke="#2a1510" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M39 54 q-2 4 0 6 q2 -2 0 -6z" fill="#6aa9e8"/></svg>
+        <h3>Out</h3>
+        <p>Tap again when you are done. On iPhone you hold to exit focus, so it is hard to cheat your way out.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="split">
+      <div class="shots" aria-label="Real screens from the MakiMode iPhone app">
+        <div class="phone p1"><div class="scr"><img src="img/iphone-app-calm-light.jpg" alt="Calm: tap your display to start focusing"></div></div>
+        <div class="phone p2"><div class="scr"><img src="img/iphone-app-focusing.jpg" alt="Focusing: distracting apps are blocked"></div></div>
+      </div>
+      <div>
+        <span class="label">What goes quiet</span>
+        <h2 style="margin-top:14px">Block everything, or choose your own.</h2>
+        <p class="lead">You pick once in the app. After that, the tap does the rest on every device signed in to your account.</p>
+        <div class="list">
+          <div><b>iPhone</b><span>Apps are blocked through Screen Time, even when your phone is locked and the app is closed.</span></div>
+          <div><b>Mac</b><span>The Mac app runs your device, and the free browser helper blocks sites in Chrome or Edge.</span></div>
+          <div><b>Windows</b><span>The MakiMode extension for Chrome or Edge connects to the device and blocks your chosen sites.</span></div>
+          <div><b>Feeds</b><span>The extension can also hide addictive feeds, like YouTube and Instagram.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <h2>Why a tap on a maki beats the tools you tried.</h2>
+      <p>Airplane mode and NFC tags both do one tap. Neither blocks websites on your laptop, and neither has a face.</p>
+    </div>
+    <table>
+      <thead><tr><th></th><th class="us">MakiMode</th><th>NFC blockers</th><th>Airplane mode</th></tr></thead>
+      <tbody>
+        <tr><td>One tap</td><td class="us"><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
+        <tr><td>Blocks distracting apps</td><td class="us"><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="x">✕</span></td></tr>
+        <tr><td>Blocks distracting websites</td><td class="us"><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="x">✕</span></td></tr>
+        <tr><td>Hard to cheat your way out</td><td class="us"><span class="y">✓</span></td><td><span class="x">✕</span></td><td><span class="x">✕</span></td></tr>
+        <tr><td>Syncs across Mac, iPhone and Windows</td><td class="us"><span class="y">✓</span></td><td><span class="x">✕</span></td><td><span class="x">✕</span></td></tr>
+        <tr><td>A cute face that reacts to you</td><td class="us"><span class="y">✓</span></td><td><span class="x">✕</span></td><td><span class="x">✕</span></td></tr>
+        <tr><td>Shows others you are in focus</td><td class="us"><span class="y">✓</span></td><td><span class="x">✕</span></td><td><span class="x">✕</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="setup">
+    <div class="head">
+      <h2>Focusing in two minutes.</h2>
+      <p>Pick your device and follow three short steps. The Mac and iPhone apps are free, and there is no subscription.</p>
+    </div>
+    <div class="setup">
+      <div class="card"><h3>Mac</h3><div class="req">macOS 15 or later</div>
+        <ol><li>Download the Mac app and drag it into Applications.</li><li>Plug in your MakiMode with the USB-C cable and sign in.</li><li>Add the browser helper for Chrome or Edge, then tap to focus.</li></ol></div>
+      <div class="card"><h3>iPhone</h3><div class="req">iOS 17 or later</div>
+        <ol><li>Get the app on the App Store and sign in with your Mac account.</li><li>Allow Screen Time, so MakiMode can block apps.</li><li>Choose what to block, then tap your device to focus.</li></ol></div>
+      <div class="card"><h3>Windows</h3><div class="req">Chrome or Edge</div>
+        <ol><li>Add the MakiMode extension and sign in.</li><li>Plug in your MakiMode over USB-C and click Connect.</li><li>Tap your device. Your chosen sites are blocked, in sync with the display.</li></ol></div>
+    </div>
+  </section>
+
+  <div class="price" id="price">
+    <div>
+      <span class="label" style="color:#f5a47c">Founder list</span>
+      <h2 style="margin-top:14px">The best price we will ever offer.</h2>
+      <div class="big num">€79<s>€120</s></div>
+      <p style="margin-top:14px">Only for people on the list, and only for the first 100 at launch. Joining is free, just an email, and there is no payment until the campaign goes live.</p>
+      <a class="btn" href="https://makimode.com/#join">Join the founder list</a>
+    </div>
+    <div class="facts">
+      <div><span>Kickstarter</span><span>September 2026</span></div>
+      <div><span>First batch ships</span><span>November 2026</span></div>
+      <div><span>Early access</span><span>24 hours before the public campaign</span></div>
+      <div><span>Pro, free for life</span><span>Pomodoro timer and focus stats</span></div>
+      <div><span>In the box</span><span>MakiMode, USB-C cable, quick-start guide, stickers, a secret gift</span></div>
+      <div><span>Connects</span><span>USB-C or Bluetooth</span></div>
+    </div>
+  </div>
+
+  <footer>
+    <a class="logo" href="#"><svg><use href="#mark"/></svg>MakiMode</a>
+    <span>Made with focus in the Netherlands.</span>
+  </footer>
+</div>
+
+<script>
+const body=document.body, maki=document.getElementById('maki'), rip=document.getElementById('ripple');
+let touched=false;
+function toggle(){
+  body.classList.toggle('on');
+  maki.classList.add('press'); setTimeout(()=>maki.classList.remove('press'),160);
+  rip.classList.remove('go'); void rip.offsetWidth; rip.classList.add('go');
+}
+maki.addEventListener('click',()=>{touched=true;toggle()});
+maki.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();touched=true;toggle()}});
+// one demo tap on load, so the page shows the product doing its job
+setTimeout(()=>{if(!touched)toggle()},1400);
+// the focusing eyes follow your cursor
+const eyes=document.querySelector('.f-focus .eyes');
+window.addEventListener('pointermove',e=>{
+  const r=maki.getBoundingClientRect(), cx=r.left+r.width*.39, cy=r.top+r.height*.46;
+  const dx=Math.max(-1,Math.min(1,(e.clientX-cx)/500)), dy=Math.max(-1,Math.min(1,(e.clientY-cy)/500));
+  eyes.style.transform=`translate(${dx*9}px,${dy*7}px)`;
+});
+</script>
+</body>
+</html>

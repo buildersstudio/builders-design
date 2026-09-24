@@ -1,0 +1,10 @@
+{
+  "title": "Go on, try to cheat it",
+  "created": "2026-09-26",
+  "note": "The page is a stress test told as the five ways out a distracted person actually tries (phone, laptop, one video, switching off, airplane mode), each answered by what MakiMode really does and by a new maki face, with a working hold-to-exit button.",
+  "credits": [
+    { "file": "img/tap-close.jpg", "source": "Higgsfield", "author": "Generated with Nano Banana (nano_banana_flash) from the MakiMode product photo as reference", "url": "https://higgsfield.ai" },
+    { "file": "img/device.png", "source": "MakiMode", "author": "MakiMode product cut-out from makimode.com, face redrawn in SVG", "url": "https://makimode.com" },
+    { "file": "img/iphone-app-focusing.jpg", "source": "App Store", "author": "MakiMode iPhone app screenshot", "url": "https://apps.apple.com/app/id6785186766" }
+  ]
+}

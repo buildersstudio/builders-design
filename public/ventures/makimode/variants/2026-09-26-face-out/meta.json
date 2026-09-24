@@ -1,0 +1,12 @@
+{
+  "title": "The face faces out",
+  "created": "2026-09-26",
+  "note": "The story is told from the other side of the desk: one tap blocks your apps for you and turns the maki's face into the sign that tells the room you are in focus, shown in photographs of the device at a desk and a shared table.",
+  "credits": [
+    { "file": "img/desk-across.jpg", "source": "Higgsfield", "author": "Generated with Nano Banana (nano_banana_flash) from the MakiMode product photo as reference", "url": "https://higgsfield.ai" },
+    { "file": "img/shared-table.jpg", "source": "Higgsfield", "author": "Generated with Nano Banana (nano_banana_flash) from the MakiMode product photo as reference", "url": "https://higgsfield.ai" },
+    { "file": "img/device.png", "source": "MakiMode", "author": "MakiMode product cut-out from makimode.com", "url": "https://makimode.com" },
+    { "file": "img/iphone-app-calm-dark.jpg", "source": "App Store", "author": "MakiMode iPhone app screenshot", "url": "https://apps.apple.com/app/id6785186766" },
+    { "file": "img/iphone-app-focusing.jpg", "source": "App Store", "author": "MakiMode iPhone app screenshot", "url": "https://apps.apple.com/app/id6785186766" }
+  ]
+}

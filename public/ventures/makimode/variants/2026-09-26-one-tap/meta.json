@@ -1,0 +1,10 @@
+{
+  "title": "One tap, everything quiet",
+  "created": "2026-09-26",
+  "note": "The page is a working demo of the one mechanism: tap the maki in the hero and its face wakes up while the Mac browser and the real iPhone app go quiet beside it, then the page walks through calm, tap, focus and out.",
+  "credits": [
+    { "file": "img/device.png", "source": "MakiMode", "author": "MakiMode product cut-out from makimode.com, face redrawn in SVG", "url": "https://makimode.com" },
+    { "file": "img/iphone-app-calm-light.jpg", "source": "App Store", "author": "MakiMode iPhone app screenshot", "url": "https://apps.apple.com/app/id6785186766" },
+    { "file": "img/iphone-app-focusing.jpg", "source": "App Store", "author": "MakiMode iPhone app screenshot", "url": "https://apps.apple.com/app/id6785186766" }
+  ]
+}

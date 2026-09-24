@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MakiMode: go on, try to cheat it</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --salmon:#ff7a4d; --salmon-d:#e5602f; --rice:#fff8f0; --paper:#ffffff; --nori:#15201a; --nori-2:#26332b;
+  --muted:#5f5a55; --line:#eadfd2; --screen:#ff8763; --calm:#f5e6d8; --good:#1f7a4f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--rice);color:var(--nori);font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-weight:800;letter-spacing:-.04em;line-height:.95}
+.wrap{max-width:1360px;margin:0 auto;padding:0 40px}
+.label{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.num{font-variant-numeric:tabular-nums}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--nori);color:var(--rice);font-weight:700;font-size:17px;padding:15px 26px;border-radius:999px;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.small{padding:10px 18px;font-size:15px}
+.btn.light{background:var(--rice);color:var(--nori)}
+
+/* hero */
+.hero{background:var(--salmon);color:var(--nori);position:relative;overflow:hidden}
+nav{height:80px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:23px;letter-spacing:-.03em}
+.logo svg{width:30px;height:30px}
+.links{display:flex;gap:30px;align-items:center;font-weight:600;font-size:16px}
+.hero-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:center;min-height:560px;padding-bottom:10px}
+.hero h1{font-size:118px}
+.hero p{font-size:21px;max-width:560px;margin-top:26px;color:#3a1c10}
+.hero .cta{display:flex;gap:14px;margin-top:32px;align-items:center;flex-wrap:wrap}
+.hero .note{font-size:15px;color:#4a2515}
+.devwrap{position:relative;justify-self:center;width:440px}
+.dev{position:relative;width:100%;aspect-ratio:521/527}
+.dev img,.dev svg{position:absolute;inset:0;width:100%;height:100%}
+.dev img{filter:drop-shadow(0 34px 30px rgba(58,20,8,.35))}
+.tag{position:absolute;background:var(--rice);color:var(--nori);font-weight:700;font-size:17px;padding:10px 16px;border-radius:14px;box-shadow:0 14px 30px -14px rgba(58,20,8,.5);white-space:nowrap}
+.tag.t1{top:20px;right:-40px;transform:rotate(3deg)}
+.tag.t2{bottom:60px;left:-70px;transform:rotate(-3deg)}
+
+.toc{display:grid;grid-template-columns:repeat(5,1fr);border-top:1.5px solid rgba(21,32,26,.25)}
+.toc a{padding:22px 20px 30px 0;display:block;border-right:1.5px solid rgba(21,32,26,.25);margin-right:20px}
+.toc a:last-child{border-right:0}
+.toc .n{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4a2515}
+.toc b{display:block;font-size:21px;letter-spacing:-.02em;line-height:1.15;margin-top:8px;font-weight:700}
+.toc a:hover b{text-decoration:underline;text-underline-offset:4px}
+
+/* attempts */
+.intro{padding:140px 0 20px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end}
+.intro h2{font-size:76px}
+.intro p{color:var(--muted);font-size:20px;max-width:520px}
+.attempt{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.say,.does{border-radius:34px;padding:48px;min-height:520px;display:flex;flex-direction:column}
+.say{background:var(--paper);border:1.5px solid var(--line)}
+.say .n{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--salmon-d)}
+.say blockquote{font-size:54px;font-weight:800;letter-spacing:-.04em;line-height:1;margin-top:18px}
+.say .you{margin-top:auto;display:flex;gap:18px;align-items:flex-end;padding-top:30px}
+.say .you svg{width:120px;height:120px;flex:none}
+.say .you p{font-size:17px;color:var(--muted);max-width:340px}
+.say .you p b{color:var(--nori)}
+.does{background:var(--nori);color:var(--rice);position:relative;overflow:hidden}
+.does .label{color:#9fb3a6}
+.does h3{font-size:40px;margin-top:14px;max-width:460px}
+.does p{color:#c9d4cc;font-size:17px;margin-top:14px;max-width:460px}
+.does .vis{margin-top:auto;padding-top:30px;display:flex;justify-content:center;align-items:flex-end}
+
+.phone{width:230px;height:420px;border-radius:40px 40px 0 0;background:#000;padding:9px 9px 0;margin-bottom:-48px}
+.phone .scr{width:100%;height:100%;border-radius:32px 32px 0 0;overflow:hidden}
+.phone img{width:100%;display:block}
+
+.browser{width:100%;max-width:470px;background:#fff;border-radius:14px 14px 0 0;overflow:hidden;margin-bottom:-48px;color:var(--nori)}
+.browser .bar{height:38px;background:#f1ece5;display:flex;align-items:center;gap:6px;padding:0 12px}
+.browser .dot{width:10px;height:10px;border-radius:50%;background:#dcd3c7}
+.browser .url{margin-left:12px;background:#fff;border-radius:7px;padding:4px 12px;font-size:13px;font-weight:600;color:#6d655d;flex:1}
+.browser .body{height:250px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:20px}
+.browser .body b{font-size:22px;letter-spacing:-.02em}
+.browser .body span{font-size:14px;color:#6d655d}
+.yt{height:250px;display:grid;grid-template-columns:1.6fr 1fr;gap:14px;padding:16px}
+.yt .player{background:#1d1d1d;border-radius:10px;position:relative}
+.yt .player:after{content:"";position:absolute;left:50%;top:50%;margin:-14px 0 0 -10px;border-left:24px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent;opacity:.9}
+.yt .side{border:2px dashed #e0d6ca;border-radius:10px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;font-weight:600;color:#8a8178;padding:10px}
+
+.hold{display:flex;flex-direction:column;align-items:center;gap:18px;padding-bottom:6px;width:100%}
+.holdbtn{position:relative;width:100%;max-width:360px;height:64px;border-radius:18px;background:#f7dccb;color:#c85f2c;font:inherit;font-size:19px;font-weight:700;border:0;cursor:pointer;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none}
+.holdbtn i{position:absolute;left:0;top:0;bottom:0;width:0;background:#f0b99a}
+.holdbtn span{position:relative}
+.holdface{width:150px;height:150px}
+.hint{font-size:14px;color:#9fb3a6}
+
+table{width:100%;border-collapse:separate;border-spacing:0;color:var(--rice);font-size:16px}
+th,td{padding:12px 8px;border-bottom:1px solid rgba(255,255,255,.12);text-align:center}
+td:first-child,th:first-child{text-align:left;color:#c9d4cc;font-weight:500}
+th{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9fb3a6}
+th.us{color:var(--salmon)}
+.y{color:#7fe0aa;font-weight:800}.x{color:#ff8f7a;font-weight:800}
+td.us{background:rgba(255,122,77,.14)}
+
+/* verdict */
+.verdict{margin-top:140px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.verdict .photo{border-radius:34px;overflow:hidden;min-height:640px;position:relative}
+.verdict .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.verdict .buy{background:var(--salmon);border-radius:34px;padding:56px;display:flex;flex-direction:column}
+.verdict h2{font-size:72px}
+.verdict .price{font-size:136px;font-weight:800;letter-spacing:-.06em;line-height:1;margin-top:30px}
+.verdict .price s{font-size:42px;letter-spacing:-.02em;opacity:.5;margin-left:12px;font-weight:600}
+.verdict p{font-size:18px;color:#3a1c10;margin-top:14px;max-width:520px}
+.verdict ul{list-style:none;margin-top:auto;padding-top:30px;border-top:1.5px solid rgba(21,32,26,.25);display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;font-size:16px}
+.verdict li b{display:block;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4a2515}
+.verdict .btn{margin-top:28px;align-self:flex-start}
+footer{padding:90px 0 56px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:15px}
+
+@media (max-width:1100px){
+  .hero h1{font-size:92px}.devwrap{width:360px}
+  .hero-grid{grid-template-columns:1fr 1fr}
+  .say blockquote{font-size:42px}
+}
+@media (max-width:760px){
+  .wrap{padding:0 16px}
+  .links a:not(.btn){display:none}
+  .hero-grid{grid-template-columns:1fr;min-height:0;padding:20px 0 40px}
+  .hero h1{font-size:64px}.hero p{font-size:18px}
+  .devwrap{width:260px}.tag.t1{right:-10px}.tag.t2{left:-10px}
+  .toc{grid-template-columns:1fr}.toc a{border-right:0;border-bottom:1.5px solid rgba(21,32,26,.25);margin:0;padding:16px 0}
+  .intro{grid-template-columns:1fr;gap:18px;padding-top:90px}.intro h2{font-size:44px}
+  .attempt{grid-template-columns:1fr}
+  .say,.does{padding:28px;min-height:0;border-radius:26px}
+  .say blockquote{font-size:36px}.does h3{font-size:30px}
+  .phone,.browser{margin-bottom:-28px}
+  table{font-size:13px}
+  .verdict{grid-template-columns:1fr;margin-top:90px}.verdict .photo{min-height:420px}
+  .verdict .buy{padding:30px}.verdict h2{font-size:44px}.verdict .price{font-size:88px}
+  .verdict ul{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:12px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="15" fill="#1b2a22"/><circle cx="16" cy="16" r="11.5" fill="#f7f4ec"/><circle cx="16" cy="16" r="8" fill="#ff8056"/>
+      <circle cx="13" cy="15" r="1.6" fill="#3a1a12"/><circle cx="19" cy="15" r="1.6" fill="#3a1a12"/>
+      <path d="M13 18.4 Q16 21.2 19 18.4" stroke="#3a1a12" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <radialGradient id="glass" cx="36%" cy="26%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  </defs>
+</svg>
+
+<header class="hero">
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="#"><svg><use href="#mark"/></svg>MakiMode</a>
+      <div class="links">
+        <a href="#a1">The five ways out</a>
+        <a href="#price">Price</a>
+        <a class="btn small" href="#price">Get the founder price</a>
+      </div>
+    </nav>
+    <div class="hero-grid">
+      <div>
+        <h1>Go on.<br>Try to cheat it.</h1>
+        <p>MakiMode is a little sushi roll for your desk. Tap it, and your most distracting apps and sites go quiet on your Mac, your iPhone and your browser. Below are the five ways out you are about to try, and what the maki does about each one.</p>
+        <div class="cta"><a class="btn" href="#price">Get the €79 founder price</a><span class="note">Kickstarter this September. Ships November 2026.</span></div>
+      </div>
+      <div class="devwrap">
+        <div class="dev">
+          <img src="img/device.png" alt="The MakiMode device, giving you a knowing look">
+          <svg viewBox="0 0 521 527" aria-hidden="true">
+            <g transform="rotate(-0.6 201 249.5)">
+              <ellipse cx="201" cy="249.5" rx="123" ry="144" fill="#ff8763"/>
+              <g id="heroface" transform="translate(201 249.5) scale(4.25 4.95) translate(-50 -50)"></g>
+              <ellipse cx="201" cy="249.5" rx="123" ry="144" fill="url(#glass)"/>
+            </g>
+          </svg>
+        </div>
+        <span class="tag t1">I see you, thumb.</span>
+        <span class="tag t2">Focusing. Since you tapped me.</span>
+      </div>
+    </div>
+    <div class="toc">
+      <a href="#a1"><span class="n">Way out 01</span><b>Check your phone</b></a>
+      <a href="#a2"><span class="n">Way out 02</span><b>Switch to the laptop</b></a>
+      <a href="#a3"><span class="n">Way out 03</span><b>Just one video</b></a>
+      <a href="#a4"><span class="n">Way out 04</span><b>Switch it off</b></a>
+      <a href="#a5"><span class="n">Way out 05</span><b>Use something else</b></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <h2>Five ways out. None of them work.</h2>
+    <p>Most focus tools are easy to ignore. MakiMode blocks on every screen you own at once, and it keeps a face on your desk that reacts to you.</p>
+  </div>
+
+  <div class="attempt" id="a1">
+    <div class="say">
+      <span class="n">Way out 01</span>
+      <blockquote>"I will just check Instagram on my phone."</blockquote>
+      <div class="you"><svg data-face="flat" viewBox="0 0 100 100"></svg><p><b>The maki is not impressed.</b> Your phone was blocked the moment you tapped.</p></div>
+    </div>
+    <div class="does">
+      <span class="label">What happens</span>
+      <h3>Distracting apps are blocked.</h3>
+      <p>The iPhone app blocks the apps you chose, or everything, through Screen Time. It works even when the phone is locked and the app is closed.</p>
+      <div class="vis"><div class="phone"><div class="scr"><img src="img/iphone-app-focusing.jpg" alt="MakiMode iPhone app: focusing, distracting apps are blocked"></div></div></div>
+    </div>
+  </div>
+
+  <div class="attempt" id="a2">
+    <div class="say">
+      <span class="n">Way out 02</span>
+      <blockquote>"Fine. I will open it on my laptop."</blockquote>
+      <div class="you"><svg data-face="brow" viewBox="0 0 100 100"></svg><p><b>One eyebrow goes up.</b> The same tap reached your Mac, in sync.</p></div>
+    </div>
+    <div class="does">
+      <span class="label">What happens</span>
+      <h3>The same sites are blocked on your computer.</h3>
+      <p>On a Mac, the free browser helper blocks distracting websites in Chrome or Edge. On Windows, the MakiMode extension connects to the device and does the same.</p>
+      <div class="vis"><div class="browser">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">instagram.com</span></div>
+        <div class="body"><svg width="64" height="64" viewBox="0 0 32 32"><use href="#mark"/></svg><b>Blocked while you focus</b><span>Tap your MakiMode to end focus.</span></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="attempt" id="a3">
+    <div class="say">
+      <span class="n">Way out 03</span>
+      <blockquote>"YouTube is for work. One video."</blockquote>
+      <div class="you"><svg data-face="squint" viewBox="0 0 100 100"></svg><p><b>A long, slow squint.</b> You can watch the one video. The rabbit hole next to it is gone.</p></div>
+    </div>
+    <div class="does">
+      <span class="label">What happens</span>
+      <h3>The feed disappears, not the site.</h3>
+      <p>The MakiMode browser extension can hide addictive feeds, like YouTube and Instagram, so you stay in the zone without losing the page you actually need.</p>
+      <div class="vis"><div class="browser">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">youtube.com</span></div>
+        <div class="yt"><div class="player"></div><div class="side">Recommended feed hidden while you focus</div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="attempt" id="a4">
+    <div class="say">
+      <span class="n">Way out 04</span>
+      <blockquote>"I will just switch focus off."</blockquote>
+      <div class="you"><svg data-face="worried" viewBox="0 0 100 100"></svg><p><b>You can.</b> Tap again when you are done. Leaving early just takes a little more than a tap.</p></div>
+    </div>
+    <div class="does">
+      <span class="label">What happens</span>
+      <h3>You have to hold to exit focus.</h3>
+      <p>In the iPhone app, ending a session early is a press and hold, not a quick tap, so it is hard to cheat your way out on impulse. Try it.</p>
+      <div class="vis"><div class="hold">
+        <svg class="holdface" id="holdface" viewBox="0 0 100 100"></svg>
+        <button class="holdbtn" id="holdbtn" type="button"><i id="holdfill"></i><span id="holdtxt">Hold to exit focus</span></button>
+        <span class="hint" id="hint">Press and keep holding.</span>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="attempt" id="a5">
+    <div class="say">
+      <span class="n">Way out 05</span>
+      <blockquote>"I will use airplane mode instead."</blockquote>
+      <div class="you"><svg data-face="laugh" viewBox="0 0 100 100"></svg><p><b>The maki laughs, politely.</b> Airplane mode does not block a single website on your laptop.</p></div>
+    </div>
+    <div class="does">
+      <span class="label">What happens</span>
+      <h3>The usual shortcuts each miss something.</h3>
+      <div class="vis" style="display:block">
+        <table>
+          <thead><tr><th></th><th class="us">MakiMode</th><th>NFC tags</th><th>Airplane</th></tr></thead>
+          <tbody>
+            <tr><td>One tap</td><td class="us"><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
+            <tr><td>Blocks distracting apps</td><td class="us"><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="x">✕</span></td></tr>
+            <tr><td>Blocks distracting websites</td><td class="us"><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="x">✕</span></td></tr>
+            <tr><td>Hard to cheat your way out</td><td class="us"><span class="y">✓</span></td><td><span class="x">✕</span></td><td><span class="x">✕</span></td></tr>
+            <tr><td>Syncs Mac, iPhone and Windows</td><td class="us"><span class="y">✓</span></td><td><span class="x">✕</span></td><td><span class="x">✕</span></td></tr>
+            <tr><td>A face that reacts to you</td><td class="us"><span class="y">✓</span></td><td><span class="x">✕</span></td><td><span class="x">✕</span></td></tr>
+            <tr><td>Shows others you are in focus</td><td class="us"><span class="y">✓</span></td><td><span class="x">✕</span></td><td><span class="x">✕</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict" id="price">
+    <div class="photo"><img src="img/tap-close.jpg" alt="A finger taps a MakiMode on a wooden desk next to a laptop and an iPhone"></div>
+    <div class="buy">
+      <span class="label" style="color:#4a2515">The one thing you can game</span>
+      <h2 style="margin-top:14px">The founder price.</h2>
+      <div class="price num">€79<s>€120</s></div>
+      <p>Only for people on the founder list, and only for the first 100 at launch. Joining is free, just an email, and there is no payment until the campaign goes live.</p>
+      <a class="btn" href="https://makimode.com/#join">Join the founder list</a>
+      <ul>
+        <li><b>Kickstarter</b>September 2026</li>
+        <li><b>First batch ships</b>November 2026</li>
+        <li><b>Subscription</b>None. The apps are free.</li>
+        <li><b>For the list</b>24h early access, free lifetime Pro</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <a class="logo" href="#"><svg><use href="#mark"/></svg>MakiMode</a>
+    <span>Made with focus in the Netherlands.</span>
+  </footer>
+</main>
+
+<script>
+// One drawing of the maki face, many moods. Face space: 100 x 100, screen radius 29.
+const INK='#2a1510', BLUSH='<ellipse cx="35" cy="57" rx="5" ry="3" fill="#f25d7a" opacity=".45"/><ellipse cx="65" cy="57" rx="5" ry="3" fill="#f25d7a" opacity=".45"/>';
+const eye=(x,y)=>`<ellipse cx="${x}" cy="${y}" rx="4" ry="5" fill="${INK}"/><circle cx="${x+1.5}" cy="${y-2}" r="1.6" fill="#fff"/>`;
+const lid=(x,y,c)=>`<rect x="${x-6}" y="${y-7}" width="12" height="6.5" fill="${c}"/><path d="M${x-5} ${y-.6} H${x+5}" stroke="${INK}" stroke-width="2.4" stroke-linecap="round"/>`;
+const S=c=>`stroke="${INK}" stroke-width="2.8" fill="none" stroke-linecap="round"`;
+const faces={
+  smug:c=>eye(41,47)+`<path d="M54 47 Q59 42 64 47" ${S()}/>`+BLUSH+`<path d="M43 56 Q51 62 58 54" ${S()}/>`,
+  flat:c=>eye(41,48)+eye(59,48)+lid(41,48,c)+lid(59,48,c)+`<path d="M44 58 H56" ${S()}/>`,
+  brow:c=>eye(41,48)+eye(59,48)+lid(41,48,c)+`<path d="M53 38 Q59 34 65 38" ${S()}/><path d="M44 58 Q50 60 56 57" ${S()}/>`,
+  squint:c=>`<path d="M36 48 H46 M54 48 H64" stroke="${INK}" stroke-width="3.4" stroke-linecap="round"/><path d="M42 58 q2 -2 4 0 t4 0 t4 0 t4 0" ${S()}/>`,
+  worried:c=>eye(41,47)+eye(59,47)+`<ellipse cx="50" cy="59" rx="3.2" ry="3.8" fill="${INK}"/><path d="M68 36 q-2.6 4.6 0 6.8 q2.6 -2.2 0 -6.8z" fill="#6aa9e8"/>`,
+  sad:c=>eye(41,48)+eye(59,48)+`<path d="M44 60 Q50 55 56 60" ${S()}/><path d="M38.5 54 q-2.4 4.4 0 6.4 q2.4 -2 0 -6.4z" fill="#6aa9e8"/>`,
+  laugh:c=>`<path d="M35 49 Q41 42 47 49 M53 49 Q59 42 65 49" ${S()}/>`+BLUSH+`<path d="M42 55 H58 Q58 65 50 65 Q42 65 42 55Z" fill="${INK}"/><path d="M46 61.5 Q50 59 54 61.5 Q52 64 50 64 Q48 64 46 61.5Z" fill="#f25d7a"/>`,
+  happy:c=>eye(41,47)+eye(59,47)+BLUSH+`<path d="M43 56 Q50 63 57 56" ${S()}/>`
+};
+function maki(expr,screen='#ff8763'){
+  return `<circle cx="50" cy="50" r="48" fill="#1b2a22"/><circle cx="50" cy="50" r="39" fill="#fff"/><circle cx="50" cy="50" r="29" fill="${screen}"/>`+faces[expr](screen)+`<circle cx="50" cy="50" r="29" fill="url(#glass)"/>`;
+}
+document.querySelectorAll('svg[data-face]').forEach(s=>s.innerHTML=maki(s.dataset.face));
+const hero=document.getElementById('heroface');
+hero.innerHTML=faces.smug('#ff8763');
+
+// hold to exit: the real mechanic, with the maki's opinion attached
+const btn=document.getElementById('holdbtn'), fill=document.getElementById('holdfill'), txt=document.getElementById('holdtxt'), hint=document.getElementById('hint'), hf=document.getElementById('holdface');
+hf.innerHTML=maki('worried');
+let t0=0, raf=0, done=false; const DUR=2200;
+function tick(t){ const p=Math.min(1,(t-t0)/DUR); fill.style.width=(p*100)+'%';
+  if(p>.5&&!done) hf.innerHTML=maki('sad','#f5e6d8');
+  if(p>=1){done=true;txt.textContent='Focus ended';hint.textContent='Fine. Go. It will be here when you are ready.';return}
+  raf=requestAnimationFrame(tick)}
+function start(e){e.preventDefault(); if(done){reset();return} t0=performance.now(); hint.textContent='Still holding...'; raf=requestAnimationFrame(tick)}
+function stop(){ if(done) return; cancelAnimationFrame(raf); fill.style.width='0'; hf.innerHTML=maki('worried'); hint.textContent='You let go. Still focusing.'}
+function reset(){done=false;fill.style.width='0';txt.textContent='Hold to exit focus';hint.textContent='Press and keep holding.';hf.innerHTML=maki('happy')}
+btn.addEventListener('pointerdown',start); btn.addEventListener('pointerup',stop); btn.addEventListener('pointerleave',stop);
+
+// the hero maki keeps an eye on your cursor
+window.addEventListener('pointermove',e=>{
+  const r=hero.ownerSVGElement.getBoundingClientRect(); const dx=Math.max(-1,Math.min(1,(e.clientX-(r.left+r.width*.39))/600)); const dy=Math.max(-1,Math.min(1,(e.clientY-(r.top+r.height*.47))/600));
+  hero.setAttribute('transform',`translate(${201+dx*10} ${249.5+dy*8}) scale(4.25 4.95) translate(-50 -50)`);
+});
+</script>
+</body>
+</html>
