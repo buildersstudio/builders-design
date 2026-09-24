@@ -85,21 +85,6 @@
     ]
   },
   {
-    "angle": "Evidence ages",
-    "format": "square",
-    "layout": "stat",
-    "color": "orange",
-    "stat": "60",
-    "label": "Days",
-    "title": "A claim nobody repeats loses its weight.",
-    "id": "07",
-    "captions": [
-      "Evidence ages.\n\nIn Krans, a claim nobody has repeated for sixty days loses weight, along with the positions built on it. Confidence fades wherever nothing new confirms it, so the model is never out of date.\n\nkrans.ai",
-      "Sixty days.\n\nThat is how long a claim holds its weight in Krans before it starts to fade, unless something new confirms it. Old conviction does not get to pass as current.\n\nkrans.ai",
-      "Evidence has a shelf life.\n\nIn Krans, a claim nobody repeats for sixty days loses weight, and so do the positions built on it.\n\nkrans.ai"
-    ]
-  },
-  {
     "angle": "Every night",
     "format": "portrait",
     "layout": "product",
@@ -141,6 +126,299 @@
       "Krans is built on learnings from a decade of ventures built inside Builders.\n\nIt started as the system we used to see where every venture really stands. Today it has a new name and its own home, for venture studios, corporate venture builders and funds that run more ventures than anyone can sit in calls for.\n\nkrans.ai",
       "Built inside Builders.\n\nKrans comes out of a decade of ventures built inside the studio, and it is now available to studios, corporate venture builders and funds.\n\nkrans.ai",
       "From the studio's own system to a product with its own name.\n\nKrans is built on learnings from a decade of ventures built inside Builders.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "11",
+    "angle": "Threads",
+    "format": "portrait",
+    "layout": "type",
+    "color": "orange",
+    "label": "Threads",
+    "title": "Nothing a buyer said *gets lost.*",
+    "body": "Every conversation with a company joins one thread, even months later.",
+    "captions": [
+      "Until recently, every call lived on its own.\n\nIn Krans, every conversation with the same company joins one thread, and Krans writes the story of how that relationship is progressing. A deal, a partnership, a hire or an investor conversation, each moving through its own pipeline.\n\nkrans.ai",
+      "Nothing a buyer said gets lost, even months later.\n\nThreads join every call and email with a company into one story that Krans keeps reading from, so context builds across calls and across the team. Nothing leaves with a person.\n\nkrans.ai",
+      "The whole story, in order, no matter who had the call.\n\nThat is what a thread is in Krans. Give it an owner and see the whole board at a glance, and if two of your ventures talk to the same buyer, you see that too.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "12",
+    "angle": "Positions and their options",
+    "format": "portrait",
+    "layout": "stat",
+    "color": "purple",
+    "stat": "3",
+    "label": "Options in every position",
+    "title": "Pick one, bet on one, *or park it.*",
+    "captions": [
+      "Krans reads everything it knows about a venture and pulls out the decisions that are yours to make.\n\nInside each position: which way Krans would go and why, the sources it used, and three options. Pick one, bet on one with a deadline, or park it.\n\nkrans.ai",
+      "Three options, and your call on the record.\n\nA position in Krans opens with what it noticed, then the decision that follows from it. Cards marked Needs you are ready to decide. Needs data means Krans will not take a view yet.\n\nkrans.ai",
+      "Ask Krans what would have to be true for the option it turned down.\n\nIt argues against itself with your own evidence. That is how Positions work: every claim about your market, pricing or wedge tracked with an evidence score, and every decision made in the open.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "13",
+    "angle": "Reflections",
+    "format": "square",
+    "layout": "type",
+    "color": "blue",
+    "label": "Reflections",
+    "title": "Every call, *honestly reviewed.*",
+    "body": "What helped, what hurt, and what you missed.",
+    "captions": [
+      "A coach, minutes after a call ends.\n\nKrans Reflections review every call: what helped, what hurt, and what you missed, with the timestamp of each moment so you can replay it.\n\nkrans.ai",
+      "The same bad answer in four straight calls is not bad luck. It is a pattern.\n\nKrans reviews each call minutes after it ends, and names the patterns across the last ten of them, so you walk into the next call knowing what killed the last three.\n\nkrans.ai",
+      "What helped, what hurt, and what you missed.\n\nEvery call gets an honest review in Krans, and you are briefed before you join the next one, in the buyer's own words.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "14",
+    "angle": "Cited to who said it",
+    "format": "portrait",
+    "layout": "type",
+    "color": "orange",
+    "label": "Every learning, cited",
+    "title": "Who said it, *and when.*",
+    "body": "A passage in someone's own words, pinned to its source.",
+    "captions": [
+      "Every learning in Krans is cited to who said it and when.\n\nEach input becomes its smallest defensible unit, a passage in someone's own words, so any claim on the model can be traced back to the call or document it came from.\n\nkrans.ai",
+      "A claim without a source is an opinion.\n\nKrans keeps the source attached to every learning, the person, the call and the moment, and grades it from E0 to E5 before it touches a position.\n\nkrans.ai",
+      "Every voice becomes a person.\n\nKrans ties each passage to the speaker who said it, and if a transcript puts the wrong people on a call, you can now merge or unlink them yourself, right on the call.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "15",
+    "angle": "Ask Krans",
+    "format": "portrait",
+    "layout": "type",
+    "label": "Ask Krans",
+    "title": "A chat that has read *your whole venture.*",
+    "captions": [
+      "Ask Krans has read your calls, deals, signals and documents.\n\nEvery answer shows what it is based on. Open it on a call, ask what is blocking the deal, and the answer is about that deal, including where the latest call contradicts what Krans had before.\n\nkrans.ai",
+      "A chat that answers from your own sources.\n\nAsk Krans knows your name, which venture you are in, and what you asked earlier in the conversation. It sits at the bottom left of any page, or press Command and 0.\n\nkrans.ai",
+      "Most chat products answer questions. Ask Krans answers them from the venture's own calls and documents, and shows you the sources.\n\nThat is the difference between an answer and evidence.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "16",
+    "angle": "MCP server",
+    "format": "portrait",
+    "layout": "type",
+    "color": "purple",
+    "label": "MCP native",
+    "title": "Your portfolio's truth, *inside your AI.*",
+    "body": "Point Claude, Cursor or your own agents at one endpoint.",
+    "captions": [
+      "Krans exposes an MCP server.\n\nPoint Claude, Cursor or your own agents at it, and a board update writes itself from real evidence in seconds. Every claim carries its evidence tier and its citations.\n\nkrans.ai",
+      "One endpoint: conversations, signals, reflections, context.\n\nThe Krans MCP server brings your venture's intelligence into Claude or any tool that speaks MCP. Ask one venture, or all of them, in plain language, and get answers grounded in your real calls, with sources.\n\nkrans.ai",
+      "Your venture brain, inside Claude.\n\nIn Krans, go to your account, then Connections, and copy your MCP connection. In Claude, add it as a custom connector. Read only, and scoped to your ventures.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "17",
+    "angle": "Integrations",
+    "format": "landscape",
+    "layout": "type",
+    "color": "blue",
+    "label": "Connections",
+    "title": "Connect your tools once. *Know by morning.*",
+    "body": "Google Meet, Microsoft Teams, Granola, Read.ai, Notion, Google Drive and transcript upload.",
+    "captions": [
+      "Krans reads from the tools your ventures already use.\n\nConnect Granola once and meetings sync in automatically. Microsoft Teams recordings come in on their own, Google Meet calls flow in as they happen, Read.ai brings in existing recordings, and transcript upload covers anything else.\n\nkrans.ai",
+      "Calls and documents, through one pipeline.\n\nGoogle Meet, Microsoft Teams, Granola and Read.ai for calls. Notion and Google Drive for documents. Calls become learnings, learnings become signals, and signals become the context you run your venture on.\n\nkrans.ai",
+      "Connect your tools once. Every morning, know where each venture stands.\n\nThat is the whole setup for Krans. Nobody types anything in afterwards.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "18",
+    "angle": "For venture studios",
+    "format": "portrait",
+    "layout": "split",
+    "label": "Venture studios",
+    "title": "What the room feels, and *what buyers said.*",
+    "photo": "/ventures/krans/gallery/founders/founder-sharon-klaver-on-stage.webp",
+    "captions": [
+      "A studio runs several ventures at once, and every one of them produces calls, documents and numbers faster than a partner can read.\n\nKrans reads all of it and keeps one record: where each venture stands, how strong the evidence behind its bets is, and what it needs this week.\n\nkrans.ai",
+      "The gap between what a founder says customers want and what customers actually said.\n\nThat is what Krans shows a venture studio, together with portfolio visibility without rebuilding context by hand before every check-in.\n\nkrans.ai",
+      "For venture studios, the next move of each venture is written the morning after the call, not three months late.\n\nKrans is built on learnings from a decade of ventures built inside Builders.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "19",
+    "angle": "For corporate venture builders",
+    "format": "portrait",
+    "layout": "type",
+    "color": "orange",
+    "label": "Corporate venture builders",
+    "title": "Go, pivot or stop, *on the latest evidence.*",
+    "captions": [
+      "A corporate venture burns real money every month and has to earn its next gate.\n\nKrans grades every claim on the evidence behind it, from E0 to E5, so a go, a pivot or a stop comes with the evidence behind it.\n\nkrans.ai",
+      "Stop decisions with receipts, made in days rather than quarters.\n\nIn Krans, every claim about the market, the buyer or the price carries its source and its grade. Within days of receiving the findings, one innovation leader stopped one venture and started three others.\n\nkrans.ai",
+      "The board update that writes itself.\n\nFor corporate venture builders, Krans turns the evidence into the update through its MCP server, so the gate review starts from what buyers actually said.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "20",
+    "angle": "For funds and platform teams",
+    "format": "square",
+    "layout": "type",
+    "color": "purple",
+    "label": "Funds and platform teams",
+    "title": "See what changes *before the investor update.*",
+    "captions": [
+      "Founder updates arrive late and polished.\n\nKrans reads the calls, threads and numbers your companies choose to share, and shows drift the morning after it starts: the pricing story that stopped working, the buyer who went quiet, the position nobody owns.\n\nkrans.ai",
+      "One view of the portfolio, sorted by who needs attention first.\n\nFor funds and platform teams, Krans holds all of your companies as one record, which is why it can tell you which one needs you this week.\n\nkrans.ai",
+      "Ask one company, or all of them, from inside Claude or Cursor.\n\nKrans gives funds and platform teams evidence that ages on its own and a portfolio view that flags drift early.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "21",
+    "angle": "A studio partner's saving",
+    "format": "square",
+    "layout": "stat",
+    "color": "blue",
+    "stat": "50–70%",
+    "label": "Of a weekly admin day",
+    "title": "The home-built system, *replaced.*",
+    "captions": [
+      "A studio partner described Krans as the replacement for their home-built system, and put the saving at 50 to 70 percent of a weekly admin day.\n\nThat is the time that used to go into rebuilding context by hand before every check-in.\n\nkrans.ai",
+      "Most studios end up building their own system to track what is happening across ventures.\n\nOne studio partner described Krans as the replacement for theirs, and put the saving at 50 to 70 percent of a weekly admin day.\n\nkrans.ai",
+      "50 to 70 percent of a weekly admin day.\n\nThat is how one studio partner described the saving after Krans replaced their home-built system. Portfolio visibility, without rebuilding the picture by hand.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "22",
+    "angle": "The problem",
+    "format": "portrait",
+    "layout": "split",
+    "label": "The problem",
+    "title": "More data than *anyone can process.*",
+    "photo": "/ventures/krans/gallery/founders/founder-michael-van-lier-orange-sofa.webp",
+    "captions": [
+      "Every week, in every venture: customer calls, internal meetings, Slack threads, documents, pipeline numbers, usage.\n\nThousands of signals, and nobody with the time to read them all. So decisions wait for someone to piece the picture together, and momentum dies in the gap. Krans closes that gap.\n\nkrans.ai",
+      "Your ventures produce more data than anyone can process.\n\nKrans reads it for you, and lands each pricing objection, churn number or half-made decision against the part of the model it touches.\n\nkrans.ai",
+      "Momentum dies in the gap between what was said and when someone finally pieces it together.\n\nKrans models each venture, and every signal moves it, so the picture is never out of date.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "23",
+    "angle": "Sorted by attention",
+    "format": "landscape",
+    "layout": "product",
+    "label": "Portfolio overview",
+    "title": "Sorted by attention, *not alphabet.*",
+    "photo": "/ventures/krans/gallery/product/product-portfolio-window.png",
+    "captions": [
+      "All your ventures on one screen.\n\nWhere each one is on the journey, how its evidence is moving, and which one needs you this week. The Krans portfolio overview is sorted by attention, not alphabet.\n\nkrans.ai",
+      "Stage, confidence, signals and last touch, for every venture.\n\nKrans shows momentum per venture, from dormant to selling, tells the week's story in one line each, and flags a venture when it goes quiet or drifts.\n\nkrans.ai",
+      "Which venture needs you this week?\n\nThe portfolio overview in Krans puts it at the top, with the evidence behind the answer one click away.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "24",
+    "angle": "Venture pages",
+    "format": "portrait",
+    "layout": "type",
+    "color": "blue",
+    "label": "Venture pages",
+    "title": "Every deal, *running itself.*",
+    "body": "Stage, warmth, close probability and the next right move.",
+    "captions": [
+      "Each venture gets a living page in Krans: stage, warmth, close probability and the next right move, rewritten after every conversation.\n\nNobody updates a CRM.\n\nkrans.ai",
+      "Next steps written before you have found your notes.\n\nKrans works out which leads are hottest, who to call next, how the relationship has gone so far and what it will take to convert. Written from the calls, not typed in after them.\n\nkrans.ai",
+      "A budget line taken from a number the other side said out loud.\n\nKrans's read of each deal sits across the top of its thread, and lost deals stay in the stage where you lost them, because losing at discovery and losing at proposal are two different problems.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "25",
+    "angle": "Context, every night",
+    "format": "portrait",
+    "layout": "product",
+    "color": "purple",
+    "label": "Context",
+    "title": "A score and a source *on every claim.*",
+    "photo": "/ventures/krans/gallery/product/product-tonights-run-window.png",
+    "captions": [
+      "Everything Krans says comes from your own calls and documents.\n\nIt keeps what it has learned in one place, called Context, and every claim there carries a score and a source. Context now refreshes every night for every venture.\n\nkrans.ai",
+      "Every night, Krans reads the day again.\n\nThe calls, threads and documents that came in land in Context, where every claim is scored and sourced, and each venture's next move is ready by morning.\n\nkrans.ai",
+      "Context is the one place where everything Krans has learned about a venture lives.\n\nOverview is the whole picture, the rail splits it by area, and every claim shows where it came from.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "26",
+    "angle": "How a signal matures",
+    "format": "square",
+    "layout": "type",
+    "color": "orange",
+    "label": "Signal history",
+    "title": "Emerging. Validated. *Decision-grade.*",
+    "captions": [
+      "A signal in Krans moves from emerging to validated to decision-grade as more ventures and more calls keep saying it.\n\nWhen nothing new arrives, the line falls.\n\nkrans.ai",
+      "Promotion never runs backwards. Weight does.\n\nKrans tracks each signal over time, every new mention adding to it and every quiet week taking a little away, so decision-grade means something.\n\nkrans.ai",
+      "When is a signal strong enough to act on?\n\nKrans answers with a history: each time another venture says it, the signal hardens. Fresh evidence restores it in a day.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "27",
+    "angle": "One memory",
+    "format": "portrait",
+    "layout": "product",
+    "color": "blue",
+    "label": "One memory",
+    "title": "Total recall, *portfolio-wide.*",
+    "photo": "/ventures/krans/gallery/product/product-influx-window.png",
+    "captions": [
+      "Everything your ventures say, from every tool they already use, filed into one memory by itself.\n\nEvery learning in Krans is typed, cited and graded E0 to E5, from hearsay to proof.\n\nkrans.ai",
+      "Every voice becomes a person, and stays searchable long after whoever heard it left.\n\nKrans labels and grades each learning as it lands, so the memory of a venture does not walk out of the door with the team.\n\nkrans.ai",
+      "Anything Krans cannot place is counted and shown as unplaced.\n\nThat is part of what makes one memory trustworthy: you see what went in, what was learned, and what was left over.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "28",
+    "angle": "Three primitives versus other tools",
+    "format": "landscape",
+    "layout": "type",
+    "color": "purple",
+    "label": "Connect the dots",
+    "title": "What recorders, CRMs and chat *do not have.*",
+    "body": "Threads, Signals and Positions.",
+    "captions": [
+      "Meeting recorders capture transcripts. CRMs store contacts. Chat products answer questions.\n\nKrans is built on three primitives none of them have, Threads, Signals and Positions, and they are what turn a pile of data into something a venture can reason with.\n\nkrans.ai",
+      "Threads, so nothing a buyer said gets lost. Signals, so one buyer is noise and five are a signal. Positions, so you see which of your bets are backed and which are guesses.\n\nThat is the structure Krans adds on top of your calls.\n\nkrans.ai",
+      "A transcript is not a model.\n\nKrans turns calls and documents into threads, signals and positions, three primitives that turn raw data into structure.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "29",
+    "angle": "Drift, flagged early",
+    "format": "square",
+    "layout": "product",
+    "color": "orange",
+    "label": "Portfolio",
+    "title": "A flag when a venture *goes quiet.*",
+    "photo": "/ventures/krans/gallery/product/product-portfolio-window.png",
+    "captions": [
+      "A venture in trouble does not always say so. Sometimes it just goes quiet, or drifts.\n\nKrans flags both on the portfolio overview, with momentum per venture from dormant to selling, so you notice the morning after it starts.\n\nkrans.ai",
+      "The week's story, in one line each.\n\nThe Krans portfolio shows every venture's stage, confidence and signals, and raises a flag when one goes quiet or drifts.\n\nkrans.ai",
+      "The venture that needs you this week, named on Monday morning.\n\nThat is what the portfolio view in Krans is for.\n\nkrans.ai"
+    ]
+  },
+  {
+    "id": "30",
+    "angle": "The team and the closing line",
+    "format": "portrait",
+    "layout": "photo",
+    "dark": true,
+    "shade": true,
+    "label": "Krans",
+    "title": "Build ventures *on evidence.*",
+    "photo": "/ventures/krans/gallery/team/team-julia-bramer-product.webp",
+    "captions": [
+      "Build ventures on evidence.\n\nIt is the line that closes the Krans product page, and it comes from a decade of ventures built inside Builders.\n\nkrans.ai",
+      "Instinct starts ventures. Evidence compounds them.\n\nKrans makes the second half of that sentence routine: every call read, every claim graded, every venture's next move written by morning.\n\nkrans.ai",
+      "Krans started as the system used inside Builders to see where every venture really stands.\n\nToday the team behind it ships it as a product: a living model of every venture, with the evidence behind it.\n\nkrans.ai"
     ]
   }
 ]

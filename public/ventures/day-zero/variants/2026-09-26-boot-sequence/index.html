@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day Zero · Boot Sequence</title>
+<style>
+@font-face{font-family:"Favorit";src:url("https://builders.studio/fonts/FavoritStd-Book.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Favorit";src:url("https://builders.studio/fonts/FavoritStd-Medium.otf") format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Lisa";src:url("assets/fonts/LisaTerminalPaper2X3Y.ttf") format("truetype");font-display:block}
+@font-face{font-family:"Lisa Small";src:url("assets/fonts/LisaTerminalPaperSmall2X3Y.ttf") format("truetype");font-display:block}
+
+:root{
+  --black:#000; --ink:#1A1A2E; --studio:#8193FF; --studio-deep:#4E5BD6; --network:#E986B4; --network-deep:#C2507F;
+  --capital:#D4A574; --capital-deep:#A8743F; --cream:#FAF7F2; --grey:#E4E4E4; --grey-2:#CFCFCF; --muted:#6E6E78;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--black)}
+body{font-family:"Favorit",system-ui,sans-serif;color:var(--black);background:var(--black);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.lisa{font-family:"Lisa",sans-serif;-webkit-font-smoothing:none;font-smooth:never}
+img.px,.px{image-rendering:pixelated}
+
+/* ---------- desktop + menubar ---------- */
+.desk{position:relative;min-height:100vh;background:url("assets/wall-builders-night.png") center/cover no-repeat;image-rendering:pixelated}
+.menubar{position:sticky;top:0;z-index:50;height:30px;display:flex;align-items:center;gap:22px;padding:0 16px;background:var(--cream);border-bottom:2px solid var(--black);font-family:"Lisa";font-size:18px;-webkit-font-smoothing:none}
+.menubar b{font-weight:400;display:flex;align-items:center;gap:8px}
+.menubar .spark{width:14px;height:14px}
+.menubar span{cursor:default}
+.menubar span:hover{background:var(--black);color:var(--cream)}
+.menubar .right{margin-left:auto;display:flex;gap:22px}
+
+/* ---------- windows ---------- */
+.win{position:relative;background:var(--grey);border:2px solid var(--black);box-shadow:6px 6px 0 var(--black)}
+.win::before{content:"";position:absolute;inset:3px;border:1px solid var(--black);pointer-events:none;z-index:1}
+.bar{position:relative;z-index:2;display:flex;align-items:center;gap:10px;height:28px;padding:0 10px;background:var(--black);color:var(--cream);font-family:"Lisa";font-size:18px;-webkit-font-smoothing:none;cursor:grab;user-select:none;white-space:nowrap}
+.bar:active{cursor:grabbing}
+.bar .box{width:14px;height:14px;border:2px solid var(--cream);flex:none}
+.bar .t{flex:1;overflow:hidden;text-overflow:ellipsis}
+.bar .meta{opacity:.7}
+.bar.stripes{background:var(--cream);color:var(--black);background-image:repeating-linear-gradient(0deg,var(--black) 0 2px,var(--cream) 2px 4px)}
+.bar.stripes .t{flex:none;background:var(--cream);padding:0 8px;margin:0 auto}
+.bar.stripes .box{border-color:var(--black);background:var(--cream)}
+.bar.pink{background:var(--network);color:var(--black)}
+.bar.pink .box{border-color:var(--black)}
+.bar.blue{background:var(--studio);color:var(--black)}
+.bar.blue .box{border-color:var(--black)}
+.body{position:relative;z-index:2;padding:16px 18px}
+.cream{background:var(--cream)}
+
+/* code */
+.code{font-family:"Lisa";font-size:20px;line-height:26px;-webkit-font-smoothing:none;counter-reset:ln;padding:14px 0 18px;white-space:pre;overflow:hidden}
+.code i{font-style:normal;display:block;padding-left:62px;position:relative;min-height:26px}
+.code i::before{counter-increment:ln;content:counter(ln);position:absolute;left:0;width:44px;text-align:right;color:#9a9aa6}
+.code i.on{background:#fff}
+.k{color:var(--studio-deep)} .s{color:var(--network-deep)} .n{color:var(--capital-deep)} .c{color:#7d7d88} .f{color:var(--black);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.cur{display:inline-block;width:11px;height:20px;background:var(--black);vertical-align:-3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:870px;max-width:1440px;margin:0 auto}
+.wordmark{position:absolute;left:64px;top:96px;width:600px}
+.wordmark svg{display:block;width:100%;height:auto;filter:drop-shadow(8px 8px 0 var(--black))}
+.hero .lede{position:absolute;left:64px;top:262px;width:560px;color:var(--cream);font-size:30px;line-height:1.14;font-weight:500;letter-spacing:-.01em;text-shadow:0 2px 0 rgba(0,0,0,.35)}
+.hero .lede em{font-style:normal;color:var(--network)}
+.hero .editor{position:absolute;left:712px;top:84px;width:596px}
+.hero .rsvp{position:absolute;left:64px;top:470px;width:420px}
+.hero .clock{position:absolute;left:1030px;top:668px;width:290px}
+.rsvp .body{display:flex;flex-direction:column;gap:14px}
+.rsvp p{font-family:"Lisa";font-size:20px;line-height:24px;-webkit-font-smoothing:none;text-align:center}
+.btn{display:block;text-align:center;background:var(--black);color:var(--cream);font-family:"Lisa";font-size:20px;-webkit-font-smoothing:none;padding:10px 16px;text-decoration:none;border:2px solid var(--black);box-shadow:inset 0 0 0 2px var(--cream)}
+.btn:hover{background:var(--network);color:var(--black);box-shadow:inset 0 0 0 2px var(--black)}
+.clock .body{font-family:"Lisa";font-size:20px;line-height:26px;-webkit-font-smoothing:none}
+.dock-icons{position:absolute;right:48px;top:96px;display:flex;flex-direction:column;gap:28px;align-items:center}
+.dock-icons div{display:flex;flex-direction:column;align-items:center;gap:6px;font-family:"Lisa";font-size:16px;color:var(--cream);-webkit-font-smoothing:none;text-shadow:2px 2px 0 var(--black)}
+.dock-icons svg{width:44px;height:44px}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.sheet{background:var(--cream);border-top:2px solid var(--black);border-bottom:2px solid var(--black)}
+.wrap{max-width:1312px;margin:0 auto;padding:0 64px}
+.corner{position:relative}
+.corner::before,.corner::after{content:"";position:absolute;width:14px;height:14px;border:0 solid var(--black)}
+.eyebrow{font-family:"Lisa";font-size:18px;-webkit-font-smoothing:none;display:inline-block;background:var(--black);color:var(--cream);padding:2px 8px;margin-bottom:26px}
+.huge{font-size:124px;line-height:.92;letter-spacing:-.045em;font-weight:500;max-width:1180px}
+.huge em{font-style:normal;color:var(--studio-deep)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:72px;border-top:2px solid var(--black)}
+.cols>div{padding:18px 26px 0 0;border-right:1px solid var(--black);margin-right:26px}
+.cols>div:last-child{border-right:0}
+.cols h4{font-family:"Lisa";font-weight:400;font-size:18px;-webkit-font-smoothing:none;margin-bottom:40px}
+.cols p{font-size:24px;line-height:1.2}
+
+.s-intro{padding:130px 0 120px}
+.s-run{padding:120px 0}
+.run-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:start}
+.term{background:var(--black);color:var(--cream)}
+.term .code i::before{color:#55556a}
+.term .ok{color:var(--studio)} .term .wip{color:var(--network)} .term .dim{color:#8b8b9a}
+.steps{display:flex;flex-direction:column;gap:18px}
+.step{display:grid;grid-template-columns:70px 1fr;gap:18px;align-items:start}
+.step .no{font-family:"Lisa";font-size:44px;line-height:44px;color:var(--cream);-webkit-font-smoothing:none;text-shadow:3px 3px 0 var(--black)}
+.step .win .body{padding:14px 16px}
+.step h3{font-size:26px;font-weight:500;letter-spacing:-.01em;margin-bottom:6px}
+.step p{font-size:18px;line-height:1.35;color:#2a2a34}
+
+.s-types{padding:120px 0 130px}
+.types-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.types-grid .huge{font-size:92px}
+
+/* assets */
+.s-kit{padding:120px 0 140px}
+.kit-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:48px;gap:40px}
+.kit-head .huge{font-size:92px;color:var(--cream)}
+.kit-head p{max-width:420px;color:var(--cream);font-size:20px;line-height:1.3}
+.kit{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 36px}
+.tile{display:flex;flex-direction:column;gap:14px}
+.tile .cap{display:flex;justify-content:space-between;align-items:baseline;color:var(--cream);font-size:16px}
+.tile .cap b{font-weight:500}
+.tile .cap a{font-family:"Lisa";font-size:18px;color:var(--cream);-webkit-font-smoothing:none}
+.frame{position:relative;width:100%;overflow:hidden;border:2px solid var(--black);box-shadow:6px 6px 0 var(--black)}
+.frame .art{position:absolute;top:0;left:0;transform-origin:0 0}
+.frame .exp{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:3}
+
+/* the artwork compositions, drawn at export size (1080 wide) */
+.art{width:1080px;height:1080px;background-size:cover;image-rendering:pixelated;font-family:"Favorit"}
+.art.portrait{height:1350px}
+.art .win{box-shadow:14px 14px 0 var(--black);border-width:4px}
+.art .win::before{inset:7px;border-width:2px}
+.art .bar{height:60px;font-size:38px;padding:0 22px;gap:18px}
+.art .bar .box{width:28px;height:28px;border-width:4px}
+.cover-a .win{position:absolute;left:120px;right:120px;top:340px}
+.cover-a .dz{padding:54px 50px 46px}
+.cover-a .dz svg{display:block;width:100%;height:auto}
+.cover-a .row{display:flex;justify-content:space-between;font-family:"Lisa";font-size:40px;-webkit-font-smoothing:none;padding:0 50px 44px}
+.cover-b .win{position:absolute;left:96px;top:96px;width:888px}
+.cover-b .code{font-size:40px;line-height:56px;padding:40px 0 44px}
+.cover-b .code i{padding-left:120px;min-height:56px}
+.cover-b .code i::before{width:84px}
+.cover-b .cur{width:22px;height:40px;vertical-align:-6px}
+.cover-b .tag{position:absolute;left:96px;bottom:110px;right:96px;display:flex;justify-content:space-between;align-items:end}
+.cover-b .tag svg{width:520px;height:auto;filter:drop-shadow(10px 10px 0 var(--black))}
+.cover-b .tag span{font-family:"Lisa";font-size:40px;color:var(--cream);-webkit-font-smoothing:none;text-shadow:4px 4px 0 var(--black)}
+.guest .win.main{position:absolute;left:96px;right:96px;top:120px}
+.guest .ava{display:grid;grid-template-columns:420px 1fr;gap:0}
+.guest .ava .pic{background:var(--studio);border-right:4px solid var(--black);height:420px;display:grid;place-items:end center;overflow:hidden}
+.guest .ava .pic img{width:420px;height:420px;display:block}
+.guest .ava .info{padding:34px 36px;display:flex;flex-direction:column;justify-content:space-between;font-family:"Lisa";-webkit-font-smoothing:none}
+.guest .ava .info small{display:block;font-size:34px;color:var(--muted)}
+.guest .ava .info strong{display:block;font-weight:400;font-size:56px;line-height:60px}
+.guest .ava .info .hp{display:flex;gap:6px}
+.guest .ava .info .hp i{width:34px;height:22px;background:var(--network-deep)}
+.guest .ava .info .hp i.x{background:var(--grey-2)}
+.guest .code{font-size:38px;line-height:54px;padding:30px 0 34px;border-top:4px solid var(--black)}
+.guest .code i{padding-left:104px;min-height:54px}
+.guest .code i::before{width:72px}
+.guest .foot{position:absolute;left:96px;right:96px;bottom:96px;display:flex;justify-content:space-between;align-items:end}
+.guest .foot svg{width:440px;height:auto;filter:drop-shadow(10px 10px 0 var(--black))}
+.guest .foot span{font-family:"Lisa";font-size:40px;color:var(--cream);-webkit-font-smoothing:none;text-shadow:4px 4px 0 var(--black)}
+.post .win.main{top:150px}
+
+.s-rules{padding:110px 0 120px}
+.rules{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:10px}
+.swatch{height:120px;border:2px solid var(--black);box-shadow:4px 4px 0 var(--black)}
+.rules p{font-size:17px;line-height:1.35;margin-top:14px}
+.rules b{font-weight:500;display:block;font-size:20px;margin-bottom:4px}
+.typeline{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:64px}
+.typeline .win .body{padding:24px 26px}
+.sample-lisa{font-family:"Lisa";font-size:64px;line-height:64px;-webkit-font-smoothing:none}
+.sample-fav{font-size:64px;line-height:1;font-weight:500;letter-spacing:-.03em}
+
+footer.status{border-top:2px solid var(--black);background:var(--cream);display:flex;gap:28px;align-items:center;height:34px;padding:0 16px;font-family:"Lisa";font-size:18px;-webkit-font-smoothing:none}
+footer.status .right{margin-left:auto}
+.desk.foot{min-height:520px;display:grid;place-items:center;background-image:url("assets/wall-network.png")}
+.desk.foot .win{width:640px}
+.desk.foot .body{display:flex;flex-direction:column;gap:16px;padding:26px}
+.desk.foot h2{font-size:48px;line-height:1;font-weight:500;letter-spacing:-.03em}
+.desk.foot p{font-size:19px;line-height:1.35}
+
+@media (max-width:1100px){
+  .hero{height:auto;padding:60px 20px 80px;display:flex;flex-direction:column;gap:36px}
+  .wordmark,.hero .lede,.hero .editor,.hero .rsvp,.hero .clock{position:relative;left:auto;top:auto;width:100%}
+  .dock-icons{display:none}
+  .wrap{padding:0 20px}
+  .huge,.types-grid .huge,.kit-head .huge{font-size:56px}
+  .cols,.run-grid,.types-grid,.kit,.rules,.typeline{grid-template-columns:1fr}
+  .kit-head{flex-direction:column;align-items:start}
+  .code{font-size:16px;line-height:22px}
+  .desk.foot .win{width:calc(100% - 40px)}
+  .menubar .hide-s{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- pixel wordmark: DAY ZERO drawn on a 5x7 grid, reused everywhere -->
+<template id="dz-mark"></template>
+
+<div class="menubar">
+  <b><svg class="spark" viewBox="0 0 14 14" shape-rendering="crispEdges"><path fill="#000" d="M6 0h2v4h-2zM6 10h2v4h-2zM0 6h4v2h-4zM10 6h4v2h-4zM4 4h2v2h-2zM8 4h2v2h-2zM4 8h2v2h-2zM8 8h2v2h-2zM6 6h2v2h-2z"/></svg>Day Zero</b>
+  <span class="hide-s">File</span><span class="hide-s">Edit</span><span>Build</span><span class="hide-s">Night</span><span class="hide-s">Help</span>
+  <div class="right"><span class="hide-s">Builders, Rotterdam</span><span id="clock">00:00</span></div>
+</div>
+
+<div class="desk">
+  <div class="hero">
+    <div class="wordmark" data-mark="DAY ZERO" data-color="#FAF7F2" data-cell="16"></div>
+    <p class="lede">The monthly build night of Builders. Founders and young technical talent build <em>AI ventures</em> through the night, in Rotterdam.</p>
+
+    <div class="win editor" data-drag>
+      <div class="bar"><span class="box"></span><span class="t">day-zero.ts</span><span class="meta">Editor 0.1</span></div>
+      <div class="code cream" id="editor"><i><span class="c">// the monthly build night of Builders</span></i><i><span class="k">import</span> { founders, builders } <span class="k">from</span> <span class="s">"rotterdam"</span>;</i><i></i><i><span class="k">const</span> night = <span class="k">new</span> <span class="f">BuildNight</span>({</i><i>  host: <span class="s">"Builders"</span>,</i><i>  every: <span class="s">"month"</span>,</i><i>  until: <span class="s">"late"</span>,</i><i>});</i><i></i><i><span class="c">// arrays start at zero. so do ventures.</span></i><i><span class="k">const</span> team = [founder, ...builders];</i><i></i><i><span class="k">while</span> (night.isYoung) {</i><i>  team.<span class="f">build</span>(ai.venture);</i><i>}</i><i></i><i class="on"><span class="k">export default</span> <span class="f">ship</span>(team);<span class="cur"></span></i></div>
+    </div>
+
+    <div class="win rsvp" data-drag>
+      <div class="bar pink"><span class="box"></span><span class="t">Day Zero · Next edition</span></div>
+      <div class="body">
+        <p>ONE NIGHT A MONTH<br>Seats go through Luma</p>
+        <a class="btn" href="https://builders.studio">&gt; rsvp --luma</a>
+      </div>
+    </div>
+
+    <div class="win clock" data-drag>
+      <div class="bar stripes"><span class="box"></span><span class="t">Clock 1.0</span></div>
+      <div class="body cream"><div id="clock2">Thursday<br>00:00:00</div><div style="color:var(--muted)">night.isYoung = true</div></div>
+    </div>
+
+    <div class="dock-icons">
+      <div><svg viewBox="0 0 11 11" shape-rendering="crispEdges"><path fill="#FAF7F2" stroke="#000" stroke-width=".5" d="M1 1h6l3 3v6h-9z"/><path fill="#000" d="M3 5h5v1h-5zM3 7h4v1h-4z"/></svg>README</div>
+      <div><svg viewBox="0 0 11 11" shape-rendering="crispEdges"><path fill="#E986B4" stroke="#000" stroke-width=".5" d="M1 3h3l1 1h5v6h-9z"/></svg>assets</div>
+      <div><svg viewBox="0 0 11 11" shape-rendering="crispEdges"><path fill="#000" stroke="#FAF7F2" stroke-width=".5" d="M1 2h9v7h-9z"/><path fill="#8193FF" d="M2 4h1v1h-1zM3 5h1v1h-1zM2 6h1v1h-1zM5 6h3v1h-3z"/></svg>run.log</div>
+    </div>
+  </div>
+</div>
+
+<section class="sheet s-intro">
+  <div class="wrap">
+    <span class="eyebrow">README.md</span>
+    <h1 class="huge">Bring an idea or bring the skills. <em>Build the venture tonight.</em></h1>
+    <div class="cols">
+      <div><h4>What</h4><p>A build night at Builders, once a month. The same room, the same people and the same bias for shipping as the studio, compressed into one night.</p></div>
+      <div><h4>Who</h4><p>Founders with an idea or an early product, and engineers, designers and makers early in their careers who would rather ship than talk.</p></div>
+      <div><h4>From edition 03</h4><p>Every night gets a theme and a guest who speaks for that topic or industry. The theme decides what gets built.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="desk s-run" style="min-height:0;background-image:url('assets/wall-studio.png')">
+  <div class="wrap run-grid">
+    <div class="win term" data-drag>
+      <div class="bar blue"><span class="box"></span><span class="t">run.log</span><span class="meta">tty0</span></div>
+      <div class="code"><i><span class="dim">$</span> day-zero run --edition 03</i><i></i><i>&gt; load theme .............. <span class="ok">ok</span></i><i>&gt; guest on stage .......... <span class="ok">ok</span></i><i>&gt; founders.pair(builders) . <span class="ok">ok</span></i><i>&gt; build ................... <span class="wip">running</span></i><i>&gt; sleep ................... <span class="dim">skipped</span></i><i>&gt; ship .................... <span class="ok">ok</span></i><i></i><i><span class="dim">exit 0</span><span class="cur" style="background:var(--cream)"></span></i></div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="no">01</div><div class="win"><div class="bar"><span class="box"></span><span class="t">theme.load()</span></div><div class="body cream"><h3>One theme</h3><p>Each night is built around one topic or industry, announced with the edition.</p></div></div></div>
+      <div class="step"><div class="no">02</div><div class="win"><div class="bar pink"><span class="box"></span><span class="t">guest.speak()</span></div><div class="body cream"><h3>One guest</h3><p>A person who can speak for that theme opens the night and stays for the build.</p></div></div></div>
+      <div class="step"><div class="no">03</div><div class="win"><div class="bar"><span class="box"></span><span class="t">founders.pair(builders)</span></div><div class="body cream"><h3>Teams</h3><p>Founders bring the problem, builders bring the skills, and the teams form in the room.</p></div></div></div>
+      <div class="step"><div class="no">04</div><div class="win"><div class="bar blue"><span class="box"></span><span class="t">while (night.isYoung)</span></div><div class="body cream"><h3>Build</h3><p>Laptops open until late. The goal is something that runs, not a deck.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet s-types">
+  <div class="wrap types-grid">
+    <div>
+      <span class="eyebrow">types.ts</span>
+      <h2 class="huge">Two types. <em>One night.</em></h2>
+    </div>
+    <div class="win" data-drag>
+      <div class="bar stripes"><span class="box"></span><span class="t">types.ts</span></div>
+      <div class="code cream"><i><span class="k">type</span> <span class="f">Founder</span> = {</i><i>  idea: <span class="k">string</span>;</i><i>  stage: <span class="s">"idea"</span> | <span class="s">"early product"</span>;</i><i>};</i><i></i><i><span class="k">type</span> <span class="f">Builder</span> = Engineer | Designer | Maker;</i><i></i><i><span class="c">// from edition 03</span></i><i><span class="k">type</span> <span class="f">Night</span> = { theme: Topic; guest: Speaker };</i><i></i><i><span class="k">function</span> <span class="f">join</span>(you: Founder | Builder) {</i><i>  <span class="k">return</span> night.<span class="f">seat</span>(you);</i><i>}</i></div>
+    </div>
+  </div>
+</section>
+
+<section class="desk s-kit" style="min-height:0;background-image:url('assets/wall-builders.png')">
+  <div class="wrap">
+    <div class="kit-head">
+      <div><span class="eyebrow" style="background:var(--cream);color:var(--black)">assets/</span><h2 class="huge">Covers and posts.</h2></div>
+      <p>Luma covers are square: one wallpaper, one window, the wordmark always legible. Guest posts put the speaker in the window as an arcade avatar, pixelated from a cut-out portrait so the face still reads.</p>
+    </div>
+    <div class="kit">
+      <div class="tile">
+        <div class="frame" data-w="1080" data-h="1080">
+          <div class="art cover-a" style="background-image:url('assets/wall-network-square.png')">
+            <div class="win"><div class="bar"><span class="box"></span><span class="t">day-zero.exe</span><span class="meta">03</span></div>
+              <div class="cream"><div class="dz" data-mark="DAY ZERO" data-color="#000" data-cell="20"></div><div class="row"><span>Edition 03</span><span>Builders, Rotterdam</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Luma cover · window</b><a href="assets/export/luma-cover-window.png" download>PNG</a></div>
+      </div>
+      <div class="tile">
+        <div class="frame" data-w="1080" data-h="1080">
+          <div class="art cover-b" style="background-image:url('assets/wall-studio-square.png')">
+            <div class="win"><div class="bar pink"><span class="box"></span><span class="t">edition-03.ts</span></div>
+              <div class="code cream"><i><span class="k">const</span> night = {</i><i>  edition: <span class="n">3</span>,</i><i>  theme: <span class="s">"tba"</span>,</i><i>  guest: <span class="s">"tba"</span>,</i><i>};<span class="cur"></span></i></div>
+            </div>
+            <div class="tag"><svg data-mark="DAY ZERO" data-color="#FAF7F2" data-cell="10"></svg><span>Rotterdam</span></div>
+          </div>
+        </div>
+        <div class="cap"><b>Luma cover · code</b><a href="assets/export/luma-cover-code.png" download>PNG</a></div>
+      </div>
+      <div class="tile">
+        <div class="frame" data-w="1080" data-h="1080">
+          <div class="art guest" style="background-image:url('assets/wall-capital-square.png')">
+            <div class="win main"><div class="bar"><span class="box"></span><span class="t">guest.exe</span><span class="meta">Player 1</span></div>
+              <div class="cream">
+                <div class="ava"><div class="pic"><img class="px" src="assets/avatar-guest.png" alt="Pixel avatar of the guest"></div>
+                  <div class="info"><small>GUEST</small><strong>Giorgio<br>Orsucci</strong><div><small>THEME</small><strong style="font-size:44px">tba</strong></div><div class="hp"><i></i><i></i><i></i><i></i><i></i><i class="x"></i></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="foot"><svg data-mark="DAY ZERO" data-color="#FAF7F2" data-cell="9"></svg><span>Edition 03</span></div>
+          </div>
+        </div>
+        <div class="cap"><b>Luma cover · guest</b><a href="assets/export/luma-cover-guest.png" download>PNG</a></div>
+      </div>
+      <div class="tile">
+        <div class="frame" data-w="1080" data-h="1350">
+          <div class="art portrait guest post" style="background-image:url('assets/wall-network-portrait.png')">
+            <div class="win main"><div class="bar pink"><span class="box"></span><span class="t">guest.announce()</span></div>
+              <div class="cream">
+                <div class="ava"><div class="pic" style="background:var(--network)"><img class="px" src="assets/avatar-guest.png" alt="Pixel avatar of the guest"></div>
+                  <div class="info"><small>NOW LOADING</small><strong>Giorgio<br>Orsucci</strong><div class="hp"><i></i><i></i><i></i><i></i><i></i><i class="x"></i></div></div>
+                </div>
+                <div class="code"><i><span class="k">await</span> guest.<span class="f">speak</span>({</i><i>  theme: <span class="s">"tba"</span>,</i><i>  night: <span class="s">"Day Zero 03"</span>,</i><i>});<span class="cur"></span></i></div>
+              </div>
+            </div>
+            <div class="foot"><svg data-mark="DAY ZERO" data-color="#FAF7F2" data-cell="9"></svg><span>Builders, Rotterdam</span></div>
+          </div>
+        </div>
+        <div class="cap"><b>Post · guest announcement, 4:5</b><a href="assets/export/post-guest.png" download>PNG</a></div>
+      </div>
+      <div class="tile">
+        <div class="frame" data-w="1080" data-h="1350">
+          <div class="art portrait cover-b" style="background-image:url('assets/wall-builders-portrait.png')">
+            <div class="win"><div class="bar"><span class="box"></span><span class="t">run.log</span></div>
+              <div class="code" style="background:var(--black);color:var(--cream)"><i>$ day-zero run</i><i></i><i>&gt; theme ..... <span style="color:var(--studio)">ok</span></i><i>&gt; guest ..... <span style="color:var(--studio)">ok</span></i><i>&gt; teams ..... <span style="color:var(--studio)">ok</span></i><i>&gt; build ..... <span style="color:var(--network)">running</span></i><i>&gt; sleep ..... <span style="color:#8b8b9a">skipped</span></i><i></i><i>exit 0<span class="cur" style="background:var(--cream)"></span></i></div>
+            </div>
+            <div class="tag"><svg data-mark="DAY ZERO" data-color="#FAF7F2" data-cell="10"></svg><span>Monthly</span></div>
+          </div>
+        </div>
+        <div class="cap"><b>Post · the night, 4:5</b><a href="assets/export/post-run-log.png" download>PNG</a></div>
+      </div>
+      <div class="tile">
+        <div class="frame" data-w="1080" data-h="1350">
+          <div class="art portrait cover-a" style="background-image:url('assets/wall-studio-portrait.png')">
+            <div class="win" style="top:330px"><div class="bar stripes"><span class="box"></span><span class="t">README.md</span></div>
+              <div class="cream" style="padding:56px 50px 60px"><div style="font-size:92px;line-height:.95;letter-spacing:-.04em;font-weight:500">Bring an idea or bring the skills.</div><div style="font-family:Lisa;font-size:40px;margin-top:40px;-webkit-font-smoothing:none">&gt; rsvp --luma<span class="cur" style="width:22px;height:40px;vertical-align:-6px"></span></div></div>
+            </div>
+            <div class="tag" style="position:absolute;left:96px;right:96px;bottom:110px;display:flex;justify-content:space-between;align-items:end"><svg style="width:520px;height:auto;filter:drop-shadow(10px 10px 0 #000)" data-mark="DAY ZERO" data-color="#FAF7F2" data-cell="10"></svg></div>
+          </div>
+        </div>
+        <div class="cap"><b>Post · the invite, 4:5</b><a href="assets/export/post-invite.png" download>PNG</a></div>
+      </div>
+    </div>
+    <p style="color:var(--cream);opacity:.75;font-size:15px;margin-top:34px">Guest templates shown with a Builders team portrait. Themes read "tba" until an edition announces them.</p>
+  </div>
+</section>
+
+<section class="sheet s-rules">
+  <div class="wrap">
+    <span class="eyebrow">system.cfg</span>
+    <div class="rules">
+      <div><div class="swatch" style="background:#000"></div><p><b>Deep</b>Window bars, shadows, the terminal. Every frame is a hard 2px line with a solid offset shadow, never a blur.</p></div>
+      <div><div class="swatch" style="background:#FAF7F2"></div><p><b>Cream</b>Window bodies and the page sheets. The wordmark sits on cream or in cream.</p></div>
+      <div><div class="swatch" style="background:#8193FF"></div><p><b>Studio</b>Keywords, the default wallpaper, the blue title bar.</p></div>
+      <div><div class="swatch" style="background:#E986B4"></div><p><b>Network</b>Strings, the pink title bar, guest nights. Capital gold marks numbers and the guest wallpaper.</p></div>
+    </div>
+    <div class="typeline">
+      <div class="win"><div class="bar"><span class="box"></span><span class="t">LisaTerminal Paper</span><span class="meta">Kreative Software</span></div><div class="body cream"><div class="sample-lisa">day-zero.ts</div><p style="margin-top:14px;font-size:17px">The machine voice: code, window titles, labels, buttons. Free use licence, shipped with the page.</p></div></div>
+      <div class="win"><div class="bar stripes"><span class="box"></span><span class="t">Favorit Std</span></div><div class="body cream"><div class="sample-fav">Build the venture tonight.</div><p style="margin-top:14px;font-size:17px">The human voice: headlines and sentences, the same face as Builders.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="desk foot">
+  <div class="win" data-drag>
+    <div class="bar"><span class="box"></span><span class="t">shutdown.exe</span></div>
+    <div class="body cream">
+      <h2>It is now safe to stay up late.</h2>
+      <p>Day Zero is the monthly build night of Builders in Rotterdam. Seats go through Luma, and every edition is announced there first.</p>
+      <a class="btn" href="https://builders.studio">&gt; open builders.studio</a>
+    </div>
+  </div>
+</div>
+<footer class="status"><span>Ready.</span><span>Day Zero</span><span class="right">Builders · Rotterdam · builders.studio</span></footer>
+
+<script>
+// 5x7 bitmap font for the wordmark
+const F = {
+  D:["11110","10001","10001","10001","10001","10001","11110"],
+  A:["01110","10001","10001","11111","10001","10001","10001"],
+  Y:["10001","10001","01010","00100","00100","00100","00100"],
+  Z:["11111","00001","00010","00100","01000","10000","11111"],
+  E:["11111","10000","10000","11110","10000","10000","11111"],
+  R:["11110","10001","10001","11110","10100","10010","10001"],
+  O:["01110","10001","10011","10101","11001","10001","01110"],
+  " ":["000","000","000","000","000","000","000"],
+};
+function mark(text, color){
+  let x = 0, rects = [];
+  for (const ch of text) { const g = F[ch]; g.forEach((row, y) => [...row].forEach((b, i) => { if (b === "1") rects.push(`<rect x="${x+i}" y="${y}" width="1.02" height="1.02"/>`); })); x += g[0].length + 1; }
+  return { w: x - 1, svg: `<g fill="${color}">${rects.join("")}</g>` };
+}
+document.querySelectorAll("[data-mark]").forEach(el => {
+  const m = mark(el.dataset.mark, el.dataset.color);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${m.w} 7" shape-rendering="crispEdges">${m.svg}</svg>`;
+  if (el.tagName.toLowerCase() === "svg") { el.setAttribute("viewBox", `0 0 ${m.w} 7`); el.setAttribute("shape-rendering", "crispEdges"); el.innerHTML = m.svg; }
+  else el.innerHTML = svg;
+});
+
+// each tile shows its exported PNG (crisp at any size); the HTML composition underneath is the source
+document.querySelectorAll(".tile").forEach(t => {
+  const href = t.querySelector(".cap a")?.getAttribute("href"), f = t.querySelector(".frame");
+  if (!href || new URLSearchParams(location.search).has("source")) return;
+  const img = Object.assign(new Image(), { className: "exp", src: href, alt: "" });
+  img.onerror = () => img.remove(); f.appendChild(img);
+});
+
+// scale artworks into their frames
+const fit = () => document.querySelectorAll(".frame").forEach(f => {
+  const w = +f.dataset.w, h = +f.dataset.h, s = f.clientWidth / w;
+  f.style.height = h * s + "px"; f.querySelector(".art").style.transform = `scale(${s})`;
+});
+addEventListener("resize", fit); fit();
+
+// clocks
+const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const tick = () => { const d = new Date(), t = d.toTimeString().slice(0, 8);
+  document.getElementById("clock").textContent = t.slice(0, 5);
+  document.getElementById("clock2").innerHTML = `${days[d.getDay()]}<br>${t}`; };
+tick(); setInterval(tick, 1000);
+
+// draggable windows, like a desktop
+let z = 10;
+document.querySelectorAll("[data-drag]").forEach(w => {
+  const bar = w.querySelector(".bar"); let sx, sy, ox = 0, oy = 0;
+  bar.addEventListener("pointerdown", e => { sx = e.clientX - ox; sy = e.clientY - oy; w.style.zIndex = ++z; bar.setPointerCapture(e.pointerId); });
+  bar.addEventListener("pointermove", e => { if (sx === undefined || !bar.hasPointerCapture(e.pointerId)) return; ox = e.clientX - sx; oy = e.clientY - sy; w.style.translate = `${ox}px ${oy}px`; });
+  bar.addEventListener("pointerup", () => { sx = undefined; });
+});
+</script>
+</body>
+</html>

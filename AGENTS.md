@@ -109,7 +109,7 @@ Every picture a venture owns, so models can reuse them: founder portraits, photo
 
 Keep files web-sized: JPG or WebP, longest side 2000px at most, ideally under 400 KB (`sips -Z 2000 -s format jpeg -s formatOptions 80 in.png --out out.jpg` on macOS). SVG for illustrations. Only pictures the venture owns or has the rights to. Royalty-free stock used in a variant stays in that variant's folder, not here.
 
-In the platform, clicking a picture copies its public URL (`https://<site>/ventures/<slug>/gallery/<group>/<file>`). When a founder pastes such a URL into a request, use that exact file: reference it by that path in HTML and decks (`"image": "/ventures/<slug>/gallery/photos/x.jpg"` on a `split` slide), or copy it into the variant folder if the page must be self-contained.
+In the platform, people can remove pictures that do not belong (the file is deleted from the repo), so do not re-add a picture that was removed. Clicking a picture copies its public URL (`https://<site>/ventures/<slug>/gallery/<group>/<file>`). When a founder pastes such a URL into a request, use that exact file: reference it by that path in HTML and decks (`"image": "/ventures/<slug>/gallery/photos/x.jpg"` on a `split` slide), or copy it into the variant folder if the page must be self-contained.
 
 ## Presentations
 

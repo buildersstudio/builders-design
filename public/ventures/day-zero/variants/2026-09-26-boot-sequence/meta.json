@@ -1,0 +1,11 @@
+{
+  "title": "Boot Sequence",
+  "created": "2026-09-26",
+  "note": "Retrofuturist Day Zero: the Builders gradients re-rendered as ordered-dither pixel wallpapers in the Builders palette, Apple Lisa era windows with hard shadows, the copy written as code in LisaTerminal Paper, a 5x7 bitmap wordmark, and a kit of square Luma covers and 4:5 guest posts with arcade avatars pixelated from cut-out portraits.",
+  "credits": [
+    { "file": "assets/wall-*.png", "source": "Builders gallery gradients, pixelated and dithered to the Builders palette by scripts/day-zero-pixels.mjs", "author": "Builders", "url": "/ventures/builders/gallery/backgrounds/gradient-builders-full.jpg" },
+    { "file": "assets/avatar-guest.png", "source": "Builders team portrait, background removed with Higgsfield (image background remover), pixelated by scripts/day-zero-pixels.mjs", "author": "Builders", "url": "/ventures/builders/gallery/team/team-giorgio-orsucci.jpg" },
+    { "file": "assets/fonts/LisaTerminalPaper2X3Y.ttf", "source": "Kreative Software, Lisa fonts, free use licence (assets/fonts/FreeLicense.txt), unmodified", "author": "Kreative Korporation", "url": "https://www.kreativekorp.com/software/fonts/" },
+    { "file": "assets/fonts/LisaTerminalPaperSmall2X3Y.ttf", "source": "Kreative Software, Lisa fonts, free use licence (assets/fonts/FreeLicense.txt), unmodified", "author": "Kreative Korporation", "url": "https://www.kreativekorp.com/software/fonts/" }
+  ]
+}

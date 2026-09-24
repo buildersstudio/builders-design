@@ -65,6 +65,7 @@ function PostCard({ n, post, theme, brand, onOpen, onRemove }: { n: number; post
   const [box, scale] = useFit<HTMLDivElement>(w);
   const caps = (post.captions ?? []).filter(Boolean);
   const [v, setV] = useState(0);
+  const [open, setOpen] = useState(false);
   return (
     <article className="sg-card">
       <div ref={box} className="sg-art" style={{ aspectRatio: `${w} / ${h}` }} onClick={onOpen}>
@@ -80,8 +81,13 @@ function PostCard({ n, post, theme, brand, onOpen, onRemove }: { n: number; post
           </span>
         )}
       </div>
-      {caps[v] && <p className="sg-cap">{caps[v]}</p>}
-      {caps[v] && <button className="sg-copy" onClick={() => copy(caps[v], `Caption ${v + 1} copied`)}>Copy caption</button>}
+      {caps[v] && <p className={open ? "sg-cap open" : "sg-cap"} onClick={() => setOpen(!open)} title={open ? "Show less" : "Read the full caption"}>{caps[v]}</p>}
+      {caps[v] && (
+        <div className="sg-actions">
+          <button className="sg-copy" onClick={() => setOpen(!open)}>{open ? "Show less" : "Read all"}</button>
+          <button className="sg-copy" onClick={() => copy(caps[v], `Caption ${v + 1} copied`)}>Copy caption</button>
+        </div>
+      )}
     </article>
   );
 }

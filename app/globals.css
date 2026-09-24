@@ -314,5 +314,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .sg-tabs button { width: 22px; height: 22px; border-radius: 50%; font-size: 11px; color: var(--muted); font-feature-settings: "tnum" 1; }
 .sg-tabs button[aria-pressed="true"] { background: var(--wash); color: var(--ink); }
 .sg-cap { margin: 0 2px 6px; font-size: 12.5px; line-height: 1.5; color: var(--muted); white-space: pre-line; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
-.sg-copy { font-size: 12px; color: var(--muted); margin-left: 2px; }
+.sg-cap { cursor: pointer; }
+.sg-cap.open { display: block; -webkit-line-clamp: unset; overflow: visible; color: var(--ink); }
+.sg-actions { display: flex; gap: 14px; margin-left: 2px; }
+.sg-copy { font-size: 12px; color: var(--muted); }
 .sg-copy:hover { color: var(--ink); }
