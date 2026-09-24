@@ -12,7 +12,6 @@ export const SECTIONS = [
   { key: "gallery", label: "Gallery" },
   { key: "presentations", label: "Presentations" },
   { key: "social", label: "Social" },
-  { key: "social-v2", label: "Social v2" },
   { key: "variants", label: "Brand variants" },
   { key: "competitors", label: "Competitors" },
   // Landing pages are parked: their routes and folders still work, they are just not in the menu.
@@ -135,22 +134,9 @@ export function getGallery(slug: string): Picture[] {
   return out;
 }
 
-export type Idea = { id: string; idea: string; status?: "idea" | "campaign"; campaign?: string };
-export type CampaignPost = Record<string, unknown> & { angle?: string; caption?: string };
-export type Campaign = { id: string; title: string; created?: string; brief?: string; posts: CampaignPost[] };
-
-/** social/ideas.json: the content backlog a venture's campaigns are planned from. */
-export function getIdeas(slug: string): Idea[] {
-  return readJSON<Idea[]>(path.join(ROOT, slug, "social", "ideas.json"), []);
-}
-
-/** social/campaigns/<id>/campaign.json: ready-to-post variants with their captions. */
-export function getCampaigns(slug: string): Campaign[] {
-  const base = path.join(ROOT, slug, "social", "campaigns");
-  return dirs(base)
-    .map((id) => ({ id, ...readJSON<Omit<Campaign, "id">>(path.join(base, id, "campaign.json"), { title: id, posts: [] }) }))
-    .filter((c) => c.posts.length)
-    .sort((a, b) => (b.created ?? b.id).localeCompare(a.created ?? a.id));
+/** social/posts.json: the venture's finished posts, each with its visual settings and three caption variants. */
+export function getSocialPosts(slug: string): Record<string, unknown>[] {
+  return readJSON<Record<string, unknown>[]>(path.join(ROOT, slug, "social", "posts.json"), []);
 }
 
 export function getBrand(slug: string): Brand {
@@ -189,7 +175,6 @@ export function counts(slug: string): Record<SectionKey, number> {
     brand: exists(path.join(ROOT, slug, "brand", "brand.json")) ? 1 : 0,
     gallery: getGallery(slug).length,
     presentations: getDecks(slug).length,
-    social: 0,
-    "social-v2": getCampaigns(slug).reduce((n, c) => n + c.posts.length, 0),
+    social: getSocialPosts(slug).length,
   };
 }

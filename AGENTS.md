@@ -20,7 +20,7 @@ public/ventures/<slug>/
   decks/<id>/deck.json        presentations (see templates/deck.json)
   landing/<id>/index.html     landing pages, same shape as variants (hidden from the menu for now)
   landing/<id>/meta.json
-  social/<file>.png|jpg|svg   social assets (hidden from the menu for now)
+  social/posts.json           LinkedIn posts: visual + three captions each
 templates/deck.json           the presentation template, always start from it
 ```
 
@@ -139,19 +139,13 @@ Shareable link, no platform access needed: `/p/<slug>/<deck-id>`.
 
 Same shape as variants, in `landing/<id>/`, but built from the brand book (`brand/brand.json`, `brand/logo.svg`) instead of inventing a new look. Self-contained, responsive, real copy. The page is publicly reachable at `/ventures/<slug>/landing/<id>/index.html`.
 
-## Social assets
+## Social
 
-The Social page of every venture is a small built-in tool: pick a LinkedIn format (4:5, 1:1, 1.91:1), a layout (Type, Photo, Split), dark or light, shade on or off over pictures, write a label and a headline (`*words*` for emphasis) and pick a picture from the venture's gallery; it renders in the brand (fonts, colours, logo and the brand's deck style: gradient, imagery or pixel) and downloads a 2× PNG. Nothing is stored. To improve how posts look for a venture, improve its brand book, gallery and deck style, not the tool.
+The Social page of every venture is a gallery of finished LinkedIn posts, each a visual plus three caption variants, stored in `social/posts.json`. People click a post to edit it (format, layout, colour, copy, picture, captions), remove the ones that do not work, create new ones with "+ New post", and download a 2× PNG. The platform renders every post in the brand (fonts, colours, logo and the deck style), so to improve how posts look, improve the brand book, gallery and deck style, never the posts.
 
-## Social v2: campaigns
-
-Social v2 is the planned side of social: a venture's content backlog and the campaigns made from it, each a set of finished, ready-to-post LinkedIn posts with captions.
-
-- `social/ideas.json`: the backlog, `[{ "id", "idea", "status": "idea" | "campaign", "campaign": "<campaign id>" }]`. Add ideas whenever something happens (a launch, a rebrand, a release, a hire, a customer story the venture has published).
-- `social/campaigns/<YYYY-MM-DD>-<slug>/campaign.json`: `{ "title", "created", "brief", "posts": [...] }`. A campaign is usually 10 posts: different angles on the same news, not ten copies of one post.
-- Each post: `{ "angle", "caption", "format": "portrait" | "square" | "landscape", "layout": "type" | "photo" | "split" | "product" | "stat", "label", "title", "body"?, "stat"?, "photo"?, "dark"?, "shade"?, "color"? }`. `photo` is a gallery path (a product cut-out for `product`, a photo for `photo` and `split`); `color` is a key of the brand's deck `palette` (Krans: orange, purple, blue; omit for cream); `stat` is the big number of a stat post; `*words*` in `title` get the brand's emphasis. The platform renders every post in the brand, so never put styling in a campaign.
-- `caption` is the full LinkedIn text in the venture's voice: two to four short paragraphs separated by blank lines, the site at the end, real facts only (from `venture.md`, the live site, the brand book), no em dashes, no exclamation marks, no hashtags unless asked.
-- When a campaign is written, set its idea's `status` to `"campaign"` and point `campaign` at it.
+- `social/posts.json` is an array of posts, newest first. Aim for about 10, each a different angle on the venture (the news, what it is, the product, a number, the line, the team), not ten copies of one post.
+- Each post: `{ "id", "angle", "format": "portrait" | "square" | "landscape", "layout": "type" | "photo" | "split" | "product" | "stat", "label", "title", "body"?, "stat"?, "photo"?, "dark"?, "shade"?, "color"?, "captions": ["", "", ""] }`. `id` is unique (`"01"`, `"02"` and so on). `photo` is a gallery path (a product cut-out for `product`, a photo for `photo` and `split`); `color` is a key of the brand's deck `palette` (Krans: orange, purple, blue; omit for cream); `stat` is the big number of a stat post; `*words*` in `title` get the brand's emphasis. Never put styling in a post.
+- `captions` holds three variants of the LinkedIn text for that visual, in the venture's voice, each with a different opening and emphasis: two to four short paragraphs separated by blank lines, the site at the end, real facts only (from `venture.md`, the live site, the brand book), no em dashes, no exclamation marks, no hashtags unless asked.
 
 ## Running it
 

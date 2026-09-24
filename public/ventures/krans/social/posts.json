@@ -1,0 +1,146 @@
+[
+  {
+    "angle": "The announcement",
+    "format": "portrait",
+    "layout": "type",
+    "color": "orange",
+    "label": "New name",
+    "title": "VSI is now *Krans.*",
+    "id": "01",
+    "captions": [
+      "VSI has a new name: Krans.\n\nSame product, now with its own home at krans.ai. Krans turns everything your ventures already produce into positions you can check: where each venture stands, and the evidence behind it.\n\nkrans.ai",
+      "New name, same product.\n\nWhat we used to call VSI is now Krans, with its own home at krans.ai. It reads everything your ventures already produce and turns it into positions you can check.\n\nkrans.ai",
+      "Krans is the new name for VSI.\n\nEvidence-based venture intelligence: where each venture stands, and the evidence behind it. Take a look at the new site.\n\nkrans.ai"
+    ]
+  },
+  {
+    "angle": "What it is",
+    "format": "portrait",
+    "layout": "type",
+    "color": "purple",
+    "label": "krans.ai",
+    "title": "Evidence-based venture intelligence.",
+    "id": "02",
+    "captions": [
+      "Krans is evidence-based venture intelligence.\n\nCustomer calls, internal meetings, Slack threads, documents, pipeline numbers: your ventures already produce more than anyone can read. Krans models each venture, and every signal moves it.\n\nkrans.ai",
+      "Your ventures produce more data than anyone can process.\n\nKrans reads it all, the calls, the meetings, the threads, the documents, and keeps a living model of each venture that every new signal updates.\n\nkrans.ai",
+      "Krans in one line: evidence-based venture intelligence.\n\nNothing is filed as notes. The model is what you look at, and it is never out of date.\n\nkrans.ai"
+    ]
+  },
+  {
+    "angle": "The product, in one view",
+    "format": "portrait",
+    "layout": "product",
+    "label": "Portfolio",
+    "title": "Where each venture stands, and what it needs next.",
+    "photo": "/ventures/krans/gallery/product/product-portfolio-window.png",
+    "id": "03",
+    "captions": [
+      "Monday morning, you know which venture needs you, and why.\n\nKrans gives every venture a clear read each morning: how far along it really is, how strong the evidence behind it is, and what is missing before the next gate. Nobody updates anything by hand.\n\nkrans.ai",
+      "The portfolio, in one view.\n\nStage, confidence and signals for every venture, sorted by which one needs you now. Written from the calls, not typed in after them.\n\nkrans.ai",
+      "Which venture needs you this week?\n\nKrans answers it every morning: how far along each venture really is, and how strong the evidence behind it has become.\n\nkrans.ai"
+    ]
+  },
+  {
+    "angle": "The evidence scale",
+    "format": "square",
+    "layout": "stat",
+    "color": "blue",
+    "stat": "E0–E5",
+    "label": "How Krans weighs a claim",
+    "title": "From vague, to they put something at stake.",
+    "id": "04",
+    "captions": [
+      "Not every learning weighs the same.\n\nKrans grades each one on an evidence scale, from E0 (vague) to E5 (they put something at stake), and cites who said it and when. Conviction stops being a feeling and becomes something you can audit.\n\nkrans.ai",
+      "E0 is vague. E5 means they put something at stake.\n\nEvery learning in Krans is graded on that scale and cited to who said it and when, so you can see which bets are backed and which are guesses.\n\nkrans.ai",
+      "A quote is not a signal until you know what it weighs.\n\nKrans grades every learning from E0 to E5 and keeps the source attached, so a claim can always be checked.\n\nkrans.ai"
+    ]
+  },
+  {
+    "angle": "The line",
+    "format": "portrait",
+    "layout": "type",
+    "label": "Krans",
+    "title": "Instinct starts ventures. *Evidence compounds them.*",
+    "id": "05",
+    "captions": [
+      "Instinct starts ventures. Evidence compounds them.\n\nKrans is the new name for the venture intelligence we have been running on every venture. Now at krans.ai.\n\nkrans.ai",
+      "Instinct starts ventures. Evidence compounds them.\n\nThat is the idea Krans is built on. The new name, the new site, and the same system underneath.\n\nkrans.ai",
+      "Start with instinct. Keep going on evidence.\n\nKrans keeps the evidence for every venture in one place, weighted and current.\n\nkrans.ai"
+    ]
+  },
+  {
+    "angle": "How it reads",
+    "format": "portrait",
+    "layout": "product",
+    "color": "purple",
+    "label": "Influx",
+    "title": "Everything your ventures already produce.",
+    "photo": "/ventures/krans/gallery/product/product-influx-window.png",
+    "id": "06",
+    "captions": [
+      "Krans reads what your ventures already produce: calls from Google Meet, Teams, Granola or Read.ai, and documents from Notion and Google Drive.\n\nEach input becomes its smallest defensible unit, a passage in someone's own words, pinned to who said it and when. Nobody writes a summary.\n\nkrans.ai",
+      "Calls, meetings, threads, documents.\n\nKrans connects to Google Meet, Teams, Granola, Read.ai, Notion and Google Drive, and turns each input into a cited passage placed on the model. Nobody writes a summary.\n\nkrans.ai",
+      "Everything your ventures already produce, read for you.\n\nEach passage is pinned to who said it and when, weighted for how much it can carry. Anything that cannot be placed is counted and shown.\n\nkrans.ai"
+    ]
+  },
+  {
+    "angle": "Evidence ages",
+    "format": "square",
+    "layout": "stat",
+    "color": "orange",
+    "stat": "60",
+    "label": "Days",
+    "title": "A claim nobody repeats loses its weight.",
+    "id": "07",
+    "captions": [
+      "Evidence ages.\n\nIn Krans, a claim nobody has repeated for sixty days loses weight, along with the positions built on it. Confidence fades wherever nothing new confirms it, so the model is never out of date.\n\nkrans.ai",
+      "Sixty days.\n\nThat is how long a claim holds its weight in Krans before it starts to fade, unless something new confirms it. Old conviction does not get to pass as current.\n\nkrans.ai",
+      "Evidence has a shelf life.\n\nIn Krans, a claim nobody repeats for sixty days loses weight, and so do the positions built on it.\n\nkrans.ai"
+    ]
+  },
+  {
+    "angle": "Every night",
+    "format": "portrait",
+    "layout": "product",
+    "label": "Tonight's run",
+    "title": "Nobody updates anything by hand.",
+    "photo": "/ventures/krans/gallery/product/product-tonights-run-window.png",
+    "id": "08",
+    "captions": [
+      "While you sleep, Krans reads the day.\n\nEvery call, thread and document lands against the part of the model it touches, and each morning you get a clear read of every venture, every relationship and every call.\n\nkrans.ai",
+      "Tonight's run.\n\nEvery call and thread from the day lands against the part of the model it touches. By morning, every venture has a fresh read and every relationship its next move.\n\nkrans.ai",
+      "Nobody updates anything by hand.\n\nKrans does the reading overnight, so the morning starts with where things stand.\n\nkrans.ai"
+    ]
+  },
+  {
+    "angle": "Signals",
+    "format": "landscape",
+    "layout": "type",
+    "color": "blue",
+    "label": "Signals",
+    "title": "One buyer saying it is noise. *Five buyers saying it is a signal.*",
+    "id": "09",
+    "captions": [
+      "One buyer saying it is noise. Five buyers saying it is a signal.\n\nIn Krans, a signal hardens when the same thing keeps coming up across a venture's calls and threads, and fades again when nobody repeats it.\n\nkrans.ai",
+      "Noise or signal?\n\nOne buyer saying it is noise. Five buyers saying it is a signal. Krans tracks the difference across every call and thread.\n\nkrans.ai",
+      "A signal hardens when it keeps coming up, and fades when it stops.\n\nThat is how Krans separates what one person said from what the market is telling you.\n\nkrans.ai"
+    ]
+  },
+  {
+    "angle": "Where it comes from",
+    "format": "portrait",
+    "layout": "photo",
+    "dark": true,
+    "shade": true,
+    "label": "Built inside Builders",
+    "title": "A decade of ventures, *now a product.*",
+    "photo": "/ventures/krans/gallery/team/team-michael-van-lier-sharon-klaver-walking.webp",
+    "id": "10",
+    "captions": [
+      "Krans is built on learnings from a decade of ventures built inside Builders.\n\nIt started as the system we used to see where every venture really stands. Today it has a new name and its own home, for venture studios, corporate venture builders and funds that run more ventures than anyone can sit in calls for.\n\nkrans.ai",
+      "Built inside Builders.\n\nKrans comes out of a decade of ventures built inside the studio, and it is now available to studios, corporate venture builders and funds.\n\nkrans.ai",
+      "From the studio's own system to a product with its own name.\n\nKrans is built on learnings from a decade of ventures built inside Builders.\n\nkrans.ai"
+    ]
+  }
+]
