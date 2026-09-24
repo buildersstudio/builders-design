@@ -1,0 +1,9 @@
+{
+  "title": "Derivation",
+  "created": "2026-09-24",
+  "note": "A real-time 3D story on graphite, scrubbed by scroll: a machined flanged hub in cast steel dissolves into its feature edges, flattens into orthographic views and becomes a dimensioned sheet, with one dimension flagged in signal amber.",
+  "credits": [
+    { "file": "../_assets/drawgen-demo.mp4", "source": "drawgen", "author": "drawgen, product film recorded in SOLIDWORKS", "url": "https://drawgen.co" },
+    { "file": "index.html (flanged hub, bearing collar, shaft)", "source": "Procedural three.js geometry", "author": "Modelled in code for this variant with three.js 0.169 (MIT)", "url": "https://threejs.org" }
+  ]
+}

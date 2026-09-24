@@ -1,0 +1,11 @@
+{
+  "title": "Night Shift",
+  "created": "2026-09-24",
+  "note": "Builders after dark: a near-black ground, the Builders gradient recoloured into a low blue and violet glow that breathes along the bottom, a Day Zero wordmark in Favorit Expanded caps led by the spark, and the shape of the night (doors open, teams form, build, demos) as the timeline that structures the page.",
+  "credits": [
+    { "file": "assets/night-glow.jpg", "source": "Builders gallery", "author": "Builders; gradient-builders-full.jpg recoloured toward deep blue and violet", "url": "/ventures/builders/gallery/backgrounds/gradient-builders-full.jpg" },
+    { "file": "assets/room-phone-booth-night.jpg", "source": "Builders gallery", "author": "Builders; founder-working-in-phone-booth.jpg with a night grade", "url": "/ventures/builders/gallery/photos/founder-working-in-phone-booth.jpg" },
+    { "file": "assets/room-laptops-night.jpg", "source": "Builders gallery", "author": "Builders; bootcamp-founders-at-laptops.jpg with a night grade", "url": "/ventures/builders/gallery/photos/bootcamp-founders-at-laptops.jpg" },
+    { "file": "assets/room-kitchen-counter-night.jpg", "source": "Builders gallery", "author": "Builders; founders-building-at-kitchen-counter.jpg with a night grade", "url": "/ventures/builders/gallery/photos/founders-building-at-kitchen-counter.jpg" }
+  ]
+}

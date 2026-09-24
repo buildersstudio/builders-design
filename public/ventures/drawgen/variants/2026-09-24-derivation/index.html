@@ -1,0 +1,1254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>drawgen · Derivation</title>
+<meta name="description" content="drawgen is a SOLIDWORKS add-in that turns a 3D assembly into a dimensioned manufacturing drawing for every part, as a PDF and a DXF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+<style>
+:root{
+  --g0:#111214;
+  --g1:#16181B;
+  --g2:#1B1E21;
+  --g3:#23262A;
+  --line:rgba(236,238,240,.08);
+  --line-2:rgba(236,238,240,.15);
+  --ink:#ECEDEE;
+  --ink-2:#A2A7AE;
+  --ink-3:#6C727A;
+  --amber:#F2A93B;
+  --gut:56px;
+  --max:1328px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--g1);-webkit-text-size-adjust:100%}
+body{background:var(--g1);color:var(--ink);font-family:"Inter Tight",system-ui,sans-serif;font-size:17px;line-height:1.55;font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+img,video,svg,canvas{display:block}
+.wrap{max-width:calc(var(--max) + var(--gut)*2);margin:0 auto;padding:0 var(--gut)}
+.num{font-variant-numeric:tabular-nums}
+.label{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.disp{font-weight:500;letter-spacing:-.035em;line-height:1.02}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:12px;height:46px;padding:0 20px;border-radius:3px;font-size:15px;font-weight:500;letter-spacing:-.005em;white-space:nowrap;transition:background .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease)}
+.btn svg{width:12px;height:12px;transition:transform .3s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn-w{background:var(--ink);color:var(--g0)}
+.btn-w:hover{background:#fff}
+.btn-g{border:1px solid var(--line-2);color:var(--ink);cursor:default}
+.soon{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;border-bottom:1px solid transparent;transition:background .35s var(--ease),border-color .35s var(--ease)}
+.nav.solid{background:rgba(22,24,27,.82);-webkit-backdrop-filter:saturate(1.1) blur(14px);backdrop-filter:saturate(1.1) blur(14px);border-bottom-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;height:68px;gap:40px}
+.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600;letter-spacing:-.035em;color:var(--ink)}
+.brand svg{width:21px;height:21px}
+.nav nav{display:flex;gap:30px;font-size:14px;color:var(--ink-2);margin-left:16px}
+.nav nav a{transition:color .2s}
+.nav nav a:hover{color:var(--ink)}
+.nav .right{margin-left:auto;display:flex;align-items:center;gap:22px;font-size:14px}
+.nav .right .muted{color:var(--ink-3)}
+.nav .btn{height:36px;padding:0 15px;font-size:14px}
+
+/* story */
+.story{position:relative;height:900vh;background:var(--g1)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:
+  radial-gradient(70% 60% at 62% 48%,#1E2125 0%,#17191C 55%,#121315 100%)}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%}
+#sheet{position:absolute;left:0;top:0;overflow:visible;pointer-events:none;opacity:0}
+#hud{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 60% 50%,rgba(17,18,20,0) 55%,rgba(17,18,20,.55) 100%)}
+.col{position:absolute;left:var(--gut);top:0;bottom:0;width:min(380px,30vw);display:flex;flex-direction:column;justify-content:center;pointer-events:none}
+.col > *{pointer-events:auto}
+.hero-copy{position:absolute;left:0;right:0;top:50%;transform:translateY(-54%)}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--ink);display:block}
+.hero-copy h1{font-size:clamp(40px,4.3vw,62px);max-width:9em;width:max-content;max-width:min(9.2em,44vw)}
+.hero-copy .sub{font-size:20px;font-weight:500;letter-spacing:-.015em;margin-top:26px;color:var(--ink)}
+.hero-copy p.body{font-size:16.5px;line-height:1.55;color:var(--ink-2);margin-top:12px;max-width:26em}
+.ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
+.cap{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);opacity:0}
+.cap .row{display:flex;align-items:center;gap:14px}
+.cap .row .n{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.cap .row .n::after{content:"";display:inline-block;width:28px;height:1px;background:var(--line-2);margin-left:14px;vertical-align:4px}
+.cap h2{font-size:clamp(28px,2.55vw,38px);font-weight:500;letter-spacing:-.03em;line-height:1.1;margin-top:22px;text-wrap:balance}
+.cap p{font-size:16px;color:var(--ink-2);margin-top:16px;max-width:24em;line-height:1.55}
+.cap.flag .row .n{color:var(--amber)}
+.cap.flag h2{color:var(--amber)}
+.swap{transition:opacity .35s var(--ease),transform .5s var(--ease)}
+.swap.out{opacity:0;transform:translateY(8px)}
+.endline{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);opacity:0}
+.endline h2{font-size:clamp(34px,3.2vw,48px);font-weight:500;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
+.endline p{font-size:16px;color:var(--ink-2);margin-top:18px;max-width:24em}
+.files{display:flex;gap:8px;margin-top:26px;flex-wrap:wrap}
+.files span{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px;border:1px solid var(--line-2);border-radius:3px;font-size:13px;color:var(--ink)}
+.files span b{font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--ink-3)}
+.rail{position:absolute;left:var(--gut);right:var(--gut);bottom:26px;display:flex;align-items:center;gap:28px}
+.rail ol{list-style:none;display:flex;gap:26px}
+.rail li{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);transition:color .35s;display:flex;gap:8px;align-items:center}
+.rail li span{font-variant-numeric:tabular-nums}
+.rail li em{font-style:normal}
+.rail li.on{color:var(--ink)}
+.rail li.on.fl{color:var(--amber)}
+.rail .bar{flex:1;height:1px;background:var(--line-2);position:relative;min-width:40px}
+.rail .bar i{position:absolute;left:0;top:0;height:1px;background:var(--ink);width:0}
+.rail .hint{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.skip{position:absolute;right:var(--gut);top:88px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);transition:color .2s}
+.skip:hover{color:var(--ink)}
+.illus{position:absolute;right:var(--gut);bottom:26px;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);opacity:.8;display:none}
+
+/* sheet svg text */
+#sheet text{font-family:"Inter Tight",system-ui,sans-serif;font-variant-numeric:tabular-nums;fill:#D9DCE0}
+#sheet .lbl{fill:#7E848C;letter-spacing:.32px;font-weight:500}
+#sheet .val{font-weight:500}
+#sheet .ttl{font-weight:600;fill:#ECEDEE}
+#sheet .flag text{fill:var(--amber)}
+
+/* sections */
+.sec{padding:152px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:64px}
+.h2{font-size:clamp(34px,4vw,58px)}
+.h2 span{color:var(--ink-3)}
+.lede{font-size:19px;line-height:1.55;color:var(--ink-2);max-width:32em}
+
+.film{padding:140px 0 0}
+.film-top{display:grid;grid-template-columns:7fr 5fr;gap:48px;align-items:end;margin-bottom:56px}
+.film-top .lede{justify-self:end;font-size:18px}
+.screen{position:relative;border-radius:10px;padding:8px;background:linear-gradient(180deg,#202327,#16181B);box-shadow:0 0 0 1px rgba(255,255,255,.07) inset,0 1px 0 rgba(255,255,255,.08) inset,0 50px 120px -50px rgba(0,0,0,.8)}
+.screen video{width:100%;aspect-ratio:1280/719;object-fit:cover;border-radius:4px;background:#0E0F11}
+.film-cap{display:flex;justify-content:space-between;align-items:center;padding:18px 2px 0;font-size:14px;color:var(--ink-3);gap:16px}
+.film-cap b{color:var(--ink);font-weight:500}
+.film-cap .l{display:flex;gap:28px;flex-wrap:wrap}
+.play{appearance:none;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);height:32px;padding:0 13px;border-radius:3px;font:inherit;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:9px;cursor:pointer}
+.play:hover{color:var(--ink)}
+.play svg{width:10px;height:10px}
+
+.steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);column-gap:40px}
+.step{border-top:1px solid var(--line-2);padding:28px 0 56px}
+.step .n{display:block;font-size:13px;font-weight:500;letter-spacing:.14em;color:var(--ink-3);margin-bottom:28px}
+.step h3{font-size:28px;font-weight:500;letter-spacing:-.025em;line-height:1.15;margin-bottom:12px}
+.step p{color:var(--ink-2);max-width:22em;font-size:16px}
+.step.fl .n{color:var(--amber)}
+.pipe-top{display:grid;grid-template-columns:7fr 5fr;gap:48px;align-items:end;margin-bottom:72px}
+.pipe-top .lede{justify-self:end;font-size:18px}
+
+.trust{display:grid;grid-template-columns:5fr 7fr;gap:96px;align-items:start}
+.trust .h2{margin-bottom:28px}
+.trust p.lede{font-size:18px}
+.rows{border-top:1px solid var(--line-2)}
+.rows div{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:baseline;padding:24px 0;border-bottom:1px solid var(--line)}
+.rows dt{font-size:21px;font-weight:500;letter-spacing:-.018em;line-height:1.3}
+.rows dd{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.rows .fl dd{color:var(--amber)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:96px;border-top:1px solid var(--line)}
+.pair div{padding-top:28px}
+.pair .label{display:block;margin-bottom:14px}
+.pair h3{font-size:24px;font-weight:500;letter-spacing:-.02em;line-height:1.25;margin-bottom:10px}
+.pair p{color:var(--ink-2);max-width:30em;font-size:16px}
+.quote{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);font-size:18px;color:var(--ink-2);max-width:40em}
+
+.tree{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr 1fr;border-top:1px solid var(--line-2)}
+.tree div{padding:28px 24px 8px 0;position:relative}
+.tree div+div{padding-left:24px;border-left:1px solid var(--line)}
+.tree .label{display:block;margin-bottom:16px}
+.tree h3{font-size:22px;font-weight:500;letter-spacing:-.02em;line-height:1.2;margin-bottom:8px}
+.tree p{font-size:15px;color:var(--ink-2)}
+.tree .live .label{color:var(--ink)}
+.tree .live .label::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ink);margin-right:9px;vertical-align:1px}
+.road-top{display:grid;grid-template-columns:6fr 6fr;gap:80px;align-items:end;margin-bottom:64px}
+.road-top .lede{justify-self:end}
+
+.close{padding:176px 0 152px;border-top:1px solid var(--line)}
+.close h2{font-size:clamp(44px,6vw,92px);max-width:10em}
+.close p{font-size:19px;color:var(--ink-2);max-width:30em;margin:30px 0 40px}
+
+footer{border-top:1px solid var(--line);color:var(--ink-3);font-size:14px;background:var(--g0)}
+footer .wrap{display:grid;grid-template-columns:5fr 7fr;gap:48px;padding-top:72px;padding-bottom:40px}
+footer .brand{margin-bottom:18px}
+footer .tag{max-width:26em;line-height:1.5;color:var(--ink-2)}
+footer .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+footer .cols .label{display:block;margin-bottom:14px}
+footer .cols a{display:block;color:var(--ink-2);padding:4px 0}
+footer .cols a:hover{color:var(--ink)}
+footer .base{grid-column:1/-1;display:flex;justify-content:space-between;gap:24px;border-top:1px solid var(--line);padding-top:24px;margin-top:40px;font-size:13px}
+
+.rv{opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* reduced motion and no WebGL: a single static screen with the finished sheet */
+.static .story{height:auto}
+.static .stage{position:relative;height:100vh;height:100svh;min-height:720px}
+.static .rail,.static .skip{display:none}
+.static .illus{display:block}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.swap{transition:none}}
+
+@media (max-width:1100px){
+  :root{--gut:36px}
+  .nav nav{display:none}
+  .film-top,.pipe-top,.road-top,.trust{grid-template-columns:1fr;gap:40px}
+  .film-top .lede,.pipe-top .lede,.road-top .lede{justify-self:start}
+  .steps{grid-template-columns:1fr 1fr}
+  .tree{grid-template-columns:1fr 1fr}
+  .tree div:nth-child(odd){padding-left:0;border-left:0}
+  .tree div:nth-child(even){padding-left:24px;border-left:1px solid var(--line)}
+  .tree div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:760px){
+  :root{--gut:20px}
+  body{font-size:16px}
+  .nav .wrap{height:60px}
+  .nav .right .muted{display:none}
+  .story{height:720vh}
+  .col{left:var(--gut);right:var(--gut);width:auto;top:76px;bottom:auto;display:block}
+  .hero-copy,.cap,.endline{top:0;transform:none}
+  .hero-copy h1{font-size:40px;max-width:none;width:auto;letter-spacing:-.035em}
+  .hero-copy .sub{font-size:18px;margin-top:18px}
+  .hero-copy p.body{font-size:15px;margin-top:8px}
+  .ctas{margin-top:22px}
+  .ctas .btn{height:42px;padding:0 16px;font-size:14px}
+  .eyebrow{margin-bottom:18px}
+  .cap h2{font-size:25px;margin-top:14px}
+  .cap p{font-size:14.5px;margin-top:8px}
+  .endline h2{font-size:30px}
+  .endline p{font-size:14.5px;margin-top:10px}
+  .files{margin-top:14px}
+  .rail{bottom:18px;gap:14px}
+  .rail ol{gap:0;flex:1;justify-content:space-between}
+  .rail li{font-size:10.5px;letter-spacing:.1em}
+  .rail li em{display:none}
+  .rail .bar,.rail .hint{display:none}
+  .skip{display:none}
+  .illus{right:auto;left:var(--gut);bottom:18px}
+  .sec{padding:104px 0}
+  .film{padding-top:96px}
+  .screen{padding:4px;border-radius:6px}
+  .film-cap{flex-wrap:wrap}
+  .steps{grid-template-columns:1fr}
+  .step{padding:24px 0 36px}
+  .step .n{margin-bottom:16px}
+  .step h3{font-size:24px}
+  .rows dt{font-size:18px}
+  .rows div{grid-template-columns:1fr;gap:6px}
+  .pair{grid-template-columns:1fr;gap:0;margin-top:64px}
+  .pair div+div{margin-top:28px;border-top:1px solid var(--line)}
+  .tree{grid-template-columns:1fr}
+  .tree div,.tree div:nth-child(even){padding:22px 0 18px;border-left:0}
+  .tree div+div{border-top:1px solid var(--line)}
+  .close{padding:120px 0 104px}
+  .close h2{font-size:46px}
+  footer .wrap{grid-template-columns:1fr}
+  footer .cols{grid-template-columns:1fr 1fr}
+  footer .base{flex-direction:column}
+  .static .stage{height:calc(500px + (100vw - 24px) * 1.46);min-height:0}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <mask id="mkcut" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="m24 28 34-14v32L24 60Z" fill="#000" stroke="#000" stroke-width="8.5"/></mask>
+    <symbol id="arrow" viewBox="0 0 12 12"><path d="M1 6h9.2M6.6 2.2 10.4 6l-3.8 3.8" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="drawgen"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 18 39 4v38L6 56Z" fill="currentColor" mask="url(#mkcut)"/><path d="m24 28 34-14v32L24 60Z" fill="none" stroke="currentColor" stroke-width="3.25"/></svg><span>drawgen</span></a>
+    <nav aria-label="Primary">
+      <a href="#film">Product</a>
+      <a href="#pipeline">How it works</a>
+      <a href="#principles">Principles</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+    <div class="right">
+      <span class="muted">For SOLIDWORKS</span>
+      <a class="btn btn-w" href="#talk">Talk to us</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="story" id="story" aria-label="From a 3D part to a dimensioned drawing">
+  <div class="stage" id="stage">
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+    <svg id="sheet" aria-label="Illustrative drawing sheet of a flanged end hub, with front view, half section, dimensions and title block"></svg>
+    <svg id="hud" aria-hidden="true"></svg>
+
+    <div class="col">
+      <div class="hero-copy" id="heroCopy">
+        <div class="eyebrow"><i></i><span class="label">Derived from the solid</span></div>
+        <h1 class="disp">From 3D model to dimensioned manufacturing drawing.</h1>
+        <p class="sub">One click, inside SOLIDWORKS.</p>
+        <p class="body">Every dimension measured off the solid. Nothing estimated, nothing invented. Anything unclear is flagged for you rather than filled in.</p>
+        <div class="ctas">
+          <a class="btn btn-w" href="#talk">Talk to us <svg><use href="#arrow"/></svg></a>
+          <span class="btn btn-g" aria-disabled="true">Try it on your own part <span class="soon">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="cap" id="cap" aria-live="polite">
+        <div class="swap" id="capIn">
+          <div class="row"><span class="n num" id="capN">01 Resolve</span></div>
+          <h2 id="capT">One assembly. Every part.</h2>
+          <p id="capP">drawgen reads the open assembly and resolves every unique part inside it.</p>
+        </div>
+      </div>
+
+      <div class="endline" id="endline">
+        <span class="label">The finished sheet</span>
+        <h2 style="margin-top:20px">PDF and DXF for every part.</h2>
+        <p>Then the same process again, for every other part in the assembly.</p>
+        <div class="files"><span><b>PDF</b>Part A</span><span><b>DXF</b>Part A</span></div>
+      </div>
+    </div>
+
+    <a class="skip" href="#film">Skip to the film</a>
+    <div class="rail" id="rail" aria-hidden="true">
+      <ol>
+        <li><span>01</span><em>Resolve</em></li>
+        <li><span>02</span><em>Classify</em></li>
+        <li><span>03</span><em>Project</em></li>
+        <li><span>04</span><em>Dimension</em></li>
+        <li><span>05</span><em>Annotate</em></li>
+        <li class="fl"><span>06</span><em>Gate</em></li>
+      </ol>
+      <div class="bar"><i id="bar"></i></div>
+      <span class="hint" id="hint">Scroll to derive the drawing</span>
+    </div>
+    <span class="illus">Illustrative sheet</span>
+  </div>
+</section>
+
+<section class="film" id="film">
+  <div class="wrap">
+    <div class="film-top">
+      <div class="rv">
+        <span class="label">Watch it run</span>
+        <h2 class="h2 disp" style="margin-top:20px">One assembly in.<br><span>A drawing for every part out.</span></h2>
+      </div>
+      <p class="lede rv">The add-in is installed, an assembly is opened, and one button produces a separate dimensioned drawing for every part in it, as a PDF and a DXF.</p>
+    </div>
+    <div class="screen rv">
+      <video id="vid" muted loop playsinline preload="metadata" poster="../_assets/drawgen-demo-poster.webp" aria-label="drawgen running inside SOLIDWORKS, producing a dimensioned drawing for each part">
+        <source src="../_assets/drawgen-demo.webm" type="video/webm">
+        <source src="../_assets/drawgen-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="film-cap">
+      <div class="l"><span><b>drawgen</b> running inside SOLIDWORKS</span><span class="num">Film, 0:45</span></div>
+      <button class="play" id="play" type="button" aria-pressed="true"><svg viewBox="0 0 10 10" id="pi"><path d="M2 1l7 4-7 4z" fill="currentColor"/></svg><span id="pl">Play</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="pipeline">
+  <div class="wrap">
+    <div class="pipe-top">
+      <div class="rv">
+        <span class="label">How it works</span>
+        <h2 class="h2 disp" style="margin-top:20px">Six steps between the finished model and the finished sheet.</h2>
+      </div>
+      <p class="lede rv">The assembly goes in once. Each unique part comes out as its own dimensioned drawing, and the last step checks the result before anything is written.</p>
+    </div>
+    <ol class="steps">
+      <li class="step rv"><span class="n num">01</span><h3>Resolve</h3><p>Read the open assembly and resolve every unique part inside it.</p></li>
+      <li class="step rv"><span class="n num">02</span><h3>Classify</h3><p>Work out what kind of part each one is, so it is drawn the way that kind of part should be.</p></li>
+      <li class="step rv"><span class="n num">03</span><h3>Project</h3><p>Project the views from the solid and place them on the sheet.</p></li>
+      <li class="step rv"><span class="n num">04</span><h3>Dimension</h3><p>Measure every dimension off the solid model. Nothing is estimated or typed in by hand.</p></li>
+      <li class="step rv"><span class="n num">05</span><h3>Annotate</h3><p>Complete the sheet with its notes and title block.</p></li>
+      <li class="step fl rv"><span class="n num">06</span><h3>Gate</h3><p>Check the sheet before it is released. Anything unclear is flagged for you rather than filled in.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="principles" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="trust">
+      <div class="rv">
+        <span class="label">How it avoids wrong numbers</span>
+        <h2 class="h2 disp" style="margin-top:20px">Measured, <span>not estimated.</span></h2>
+        <p class="lede">Other tools aim to be right most of the time. drawgen is built never to be wrong, even if a drawing is sometimes incomplete.</p>
+      </div>
+      <dl class="rows rv">
+        <div><dt>Every value measured from the solid model</dt><dd>Derived</dd></div>
+        <div><dt>Nothing estimated, nothing typed in by hand</dt><dd>No inference</dd></div>
+        <div class="fl"><dt>Anything unclear is flagged, never filled in</dt><dd>Fails closed</dd></div>
+        <div><dt>Same model, same sheet, every run</dt><dd>Reproducible</dd></div>
+      </dl>
+    </div>
+    <div class="pair">
+      <div class="rv">
+        <span class="label">In-process</span>
+        <h3>Your geometry never leaves the machine.</h3>
+        <p>drawgen runs in-process inside SOLIDWORKS. The model is read where it already lives, and the PDF and DXF are written on the engineer's own machine.</p>
+      </div>
+      <div class="rv">
+        <span class="label">Deterministic</span>
+        <h3>The same model gives the same sheet on every run.</h3>
+        <p>Run it again on an unchanged assembly and the drawings come back identical, so a sheet can be checked once and relied on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="roadmap" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="road-top">
+      <div class="rv">
+        <span class="label">In development</span>
+        <h2 class="h2 disp" style="margin-top:20px">Drawings get us in the door.</h2>
+      </div>
+      <p class="lede rv">Everything downstream of the drawing derives from the same assembly. Parts lists, cut lists with material, and quotations are in development.</p>
+    </div>
+    <div class="tree rv">
+      <div><span class="label">Input</span><h3>Assembly file</h3><p>The SOLIDWORKS assembly, read once.</p></div>
+      <div class="live"><span class="label">Shipping today</span><h3>2D drawings</h3><p>Every part in the assembly, dimensioned.</p></div>
+      <div><span class="label">In development</span><h3>Parts lists</h3><p>From the same assembly walk.</p></div>
+      <div><span class="label">In development</span><h3>Cut lists, with material</h3><p>From the same solid model.</p></div>
+      <div><span class="label">In development</span><h3>Quotations</h3><p>From the same assembly.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="talk">
+  <div class="wrap">
+    <span class="label rv">Early access</span>
+    <h2 class="disp rv" style="margin-top:24px">Finish the model.<br>Get the drawings.</h2>
+    <p class="rv">If you design in SOLIDWORKS and still redraw every part by hand once the 3D model is finished, we would like to hear from you.</p>
+    <div class="ctas rv">
+      <a class="btn btn-w" href="https://drawgen.co">Talk to us <svg><use href="#arrow"/></svg></a>
+      <span class="btn btn-g" aria-disabled="true">Try it on your own part <span class="soon">Soon</span></span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top" aria-label="drawgen"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 18 39 4v38L6 56Z" fill="currentColor" mask="url(#mkcut)"/><path d="m24 28 34-14v32L24 60Z" fill="none" stroke="currentColor" stroke-width="3.25"/></svg><span>drawgen</span></a>
+      <p class="tag">From 3D model to dimensioned manufacturing drawing, in one click inside SOLIDWORKS.</p>
+    </div>
+    <div class="cols">
+      <div><span class="label">Product</span><a href="#film">Film</a><a href="#pipeline">How it works</a><a href="#principles">Principles</a></div>
+      <div><span class="label">Next</span><a href="#roadmap">Roadmap</a><a href="#principles">Security</a></div>
+      <div><span class="label">Company</span><a href="https://drawgen.co">Talk to us</a><a href="https://drawgen.co">drawgen.co</a></div>
+    </div>
+    <div class="base"><span>© 2026 drawgen</span><span>SOLIDWORKS is a trademark of Dassault Systèmes.</span></div>
+  </div>
+</footer>
+
+<script>
+/* page chrome: nav, reveals, film */
+(function(){
+  var nav=document.getElementById('nav'),story=document.getElementById('story');
+  function onS(){nav.classList.toggle('solid',window.scrollY>story.offsetTop+story.offsetHeight-80)}
+  onS();addEventListener('scroll',onS,{passive:true});addEventListener('resize',onS);
+  var rv=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    rv.forEach(function(el){io.observe(el)});
+  } else rv.forEach(function(el){el.classList.add('in')});
+  var v=document.getElementById('vid'),b=document.getElementById('play'),pl=document.getElementById('pl'),pi=document.getElementById('pi');
+  var pauseIcon='<rect x="1.5" y="1" width="2.2" height="8" fill="currentColor"/><rect x="6.3" y="1" width="2.2" height="8" fill="currentColor"/>',playIcon=pi.innerHTML;
+  function ui(){var p=v.paused;pl.textContent=p?'Play':'Pause';pi.innerHTML=p?playIcon:pauseIcon;b.setAttribute('aria-pressed',p?'true':'false')}
+  b.addEventListener('click',function(){if(v.paused)v.play();else v.pause()});
+  v.addEventListener('play',ui);v.addEventListener('pause',ui);
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){v.preload='auto';v.play().catch(function(){})}else v.pause()})},{threshold:.35}).observe(v);
+  }
+})();
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { LineSegments2 } from 'three/addons/lines/LineSegments2.js';
+import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js';
+import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
+import { mergeGeometries, toCreasedNormals } from 'three/addons/utils/BufferGeometryUtils.js';
+
+const $ = (id) => document.getElementById(id);
+const stage = $('stage'), story = $('story'), canvas = $('gl'), sheetSvg = $('sheet'), hud = $('hud');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ss = (a, b, x) => { x = clamp((x - a) / (b - a)); return x * x * (3 - 2 * x); };
+const lerp = (a, b, k) => a + (b - a) * k;
+const bump = (a, b, c, d, x) => ss(a, b, x) * (1 - ss(c, d, x));
+const isMobile = () => innerWidth < 760;
+let mobile = isMobile();
+
+const COL_LINE = new THREE.Color('#E4E7EA');
+const COL_GLOW = new THREE.Color('#BFD2EA');
+
+/* ---------------------------------------------------------------- renderer */
+let renderer = null;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+} catch (e) { renderer = null; }
+if (!renderer || reduce) document.documentElement.classList.add('static');
+const DPR = () => Math.min(window.devicePixelRatio || 1, mobile ? 1.75 : 2);
+
+const scene = new THREE.Scene();
+const cam = new THREE.PerspectiveCamera(28, 1, 1, 5000);
+if (renderer) {
+  renderer.setPixelRatio(DPR());
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.localClippingEnabled = true;
+  renderer.setClearColor(0x000000, 0);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.035).texture;
+  scene.environmentIntensity = 0.7;
+}
+const key = new THREE.DirectionalLight(0xffffff, 3.2); key.position.set(-260, 420, 320); scene.add(key);
+const rim = new THREE.DirectionalLight(0xcfdcff, 1.6); rim.position.set(380, 120, -300); scene.add(rim);
+
+/* ---------------------------------------------------------------- geometry helpers */
+const SEG = mobile ? 112 : 176;
+function arc(cr, cz, rad, a0, a1, n) {
+  const out = [];
+  for (let i = 0; i <= n; i++) { const a = lerp(a0, a1, i / n); out.push([cr + Math.cos(a) * rad, cz + Math.sin(a) * rad]); }
+  return out;
+}
+// revolve a closed (r, z) profile about local Z. Split at corners so every face keeps its own normals.
+function revolve(profile) {
+  const runs = []; let cur = [profile[0]];
+  for (let i = 1; i < profile.length; i++) {
+    cur.push(profile[i]);
+    if (i < profile.length - 1) {
+      const a = profile[i - 1], b = profile[i], c = profile[i + 1];
+      const d1 = new THREE.Vector2(b[0] - a[0], b[1] - a[1]).normalize();
+      const d2 = new THREE.Vector2(c[0] - b[0], c[1] - b[1]).normalize();
+      if (Math.acos(clamp(d1.dot(d2), -1, 1)) > 0.3) { runs.push(cur); cur = [profile[i]]; }
+    }
+  }
+  runs.push(cur);
+  const geos = runs.map((run) => {
+    const g = new THREE.LatheGeometry(run.map((p) => new THREE.Vector2(p[0], p[1])), SEG);
+    g.rotateX(Math.PI / 2);
+    return g.toNonIndexed();
+  });
+  return mergeGeometries(geos);
+}
+function circlePath(path, x, y, r, cw) { path.absarc(x, y, r, 0, Math.PI * 2, cw); return path; }
+// flat plate with holes, extruded along Z with a 45 degree chamfer on every edge
+function plate(outer, holes, thick, ch) {
+  const shape = outer;
+  holes.forEach((h) => shape.holes.push(h));
+  const g = new THREE.ExtrudeGeometry(shape, { depth: thick - 2 * ch, bevelEnabled: true, bevelThickness: ch, bevelSize: ch, bevelOffset: 0, bevelSegments: 1, curveSegments: SEG / 2 });
+  g.translate(0, 0, ch);
+  return toCreasedNormals(g, THREE.MathUtils.degToRad(30));
+}
+// crisp feature edges, minus the internal seams where two primitives meet
+function featureEdges(geos, drop) {
+  const out = [];
+  geos.forEach((g) => {
+    const a = new THREE.EdgesGeometry(g, 25).attributes.position.array;
+    for (let i = 0; i < a.length; i += 6) {
+      if (drop && drop(a[i], a[i + 1], a[i + 2]) && drop(a[i + 3], a[i + 4], a[i + 5])) continue;
+      for (let k = 0; k < 6; k++) out.push(a[i + k]);
+    }
+  });
+  return new Float32Array(out);
+}
+// silhouette generators for surfaces of revolution: [cx, cy, r0, z0, r1, z1]
+function gensFromProfile(profile, cx = 0, cy = 0, skip) {
+  const g = [];
+  for (let i = 0; i < profile.length - 1; i++) {
+    const [r0, z0] = profile[i], [r1, z1] = profile[i + 1];
+    if (Math.abs(z1 - z0) < 0.05) continue;
+    if (r0 < 0.01 && r1 < 0.01) continue;
+    if (skip && skip(r0, z0, r1, z1)) continue;
+    g.push([cx, cy, r0, z0, r1, z1]);
+  }
+  return g;
+}
+
+/* ---------------------------------------------------------------- the parts (mm) */
+// Part A: flanged end hub. Flange Ø80 × 12 with 6 × Ø6.6 on PCD Ø58, hub Ø40 to 40 long, bore Ø22, R1.5 fillet.
+const HUB = { R: 40, T: 12, hubR: 20, L: 40, bore: 11, pcd: 29, hole: 3.3, ch: 0.6 };
+const hubProfile = [
+  [11.8, 0], [21.5, 0], [21.5, 12],
+  ...arc(21.5, 13.5, 1.5, -Math.PI / 2, -Math.PI, 6).slice(1),
+  [20, 39], [19, 40], [11.8, 40], [11, 39.2], [11, 0.8], [11.8, 0]
+];
+const hubHoleAngles = [30, 90, 150, 210, 270, 330].map((d) => THREE.MathUtils.degToRad(d));
+function buildHub() {
+  const lathe = revolve(hubProfile);
+  const ch = HUB.ch;
+  const outer = circlePath(new THREE.Shape(), 0, 0, HUB.R - ch, false);
+  const holes = [circlePath(new THREE.Path(), 0, 0, 21.5, true)];
+  hubHoleAngles.forEach((a) => holes.push(circlePath(new THREE.Path(), Math.cos(a) * HUB.pcd, Math.sin(a) * HUB.pcd, HUB.hole + ch, true)));
+  const flange = plate(outer, holes, HUB.T, ch);
+  const seam = (x, y, z) => { const r = Math.hypot(x, y); return r > 20.3 && r < 21.7 && z < 12.05; };
+  const edges = featureEdges([lathe, flange], seam);
+  const gens = gensFromProfile(hubProfile, 0, 0, (r0, z0, r1, z1) => r0 > 21.4 && r1 > 21.4);
+  gens.push([0, 0, 39.4, 0, 40, 0.6], [0, 0, 40, 0.6, 40, 11.4], [0, 0, 40, 11.4, 39.4, 12]);
+  hubHoleAngles.forEach((a) => {
+    const cx = Math.cos(a) * HUB.pcd, cy = Math.sin(a) * HUB.pcd;
+    gens.push([cx, cy, 3.9, 0, 3.3, 0.6], [cx, cy, 3.3, 0.6, 3.3, 11.4], [cx, cy, 3.3, 11.4, 3.9, 12]);
+  });
+  const solid = mergeGeometries([stripUV(lathe), stripUV(flange)]);
+  return { solid, edges, gens, center: new THREE.Vector3(0, 0, 20) };
+}
+function stripUV(g) { if (g.attributes.uv) g.deleteAttribute('uv'); return g; }
+
+// Part B: bearing collar. Square flange 60 × 60 × 10, 4 × Ø5.5, boss Ø40 × 36, bore Ø24.
+const collarProfile = [
+  [12.8, 0], [21, 0], [21, 10], ...arc(21, 11, 1, -Math.PI / 2, -Math.PI, 4).slice(1),
+  [20, 35], [19, 36], [12.8, 36], [12, 35.2], [12, 0.8], [12.8, 0]
+];
+function buildCollar() {
+  const lathe = revolve(collarProfile);
+  const ch = 0.6, h = 30 - ch, rr = 8 - ch;
+  const s = new THREE.Shape();
+  s.moveTo(-h + rr, -h); s.lineTo(h - rr, -h); s.absarc(h - rr, -h + rr, rr, -Math.PI / 2, 0, false);
+  s.lineTo(h, h - rr); s.absarc(h - rr, h - rr, rr, 0, Math.PI / 2, false);
+  s.lineTo(-h + rr, h); s.absarc(-h + rr, h - rr, rr, Math.PI / 2, Math.PI, false);
+  s.lineTo(-h, -h + rr); s.absarc(-h + rr, -h + rr, rr, Math.PI, Math.PI * 1.5, false);
+  const holes = [circlePath(new THREE.Path(), 0, 0, 21, true)];
+  [[1, 1], [-1, 1], [-1, -1], [1, -1]].forEach(([a, b]) => holes.push(circlePath(new THREE.Path(), a * 22, b * 22, 2.75 + ch, true)));
+  const flange = plate(s, holes, 10, ch);
+  const seam = (x, y, z) => { const r = Math.hypot(x, y); return r > 20.3 && r < 21.3 && z < 10.05; };
+  const edges = featureEdges([lathe, flange], seam);
+  const gens = gensFromProfile(collarProfile, 0, 0, (r0, z0, r1, z1) => r0 > 20.9 && r1 > 20.9);
+  [[1, 1], [-1, 1], [-1, -1], [1, -1]].forEach(([a, b]) => gens.push([a * 22, b * 22, 2.75, 0.6, 2.75, 9.4]));
+  const solid = mergeGeometries([stripUV(lathe), stripUV(flange)]);
+  return { solid, edges, gens, center: new THREE.Vector3(0, 0, 18) };
+}
+
+// Part C: stepped shaft Ø22 / Ø30 / Ø24 × 200 with a retaining-ring groove.
+const shaftProfile = [
+  [0, 0], [10.4, 0], [11, 0.6], [11, 40], [14.4, 40], [15, 40.6], [15, 97], [13.8, 97], [13.8, 98.6], [15, 98.6],
+  [15, 119.4], [14.4, 120], [12, 120], [12, 199.4], [11.4, 200], [0, 200]
+];
+function buildShaft() {
+  const lathe = stripUV(revolve(shaftProfile));
+  const edges = featureEdges([lathe], null);
+  const gens = gensFromProfile(shaftProfile);
+  return { solid: lathe, edges, gens, center: new THREE.Vector3(0, 0, 100) };
+}
+
+/* ---------------------------------------------------------------- materials */
+function metalMaterial(tint, holes = [0, 0, 0, 0]) {
+  const m = new THREE.MeshPhysicalMaterial({
+    color: tint, metalness: 1, roughness: 0.34, transparent: true, opacity: 1,
+    polygonOffset: true, polygonOffsetFactor: 1.5, polygonOffsetUnits: 2,
+    specularIntensity: 1, clearcoat: 0.0
+  });
+  const u = { uCut: { value: -1e5 }, uDir: { value: new THREE.Vector3(1, 0, 0) }, uGlow: { value: COL_GLOW.clone() }, uHoles: { value: new THREE.Vector4(...holes) } };
+  m.userData.u = u;
+  m.onBeforeCompile = (s) => {
+    Object.assign(s.uniforms, u);
+    s.vertexShader = s.vertexShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vWP; varying vec3 vLP; varying vec3 vLN;')
+      .replace('#include <begin_vertex>', '#include <begin_vertex>\nvLP = position; vLN = normal; vWP = (modelMatrix * vec4(transformed, 1.0)).xyz;');
+    s.fragmentShader = s.fragmentShader
+      .replace('#include <common>', `#include <common>
+        uniform float uCut; uniform vec3 uDir; uniform vec3 uGlow; uniform vec4 uHoles;
+        varying vec3 vWP; varying vec3 vLP; varying vec3 vLN;
+        float h3(vec3 p){ p = fract(p * 0.3183099 + 0.1); p *= 17.0; return fract(p.x * p.y * p.z * (p.x + p.y + p.z)); }
+        float vn(vec3 x){ vec3 i = floor(x); vec3 f = fract(x); f = f * f * (3.0 - 2.0 * f);
+          return mix(mix(mix(h3(i), h3(i + vec3(1,0,0)), f.x), mix(h3(i + vec3(0,1,0)), h3(i + vec3(1,1,0)), f.x), f.y),
+                     mix(mix(h3(i + vec3(0,0,1)), h3(i + vec3(1,0,1)), f.x), mix(h3(i + vec3(0,1,1)), h3(i + vec3(1,1,1)), f.x), f.y), f.z); }`)
+      .replace('#include <clipping_planes_fragment>', `#include <clipping_planes_fragment>
+        float sweep = dot(vWP, uDir) - uCut;
+        if (sweep < 0.0) discard;`)
+      .replace('#include <color_fragment>', `#include <color_fragment>
+        diffuseColor.rgb *= 0.95 + 0.08 * vn(vLP * 0.12);`)
+      .replace('#include <roughnessmap_fragment>', `#include <roughnessmap_fragment>
+        { float face = smoothstep(0.86, 0.98, abs(normalize(vLN).z));
+          float rr = length(vLP.xy);
+          float marks = face * sin(rr * 6.0) * 0.05 + (1.0 - face) * sin(vLP.z * 5.0) * 0.012;
+          roughnessFactor = clamp(roughnessFactor + marks + 0.12 * (vn(vLP * 0.18) - 0.5), 0.08, 1.0); }`)
+      .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+        { vec3 ln = normalize(vLN); float occ = 1.0;
+          float rl = length(vLP.xy);
+          if (dot(ln.xy, vLP.xy) < -0.6 * rl && abs(ln.z) < 0.6) occ = 0.42;   // bore walls face the axis
+          if (uHoles.x > 0.5 && abs(ln.z) < 0.6) {                             // bolt hole walls
+            vec2 c;
+            if (uHoles.x < 1.5) { float a = atan(vLP.y, vLP.x); float st = 6.2831853 / uHoles.z; a = floor((a - uHoles.w) / st + 0.5) * st + uHoles.w; c = uHoles.y * vec2(cos(a), sin(a)); }
+            else { c = sign(vLP.xy) * uHoles.y; }
+            if (length(vLP.xy - c) < 4.2) occ = 0.3;
+          }
+          gl_FragColor.rgb *= occ; }
+        float band = (1.0 - smoothstep(0.0, 5.0, sweep)) * step(-9.0e4, uCut);
+        gl_FragColor.rgb += uGlow * band * 0.45;`);
+  };
+  return m;
+}
+const depthMaterial = () => new THREE.MeshBasicMaterial({ colorWrite: false, polygonOffset: true, polygonOffsetFactor: 1.5, polygonOffsetUnits: 2 });
+const lineMats = [];
+function lineMat(o) {
+  const m = new LineMaterial(Object.assign({ color: COL_LINE, linewidth: 1.5, transparent: true, opacity: 0, depthWrite: false, toneMapped: false, worldUnits: false }, o));
+  m.userData.px = m.linewidth;
+  lineMats.push(m);
+  return m;
+}
+
+/* ---------------------------------------------------------------- Part object: metal, depth, edges, silhouettes */
+class Part {
+  constructor(data, tint, withMetal = true, holes) {
+    this.data = data;
+    this.obj = new THREE.Group();
+    this.mDepth = new THREE.Mesh(data.solid, depthMaterial()); this.mDepth.renderOrder = 0; this.obj.add(this.mDepth);
+    if (withMetal) { this.metal = new THREE.Mesh(data.solid, metalMaterial(tint, holes)); this.metal.renderOrder = 1; this.obj.add(this.metal); }
+    const eg = new LineSegmentsGeometry().setPositions(data.edges);
+    const n = data.gens.length;
+    this.silArr = new Float32Array(n * 12);
+    this.updateSil(new THREE.Vector3(0, 1, 0.001));
+    const sg = new LineSegmentsGeometry().setPositions(this.silArr);
+    this.silBuf = sg.attributes.instanceStart.data;
+    this.mats = {
+      vis: lineMat({ linewidth: 1.5 }),
+      glow: lineMat({ linewidth: 4.5, color: COL_GLOW, blending: THREE.AdditiveBlending }),
+      hid: lineMat({ linewidth: 1.05, dashed: true, dashSize: 2.1, gapSize: 1.3, depthFunc: THREE.GreaterDepth }),
+    };
+    this.sils = {};
+    const mk = (geo, mat, order) => { const l = new LineSegments2(geo, mat); l.renderOrder = order; l.frustumCulled = false; if (mat.dashed) l.computeLineDistances(); this.obj.add(l); return l; };
+    this.lVis = mk(eg, this.mats.vis, 2); this.lGlow = mk(eg, this.mats.glow, 3); this.lHid = mk(eg, this.mats.hid, 4);
+    this.silMats = { vis: lineMat({ linewidth: 1.5 }), glow: lineMat({ linewidth: 4.5, color: COL_GLOW, blending: THREE.AdditiveBlending }), hid: lineMat({ linewidth: 1.05, dashed: true, dashSize: 2.1, gapSize: 1.3, depthFunc: THREE.GreaterDepth }) };
+    this.sVis = mk(sg, this.silMats.vis, 2); this.sGlow = mk(sg, this.silMats.glow, 3); this.sHid = mk(sg, this.silMats.hid, 4);
+    this.obj.traverse((o) => { o.frustumCulled = false; });
+  }
+  updateSil(vLocal) {
+    let dx = -vLocal.y, dy = vLocal.x; const L = Math.hypot(dx, dy);
+    if (L < 1e-5) { dx = 1; dy = 0; } else { dx /= L; dy /= L; }
+    const a = this.silArr; let i = 0;
+    for (const [cx, cy, r0, z0, r1, z1] of this.data.gens) {
+      for (const s of [1, -1]) {
+        a[i++] = cx + s * dx * r0; a[i++] = cy + s * dy * r0; a[i++] = z0;
+        a[i++] = cx + s * dx * r1; a[i++] = cy + s * dy * r1; a[i++] = z1;
+      }
+    }
+    if (this.silBuf) this.silBuf.needsUpdate = true;
+    return L;
+  }
+  // per frame: view direction in local space drives the silhouettes
+  sync(camera) {
+    this.obj.updateMatrixWorld();
+    const c = this.data.center.clone().applyMatrix4(this.obj.matrixWorld);
+    const v = c.sub(camera.position).normalize();
+    const q = new THREE.Quaternion(); this.obj.getWorldQuaternion(q);
+    v.applyQuaternion(q.invert());
+    const s = this.updateSil(v);
+    this.silFade = ss(0.04, 0.2, s);
+  }
+  set({ metal = 0, vis = 0, glow = 0, hid = 0, cut = null, depth = true }) {
+    if (this.metal) { this.metal.material.opacity = metal; this.metal.visible = metal > 0.002; }
+    this.mDepth.visible = depth;
+    const f = this.silFade ?? 1;
+    this.mats.vis.opacity = vis; this.mats.glow.opacity = glow; this.mats.hid.opacity = hid;
+    this.silMats.vis.opacity = vis * f; this.silMats.glow.opacity = glow * f; this.silMats.hid.opacity = hid * f;
+    this.lVis.visible = vis > 0.002; this.lGlow.visible = glow > 0.002; this.lHid.visible = hid > 0.002;
+    this.sVis.visible = vis * f > 0.002; this.sGlow.visible = glow * f > 0.002; this.sHid.visible = hid * f > 0.002;
+    if (this.metal && cut) { this.metal.material.userData.u.uCut.value = cut.v; this.metal.material.userData.u.uDir.value.copy(cut.dir); }
+  }
+  clip(planes) {
+    this.mDepth.material.clippingPlanes = planes;
+    [...Object.values(this.mats), ...Object.values(this.silMats)].forEach((m) => { m.clippingPlanes = planes; });
+  }
+}
+
+const hubData = buildHub(), collarData = buildCollar(), shaftData = buildShaft();
+const TINT_A = new THREE.Color('#858A90'), TINT_B = new THREE.Color('#7C8187'), TINT_C = new THREE.Color('#8E9398');
+const hub = new Part(hubData, TINT_A, true, [1, HUB.pcd, 6, Math.PI / 6]), collar = new Part(collarData, TINT_B, true, [2, 22, 0, 0]), shaft = new Part(shaftData, TINT_C);
+const hubSide = new Part(hubData, TINT_A, false);
+scene.add(hub.obj, hubSide.obj);
+const asm = new THREE.Group(); scene.add(asm);
+asm.add(collar.obj, shaft.obj);
+
+// soft contact shadow under the assembly
+function blobTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 256;
+  const x = c.getContext('2d'); const g = x.createRadialGradient(128, 128, 0, 128, 128, 128);
+  g.addColorStop(0, 'rgba(0,0,0,0.62)'); g.addColorStop(0.45, 'rgba(0,0,0,0.28)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  x.fillStyle = g; x.fillRect(0, 0, 256, 256);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+const shadow = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: blobTexture(), transparent: true, depthWrite: false, toneMapped: false }));
+shadow.rotation.x = -Math.PI / 2; shadow.scale.set(330, 120, 1); shadow.position.set(0, -58, 0); shadow.renderOrder = -5;
+asm.add(shadow);
+
+/* ---------------------------------------------------------------- the sheet (3D paper, SVG ink) */
+const LAYOUTS = {
+  desk: { W: 297, H: 210, m: 10, fs: 1, F: { x: -74, y: 12 }, S: { x: 22, y: 12 },
+    note: ['6 × Ø6.6 THRU', 'EQ SP ON PCD Ø58'], callout: { x: -27, y: -14, w: 38, h: 20 },
+    tb: { x0: 28.5, x1: 138.5, y0: -95, y1: -68 }, notes: { x: -128.5, y: -70 } },
+  mob: { W: 176, H: 262, m: 6, fs: 1.42, F: { x: -6, y: 66 }, S: { x: -24, y: -36 },
+    note: ['6 × Ø6.6 THRU', 'PCD Ø58'], callout: { x: -80, y: -56, w: 46, h: 27 },
+    tb: { x0: -82, x1: 82, y0: -125, y1: -97 }, notes: null }
+};
+let L = LAYOUTS[mobile ? 'mob' : 'desk'];
+
+const sheetMat = new THREE.MeshBasicMaterial({ color: '#1F2226', transparent: true, opacity: 0, depthWrite: false, toneMapped: false });
+const backMatB = new THREE.MeshBasicMaterial({ color: '#1A1D20', transparent: true, opacity: 0, depthWrite: false, toneMapped: false });
+const backMatC = new THREE.MeshBasicMaterial({ color: '#181A1D', transparent: true, opacity: 0, depthWrite: false, toneMapped: false });
+const sheetPlane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), sheetMat);
+const backB = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), backMatB), backC = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), backMatC);
+sheetPlane.renderOrder = -8; backB.renderOrder = -9; backC.renderOrder = -10;
+scene.add(sheetPlane, backB, backC);
+function placeSheet() {
+  sheetPlane.scale.set(L.W, L.H, 1); sheetPlane.position.set(0, 0, -20);
+  backB.scale.set(L.W, L.H, 1); backC.scale.set(L.W, L.H, 1);
+}
+placeSheet();
+
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+const Y = (y) => -y;
+const INK = '#E4E7EA', DIM = '#9AA0A7', FAINT = '#6C727A', AMBER = '#F2A93B';
+let SVG = {};
+
+function buildSheet() {
+  sheetSvg.innerHTML = '';
+  const { W, H, m, fs, F, S } = L;
+  sheetSvg.setAttribute('viewBox', `${-W / 2} ${-H / 2} ${W} ${H}`);
+  sheetSvg.setAttribute('preserveAspectRatio', 'none');
+  const defs = el('defs', {}, sheetSvg);
+  const pat = el('pattern', { id: 'hatch', patternUnits: 'userSpaceOnUse', width: 1.9, height: 1.9, patternTransform: 'rotate(45)' }, defs);
+  el('line', { x1: 0, y1: 0, x2: 0, y2: 1.9, stroke: 'rgba(228,231,234,.38)', 'stroke-width': 0.2 }, pat);
+  const ns = { 'vector-effect': 'non-scaling-stroke', fill: 'none' };
+  const g = (cls) => el('g', { class: cls }, sheetSvg);
+  const T = (parent, x, y, s, str, attrs = {}) => { const t = el('text', Object.assign({ x, y: Y(y), 'font-size': s * fs }, attrs), parent); t.textContent = str; return t; };
+  const P = (parent, d, attrs = {}) => el('path', Object.assign({ d }, ns, attrs), parent);
+  const out = { dims: [] };
+
+  // other sheets behind (a drawing for every part)
+  out.behind = g('behind');
+  [[12, -12, 'C'], [6, -6, 'B']].forEach(([dx, dy, k]) => {
+    P(out.behind, `M${-W / 2 + dx} ${Y(H / 2 + dy)}H${W / 2 + dx}V${Y(-H / 2 + dy)}H${-W / 2 + dx}Z`, { stroke: 'rgba(228,231,234,.16)', 'stroke-width': 1 });
+    T(out.behind, W / 2 + dx - 2.2, -H / 2 + dy + 2.2, 2.6, 'PART ' + k, { 'text-anchor': 'end', class: 'lbl' });
+  });
+
+  // frame, trim and zone marks
+  out.frame = g('frame');
+  P(out.frame, `M${-W / 2} ${-H / 2}h${W}v${H}h${-W}Z`, { stroke: 'rgba(228,231,234,.22)', 'stroke-width': 1, pathLength: 1, class: 'draw' });
+  P(out.frame, `M${-W / 2 + m} ${-H / 2 + m}h${W - 2 * m}v${H - 2 * m}h${-(W - 2 * m)}Z`, { stroke: INK, 'stroke-width': 1.4, pathLength: 1, class: 'draw' });
+  const zx = mobile ? 4 : 6, zy = mobile ? 6 : 4;
+  let zd = '';
+  for (let i = 1; i < zx; i++) { const x = -W / 2 + m + (W - 2 * m) * i / zx; zd += `M${x} ${-H / 2}v${m}M${x} ${H / 2}v${-m}`; }
+  for (let i = 1; i < zy; i++) { const y = -H / 2 + m + (H - 2 * m) * i / zy; zd += `M${-W / 2} ${y}h${m}M${W / 2} ${y}h${-m}`; }
+  P(out.frame, zd, { stroke: 'rgba(228,231,234,.3)', 'stroke-width': 0.8 });
+  for (let i = 0; i < zx; i++) { const x = -W / 2 + m + (W - 2 * m) * (i + 0.5) / zx; T(out.frame, x, H / 2 - m * 0.62, 2.2, String(zx - i), { 'text-anchor': 'middle', class: 'lbl' }); T(out.frame, x, -H / 2 + m * 0.3, 2.2, String(zx - i), { 'text-anchor': 'middle', class: 'lbl' }); }
+  for (let i = 0; i < zy; i++) { const y = -H / 2 + m + (H - 2 * m) * (i + 0.5) / zy; T(out.frame, -W / 2 + m * 0.5, -y - 0.8, 2.2, 'ABCDEF'[i], { 'text-anchor': 'middle', class: 'lbl' }); T(out.frame, W / 2 - m * 0.5, -y - 0.8, 2.2, 'ABCDEF'[i], { 'text-anchor': 'middle', class: 'lbl' }); }
+  T(out.frame, -W / 2 + m + 2, -H / 2 + m * 0.3 - 0.2, 2.2, 'ILLUSTRATIVE SHEET', { class: 'lbl', opacity: 0 }).setAttribute('visibility', 'hidden');
+
+  // centre lines
+  out.cl = g('cl');
+  const chain = { stroke: FAINT, 'stroke-width': 0.8, 'stroke-dasharray': '7 1.4 1.4 1.4' };
+  P(out.cl, `M${F.x - 45} ${Y(F.y)}H${F.x + 45}M${F.x} ${Y(F.y - 45)}V${Y(F.y + 45)}`, chain);
+  el('circle', Object.assign({ cx: F.x, cy: Y(F.y), r: HUB.pcd }, ns, chain), out.cl);
+  hubHoleAngles.forEach((a) => {
+    const cx = F.x + Math.cos(a) * HUB.pcd, cy = F.y - Math.sin(a) * HUB.pcd; // front view is mirrored in Y by the 180 degree turn
+    const ux = Math.cos(a), uy = -Math.sin(a);
+    P(out.cl, `M${cx - ux * 5.2} ${Y(cy - uy * 5.2)}L${cx + ux * 5.2} ${Y(cy + uy * 5.2)}`, { stroke: FAINT, 'stroke-width': 0.8 });
+  });
+  P(out.cl, `M${S.x - 5} ${Y(S.y)}H${S.x + 45}`, chain);
+  P(out.cl, `M${S.x - 3} ${Y(S.y + HUB.pcd)}H${S.x + 15}M${S.x - 3} ${Y(S.y - HUB.pcd)}H${S.x + 15}`, chain);
+
+  // half section, upper half of the side view
+  out.sec = g('sec');
+  const sp = (pts) => 'M' + pts.map(([z, r]) => `${(S.x + z).toFixed(2)} ${Y(S.y + r).toFixed(2)}`).join('L') + 'Z';
+  const fil = arc(21.5, 13.5, 1.5, -Math.PI / 2, -Math.PI, 6).map(([r, z]) => [z, r]);
+  const polyA = [[0, 11.8], [0, 25.1], [0.6, 25.7], [11.4, 25.7], [12, 25.1], [12, 21.5], ...fil.slice(1), [39, 20], [40, 19], [40, 11.8], [39.2, 11], [0.8, 11]];
+  const polyB = [[0, 32.9], [0, 39.4], [0.6, 40], [11.4, 40], [12, 39.4], [12, 32.9], [11.4, 32.3], [0.6, 32.3]];
+  [polyA, polyB].forEach((pp) => { P(out.sec, sp(pp), { fill: 'url(#hatch)', stroke: 'none', 'vector-effect': 'none' }); });
+  [polyA, polyB].forEach((pp) => { P(out.sec, sp(pp), { stroke: INK, 'stroke-width': 1.5 }); });
+  P(out.sec, `M${S.x + 0.8} ${Y(S.y)}V${Y(S.y + 11)}M${S.x + 39.2} ${Y(S.y)}V${Y(S.y + 11)}M${S.x + 0.6} ${Y(S.y + 25.7)}V${Y(S.y + 32.3)}M${S.x + 11.4} ${Y(S.y + 25.7)}V${Y(S.y + 32.3)}`, { stroke: INK, 'stroke-width': 1.2 });
+
+  // dimensions
+  const A = 2.9, AW = 0.85; // arrowhead length and half width (mm)
+  const arrow = (x, y, dx, dy) => { const px = -dy, py = dx; return `M${x} ${Y(y)}L${x - dx * A + px * AW} ${Y(y - dy * A + py * AW)}L${x - dx * A - px * AW} ${Y(y - dy * A - py * AW)}Z`; };
+  const TS = 3.5;
+  function dimGroup(flag) { const d = el('g', { class: 'dim' + (flag ? ' flagdim' : '') }, sheetSvg); const o = { g: d, lines: [], fx: [] }; out.dims.push(o); return o; }
+  function hDim(x1, y1, x2, y2, yd, text, opt = {}) {
+    const o = dimGroup(opt.flag), s = Math.sign(yd - y1) || 1;
+    o.lines.push(P(o.g, `M${x1} ${Y(y1 + s * 1)}V${Y(yd + s * 2)}M${x2} ${Y(y2 + s * 1)}V${Y(yd + s * 2)}`, { stroke: DIM, 'stroke-width': 0.8, pathLength: 1, class: 'draw' }));
+    o.lines.push(P(o.g, `M${x1} ${Y(yd)}H${x2}`, { stroke: DIM, 'stroke-width': 0.8, pathLength: 1, class: 'draw' }));
+    o.fx.push(P(o.g, arrow(x1, yd, -1, 0) + arrow(x2, yd, 1, 0), { fill: DIM, stroke: 'none' }));
+    o.fx.push(T(o.g, (x1 + x2) / 2, yd + 1.1, TS, text, { 'text-anchor': 'middle', class: 'val' }));
+    return o;
+  }
+  function vDim(x1, y1, x2, y2, xd, text, opt = {}) {
+    const o = dimGroup(opt.flag), s = Math.sign(xd - x1) || 1;
+    o.lines.push(P(o.g, `M${x1 + s * 1} ${Y(y1)}H${xd + s * 2}M${x2 + s * 1} ${Y(y2)}H${xd + s * 2}`, { stroke: DIM, 'stroke-width': 0.8, pathLength: 1, class: 'draw' }));
+    o.lines.push(P(o.g, `M${xd} ${Y(y1)}V${Y(y2)}`, { stroke: DIM, 'stroke-width': 0.8, pathLength: 1, class: 'draw' }));
+    o.fx.push(P(o.g, arrow(xd, y1, 0, -1) + arrow(xd, y2, 0, 1), { fill: DIM, stroke: 'none' }));
+    const tx = xd - 1.1, ty = (y1 + y2) / 2;
+    o.fx.push(T(o.g, tx, ty, TS, text, { 'text-anchor': 'middle', transform: `rotate(-90 ${tx} ${Y(ty)})`, class: 'val' }));
+    return o;
+  }
+  function leader(px, py, ex, ey, lines, opt = {}) {
+    const o = dimGroup(opt.flag), dir = Math.sign(ex - px) || 1, hx = ex + dir * (opt.shelf ?? 3);
+    o.lines.push(P(o.g, `M${px} ${Y(py)}L${ex} ${Y(ey)}H${hx}`, { stroke: DIM, 'stroke-width': 0.8, pathLength: 1, class: 'draw' }));
+    const L2 = Math.hypot(px - ex, py - ey);
+    o.fx.push(P(o.g, arrow(px, py, (px - ex) / L2, (py - ey) / L2), { fill: DIM, stroke: 'none' }));
+    lines.forEach((s, i) => o.fx.push(T(o.g, hx + dir * 1, ey + 0.9 - i * TS * fs * 1.3, TS, s, { 'text-anchor': dir > 0 ? 'start' : 'end', class: 'val' })));
+    return o;
+  }
+  // front view
+  hDim(F.x - 40, F.y, F.x + 40, F.y, F.y + 49, 'Ø80');
+  { const a = hubHoleAngles[0], cx = F.x + Math.cos(a) * HUB.pcd, cy = F.y - Math.sin(a) * HUB.pcd;
+    const ex = F.x + 46, ey = F.y + 34, L2 = Math.hypot(ex - cx, ey - cy);
+    leader(cx + (ex - cx) / L2 * 3.3, cy + (ey - cy) / L2 * 3.3, ex, ey, L.note); }
+  // side view
+  hDim(S.x, S.y - 40, S.x + 40, S.y - 19, S.y - 50, '40');
+  hDim(S.x, S.y + 40, S.x + 12, S.y + 40, S.y + 48, '12');
+  vDim(S.x + 40, S.y - 20, S.x + 40, S.y + 20, S.x + 52, 'Ø40');
+  const bore = vDim(S.x, S.y - 11, S.x, S.y + 11, S.x - 8, 'Ø22', { flag: true });
+  leader(S.x + 39.6, S.y + 19.6, S.x + 45, S.y + 27, ['1 × 45°']);
+  leader(S.x + 12.5, S.y + 21, S.x + 20, S.y + 31, ['R1.5']);
+
+  // flag callout on the bore
+  out.flag = g('flag');
+  const C = L.callout;
+  const bx = S.x - 8 - 1.1 - TS * fs * 0.5, by = S.y - 11;
+  P(out.flag, `M${bx} ${Y(by - 3)}L${C.x + C.w * 0.7} ${Y(C.y)}`, { stroke: AMBER, 'stroke-width': 0.9, 'stroke-dasharray': '1.6 1.2' });
+  el('rect', { x: C.x, y: Y(C.y), width: C.w, height: C.h, rx: 1.2, fill: 'rgba(242,169,59,.10)', stroke: AMBER, 'stroke-width': 0.9, 'vector-effect': 'non-scaling-stroke' }, out.flag);
+  el('path', { d: `M${C.x + 3} ${Y(C.y - 3)}v${4.2 * fs}M${C.x + 3} ${Y(C.y - 3)}h${3 * fs}l${-1 * fs} ${1.1 * fs}l${1 * fs} ${1.1 * fs}h${-3 * fs}`, fill: AMBER, stroke: AMBER, 'stroke-width': 0.8, 'vector-effect': 'non-scaling-stroke' }, out.flag);
+  T(out.flag, C.x + 3 + 4.4 * fs, C.y - 3 - 2.9 * fs, 2.1, 'FLAGGED', { 'letter-spacing': 0.35, 'font-weight': 600 });
+  T(out.flag, C.x + 3, C.y - 3 - 7.3 * fs, 2.8, 'Fit tolerance', { 'font-weight': 600 });
+  T(out.flag, C.x + 3, C.y - 3 - 10.9 * fs, 2.8, 'Needs engineering', {});
+  T(out.flag, C.x + 3, C.y - 3 - 14.3 * fs, 2.8, 'judgement.', {});
+  out.bore = bore;
+
+  // title block
+  out.tb = g('tb');
+  const { x0, x1, y0, y1 } = L.tb, rh = (y1 - y0) / 3;
+  const ln = (d, w = 0.9) => P(out.tb, d, { stroke: INK, 'stroke-width': w, pathLength: 1, class: 'draw' });
+  ln(`M${x0} ${Y(y0)}V${Y(y1)}H${x1}`, 1.4);
+  ln(`M${x0} ${Y(y0 + rh)}H${x1}M${x0} ${Y(y0 + 2 * rh)}H${x1}`);
+  const w = x1 - x0, c1 = x0 + w * 0.72, cA = x0 + w * 0.25, cB = x0 + w * 0.5, cC = x0 + w * 0.75;
+  ln(`M${c1} ${Y(y1)}V${Y(y0 + 2 * rh)}M${cA} ${Y(y0 + 2 * rh)}V${Y(y0)}M${cB} ${Y(y0 + 2 * rh)}V${Y(y0)}M${cC} ${Y(y0 + 2 * rh)}V${Y(y0)}`);
+  const cell = (x, ytop, lab, val, cls = 'val', vs = 2.9) => { T(out.tb, x + 1.6, ytop - 2.5 * fs, 1.85, lab, { class: 'lbl' }); T(out.tb, x + 1.6, ytop - rh + 1.9, vs, val, { class: cls }); };
+  cell(x0, y1, 'TITLE', 'Flanged end hub', 'ttl', 3.3);
+  cell(c1, y1, 'PART', 'A of 3', 'val', 3.1);
+  cell(x0, y0 + 2 * rh, 'DRAWN', 'drawgen'); cell(cA, y0 + 2 * rh, 'CHECKED', ''); cell(cB, y0 + 2 * rh, 'SCALE', '1:1'); cell(cC, y0 + 2 * rh, 'SIZE', mobile ? 'A4' : 'A4');
+  cell(x0, y0 + rh, 'UNITS', 'mm'); cell(cA, y0 + rh, 'OUTPUT', 'PDF, DXF'); cell(cB, y0 + rh, 'SHEET', '1 of 1'); cell(cC, y0 + rh, 'STATUS', 'Illustrative');
+
+  // notes
+  out.notes = g('notes');
+  if (L.notes) {
+    const nx = L.notes.x, ny = L.notes.y;
+    T(out.notes, nx, ny, 2, 'NOTES', { class: 'lbl' });
+    T(out.notes, nx, ny - 5, 2.7, '1. Dimensions in mm, measured from the model.', { class: 'val' });
+    T(out.notes, nx, ny - 9.4, 2.7, '2. Chamfers 0.6 × 45° unless stated.', { class: 'val' });
+    T(out.notes, nx, ny - 13.8, 2.7, '3. Illustrative sheet.', { class: 'val', fill: '#7E848C' });
+  }
+  const Rs = rects().sheet, pxmm = Math.min((Rs.x1 - Rs.x0) / Rs.bw, (Rs.y1 - Rs.y0) / Rs.bh), k = 1 / pxmm;
+  sheetSvg.querySelectorAll('[stroke-width]').forEach((e) => { if (e.closest('pattern')) return; e.setAttribute('stroke-width', (parseFloat(e.getAttribute('stroke-width')) * k).toFixed(4)); });
+  sheetSvg.querySelectorAll('[vector-effect]').forEach((e) => e.removeAttribute('vector-effect'));
+  sheetSvg.querySelectorAll('.draw').forEach((p) => { p.style.strokeDasharray = '1 1'; p.style.strokeDashoffset = '1'; });
+  SVG = out; SVG.pxmm = pxmm;
+}
+
+function updateSheet(t) {
+  const o = SVG; if (!o.frame) return;
+  const draw = (p, k) => { p.style.strokeDashoffset = String(1 - k); };
+  const kFrame = ss(0.5, 0.6, t);
+  o.frame.querySelectorAll('.draw').forEach((p) => draw(p, kFrame));
+  o.frame.style.opacity = String(ss(0.48, 0.55, t));
+  o.cl.style.opacity = String(ss(0.54, 0.6, t));
+  o.sec.style.opacity = String(ss(0.555, 0.61, t));
+  const n = o.dims.length, d0 = 0.595, d1 = 0.775, span = (d1 - d0) / n;
+  o.dims.forEach((d, i) => {
+    const a = d0 + i * span, k = ss(a, a + span * 1.6, t);
+    d.lines.forEach((p) => draw(p, k));
+    d.fx.forEach((f) => { f.style.opacity = String(ss(a + span * 0.8, a + span * 1.7, t)); });
+  });
+  const kT = ss(0.775, 0.84, t);
+  o.tb.querySelectorAll('.draw').forEach((p) => draw(p, kT));
+  o.tb.querySelectorAll('text').forEach((x) => { x.style.opacity = String(ss(0.8, 0.855, t)); });
+  o.notes.style.opacity = String(ss(0.82, 0.865, t));
+  // gate: the bore dimension turns amber and is flagged
+  const kF = ss(0.87, 0.905, t);
+  const col = kF > 0.5 ? AMBER : null;
+  o.bore.lines.forEach((p) => p.setAttribute('stroke', col || DIM));
+  o.bore.fx.forEach((f) => { if (f.tagName === 'text') f.style.fill = col || ''; else f.setAttribute('fill', col || DIM); });
+  o.flag.style.opacity = String(ss(0.885, 0.925, t));
+  o.behind.style.opacity = String(ss(0.945, 0.985, t));
+}
+
+/* ---------------------------------------------------------------- HUD leaders (resolve and classify) */
+const tags = [
+  { part: 'hub', p: new THREE.Vector3(0, 30, 4), dx: -1, name: 'Flanged end hub', k: 'A' },
+  { part: 'collar', p: new THREE.Vector3(0, 30, 5), dx: 1, name: 'Bearing collar', k: 'B' },
+  { part: 'shaft', p: new THREE.Vector3(0, -15, 70), dx: 1, name: 'Shaft', k: 'C', down: true },
+];
+function buildHud() {
+  hud.innerHTML = '';
+  tags.forEach((tg) => {
+    const gg = el('g', {}, hud);
+    tg.line = el('polyline', { fill: 'none', stroke: '#C9CED4', 'stroke-width': 1, pathLength: 1, 'stroke-dasharray': '1 1', 'stroke-dashoffset': 1 }, gg);
+    tg.dot = el('circle', { r: 2.6, fill: '#ECEDEE' }, gg);
+    tg.ring = el('circle', { r: 7, fill: 'none', stroke: 'rgba(236,237,238,.35)', 'stroke-width': 1 }, gg);
+    tg.t1 = el('text', { 'font-size': 11, 'font-weight': 600, 'letter-spacing': 1.5, fill: '#8C939B', 'font-family': 'Inter Tight, sans-serif' }, gg);
+    tg.t1.textContent = 'PART ' + tg.k;
+    tg.t2 = el('text', { 'font-size': mobile ? 14 : 16, 'font-weight': 500, fill: '#ECEDEE', 'font-family': 'Inter Tight, sans-serif' }, gg);
+    tg.t2.textContent = tg.name;
+    tg.g = gg;
+  });
+}
+
+/* ---------------------------------------------------------------- camera and poses */
+const V = (x, y, z) => new THREE.Vector3(x, y, z);
+const QY90 = new THREE.Quaternion().setFromAxisAngle(V(0, 1, 0), Math.PI / 2);
+const QFRONT = new THREE.Quaternion().setFromAxisAngle(V(1, 0, 0), Math.PI);
+const DIR = { hero: V(-0.62, 0.42, 0.66).normalize(), resolve: V(-0.42, 0.36, 0.83).normalize(), classify: V(-0.8, 0.28, 0.53).normalize(), sheet: V(0, 0, 1) };
+let vw = innerWidth, vh = innerHeight;
+function rects() {
+  if (mobile) {
+    const top = reduce || !renderer ? staticTop() : 0;
+    return {
+      hero: { x0: 12, x1: vw - 12, y0: vh * 0.56, y1: vh - 60, bw: 290, bh: 130 },
+      resolve: { x0: 12, x1: vw - 12, y0: 250, y1: vh - 70, bw: 360, bh: 190 },
+      classify: { x0: 16, x1: vw - 16, y0: 250, y1: vh - 70, bw: 170, bh: 170 },
+      sheet: { x0: 12, x1: vw - 12, y0: top || 276, y1: (top ? top + (vw - 24) * (L.H + 16) / (L.W + 16) : vh - 50), bw: L.W + 16, bh: L.H + 16 },
+    };
+  }
+  const cx0 = (reduce || !renderer) ? Math.min(600, vw * 0.41) : Math.min(460, vw * 0.33);
+  return {
+    hero: { x0: Math.max(vw * 0.42, 540), x1: vw - 24, y0: 80, y1: vh - 70, bw: 262, bh: 170 },
+    resolve: { x0: cx0, x1: vw - 40, y0: 90, y1: vh - 80, bw: 400, bh: 240 },
+    classify: { x0: cx0, x1: vw - 40, y0: 90, y1: vh - 80, bw: 190, bh: 180 },
+    sheet: { x0: cx0, x1: vw - 44, y0: 92, y1: vh - 72, bw: L.W + 16, bh: L.H + 16 },
+  };
+}
+function staticTop() { const hc = $('heroCopy'); return hc ? hc.getBoundingClientRect().bottom - stage.getBoundingClientRect().top + 28 : 0; }
+function frameOf(r) {
+  const pxmm = Math.min((r.x1 - r.x0) / r.bw, (r.y1 - r.y0) / r.bh);
+  return { visH: vh / pxmm, ox: ((r.x0 + r.x1) / 2) / vw * 2 - 1, oy: 1 - ((r.y0 + r.y1) / 2) / vh * 2 };
+}
+function applyCam(target, dir, visH, fov, ox, oy) {
+  cam.fov = fov; cam.aspect = vw / vh;
+  const D = (visH / 2) / Math.tan(THREE.MathUtils.degToRad(fov / 2));
+  cam.position.copy(target).addScaledVector(dir, D);
+  cam.near = Math.max(0.5, D - 700); cam.far = D + 900;
+  cam.up.set(0, 1, 0); cam.lookAt(target);
+  cam.updateProjectionMatrix();
+  cam.projectionMatrix.elements[8] -= ox; cam.projectionMatrix.elements[9] -= oy;
+  cam.projectionMatrixInverse.copy(cam.projectionMatrix).invert();
+  cam.updateMatrixWorld();
+}
+const tmpM = new THREE.Matrix4(), tmpQ = new THREE.Quaternion(), tmpP = new THREE.Vector3(), tmpS = new THREE.Vector3();
+const clipPlane = new THREE.Plane(V(0, -1, 0), 1000);
+hubSide.clip([clipPlane]);
+
+/* ---------------------------------------------------------------- captions */
+const STEPS = [
+  { at: 0.07, n: '01 Resolve', t: 'One assembly. Every part.', p: 'drawgen reads the open assembly and resolves every unique part inside it.' },
+  { at: 0.2, n: '02 Classify', t: 'Part A · Flanged end hub.', p: 'It works out what kind of part each one is, so it is drawn the way that kind of part should be.' },
+  { at: 0.37, n: '03 Project', t: 'This part becomes its own drawing.', p: 'The views are projected from the solid and placed on the sheet, with a half section through the bore.' },
+  { at: 0.58, n: '04 Dimension', t: 'Every dimension measured off the solid.', p: 'Nothing estimated, nothing typed in by hand.' },
+  { at: 0.775, n: '05 Annotate', t: 'Notes and title block complete the sheet.', p: 'The sheet is finished to a consistent standard, part after part.' },
+  { at: 0.865, n: '06 Gate', t: 'Flagged. Never filled in.', p: 'The fit on the bore needs engineering judgement, so it is flagged for you rather than filled in.', flag: true },
+];
+const cap = $('cap'), capIn = $('capIn'), capN = $('capN'), capT = $('capT'), capP = $('capP');
+const railItems = [...document.querySelectorAll('#rail li')], bar = $('bar'), hint = $('hint');
+let curStep = -1, swapTimer = 0;
+function setStep(i) {
+  if (i === curStep) return; curStep = i;
+  railItems.forEach((li, k) => li.classList.toggle('on', k === i));
+  if (i < 0) return;
+  clearTimeout(swapTimer);
+  capIn.classList.add('out');
+  swapTimer = setTimeout(() => {
+    const s = STEPS[i]; capN.textContent = s.n; capT.textContent = s.t; capP.textContent = s.p;
+    cap.classList.toggle('flag', !!s.flag); capIn.classList.remove('out');
+  }, reduce ? 0 : 220);
+}
+
+/* ---------------------------------------------------------------- the timeline */
+function place(t, time) {
+  const R = rects();
+  const fH = frameOf(R.hero), fR = frameOf(R.resolve), fC = frameOf(R.classify), fS = frameOf(R.sheet);
+  const k1 = ss(0.035, 0.16, t), k2 = ss(0.2, 0.33, t), k3 = ss(0.385, 0.57, t);
+  const kExp = ss(0.05, 0.17, t);
+
+  // assembly: slow turn while it is metal, settling as it is picked apart
+  const still = ss(0.18, 0.3, t);
+  const yaw = (reduce ? 0 : Math.sin(time * 0.16) * 0.22) * (1 - still) + (1 - k1) * 0.18 - t * 0.35 * (1 - still);
+  asm.position.set(0, 0, 0);
+  asm.quaternion.setFromAxisAngle(V(0, 1, 0), yaw);
+  asm.updateMatrixWorld();
+  const along = (s) => V(s - 100, 0, 0);
+  shaft.obj.position.copy(along(0)); shaft.obj.quaternion.copy(QY90);
+  collar.obj.position.copy(along(124 + kExp * 34 + ss(0.2, 0.36, t) * 60)); collar.obj.quaternion.copy(QY90);
+  shaft.obj.position.x += ss(0.2, 0.36, t) * 20;
+
+  // hub: assembly pose, then the front view pose
+  const hubAsm = new THREE.Matrix4().compose(along(-kExp * 28), QY90, V(1, 1, 1)).premultiply(asm.matrixWorld);
+  hubAsm.decompose(tmpP, tmpQ, tmpS);
+  const kP = ss(0.395, 0.555, t);
+  const eP = kP < 0.5 ? 4 * kP ** 3 : 1 - Math.pow(-2 * kP + 2, 3) / 2;
+  const front = V(L.F.x, L.F.y, 0);
+  hub.obj.position.lerpVectors(tmpP, front, eP);
+  hub.obj.position.z += Math.sin(eP * Math.PI) * 30;
+  hub.obj.quaternion.slerpQuaternions(tmpQ, QFRONT, eP);
+  // side view clone lifts off the hub and slides into place
+  const kS = ss(0.415, 0.575, t);
+  const eS = kS < 0.5 ? 4 * kS ** 3 : 1 - Math.pow(-2 * kS + 2, 3) / 2;
+  const side = V(L.S.x, L.S.y, 0);
+  const startS = hub.obj.position.clone();
+  hubSide.obj.position.lerpVectors(tmpP.clone().lerp(front, eP * 0.6), side, eS);
+  hubSide.obj.position.y += Math.sin(eS * Math.PI) * 26;
+  hubSide.obj.quaternion.slerpQuaternions(tmpQ, QY90, eS);
+  clipPlane.constant = L.S.y + 120 * (1 - ss(0.545, 0.61, t));
+
+  // camera
+  const hubC = hubData.center.clone().applyMatrix4(hubAsm);
+  const tgt = V(0, 0, 0).lerp(V(0, 0, 0), k1).lerp(hubC, k2 * (1 - k3)).lerp(V(0, 0, 0), k3);
+  const dir = DIR.hero.clone().lerp(DIR.resolve, k1).lerp(DIR.classify, k2).lerp(DIR.sheet, k3).normalize();
+  let visH = lerp(lerp(lerp(fH.visH, fR.visH, k1), fC.visH, k2), fS.visH, k3);
+  let ox = lerp(lerp(lerp(fH.ox, fR.ox, k1), fC.ox, k2), fS.ox, k3);
+  let oy = lerp(lerp(lerp(fH.oy, fR.oy, k1), fC.oy, k2), fS.oy, k3);
+  const kF = ss(0.4, 0.575, t);
+  const fov = Math.exp(lerp(Math.log(28), Math.log(0.55), kF));
+  applyCam(tgt, dir, visH, fov, ox, oy);
+
+  // materials: metal, then a dissolve into feature edges, then the drawing
+  [hub, hubSide, collar, shaft].forEach((p) => p.sync(cam));
+  const sweepDir = V(1, 0.25, 0.1).normalize();
+  const cutFor = (part, a, b) => {
+    const c = part.data.center.clone().applyMatrix4(part.obj.matrixWorld), r = part === shaft ? 110 : 45;
+    const kk = ss(a, b, t); return { v: kk <= 0 ? -1e5 : lerp(c.dot(sweepDir) - r, c.dot(sweepDir) + r, kk), dir: sweepDir };
+  };
+  const edgeIn = ss(0.255, 0.35, t);
+  const glowK = bump(0.26, 0.33, 0.44, 0.56, t);
+  const hidK = ss(0.47, 0.56, t);
+  hub.set({ metal: 1, vis: edgeIn * (0.9 + 0.1 * ss(0.5, 0.6, t)), glow: glowK * 0.1, hid: hidK * 0.62, cut: cutFor(hub, 0.27, 0.39) });
+  const sideOn = ss(0.405, 0.44, t);
+  hubSide.set({ vis: sideOn, glow: glowK * 0.1 * sideOn, hid: hidK * 0.62, depth: t > 0.4 });
+  const fadeOthers = 1 - ss(0.22, 0.3, t) * 0.55;
+  const othersEdge = bump(0.25, 0.3, 0.32, 0.4, t) * 0.32;
+  collar.set({ metal: fadeOthers, vis: othersEdge, glow: othersEdge * 0.12, cut: cutFor(collar, 0.28, 0.36), depth: t < 0.42 });
+  shaft.set({ metal: fadeOthers, vis: othersEdge, glow: othersEdge * 0.12, cut: cutFor(shaft, 0.28, 0.38), depth: t < 0.42 });
+  shadow.material.opacity = 1 - ss(0.2, 0.32, t);
+
+  // sheet paper
+  const kSheet = ss(0.44, 0.56, t);
+  sheetMat.opacity = kSheet;
+  const kB = ss(0.945, 0.99, t);
+  backMatB.opacity = kB; backMatC.opacity = kB;
+  backB.position.set(6 * kB, -6 * kB, -21); backC.position.set(12 * kB, -12 * kB, -22);
+
+  // SVG sheet aligned to the projected sheet
+  const a = V(-L.W / 2, L.H / 2, -20).project(cam), b = V(L.W / 2, -L.H / 2, -20).project(cam);
+  const x0 = (a.x + 1) / 2 * vw, y0 = (1 - a.y) / 2 * vh, x1 = (b.x + 1) / 2 * vw, y1 = (1 - b.y) / 2 * vh;
+  sheetSvg.style.transform = `translate(${x0}px, ${y0}px)`;
+  sheetSvg.style.width = (x1 - x0) + 'px'; sheetSvg.style.height = (y1 - y0) + 'px';
+  sheetSvg.style.opacity = String(ss(0.47, 0.54, t));
+  updateSheet(t);
+
+  // HUD tags
+  const parts = { hub, collar, shaft };
+  tags.forEach((tg, i) => {
+    const appear = ss(0.085 + i * 0.03, 0.12 + i * 0.03, t);
+    const keep = tg.k === 'A' ? 1 - ss(0.34, 0.38, t) : 1 - ss(0.2, 0.24, t);
+    const op = appear * keep;
+    tg.g.style.opacity = String(op);
+    if (op < 0.001) return;
+    const p = tg.p.clone().applyMatrix4(parts[tg.part].obj.matrixWorld).project(cam);
+    const px = (p.x + 1) / 2 * vw, py = (1 - p.y) / 2 * vh;
+    const len = mobile ? 60 : 110, rise = (tg.down ? 1 : -1) * (mobile ? 54 : 92);
+    const ex = px + tg.dx * len, ey = py + rise, hx = ex + tg.dx * (mobile ? 90 : 150);
+    tg.line.setAttribute('points', `${px},${py} ${ex},${ey} ${hx},${ey}`);
+    tg.line.setAttribute('stroke-dashoffset', String(1 - appear));
+    tg.dot.setAttribute('cx', px); tg.dot.setAttribute('cy', py);
+    tg.ring.setAttribute('cx', px); tg.ring.setAttribute('cy', py);
+    const tx = tg.dx > 0 ? ex + 2 : hx + 2;
+    tg.t1.setAttribute('x', tx); tg.t1.setAttribute('y', ey - 26);
+    tg.t2.setAttribute('x', tx); tg.t2.setAttribute('y', ey - 9);
+    const active = tg.k === 'A' ? 0.4 + 0.6 * ss(0.2, 0.26, t) : 1;
+    tg.t2.style.opacity = String(active);
+  });
+
+  // copy column
+  $('heroCopy').style.opacity = (reduce || !renderer) ? '1' : String(1 - ss(0.02, 0.07, t));
+  $('heroCopy').style.transform = mobile || reduce || !renderer ? '' : `translateY(calc(-54% - ${ss(0.02, 0.07, t) * 30}px))`;
+  $('heroCopy').style.visibility = (reduce || !renderer || t < 0.08) ? 'visible' : 'hidden';
+  const capOp = (reduce || !renderer) ? 0 : ss(0.065, 0.09, t) * (1 - ss(0.94, 0.965, t));
+  cap.style.opacity = String(capOp); cap.style.visibility = capOp > 0.01 ? 'visible' : 'hidden';
+  const endOp = (reduce || !renderer) ? 0 : ss(0.955, 0.985, t);
+  $('endline').style.opacity = String(endOp); $('endline').style.visibility = endOp > 0.01 ? 'visible' : 'hidden';
+  let si = -1; STEPS.forEach((s, i) => { if (t >= s.at) si = i; });
+  if (t < 0.065) si = -1;
+  setStep(t >= 0.95 ? 5 : si);
+  bar.style.width = (t * 100).toFixed(2) + '%';
+  hint.style.opacity = String(1 - ss(0.02, 0.06, t));
+}
+
+/* ---------------------------------------------------------------- loop */
+function resize() {
+  vw = stage.clientWidth || innerWidth; vh = stage.clientHeight || innerHeight;
+  const m2 = isMobile();
+  if (m2 !== mobile) { mobile = m2; L = LAYOUTS[mobile ? 'mob' : 'desk']; placeSheet(); buildSheet(); buildHud(); }
+  if (SVG.pxmm) { const Rs = rects().sheet, px = Math.min((Rs.x1 - Rs.x0) / Rs.bw, (Rs.y1 - Rs.y0) / Rs.bh); if (Math.abs(px - SVG.pxmm) > 0.01) buildSheet(); }
+  if (renderer) {
+    renderer.setPixelRatio(DPR());
+    renderer.setSize(vw, vh, false);
+    const d = renderer.getPixelRatio();
+    const ls = mobile ? 0.7 : 1;
+    lineMats.forEach((m) => { m.resolution.set(vw * d, vh * d); m.linewidth = m.userData.px * d * ls; });
+  }
+  dirty = true;
+}
+let tTarget = 0, tNow = 0, last = performance.now(), dirty = true, visible = true;
+function progress() {
+  if (reduce || !renderer) return 1;
+  const r = story.getBoundingClientRect();
+  const total = story.offsetHeight - vh;
+  return clamp(-r.top / Math.max(1, total));
+}
+vw = stage.clientWidth || innerWidth; vh = stage.clientHeight || innerHeight;
+buildSheet(); buildHud();
+resize();
+addEventListener('resize', resize);
+addEventListener('scroll', () => { tTarget = progress(); }, { passive: true });
+if ('IntersectionObserver' in window) new IntersectionObserver((es) => { visible = es[0].isIntersecting; }, { rootMargin: '100px' }).observe(stage);
+tTarget = tNow = progress();
+
+function frame(now) {
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  const prev = tNow;
+  tNow += (tTarget - tNow) * (1 - Math.exp(-dt * 7));
+  if (Math.abs(tTarget - tNow) < 1e-5) tNow = tTarget;
+  const moving = Math.abs(tNow - prev) > 1e-6 || tNow < 0.3;
+  if (visible && (moving || dirty)) {
+    place(tNow, now / 1000);
+    if (renderer) renderer.render(scene, cam);
+    dirty = false;
+  }
+  if (!reduce && renderer) requestAnimationFrame(frame);
+}
+if (reduce || !renderer) {
+  const once = () => { place(1, 0); if (renderer) renderer.render(scene, cam); };
+  document.fonts && document.fonts.ready.then(once);
+  addEventListener('resize', () => requestAnimationFrame(once));
+  once();
+} else requestAnimationFrame(frame);
+document.fonts && document.fonts.ready.then(() => { dirty = true; });
+window.__derivation = { set: (t) => { tTarget = tNow = t; dirty = true; place(t, performance.now() / 1000); renderer && renderer.render(scene, cam); } };
+</script>
+</body>
+</html>

@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day Zero · Sticker Bomb</title>
+<meta name="description" content="Day Zero, the monthly build night of Builders in Rotterdam.">
+<style>
+@font-face{font-family:"Favorit Expanded";src:url("https://builders.studio/fonts/FavoritStd-MediumExpanded.otf") format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Favorit";src:url("https://builders.studio/fonts/FavoritStd-Book.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Favorit";src:url("https://builders.studio/fonts/FavoritStd-Medium.otf") format("opentype");font-weight:500;font-display:swap}
+
+:root{
+  --night:#07070B; --deep:#000; --ink:#1A1A2E; --cream:#FAF7F2;
+  --studio:#8193FF; --network:#E986B4; --capital:#D4A574;
+  --mute:rgba(250,247,242,.66); --faint:rgba(250,247,242,.42); --line:rgba(250,247,242,.12);
+  --u:clamp(.62px, calc(100vw / 1440), 1px);
+  --gutter:56px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--night);-webkit-text-size-adjust:100%;overflow-x:clip}
+body{background:var(--night);color:var(--cream);font-family:"Favorit",system-ui,sans-serif;font-weight:400;font-size:18px;line-height:1.5;overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.fx{font-family:"Favorit Expanded","Favorit",sans-serif;font-weight:500}
+.fm{font-family:"Favorit",sans-serif;font-weight:500}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--gutter);position:relative}
+
+/* labels */
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:"Favorit";font-weight:500;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.eyebrow svg{width:12px;height:12px}
+.num{font-feature-settings:"tnum" 1}
+
+/* nav */
+nav{position:relative;z-index:30}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:88px}
+.brand{display:flex;align-items:center;gap:18px}
+.brand svg{height:19px;width:auto}
+.brand .sep{width:1px;height:18px;background:var(--line)}
+.brand .dz{font-family:"Favorit Expanded";font-size:12px;letter-spacing:.2em;color:var(--cream)}
+.links{display:flex;align-items:center;gap:34px}
+.links a.l{font-family:"Favorit Expanded";font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);transition:color .2s}
+.links a.l:hover{color:var(--cream)}
+
+.btn{white-space:nowrap;display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 24px 0 26px;border-radius:999px;background:var(--cream);color:var(--night);font-family:"Favorit Expanded";font-size:12px;letter-spacing:.14em;text-transform:uppercase;transition:transform .2s, background .2s}
+.btn svg{width:14px;height:14px}
+.btn:hover{transform:translateY(-1px);background:#fff}
+.btn.sm{height:40px;padding:0 18px 0 20px;font-size:11px}
+.btn.ghost{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1px rgba(250,247,242,.28)}
+.btn.ghost:hover{background:rgba(250,247,242,.06)}
+
+/* hero */
+.hero{position:relative;min-height:calc(100vh - 88px);max-height:1000px;display:flex;align-items:center;padding:24px 0 72px}
+.hero::before{content:"";position:absolute;inset:auto 0 0 0;height:62%;background:url("assets/gradient-builders-full.jpg") center bottom/cover no-repeat;opacity:.5;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 55%,#000 72%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 55%,#000 72%,transparent)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,520px) minmax(0,720px);justify-content:space-between;align-items:center;gap:64px;width:100%}
+.hero h1{font-family:"Favorit Expanded";font-weight:500;font-size:clamp(76px,10.6vw,152px);line-height:.9;letter-spacing:-.012em;text-transform:uppercase;margin:28px 0 30px;position:relative}
+.hero p.lede{font-size:20px;line-height:1.5;color:var(--mute);max-width:440px}
+.hero p.lede b{font-weight:500;color:var(--cream)}
+.cta{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
+.hint{position:absolute;left:var(--gutter);bottom:28px;font-family:"Favorit";font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);display:flex;gap:10px;align-items:center}
+.hint i{display:inline-block;width:18px;height:1px;background:var(--faint)}
+
+/* laptop lid */
+.lidbox{position:relative}
+.lid{position:relative;aspect-ratio:720/470;container-type:inline-size;border-radius:clamp(14px,3.6cqw,26px);
+  background:
+    radial-gradient(120% 90% at 30% 0%, rgba(255,255,255,.07), transparent 55%),
+    linear-gradient(165deg,#24242e 0%,#18181f 48%,#111117 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10), inset 0 0 0 1px rgba(255,255,255,.05), 0 50px 90px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.6);
+  --u:calc(100cqw / 720)}
+.lid::after{content:"";position:absolute;left:3%;right:3%;bottom:-9px;height:9px;border-radius:0 0 10px 10px;background:linear-gradient(#2a2a33,#131318);box-shadow:0 8px 20px rgba(0,0,0,.6)}
+.lid .glow{position:absolute;left:50%;top:50%;width:calc(56 * var(--u));transform:translate(-50%,-50%);filter:drop-shadow(0 0 calc(14 * var(--u)) rgba(250,247,242,.55)) drop-shadow(0 0 calc(40 * var(--u)) rgba(129,147,255,.35));opacity:.92}
+
+/* stickers */
+.stk{position:absolute;left:var(--x);top:var(--y);width:calc(var(--w) * var(--u));z-index:6;
+  transform:translate(-50%,-50%) translate(var(--dx,0px),var(--dy,0px)) rotate(var(--r,0deg)) translateY(var(--lift,0px)) scale(var(--sc,1));
+  transition:transform .35s cubic-bezier(.2,.9,.25,1.2), filter .3s;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.35)) drop-shadow(0 6px 10px rgba(0,0,0,.32));
+  cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.stk svg{display:block;width:100%;height:auto;overflow:hidden}
+.stk:hover{--lift:-3px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3)) drop-shadow(0 14px 20px rgba(0,0,0,.42))}
+.stk.drag{--sc:1.07;--lift:-4px;cursor:grabbing;transition:filter .2s;filter:drop-shadow(0 4px 4px rgba(0,0,0,.28)) drop-shadow(0 26px 34px rgba(0,0,0,.5))}
+.stk.tape{filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
+.stk text{pointer-events:none}
+
+/* sections */
+section{position:relative}
+.sec{padding:180px 0 0}
+.head{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:end;margin-bottom:72px}
+h2{font-family:"Favorit Expanded";font-weight:500;font-size:clamp(38px,4.6vw,66px);line-height:1;letter-spacing:-.01em;text-transform:uppercase;margin-top:24px}
+.head p{color:var(--mute);font-size:19px;max-width:520px}
+
+/* the night */
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1fr);gap:40px;padding:40px 0 44px;border-bottom:1px solid var(--line);position:relative}
+.row .n{font-family:"Favorit Expanded";font-size:13px;letter-spacing:.14em;padding-top:10px}
+.row h3{font-family:"Favorit";font-weight:500;font-size:30px;line-height:1.15;letter-spacing:-.005em}
+.row p{color:var(--mute);font-size:18px;max-width:500px;padding-top:4px}
+
+/* who */
+.who{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.panel{position:relative;border-radius:28px;padding:48px 48px 52px;min-height:460px;display:flex;flex-direction:column;justify-content:space-between;color:var(--ink)}
+.panel.c{background:var(--cream)}
+.panel.b{background:var(--studio)}
+.panel .tag{font-family:"Favorit Expanded";font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.panel h3{font-family:"Favorit Expanded";font-weight:500;font-size:clamp(30px,3vw,44px);line-height:1.02;text-transform:uppercase;letter-spacing:-.01em;max-width:520px}
+.panel p{font-size:18px;line-height:1.5;max-width:440px;color:rgba(26,26,46,.78);margin-top:22px}
+
+/* room */
+.room{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}
+.room .copy{position:sticky;top:60px;padding-top:8px}
+.room .copy p{color:var(--mute);font-size:19px;margin-top:28px;max-width:400px}
+.collage{position:relative;aspect-ratio:860/720}
+.print{position:absolute;background:#fff;padding:10px;border-radius:4px;box-shadow:0 30px 60px -20px rgba(0,0,0,.8),0 2px 6px rgba(0,0,0,.4)}
+.print img{width:100%;height:100%;object-fit:cover;border-radius:2px}
+.print.p1{left:0;top:0;width:82%;aspect-ratio:3/2;transform:rotate(-1.6deg)}
+.print.p2{right:0;bottom:0;width:52%;aspect-ratio:4/3;transform:rotate(2.4deg)}
+
+/* join */
+.join{position:relative;border-radius:36px;overflow:visible;min-height:640px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 160px;
+  background:#000 url("assets/gradient-builders-full.jpg") center bottom/cover no-repeat;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.join h2{font-size:clamp(44px,6.4vw,96px);margin:26px 0 28px}
+.join p{max-width:520px;color:var(--mute);font-size:19px;margin-bottom:40px}
+
+/* sheet */
+.sheet{position:relative;background:#F1EDE5;color:var(--ink);border-radius:18px;padding:40px 44px 36px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
+.sheet::before{content:"";position:absolute;inset:14px;border:1px dashed rgba(26,26,46,.18);border-radius:10px;pointer-events:none}
+.sheet .top{display:flex;justify-content:space-between;align-items:center;font-family:"Favorit Expanded";font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(26,26,46,.62);padding:0 6px 24px;position:relative}
+.sheet .top .reg{display:flex;gap:14px;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid rgba(26,26,46,.12)}
+.cell{position:relative;height:240px;border-bottom:1px solid rgba(26,26,46,.12);border-right:1px solid rgba(26,26,46,.12)}
+.cell:nth-child(6n){border-right:0}
+.cell .stk{--u:clamp(.55px, calc(100vw / 1440 * .82), .82px);filter:drop-shadow(0 1px 1px rgba(26,26,46,.28)) drop-shadow(0 4px 8px rgba(26,26,46,.16))}
+.cell .stk:hover{filter:drop-shadow(0 2px 2px rgba(26,26,46,.25)) drop-shadow(0 12px 18px rgba(26,26,46,.25))}
+.cell .cap{position:absolute;left:0;right:0;bottom:16px;text-align:center;font-family:"Favorit";font-weight:500;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,26,46,.55)}
+.crop{position:absolute;width:18px;height:18px;pointer-events:none}
+.crop::before,.crop::after{content:"";position:absolute;background:rgba(250,247,242,.4)}
+.crop::before{width:18px;height:1px;top:0}
+.crop::after{width:1px;height:18px;left:0}
+.crop.tl{left:-28px;top:-28px}
+.crop.tr{right:-28px;top:-28px;transform:scaleX(-1)}
+.crop.bl{left:-28px;bottom:-28px;transform:scaleY(-1)}
+.crop.br{right:-28px;bottom:-28px;transform:scale(-1,-1)}
+
+/* footer */
+footer{padding:160px 0 56px}
+footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding-top:48px;position:relative}
+footer .wrap::before{content:"";position:absolute;top:0;left:var(--gutter);right:var(--gutter);height:1px;background:var(--line)}
+footer .logo svg{height:30px;width:auto}
+footer p{color:var(--faint);font-size:15px;margin-top:18px;max-width:420px}
+footer .fr{display:flex;gap:28px;white-space:nowrap;flex-wrap:wrap;font-family:"Favorit Expanded";font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+footer .fr a:hover{color:var(--cream)}
+
+@media (max-width:1100px){
+  .hero .wrap{grid-template-columns:1fr;gap:56px}
+  .hero{max-height:none;min-height:0;padding-top:40px}
+  .room{grid-template-columns:1fr}
+  .room .copy{position:relative;top:0}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cell:nth-child(6n){border-right:1px solid rgba(26,26,46,.12)}
+  .cell:nth-child(3n){border-right:0}
+}
+@media (max-width:760px){
+  :root{--gutter:20px}
+  body{font-size:17px}
+  nav .wrap{height:72px}
+  .links a.l{display:none}
+  .brand svg{height:16px}
+  .brand{gap:12px}
+  .hero{padding:24px 0 96px}
+  .hero h1{font-size:23vw;margin:22px 0 22px}
+  .hero p.lede{font-size:18px}
+  .hint{bottom:30px}
+  .sec{padding-top:120px}
+  .head{grid-template-columns:1fr;gap:20px;margin-bottom:44px}
+  .row{grid-template-columns:1fr;gap:10px;padding:28px 0 32px}
+  .row .n{padding-top:0}
+  .row h3{font-size:24px}
+  .who{grid-template-columns:1fr;gap:18px}
+  .panel .stk[data-s="seal"]{--x:84%!important}
+  .brand .sep,.brand .dz{display:none}
+  .head .stk[data-s="spark-capital"]{--x:86%!important}
+  .row .stk[data-s="shipit"]{--x:80%!important;--y:20%!important}
+  .panel .stk[data-s="coffee"]{--x:90%!important;--y:98%!important}
+  .panel .stk[data-s="spark-studio"]{--x:70%!important;--y:95%!important}
+  .join{padding-top:190px}
+  .print.p1 img{aspect-ratio:3/2;height:auto}
+  .print.p2 img{aspect-ratio:4/3;height:auto}
+  .join .stk[data-s="ticket"]{--x:40%!important;--y:7%!important}
+  .join .stk[data-s="spark-network"]{--x:88%!important;--y:8%!important}
+  .join .stk[data-s="zero"]{--x:84%!important;--y:95%!important}
+  .p1 .stk.tape+.stk.tape{--x:86%!important}
+  .join .stk[data-s="zero"]{--x:82%!important}
+  .panel{min-height:380px;padding:32px 26px 34px;border-radius:22px}
+  .collage{aspect-ratio:auto;height:auto;display:flex;flex-direction:column;gap:26px;padding:10px 0 20px}
+  .print{position:relative;padding:6px}
+  .print.p1,.print.p2{left:auto;right:auto;top:auto;bottom:auto;width:100%}
+  .print.p2{width:82%;margin-left:auto}
+  .join{padding:90px 22px 130px;min-height:560px;border-radius:24px}
+  .join p{font-size:17px}
+  .sheet{padding:28px 14px 20px}
+  .sheet .top{flex-direction:column;gap:8px;align-items:flex-start;padding-bottom:18px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cell{height:190px}
+  .cell:nth-child(3n){border-right:1px solid rgba(26,26,46,.12)}
+  .cell:nth-child(2n){border-right:0}
+  .cell .stk{--u:.6px}
+  .crop{display:none}
+  footer{padding-top:120px}
+  footer .wrap{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){.stk{transition:none}}
+</style>
+</head>
+<body>
+
+<!-- shared SVG filters and gradients for every sticker -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- die-cut: grow the artwork's silhouette into a smooth white border -->
+    <filter id="dc" filterUnits="userSpaceOnUse" x="-40" y="-40" width="480" height="480" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="2.2" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="3.2" result="b"/>
+      <feComponentTransfer in="b" result="t"><feFuncA type="linear" slope="24" intercept="-2.2"/></feComponentTransfer>
+      <feFlood flood-color="#FFFFFF" result="w"/>
+      <feComposite in="w" in2="t" operator="in" result="border"/>
+      <feMerge><feMergeNode in="border"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="sil" filterUnits="userSpaceOnUse" x="-40" y="-40" width="480" height="480">
+      <feFlood flood-color="#FFFFFF"/><feComposite in2="SourceAlpha" operator="in"/>
+    </filter>
+    <filter id="flapsh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="1.6" flood-color="#000" flood-opacity=".42"/>
+    </filter>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".22"/>
+      <stop offset=".42" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".62" stop-color="#fff" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".07"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="https://builders.studio" aria-label="Builders">
+      <svg class="logo-cream" viewBox="0 0 121 17" aria-hidden="true"></svg>
+      <span class="sep"></span>
+      <span class="dz">DAY ZERO</span>
+    </a>
+    <div class="links">
+      <a class="l" href="#night">The night</a>
+      <a class="l" href="#who">Who</a>
+      <a class="l" href="#room">The room</a>
+      <a class="l" href="#sheet">Stickers</a>
+      <a class="btn sm" href="https://builders.studio">Request an invite <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11 11 3M5 3h6v6"/></svg></a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="copy">
+      <span class="eyebrow"><svg viewBox="0 0 50 51"><path class="sp" fill="#8193FF"/></svg>Builders · Monthly build night · Rotterdam</span>
+      <h1>Day<br>Zero</h1>
+      <p class="lede"><b>The monthly build night of Builders.</b> Founders and technical youngsters sit down together in Rotterdam and build AI ventures through the night.</p>
+      <div class="cta">
+        <a class="btn" href="https://builders.studio">Request an invite <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11 11 3M5 3h6v6"/></svg></a>
+        <a class="btn ghost" href="#night">What happens</a>
+      </div>
+    </div>
+    <div class="lidbox">
+      <div class="lid" aria-hidden="true">
+        <svg class="glow" viewBox="0 0 50 51"><path class="sp" fill="#FAF7F2"/></svg>
+        <div class="stk" data-s="dayzero"        style="--x:31%;--y:24%;--r:-5deg;--w:380"></div>
+        <div class="stk" data-s="holo"           style="--x:77%;--y:27%;--r:6deg;--w:310" data-rest=".18"></div>
+        <div class="stk" data-s="spark-studio"   style="--x:9%;--y:45%;--r:-16deg;--w:112"></div>
+        <div class="stk" data-s="spark-network"  style="--x:36%;--y:48%;--r:14deg;--w:92"></div>
+        <div class="stk" data-s="zero"           style="--x:19%;--y:71%;--r:-12deg;--w:180"></div>
+        <div class="stk" data-s="smiley"         style="--x:41%;--y:80%;--r:10deg;--w:146"></div>
+        <div class="stk" data-s="wordmark"       style="--x:62%;--y:65%;--r:-4deg;--w:290"></div>
+        <div class="stk" data-s="bmark"          style="--x:90%;--y:63%;--r:9deg;--w:146" data-rest=".12"></div>
+        <div class="stk" data-s="night"          style="--x:73%;--y:88%;--r:3deg;--w:300"></div>
+        <div class="stk" data-s="pizza"          style="--x:9%;--y:86%;--r:-16deg;--w:104"></div>
+        <div class="stk" data-s="spark-capital"  style="--x:56%;--y:9%;--r:10deg;--w:70"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hint"><i></i>Loose stickers. Drag them, peel them.</div>
+</header>
+
+<section class="sec" id="night">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="eyebrow"><span class="num">01</span> · The night</span>
+        <h2>The studio,<br>in one night.</h2>
+      </div>
+      <p>Day Zero is a derivation of the Builders studio itself: the same room, the same people and the same bias for shipping, held once a month.</p>
+      <div class="stk" data-s="spark-capital" style="--x:96%;--y:4%;--r:-12deg;--w:104"></div>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <span class="n num" style="color:var(--studio)">01</span>
+        <h3>Founders and builders sit down together.</h3>
+        <p>Founders come with an idea or an early product. Technical builders come ready to build it with them.</p>
+      </div>
+      <div class="row">
+        <span class="n num" style="color:var(--network)">02</span>
+        <h3>AI ventures get built through the night.</h3>
+        <p>Teams work side by side at Builders in Rotterdam, in the same room where the studio builds its companies every day.</p>
+      </div>
+      <div class="row">
+        <span class="n num" style="color:var(--capital)">03</span>
+        <h3>Something ships.</h3>
+        <p>The night carries the studio's bias for shipping, so it is spent building the thing rather than talking about it.</p>
+        <div class="stk" data-s="shipit" style="--x:44%;--y:50%;--r:-7deg;--w:250"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="who">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="eyebrow"><span class="num">02</span> · Who it is for</span>
+        <h2>Founders and<br>technical youngsters.</h2>
+      </div>
+      <p>Two kinds of people in one room, building the same thing from opposite ends.</p>
+    </div>
+    <div class="who">
+      <div class="panel c">
+        <span class="tag">For founders</span>
+        <div>
+          <h3>With an idea or an early product.</h3>
+          <p>Bring the company you want to exist, and build it through the night with people who would rather ship than plan.</p>
+        </div>
+        <div class="stk" data-s="seal" style="--x:95%;--y:6%;--r:12deg;--w:176"></div>
+      </div>
+      <div class="panel b">
+        <span class="tag">For technical youngsters</span>
+        <div>
+          <h3>Engineers, designers and makers.</h3>
+          <p>Early in your career, and happier shipping something than talking about it. Come and build it with a founder.</p>
+        </div>
+        <div class="stk" data-s="coffee" style="--x:90%;--y:12%;--r:-9deg;--w:128"></div>
+        <div class="stk" data-s="spark-studio" style="--x:78%;--y:4%;--r:18deg;--w:74"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="room">
+  <div class="wrap">
+    <div class="room">
+      <div class="copy">
+        <span class="eyebrow"><span class="num">03</span> · The room</span>
+        <h2>The room<br>where Builders<br>builds.</h2>
+        <p>Day Zero happens in the Builders studio in Rotterdam, the room where the studio co-founds its AI companies. Once a month it stays open through the night.</p>
+      </div>
+      <div class="collage">
+        <figure class="print p1">
+          <img src="assets/bootcamp-founders-at-laptops.jpg" alt="Founders at laptops around a table in the Builders studio">
+          <div class="stk tape" data-s="tape" style="--x:9%;--y:1%;--r:-28deg;--w:190"></div>
+          <div class="stk tape" data-s="tape" style="--x:92%;--y:2%;--r:24deg;--w:190"></div>
+          <div class="stk" data-s="builthere" style="--x:62%;--y:22%;--r:-4deg;--w:310"></div>
+        </figure>
+        <figure class="print p2">
+          <img src="assets/team-reviewing-laptop-kitchen.jpg" alt="A team reviewing work on a laptop at the Builders kitchen counter">
+          <div class="stk" data-s="rdam" style="--x:74%;--y:94%;--r:-6deg;--w:300"></div>
+          <div class="stk" data-s="pizza" style="--x:4%;--y:14%;--r:-14deg;--w:150"></div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="join">
+  <div class="wrap">
+    <div class="join">
+      <span class="eyebrow"><span class="num">04</span> · Join</span>
+      <h2>Come build<br>on Day Zero.</h2>
+      <p>Day Zero is held once a month at Builders in Rotterdam. Request an invite, and bring what you want to build.</p>
+      <a class="btn" href="https://builders.studio">Request an invite <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11 11 3M5 3h6v6"/></svg></a>
+      <div class="stk" data-s="ticket" style="--x:15%;--y:15%;--r:-9deg;--w:340"></div>
+      <div class="stk" data-s="zero" style="--x:88%;--y:76%;--r:14deg;--w:170"></div>
+      <div class="stk" data-s="spark-network" style="--x:87%;--y:15%;--r:-10deg;--w:104"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="sheet">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="eyebrow"><span class="num">05</span> · The sticker sheet</span>
+        <h2>The full sheet.</h2>
+      </div>
+      <p>Every Day Zero sticker, laid out flat on its backing sheet. Hover to lift a corner, drag one off the sheet.</p>
+    </div>
+    <div class="sheet">
+      <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+      <div class="top"><span>Day Zero · Sticker sheet</span><span class="reg">Builders · Rotterdam <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><circle cx="8" cy="8" r="5"/><path d="M8 0v16M0 8h16"/></svg></span></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="https://builders.studio" aria-label="Builders"><svg class="logo-cream" viewBox="0 0 121 17" aria-hidden="true"></svg></a>
+      <p>Day Zero is the monthly build night of Builders, the AI venture studio in Rotterdam.</p>
+    </div>
+    <div class="fr">
+      <a href="https://builders.studio">builders.studio</a>
+      <a href="https://builders.studio">Request an invite</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+const SP = "M46.5517 23.6515C35.509 23.6515 26.5189 14.6375 26.5189 3.4733V0H25H23.4811V3.4733C23.4811 14.5961 14.532 23.6515 3.44827 23.6515H0V25.1814V26.7113H3.44827C14.491 26.7113 23.4811 35.7253 23.4811 46.8895V50.3628H25H26.5189V46.8895C26.5189 35.7667 35.468 26.7113 46.5517 26.7113H50V25.1814V23.6515H46.5517Z";
+const LOGO = ["M10.0966 7.92259C7.82013 7.92259 5.96682 6.06436 5.96682 3.76289V3.04688H5.65371H5.34059V3.76289C5.34059 6.05584 3.49575 7.92259 1.21086 7.92259H0.5V8.23798V8.55337H1.21086C3.48729 8.55337 5.34059 10.4116 5.34059 12.7131V13.4291H5.65371H5.96682V12.7131C5.96682 10.4201 7.81166 8.55337 10.0966 8.55337H10.8074V8.23798V7.92259H10.0966Z", "M31.1797 11.4204V4.83984H34.3278V10.7896C34.3278 13.074 35.2586 14.2674 37.7382 14.2674H38.1613C40.2854 14.2674 42.0879 12.8353 42.0879 10.2696V4.83984H45.2445V16.6029H42.0879V14.7191C41.1063 15.9892 39.5661 16.8331 37.2558 16.8331C33.3715 16.8331 31.1797 14.8129 31.1797 11.4204Z", "M48.4062 4.83805H51.5628V16.6012H48.4062V4.83805ZM48.4062 3.31226H51.5628V0.132812H48.4062V3.31226Z", "M54.6836 0.132812H57.8401V16.6012H54.6836V0.132812Z", "M60.2383 10.7189C60.2383 7.12177 63.3948 4.60719 67.5499 4.60719C70.4442 4.60719 72.2467 5.6386 73.1099 6.49099V0.140625H76.2664V16.6004H73.1099V14.8104C71.8997 16.1061 69.9533 16.8306 67.5076 16.8306C63.2679 16.8306 60.2383 14.6655 60.2383 10.7189ZM68.3116 14.2649C71.2058 14.2649 73.1014 12.8328 73.1014 10.7104C73.1014 8.59642 71.2142 7.15587 68.3116 7.15587H67.8885C65.2058 7.15587 63.4287 8.5879 63.4287 10.7104C63.4287 12.8243 65.2058 14.2649 67.8885 14.2649H68.3116Z", "M93.6559 11.7532H82.0283C82.5445 13.3301 84.127 14.2678 86.2511 14.2678H86.6742C88.7729 14.2678 89.8054 13.5603 90.1777 12.8783H93.5374C93.0973 14.9241 91.0663 16.8335 86.4627 16.8335C81.8167 16.8335 78.6602 14.549 78.6602 10.5257C78.6602 6.74108 82.2991 4.60156 86.4627 4.60156C91.0409 4.60156 93.6559 7.16728 93.6559 10.6024V11.7532V11.7532ZM90.3639 9.35794C90.2962 8.01968 88.7729 7.16728 86.6742 7.16728H86.2511C84.0085 7.16728 82.6122 8.03673 82.096 9.35794H90.3639Z", "M106.816 12.7164H110.066C110.21 13.5858 111.75 14.2678 113.612 14.2678H114.035C116.438 14.2678 117.073 13.8671 117.073 13.2364C117.073 12.7675 116.794 12.3925 115.177 12.222L111.885 11.8896C108.5 11.5571 107.519 10.1507 107.519 8.38621C107.519 5.77787 110.041 4.60156 113.68 4.60156C118.139 4.60156 120.263 6.27226 120.5 8.71864H117.251C117.014 7.79806 116.041 7.16728 113.908 7.16728H113.485C111.598 7.16728 110.684 7.59348 110.684 8.18163C110.684 8.67602 110.921 9.02551 112.74 9.21304L115.592 9.49433C119.189 9.84381 120.263 11.3014 120.263 13.0914C120.263 15.3929 118.258 16.8335 113.798 16.8335C109.55 16.8335 107.003 15.2565 106.816 12.7164Z", "M99.3281 7.68685C99.3281 6.11844 100.589 4.83984 102.155 4.83984H106.005V7.68685H99.3281Z", "M99.3362 4.83984H96.1797V16.6029H99.3362V4.83984Z", "M25.6858 8.10274C26.9213 7.58278 28.1146 6.33827 28.1146 4.48005C28.1146 1.77794 25.8043 0.132812 22.6477 0.132812H10.8086V3.44864C10.8086 5.28982 12.2895 6.79004 14.1259 6.79004V3.44864V3.04802H22.1315C23.8325 3.04802 24.7211 3.72993 24.7211 4.90624C24.7211 6.10813 23.8325 6.79004 22.1315 6.79004H14.1259V9.70525H22.3685C24.1879 9.70525 25.195 10.4127 25.195 11.6828C25.195 13.0978 24.1879 13.6859 22.3685 13.6859H14.1259V13.0552V9.71377C12.298 9.71377 10.8086 11.2055 10.8086 13.0552V16.6012H23.0709C26.2274 16.6012 28.58 14.8878 28.58 12.0834C28.58 10.0121 27.226 8.52894 25.6858 8.10274Z"];
+const C = {night:'#07070B', ink:'#1A1A2E', cream:'#FAF7F2', studio:'#8193FF', network:'#E986B4', capital:'#D4A574'};
+
+/* fill static logo and spark slots */
+document.querySelectorAll('svg.logo-cream').forEach(s => s.innerHTML = LOGO.map(d => `<path d="${d}" fill="${C.cream}"/>`).join(''));
+document.querySelectorAll('path.sp').forEach(p => p.setAttribute('d', SP));
+
+/* helpers */
+const spark = (cx, cy, s, fill, rot=0) => `<path d="${SP}" fill="${fill}" transform="translate(${cx} ${cy}) rotate(${rot}) scale(${s/50}) translate(-25 -25.18)"/>`;
+const bmark = (cx, cy, s, fill) => `<g transform="translate(${cx} ${cy}) scale(${s}) translate(-14.55 -8.37)" fill="${fill}"><path d="${LOGO[0]}"/><path d="${LOGO[LOGO.length-1]}"/></g>`;
+const txt = (x, y, size, str, o={}) => `<text x="${x}" y="${y}" font-size="${size}" class="${o.cls||'fx'}" fill="${o.fill||C.ink}" ${o.anchor?`text-anchor="${o.anchor}"`:''} ${o.fit?`data-fit="${o.fit}"`:''} ${o.ls?`letter-spacing="${o.ls}"`:''}>${str}</text>`;
+const scallop = (cx, cy, r, amp, n) => { let d=''; for (let i=0;i<=360;i++){ const a=i/360*Math.PI*2, rr=r+amp*Math.cos(n*a); d += (i?'L':'M') + (cx+rr*Math.cos(a)).toFixed(2)+' '+(cy+rr*Math.sin(a)).toFixed(2); } return d+'Z'; };
+const ring = (id, cx, cy, r) => `<path id="${id}" d="M${cx-r} ${cy} a${r} ${r} 0 1 1 ${2*r} 0 a${r} ${r} 0 1 1 ${-2*r} 0" fill="none"/>`;
+const pillarGrad = (id, x1, y1, x2, y2) => `<linearGradient id="${id}" gradientUnits="userSpaceOnUse" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"><stop offset="0" stop-color="${C.capital}"/><stop offset=".34" stop-color="${C.network}"/><stop offset=".68" stop-color="${C.studio}"/><stop offset="1" stop-color="#C9B8F0"/></linearGradient>`;
+
+/* the sticker set: artwork is drawn at 1 unit = 1px on desktop; peel = point on the die-cut edge, outward angle, depth */
+const S = {
+  'spark-studio':  {label:'Spark · Studio',  w:124, h:124, peel:[112,62,0,26],  art:() => spark(62,62,92,C.studio)},
+  'spark-network': {label:'Spark · Network', w:124, h:124, peel:[62,12,-90,26], art:() => spark(62,62,92,C.network)},
+  'spark-capital': {label:'Spark · Capital', w:124, h:124, peel:[12,62,180,26], art:() => spark(62,62,92,C.capital)},
+
+  'bmark': {label:'B mark', w:150, h:150, peel:[131,131,45,34], art:() => `
+    <rect x="14" y="14" width="122" height="122" rx="32" fill="#0B0B12"/>
+    <rect x="14.75" y="14.75" width="120.5" height="120.5" rx="31.25" fill="none" stroke="#fff" stroke-opacity=".10" stroke-width="1.5"/>
+    ${bmark(75,75,2.95,C.cream)}`},
+
+  'dayzero': {label:'Day Zero badge', w:380, h:140, peel:[358,32,-40,30], art:(p) => `
+    ${pillarGrad(p+'-g',30,0,350,0)}
+    <rect x="14" y="14" width="352" height="112" rx="56" fill="${C.night}"/>
+    <rect x="23" y="23" width="334" height="94" rx="47" fill="none" stroke="url(#${p}-g)" stroke-width="2.5"/>
+    ${spark(58,70,24,`url(#${p}-g)`)}
+    ${spark(322,70,24,`url(#${p}-g)`)}
+    ${txt(190,85.5,42,'DAY ZERO',{fill:C.cream,anchor:'middle',fit:222})}`},
+
+  'holo': {label:'Holo foil', w:310, h:200, holo:true, peel:[292,182,45,34], art:(p) => `
+    <defs>
+      <clipPath id="${p}-hc"><rect x="14" y="14" width="282" height="172" rx="20"/></clipPath>
+      <pattern id="${p}-hp" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(32)"><rect width="1.6" height="5" fill="#fff" opacity=".16"/></pattern>
+      <linearGradient id="${p}-hl" class="hband" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="310" y2="200">
+        <stop offset=".25" stop-color="#fff" stop-opacity="0"/><stop offset=".42" stop-color="#fff" stop-opacity=".7"/><stop offset=".5" stop-color="#fff" stop-opacity=".1"/><stop offset=".58" stop-color="#fff" stop-opacity=".35"/><stop offset=".72" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="${p}-hi" class="hiri" gradientUnits="userSpaceOnUse" x1="0" y1="200" x2="310" y2="0">
+        <stop offset="0" stop-color="${C.network}" stop-opacity=".7"/><stop offset=".22" stop-color="#9FF3E6" stop-opacity=".35"/><stop offset=".42" stop-color="${C.studio}" stop-opacity=".35"/><stop offset=".64" stop-color="${C.capital}" stop-opacity=".6"/><stop offset=".82" stop-color="${C.network}" stop-opacity=".35"/><stop offset="1" stop-color="${C.studio}" stop-opacity=".5"/>
+      </linearGradient>
+    </defs>
+    <g clip-path="url(#${p}-hc)">
+      <rect x="14" y="14" width="282" height="172" fill="#C4B6EE"/>
+      <image class="hfoil" href="assets/holo-foil.jpg" x="-300" y="4" width="1000" height="192" preserveAspectRatio="none"/>
+      <rect x="14" y="14" width="282" height="172" fill="url(#${p}-hi)"/>
+      <rect x="14" y="14" width="282" height="172" fill="url(#${p}-hp)"/>
+      <rect x="14" y="14" width="282" height="172" fill="url(#${p}-hl)"/>
+    </g>
+    <rect x="14.75" y="14.75" width="280.5" height="170.5" rx="19.25" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.5"/>
+    ${spark(50,50,28,C.night)}
+    ${txt(276,54,9.5,'BUILDERS',{cls:'fx',fill:C.night,anchor:'end',ls:'2.6'})}
+    ${txt(34,137,23,'AI VENTURES',{fill:C.night,fit:242})}
+    ${txt(34,165,23,'ARE BUILT HERE',{fill:C.night,fit:242})}`},
+
+  'builthere': {label:'Built here', w:310, h:124, peel:[14,14,-135,26], art:() => `
+    <path d="M30 14H280A16 16 0 0 1 296 30V72A16 16 0 0 1 280 88H171L155 108L139 88H30A16 16 0 0 1 14 72V30A16 16 0 0 1 30 14Z" fill="${C.cream}"/>
+    ${spark(46,51,26,C.network)}
+    ${txt(70,61,27,'BUILT HERE',{fit:212})}`},
+
+  'shipit': {label:'Ship it', w:250, h:112, peel:[232,94,45,28], art:() => `
+    <rect x="14" y="14" width="222" height="84" rx="18" fill="${C.capital}"/>
+    ${txt(34,70.5,36,'SHIP IT',{fit:148})}
+    <path d="M192 72 216 48M198 46.5H217.5V66" fill="none" stroke="${C.ink}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>`},
+
+  'night': {label:'Night build', w:300, h:96, peel:[280,20,-45,26], art:(p) => `
+    <defs><mask id="${p}-mm"><rect width="300" height="96" fill="#fff"/><circle cx="60" cy="41" r="14.5" fill="#000"/></mask></defs>
+    <rect x="14" y="14" width="272" height="68" rx="34" fill="${C.ink}"/>
+    <circle cx="52" cy="48" r="17" fill="${C.cream}" mask="url(#${p}-mm)"/>
+    ${spark(73,30,10,C.capital)}
+    ${spark(79,62,6,C.studio)}
+    ${txt(96,56.5,22,'NIGHT BUILD',{fill:C.cream,fit:172})}`},
+
+  'rdam': {label:'Rotterdam', w:300, h:150, peel:[14,136,135,28], art:() => `
+    <rect x="14" y="14" width="272" height="122" rx="14" fill="${C.network}"/>
+    <g fill="none" stroke="${C.ink}" stroke-linecap="round">
+      <g stroke-width="1.4">
+        <path d="M185 31 196 84M185 31 207 84M185 31 218 84M185 31 229 84M185 31 240 84M185 31 251 84M185 31 262 84"/>
+        <path d="M183 36 150 84M183 36 138 84M183 36 126 84M183 36 114 84"/>
+      </g>
+      <path d="M180 84 173 57 185 30" stroke-width="5.5" stroke-linejoin="round"/>
+      <path d="M34 84H266" stroke-width="4"/>
+      <path d="M58 84V96M104 84V96M240 84V96" stroke-width="3"/>
+    </g>
+    ${txt(34,121,21,'ROTTERDAM',{fit:190})}
+    ${spark(262,112,18,C.ink)}`},
+
+  'zero': {label:'Zero', w:180, h:180, peel:[148,148,45,30], art:(p) => `
+    <defs>${ring(p+'-r',90,90,62)}
+      <linearGradient id="${p}-z" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.studio}"/><stop offset=".55" stop-color="${C.network}"/><stop offset="1" stop-color="${C.capital}"/></linearGradient></defs>
+    <circle cx="90" cy="90" r="76" fill="${C.night}"/>
+    <text class="fx" font-size="10.5" fill="${C.cream}" data-ring="${(2*Math.PI*62).toFixed(1)}"><textPath href="#${p}-r">DAY ZERO · BUILDERS · ROTTERDAM · </textPath></text>
+    ${txt(91,124,94,'0',{anchor:'middle',fill:`url(#${p}-z)`})}`},
+
+  'smiley': {label:'Spark smiley', w:150, h:150, peel:[122,28,-45,26], art:() => `
+    <circle cx="75" cy="75" r="61" fill="${C.capital}"/>
+    ${spark(53,63,22,C.ink)}
+    ${spark(97,63,22,C.ink)}
+    <path d="M45 86Q75 118 105 86" fill="none" stroke="${C.ink}" stroke-width="7" stroke-linecap="round"/>`},
+
+  'tape': {label:'Tape', w:200, h:56, cut:false, art:() => {
+    let top='', bot=''; for (let x=16;x<=184;x+=8){ top+=`L${x} ${14+((x/8)%2?1.2:0)}`; }
+    const L='M12 14 L16 18 L11 22 L15 27 L11 32 L16 37 L12 42', R='L188 42 L184 37 L189 32 L185 27 L189 22 L184 18 L188 14';
+    return `<path d="${L} L188 42 ${R.replace('L188 42 ','')} Z" fill="${C.network}" fill-opacity=".82"/>
+      <path d="${L} L188 42 ${R.replace('L188 42 ','')} Z" fill="url(#sheen)"/>
+      <g fill-opacity=".9">${spark(40,28,10,C.cream)}${spark(100,28,10,C.cream)}${spark(160,28,10,C.cream)}</g>`; }},
+
+  'ticket': {label:'Batch 0 stub', w:340, h:150, peel:[322,132,45,28], art:(p) => `
+    <defs><mask id="${p}-tm"><rect width="340" height="150" fill="#fff"/><circle cx="14" cy="75" r="11" fill="#000"/><circle cx="326" cy="75" r="11" fill="#000"/><circle cx="252" cy="14" r="8" fill="#000"/><circle cx="252" cy="136" r="8" fill="#000"/></mask></defs>
+    <g mask="url(#${p}-tm)">
+      <rect x="14" y="14" width="312" height="122" rx="10" fill="${C.cream}"/>
+      <rect x="252" y="14" width="74" height="122" fill="${C.studio}"/>
+    </g>
+    <path d="M252 28V122" stroke="${C.ink}" stroke-opacity=".45" stroke-width="1.5" stroke-dasharray="3 5" stroke-linecap="round"/>
+    ${txt(34,44,9.5,'DAY ZERO · BUILD NIGHT',{cls:'fm',ls:'2.2',fill:'rgba(26,26,46,.7)',fit:196})}
+    ${txt(33,96,40,'BATCH 0',{fit:200})}
+    ${txt(34,119,9.5,'BUILDERS · ROTTERDAM',{cls:'fm',ls:'2.2',fill:'rgba(26,26,46,.7)',fit:196})}
+    ${spark(289,75,40,C.ink)}`},
+
+  'pizza': {label:'Pizza', w:170, h:170, peel:[121,20,-55,22], art:() => `
+    <path d="M72 30Q128 34 150 104" fill="none" stroke="${C.ink}" stroke-width="27" stroke-linecap="round"/>
+    <path d="M34 144 72 30Q128 34 150 104Z" fill="#F4DCA6" stroke="${C.ink}" stroke-width="4.5" stroke-linejoin="round"/>
+    <path d="M81 127.8C81 140 94 140 94 124" fill="#F4DCA6" stroke="${C.ink}" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M72 30Q128 34 150 104" fill="none" stroke="${C.capital}" stroke-width="18" stroke-linecap="round"/>
+    <path d="M80 30.5Q124 36 143 90" fill="none" stroke="#E8C193" stroke-width="4" stroke-linecap="round"/>
+    <g stroke="${C.ink}" stroke-width="3.5" fill="${C.network}">
+      <circle cx="88" cy="72" r="11"/><circle cx="112" cy="99" r="10"/><circle cx="66" cy="114" r="8.5"/>
+    </g>
+    <g fill="#C8629A"><circle cx="85" cy="69" r="2"/><circle cx="92" cy="76" r="1.6"/><circle cx="110" cy="97" r="1.8"/><circle cx="64" cy="112" r="1.6"/></g>`},
+
+  'coffee': {label:'Coffee', w:140, h:196, peel:[34,184,120,22], art:() => `
+    <path d="M30 58H110L100 174Q99.6 178 96 178H44Q40.4 178 40 174Z" fill="${C.cream}" stroke="${C.ink}" stroke-width="4.5" stroke-linejoin="round"/>
+    <path d="M33.3 96H106.7L103.1 138H36.9Z" fill="${C.studio}" stroke="${C.ink}" stroke-width="4.5" stroke-linejoin="round"/>
+    ${spark(70,117,24,C.cream)}
+    <rect x="22" y="42" width="96" height="20" rx="8" fill="#2E2E48" stroke="${C.ink}" stroke-width="4.5"/>
+    <rect x="36" y="26" width="68" height="19" rx="7" fill="#2E2E48" stroke="${C.ink}" stroke-width="4.5"/>
+    <rect x="76" y="31" width="16" height="5" rx="2.5" fill="${C.cream}" opacity=".8"/>`},
+
+  'seal': {label:'Build with Builders', w:180, h:180, peel:[143,143,45,28], art:(p) => `
+    <defs>${ring(p+'-r',90,90,57)}</defs>
+    <path d="${scallop(90,90,72,3.6,22)}" fill="${C.studio}"/>
+    <circle cx="90" cy="90" r="46" fill="none" stroke="${C.ink}" stroke-opacity=".5" stroke-width="1.3"/>
+    <text class="fx" font-size="10" fill="${C.ink}" data-ring="${(2*Math.PI*57).toFixed(1)}"><textPath href="#${p}-r">BUILD WITH BUILDERS · BUILD WITH BUILDERS · </textPath></text>
+    ${spark(90,90,44,C.ink)}`},
+
+  'wordmark': {label:'Wordmark', w:320, h:84, peel:[16,16,-135,24], art:(p) => `
+    ${pillarGrad(p+'-g',0,0,121,0)}
+    <rect x="14" y="14" width="292" height="56" rx="14" fill="${C.night}"/>
+    <g transform="translate(40 25.5) scale(2)" fill="url(#${p}-g)">${LOGO.map(d=>`<path d="${d}"/>`).join('')}</g>`}
+};
+
+/* build one sticker instance */
+let uid = 0;
+function build(el){
+  const key = el.dataset.s, d = S[key]; if (!d) return;
+  const p = 'k' + (++uid), W = d.w, H = d.h;
+  const big = `x="-60" y="-60" width="${W+120}" height="${H+120}"`;
+  const canPeel = !!d.peel;
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true" focusable="false">
+    <defs>
+      <mask id="${p}-m" maskUnits="userSpaceOnUse" ${big}><rect ${big} fill="#fff"/><polygon class="pc" fill="#000" points=""/></mask>
+      <mask id="${p}-s" maskUnits="userSpaceOnUse" ${big}><use href="#${p}-k" filter="url(#sil)"/></mask>
+      <clipPath id="${p}-c"><polygon class="pc" points=""/></clipPath>
+      <linearGradient id="${p}-g" class="pg" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#A9A49B"/><stop offset=".3" stop-color="#DCD8D0"/><stop offset=".75" stop-color="#F7F5F1"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+    </defs>
+    <g mask="url(#${p}-m)">
+      <g id="${p}-k" ${d.cut===false?'':'filter="url(#dc)"'}>${d.art(p)}</g>
+      ${d.cut===false?'':`<rect ${big} fill="url(#sheen)" mask="url(#${p}-s)"/>`}
+    </g>
+    ${canPeel?`<g class="flap" filter="url(#flapsh)" style="display:none"><g clip-path="url(#${p}-c)"><rect ${big} fill="url(#${p}-g)" mask="url(#${p}-s)"/></g></g>`:''}
+  </svg>`;
+  el.setAttribute('aria-hidden','true');
+  if (d.holo) el.classList.add('is-holo');
+  const st = {el, d, p:0, target:+(el.dataset.rest||0), rest:+(el.dataset.rest||0), dx:0, dy:0,
+    polys: el.querySelectorAll('.pc'), flap: el.querySelector('.flap'), grad: el.querySelector('.pg')};
+  if (canPeel) peel(st, st.target), st.p = st.target;
+  bind(st);
+  return st;
+}
+
+function peel(st, p){
+  const [cx, cy, deg, max] = st.d.peel, a = deg*Math.PI/180, ux = Math.cos(a), uy = Math.sin(a);
+  const dd = p*max;
+  if (dd < .4){ st.polys.forEach(n => n.setAttribute('points','')); st.flap.style.display='none'; return; }
+  const Px = cx - dd*ux, Py = cy - dd*uy, tx = -uy, ty = ux, L = 700;
+  const pts = [[Px+L*tx, Py+L*ty],[Px-L*tx, Py-L*ty],[Px-L*tx+L*ux, Py-L*ty+L*uy],[Px+L*tx+L*ux, Py+L*ty+L*uy]].map(q => q[0].toFixed(2)+','+q[1].toFixed(2)).join(' ');
+  st.polys.forEach(n => n.setAttribute('points', pts));
+  const k = 2*(Px*ux + Py*uy);
+  st.flap.setAttribute('transform', `matrix(${1-2*ux*ux} ${-2*ux*uy} ${-2*ux*uy} ${1-2*uy*uy} ${k*ux} ${k*uy})`);
+  st.grad.setAttribute('x1', Px); st.grad.setAttribute('y1', Py); st.grad.setAttribute('x2', cx); st.grad.setAttribute('y2', cy);
+  st.flap.style.display='';
+}
+
+let Z = 20; const live = new Set();
+function tick(){
+  live.forEach(st => {
+    st.p += (st.target - st.p) * .2;
+    if (Math.abs(st.target - st.p) < .004){ st.p = st.target; live.delete(st); }
+    peel(st, st.p);
+  });
+  if (live.size) requestAnimationFrame(tick);
+}
+function go(st, t){ if (!st.d.peel) return; st.target = t; if (!live.size) requestAnimationFrame(tick); live.add(st); }
+
+function bind(st){
+  const el = st.el;
+  const fine = matchMedia('(hover:hover)').matches;
+  if (fine){
+    el.addEventListener('pointerenter', () => go(st, Math.max(1, st.rest)));
+    el.addEventListener('pointerleave', () => { if (!el.classList.contains('drag')) go(st, st.rest); });
+  }
+  let sx, sy, ox, oy, scale = 1;
+  el.addEventListener('pointerdown', e => {
+    if (e.button !== 0) return;
+    e.preventDefault();
+    el.setPointerCapture(e.pointerId);
+    el.classList.add('drag'); el.style.zIndex = ++Z;
+    const par = el.offsetParent, r = par.getBoundingClientRect();
+    scale = par.offsetWidth ? r.width / par.offsetWidth : 1;
+    sx = e.clientX; sy = e.clientY; ox = st.dx; oy = st.dy;
+    go(st, .55);
+  });
+  el.addEventListener('pointermove', e => {
+    if (!el.classList.contains('drag')) return;
+    st.dx = ox + (e.clientX - sx)/scale; st.dy = oy + (e.clientY - sy)/scale;
+    el.style.setProperty('--dx', st.dx + 'px'); el.style.setProperty('--dy', st.dy + 'px');
+  });
+  const up = () => { el.classList.remove('drag'); go(st, el.matches(':hover') && fine ? 1 : st.rest); };
+  el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
+}
+
+/* sticker sheet: every sticker once, flat */
+const grid = document.getElementById('grid');
+Object.keys(S).forEach(k => {
+  const cell = document.createElement('div'); cell.className = 'cell';
+  const d = S[k];
+  cell.innerHTML = `<div class="stk${k==='tape'?' tape':''}" data-s="${k}" style="--x:50%;--y:46%;--r:${k==='tape'?-8:0}deg;--w:${Math.min(d.w, 218)}"></div><span class="cap">${d.label}</span>`;
+  grid.appendChild(cell);
+});
+
+const all = [...document.querySelectorAll('.stk[data-s]')].map(build).filter(Boolean);
+
+/* fit sticker type once the fonts are in */
+function fit(){
+  document.querySelectorAll('.stk text[data-fit]').forEach(t => {
+    t.removeAttribute('textLength');
+    const W = +t.dataset.fit, n = t.getComputedTextLength();
+    if (n > W){ t.setAttribute('textLength', W); t.setAttribute('lengthAdjust','spacingAndGlyphs'); }
+  });
+  document.querySelectorAll('.stk text[data-ring]').forEach(t => {
+    t.style.letterSpacing = '0px';
+    const Cc = +t.dataset.ring, n = t.getComputedTextLength(), chars = t.textContent.length;
+    t.style.letterSpacing = ((Cc - n) / chars).toFixed(3) + 'px';
+  });
+}
+(document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fit);
+
+/* holographic foil follows the pointer and the scroll */
+const holos = all.filter(st => st.d.holo);
+let hx = .5, hy = .5, raf = 0;
+function holo(){
+  raf = 0;
+  const t = hx + (scrollY / 2400) % 1;
+  holos.forEach(st => {
+    const img = st.el.querySelector('.hfoil'), band = st.el.querySelector('.hband'), iri = st.el.querySelector('.hiri');
+    img.setAttribute('x', (-40 - ((t*1.3) % 1) * 640).toFixed(1));
+    const o = (hx - .5) * 260 + (hy - .5) * 120;
+    band.setAttribute('x1', o - 40); band.setAttribute('x2', o + 270);
+    iri.setAttribute('gradientTransform', `rotate(${(hx*80 - 40).toFixed(1)} 155 100)`);
+  });
+}
+const queue = () => { if (!raf) raf = requestAnimationFrame(holo); };
+addEventListener('pointermove', e => { hx = e.clientX / innerWidth; hy = e.clientY / innerHeight; queue(); }, {passive:true});
+addEventListener('scroll', queue, {passive:true});
+holo();
+})();
+</script>
+</body>
+</html>

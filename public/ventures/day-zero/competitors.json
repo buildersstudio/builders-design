@@ -1,0 +1,14 @@
+[
+  { "name": "AGI House", "url": "https://www.agihouse.org", "kind": "direct" },
+  { "name": "AI Tinkerers", "url": "https://aitinkerers.org", "kind": "direct" },
+  { "name": "Cerebral Valley", "url": "https://cerebralvalley.ai", "kind": "direct" },
+  { "name": "Founders, Inc.", "url": "https://f.inc", "kind": "direct" },
+  { "name": "South Park Commons", "url": "https://www.southparkcommons.com", "kind": "direct" },
+  { "name": "HF0", "url": "https://www.hf0.com", "kind": "direct" },
+  { "name": "Hack Club", "url": "https://hackclub.com", "kind": "direct" },
+  { "name": "Station F", "url": "https://stationf.co", "kind": "direct" },
+  { "name": "ETHGlobal", "url": "https://ethglobal.com", "kind": "adjacent" },
+  { "name": "Junction", "url": "https://www.hackjunction.com", "kind": "adjacent" },
+  { "name": "Major League Hacking", "url": "https://www.mlh.com", "kind": "adjacent" },
+  { "name": "buildspace", "url": "https://buildspace.so", "kind": "adjacent" }
+]

@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day Zero, the monthly build night of Builders</title>
+<meta name="description" content="Day Zero is the monthly build night of Builders in Rotterdam, where founders and technical youngsters build AI ventures together through the night.">
+<link rel="preload" href="https://builders.studio/fonts/FavoritStd-MediumExpanded.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="img/gen-office-floor-night.jpg" as="image">
+<style>
+@font-face{font-family:"Favorit Expanded";src:url("https://builders.studio/fonts/FavoritStd-MediumExpanded.otf") format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Favorit";src:url("https://builders.studio/fonts/FavoritStd-Book.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Favorit";src:url("https://builders.studio/fonts/FavoritStd-Medium.otf") format("opentype");font-weight:500;font-display:swap}
+
+:root{
+  --night:#05060A;
+  --night-2:#0B0D14;
+  --line:rgba(250,247,242,.12);
+  --cream:#FAF7F2;
+  --mute:rgba(250,247,242,.62);
+  --faint:rgba(250,247,242,.42);
+  --studio:#8193FF;
+  --lamp:#D4A574;
+  --pad:clamp(20px,4.2vw,64px);
+  --max:1440px;
+  --display:"Favorit Expanded","Favorit",system-ui,sans-serif;
+  --text:"Favorit",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--night);-webkit-text-size-adjust:100%}
+body{background:var(--night);color:var(--cream);font-family:var(--text);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+
+/* type */
+.label{font-family:var(--text);font-weight:500;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.label b{font-weight:500;color:var(--cream)}
+.h{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:-.01em;line-height:.96}
+.h2{font-size:clamp(34px,5.4vw,80px)}
+.lede{font-size:clamp(18px,1.55vw,22px);line-height:1.45;color:var(--mute);max-width:36ch}
+.lede strong{color:var(--cream);font-weight:400}
+.spark{display:inline-block;width:.62em;height:.62em;flex:none}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px;border-radius:999px;font-family:var(--text);font-weight:500;font-size:12px;letter-spacing:.18em;text-transform:uppercase;transition:background .25s,color .25s,border-color .25s}
+.btn-solid{background:var(--cream);color:var(--night)}
+.btn-solid:hover{background:#fff}
+.btn-ghost{border:1px solid rgba(250,247,242,.28);color:var(--cream)}
+.btn-ghost:hover{border-color:var(--cream)}
+.btn svg{width:13px;height:13px}
+
+/* thin brand glow at the foot of key sections */
+.glow{position:absolute;left:0;right:0;bottom:0;height:clamp(120px,18vw,260px);background:url("img/gradient-builders-overlay.webp") center bottom/100% 100% no-repeat;pointer-events:none;opacity:.9;mix-blend-mode:screen}
+
+/* nav */
+.nav{position:absolute;top:0;left:0;right:0;z-index:5}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px}
+.brandlock{display:flex;align-items:center;gap:14px}
+.dz{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:.02em;text-transform:uppercase}
+.dz .spark{width:13px;height:13px}
+.by{display:flex;align-items:center;gap:8px;color:var(--faint);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.by .blogo{height:11px;width:auto;color:var(--mute)}
+.nav .btn{height:40px;padding:0 18px;font-size:11px}
+
+/* hero */
+.hero{position:relative;height:100vh;height:100svh;min-height:640px;max-height:1100px;overflow:hidden;isolation:isolate}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:48% 40%;z-index:-2}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(5,6,10,.55) 0%,rgba(5,6,10,0) 22%,rgba(5,6,10,0) 42%,rgba(5,6,10,.72) 72%,rgba(5,6,10,.96) 100%)}
+.hero .wrap{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(40px,6vw,84px)}
+.hero .label{margin-bottom:22px}
+.wordmark{display:flex;align-items:flex-start;gap:.06em;white-space:nowrap;font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:clamp(52px,13.8vw,224px);line-height:.82;letter-spacing:-.035em;margin-left:-.04em}
+.wordmark .spark{width:.3em;height:.3em;margin-top:.04em;margin-right:.03em}
+.hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-top:clamp(26px,3vw,40px)}
+.hero-foot .lede{max-width:44ch;color:rgba(250,247,242,.78)}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+
+/* the night */
+.night{position:relative;padding:clamp(96px,11vw,168px) 0 clamp(120px,13vw,200px);overflow:hidden}
+.night-head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.night-head .h2{grid-column:1/9}
+.night-head .lede{grid-column:9/13;max-width:none}
+.night-head .label{grid-column:1/13;margin-bottom:6px}
+.beats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start;margin-top:clamp(56px,6vw,88px)}
+.beat figure{position:relative;overflow:hidden;border-radius:4px;background:var(--night-2)}
+.beat img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.beat:hover img{transform:scale(1.03)}
+.beat .n,.frame figcaption span:first-child{font-feature-settings:"tnum" 1}
+.beat .n{display:flex;align-items:center;gap:10px;margin:22px 0 10px;color:var(--studio);font-size:11.5px;letter-spacing:.2em;font-weight:500}
+.beat .n::after{content:"";height:1px;flex:1;background:var(--line)}
+.beat h3{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:clamp(17px,1.5vw,21px);line-height:1.12;letter-spacing:0;margin-bottom:10px}
+.beat p{color:var(--mute);font-size:16px;max-width:34ch}
+
+/* who */
+.who{position:relative;padding:clamp(40px,4vw,56px) 0 clamp(110px,12vw,180px);border-top:1px solid var(--line)}
+.who-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-top:clamp(40px,5vw,64px)}
+.who-intro{padding-top:clamp(40px,4vw,56px)}
+.card{position:relative;overflow:hidden;border-radius:4px;min-height:clamp(520px,50vw,720px);display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.card:hover img{transform:scale(1.03)}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,6,10,0) 35%,rgba(5,6,10,.9) 100%)}
+.card-a{grid-column:1/8}
+.card-b{grid-column:8/13}
+.card .in{padding:clamp(24px,2.8vw,40px)}
+.card .label{color:var(--lamp);margin-bottom:14px}
+.card h3{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:clamp(28px,3.3vw,48px);line-height:.98;margin-bottom:16px}
+.card p{color:rgba(250,247,242,.76);max-width:40ch;font-size:17px}
+
+/* sequence */
+.seq{position:relative;padding:clamp(96px,10vw,150px) 0 clamp(96px,10vw,150px);background:linear-gradient(180deg,var(--night) 0%,#07080D 50%,var(--night) 100%)}
+.seq-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:clamp(40px,5vw,72px)}
+.seq-head .lede{max-width:34ch}
+.frames{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(62px,6.4vw,92px);gap:14px}
+.frame{position:relative;overflow:hidden;border-radius:3px;background:var(--night-2)}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;gap:10px;padding:14px 16px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:rgba(250,247,242,.86);background:linear-gradient(180deg,rgba(5,6,10,0),rgba(5,6,10,.7))}
+.frame figcaption span:first-child{color:var(--faint)}
+.f1{grid-column:1/8;grid-row:span 5}
+.f2{grid-column:8/13;grid-row:span 5}
+.f3{grid-column:1/6;grid-row:span 5}
+.f4{grid-column:6/13;grid-row:span 5}
+.f5{grid-column:1/13;grid-row:span 7}
+
+/* join */
+.join{position:relative;min-height:clamp(620px,62vw,900px);display:flex;align-items:center;overflow:hidden;isolation:isolate}
+.join>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%;z-index:-2}
+.join::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,6,10,.9) 0%,rgba(5,6,10,.55) 36%,rgba(5,6,10,0) 62%),linear-gradient(180deg,var(--night) 0%,rgba(5,6,10,0) 18%,rgba(5,6,10,0) 70%,var(--night) 100%)}
+.join .wrap{width:100%;padding-top:120px;padding-bottom:160px}
+.join .h{font-size:clamp(44px,7.4vw,112px);margin:22px 0 28px}
+.join .lede{max-width:40ch;margin-bottom:36px}
+
+/* footer */
+.foot{position:relative;padding:clamp(72px,7vw,104px) 0 clamp(120px,12vw,180px);border-top:1px solid var(--line);overflow:hidden}
+.foot-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+.foot .bmark{width:clamp(72px,8vw,120px);height:auto;margin-bottom:28px}
+.foot .blogo{height:clamp(26px,3vw,40px);width:auto;color:var(--cream);display:block;margin-bottom:22px}
+.foot p{color:var(--mute);max-width:44ch;font-size:16px}
+.foot-links{display:flex;flex-direction:column;align-items:flex-end;gap:10px;text-align:right}
+.foot-links a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--mute)}
+.foot-links a:hover{color:var(--cream)}
+.foot .label{margin-top:48px}
+
+/* reveal */
+@media (prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(18px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .hero>img{animation:settle 2.6s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes settle{from{transform:scale(1.06);filter:brightness(.6)}to{transform:none;filter:none}}
+}
+
+/* responsive */
+@media (max-width:1024px){
+  .night-head .h2,.night-head .lede{grid-column:1/13}
+  .beats{grid-template-columns:1fr 1fr}
+  .beat:first-child{grid-column:1/3}
+  .beat:first-child img{aspect-ratio:16/9}
+  .card-a,.card-b{grid-column:1/13}
+  .frames{grid-template-columns:repeat(6,1fr)}
+  .f1,.f5{grid-column:1/7}
+  .f2{grid-column:span 3}
+  .f3{grid-column:span 3}
+  .f4{grid-column:1/7}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .nav .wrap{height:68px}
+  .by{display:none}
+  .nav .btn{height:36px;padding:0 14px;font-size:10px;letter-spacing:.14em}
+  .hero{min-height:600px}
+  .hero>img{object-position:50% 40%}
+  .hero-foot{flex-direction:column;align-items:flex-start;gap:24px}
+  .wordmark{font-size:clamp(40px,13.1vw,72px)}
+  .hero .where{display:none}
+  .hero-cta .btn{height:44px;padding:0 16px;font-size:10.5px;letter-spacing:.14em;gap:10px}
+  .card .label{letter-spacing:.14em}
+  .foot .label{letter-spacing:.14em}
+  .beats{grid-template-columns:1fr;gap:48px}
+  .beat:first-child{grid-column:auto}
+  .beat img{aspect-ratio:4/3}
+  .who-intro,.seq-head{flex-direction:column;align-items:flex-start}
+  .card{min-height:480px}
+  .frames{grid-template-columns:1fr 1fr;grid-auto-rows:auto;gap:10px}
+  .frame{aspect-ratio:4/5}
+  .f1,.f4,.f5{grid-column:1/3;aspect-ratio:3/2}
+  .f2,.f3{grid-column:span 1;grid-row:auto}
+  .f1,.f4,.f5{grid-row:auto}
+  .f5{aspect-ratio:4/5}
+  .frame figcaption{padding:10px 12px;font-size:10px;letter-spacing:.16em}
+  .join::before{background:linear-gradient(180deg,var(--night) 0%,rgba(5,6,10,.35) 30%,rgba(5,6,10,.75) 60%,rgba(5,6,10,.96) 100%)}
+  .join{align-items:flex-end;min-height:720px}
+  .join .wrap{padding-bottom:150px}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-links{align-items:flex-start;text-align:left}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="spark" viewBox="0 0 50 50.3628"><path fill="currentColor" d="M46.5517 23.6515C35.509 23.6515 26.5189 14.6375 26.5189 3.4733V0H25H23.4811V3.4733C23.4811 14.5961 14.532 23.6515 3.44827 23.6515H0V25.1814V26.7113H3.44827C14.491 26.7113 23.4811 35.7253 23.4811 46.8895V50.3628H25H26.5189V46.8895C26.5189 35.7667 35.468 26.7113 46.5517 26.7113H50V25.1814V23.6515H46.5517Z"/></symbol>
+  <symbol id="arrow" viewBox="0 0 14 14"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.4" fill="none"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brandlock" href="#top" aria-label="Day Zero">
+      <span class="dz"><svg class="spark"><use href="#spark"/></svg>Day Zero</span>
+      <span class="by">by <svg class="blogo" aria-label="Builders" role="img" viewBox="0 0 121 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.0966 7.92259C7.82013 7.92259 5.96682 6.06436 5.96682 3.76289V3.04688H5.65371H5.34059V3.76289C5.34059 6.05584 3.49575 7.92259 1.21086 7.92259H0.5V8.23798V8.55337H1.21086C3.48729 8.55337 5.34059 10.4116 5.34059 12.7131V13.4291H5.65371H5.96682V12.7131C5.96682 10.4201 7.81166 8.55337 10.0966 8.55337H10.8074V8.23798V7.92259H10.0966Z" fill="currentColor"/><path d="M31.1797 11.4204V4.83984H34.3278V10.7896C34.3278 13.074 35.2586 14.2674 37.7382 14.2674H38.1613C40.2854 14.2674 42.0879 12.8353 42.0879 10.2696V4.83984H45.2445V16.6029H42.0879V14.7191C41.1063 15.9892 39.5661 16.8331 37.2558 16.8331C33.3715 16.8331 31.1797 14.8129 31.1797 11.4204Z" fill="currentColor"/><path d="M48.4062 4.83805H51.5628V16.6012H48.4062V4.83805ZM48.4062 3.31226H51.5628V0.132812H48.4062V3.31226Z" fill="currentColor"/><path d="M54.6836 0.132812H57.8401V16.6012H54.6836V0.132812Z" fill="currentColor"/><path d="M60.2383 10.7189C60.2383 7.12177 63.3948 4.60719 67.5499 4.60719C70.4442 4.60719 72.2467 5.6386 73.1099 6.49099V0.140625H76.2664V16.6004H73.1099V14.8104C71.8997 16.1061 69.9533 16.8306 67.5076 16.8306C63.2679 16.8306 60.2383 14.6655 60.2383 10.7189ZM68.3116 14.2649C71.2058 14.2649 73.1014 12.8328 73.1014 10.7104C73.1014 8.59642 71.2142 7.15587 68.3116 7.15587H67.8885C65.2058 7.15587 63.4287 8.5879 63.4287 10.7104C63.4287 12.8243 65.2058 14.2649 67.8885 14.2649H68.3116Z" fill="currentColor"/><path d="M93.6559 11.7532H82.0283C82.5445 13.3301 84.127 14.2678 86.2511 14.2678H86.6742C88.7729 14.2678 89.8054 13.5603 90.1777 12.8783H93.5374C93.0973 14.9241 91.0663 16.8335 86.4627 16.8335C81.8167 16.8335 78.6602 14.549 78.6602 10.5257C78.6602 6.74108 82.2991 4.60156 86.4627 4.60156C91.0409 4.60156 93.6559 7.16728 93.6559 10.6024V11.7532V11.7532ZM90.3639 9.35794C90.2962 8.01968 88.7729 7.16728 86.6742 7.16728H86.2511C84.0085 7.16728 82.6122 8.03673 82.096 9.35794H90.3639Z" fill="currentColor"/><path d="M106.816 12.7164H110.066C110.21 13.5858 111.75 14.2678 113.612 14.2678H114.035C116.438 14.2678 117.073 13.8671 117.073 13.2364C117.073 12.7675 116.794 12.3925 115.177 12.222L111.885 11.8896C108.5 11.5571 107.519 10.1507 107.519 8.38621C107.519 5.77787 110.041 4.60156 113.68 4.60156C118.139 4.60156 120.263 6.27226 120.5 8.71864H117.251C117.014 7.79806 116.041 7.16728 113.908 7.16728H113.485C111.598 7.16728 110.684 7.59348 110.684 8.18163C110.684 8.67602 110.921 9.02551 112.74 9.21304L115.592 9.49433C119.189 9.84381 120.263 11.3014 120.263 13.0914C120.263 15.3929 118.258 16.8335 113.798 16.8335C109.55 16.8335 107.003 15.2565 106.816 12.7164Z" fill="currentColor"/><path d="M99.3281 7.68685C99.3281 6.11844 100.589 4.83984 102.155 4.83984H106.005V7.68685H99.3281Z" fill="currentColor"/><path d="M99.3362 4.83984H96.1797V16.6029H99.3362V4.83984Z" fill="currentColor"/><path d="M25.6858 8.10274C26.9213 7.58278 28.1146 6.33827 28.1146 4.48005C28.1146 1.77794 25.8043 0.132812 22.6477 0.132812H10.8086V3.44864C10.8086 5.28982 12.2895 6.79004 14.1259 6.79004V3.44864V3.04802H22.1315C23.8325 3.04802 24.7211 3.72993 24.7211 4.90624C24.7211 6.10813 23.8325 6.79004 22.1315 6.79004H14.1259V9.70525H22.3685C24.1879 9.70525 25.195 10.4127 25.195 11.6828C25.195 13.0978 24.1879 13.6859 22.3685 13.6859H14.1259V13.0552V9.71377C12.298 9.71377 10.8086 11.2055 10.8086 13.0552V16.6012H23.0709C26.2274 16.6012 28.58 14.8878 28.58 12.0834C28.58 10.0121 27.226 8.52894 25.6858 8.10274Z" fill="currentColor"/></svg></span>
+    </a>
+    <a class="btn btn-ghost" href="https://builders.studio">Request an invite</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" aria-label="Day Zero">
+    <img src="img/gen-office-floor-night.jpg" alt="An open office floor at night, five people working side by side at laptops under warm pendant lamps, city lights through tall windows behind them" width="2200" height="943" fetchpriority="high">
+    <div class="wrap">
+      <p class="label"><b>Monthly build night</b><span class="where">&nbsp;&nbsp;·&nbsp;&nbsp;Builders, Rotterdam</span></p>
+      <h1 class="wordmark"><svg class="spark" aria-hidden="true"><use href="#spark"/></svg>Day Zero</h1>
+      <div class="hero-foot">
+        <p class="lede"><strong>The monthly build night of Builders</strong>, where founders and technical youngsters come together to build AI ventures through the night.</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="https://builders.studio">Request an invite <svg><use href="#arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#night">The night</a>
+        </div>
+      </div>
+    </div>
+    <div class="glow"></div>
+  </section>
+
+  <section class="night" id="night">
+    <div class="wrap">
+      <div class="night-head rv">
+        <p class="label">What happens on the night</p>
+        <h2 class="h h2">The studio,<br>in one night.</h2>
+        <p class="lede">Once a month, founders and technical builders sit down together at Builders in Rotterdam and build AI ventures through the night. <strong>The same room, the same people and the same bias for shipping</strong> as the studio itself.</p>
+      </div>
+      <div class="beats">
+        <article class="beat rv">
+          <figure><img src="img/night-one-on-one.jpg" alt="A founder and a builder in conversation over a laptop at a marble table at night" width="1600" height="1066" loading="lazy" style="object-position:62% 50%"></figure>
+          <p class="n">01</p>
+          <h3>Bring an idea, or the skills to build one</h3>
+          <p>Founders arrive with an idea or an early product. Engineers, designers and makers arrive ready to build it with them.</p>
+        </article>
+        <article class="beat rv">
+          <figure><img src="img/gen-whiteboard-1am.jpg" alt="Two people in silhouette at a whiteboard full of diagrams, lit by a single floor lamp" width="1600" height="1067" loading="lazy"></figure>
+          <p class="n">02</p>
+          <h3>Sit down side by side</h3>
+          <p>At the long tables, the kitchen counter and the whiteboards of the Builders office, a founder and a builder work on the same thing.</p>
+        </article>
+        <article class="beat rv">
+          <figure><img src="img/gen-pizza-desk.jpg" alt="A desk late at night with an open laptop, pizza boxes, a notebook and a glass of water under a desk lamp" width="1600" height="1200" loading="lazy"></figure>
+          <p class="n">03</p>
+          <h3>Build past midnight</h3>
+          <p>Build nights at Builders run past midnight. The point is to leave with something built rather than something discussed.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="who" id="who">
+    <div class="wrap">
+      <div class="who-intro rv">
+        <p class="label">Who it is for</p>
+        <h2 class="h h2" style="margin-top:18px">Two kinds of people,<br>one table.</h2>
+      </div>
+      <div class="who-grid">
+        <article class="card card-a rv">
+          <img src="img/night-founder-at-whiteboard.jpg" alt="A founder explaining an idea at a whiteboard in the Builders office" width="1600" height="1066" loading="lazy">
+          <div class="in">
+            <p class="label">For founders</p>
+            <h3>You have the idea</h3>
+            <p>Founders with an idea or an early product, who want technical people in the room to build it with.</p>
+          </div>
+        </article>
+        <article class="card card-b rv">
+          <img src="img/night-phone-booth.jpg" alt="A builder working at a laptop in a lit phone booth in a dark office" width="1067" height="1600" loading="lazy">
+          <div class="in">
+            <p class="label">For technical youngsters</p>
+            <h3>You have the hands</h3>
+            <p>Engineers, designers and makers early in their careers who would rather ship something than talk about it.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="seq" id="sequence">
+    <div class="wrap">
+      <div class="seq-head rv">
+        <div>
+          <p class="label">The night, frame by frame</p>
+          <h2 class="h h2" style="margin-top:18px">After hours<br>at Builders.</h2>
+        </div>
+        <p class="lede">The office beside Rotterdam Centraal, once the day is over and the builders stay on.</p>
+      </div>
+      <div class="frames">
+        <figure class="frame f1 rv"><img src="img/night-founders-at-kitchen-counter.jpg" alt="Founders building at the kitchen counter of the Builders office at night" width="1600" height="1067" loading="lazy"><figcaption><span>01</span><span>The counter</span></figcaption></figure>
+        <figure class="frame f2 rv"><img src="img/gen-kitchen-laptop.jpg" alt="Three people laughing over one laptop at a kitchen counter at night" width="1125" height="1500" loading="lazy" style="object-position:50% 45%"><figcaption><span>02</span><span>It works</span></figcaption></figure>
+        <figure class="frame f3 rv"><img src="img/night-two-at-whiteboard.jpg" alt="Two people talking in front of a whiteboard under ring lamps" width="1600" height="1066" loading="lazy" style="object-position:62% 50%"><figcaption><span>03</span><span>The whiteboard</span></figcaption></figure>
+        <figure class="frame f4 rv"><img src="img/night-glass-room.jpg" alt="A group working at laptops inside a glass meeting room at night" width="1600" height="1066" loading="lazy" style="object-position:50% 70%"><figcaption><span>04</span><span>Heads down</span></figcaption></figure>
+        <figure class="frame f5 rv"><img src="img/gen-window-city.jpg" alt="A person at a laptop by a tall window, city lights and rail tracks below" width="1368" height="1600" loading="lazy" style="object-position:50% 58%"><figcaption><span>05</span><span>Past midnight</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <img src="img/gen-empty-chair.jpg" alt="" width="2000" height="1125" loading="lazy">
+    <div class="wrap rv">
+      <p class="label">How to join</p>
+      <h2 class="h">Pull up<br>a chair.</h2>
+      <p class="lede">Day Zero is held once a month at Builders in Rotterdam. <strong>Request an invite through Builders</strong> and tell us what you want to build, or what you can build.</p>
+      <a class="btn btn-solid" href="https://builders.studio">Request an invite <svg><use href="#arrow"/></svg></a>
+    </div>
+    <div class="glow"></div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <svg class="blogo" aria-label="Builders" role="img" viewBox="0 0 121 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.0966 7.92259C7.82013 7.92259 5.96682 6.06436 5.96682 3.76289V3.04688H5.65371H5.34059V3.76289C5.34059 6.05584 3.49575 7.92259 1.21086 7.92259H0.5V8.23798V8.55337H1.21086C3.48729 8.55337 5.34059 10.4116 5.34059 12.7131V13.4291H5.65371H5.96682V12.7131C5.96682 10.4201 7.81166 8.55337 10.0966 8.55337H10.8074V8.23798V7.92259H10.0966Z" fill="currentColor"/><path d="M31.1797 11.4204V4.83984H34.3278V10.7896C34.3278 13.074 35.2586 14.2674 37.7382 14.2674H38.1613C40.2854 14.2674 42.0879 12.8353 42.0879 10.2696V4.83984H45.2445V16.6029H42.0879V14.7191C41.1063 15.9892 39.5661 16.8331 37.2558 16.8331C33.3715 16.8331 31.1797 14.8129 31.1797 11.4204Z" fill="currentColor"/><path d="M48.4062 4.83805H51.5628V16.6012H48.4062V4.83805ZM48.4062 3.31226H51.5628V0.132812H48.4062V3.31226Z" fill="currentColor"/><path d="M54.6836 0.132812H57.8401V16.6012H54.6836V0.132812Z" fill="currentColor"/><path d="M60.2383 10.7189C60.2383 7.12177 63.3948 4.60719 67.5499 4.60719C70.4442 4.60719 72.2467 5.6386 73.1099 6.49099V0.140625H76.2664V16.6004H73.1099V14.8104C71.8997 16.1061 69.9533 16.8306 67.5076 16.8306C63.2679 16.8306 60.2383 14.6655 60.2383 10.7189ZM68.3116 14.2649C71.2058 14.2649 73.1014 12.8328 73.1014 10.7104C73.1014 8.59642 71.2142 7.15587 68.3116 7.15587H67.8885C65.2058 7.15587 63.4287 8.5879 63.4287 10.7104C63.4287 12.8243 65.2058 14.2649 67.8885 14.2649H68.3116Z" fill="currentColor"/><path d="M93.6559 11.7532H82.0283C82.5445 13.3301 84.127 14.2678 86.2511 14.2678H86.6742C88.7729 14.2678 89.8054 13.5603 90.1777 12.8783H93.5374C93.0973 14.9241 91.0663 16.8335 86.4627 16.8335C81.8167 16.8335 78.6602 14.549 78.6602 10.5257C78.6602 6.74108 82.2991 4.60156 86.4627 4.60156C91.0409 4.60156 93.6559 7.16728 93.6559 10.6024V11.7532V11.7532ZM90.3639 9.35794C90.2962 8.01968 88.7729 7.16728 86.6742 7.16728H86.2511C84.0085 7.16728 82.6122 8.03673 82.096 9.35794H90.3639Z" fill="currentColor"/><path d="M106.816 12.7164H110.066C110.21 13.5858 111.75 14.2678 113.612 14.2678H114.035C116.438 14.2678 117.073 13.8671 117.073 13.2364C117.073 12.7675 116.794 12.3925 115.177 12.222L111.885 11.8896C108.5 11.5571 107.519 10.1507 107.519 8.38621C107.519 5.77787 110.041 4.60156 113.68 4.60156C118.139 4.60156 120.263 6.27226 120.5 8.71864H117.251C117.014 7.79806 116.041 7.16728 113.908 7.16728H113.485C111.598 7.16728 110.684 7.59348 110.684 8.18163C110.684 8.67602 110.921 9.02551 112.74 9.21304L115.592 9.49433C119.189 9.84381 120.263 11.3014 120.263 13.0914C120.263 15.3929 118.258 16.8335 113.798 16.8335C109.55 16.8335 107.003 15.2565 106.816 12.7164Z" fill="currentColor"/><path d="M99.3281 7.68685C99.3281 6.11844 100.589 4.83984 102.155 4.83984H106.005V7.68685H99.3281Z" fill="currentColor"/><path d="M99.3362 4.83984H96.1797V16.6029H99.3362V4.83984Z" fill="currentColor"/><path d="M25.6858 8.10274C26.9213 7.58278 28.1146 6.33827 28.1146 4.48005C28.1146 1.77794 25.8043 0.132812 22.6477 0.132812H10.8086V3.44864C10.8086 5.28982 12.2895 6.79004 14.1259 6.79004V3.44864V3.04802H22.1315C23.8325 3.04802 24.7211 3.72993 24.7211 4.90624C24.7211 6.10813 23.8325 6.79004 22.1315 6.79004H14.1259V9.70525H22.3685C24.1879 9.70525 25.195 10.4127 25.195 11.6828C25.195 13.0978 24.1879 13.6859 22.3685 13.6859H14.1259V13.0552V9.71377C12.298 9.71377 10.8086 11.2055 10.8086 13.0552V16.6012H23.0709C26.2274 16.6012 28.58 14.8878 28.58 12.0834C28.58 10.0121 27.226 8.52894 25.6858 8.10274Z" fill="currentColor"/></svg>
+      <p>Day Zero is the monthly build night of Builders, the AI venture studio in Rotterdam.</p>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <img class="bmark" src="img/builders-b-mark-white.png" alt="Builders mark" width="400" height="340" loading="lazy">
+      <a href="https://builders.studio">Request an invite</a>
+      <a href="https://builders.studio">builders.studio</a>
+    </nav>
+  </div>
+  <div class="wrap"><p class="label">Day Zero&nbsp;&nbsp;·&nbsp;&nbsp;A Builders build night</p></div>
+  <div class="glow"></div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>

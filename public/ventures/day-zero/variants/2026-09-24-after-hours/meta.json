@@ -1,0 +1,21 @@
+{
+  "title": "After Hours",
+  "created": "2026-09-24",
+  "note": "Photography-led and cinematic: the Builders office after dark, real studio photos regraded for night beside generated night shots, Favorit Expanded caps, the spark as the wordmark and the Builders gradient as a thin glow at the foot of key sections.",
+  "credits": [
+    { "file": "img/night-founders-at-kitchen-counter.jpg", "source": "Builders gallery, regraded for night (PIL)", "author": "Builders", "url": "/ventures/builders/gallery/photos/founders-building-at-kitchen-counter.jpg" },
+    { "file": "img/night-founder-at-whiteboard.jpg", "source": "Builders gallery, regraded for night (PIL)", "author": "Builders", "url": "/ventures/builders/gallery/photos/founder-pitching-at-whiteboard.jpg" },
+    { "file": "img/night-phone-booth.jpg", "source": "Builders gallery, regraded for night (PIL)", "author": "Builders", "url": "/ventures/builders/gallery/photos/founder-working-in-phone-booth.jpg" },
+    { "file": "img/night-one-on-one.jpg", "source": "Builders gallery, regraded for night (PIL)", "author": "Builders", "url": "/ventures/builders/gallery/photos/one-on-one-founder-session.jpg" },
+    { "file": "img/night-two-at-whiteboard.jpg", "source": "Builders gallery, regraded for night (PIL)", "author": "Builders", "url": "/ventures/builders/gallery/photos/two-founders-at-whiteboard.jpg" },
+    { "file": "img/night-glass-room.jpg", "source": "Builders gallery, regraded for night (PIL)", "author": "Builders", "url": "/ventures/builders/gallery/photos/glass-meeting-room-workshop.jpg" },
+    { "file": "img/gen-office-floor-night.jpg", "source": "Generated with Higgsfield (Seedream 5.0 Flash), laptop logos and wallpapers retouched out, graded", "author": "Higgsfield", "url": "https://higgsfield.ai" },
+    { "file": "img/gen-whiteboard-1am.jpg", "source": "Generated with Higgsfield (Seedream 5.0 Flash), graded", "author": "Higgsfield", "url": "https://higgsfield.ai" },
+    { "file": "img/gen-pizza-desk.jpg", "source": "Generated with Higgsfield (Seedream 5.0 Flash), graded", "author": "Higgsfield", "url": "https://higgsfield.ai" },
+    { "file": "img/gen-window-city.jpg", "source": "Generated with Higgsfield (Seedream 5.0 Flash), cropped to remove a non-Rotterdam landmark, graded", "author": "Higgsfield", "url": "https://higgsfield.ai" },
+    { "file": "img/gen-kitchen-laptop.jpg", "source": "Generated with Higgsfield (Seedream 5.0 Flash), graded", "author": "Higgsfield", "url": "https://higgsfield.ai" },
+    { "file": "img/gen-empty-chair.jpg", "source": "Generated with Higgsfield (Seedream 5.0 Flash), graded", "author": "Higgsfield", "url": "https://higgsfield.ai" },
+    { "file": "img/builders-b-mark-white.png", "source": "Builders gallery", "author": "Builders", "url": "/ventures/builders/gallery/illustrations/builders-b-mark-white.png" },
+    { "file": "img/gradient-builders-overlay.webp", "source": "Builders gallery", "author": "Builders", "url": "/ventures/builders/gallery/backgrounds/gradient-builders-overlay.webp" }
+  ]
+}

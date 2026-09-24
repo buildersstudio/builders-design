@@ -1,0 +1,11 @@
+{
+  "title": "Sticker Bomb",
+  "created": "2026-09-24",
+  "note": "The laptop lid of a builder at 1am: a clean, dark Builders page where a set of die-cut stickers in the pillar colours and the Builders gradient carries all the funk, and every sticker can be peeled and dragged.",
+  "credits": [
+    { "file": "assets/bootcamp-founders-at-laptops.jpg", "source": "Builders gallery", "author": "Builders", "url": "/ventures/builders/gallery/photos/bootcamp-founders-at-laptops.jpg" },
+    { "file": "assets/team-reviewing-laptop-kitchen.jpg", "source": "Builders gallery", "author": "Builders", "url": "/ventures/builders/gallery/photos/team-reviewing-laptop-kitchen.jpg" },
+    { "file": "assets/gradient-builders-full.jpg", "source": "Builders gallery", "author": "Builders", "url": "/ventures/builders/gallery/backgrounds/gradient-builders-full.jpg" },
+    { "file": "assets/holo-foil.jpg", "source": "Crop of the Builders gradient, Builders gallery", "author": "Builders", "url": "/ventures/builders/gallery/backgrounds/gradient-builders-full.jpg" }
+  ]
+}

@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day Zero · Night Shift</title>
+<meta name="description" content="Day Zero is the monthly build night of Builders in Rotterdam, where founders and technical youngsters build AI ventures together through the night.">
+<style>
+@font-face{font-family:"Favorit";src:url("https://builders.studio/fonts/FavoritStd-Book.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Favorit";src:url("https://builders.studio/fonts/FavoritStd-Medium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Favorit Expanded";src:url("https://builders.studio/fonts/FavoritStd-MediumExpanded.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+
+:root{
+  --night:#05060B;
+  --night-2:#0A0C16;
+  --text:#EEF0F8;
+  --muted:#9095AD;
+  --dim:#5E637B;
+  --line:rgba(190,200,255,.11);
+  --line-2:rgba(190,200,255,.2);
+  --studio:#8193FF;
+  --gutter:40px;
+  --max:1440px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--night);-webkit-text-size-adjust:100%}
+body{background:var(--night);color:var(--text);font-family:"Favorit",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;font-weight:400;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.x{font-family:"Favorit Expanded","Favorit",sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:-.01em;line-height:.94}
+.lbl{font-family:"Favorit",sans-serif;font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.spark{display:inline-block;flex:none}
+
+/* ---------- nav ---------- */
+.nav{position:absolute;inset:20px 0 auto 0;z-index:10}
+.nav .wrap{display:flex;justify-content:center}
+.pill{width:100%;max-width:1120px;height:60px;border:1px solid var(--line-2);border-radius:999px;display:flex;align-items:center;justify-content:space-between;padding:0 10px 0 26px;background:rgba(5,6,11,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;gap:14px}
+.wm{display:inline-flex;align-items:center;gap:.28em;font-family:"Favorit Expanded",sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:-.005em;font-size:17px;line-height:1;white-space:nowrap}
+.wm .spark{width:.72em;height:.72em;margin-top:-.06em}
+.brand .by{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);font-weight:500;padding-left:14px;border-left:1px solid var(--line-2);line-height:1}
+.navmid{display:flex;align-items:center;gap:28px}
+.navmid a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--muted);transition:color .3s}
+.navmid a:hover{color:var(--text)}
+.navr{display:flex;align-items:center;gap:18px}
+.clock{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.clock b{font-weight:500;color:var(--text);letter-spacing:.08em;font-size:12px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--studio);box-shadow:0 0 0 0 rgba(129,147,255,.6);animation:ping 2s var(--ease) infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(129,147,255,.55)}70%{box-shadow:0 0 0 7px rgba(129,147,255,0)}100%{box-shadow:0 0 0 0 rgba(129,147,255,0)}}
+
+.btn{display:inline-flex;align-items:center;gap:12px;height:40px;padding:0 20px;border-radius:999px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;white-space:nowrap;transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease)}
+.btn svg{width:10px;height:10px;transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translate(2px,-2px)}
+.btn-w{background:var(--text);color:#05060B}
+.btn-w:hover{background:var(--studio);color:#05060B}
+.btn-o{border:1px solid var(--line-2);color:var(--text)}
+.btn-o:hover{border-color:var(--text)}
+.btn-lg{height:52px;padding:0 28px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--night);min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;isolation:isolate}
+.grid-bg{position:absolute;inset:0;z-index:-2;background-image:linear-gradient(to right,rgba(190,200,255,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(190,200,255,.05) 1px,transparent 1px);background-size:calc((100% - 0px)/12) 120px;background-position:0 0;-webkit-mask-image:linear-gradient(to bottom,transparent 8%,#000 55%,#000 100%);mask-image:linear-gradient(to bottom,transparent 8%,#000 55%,#000 100%)}
+.glow{position:absolute;left:-4%;right:-4%;bottom:0;height:78%;z-index:-3;background:url("assets/night-glow.jpg") center bottom/100% 100% no-repeat;mix-blend-mode:screen;transform-origin:50% 100%;animation:breathe 11s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.72;transform:scaleY(.94)}50%{opacity:1;transform:scaleY(1.04)}}
+.hero-in{width:100%;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-top:150px;padding-bottom:0}
+.status{position:absolute;left:var(--gutter);right:var(--gutter);top:128px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);padding-top:14px}
+.status span:nth-child(2){grid-column:2}.status span:last-child{text-align:right;grid-column:4}
+.hero-in{position:relative}
+.coord{letter-spacing:.08em}
+.hero .eyebrow{display:flex;gap:18px;align-items:center;margin-bottom:28px}
+.hero .eyebrow i{display:block;width:28px;height:1px;background:var(--line-2)}
+.mega{display:flex;align-items:center;gap:.14em;font-size:clamp(40px,13.2vw,200px);letter-spacing:-.025em;line-height:.82;white-space:nowrap;margin-left:-.04em}
+.mega .spark{width:.62em;height:.62em;margin-right:.02em;animation:twinkle 11s ease-in-out infinite}
+@keyframes twinkle{0%,100%{transform:scale(.94);opacity:.82}50%{transform:scale(1);opacity:1}}
+.hero-row{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end;margin-top:44px}
+.lede{grid-column:1 / span 6;font-size:21px;line-height:1.45;color:#D9DCEA;max-width:600px}
+.lede em{font-style:normal;color:var(--muted)}
+.hero-cta{grid-column:9 / span 4;display:flex;justify-content:flex-end;gap:10px}
+
+/* timeline strip */
+.strip{margin-top:64px;border-top:1px solid var(--line-2);display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.strip li{list-style:none;position:relative;padding:18px 20px 30px 0}
+.strip li::before{content:"";position:absolute;left:0;top:-4px;width:7px;height:7px;border-radius:50%;background:var(--night);border:1px solid var(--text)}
+.strip li:first-child::before{background:var(--studio);border-color:var(--studio);box-shadow:0 0 14px rgba(129,147,255,.8)}
+.strip .n{display:block;font-size:12px;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+.strip .t{font-family:"Favorit Expanded",sans-serif;text-transform:uppercase;font-size:14px;letter-spacing:.02em;line-height:1.2}
+.strip .s{display:block;margin-top:6px;font-size:13px;color:#B9BDD2;line-height:1.4}
+.strip .sweep{position:absolute;top:-1px;left:0;height:1px;width:18%;background:linear-gradient(90deg,transparent,rgba(129,147,255,.95),transparent);animation:sweep 9s linear infinite}
+@keyframes sweep{0%{transform:translateX(-100%)}100%{transform:translateX(560%)}}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.sec{padding:150px 0 0}
+.head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end;padding-bottom:56px}
+.head .lbl{grid-column:1 / span 3;align-self:start;padding-top:10px;display:flex;gap:14px;align-items:center}
+.head .lbl .spark{width:9px;height:9px}
+.head h2{grid-column:4 / span 9;font-size:clamp(34px,4.6vw,68px)}
+.head p{grid-column:4 / span 6;margin-top:4px;color:var(--muted);font-size:18px;max-width:620px}
+
+/* night schedule */
+.sched{border-top:1px solid var(--line-2)}
+.row{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:34px 0 36px;border-bottom:1px solid var(--line);position:relative;transition:background .4s var(--ease)}
+.row::before{content:"";position:absolute;left:0;top:-4px;width:7px;height:7px;border-radius:50%;background:var(--night);border:1px solid var(--line-2);z-index:1}
+.row:hover::before{border-color:var(--studio);background:var(--studio)}
+.row:hover{background:linear-gradient(90deg,rgba(129,147,255,.05),transparent 70%)}
+.row .i{grid-column:1 / span 1;font-size:13px;color:var(--dim);letter-spacing:.08em;padding-top:8px}
+.row .when{grid-column:2 / span 2;padding-top:10px}
+.row h3{grid-column:4 / span 4;font-size:clamp(24px,2.6vw,38px)}
+.row p{grid-column:9 / span 4;color:var(--muted);font-size:16px;line-height:1.55;padding-top:4px}
+.row .rail{position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--studio);transition:width .9s var(--ease)}
+.row:hover .rail{width:100%}
+
+/* who */
+.who{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line-2)}
+.side{padding:44px 48px 52px 0}
+.side + .side{padding:44px 0 52px 48px;border-left:1px solid var(--line-2)}
+.side .lbl{display:flex;justify-content:space-between}
+.side h3{font-size:clamp(28px,3.3vw,48px);margin:64px 0 22px}
+.side > p{color:var(--muted);max-width:480px;font-size:17px}
+.side ul{list-style:none;margin-top:44px;border-top:1px solid var(--line)}
+.side li{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+.side li span:last-child{color:var(--dim);font-size:12px;letter-spacing:.04em}
+.side .lbl .num{letter-spacing:.04em}
+
+/* room */
+.room{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.fig{position:relative;overflow:hidden;background:var(--night-2)}
+.fig img{width:100%;height:100%;object-fit:cover;transform:scale(1.02);transition:transform 1.6s var(--ease)}
+.fig:hover img{transform:scale(1.05)}
+.fig::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,6,11,.78),rgba(5,6,11,0) 42%);pointer-events:none}
+.fig figcaption{position:absolute;left:20px;right:20px;bottom:16px;z-index:2;display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.fig figcaption span:first-child{color:var(--text)}
+.f1{grid-column:1 / span 5;grid-row:1 / span 2;aspect-ratio:auto;min-height:760px}
+.f1 img{object-position:50% 30%}
+.f2{grid-column:6 / span 7;aspect-ratio:16/9.4}
+.f3{grid-column:6 / span 7;aspect-ratio:16/9.4}
+.room-note{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+.room-note p{grid-column:6 / span 5;color:var(--muted);font-size:15px}
+.room-note .lbl{grid-column:1 / span 5}
+
+/* join */
+.join{position:relative;background:var(--night);overflow:hidden;isolation:isolate;margin-top:120px;padding:150px 0 0;border-top:1px solid var(--line)}
+.join .glow{height:92%;animation-delay:-5s}
+.join .grid-bg{-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 70%);mask-image:linear-gradient(to bottom,transparent 0%,#000 70%)}
+.join-in{text-align:center;display:flex;flex-direction:column;align-items:center}
+.join h2{font-size:clamp(40px,7.4vw,112px);letter-spacing:-.02em;margin:26px 0 30px}
+.join p{max-width:560px;color:#C8CBDB;font-size:18px;margin-bottom:40px}
+.join .cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.join .meta{margin-top:120px;width:100%;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-2);text-align:left}
+.join .meta div{padding:18px 20px 22px 0}
+.join .meta div + div{padding-left:20px;border-left:1px solid var(--line)}
+.join .meta .v{display:block;margin-top:8px;font-size:15px;color:var(--text)}
+
+footer{position:relative;z-index:2;padding:72px 0 40px;background:rgba(5,6,11,.0)}
+.foot{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.foot .logo{grid-column:1 / span 5}
+.foot .logo svg{width:100%;max-width:340px;height:auto;display:block}
+.foot .logo p{margin-top:18px;font-size:14px;color:#B9BDD2;max-width:360px}
+.foot nav{grid-column:7 / span 6;display:flex;justify-content:flex-end;gap:32px}
+.foot nav a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:#C3C7DA}
+.foot nav a:hover{color:var(--text)}
+.fine{margin-top:48px;padding-top:18px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between;gap:20px;font-size:12px;color:#C3C7DA;letter-spacing:.04em}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.on{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .glow,.mega .spark,.dot,.strip .sweep{animation:none}
+  .js .rv{opacity:1;transform:none;transition:none}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .navmid{display:none}
+  .head .lbl{grid-column:1 / -1;padding:0 0 18px}
+  .head h2,.head p{grid-column:1 / -1}
+  .row h3{grid-column:4 / span 9}
+  .row p{grid-column:4 / span 9;padding-top:0}
+  .f1{min-height:620px}
+}
+@media (max-width:760px){
+  :root{--gutter:16px}
+  body{font-size:16px}
+  .nav{inset:12px 0 auto 0}
+  .pill{height:52px;padding:0 6px 0 18px}
+  .brand .by,.clock .tz{display:none}
+  .navr .btn{display:none}
+  .wm{font-size:15px}
+  .hero-in{padding-top:120px}
+  .hero .eyebrow{flex-wrap:wrap;gap:10px 14px;margin-bottom:20px}
+  .hero .eyebrow i{display:none}
+  .mega{font-size:clamp(34px,12.6vw,110px)}
+  .hero-row{grid-template-columns:1fr;gap:28px;margin-top:28px}
+  .lede,.hero-cta{grid-column:1 / -1;justify-content:flex-start}
+  .lede{font-size:18px}
+  .hero-cta{flex-wrap:nowrap;gap:8px}
+  .hero-cta .btn{flex:1;justify-content:center;padding:0 14px;height:48px}
+  .hero-cta .btn-o{flex:0 0 auto}
+  .glow{background-size:220% 100%;background-position:30% bottom}
+  .head h2 br{display:none}
+  .status{top:92px;grid-template-columns:1fr 1fr}
+  .status span:nth-child(2){display:none}
+  .status span:last-child{grid-column:2}
+  .strip{grid-template-columns:1fr 1fr;margin-top:44px;border-top:0}
+  .strip li{border-top:1px solid var(--line-2);padding:16px 12px 22px 0}
+  .strip .sweep{display:none}
+  .sec{padding-top:104px}
+  .head{padding-bottom:36px}
+  .head p{font-size:16px;margin-top:20px}
+  .row{grid-template-columns:48px 1fr;gap:6px 12px;padding:26px 0 28px}
+  .row .i{grid-column:1;grid-row:1 / span 3;padding-top:4px}
+  .row .when{grid-column:2;padding-top:0;margin-bottom:8px}
+  .row h3,.row p{grid-column:2}
+  .row p{padding-top:8px;font-size:15px}
+  .who{grid-template-columns:1fr}
+  .side{padding:32px 0 40px}
+  .side + .side{padding:32px 0 40px;border-left:0;border-top:1px solid var(--line-2)}
+  .side h3{margin:36px 0 16px}
+  .room{grid-template-columns:1fr;gap:12px}
+  .f1,.f2,.f3{grid-column:1;grid-row:auto}
+  .f1{min-height:0;aspect-ratio:4/5}
+  .room-note{grid-template-columns:1fr;gap:10px}
+  .room-note p,.room-note .lbl{grid-column:1}
+  .join{margin-top:110px;padding-top:100px}
+  .join p{font-size:16px}
+  .join .meta{grid-template-columns:1fr;margin-top:80px}
+  .join .meta div,.join .meta div + div{padding:16px 0 18px;border-left:0}
+  .join .meta div + div{border-top:1px solid var(--line)}
+  .foot{grid-template-columns:1fr;gap:36px}
+  .foot .logo,.foot nav{grid-column:1}
+  .foot .logo svg{max-width:220px}
+  .foot nav{justify-content:flex-start;flex-wrap:wrap;gap:18px 26px}
+  .fine{flex-direction:column;gap:6px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="spark" viewBox="0 0 50 51"><path fill="currentColor" d="M46.5517 23.6515C35.509 23.6515 26.5189 14.6375 26.5189 3.4733V0H25H23.4811V3.4733C23.4811 14.5961 14.532 23.6515 3.44827 23.6515H0V25.1814V26.7113H3.44827C14.491 26.7113 23.4811 35.7253 23.4811 46.8895V50.3628H25H26.5189V46.8895C26.5189 35.7667 35.468 26.7113 46.5517 26.7113H50V25.1814V23.6515H46.5517Z"/></symbol>
+    <symbol id="arr" viewBox="0 0 10 10"><path d="M1 9 9 1M3 1h6v6" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="pill">
+      <div class="brand">
+        <a class="wm" href="#top" aria-label="Day Zero"><svg class="spark" style="color:var(--studio)"><use href="#spark"/></svg>Day Zero</a>
+        <span class="by">By Builders</span>
+      </div>
+      <nav class="navmid" aria-label="Sections">
+        <a href="#night">The night</a>
+        <a href="#who">Who it is for</a>
+        <a href="#room">The room</a>
+      </nav>
+      <div class="navr">
+        <div class="clock" aria-live="off"><span class="dot"></span><span class="tz">Rotterdam</span><b class="num" data-clock>00:00:00</b></div>
+        <a class="btn btn-w" href="https://builders.studio">Request an invite<svg><use href="#arr"/></svg></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wrap hero-in">
+      <div class="status lbl" aria-hidden="true"><span>Builders HQ</span><span>Rotterdam</span><span class="num coord">51.92° N&nbsp;&nbsp;4.47° E</span></div>
+      <div class="eyebrow lbl"><span>A Builders build night</span><i></i><span>Once a month</span></div>
+      <h1 class="x mega" aria-label="Day Zero"><svg class="spark" style="color:var(--studio)"><use href="#spark"/></svg>Day Zero</h1>
+      <div class="hero-row">
+        <p class="lede">The monthly build night of Builders, where founders and technical youngsters sit down together and build AI ventures <em>through the night.</em></p>
+        <div class="hero-cta">
+          <a class="btn btn-o btn-lg" href="#night">The night</a>
+          <a class="btn btn-w btn-lg" href="https://builders.studio">Request an invite<svg><use href="#arr"/></svg></a>
+        </div>
+      </div>
+      <ol class="strip" aria-label="The shape of the night">
+        <span class="sweep" aria-hidden="true"></span>
+        <li><span class="n num">00</span><span class="t">Doors open</span><span class="s">Evening</span></li>
+        <li><span class="n num">01</span><span class="t">Teams form</span><span class="s">Evening</span></li>
+        <li><span class="n num">02</span><span class="t">Build</span><span class="s">Through the night</span></li>
+        <li><span class="n num">03</span><span class="t">Demos</span><span class="s">End of the night</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="night">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="lbl"><svg class="spark"><use href="#spark"/></svg>The night</span>
+        <h2 class="x">From doors open <br>to demos.</h2>
+        <p>One evening a month, the studio stays open late. What happens in it follows the same shape every time.</p>
+      </div>
+      <div class="sched">
+        <div class="row rv"><span class="rail"></span><span class="i num">00</span><span class="when lbl">Evening</span><h3 class="x">Doors open</h3><p>The Builders office opens for the night. Founders and builders arrive, find a seat and get a sense of who is in the room.</p></div>
+        <div class="row rv"><span class="rail"></span><span class="i num">01</span><span class="when lbl">Evening</span><h3 class="x">Teams form</h3><p>Founders bring an idea or an early product. Engineers, designers and makers choose what they want to build and sit down with them.</p></div>
+        <div class="row rv"><span class="rail"></span><span class="i num">02</span><span class="when lbl">Through the night</span><h3 class="x">Build</h3><p>Heads down, in the same room, with the same bias for shipping that runs the studio every other day of the month.</p></div>
+        <div class="row rv"><span class="rail"></span><span class="i num">03</span><span class="when lbl">End of the night</span><h3 class="x">Demos</h3><p>What was built is shown to the room, working, as it stands when the night is over.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="who">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="lbl"><svg class="spark"><use href="#spark"/></svg>Who it is for</span>
+        <h2 class="x">Two sides <br>of one table.</h2>
+      </div>
+      <div class="who rv">
+        <div class="side">
+          <div class="lbl"><span>For founders</span><span class="num">A</span></div>
+          <h3 class="x">Bring the <br>venture.</h3>
+          <p>You have an idea or an early product, and you want the people who can build it sitting next to you for a night rather than on a call next quarter.</p>
+          <ul>
+            <li><span>An idea or an early product</span><span class="num">A1</span></li>
+            <li><span>A problem worth building for</span><span class="num">A2</span></li>
+            <li><span>A seat open for builders</span><span class="num">A3</span></li>
+          </ul>
+        </div>
+        <div class="side">
+          <div class="lbl"><span>For technical youngsters</span><span class="num">B</span></div>
+          <h3 class="x">Bring the <br>build.</h3>
+          <p>You are an engineer, a designer or a maker early in your career, and you would rather ship something than talk about it.</p>
+          <ul>
+            <li><span>Engineers</span><span class="num">B1</span></li>
+            <li><span>Designers</span><span class="num">B2</span></li>
+            <li><span>Makers</span><span class="num">B3</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="room">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="lbl"><svg class="spark"><use href="#spark"/></svg>The room</span>
+        <h2 class="x">The Builders office, <br>after hours.</h2>
+        <p>Day Zero happens at Builders HQ in Rotterdam, beside Central Station: the same room, the same people and the same bias for shipping, compressed into one night.</p>
+      </div>
+      <div class="room">
+        <figure class="fig f1 rv"><img src="assets/room-phone-booth-night.jpg" alt="A builder at a laptop in a phone booth at the Builders office" loading="lazy"><figcaption class="lbl"><span>Phone booth</span><span class="num">R.01</span></figcaption></figure>
+        <figure class="fig f2 rv"><img src="assets/room-laptops-night.jpg" alt="Three founders working on laptops around a table at Builders" loading="lazy"><figcaption class="lbl"><span>Build table</span><span class="num">R.02</span></figcaption></figure>
+        <figure class="fig f3 rv"><img src="assets/room-kitchen-counter-night.jpg" alt="Founders building at the kitchen counter of the Builders office" loading="lazy"><figcaption class="lbl"><span>Kitchen counter</span><span class="num">R.03</span></figcaption></figure>
+      </div>
+      <div class="room-note">
+        <span class="lbl">Builders HQ · Rotterdam</span>
+        <p>The rest of the month, this is where the studio co-founds its AI ventures from day zero. For one night, the desks open to the people who come to build.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wrap join-in rv">
+      <span class="lbl">How to join</span>
+      <h2 class="x">Request <br>an invite.</h2>
+      <p>Day Zero is held once a month at Builders in Rotterdam. Request an invite and tell us whether you are coming as a founder or as a builder.</p>
+      <div class="cta">
+        <a class="btn btn-w btn-lg" href="https://builders.studio">Request an invite<svg><use href="#arr"/></svg></a>
+        <a class="btn btn-o btn-lg" href="https://builders.studio">About Builders</a>
+      </div>
+      <div class="meta">
+        <div><span class="lbl">Where</span><span class="v">Builders HQ, Rotterdam</span></div>
+        <div><span class="lbl">How often</span><span class="v">Once a month</span></div>
+        <div><span class="lbl">Local time</span><span class="v num" data-clock-long>00:00:00</span></div>
+      </div>
+    </div>
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <div class="logo">
+            <a href="https://builders.studio" aria-label="Builders">
+              <svg viewBox="0 0 1619 225" fill="#EEF0F8" role="img" aria-label="Builders"><path d="M129.399 104.831C98.7039 104.831 73.7141 79.8282 73.7141 48.8608V39.2266H69.4921H65.2701V48.8608C65.2701 79.7135 40.3944 104.831 9.58511 104.831H0V109.075V113.319H9.58511C40.2803 113.319 65.2701 138.322 65.2701 169.289V178.924H69.4921H73.7141V169.289C73.7141 138.437 98.5898 113.319 129.399 113.319H138.984V109.075V104.831H129.399Z"/>
+<path d="M413.66 151.858V63.3125H456.109V143.37C456.109 174.109 468.66 190.166 502.094 190.166H507.8C536.441 190.166 560.746 170.897 560.746 136.374V63.3125H603.309V221.593H560.746V196.245C547.51 213.335 526.742 224.69 495.59 224.69C443.214 224.69 413.66 197.507 413.66 151.858Z"/>
+<path d="M645.98 63.3131H688.543V221.596H645.98V63.3131ZM645.98 42.7822H688.543V0H645.98V42.7822Z"/>
+<path d="M730.645 0H773.207V221.596H730.645V0Z"/>
+<path d="M805.482 142.455C805.482 94.053 848.045 60.2178 904.072 60.2178C943.097 60.2178 967.402 74.0959 979.041 85.5655V0.117188H1021.6V221.595H979.041V197.509C962.724 214.942 936.479 224.691 903.502 224.691C846.333 224.691 805.482 195.559 805.482 142.455ZM914.342 190.168C953.367 190.168 978.927 170.899 978.927 142.34C978.927 113.895 953.481 94.5118 914.342 94.5118H908.636C872.464 94.5118 848.501 113.781 848.501 142.34C848.501 170.784 872.464 190.168 908.636 190.168H914.342Z"/>
+<path d="M1256.11 156.332H1099.33C1106.29 177.551 1127.63 190.167 1156.27 190.167H1161.97C1190.27 190.167 1204.19 180.647 1209.22 171.472H1254.52C1248.58 198.999 1221.2 224.691 1159.12 224.691C1096.48 224.691 1053.91 193.952 1053.91 139.815C1053.91 88.8903 1102.98 60.1016 1159.12 60.1016C1220.85 60.1016 1256.11 94.6252 1256.11 140.848V156.332ZM1211.73 124.102C1210.81 106.095 1190.27 94.6252 1161.97 94.6252H1156.27C1126.03 94.6252 1107.2 106.324 1100.24 124.102H1211.73Z"/>
+<path d="M1433.55 169.292H1477.36C1479.3 180.991 1500.07 190.167 1525.18 190.167H1530.88C1563.29 190.167 1571.85 184.776 1571.85 176.289C1571.85 169.981 1568.08 164.934 1546.29 162.64L1501.9 158.167C1456.25 153.694 1443.02 134.769 1443.02 111.027C1443.02 75.9297 1477.02 60.1016 1526.09 60.1016C1586.22 60.1016 1614.87 82.582 1618.06 115.5H1574.24C1571.05 103.113 1557.93 94.6252 1529.17 94.6252H1523.46C1498.02 94.6252 1485.69 100.36 1485.69 108.274C1485.69 114.926 1488.89 119.629 1513.42 122.152L1551.88 125.937C1600.37 130.64 1614.87 150.253 1614.87 174.339C1614.87 205.307 1587.82 224.691 1527.69 224.691C1470.4 224.691 1436.06 203.472 1433.55 169.292Z"/>
+<path d="M1332.55 101.618C1332.55 80.5154 1349.55 63.3125 1370.66 63.3125H1422.58V101.618H1332.55Z"/>
+<path d="M1332.68 63.3125H1290.12V221.595H1332.68V63.3125Z"/>
+<path d="M339.575 107.242C356.235 100.246 372.325 83.4999 372.325 58.4958C372.325 22.1366 341.173 0 298.61 0H138.973V44.6174C138.973 69.3921 158.942 89.5788 183.703 89.5788V44.6174V39.2266H291.65C314.586 39.2266 326.567 48.4024 326.567 64.2307C326.567 80.403 314.586 89.5788 291.65 89.5788H183.703V128.805H294.845C319.378 128.805 332.957 138.325 332.957 155.415C332.957 174.455 319.378 182.369 294.845 182.369H183.703V173.882V128.92C159.056 128.92 138.973 148.992 138.973 173.882V221.596H304.316C346.878 221.596 378.6 198.542 378.6 160.806C378.6 132.935 360.343 112.977 339.575 107.242Z"/></svg>
+            </a>
+            <p>Day Zero is the monthly build night of Builders, the AI venture studio in Rotterdam.</p>
+          </div>
+          <nav aria-label="Footer">
+            <a href="#night">The night</a>
+            <a href="#who">Who it is for</a>
+            <a href="#room">The room</a>
+            <a href="https://builders.studio">builders.studio</a>
+          </nav>
+        </div>
+        <div class="fine"><span>Day Zero · A Builders night</span><span>Rotterdam, the Netherlands</span></div>
+      </div>
+    </footer>
+  </section>
+</main>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var tz='Europe/Amsterdam';
+  var fmt, zone;
+  try{
+    fmt=new Intl.DateTimeFormat('en-GB',{timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+    zone=(new Intl.DateTimeFormat('en-GB',{timeZone:tz,timeZoneName:'short'}).formatToParts(new Date()).find(function(p){return p.type==='timeZoneName'})||{}).value||'';
+  }catch(e){fmt=null}
+  var a=document.querySelectorAll('[data-clock]'), b=document.querySelectorAll('[data-clock-long]');
+  function tick(){
+    if(!fmt)return;
+    var t=fmt.format(new Date());
+    a.forEach(function(el){el.textContent=t});
+    b.forEach(function(el){el.textContent=t+' '+(zone==='GMT+2'?'CEST':zone==='GMT+1'?'CET':zone)+' · Rotterdam'});
+  }
+  tick(); setInterval(tick,1000);
+
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on')});return}
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
