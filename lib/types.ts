@@ -69,6 +69,7 @@ export type Slide = Bg & (
   | { layout: "split"; eyebrow?: string; title: string; body?: string; image?: string; /** "contain" shows the whole picture (product shots) */ fit?: "cover" | "contain" }
   | { layout: "quote"; quote: string; author?: string; presenter?: Person }
   | { layout: "photo"; eyebrow?: string; title: string; body?: string; image: string }
+  | { layout: "showcase"; eyebrow?: string; title: string; body?: string; image: string }
   | { layout: "cards"; eyebrow?: string; title: string; cards: { title: string; body?: string; image?: string }[] }
   | { layout: "mosaic"; eyebrow?: string; title: string; body?: string; images: string[] }
   | { layout: "equation"; eyebrow?: string; title?: string; terms: { label: string; caption?: string }[]; result: string; highlight?: number }
@@ -109,3 +110,10 @@ export function themeOf(b: Brand, d?: { gradient?: string }): Theme {
     deck: { ...(b.deck ?? {}), variant: d?.gradient ?? b.deck?.variant },
   };
 }
+
+/**
+ * Product snapshots live in a venture's gallery/product/ as transparent cut-outs (PNG/WebP/SVG).
+ * They carry their own frame, corners and shadow, so the platform shows them whole and as they are:
+ * never cropped, never given an extra radius or shadow. Photos and screenshots are framed instead.
+ */
+export const isCutout = (u?: string) => !!u && /\/gallery\/product\//.test(u) && /\.(png|webp|svg)$/i.test(u);

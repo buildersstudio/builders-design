@@ -9,12 +9,24 @@
       "subtitle": "Avery finds, evaluates and reaches the right candidates for your roles in seconds. Built in Europe for Europe."
     },
     {
+      "layout": "showcase",
+      "eyebrow": "The platform",
+      "title": "Everything sourcing takes, in one system.",
+      "image": "/ventures/avery/gallery/product/product-app-shortlist-window.png"
+    },
+    {
       "layout": "split",
       "eyebrow": "Search",
       "title": "Type the role like you’d say it out loud.",
       "body": "Avery reads intent, not booleans, and returns a shortlist in seconds.",
-      "image": "/ventures/avery/gallery/product/product-app-on-macbook.jpg",
-      "fit": "contain"
+      "image": "/ventures/avery/gallery/product/product-search-shortlist.png"
+    },
+    {
+      "layout": "split",
+      "eyebrow": "Evaluate",
+      "title": "Matches that explain themselves.",
+      "body": "Every candidate scored across 7 dimensions, with reasons you can read out loud to a hiring manager.",
+      "image": "/ventures/avery/gallery/product/product-why-this-match-card.png"
     },
     {
       "layout": "metrics",
@@ -36,75 +48,52 @@
       ]
     },
     {
-      "layout": "equation",
+      "layout": "cards",
       "eyebrow": "Watch it work",
       "title": "No more post and pray.",
-      "terms": [
-        {
-          "label": "Search",
-          "caption": "Type the role, get a shortlist"
-        },
-        {
-          "label": "Evaluate",
-          "caption": "Every match scored and explained"
-        },
-        {
-          "label": "Reach out",
-          "caption": "Personal outreach, human checks"
-        }
-      ],
-      "result": "Hire",
-      "highlight": 0
-    },
-    {
-      "layout": "cards",
-      "mode": "light",
-      "eyebrow": "The platform",
-      "title": "Everything sourcing takes,\nin one system.",
       "cards": [
         {
-          "title": "Search",
-          "body": "125M+ vetted profiles, in seconds.",
-          "image": "/ventures/avery/gallery/product/product-app-hero-ui.jpg"
+          "title": "1 · Search",
+          "body": "Type the role, get a shortlist in seconds.",
+          "image": "/ventures/avery/gallery/product/product-search-shortlist.png"
         },
         {
-          "title": "Evaluate",
-          "body": "Matches that explain themselves.",
-          "image": "/ventures/avery/gallery/product/product-match-card-great-match.jpg"
+          "title": "2 · Evaluate",
+          "body": "Every match scored and explained.",
+          "image": "/ventures/avery/gallery/product/product-match-score-97.png"
         },
         {
-          "title": "Reach out",
-          "body": "Outreach that gets replies.",
-          "image": "/ventures/avery/gallery/product/product-outreach-preview-card.jpg"
+          "title": "3 · Reach out",
+          "body": "Personal outreach, human checks.",
+          "image": "/ventures/avery/gallery/product/product-outreach-replied-card.png"
         }
       ]
     },
     {
       "layout": "split",
-      "eyebrow": "Evaluate",
-      "title": "Matches that explain themselves.",
-      "body": "Every candidate scored across 7 dimensions, with reasons you can read out loud to a hiring manager.",
-      "image": "/ventures/avery/gallery/product/product-match-card-unusual-candidate.jpg",
-      "fit": "contain"
+      "eyebrow": "Reach out",
+      "title": "Outreach that gets replies.",
+      "body": "Personal messages on autopilot, human checks wherever you want them. Replies come back as structured data.",
+      "image": "/ventures/avery/gallery/product/product-outreach-replied-card.png"
     },
     {
       "layout": "section",
+      "mode": "dark",
       "eyebrow": "The internal brain",
       "title": "Every search\nmakes it smarter."
-    },
-    {
-      "layout": "statement",
-      "eyebrow": "Memory",
-      "title": "Avery remembers every search, every placement, every conversation.",
-      "body": "After a year it knows your business like your best consultant does. *That memory is yours, and it compounds.*"
     },
     {
       "layout": "split",
       "eyebrow": "Talent Hub",
       "title": "Your talent, remembered.",
       "body": "Every candidate you’ve ever touched: searchable, kept current, and re-matched when a role fits them.",
-      "image": "/ventures/avery/gallery/product/product-agent-thinking-card.jpg",
-      "fit": "contain"
+      "image": "/ventures/avery/gallery/product/product-talent-hub-sofia-is-back.png"
+    },
+    {
+      "layout": "statement",
+      "eyebrow": "Memory",
+      "title": "Avery remembers every search, every placement, every conversation.",
+      "body": "After a year it knows your business like your best consultant does. *That memory is yours, and it compounds.*"
     },
     {
       "layout": "split",
@@ -133,13 +122,13 @@
     },
     {
       "layout": "closing",
+      "mode": "dark",
       "title": "Your next hire is\none search away.",
       "subtitle": "Avery finds, evaluates and reaches the right candidates for your roles in seconds.",
       "cta": [
         "Start for free",
         "Book a call"
-      ],
-      "mode": "dark"
+      ]
     }
   ]
 }

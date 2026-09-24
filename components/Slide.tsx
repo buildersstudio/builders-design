@@ -2,7 +2,7 @@
 
 import { Fragment, type CSSProperties, type ElementType } from "react";
 import type { Slide as S, Theme } from "@/lib/types";
-import { luminance } from "@/lib/types";
+import { isCutout, luminance } from "@/lib/types";
 import { fieldSVG } from "@/lib/fields.mjs";
 
 export const W = 1920;
@@ -146,7 +146,13 @@ function PlainSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: T
               <T v={slide.body} p={e("body")} edit={edit} style={{ ...body, fontSize: 30 }} />
             </div>
           </div>
-          <div style={{ background: slide.image ? `left center / cover url(${slide.image})` : theme.accent }} />
+          {isCutout(slide.image) ? (
+            <div style={{ background: theme.paper, display: "grid", placeItems: "center", padding: 90 }}>
+              <img src={slide.image} alt="" style={{ maxWidth: "100%", maxHeight: "100%", display: "block" }} />
+            </div>
+          ) : (
+            <div style={{ background: slide.image ? `left center / cover url(${slide.image})` : theme.accent }} />
+          )}
         </div>
       );
       break;
@@ -466,9 +472,9 @@ function GradientSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme
           {eyebrow}
           {heading(slide.title, { right: 960, maxWidth: 850, fontSize: 64 })}
           <T v={slide.body} p={e("body")} edit={edit} style={{ ...zone, right: 960, ...body, fontSize: 32, color: soft }} />
-          {slide.fit === "contain" && slide.image ? (
-            <div style={{ position: "absolute", top: GRID.label, bottom: GRID.bottom - 30, right: GRID.x, width: 820, display: "grid", placeItems: "center" }}>
-              <img src={slide.image} alt="" style={{ maxWidth: "100%", maxHeight: "100%", borderRadius: 18, boxShadow: "0 40px 90px -35px rgba(1,22,39,.45), 0 0 0 1px rgba(1,22,39,.06)" }} />
+          {(slide.fit === "contain" || isCutout(slide.image)) && slide.image ? (
+            <div style={{ position: "absolute", top: GRID.label + 40, bottom: GRID.bottom + 20, right: GRID.x, width: 860 }}>
+              <img src={slide.image} alt="" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
             </div>
           ) : (
             <div style={{ position: "absolute", top: GRID.label, bottom: GRID.bottom - 60, right: GRID.x, width: 760, background: slide.image ? `center / cover url("${slide.image}")` : "rgba(127,127,127,.12)" }} />
@@ -493,6 +499,17 @@ function GradientSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme
         </>
       );
       break;
+    case "showcase":
+      inner = (
+        <>
+          {eyebrow}
+          {heading(slide.title, { maxWidth: 1250 })}
+          <div style={{ position: "absolute", left: GRID.x + 120, right: GRID.x + 120, top: 340, bottom: GRID.bottom + 10 }}>
+            <img src={slide.image} alt="" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
+          </div>
+        </>
+      );
+      break;
     case "cards":
       inner = (
         <>
@@ -501,7 +518,11 @@ function GradientSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme
           <div style={{ position: "absolute", left: GRID.x, right: GRID.x, top: 400, bottom: GRID.bottom, display: "grid", gridTemplateColumns: cols(slide.cards.length), gap: 24 }}>
             {slide.cards.map((c, i) => (
               <div key={i} style={{ background: "#fff", color: "#0A0A0A", borderRadius: 28, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 30px 80px -30px rgba(0,0,0,.45)" }}>
-                {c.image && <div style={{ flex: 1, minHeight: 0, background: `center / cover url("${c.image}")` }} />}
+                {c.image && (isCutout(c.image) ? (
+                  <div style={{ flex: 1, minHeight: 0, background: "rgba(78,84,120,.05)", display: "grid", placeItems: "center", padding: 26 }}>
+                    <img src={c.image} alt="" style={{ maxWidth: "100%", maxHeight: "100%", display: "block" }} />
+                  </div>
+                ) : <div style={{ flex: 1, minHeight: 0, background: `center / cover url("${c.image}")` }} />)}
                 <div style={{ padding: "30px 34px 34px" }}>
                   <T v={c.title} p={["cards", i, "title"]} edit={edit} style={{ fontFamily: theme.label, fontSize: 24, letterSpacing: "0.04em", textTransform: "uppercase" }} />
                   <T v={c.body} p={["cards", i, "body"]} edit={edit} style={{ fontSize: 24, lineHeight: 1.4, color: "rgba(10,10,10,.55)", marginTop: 10 }} />
@@ -882,7 +903,7 @@ function FieldSlide({ slide, theme, logo, n, total, edit }: { slide: S; theme: T
           </div>
           {slide.image && (
             <div style={{ position: "absolute", top: 150, bottom: 150, right: 150, width: 860, display: "grid", placeItems: "center" }}>
-              <img src={slide.image} alt="" style={{ maxWidth: "100%", maxHeight: "100%", borderRadius: 14, boxShadow: "0 40px 90px -30px rgba(33,34,39,.5), 0 0 0 1px rgba(33,34,39,.08)" }} />
+              <img src={slide.image} alt="" style={isCutout(slide.image) ? { maxWidth: "100%", maxHeight: "100%", display: "block" } : { maxWidth: "100%", maxHeight: "100%", borderRadius: 14, boxShadow: "0 40px 90px -30px rgba(33,34,39,.5), 0 0 0 1px rgba(33,34,39,.08)" }} />
             </div>
           )}
         </>
