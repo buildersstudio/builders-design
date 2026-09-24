@@ -29,6 +29,9 @@ export const BOOT_LAYOUTS = [
   { key: "headline", label: "Headline" },
   { key: "code", label: "Code" },
   { key: "guest", label: "Guest" },
+  { key: "player", label: "Player" },
+  { key: "desktop", label: "Windows" },
+  { key: "mystery", label: "Mystery" },
 ] as const;
 
 export const layoutsFor = (style?: string) => (style === "boot" ? BOOT_LAYOUTS : LAYOUTS);

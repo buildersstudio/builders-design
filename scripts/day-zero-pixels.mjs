@@ -83,9 +83,9 @@ for (const f of process.env.AVATARS?.split(",").filter(Boolean) ?? []) {
   const mask = await sharp(f).extractChannel(3).blur(4).threshold(235).raw().toBuffer();
   const cut = await sharp(rgb, { raw: { width: W, height: H, channels: 3 } }).joinChannel(mask, { raw: { width: W, height: H, channels: 1 } }).png().toBuffer();
   const { data, info } = await sharp(cut).trim().toBuffer({ resolveWithObject: true });
-  const side = Math.min(info.width, Math.round(info.height * 0.95));
+  const side = Math.min(info.width, Math.round(info.height * Number(process.env.AVATAR_CROP ?? 0.95)));
   const crop = await sharp(data).extract({ left: Math.round((info.width - side) / 2), top: 0, width: side, height: side }).extend({ top: 24, left: 24, right: 24, background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
-  const sprite = (await pixelate(crop, { cols: 72, rows: 72, cell: 12, pal: SKIN, spread: 10, alpha: true, fit: "cover", position: "top", modulate: { saturation: 1.15 } })).png({ palette: true });
+  const sprite = (await pixelate(crop, { cols: 72, rows: 72, cell: 12, pal: [...SKIN, ...(process.env.AVATAR_EXTRA?.split(",").map(hex) ?? [])], spread: 10, alpha: true, fit: "cover", position: "top", modulate: { saturation: Number(process.env.AVATAR_SAT ?? 1.15) } })).png({ palette: true });
   await sprite.toFile(`${out}/avatar-${process.env.AVATAR_OUT ?? name}.png`);
   if (process.env.AVATAR_NAME) await sprite.toFile(`${gallery}/avatars/avatar-${process.env.AVATAR_NAME}.png`);
 }

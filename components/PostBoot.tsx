@@ -154,6 +154,84 @@ export function BootArtwork({ post, theme }: { post: Post; theme: Theme; brand: 
     );
   }
 
+  const name = post.title || "loading...";
+  const flat = name.replace(/\n/g, " ");
+  const Avatar = ({ size, silhouette }: { size: number; silhouette?: boolean }) =>
+    post.photo ? <img src={post.photo} alt="" style={{ width: size, height: size, display: "block", imageRendering: "pixelated", filter: silhouette ? "brightness(0)" : undefined }} /> : <Unknown size={size} />;
+  const Hp = ({ n = 5 }: { n?: number }) => (
+    <div style={{ display: "flex", gap: px(6) }}>{[0, 1, 2, 3, 4, 5].map((i) => <i key={i} style={{ width: px(34), height: px(22), background: i < n ? C.networkDeep : "#CFCFCF" }} />)}</div>
+  );
+  const available = h - (wide ? pad * 0.7 : pad) - footH - px(wide ? 36 : 60);
+
+  /* ---------- player: a character select screen, the avatar large ---------- */
+  if (post.layout === "player") {
+    const info = px(wide ? 130 : 170);
+    const pic = Math.min(available - px(60) - info - px(16), wide ? w * 0.4 : w - pad * 2 - px(16));
+    return (
+      <div style={root}>
+        <Stage>
+          <Win bar={post.label || "player-select.exe"} meta={edition || "P1"} tone={post.dark ? "pink" : "black"} style={{ position: "relative", width: "100%" }}>
+            <div style={{ background: C.cream, display: wide ? "grid" : "block", gridTemplateColumns: wide ? `${pic}px 1fr` : undefined }}>
+              <div style={{ height: pic, background: post.dark ? C.studio : C.network, borderBottom: wide ? undefined : `${px(4)}px solid #000`, borderRight: wide ? `${px(4)}px solid #000` : undefined, display: "grid", placeItems: "end center", overflow: "hidden",
+                backgroundImage: `repeating-linear-gradient(0deg, rgba(0,0,0,.08) 0 ${px(4)}px, transparent ${px(4)}px ${px(12)}px)` }}>
+                <Avatar size={pic} />
+              </div>
+              <div style={{ minHeight: info, padding: `${px(26)}px ${px(36)}px`, display: "flex", flexDirection: wide ? "column" : "row", justifyContent: "space-between", alignItems: wide ? "flex-start" : "center", gap: px(20), ...mono }}>
+                <div>
+                  <div style={{ fontSize: px(30), color: C.muted }}>PLAYER 1</div>
+                  <div style={{ fontSize: px(64), lineHeight: `${px(66)}px`, marginTop: px(6), whiteSpace: wide ? "pre-line" : "nowrap" }}>{wide ? name : flat}</div>
+                </div>
+                <div style={{ textAlign: wide ? "left" : "right" }}>
+                  <div style={{ fontSize: px(30), color: C.muted, marginBottom: px(10) }}>THEME: {post.body || "tba"}</div>
+                  <Hp />
+                </div>
+              </div>
+            </div>
+          </Win>
+        </Stage>
+        {foot("Press start")}
+      </div>
+    );
+  }
+
+  /* ---------- desktop: the avatar window cascaded over a code window ---------- */
+  if (post.layout === "desktop") {
+    const pic = px(wide ? 330 : post.format === "portrait" ? 520 : 440);
+    const code = `await guest.speak({\n  name: "${flat}",\n  theme: "${post.body || "tba"}",\n});`;
+    return (
+      <div style={root}>
+        <Win bar={post.label || "guest.png"} meta="100%" tone={post.dark ? "pink" : "black"} style={{ left: pad, top: wide ? pad * 0.7 : pad, width: pic + px(8) }}>
+          <div style={{ height: pic, background: post.dark ? C.studio : C.network, display: "grid", placeItems: "end center", overflow: "hidden" }}><Avatar size={pic} /></div>
+        </Win>
+        <Win bar="edition.ts" tone={post.dark ? "blue" : "pink"} style={wide ? { right: pad, top: pad * 0.7 + px(150), width: w - pad * 2 - pic - px(40) } : { right: pad, left: pad + px(120), top: (wide ? pad * 0.7 : pad) + pic - px(40) }}>
+          <Code text={code} dark={false} size={wide ? 34 : 36} />
+        </Win>
+        {foot(edition)}
+      </div>
+    );
+  }
+
+  /* ---------- mystery: the silhouette before the reveal ---------- */
+  if (post.layout === "mystery") {
+    const pic = Math.min(available - px(60) - px(150), w - pad * 2 - px(16), wide ? h * 0.62 : Infinity);
+    return (
+      <div style={root}>
+        <Stage>
+          <Win bar={post.label || "who-is-it.exe"} meta={edition} tone="black" style={{ position: "relative", width: wide ? pic + px(8) : "100%", margin: wide ? "0 auto" : undefined }}>
+            <div style={{ background: C.cream }}>
+              <div style={{ height: pic, background: post.dark ? C.network : C.studio, borderBottom: `${px(4)}px solid #000`, display: "grid", placeItems: "end center", overflow: "hidden" }}><Avatar size={pic} silhouette /></div>
+              <div style={{ ...mono, padding: `${px(26)}px ${px(36)}px`, display: "flex", justifyContent: "space-between", alignItems: "center", gap: px(20) }}>
+                <span style={{ fontSize: px(52) }}>GUEST: ????</span>
+                <span style={{ fontSize: px(34), color: C.muted }}>{post.body ? `theme: ${post.body}` : "reveal soon"}</span>
+              </div>
+            </div>
+          </Win>
+        </Stage>
+        {foot()}
+      </div>
+    );
+  }
+
   /* ---------- code: the copy as a program (dark: the terminal) ---------- */
   if (post.layout === "code") {
     const lines = post.title.split("\n");

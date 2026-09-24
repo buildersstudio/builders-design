@@ -96,9 +96,9 @@ export function PostEditor({ slug, name, brand, theme, pictures, initial, onSave
             <Field label="Wallpaper">
               <Seg options={Object.keys(theme.deck.walls ?? {}).map((k) => [k, k[0].toUpperCase() + k.slice(1)] as [string, string])} value={post.color ?? Object.keys(theme.deck.walls ?? {})[0]} onChange={(v) => set("color", v)} />
             </Field>
-            {(post.layout === "code" || post.layout === "guest") && (
-              <Field label={post.layout === "code" ? "Window" : "Bar"}>
-                <Seg options={post.layout === "code" ? [["light", "Editor"], ["dark", "Terminal"]] : [["light", "Black"], ["dark", "Pink"]]} value={post.dark ? "dark" : "light"} onChange={(v) => set("dark", v === "dark")} />
+            {post.layout !== "window" && post.layout !== "headline" && (
+              <Field label={post.layout === "code" ? "Window" : "Colours"}>
+                <Seg options={post.layout === "code" ? [["light", "Editor"], ["dark", "Terminal"]] : [["light", "A"], ["dark", "B"]]} value={post.dark ? "dark" : "light"} onChange={(v) => set("dark", v === "dark")} />
               </Field>
             )}
           </>
@@ -129,15 +129,15 @@ export function PostEditor({ slug, name, brand, theme, pictures, initial, onSave
             <input className="social-input" value={post.stat ?? ""} onChange={(e) => set("stat", e.target.value)} placeholder="125M+" />
           </Field>
         )}
-        <Field label={boot ? ({ window: "Left line", code: "Code", guest: "Guest name", headline: "Headline" } as Record<string, string>)[post.layout] ?? "Headline" : "Headline"} hint={post.layout === "code" ? "one line per row" : boot && post.layout !== "headline" ? "" : "*words* for emphasis"}>
+        <Field label={boot ? ({ window: "Left line", code: "Code", guest: "Guest name", player: "Guest name", desktop: "Guest name", mystery: "Guest name (hidden)", headline: "Headline" } as Record<string, string>)[post.layout] ?? "Headline" : "Headline"} hint={post.layout === "code" ? "one line per row" : boot && post.layout !== "headline" ? "" : "*words* for emphasis"}>
           <textarea className="social-input" rows={post.layout === "code" ? 9 : 4} value={post.title} onChange={(e) => set("title", e.target.value)} />
         </Field>
         {boot && (
-          <Field label={({ window: "Right line", code: "Footer", guest: "Theme", headline: "Prompt line" } as Record<string, string>)[post.layout] ?? "Line"}>
+          <Field label={({ window: "Right line", code: "Footer", guest: "Theme", player: "Theme", desktop: "Theme", mystery: "Theme", headline: "Prompt line" } as Record<string, string>)[post.layout] ?? "Line"}>
             <input className="social-input" value={post.body ?? ""} onChange={(e) => set("body", e.target.value)} />
           </Field>
         )}
-        {(boot ? post.layout === "guest" : post.layout !== "type" && post.layout !== "stat") && !!photos.length && (
+        {(boot ? ["guest", "player", "desktop", "mystery"].includes(post.layout) : post.layout !== "type" && post.layout !== "stat") && !!photos.length && (
           <Field label="Picture">
             <div className="social-pics">
               {photos.slice(0, 40).map((p) => (
