@@ -11,15 +11,17 @@ export * from "./types";
 const ROOT = path.join(process.cwd(), "public", "ventures");
 
 export const SECTIONS = [
-  { key: "brand", label: "Brand book" },
-  { key: "gallery", label: "Gallery" },
-  { key: "presentations", label: "Presentations" },
-  { key: "social", label: "Social" },
-  { key: "vision", label: "Vision" },
-  { key: "website", label: "Website" },
-  { key: "journeys", label: "Journeys" },
-  { key: "variants", label: "Brand variants" },
-  { key: "competitors", label: "Competitors" },
+  // product
+  { key: "journeys", label: "Journeys", group: "product" },
+  { key: "competitors", label: "Competitors", group: "product" },
+  { key: "vision", label: "Vision", group: "product" },
+  // marketing
+  { key: "variants", label: "Brand variants", group: "marketing" },
+  { key: "brand", label: "Brand book", group: "marketing" },
+  { key: "website", label: "Website", group: "marketing" },
+  { key: "social", label: "Social", group: "marketing" },
+  { key: "presentations", label: "Presentations", group: "marketing" },
+  { key: "gallery", label: "Gallery", group: "marketing" },
   // Landing pages are parked: their routes and folders still work, they are just not in the menu.
 ] as const;
 

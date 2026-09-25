@@ -729,3 +729,4 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .menu-label { display: flex; align-items: center; gap: 10px; }
 .menu-icon { flex: none; opacity: .55; transition: opacity .15s; }
 .menu-link:hover .menu-icon, .menu-link[aria-current="page"] .menu-icon { opacity: 1; }
+.menu-rule { border: 0; height: 1px; background: rgba(0,0,0,.07); margin: 10px 10px; }
