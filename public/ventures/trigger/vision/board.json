@@ -1,0 +1,3152 @@
+{
+  "updated": "2026-09-25",
+  "vision": "Trigger is what a social media manager opens when someone asks why a post worked: it reads the creative and the account's private insights against its own baseline and real peers, checks the next hook before it goes out, and writes the explanation the boss or client will read. Agencies and multi-client freelancers run every client from one workspace and pay per account.",
+  "strategy": {
+    "direction": "Stop selling Trigger as a chat for creators and sell it as the explanation a social media manager hands to a boss or client: the free public Hook Analyzer as the front door, a monthly why-report as the thing people pay for, and per-account pricing so agencies and multi-client freelancers can buy first. Grow the next 16 weeks through a defined founder-led sales motion to the warm network and a referral loop built into every report, and hold Meta ads to a capped test with a written pass bar.",
+    "why": [
+      "The only feature with behavioural proof is the standalone Hook Analyzer: a brand team says its hooks improved week over week, a user referred a former colleague unprompted and another prefers it to the chat, while the chat that now fronts the homepage drew no interest in the October 2025 concept tests and two users could not find the analyzer after the relaunch.",
+      "The money is in explaining results to someone else. In 203,132 Reddit posts, reporting and proving value is the most monetisable pain (monthly, tied to a client or a salary) and 'why did it flop' talk roughly tripled from early 2025 to mid 2026; in the calls, the job with a budget owner is the monthly review for the boss or client.",
+      "Agencies and multi-client freelancers made the only unprompted buy statements and usually decide themselves, but the product connects one Instagram account. Five prospects needed more than one, and prospects and the founder independently proposed pricing per account.",
+      "Self-serve freemium has not been a funnel yet: 6 of 512 signups opened the pricing modal (one of them internal) and one paid, the lead founder's own read is that ad traffic sent to a payment page will not buy, and every warm deal in 101 conversations came through a founder-run call.",
+      "Reading a public post behaviourally is no longer scarce: vidIQ scores Reels on a five-part behavioural framework on its free plan since May 2026, Instagram ships skip rate and a 10-account competitor comparison natively, and Brika copies Trigger's packaging from $9. What is still scarce below enterprise prices is creative reading plus private insights plus a peer cohort, explained for a client, which Dash Social sells through sales and Emplifi from $2,499 a month.",
+      "Trust in the scores is the top product objection, raised by at least 8 users (the same hook scored twice, an 83 that flopped, paid mixed into organic, 4 of 150 posts actually analysed), and a report someone must defend to a boss cannot carry a number that moves.",
+      "Every tool in the category that grew fast had a distribution engine, from a founder audience to lifetime affiliates and free tools matched to the job. Trigger has 173 Instagram followers and no affiliate programme, but it has 37 organisations already met in calls and a free hook tool that already appears in search."
+    ],
+    "sequence": [
+      {
+        "step": "Pull the numbers and fix the money path. Export billing and product analytics: who pays the current MRR, on which plan, how much is tied to consulting, and the funnel step by step and by source, including the September ad results so far. Fix the upgrade flow that charged a trial user and the Pro account shown free UI, unblock the tool pages in robots.txt, and publish one price ladder. Owner: lead founder and growth engineer. Target: a one-page funnel with every step counted, and zero open billing bugs.",
+        "when": "28 Sep to 9 Oct"
+      },
+      {
+        "step": "Founder-led sales sprint to the warm network: build a why-report on their own account for the 37 organisations in VSI and the April trials, send it to the champion with a request for 20 minutes with the budget holder, and make a written offer from the ladder with a 30-day money-back guarantee. Owner: lead founder, with marketing booking the calls. Target: 25 reports sent, 10 budget-holder calls, 6 new paying customers, MRR about €2,000.",
+        "when": "28 Sep to 30 Oct"
+      },
+      {
+        "step": "Ship multi-account and the why-report v1: one workspace that connects up to 20 Instagram accounts, billing per connected account, and a monthly report as a shareable link and PDF, white-labelled for agencies. Owner: AI engineer and design lead. Target: 4 agencies or freelancers paying for 3 or more accounts each.",
+        "when": "5 Oct to 20 Nov"
+      },
+      {
+        "step": "Put the Hook Analyzer back at the front: public with no signup, deterministic scores, organic separated from paid, a shareable read card, and 'check this against your own account' as the step to connect. Owner: AI engineer and growth engineer. Target: identical scores in 200 of 200 repeat tests, and 5% of public checks followed by a connected account.",
+        "when": "12 Oct to 13 Nov"
+      },
+      {
+        "step": "Open two distribution engines that fit the job: an affiliate programme for freelance social media managers and educators at 30% recurring for 12 months, and a first behavioural benchmark of Italian brand Instagram outliers for press and backlinks. Owner: marketing and content. Target: 20 active affiliates, the benchmark cited by 3 trade outlets, and 8 paying customers from these two sources.",
+        "when": "2 Nov to 18 Dec"
+      },
+      {
+        "step": "Year-end push timed to budget planning: two months free on annual plans, and the pre-publish check in beta for paying brand teams and agencies. Owner: lead founder. Target: MRR €4,000 and 30% of paying customers on annual.",
+        "when": "23 Nov to 18 Dec"
+      },
+      {
+        "step": "Decision review against the kill criteria, on counted numbers only. Target: MRR €5,000 from at least 25 paying customers, monthly logo churn under 6%, and at least half of new MRR from customers not tied to consulting.",
+        "when": "18 Jan 2027"
+      }
+    ],
+    "notNow": [
+      "Meta ads to European social media managers as the September growth engine. The plan has no written pass bar, the self-serve path has not converted, and the lead founder says ad traffic to a payment page will not buy. Keep only the spend already committed, point it at the public Hook Analyzer instead of signup, and stop on 30 October unless it meets the bar in the kill criteria.",
+      "Tighter free limits, credits and Pro teasers on hook and script analysis (the 1 September change). They ration the one feature with proof and the page that can rank; gate the report, a second connected account and history instead.",
+      "The chat-first homepage. Keep chat inside the product, and lead with the tools people credit with results.",
+      "A solo-creator Pro plan as the self-serve target. Creators paying themselves state 10 to 150, and vidIQ gives a behavioural Reel reading away free; creators are welcome on Solo, but they are not the growth plan.",
+      "New price points. No plan names or prices outside the one ladder for 16 weeks, after ten different prices in six months.",
+      "Performance prediction as the headline. It is the most polarising concept in the calls and the agency with the highest stated budget rejected it; explain what worked and why, and show predictions only once the backtest supports them.",
+      "TikTok, LinkedIn and Stories before February. Log every deal lost to a missing platform instead, and decide on 18 January; LinkedIn is the first candidate because its creator analytics API opened in 2026.",
+      "Launching the pooled cross-account dataset before a written legal review of Meta terms and GDPR, however much one prospect liked it.",
+      "Enterprise media deals this quarter, beyond one report each to the two publishers who named annual budgets of 7k to 15k: procurement, GDPR and suite expectations outlast this plan.",
+      "The 30-page SEO and translation programme before the hygiene fixes and the six pages matched to the job are live and indexed."
+    ],
+    "killCriteria": [
+      "By 30 October, fewer than 3 new paying customers from 25 reports and 10 budget-holder calls: the report does not close. Test the pre-publish check as the paid core before changing the channel.",
+      "By 20 November, fewer than 3 agencies or freelancers paying for 3 or more accounts each: drop agency-first and lead with in-house brand teams and the boss report.",
+      "Fewer than 2 of the first 10 reports forwarded by the champion to the budget holder: the champion cannot open the door, so address the offer to the budget holder directly.",
+      "Meta ads: by 30 October, no paying customer and connected professional accounts costing more than €15 each, or less than one paying customer per €500 spent: stop the spend.",
+      "Public Hook Analyzer: after 4 weeks and 2,000 checks, fewer than 2% of checks lead to a connected account: keep the page for search but stop building on it.",
+      "Backtest on 20 connected accounts: if the top-scored quartile of past posts does not beat the bottom quartile on organic reach or saves in at least 12 of them, remove the headline score from reports and sell explanations only.",
+      "Blind test on 10 posts with 5 practising social media managers: if they prefer vidIQ's free reading to Trigger's in more than half the cases, the depth edge is not real, and the positioning rests on reporting and multi-account alone.",
+      "If more than half of new MRR by 18 December comes bundled with the lead founder's consulting, Trigger is a service with software attached: decide explicitly whether to price it as one.",
+      "Monthly logo churn above 10% in the first two paid months: the value is episodic, so move to annual-first and make the monthly report the product.",
+      "By 18 January 2027, MRR below €3,000: stop and re-plan from the counted reasons buyers gave for saying no."
+    ],
+    "evidenceGaps": [
+      "Who pays the current MRR, on which plan, since when, and how much of it is linked to the lead founder's consulting clients. Settle it in an hour from the billing export, before anything else.",
+      "The funnel, from the product analytics already in place: tool-page visits, public checks, signups, handle declared, Instagram connected, first analysis, return in week two, pricing modal opened, checkout started, paid, and churned, each split by source (ads, search, LinkedIn, referral, outbound) and by whether the account is an Instagram professional account or LinkedIn-only. Pull it in week one and repeat it every Monday.",
+      "What the September Meta ads produced: spend, clicks, signups, share of real Instagram social media managers, connections, and paid. Pull it from the ads manager and analytics on 28 September and judge it against the bar in the kill criteria.",
+      "What happened to the April trials and the agency trial of the 490 plan. VSI records no outcome; one call to each champion in the sales sprint settles it, logged in VSI.",
+      "What an agency will pay per connected account. Put two written prices (€49 and €69 a month) to 8 agencies and freelancers from past calls and count acceptances.",
+      "Whether the budget holder can be reached through the champion, and how long it takes. Count, for each report sent, the days to a budget-holder call and to a decision.",
+      "Whether the score predicts anything on the account's own data. A 90-day backtest on 20 connected accounts, organic only, run in October.",
+      "Whether Trigger's reading beats vidIQ's free one. A blind side-by-side on 10 posts with 5 practising social media managers, run in two afternoons.",
+      "Whether self-serve signups contain a paying segment. Five calls with activated free users who found Trigger through search or ads, because VSI has none.",
+      "Whether the pooled dataset can launch legally. A written opinion on Meta platform terms and GDPR before any public use.",
+      "Housekeeping that affects every answer: enable transcript access in VSI, correct the misattributed pains and the contaminated pricing entry, and log trial outcomes and ad results so the compiled layer stops lagging."
+    ]
+  },
+  "research": {
+    "patterns": [
+      {
+        "title": "Fast starts borrowed an audience; the second leg was affiliates",
+        "text": "Every tool in the category that crossed $10k MRR quickly had a distribution engine at launch: a founder audience (Kleo at $32K MRR on its private launch, EasyGen, Sandcastles on 1.3M followers) or a partner influencer (Tweet Hunter tripled MRR in about a week). From $10k to $100k the repeatable engine was lifetime or 12-month recurring affiliates run as a crowd of small creators: Submagic's 10,000+ affiliates bring 20% of revenue at 30% lifetime. A standalone hook tool that reached $10k MRR on an audience alone later shut down.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Tweet Hunter went from $4-5K to about $15K MRR in roughly a week once an influencer became part-owner and promoted it.",
+            "source": "Bootstrappers, Tweet Hunter to $25K MRR",
+            "url": "https://bootstrappers.com/these-founders-found-25k-mrr-by-dumbing-down-their-twitter-tool-and-finding-a-spokesperson/",
+            "date": "2021-12-21"
+          },
+          {
+            "kind": "competitor",
+            "text": "Kleo reached $32K MRR at its private launch on its founders' audiences, and $62K a month later.",
+            "source": "Indie Hackers, 0 to $62K MRR in three months",
+            "url": "https://www.indiehackers.com/post/tech/from-0-to-62k-mrr-in-three-months-mUPVSYOlJAC2iogGK7d4",
+            "date": "2025-12-31"
+          },
+          {
+            "kind": "competitor",
+            "text": "Sandcastles reported over 43,000 users with no paid distribution, arriving from its founder's 1.3M followers.",
+            "source": "Creator Spotlight, profile of the Sandcastles founder",
+            "url": "https://www.creatorspotlight.com/p/kallaway",
+            "date": "2026-01-13"
+          },
+          {
+            "kind": "competitor",
+            "text": "Submagic's 10,000+ affiliates bring about 20% of revenue at 30% lifetime recurring; more than $2M paid out.",
+            "source": "Latka, Submagic playbook",
+            "url": "https://getlatka.com/blog/submagic-revenue-bootstrap-ceo",
+            "date": "2025-06"
+          },
+          {
+            "kind": "competitor",
+            "text": "EasyGen pays affiliates 20% and they bring 18% of revenue.",
+            "source": "Rewardful, EasyGen affiliate revenue",
+            "url": "https://www.rewardful.com/articles/how-easygen-built-revenue-stream-through-affiliate-marketing",
+            "date": "2025-01-24"
+          },
+          {
+            "kind": "competitor",
+            "text": "Tribescaler, an AI hook generator that reached $10K MRR on its founder's audience, is now listed as a past project.",
+            "source": "Tribescaler founder's projects page",
+            "url": "https://www.alexbanks.me/projects",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "Free tools that match the core job rank and convert; off-topic ones do not",
+        "text": "Submagic's SEO became its second channel through 17 free tools, and a downloader that brought traffic but not buyers taught it to keep tools on the core job. Socialinsider's free head-to-head compare tool and benchmarks sit behind about 67% organic traffic (estimate). In Italy, Not Just Analytics runs a free analyse-any-profile box with a counter past 25 million. Trigger already has the right four free tools; two of them are blocked from search.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Submagic's 17 free tools made SEO its number two channel; an off-topic downloader drew traffic that did not convert.",
+            "source": "Superframeworks, Submagic case study",
+            "url": "https://superframeworks.com/case-study/submagic",
+            "date": "2025"
+          },
+          {
+            "kind": "competitor",
+            "text": "About 67% of Socialinsider's desktop visits come from organic search (Similarweb estimate).",
+            "source": "Similarweb, socialinsider.io (estimate)",
+            "url": "https://www.similarweb.com/website/socialinsider.io/",
+            "date": "2026-08"
+          },
+          {
+            "kind": "competitor",
+            "text": "Socialinsider offers a free Instagram head-to-head comparison with no signup.",
+            "source": "Socialinsider free Instagram comparison tool",
+            "url": "https://www.socialinsider.io/free-tools/social-media-analysis-tools/instagram-comparison",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Not Just Analytics shows a public counter of 25,144,591 profiles analysed on its free profile tool.",
+            "source": "Not Just Analytics homepage",
+            "url": "https://www.notjustanalytics.com/",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "OpusClip runs about 200 free-tool SEO pages.",
+            "source": "OpusClip free tools",
+            "url": "https://www.opus.pro/tools",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Trigger's robots.txt disallows /script-analysis and /media-analysis, so two of its four free tools cannot rank.",
+            "source": "Trigger robots.txt",
+            "url": "https://trigger.online/robots.txt",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "Analysis earns money as the paywall on an output people already want",
+        "text": "OpusClip attaches a 0 to 99 virality score to every clip and shows it only on paid plans. Typefully grew past $1M ARR almost entirely through shared drafts and public profiles that count as referral links. The lesson for an analysis product is that the score is worth more attached to something people send (a report, a checked draft) than as a destination, and that the thing people send should carry the product with it.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "OpusClip's virality score (Hook, Flow, Value, Trend) is visible only on paid plans.",
+            "source": "OpusClip virality score help",
+            "url": "https://help.opus.pro/docs/article/virality-score",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Typefully's 20% recurring affiliate programme counts public profiles and unrolled threads as referral links.",
+            "source": "Typefully affiliate programme",
+            "url": "https://support.typefully.com/en/articles/8718317-typefully-s-affiliate-program",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "PostNitro has about 82K users but $490 MRR: reach does not become revenue for a one-off utility.",
+            "source": "TrustMRR, PostNitro",
+            "url": "https://trustmrr.com/startup/postnitro",
+            "date": "2026-09-18"
+          }
+        ]
+      },
+      {
+        "title": "Data reports win backlinks, and nobody publishes a behavioural one",
+        "text": "Socialinsider (70M posts), Buffer (27M posts), Emplifi and Dash publish free benchmarks that earn citations and feed search. Rival IQ has published no 2026 report, so a slot is open, and every existing benchmark counts numbers. Dash's finding that Instagram non-follower views rose from 30% to 49% shows that trade press picks up data stories.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Socialinsider's free 2026 benchmarks are built on 70M posts.",
+            "source": "Socialinsider 2026 social media benchmarks",
+            "url": "https://www.socialinsider.io/social-media-benchmarks",
+            "date": "2026-01-16"
+          },
+          {
+            "kind": "competitor",
+            "text": "Buffer publishes Instagram benchmarks from 27M posts and 273k accounts, updated September 2026.",
+            "source": "Buffer Instagram benchmarks",
+            "url": "https://buffer.com/social-media-benchmarks/instagram",
+            "date": "2026-09-13"
+          },
+          {
+            "kind": "competitor",
+            "text": "Rival IQ lists no 2026 benchmark report.",
+            "source": "Rival IQ benchmark reports",
+            "url": "https://www.rivaliq.com/benchmark-reports/",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Dash Social's April 2026 benchmark found Instagram non-follower views rose from 30% to 49%.",
+            "source": "Dash Social 2026 benchmarks press release",
+            "url": "https://www.dashsocial.com/press-release/2026-social-media-benchmarks",
+            "date": "2026-04-15"
+          }
+        ]
+      },
+      {
+        "title": "Team and agency plans carry the revenue; low-price creator plans churn",
+        "text": "ChartMogul puts median monthly gross MRR churn at 8.9% for ARPA under $10 and recommends under 3.5% below $100. Submagic runs 15% monthly logo churn. At an ARPA of about €50, 10k MRR is about 200 accounts, and holding them at 8% churn needs about 16 new paying accounts a month just to stand still. Podawaa shows the €59 to €159 band working at about $109 per subscription when the job is tied to a business outcome.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Median monthly gross MRR churn is 8.9% at $0 to $10 ARPA; under 3.5% is recommended below $100.",
+            "source": "ChartMogul, churn basics and benchmarks",
+            "url": "https://chartmogul.com/blog/churn-basics-and-benchmarks/",
+            "date": "2022-04-27"
+          },
+          {
+            "kind": "competitor",
+            "text": "Submagic reported 15% monthly logo churn at $8M ARR.",
+            "source": "Latka, Submagic playbook",
+            "url": "https://getlatka.com/blog/submagic-revenue-bootstrap-ceo",
+            "date": "2025-06"
+          },
+          {
+            "kind": "competitor",
+            "text": "Podawaa, priced at €59, €89 and €159, makes $64,044 MRR from 585 subscriptions (Stripe-verified).",
+            "source": "TrustMRR, Podawaa",
+            "url": "https://trustmrr.com/startup/podawaa",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "In 2026 the assistant became a distribution channel",
+        "text": "MCP connectors for Claude and ChatGPT became table stakes during 2026: Sandcastles, Virlo, vidIQ, Metricool, Socialinsider, Iconosquare, Dash, Buffer, OpusClip and others shipped them, most exposing numbers. Sandcastles markets its connector as a way to find out why a post failed inside Claude, and Metricool shows competitor analysis run through Claude. Agencies on Reddit describe replacing subscriptions with in-house Claude skills.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Sandcastles pitches its Claude plugin as 'Build an AI Content Strategist' and 'find out why yours failed'.",
+            "source": "Sandcastles MCP",
+            "url": "https://sandcastles.ai/mcp",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Metricool published a walkthrough of competitor analysis done in Claude through its MCP.",
+            "source": "Metricool, competitor analysis with Claude through MCP",
+            "url": "https://metricool.com/metricool-mcp-competitor-analysis-claude/",
+            "date": "2026-09-07"
+          },
+          {
+            "kind": "competitor",
+            "text": "Dash Social launched an MCP for ChatGPT and Claude on 12 August 2026.",
+            "source": "Dash Social launches MCP",
+            "url": "https://www.dashsocial.com/press-release/dash-social-launches-mcp",
+            "date": "2026-08-12"
+          },
+          {
+            "kind": "market",
+            "text": "An agency describes building in-house apps and Claude skills to replace annual and monthly subscriptions, including client reporting.",
+            "source": "r/agency, replacing subscriptions with in-house tools and Claude skills",
+            "url": "https://www.reddit.com/r/agency/comments/1v8z05c/",
+            "date": "2026-07-28"
+          }
+        ]
+      }
+    ],
+    "problem": [
+      {
+        "title": "The loudest pain is 'why'; the paid one is explaining it to someone",
+        "text": "Across 87,858 posts with a body in nine professional and creator subreddits, 2,820 are about why a post flopped or reach dropped, and 790 about reporting and proving value to a client or boss, with 3,151 more on analytics tools. Reporting ranks as the most monetisable need: it recurs monthly, it is tied to a client relationship or a salary, and buyers already pay for the what. The deliverable they describe is one page on what changed, why and what to do next week.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "Theme counts: why it flopped or reach dropped 2,820 posts; reporting, ROI and KPIs for clients or bosses 790; analytics tools 3,151.",
+            "source": "Arctic Shift Reddit archive (203,132 posts, Jan 2025 to Sep 2026)",
+            "url": "https://arctic-shift.photon-reddit.com/api/posts/search",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "market",
+            "text": "\"Spent my whole morning making one report and I want to quit … 3.5 hours on it … And this is for one client. I have 4 total.\"",
+            "source": "r/socialmedia, one report took the whole morning",
+            "url": "https://www.reddit.com/r/socialmedia/comments/1s6lftg/",
+            "date": "2026-03-29"
+          },
+          {
+            "kind": "market",
+            "text": "\"send a single page report with what changed, why it changed, and next week action\"",
+            "source": "r/socialmedia, single page report reply",
+            "url": "https://www.reddit.com/r/socialmedia/comments/1rpblbe/",
+            "date": "2026-03-09"
+          },
+          {
+            "kind": "market",
+            "text": "\"I've had to have some tough conversations with clients lately about why their 'viral' post resulted in exactly zero dollars in revenue.\"",
+            "source": "r/socialmedia, viral post with zero revenue",
+            "url": "https://www.reddit.com/r/socialmedia/comments/1sl1w8e/",
+            "date": "2026-04-14"
+          },
+          {
+            "kind": "call",
+            "text": "Alla fine mi devo giocare il mio 20 minuti di presentazione in cui devo dire in pochi minuti come è andato il mese [I have 20 minutes to present how the month went]",
+            "tier": "E3",
+            "who": "Social content lead, fintech SMB, self-described power user",
+            "conv": "d7dc3c41-fed5-47bd-bf88-1a285c00b652",
+            "ms": 1323273
+          },
+          {
+            "kind": "call",
+            "text": "Già solo, non per la fase di ideazione, ma per dire, inviargli tre slide al cliente con questi insights qua, secondo me è già una roba super figa. [just sending the client three slides of these insights is already great]",
+            "tier": "E3",
+            "who": "Agency lead, digital agency",
+            "conv": "50f538d0-b76b-4c8a-b9ed-82925bc9d9f6",
+            "ms": 751880
+          }
+        ]
+      },
+      {
+        "title": "The champion is almost never the buyer",
+        "text": "At least nine brand-team calls end with the champion taking it to a boss, CMO, CEO, owner or central committee, and no brand-team call ends with a dated purchase. Budget holders were reported at about half the champion's number. Champions converge on 400 to 600 a month, but most of those figures were reactions to a 1,000 anchor set in the call; unanchored answers from creators, micro agencies and startups come in one to two orders of magnitude lower.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "fosse per me sì, il discorso poi è capire come convincere chi dà i soldi. [if it were up to me yes, the point is convincing whoever holds the money]",
+            "tier": "E2",
+            "who": "Content champion, tech media brand",
+            "conv": "81eb6327-3551-4174-b727-eedd0f5a4ec4",
+            "ms": 1202999
+          },
+          {
+            "kind": "call",
+            "text": "Se vai da [the budget holder] deve costare tutto molto molto poco. [with the budget holder, everything must cost very very little]",
+            "tier": "E2",
+            "who": "Social team, multi-country travel brand (buyer is the boss)",
+            "conv": "25cc9408-0565-4a7c-8f5f-b839b0f2b178",
+            "ms": 915839
+          },
+          {
+            "kind": "call",
+            "text": "Allora forse su mille dico lo chiederai lo stesso, mille e cinque forse non lo chiederai. [at 1,000 you would still ask your boss, at 1,500 you would not]",
+            "tier": "E3",
+            "who": "Social media, tech media brand (needs the boss)",
+            "conv": "633239fb-7b56-4abb-b46a-1b96c3b6642d",
+            "ms": 968065
+          },
+          {
+            "kind": "call",
+            "text": "Io questo tool qua lo comprerei solo se me lo comprasse l'azienda, ma io e penso anche tutti gli altri. [I would only buy it if my company paid, and so would everyone]",
+            "tier": "E3",
+            "who": "Creator-operator, creator-led business",
+            "conv": "95df906e-605a-49d9-8d4e-4b498af06fde",
+            "ms": 1251607
+          },
+          {
+            "kind": "call",
+            "text": "in three months you've built a case, have it, it's paying itself.",
+            "tier": "E3",
+            "who": "Marketing lead and decision maker, health startup",
+            "conv": "a1d765a7-1071-49f0-9011-5697291912cc",
+            "ms": 768451
+          }
+        ]
+      },
+      {
+        "title": "Trust breaks on numbers that move",
+        "text": "The top product objection in the calls is the reliability of the scores: the same hook scored differently twice, a post scored 83 that flopped, paid reach mixed into organic numbers, and a sync that showed 150 of 150 posts analysed when only 4 were. Prediction is the most polarising concept: some brand teams love it, and agencies reject it outright.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "Hai mai visto che a volte se metti la stessa hook due volte ti dà un punteggio diverso? [same hook twice, different score]",
+            "tier": "E2",
+            "who": "Content lead, team of 3, youth brand",
+            "conv": "fa35bde2-183d-4fe2-bf7b-0643a5628804",
+            "ms": 645132
+          },
+          {
+            "kind": "call",
+            "text": "ho visto 83, lo guardo, 83 però è andato male. Quindi non è detto che il numero mi dia un indicatore. [it scored 83 but did badly]",
+            "tier": "E2",
+            "who": "Social content lead, fintech SMB, self-described power user",
+            "conv": "d7dc3c41-fed5-47bd-bf88-1a285c00b652",
+            "ms": 2056066
+          },
+          {
+            "kind": "call",
+            "text": "i numeri qua hanno dentro paid. [these numbers include paid]",
+            "tier": "E4",
+            "who": "Social content lead, fintech SMB, self-described power user",
+            "conv": "d7dc3c41-fed5-47bd-bf88-1a285c00b652",
+            "ms": 898191
+          },
+          {
+            "kind": "call",
+            "text": "ho un po' un bias verso i tool AI che ti predicono le performance dei contenuti. [I am biased against AI tools that predict content performance]",
+            "tier": "E4",
+            "who": "Agency lead, digital agency",
+            "conv": "50f538d0-b76b-4c8a-b9ed-82925bc9d9f6",
+            "ms": 724205
+          },
+          {
+            "kind": "call",
+            "text": "prediction non gli do 0, perché ci sono veramente troppe variabili [I give prediction zero points, too many variables]",
+            "tier": "E2",
+            "who": "Owner-operator, small agency",
+            "conv": "172be94f-4113-49dc-8c32-da0a27ef6cdd",
+            "ms": 1617145
+          }
+        ]
+      },
+      {
+        "title": "Agencies defend their value with data, and lose clients without it",
+        "text": "The agency calls carry the sharpest pain: being seen as executors rather than advisers, and losing ground when a rival agency arrives at the client with data. What they would pay for is faster reporting and a few slides of insight they can put in front of the client. The one freelancer with ten clients could connect only one.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "se continuiamo a fare questo lavoro così veniamo percepiti come degli esecutivisti [if we keep working like this we are seen as mere executors]",
+            "tier": "E3",
+            "who": "Head of projects, creative agency",
+            "conv": "879adca6-b126-4cc7-8123-d23e3f4bc6f3",
+            "ms": 1630262
+          },
+          {
+            "kind": "call",
+            "text": "un'altra agenzia fa un'altra proposta a un a uno dei nostri clienti con dei dati alla mano e proponendo delle novità basate su quei dati, noi siamo in difetto [another agency arrives with data and we lose ground]",
+            "tier": "E3",
+            "who": "Agency manager, digital agency",
+            "conv": "c1a5fcc7-3044-4c13-bac8-288d4011b794",
+            "ms": 464783
+          },
+          {
+            "kind": "call",
+            "text": "Per una reportistica molto più rapida. [what they would pay for: much faster reporting]",
+            "tier": "E2",
+            "who": "Agency manager, digital agency",
+            "conv": "c1a5fcc7-3044-4c13-bac8-288d4011b794",
+            "ms": 178972
+          },
+          {
+            "kind": "call",
+            "text": "Io ho dieci clienti, posso collegare solo un account. [ten clients, I can connect only one account]",
+            "tier": "E4",
+            "who": "Freelance social media manager with 10 clients",
+            "conv": "94b12a59-0f9f-47da-a8ee-1db4dfe06598",
+            "ms": 188795
+          }
+        ]
+      },
+      {
+        "title": "Hooks are an obsession, with growing fatigue",
+        "text": "Hooks are the second largest theme (4,104 posts) and grew about 4.5 times per 1,000 posts between early 2025 and mid 2026, while AI-slop and fatigue talk went from near zero to 12 per 1,000. Hook generation on its own is heavily DIY and resented; hook feedback that compares with what already works in the niche is what practitioners describe doing by hand.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "Hooks talk rose from 16 to 72 per 1,000 posts (25Q1 to 26Q2) in r/socialmedia and r/SocialMediaMarketing; AI slop and fatigue from 1 to 12.",
+            "source": "Arctic Shift Reddit archive (203,132 posts, Jan 2025 to Sep 2026)",
+            "url": "https://arctic-shift.photon-reddit.com/api/posts/search",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "market",
+            "text": "\"i am so tired of reading the same 'have better hooks' or use this app to make your reels or use AI posts on here\"",
+            "source": "r/socialmedia, tired of 'have better hooks'",
+            "url": "https://www.reddit.com/r/socialmedia/comments/1tddcov/",
+            "date": "2026-05-14"
+          },
+          {
+            "kind": "market",
+            "text": "The top reply to a request for the best AI post generator: \"None please no more\".",
+            "source": "r/SocialMediaMarketing, best AI post generator thread",
+            "url": "https://www.reddit.com/r/SocialMediaMarketing/comments/1s3a2d0/",
+            "date": "2026-03-25"
+          },
+          {
+            "kind": "market",
+            "text": "\"I only track posts that outperform their own average, not viral outliers. I log format, hook, angle, saves/shares\"",
+            "source": "r/SocialMediaMarketing, tracking posts that beat their own average",
+            "url": "https://www.reddit.com/r/SocialMediaMarketing/comments/1pptdp4/",
+            "date": "2025-12-18"
+          }
+        ]
+      },
+      {
+        "title": "Behavioural science is the engine, not the headline",
+        "text": "Only 1,068 of 203,132 posts (0.5%) use psychology or behavioural-science vocabulary, and some practitioners associate 'psychology plays' with manipulation. People ask why, what next and how to prove it. A behavioural explanation is welcomed when it is concrete and observable, and in the calls it is what separates Trigger from the tools practitioners call gimmicks.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "1,068 of 203,132 posts (0.5%) mention psychology, behavioural science, cognitive bias or similar terms.",
+            "source": "Arctic Shift Reddit archive (203,132 posts, Jan 2025 to Sep 2026)",
+            "url": "https://arctic-shift.photon-reddit.com/api/posts/search",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "market",
+            "text": "\"the movement + text combination in the first seconds makes a lot of sense psychologically.\"",
+            "source": "r/socialmedia, skip-rate analysis thread",
+            "url": "https://www.reddit.com/r/socialmedia/comments/1t63sci/",
+            "date": "2026-05-08"
+          },
+          {
+            "kind": "call",
+            "text": "Perché tutti questi tool, comunque, mi sembrano molto marchettoni. Invece Trigger è più orientato sul discorso comportamentale, che è la cosa che a me interessa. [other tools feel like gimmicks; Trigger is behavioural]",
+            "tier": "E2",
+            "who": "Social media strategist, social agency",
+            "conv": "cb2032f3-ee03-4bbb-86b8-ac2e9189e570",
+            "ms": 142693
+          },
+          {
+            "kind": "call",
+            "text": "quello che secondo me manca molto è tutto l'aspetto qualitativo. [what is really missing is the qualitative side]",
+            "tier": "E2",
+            "who": "Content manager, practitioner with an agency lens",
+            "conv": "092aacc8-b325-4050-95e1-f82642ed0c06",
+            "ms": 148008
+          }
+        ]
+      },
+      {
+        "title": "Hygiene is the category's weak spot",
+        "text": "On review sites the loudest complaints are about trust and hygiene rather than insight: renewals, cancellations, disconnections and per-seat pricing. Hootsuite rates 1.3, Later 1.5 and Sprout Social 2.0 on Trustpilot. Clear billing and one-click cancellation are a cheap way to stand apart, and Trigger's own upgrade flow charged a trial user at the one moment she tried to pay.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "Hootsuite: Trustpilot 1.3 from 555 reviews, dominated by billing and support.",
+            "source": "Hootsuite reviews, Trustpilot",
+            "url": "https://www.trustpilot.com/review/hootsuite.com",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "market",
+            "text": "Later: Trustpilot 1.5 from 350 reviews, with auto-renewal complaints and Instagram connection problems.",
+            "source": "Later reviews, Trustpilot",
+            "url": "https://www.trustpilot.com/review/later.com",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "market",
+            "text": "\"the per-seat pricing kills us every time we onboard another person\"",
+            "source": "r/SocialMediaMarketing, per-seat pricing on leaving Hootsuite",
+            "url": "https://www.reddit.com/r/SocialMediaMarketing/comments/1s9j6e9/",
+            "date": "2026-04-01"
+          },
+          {
+            "kind": "signal",
+            "text": "A trial user tried to switch to the Growth plan herself, was charged by the upgrade flow, and was then given Growth free.",
+            "tier": "E4",
+            "source": "VSI, trial call with a fintech SMB brand team, April 2026"
+          }
+        ]
+      }
+    ],
+    "trends": [
+      {
+        "title": "Instagram gives away the basics Trigger used to sell",
+        "text": "Instagram added skip rate and per-Reel retention charts (24 August 2025), Competitive Insights against up to 10 accounts (2 November 2025), the Edits app with Reels insights (22 April 2025), and Trial Reels, which test content with non-followers first (10 December 2024). Numbers-level peer comparison and hook-drop diagnostics are now free and native.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Instagram added skip rate and retention insights for Reels on 24 August 2025.",
+            "source": "Social Media Today, Instagram adds retention insights for Reels",
+            "url": "https://www.socialmediatoday.com/news/instagram-adds-retention-insights-reels/758464/",
+            "date": "2025-08-24"
+          },
+          {
+            "kind": "trend",
+            "text": "Instagram added Competitive Insights for professional accounts, up to 10 competitors, on 2 November 2025.",
+            "source": "Social Media Today, Instagram adds competitor insights",
+            "url": "https://www.socialmediatoday.com/news/instagram-adds-competitor-insights-professional-accounts/804465/",
+            "date": "2025-11-02"
+          },
+          {
+            "kind": "trend",
+            "text": "Instagram launched the Edits app on 22 April 2025, later with skip rate and retention for recent Reels.",
+            "source": "9to5Mac, Instagram's Edits app launch",
+            "url": "https://9to5mac.com/2025/04/22/instagram-edits-launch-app-store/",
+            "date": "2025-04-22"
+          },
+          {
+            "kind": "trend",
+            "text": "Trial Reels show new Reels to non-followers first, with results after 24 hours (10 December 2024).",
+            "source": "Meta, Trial Reels",
+            "url": "https://about.fb.com/news/2024/12/trial-reels-try-content-non-followers-first-see-what-perfoms-best/",
+            "date": "2024-12-10"
+          }
+        ]
+      },
+      {
+        "title": "A free behavioural Reel reading arrived in May 2026",
+        "text": "vidIQ for Instagram, launched on 5 May 2026, scores public Reels on a five-part framework (Stop, Gap, Momentum, Feeling, Reach), generates ideas and covers, and adds outlier badges inside Instagram through an extension with 4M users, on every plan including Free and with only a handle. It cannot see private insights, which remains Trigger's data advantage.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "vidIQ extended its AI Coach to Instagram Reels on 5 May 2026.",
+            "source": "vidIQ, Introducing vidIQ for Instagram",
+            "url": "https://vidiq.com/blog/post/vidiq-for-instagram/",
+            "date": "2026-05-05"
+          },
+          {
+            "kind": "competitor",
+            "text": "vidIQ's AI Coach scores public Reels on The Stop, The Gap, The Momentum, The Feeling and The Reach, on Free, Boost and Max, with no Instagram login.",
+            "source": "vidIQ Help Center, vidIQ for Instagram",
+            "url": "https://support.vidiq.com/en/articles/14975681-vidiq-for-instagram",
+            "date": "2026-08-21"
+          },
+          {
+            "kind": "competitor",
+            "text": "vidIQ's Chrome extension has 4,000,000 users.",
+            "source": "vidIQ Chrome Web Store listing",
+            "url": "https://chromewebstore.google.com/detail/vidiq-vision-for-youtube/pachckjkecffpdphbpmfolblodfkgbhl",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Brika offers Reel analysis with Hook, Viral Potential and Content Quality scores from $9 a month, with a free tier and a 30-day money-back guarantee.",
+            "source": "Brika pricing",
+            "url": "https://www.brika.ai/pricing",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "The Instagram API caps what peers can reveal",
+        "text": "The Basic Display API closed on 4 December 2024, so only professional accounts can connect. Business Discovery returns other professional accounts' public counts only: no reach, saves, shares or retention. Graph API v22 deprecated impressions and plays from 21 April 2025, breaking historic series, and new Meta permissions take two to three months of review. The differentiator must come from reading the content and the connected account's private insights, not from peers' private metrics.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Instagram retired the Basic Display API on 4 December 2024; third-party access needs a Business or Creator account.",
+            "source": "TechCrunch, Instagram locks out developers of third-party consumer apps",
+            "url": "https://techcrunch.com/2024/12/06/instagram-locks-out-developers-of-third-party-consumer-apps",
+            "date": "2024-12-06"
+          },
+          {
+            "kind": "trend",
+            "text": "Business Discovery returns public fields of other professional accounts, such as follower, like and comment counts.",
+            "source": "Meta for Developers, IG User Business Discovery reference",
+            "url": "https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/business_discovery",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "trend",
+            "text": "Graph API v22.0 deprecated impressions and plays in favour of views, effective 21 April 2025.",
+            "source": "Meta for Developers, Graph API v22.0 changelog",
+            "url": "https://developers.facebook.com/docs/graph-api/changelog/version22.0/",
+            "date": "2025-04-21"
+          },
+          {
+            "kind": "market",
+            "text": "A tool builder reports that getting Meta permissions took two to three months.",
+            "source": "r/SocialMediaMarketing, Meta permission review for tool builders",
+            "url": "https://www.reddit.com/r/SocialMediaMarketing/comments/1ticf8p/",
+            "date": "2026-06-08"
+          }
+        ]
+      },
+      {
+        "title": "Every incumbent now ships an AI analyst and a connector",
+        "text": "Sprout Social launched Trellis (18 November 2025), Hootsuite rebuilt around Wisdom with MCP connectors (24 June 2026), Buffer opened an API and MCP server free on every plan (27 May 2026), and Iconosquare and Dash added MCP in August 2026. Chat with your social data is commoditised; talk of agents, Claude and MCP peaked on Reddit in the second quarter of 2026.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Sprout Social unveiled its Trellis AI agent on 18 November 2025.",
+            "source": "Sprout Social unveils Trellis",
+            "url": "https://investors.sproutsocial.com/news/news-details/2025/Sprout-Social-Unveils-Trellis-its-AI-Agent-That-Turns-Social-Data-Into-Instant-Enterprise-Intelligence/default.aspx",
+            "date": "2025-11-18"
+          },
+          {
+            "kind": "trend",
+            "text": "Hootsuite introduced Wisdom, a social AI agent with MCP connectors for Claude and ChatGPT, on 24 June 2026.",
+            "source": "Hootsuite introduces Wisdom",
+            "url": "https://www.globenewswire.com/news-release/2026/06/24/3316916/0/en/hootsuite-rebuilds-for-the-ai-era-introducing-wisdom-a-social-first-ai-agent-turning-social-signals-into-action.html",
+            "date": "2026-06-24"
+          },
+          {
+            "kind": "trend",
+            "text": "Buffer shipped a public API and MCP server, free on every plan, on 27 May 2026.",
+            "source": "Buffer's API is open for building",
+            "url": "https://buffer.com/resources/buffer-api-is-here/",
+            "date": "2026-05-27"
+          },
+          {
+            "kind": "trend",
+            "text": "Iconosquare released its Uma AI Analyst (22 July 2026) and an MCP (5 August 2026).",
+            "source": "Iconosquare product updates",
+            "url": "https://www.iconosquare.com/product-updates",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "Platforms reward originality as AI floods the feed",
+        "text": "The head of Instagram's year-end memo (31 December 2025) said feeds are filling with synthetic content and raw, identifiable media becomes the credibility signal; from 30 April 2026 accounts that mostly repost stop being recommended. Reading why your own content lands with your own audience gains value, and copying viral templates loses it, which fits Trigger's thesis.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Instagram's head: it will be more practical to fingerprint real media than fake media (31 December 2025).",
+            "source": "Engadget, Instagram chief on fingerprinting real media",
+            "url": "https://www.engadget.com/social-media/instagram-chief-ai-is-so-ubiquitous-it-will-be-more-practical-to-fingerprint-real-media-than-fake-media-202620080.html",
+            "date": "2025-12-31"
+          },
+          {
+            "kind": "trend",
+            "text": "Instagram extended its originality policy to photos, carousels and Reels on 30 April 2026.",
+            "source": "PetaPixel, new Instagram policies target reposted content",
+            "url": "https://petapixel.com/2026/04/30/new-instagram-policies-target-reposted-content/",
+            "date": "2026-04-30"
+          },
+          {
+            "kind": "market",
+            "text": "\"No one likes your AI content … Stop the slop.\" (318 upvotes)",
+            "source": "r/content_marketing, no one likes your AI content",
+            "url": "https://www.reddit.com/r/content_marketing/comments/1nrt1zu/",
+            "date": "2025-09-27"
+          }
+        ]
+      },
+      {
+        "title": "Falling reach makes the 'why' question more urgent",
+        "text": "Compiled data for 2026 shows Instagram Reels reach down 35% year on year and single-image engagement down 46%, with carousels earning nine times the saves of single images. Every drop becomes a question from a boss or a client, which is the moment Trigger can answer.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Reels reach fell 35% year on year and single-image engagement 46%; carousels earn nine times the saves of single images (compiled 11 August 2026).",
+            "source": "Sotrender, Instagram reach is down in 2026",
+            "url": "https://www.sotrender.com/blog/2026/08/instagram-reach-is-down-what-the-data-actually-says/",
+            "date": "2026-08-11"
+          },
+          {
+            "kind": "market",
+            "text": "\"Reach in 2026 is dead on Instagram. It's not a content issue anymore\" (74 comments).",
+            "source": "r/InstagramMarketing, reach in 2026 is dead on Instagram",
+            "url": "https://www.reddit.com/r/InstagramMarketing/comments/1sw8gmz/",
+            "date": "2026-04-26"
+          }
+        ]
+      },
+      {
+        "title": "A LinkedIn data door opened; TikTok's stays closed",
+        "text": "LinkedIn's member post analytics API returns impressions, reach, reshares, reactions and comments for a member's own posts, and from version 2026-04 adds saves, sends, link clicks and followers gained. TikTok's Research API is for academic and non-profit use only. If Trigger adds a second platform, LinkedIn is the legitimate one.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "LinkedIn's Member Post Statistics API adds saves, sends, link clicks and followers gained from version 2026-04.",
+            "source": "LinkedIn API docs, Member Post Statistics",
+            "url": "https://learn.microsoft.com/en-us/linkedin/marketing/community-management/members/post-statistics",
+            "date": "2026-05-15"
+          },
+          {
+            "kind": "trend",
+            "text": "TikTok's Research API is limited to academic and non-profit researchers, non-commercial only.",
+            "source": "TikTok Research API",
+            "url": "https://developers.tiktok.com/products/research-api/",
+            "date": "2026-09-25"
+          }
+        ]
+      }
+    ],
+    "status": [
+      {
+        "title": "About $800 to €1k MRR, and nobody in VSI is a confirmed payer",
+        "text": "The founders put MRR at about $800 on 26 August; the brief says about 1k. One design partner prepaid six months in June and one self-serve customer paid after the July relaunch. None of the 101 conversations in VSI is with a confirmed paying customer, so it is unknown who makes up the revenue, on which plan, how much churn there has been, or how much is tied to the lead founder's consulting clients.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "It's still around $800. We are waiting until September to start pushing with the marketing ads.",
+            "tier": "E3",
+            "who": "Lead founder, internal team meeting",
+            "conv": "209f7f39-7694-4f61-8d43-f8e653e8309d",
+            "ms": 502774
+          },
+          {
+            "kind": "call",
+            "text": "So one design partner that bought the product for 6 months already said, hey, let's make a post together.",
+            "tier": "E2",
+            "who": "Lead founder, internal team meeting",
+            "conv": "4840b38b-d81b-4062-a370-0192cb39dd1b",
+            "ms": 1527530
+          },
+          {
+            "kind": "signal",
+            "text": "By 4 August: one self-serve paying customer after the relaunch; a second Pro subscription belongs to a studio partner, so it is internal.",
+            "tier": "E2",
+            "source": "VSI, internal meeting 4 August 2026"
+          }
+        ]
+      },
+      {
+        "title": "Freemium produced signups, almost no pricing exposure",
+        "text": "The July relaunch drew 180 to 200 concurrent users in its first hour and zero conversions; by 4 August there were 512 signups, 6 had opened the pricing modal (one internal) and one had paid. The 1,000 daily active users goal for the end of August was never mentioned again. After the handle-first change, more than half of 15 signups in five days completed the Instagram connection, a good sign on a tiny sample. The team believes many signups are not Instagram creators at all.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "512 signups by 4 August; 6 opened the pricing modal, one of them internal; 1 paying customer.",
+            "tier": "E2",
+            "source": "VSI, internal meeting 4 August 2026"
+          },
+          {
+            "kind": "call",
+            "text": "it's very possible that among like the people who created an account, there are people that are not even Instagram creators or they don't even use social in general.",
+            "tier": "E3",
+            "who": "Lead founder, internal team meeting",
+            "conv": "209f7f39-7694-4f61-8d43-f8e653e8309d",
+            "ms": 1053897
+          },
+          {
+            "kind": "call",
+            "text": "So like we just said that users have no idea what to do with Trigger.",
+            "tier": "E2",
+            "who": "Team member, internal team meeting",
+            "conv": "49dfd359-651d-4fa2-9495-bff2420f087e",
+            "ms": 776229
+          },
+          {
+            "kind": "signal",
+            "text": "More than 50% of 15 signups completed message, handle and Instagram connection after the handle-first change.",
+            "tier": "E4",
+            "source": "VSI, internal meeting 26 August 2026"
+          }
+        ]
+      },
+      {
+        "title": "Ten price points in six months",
+        "text": "Prospects heard 1,000, 850, 600, 500, 490, 400, 340, 99, 90 and 49, under plan names from Starter and Growth to Pro and Max, in dollars and euros. The live page lists Free, Pro at €44 (labelled for the solo creator), Max at €89 and Full at €441, with a 10% annual discount against 17% to 41% at peers, no trial and no money-back guarantee. The free allowance reads 3 analyses in the brief and 5 on the pricing page; in July it was 5 expiring credits.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "E comunque 3,40 al mese oppure 99, mi hai detto? [and anyway 340 a month or 99, you told me?]",
+            "tier": "E2",
+            "who": "Manager over the social team, tax services brand",
+            "conv": "639a2880-b816-4dc5-836a-108d77152d2f",
+            "ms": 1058971
+          },
+          {
+            "kind": "call",
+            "text": "the freelancer plan, which is only €49 per month, or into the €99 per month plan. The other one, which is the more expensive, the €490, it's mostly going to be still based on sales.",
+            "tier": "E2",
+            "who": "Lead founder, internal team meeting",
+            "conv": "8d1a4740-72e0-43cf-9ab9-ceed7adefd3d",
+            "ms": 145006
+          },
+          {
+            "kind": "call",
+            "text": "you will have 5 credits that will expire. So you have 5 credits per month, which is nothing.",
+            "tier": "E2",
+            "who": "Lead founder, internal team meeting",
+            "conv": "6119a37f-8605-43a1-841d-ab96e2fc2578",
+            "ms": 189980
+          },
+          {
+            "kind": "competitor",
+            "text": "Live ladder: Free; Pro €44; Max €89 (3 seats); Full €441 (12 seats); annual discount 10%; no trial or money-back guarantee.",
+            "source": "Trigger pricing",
+            "url": "https://trigger.online/pricing",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "Where the pull is: agencies first, brand teams biggest",
+        "text": "Ranked by behaviour rather than enthusiasm: small agencies and multi-client freelancers show the strongest pull (the only unprompted buy statement, an active tool search, an agency trial of the 490 plan) and are blocked by the one-account limit. In-house brand teams are the largest sample (about 63 calls) with real but slow money stuck at the boss. Enterprise media has the biggest budgets (7k to 15k a year) and the longest cycle. Solo creators have the weakest budgets, and there is no call at all with a coach.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "io lo vorrei testare ma già lo prenderei nel senso è molto convincente [I would test it but I would already buy it, it is very convincing]",
+            "tier": "E5",
+            "who": "Head of social, boutique agency, decision maker",
+            "conv": "c6ad3bcf-7af8-45f6-9acf-31fd0967a440",
+            "ms": 1677592
+          },
+          {
+            "kind": "call",
+            "text": "Io ho dieci clienti, posso collegare solo un account. [ten clients, I can connect only one account]",
+            "tier": "E4",
+            "who": "Freelance social media manager with 10 clients",
+            "conv": "94b12a59-0f9f-47da-a8ee-1db4dfe06598",
+            "ms": 188795
+          },
+          {
+            "kind": "call",
+            "text": "lo utilizzerei anche, cioè, proprio lunedì invece che usare Not Just possiamo usare questo. [I would use it on Monday instead of Not Just Analytics]",
+            "tier": "E5",
+            "who": "Marketing lead, multi-country travel brand, one-week trial",
+            "conv": "bd04de4f-1471-4297-8453-3adb45bb3d86",
+            "ms": 2094604
+          },
+          {
+            "kind": "call",
+            "text": "sono dei discorsi che io devo fare verso settembre, perché poi verso ottobre o novembre capiscono quanti soldi allocare nel progetto di media dell'anno successivo. [raise it in September; budgets are set in October or November]",
+            "tier": "E4",
+            "who": "Social professional, enterprise media group",
+            "conv": "3ad28022-58c8-474e-a7d1-1c4f8b19c61b",
+            "ms": 1485065
+          },
+          {
+            "kind": "call",
+            "text": "Io questo tool qua lo comprerei solo se me lo comprasse l'azienda, ma io e penso anche tutti gli altri. [I would only buy it if my company paid, and so would everyone]",
+            "tier": "E3",
+            "who": "Creator-operator, creator-led business",
+            "conv": "95df906e-605a-49d9-8d4e-4b498af06fde",
+            "ms": 1251607
+          }
+        ]
+      },
+      {
+        "title": "The verdicts on the founders' growth hypotheses",
+        "text": "Of sixteen hypotheses reconstructed from internal meetings: cold free profile reports open doors only when a warm person runs them (response rose to 8.7 to 9% after the call to action changed, no deal recorded). Founder content driving signups is not supported yet. The 1,000 DAU goal was missed and dropped. Self-serve upgrades to 49 or 99 are not supported, and the founders have half abandoned them. Habit plus scarcity is untested with a warning on record. Pricing shown in onboarding is untested. Handle-first as the activation fix is promising on 15 signups. Targeted Meta ads for clean data are plausible but have no pass criterion. Big accounts needing a salesperson is consistent with the evidence. SEO pages per tool and lifecycle email are untested, the email with a GDPR risk flagged. The pooled data moat has one prospect's enthusiasm and an open legal gate. Product quality over AI slop is supported, and conflicts with the chat-first homepage. Talking to the paying user has not happened in VSI. Design-partner co-marketing is unknown. 'No direct competitors' is contradicted.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "spray and paint",
+            "tier": "E3",
+            "who": "Team member on the free-report outreach to prospects",
+            "conv": "f2cd6140-a058-43fc-8566-6fd37ff5b972",
+            "ms": 1615337
+          },
+          {
+            "kind": "call",
+            "text": "our best strategy is still to talk to them face to face and probably closing the, uh, the full plan rather than the $99 or the $49.",
+            "tier": "E2",
+            "who": "Lead founder, internal team meeting",
+            "conv": "209f7f39-7694-4f61-8d43-f8e653e8309d",
+            "ms": 964666
+          },
+          {
+            "kind": "call",
+            "text": "the big tickets generally don't really respond to ads that much, but they they do need like a salesperson",
+            "tier": "E2",
+            "who": "Lead founder, internal team meeting",
+            "conv": "209f7f39-7694-4f61-8d43-f8e653e8309d",
+            "ms": 1053897
+          },
+          {
+            "kind": "call",
+            "text": "we are being a little bit too uh, good with our users",
+            "tier": "E2",
+            "who": "Team member, internal team meeting",
+            "conv": "49dfd359-651d-4fa2-9495-bff2420f087e",
+            "ms": 550447
+          },
+          {
+            "kind": "call",
+            "text": "it feels also like that AI chatbot fatigue where people just don't want another chat tool.",
+            "tier": "E1",
+            "who": "Growth engineer, internal team meeting",
+            "conv": "8d1a4740-72e0-43cf-9ab9-ceed7adefd3d",
+            "ms": 902898
+          },
+          {
+            "kind": "signal",
+            "text": "Prospects themselves named Not Just Analytics as the direct competitor, and a prospect was surprised by the claim of no competitors.",
+            "tier": "E4",
+            "source": "VSI validated signal and September 2026 demo"
+          }
+        ]
+      },
+      {
+        "title": "A small footprint, and a site that hides its own best pages",
+        "text": "Trigger's Instagram has 173 followers and its LinkedIn page 2,163. robots.txt blocks two of the four free tool pages (and a slug that does not exist), the sitemap lists retired pages, the key pages have no meta descriptions, and a search for the brand returns mostly Trigger.dev. The blog has had no new post since 12 May 2026, and the footer promises no cookies while a consent banner offers personalised ads. Search does already surface the hook tool for 'free Instagram hook analyzer'.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "173 Instagram followers and 39 posts on 25 September 2026.",
+            "source": "Trigger's Instagram account",
+            "url": "https://www.instagram.com/thefeedstudies/",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "2,163 LinkedIn followers, 3 employees listed.",
+            "source": "Trigger LinkedIn page",
+            "url": "https://www.linkedin.com/company/triggersocial",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "robots.txt disallows /script-analysis, /media-analysis, /chat and a non-matching /profile-analyser.",
+            "source": "Trigger robots.txt",
+            "url": "https://trigger.online/robots.txt",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "The sitemap's 25 URLs include /old-home, /hook-analysis-old, /waitlist and pages that robots.txt blocks.",
+            "source": "Trigger sitemap",
+            "url": "https://trigger.online/sitemap.xml",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "The Hook Analyser page is titled 'Free Instagram Hook Analyser' and appears among 10 results for that query.",
+            "source": "Trigger Hook Analyser",
+            "url": "https://trigger.online/hook-analysis",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Ten blog posts from February to 12 May 2026, none since.",
+            "source": "Trigger blog",
+            "url": "https://trigger.online/blog",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "The CRM layer cannot steer decisions yet",
+        "text": "Transcript access is switched off, so every quote comes from extracted evidence rows. The compiled context is mostly from 19 August or earlier and heavily templated: 37 companies with zero customers and zero pilots, discovery notes that repeat one claim, a 'decision grade' buying signal made of free design-partner yeses, and a pricing entry contaminated by another venture's figures. The last external call was on 4 September, and no April trial outcome is recorded. Decisions should rest on the raw calls and the funnel, not the dashboards.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "39 of the 40 E5 rows in the decision-grade buying signal are design-partner, beta or feedback commitments, not payments.",
+            "tier": "E4",
+            "source": "VSI signal review, 25 September 2026"
+          },
+          {
+            "kind": "call",
+            "text": "Ok, cioè secondo me [the trial user] non l'ha utilizzato in questo mese. [I think she did not use it this month]",
+            "tier": "E4",
+            "who": "Manager over the social team, tax services brand",
+            "conv": "639a2880-b816-4dc5-836a-108d77152d2f",
+            "ms": 790979
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "vsi": {
+      "venture": "trigger",
+      "conversations": 101,
+      "compiled": "2026-09-25"
+    },
+    "web": [
+      {
+        "title": "Bootstrappers, Tweet Hunter to $25K MRR",
+        "url": "https://bootstrappers.com/these-founders-found-25k-mrr-by-dumbing-down-their-twitter-tool-and-finding-a-spokesperson/",
+        "date": "2021-12-21"
+      },
+      {
+        "title": "Indie Hackers, 0 to $62K MRR in three months",
+        "url": "https://www.indiehackers.com/post/tech/from-0-to-62k-mrr-in-three-months-mUPVSYOlJAC2iogGK7d4",
+        "date": "2025-12-31"
+      },
+      {
+        "title": "Creator Spotlight, profile of the Sandcastles founder",
+        "url": "https://www.creatorspotlight.com/p/kallaway",
+        "date": "2026-01-13"
+      },
+      {
+        "title": "Latka, Submagic playbook",
+        "url": "https://getlatka.com/blog/submagic-revenue-bootstrap-ceo",
+        "date": "2025-06"
+      },
+      {
+        "title": "Rewardful, EasyGen affiliate revenue",
+        "url": "https://www.rewardful.com/articles/how-easygen-built-revenue-stream-through-affiliate-marketing",
+        "date": "2025-01-24"
+      },
+      {
+        "title": "Tribescaler founder's projects page",
+        "url": "https://www.alexbanks.me/projects",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Superframeworks, Submagic case study",
+        "url": "https://superframeworks.com/case-study/submagic",
+        "date": "2025"
+      },
+      {
+        "title": "Similarweb, socialinsider.io (estimate)",
+        "url": "https://www.similarweb.com/website/socialinsider.io/",
+        "date": "2026-08"
+      },
+      {
+        "title": "Socialinsider free Instagram comparison tool",
+        "url": "https://www.socialinsider.io/free-tools/social-media-analysis-tools/instagram-comparison",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Not Just Analytics homepage",
+        "url": "https://www.notjustanalytics.com/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "OpusClip free tools",
+        "url": "https://www.opus.pro/tools",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Trigger robots.txt",
+        "url": "https://trigger.online/robots.txt",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "OpusClip virality score help",
+        "url": "https://help.opus.pro/docs/article/virality-score",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Typefully affiliate programme",
+        "url": "https://support.typefully.com/en/articles/8718317-typefully-s-affiliate-program",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "TrustMRR, PostNitro",
+        "url": "https://trustmrr.com/startup/postnitro",
+        "date": "2026-09-18"
+      },
+      {
+        "title": "Socialinsider 2026 social media benchmarks",
+        "url": "https://www.socialinsider.io/social-media-benchmarks",
+        "date": "2026-01-16"
+      },
+      {
+        "title": "Buffer Instagram benchmarks",
+        "url": "https://buffer.com/social-media-benchmarks/instagram",
+        "date": "2026-09-13"
+      },
+      {
+        "title": "Rival IQ benchmark reports",
+        "url": "https://www.rivaliq.com/benchmark-reports/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Dash Social 2026 benchmarks press release",
+        "url": "https://www.dashsocial.com/press-release/2026-social-media-benchmarks",
+        "date": "2026-04-15"
+      },
+      {
+        "title": "ChartMogul, churn basics and benchmarks",
+        "url": "https://chartmogul.com/blog/churn-basics-and-benchmarks/",
+        "date": "2022-04-27"
+      },
+      {
+        "title": "TrustMRR, Podawaa",
+        "url": "https://trustmrr.com/startup/podawaa",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Sandcastles MCP",
+        "url": "https://sandcastles.ai/mcp",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Metricool, competitor analysis with Claude through MCP",
+        "url": "https://metricool.com/metricool-mcp-competitor-analysis-claude/",
+        "date": "2026-09-07"
+      },
+      {
+        "title": "Dash Social launches MCP",
+        "url": "https://www.dashsocial.com/press-release/dash-social-launches-mcp",
+        "date": "2026-08-12"
+      },
+      {
+        "title": "r/agency, replacing subscriptions with in-house tools and Claude skills",
+        "url": "https://www.reddit.com/r/agency/comments/1v8z05c/",
+        "date": "2026-07-28"
+      },
+      {
+        "title": "Arctic Shift Reddit archive (203,132 posts, Jan 2025 to Sep 2026)",
+        "url": "https://arctic-shift.photon-reddit.com/api/posts/search",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "r/socialmedia, one report took the whole morning",
+        "url": "https://www.reddit.com/r/socialmedia/comments/1s6lftg/",
+        "date": "2026-03-29"
+      },
+      {
+        "title": "r/socialmedia, single page report reply",
+        "url": "https://www.reddit.com/r/socialmedia/comments/1rpblbe/",
+        "date": "2026-03-09"
+      },
+      {
+        "title": "r/socialmedia, viral post with zero revenue",
+        "url": "https://www.reddit.com/r/socialmedia/comments/1sl1w8e/",
+        "date": "2026-04-14"
+      },
+      {
+        "title": "r/socialmedia, tired of 'have better hooks'",
+        "url": "https://www.reddit.com/r/socialmedia/comments/1tddcov/",
+        "date": "2026-05-14"
+      },
+      {
+        "title": "r/SocialMediaMarketing, best AI post generator thread",
+        "url": "https://www.reddit.com/r/SocialMediaMarketing/comments/1s3a2d0/",
+        "date": "2026-03-25"
+      },
+      {
+        "title": "r/SocialMediaMarketing, tracking posts that beat their own average",
+        "url": "https://www.reddit.com/r/SocialMediaMarketing/comments/1pptdp4/",
+        "date": "2025-12-18"
+      },
+      {
+        "title": "r/socialmedia, skip-rate analysis thread",
+        "url": "https://www.reddit.com/r/socialmedia/comments/1t63sci/",
+        "date": "2026-05-08"
+      },
+      {
+        "title": "Hootsuite reviews, Trustpilot",
+        "url": "https://www.trustpilot.com/review/hootsuite.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Later reviews, Trustpilot",
+        "url": "https://www.trustpilot.com/review/later.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "r/SocialMediaMarketing, per-seat pricing on leaving Hootsuite",
+        "url": "https://www.reddit.com/r/SocialMediaMarketing/comments/1s9j6e9/",
+        "date": "2026-04-01"
+      },
+      {
+        "title": "Social Media Today, Instagram adds retention insights for Reels",
+        "url": "https://www.socialmediatoday.com/news/instagram-adds-retention-insights-reels/758464/",
+        "date": "2025-08-24"
+      },
+      {
+        "title": "Social Media Today, Instagram adds competitor insights",
+        "url": "https://www.socialmediatoday.com/news/instagram-adds-competitor-insights-professional-accounts/804465/",
+        "date": "2025-11-02"
+      },
+      {
+        "title": "9to5Mac, Instagram's Edits app launch",
+        "url": "https://9to5mac.com/2025/04/22/instagram-edits-launch-app-store/",
+        "date": "2025-04-22"
+      },
+      {
+        "title": "Meta, Trial Reels",
+        "url": "https://about.fb.com/news/2024/12/trial-reels-try-content-non-followers-first-see-what-perfoms-best/",
+        "date": "2024-12-10"
+      },
+      {
+        "title": "vidIQ, Introducing vidIQ for Instagram",
+        "url": "https://vidiq.com/blog/post/vidiq-for-instagram/",
+        "date": "2026-05-05"
+      },
+      {
+        "title": "vidIQ Help Center, vidIQ for Instagram",
+        "url": "https://support.vidiq.com/en/articles/14975681-vidiq-for-instagram",
+        "date": "2026-08-21"
+      },
+      {
+        "title": "vidIQ Chrome Web Store listing",
+        "url": "https://chromewebstore.google.com/detail/vidiq-vision-for-youtube/pachckjkecffpdphbpmfolblodfkgbhl",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Brika pricing",
+        "url": "https://www.brika.ai/pricing",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "TechCrunch, Instagram locks out developers of third-party consumer apps",
+        "url": "https://techcrunch.com/2024/12/06/instagram-locks-out-developers-of-third-party-consumer-apps",
+        "date": "2024-12-06"
+      },
+      {
+        "title": "Meta for Developers, IG User Business Discovery reference",
+        "url": "https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/business_discovery",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Meta for Developers, Graph API v22.0 changelog",
+        "url": "https://developers.facebook.com/docs/graph-api/changelog/version22.0/",
+        "date": "2025-04-21"
+      },
+      {
+        "title": "r/SocialMediaMarketing, Meta permission review for tool builders",
+        "url": "https://www.reddit.com/r/SocialMediaMarketing/comments/1ticf8p/",
+        "date": "2026-06-08"
+      },
+      {
+        "title": "Sprout Social unveils Trellis",
+        "url": "https://investors.sproutsocial.com/news/news-details/2025/Sprout-Social-Unveils-Trellis-its-AI-Agent-That-Turns-Social-Data-Into-Instant-Enterprise-Intelligence/default.aspx",
+        "date": "2025-11-18"
+      },
+      {
+        "title": "Hootsuite introduces Wisdom",
+        "url": "https://www.globenewswire.com/news-release/2026/06/24/3316916/0/en/hootsuite-rebuilds-for-the-ai-era-introducing-wisdom-a-social-first-ai-agent-turning-social-signals-into-action.html",
+        "date": "2026-06-24"
+      },
+      {
+        "title": "Buffer's API is open for building",
+        "url": "https://buffer.com/resources/buffer-api-is-here/",
+        "date": "2026-05-27"
+      },
+      {
+        "title": "Iconosquare product updates",
+        "url": "https://www.iconosquare.com/product-updates",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Engadget, Instagram chief on fingerprinting real media",
+        "url": "https://www.engadget.com/social-media/instagram-chief-ai-is-so-ubiquitous-it-will-be-more-practical-to-fingerprint-real-media-than-fake-media-202620080.html",
+        "date": "2025-12-31"
+      },
+      {
+        "title": "PetaPixel, new Instagram policies target reposted content",
+        "url": "https://petapixel.com/2026/04/30/new-instagram-policies-target-reposted-content/",
+        "date": "2026-04-30"
+      },
+      {
+        "title": "r/content_marketing, no one likes your AI content",
+        "url": "https://www.reddit.com/r/content_marketing/comments/1nrt1zu/",
+        "date": "2025-09-27"
+      },
+      {
+        "title": "Sotrender, Instagram reach is down in 2026",
+        "url": "https://www.sotrender.com/blog/2026/08/instagram-reach-is-down-what-the-data-actually-says/",
+        "date": "2026-08-11"
+      },
+      {
+        "title": "r/InstagramMarketing, reach in 2026 is dead on Instagram",
+        "url": "https://www.reddit.com/r/InstagramMarketing/comments/1sw8gmz/",
+        "date": "2026-04-26"
+      },
+      {
+        "title": "LinkedIn API docs, Member Post Statistics",
+        "url": "https://learn.microsoft.com/en-us/linkedin/marketing/community-management/members/post-statistics",
+        "date": "2026-05-15"
+      },
+      {
+        "title": "TikTok Research API",
+        "url": "https://developers.tiktok.com/products/research-api/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Trigger pricing",
+        "url": "https://trigger.online/pricing",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Trigger's Instagram account",
+        "url": "https://www.instagram.com/thefeedstudies/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Trigger LinkedIn page",
+        "url": "https://www.linkedin.com/company/triggersocial",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Trigger sitemap",
+        "url": "https://trigger.online/sitemap.xml",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Trigger Hook Analyser",
+        "url": "https://trigger.online/hook-analysis",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Trigger blog",
+        "url": "https://trigger.online/blog",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Bluekona Hook Analyzer",
+        "url": "https://bluekona.ai/tools/hook-analyzer",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Emplifi pricing",
+        "url": "https://emplifi.io/pricing",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "The 2025 Sprout Social Index",
+        "url": "https://sproutsocial.com/insights/index/",
+        "date": "2024-09"
+      },
+      {
+        "title": "Sandcastles homepage and pricing",
+        "url": "https://sandcastles.ai",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "r/socialmediamanagers, small agency still on Google Sheets",
+        "url": "https://www.reddit.com/r/socialmediamanagers/comments/1s9bn0p/",
+        "date": "2026-04-01"
+      },
+      {
+        "title": "VidCognition Reels hook analyzer",
+        "url": "https://vidcognition.com/reels-hook-analyzer",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Latka, Arcads",
+        "url": "https://getlatka.com/blog/arcads-revenue-ceo",
+        "date": "2025-11"
+      },
+      {
+        "title": "r/InstagramMarketing, free Instagram audit offer thread",
+        "url": "https://www.reddit.com/r/InstagramMarketing/comments/1pexlzl/",
+        "date": "2025-12-05"
+      },
+      {
+        "title": "Dash Social predictive AI",
+        "url": "https://www.dashsocial.com/features/predictive-ai",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "System1 Group Annual Report FY2025",
+        "url": "https://system1group.com/wp-content/uploads/2025/07/S1_ARA_-FY2025-9-July-2025.pdf",
+        "date": "2025-07-09"
+      },
+      {
+        "title": "Submagic affiliate programme",
+        "url": "https://www.submagic.co/affiliate",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "1of10 affiliate programme",
+        "url": "https://www.1of10.com/affiliate",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Virlo affiliate programme",
+        "url": "https://virlo.tolt.io",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Sandcastles affiliate programme",
+        "url": "https://sandcastles.tolt.io",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Il Sole 24 Ore, influencer marketing in Italy worth 425 million",
+        "url": "https://en.ilsole24ore.com/art/influencer-marketing-in-italia-market-worth-425-million-fees-down-celebrities-AI0kWmyD",
+        "date": "2026-07-02"
+      },
+      {
+        "title": "r/socialmediamanagers, running social through Claude or ChatGPT connectors",
+        "url": "https://www.reddit.com/r/socialmediamanagers/comments/1wce9l7/",
+        "date": "2026-09-10"
+      },
+      {
+        "title": "RevenueCat, State of Subscription Apps 2025",
+        "url": "https://www.revenuecat.com/state-of-subscription-apps-2025",
+        "date": "2025"
+      },
+      {
+        "title": "Metricool reviews, Trustpilot",
+        "url": "https://www.trustpilot.com/review/metricool.com",
+        "date": "2026-09-25"
+      }
+    ]
+  },
+  "initiatives": [
+    {
+      "id": "hook-analyzer-wedge",
+      "title": "The Hook Analyzer as the free front door",
+      "summary": "Move the standalone Hook Analyzer back to the front of trigger.online as a public tool with no signup, identical scores for identical input and a shareable read card, whose next step is 'check this against your own account', which connects Instagram.",
+      "column": "recommended",
+      "bet": "We believe that putting the Hook Analyzer, the one feature users credit with better results and a referral, in front of every visitor without a signup will bring social media managers in through search and sharing, and move more of them to connect an account than the chat homepage does. We will know when 5% of public checks lead to a connected account within four weeks.",
+      "problem": "The relaunch made a chat box the front door, although conversational AI drew no interest in the October 2025 concept tests, and two users could not find the analyzer inside the product. Two of the four free tool pages are blocked from search and none has a meta description.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "Free hook tools are everywhere (Buffer, Bluekona, heyDominik, Brika's free tier), so public checks may bring hobby creators who never pay. Track the share of checks from professional accounts from day one.",
+        "Hook-advice fatigue is rising; a hook score alone may read as more of the same. The read must explain the mechanism in plain words and show the account's own winners after connecting.",
+        "Making scores deterministic may make the wording feel repetitive. Fix the score, let the explanation vary.",
+        "The brand name collides with Trigger.dev in search, so the tool pages must rank on the job ('Instagram hook analyzer'), not the name."
+      ],
+      "firstMove": "From 28 September, unblock the tool pages in robots.txt, write their titles and meta descriptions, let visitors run three hook checks with no account, make the score identical for identical input, add a 'copy link to this read' card, and log each step in product analytics. Pass bar after two weeks: at least 400 public checks and at least 4% followed by a connected account; below 2%, keep the page for search and stop building on it.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "nel momento in cui abbiamo iniziato ad utilizzarlo, i ganci hanno iniziato a funzionare decisamente meglio, con risultati che di settimana in settimana abbiamo potuto testare. [once we used it, hooks worked much better, week after week]",
+          "tier": "E3",
+          "who": "Social and content lead, HR and payroll content brand",
+          "conv": "3f3d06f9-e3b3-4518-bb62-3992f19aa858",
+          "ms": 52833
+        },
+        {
+          "kind": "call",
+          "text": "è la cosa che mi è venuto anche automatico dire alla mia ex collega, oh provalo, perché è troppo figo. [I told my ex-colleague to try it straight away]",
+          "tier": "E4",
+          "who": "Marketing lead (organic and paid), outdoor startup",
+          "conv": "5bfe9afc-2370-4c1d-b398-7aca645a667e",
+          "ms": 1750731
+        },
+        {
+          "kind": "call",
+          "text": "he still finds the Hook Analyzer better than the chat",
+          "tier": "E2",
+          "who": "Lead founder, internal team meeting",
+          "conv": "8d1a4740-72e0-43cf-9ab9-ceed7adefd3d",
+          "ms": 722050
+        },
+        {
+          "kind": "signal",
+          "text": "In the October 2025 concept tests, 'Conversational AI' received no interest; the current homepage leads with a chat box under 'Ask anything about content'.",
+          "tier": "E3",
+          "source": "VSI validated signal, concept tests October 2025"
+        },
+        {
+          "kind": "competitor",
+          "text": "trigger.online/hook-analysis appears among 10 results for 'free Instagram hook analyzer tool', next to Bluekona, Brika and VidCognition.",
+          "source": "Trigger Hook Analyser",
+          "url": "https://trigger.online/hook-analysis",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "robots.txt blocks /script-analysis and /media-analysis, two of the four free tool pages.",
+          "source": "Trigger robots.txt",
+          "url": "https://trigger.online/robots.txt",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Bluekona offers a free hook analyzer with no login, a score and three rewrites.",
+          "source": "Bluekona Hook Analyzer",
+          "url": "https://bluekona.ai/tools/hook-analyzer",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "market",
+          "text": "Hooks and the first seconds are discussed in 4,104 posts across nine professional and creator subreddits.",
+          "source": "Arctic Shift Reddit archive (203,132 posts, Jan 2025 to Sep 2026)",
+          "url": "https://arctic-shift.photon-reddit.com/api/posts/search",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "flow",
+          "title": "How a visitor reaches money today, and with the Hook Analyzer at the front",
+          "before": [
+            {
+              "step": "Ad or LinkedIn post"
+            },
+            {
+              "step": "Homepage chat: 'Ask anything about content'"
+            },
+            {
+              "step": "Sign up, declare handle, connect Instagram",
+              "time": "more than half of 15 complete"
+            },
+            {
+              "step": "Free limits"
+            },
+            {
+              "step": "Pricing modal",
+              "time": "6 of 512 signups"
+            },
+            {
+              "step": "Pay",
+              "time": "1 self-serve payer"
+            }
+          ],
+          "after": [
+            {
+              "step": "Search or a shared read card"
+            },
+            {
+              "step": "Public Hook Analyzer, no signup"
+            },
+            {
+              "step": "'Check against your own account' connects Instagram"
+            },
+            {
+              "step": "Monthly why-report to the boss or client"
+            },
+            {
+              "step": "Per-account plan, 30-day money-back"
+            }
+          ]
+        },
+        {
+          "kind": "quote",
+          "text": "nel momento in cui abbiamo iniziato ad utilizzarlo, i ganci hanno iniziato a funzionare decisamente meglio, con risultati che di settimana in settimana abbiamo potuto testare.",
+          "who": "Social and content lead, HR and payroll content brand, after about a month on the free hook tool",
+          "conv": "3f3d06f9-e3b3-4518-bb62-3992f19aa858",
+          "ms": 52833,
+          "title": "The only outcome claim in 101 calls"
+        }
+      ],
+      "prototype": "vision/prototypes/hook-analyzer/index.html",
+      "notes": []
+    },
+    {
+      "id": "why-report",
+      "title": "The why-report a social media manager sends to the boss or client",
+      "summary": "A monthly report built from the account's private insights, its creative and its peer cohort that says in plain words what changed, why it changed and what to post next, sent as a link or PDF under the agency's or the brand's own name.",
+      "column": "recommended",
+      "bet": "We believe that a report the champion can forward unchanged to a boss or client turns Trigger from a tool the champion likes into something the budget holder sees every month, and that this is what gets brand teams and agencies to pay. We will know when 3 of the first 10 budget holders who receive one agree to a paid plan within 30 days.",
+      "problem": "At least nine brand-team calls end with 'I will show my boss' and none ends with a dated purchase; the budget holder never sees Trigger's value. Practitioners spend hours on each client report and want one page on what changed, why and what next. The Monday report email was drafted in August and never sent.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "Clients and bosses may not read reports ('so did we grow?'). Keep it to one screen with three causes and three actions.",
+        "A wrong cause, confidently stated, hurts the champion in front of the boss. Every claim cites the posts and numbers it rests on, and scores stay out until the backtest supports them.",
+        "Agencies are building their own reporting in Looker and Claude. The defence is the behavioural reading of the creative and the peers, which those templates do not do.",
+        "Hand-built reports in the sales sprint do not scale. Time each one and automate the slowest step first."
+      ],
+      "firstMove": "In the two weeks from 28 September, hand-build ten reports with the current engine for accounts in the warm network (September on their own Instagram: three posts that beat the account's baseline and why, one that fell short and why, three actions for October), send each to the champion with a one-line note for the budget holder, and time how long each takes. Pass bar: 6 of 10 forwarded to the budget holder and 3 budget-holder calls booked; fewer than 2 forwards means the report is not the door.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Alla fine mi devo giocare il mio 20 minuti di presentazione in cui devo dire in pochi minuti come è andato il mese [I have 20 minutes to present how the month went]",
+          "tier": "E3",
+          "who": "Social content lead, fintech SMB, self-described power user",
+          "conv": "d7dc3c41-fed5-47bd-bf88-1a285c00b652",
+          "ms": 1323273
+        },
+        {
+          "kind": "call",
+          "text": "Già solo, non per la fase di ideazione, ma per dire, inviargli tre slide al cliente con questi insights qua, secondo me è già una roba super figa. [just sending the client three slides of these insights is already great]",
+          "tier": "E3",
+          "who": "Agency lead, digital agency",
+          "conv": "50f538d0-b76b-4c8a-b9ed-82925bc9d9f6",
+          "ms": 751880
+        },
+        {
+          "kind": "call",
+          "text": "fosse per me sì, il discorso poi è capire come convincere chi dà i soldi. [if it were up to me yes, the point is convincing whoever holds the money]",
+          "tier": "E2",
+          "who": "Content champion, tech media brand",
+          "conv": "81eb6327-3551-4174-b727-eedd0f5a4ec4",
+          "ms": 1202999
+        },
+        {
+          "kind": "call",
+          "text": "Se vai da [the budget holder] deve costare tutto molto molto poco. [with the budget holder, everything must cost very very little]",
+          "tier": "E2",
+          "who": "Social team, multi-country travel brand (buyer is the boss)",
+          "conv": "25cc9408-0565-4a7c-8f5f-b839b0f2b178",
+          "ms": 915839
+        },
+        {
+          "kind": "market",
+          "text": "A freelancer spent 3.5 hours on one client report, with four clients to do.",
+          "source": "r/socialmedia, one report took the whole morning",
+          "url": "https://www.reddit.com/r/socialmedia/comments/1s6lftg/",
+          "date": "2026-03-29"
+        },
+        {
+          "kind": "market",
+          "text": "The deliverable practitioners recommend: a single page with what changed, why it changed and next week's action.",
+          "source": "r/socialmedia, single page report reply",
+          "url": "https://www.reddit.com/r/socialmedia/comments/1rpblbe/",
+          "date": "2026-03-09"
+        },
+        {
+          "kind": "competitor",
+          "text": "Emplifi's AI Image Scoring and performance prediction start on its $2,499 a month plan; creative-level explanation is enterprise-priced.",
+          "source": "Emplifi pricing",
+          "url": "https://emplifi.io/pricing",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "market",
+          "text": "Proving ROI and executive scepticism are among the top pain points of social practitioners and leaders.",
+          "source": "The 2025 Sprout Social Index",
+          "url": "https://sproutsocial.com/insights/index/",
+          "date": "2024-09"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "What the market talks about, posts in nine professional and creator subreddits (Jan 2025 to Sep 2026)",
+          "unit": "posts",
+          "items": [
+            {
+              "label": "Hooks and the first seconds",
+              "value": 4104
+            },
+            {
+              "label": "AI content, quality and slop",
+              "value": 3637
+            },
+            {
+              "label": "Analytics and insights tools",
+              "value": 3151
+            },
+            {
+              "label": "Why a post flopped or reach dropped",
+              "value": 2820
+            },
+            {
+              "label": "What to post next, ideas, burnout",
+              "value": 2663
+            },
+            {
+              "label": "Reporting and ROI for clients or bosses",
+              "value": 790,
+              "note": "smallest count, highest acuity: monthly and tied to money"
+            }
+          ]
+        },
+        {
+          "kind": "quote",
+          "text": "Alla fine mi devo giocare il mio 20 minuti di presentazione in cui devo dire in pochi minuti come è andato il mese",
+          "who": "Social content lead, fintech SMB, on the monthly review with the boss",
+          "conv": "d7dc3c41-fed5-47bd-bf88-1a285c00b652",
+          "ms": 1323273,
+          "title": "The job with a budget owner"
+        }
+      ],
+      "prototype": "vision/prototypes/why-report/index.html",
+      "notes": []
+    },
+    {
+      "id": "agency-workspace",
+      "title": "An agency workspace priced per connected account",
+      "summary": "One workspace where an agency or a multi-client freelancer connects every client's Instagram, sees which accounts need attention this month, prepares each client's report, and pays per connected account.",
+      "column": "recommended",
+      "bet": "We believe that agencies and multi-client freelancers, the segment with the only unprompted buy statements and the shortest path to a decision, will pay per connected account once they can connect more than one. We will know when 4 agencies or freelancers pay for 3 or more accounts each by 20 November.",
+      "problem": "The product connects one Instagram account. A freelancer with ten clients could connect one, five separate prospects needed more, and no multi-account plan was ever put in writing, although both prospects and the founder proposed a base price plus a price per account. Agencies say they are losing clients to rivals who arrive with data.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "Two practitioners argue agency value is weaker than in-house, because it spreads across clients. Per-account pricing keeps the price proportional to the value.",
+        "Agencies fear a tool that erodes their own value-add. White-label reports keep the agency as the author.",
+        "Multiple connected accounts may need new Meta permissions, which take two to three months of review. Check the current app's scopes in week one.",
+        "Agencies are replacing subscriptions with in-house Claude skills. The workspace must save hours on reporting in the first month or it will be cancelled."
+      ],
+      "firstMove": "Before building, put a written offer to 8 agencies and freelancers from past calls: €49 a month per connected account for four of them and €69 for the other four, from 3 accounts, white-label reports included, 30-day money-back, with their accounts connected by hand on the current stack. Pass bar in two weeks: 3 accept and connect 3 or more accounts each; if nobody accepts at either price, the per-account model is wrong and the Brand team plan leads.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "io lo vorrei testare ma già lo prenderei nel senso è molto convincente [I would test it but I would already buy it, it is very convincing]",
+          "tier": "E5",
+          "who": "Head of social, boutique agency, decision maker",
+          "conv": "c6ad3bcf-7af8-45f6-9acf-31fd0967a440",
+          "ms": 1677592
+        },
+        {
+          "kind": "call",
+          "text": "Io ho dieci clienti, posso collegare solo un account. [ten clients, I can connect only one account]",
+          "tier": "E4",
+          "who": "Freelance social media manager with 10 clients",
+          "conv": "94b12a59-0f9f-47da-a8ee-1db4dfe06598",
+          "ms": 188795
+        },
+        {
+          "kind": "call",
+          "text": "70-80 euro per account mensili e poi tipo un extra se vuoi aggiungere le sit, tipo a 20 euro ogni sit in più [70 to 80 a month per account, plus 20 per extra seat]",
+          "tier": "E2",
+          "who": "Owner-operator, small agency",
+          "conv": "172be94f-4113-49dc-8c32-da0a27ef6cdd",
+          "ms": 1749462
+        },
+        {
+          "kind": "call",
+          "text": "Cento euro al mese sì ci sta. Ok. Cioè tra cinquanta e cento ci sta. di dare una chance. [100 a month yes, 50 to 100 to give it a chance]",
+          "tier": "E2",
+          "who": "Agency owner, small agency",
+          "conv": "c83eeef2-dc34-4405-a7a2-c41a97469235",
+          "ms": 1428588
+        },
+        {
+          "kind": "call",
+          "text": "se continuiamo a fare questo lavoro così veniamo percepiti come degli esecutivisti [if we keep working like this we are seen as mere executors]",
+          "tier": "E3",
+          "who": "Head of projects, creative agency",
+          "conv": "879adca6-b126-4cc7-8123-d23e3f4bc6f3",
+          "ms": 1630262
+        },
+        {
+          "kind": "call",
+          "text": "un'altra agenzia fa un'altra proposta a un a uno dei nostri clienti con dei dati alla mano e proponendo delle novità basate su quei dati, noi siamo in difetto [another agency arrives with data and we lose ground]",
+          "tier": "E3",
+          "who": "Agency manager, digital agency",
+          "conv": "c1a5fcc7-3044-4c13-bac8-288d4011b794",
+          "ms": 464783
+        },
+        {
+          "kind": "competitor",
+          "text": "Sandcastles prices by verified own channels: 3 on Pro ($49), 5 on Visionary ($99), 20 on Titan ($499).",
+          "source": "Sandcastles homepage and pricing",
+          "url": "https://sandcastles.ai",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "market",
+          "text": "A small agency with 8 to 10 clients still runs everything in Google Sheets and found Buffer and Hootsuite too expensive for its size.",
+          "source": "r/socialmediamanagers, small agency still on Google Sheets",
+          "url": "https://www.reddit.com/r/socialmediamanagers/comments/1s9bn0p/",
+          "date": "2026-04-01"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "Stated willingness to pay by who pays, EUR a month (none of it is a payment)",
+          "unit": "€",
+          "items": [
+            {
+              "label": "Freelancer or creator paying personally",
+              "value": 100,
+              "note": "10 to 150 stated; one freelancer pays for no tools today"
+            },
+            {
+              "label": "Small agency, per client account",
+              "value": 80,
+              "note": "15 to 100 per account; 70 to 80 said unprompted"
+            },
+            {
+              "label": "Small agency, bundle",
+              "value": 300,
+              "note": "250 to 400; 490 accepted without pushback once"
+            },
+            {
+              "label": "Brand team budget holder",
+              "value": 200,
+              "note": "reported at 200 against a champion's 400 to 450"
+            },
+            {
+              "label": "Brand team champion",
+              "value": 500,
+              "note": "most converge on 400 to 600, often after a 1,000 anchor"
+            },
+            {
+              "label": "Enterprise media, per month of an annual budget",
+              "value": 833,
+              "note": "10,000 a year called comfortable; 7k to 15k stated"
+            }
+          ]
+        }
+      ],
+      "prototype": "vision/prototypes/agency-workspace/index.html",
+      "notes": []
+    },
+    {
+      "id": "score-trust",
+      "title": "Scores a manager can defend: identical, organic, validated",
+      "summary": "Make every number defensible before it goes into a report: the same input always returns the same score, paid reach is separated from organic, sync counts are true, and a published backtest shows how often high-scored posts beat the account's own baseline.",
+      "column": "recommended",
+      "bet": "We believe that trust in the numbers is the precondition for any paid plan whose output is shown to a boss or a client, and that a published backtest will turn the framework from a claim into a reason to choose Trigger over free scorers. We will know when repeat tests return identical scores and the backtest shows top-scored posts beating the bottom quartile on at least 12 of 20 accounts.",
+      "problem": "Score reliability is the most repeated objection across at least 8 users: the same hook scored differently, an 83 that flopped, paid numbers inside organic ones, and a sync showing 150 of 150 analysed when 4 were. The agent also loses context after a few turns and invents answers when it has no tool.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "The backtest may show the score predicts little. Then the score leaves the report and the explanations carry it, which is still sellable.",
+        "Separating paid from organic may need ad-account permissions that some users will not grant. Label mixed numbers clearly where it cannot be separated.",
+        "VidCognition already claims validation on 218 videos, so a weak study invites comparison. Publish the method and the misses."
+      ],
+      "firstMove": "Run 200 repeat analyses of 20 hooks and posts and record the variance; then backtest the score on the last 90 days of 20 connected accounts, organic only, comparing the top and bottom score quartiles on reach and saves. Pass bar in two weeks: zero variance on repeats, and the top quartile ahead on at least 12 of 20 accounts; otherwise remove the headline score from reports by 6 November.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Hai mai visto che a volte se metti la stessa hook due volte ti dà un punteggio diverso? [same hook twice, different score]",
+          "tier": "E2",
+          "who": "Content lead, team of 3, youth brand",
+          "conv": "fa35bde2-183d-4fe2-bf7b-0643a5628804",
+          "ms": 645132
+        },
+        {
+          "kind": "call",
+          "text": "ho visto 83, lo guardo, 83 però è andato male. Quindi non è detto che il numero mi dia un indicatore. [it scored 83 but did badly]",
+          "tier": "E2",
+          "who": "Social content lead, fintech SMB, self-described power user",
+          "conv": "d7dc3c41-fed5-47bd-bf88-1a285c00b652",
+          "ms": 2056066
+        },
+        {
+          "kind": "call",
+          "text": "i numeri qua hanno dentro paid. [these numbers include paid]",
+          "tier": "E4",
+          "who": "Social content lead, fintech SMB, self-described power user",
+          "conv": "d7dc3c41-fed5-47bd-bf88-1a285c00b652",
+          "ms": 898191
+        },
+        {
+          "kind": "call",
+          "text": "ho un po' un bias verso i tool AI che ti predicono le performance dei contenuti. [I am biased against AI tools that predict content performance]",
+          "tier": "E4",
+          "who": "Agency lead, digital agency",
+          "conv": "50f538d0-b76b-4c8a-b9ed-82925bc9d9f6",
+          "ms": 724205
+        },
+        {
+          "kind": "call",
+          "text": "prediction non gli do 0, perché ci sono veramente troppe variabili [I give prediction zero points, too many variables]",
+          "tier": "E2",
+          "who": "Owner-operator, small agency",
+          "conv": "172be94f-4113-49dc-8c32-da0a27ef6cdd",
+          "ms": 1617145
+        },
+        {
+          "kind": "signal",
+          "text": "A trial stalled because the sync showed 150 of 150 posts analysed when only 4 had been.",
+          "tier": "E4",
+          "source": "VSI, trial call with an edtech brand team, April 2026"
+        },
+        {
+          "kind": "competitor",
+          "text": "VidCognition says its hook scoring is validated against 218 videos with real retention labels; no other competitor publishes a validation.",
+          "source": "VidCognition Reels hook analyzer",
+          "url": "https://vidcognition.com/reels-hook-analyzer",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "quote",
+          "text": "ho visto 83, lo guardo, 83 però è andato male. Quindi non è detto che il numero mi dia un indicatore.",
+          "who": "Social content lead, fintech SMB",
+          "conv": "d7dc3c41-fed5-47bd-bf88-1a285c00b652",
+          "ms": 2056066,
+          "title": "Why a report cannot carry a number that moves"
+        },
+        {
+          "kind": "matrix",
+          "title": "Interpretive depth against buyer and price (analyst coordinates from the competitor dossier)",
+          "x": [
+            "Counts metrics",
+            "Explains the behavioural cause"
+          ],
+          "y": [
+            "Solo creator under $20",
+            "Enterprise via sales"
+          ],
+          "points": [
+            {
+              "label": "Trigger",
+              "x": 0.85,
+              "y": 0.4,
+              "us": true
+            },
+            {
+              "label": "vidIQ for Instagram",
+              "x": 0.7,
+              "y": 0.08
+            },
+            {
+              "label": "Sandcastles",
+              "x": 0.6,
+              "y": 0.35
+            },
+            {
+              "label": "Virlo",
+              "x": 0.45,
+              "y": 0.45
+            },
+            {
+              "label": "Brika",
+              "x": 0.4,
+              "y": 0.07
+            },
+            {
+              "label": "Not Just Analytics",
+              "x": 0.45,
+              "y": 0.12
+            },
+            {
+              "label": "Instagram native",
+              "x": 0.15,
+              "y": 0.0
+            },
+            {
+              "label": "Metricool",
+              "x": 0.2,
+              "y": 0.18
+            },
+            {
+              "label": "Socialinsider",
+              "x": 0.3,
+              "y": 0.45
+            },
+            {
+              "label": "Rival IQ",
+              "x": 0.2,
+              "y": 0.55
+            },
+            {
+              "label": "Sprout Social",
+              "x": 0.35,
+              "y": 0.75
+            },
+            {
+              "label": "Dash Social",
+              "x": 0.75,
+              "y": 0.85
+            },
+            {
+              "label": "Emplifi",
+              "x": 0.65,
+              "y": 0.95
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "price-ladder",
+      "title": "One price ladder by who pays, with annual and a guarantee",
+      "summary": "Replace the ten price points prospects heard with one public ladder: Free, Solo at €39, Agency at €49 per connected account from three, and Brand team at €290, each with two months free on annual, a 30-day money-back guarantee and one-click cancellation.",
+      "column": "recommended",
+      "bet": "We believe that one stable ladder priced by who pays (the freelancer, the agency per account, the brand team) will close more of the calls that end in 'I will show my boss' than prices negotiated around a 1,000 anchor. We will know when half of the written offers made in October close within 30 days at list price.",
+      "problem": "Within six months prospects heard 1,000, 850, 600, 500, 490, 400, 340, 99, 90 and 49. The live Pro plan at €44 is labelled for the solo creator, the segment with the weakest budget, and costs 2 to 5 times the Instagram analysis tools. Full is five times Max with nothing in between, the annual discount is the smallest in the set, and there is no trial or guarantee.",
+      "impact": 3,
+      "effort": 1,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "€290 may leave money on the table with brand teams whose champions say 400 to 600, and still be too much for startups that refused a 50 USD tool. Alternate €290 and €490 in October and keep the higher if it closes as often.",
+        "Per-account billing adds complexity to checkout and invoicing. Start with manual invoices for agencies if the checkout is not ready.",
+        "Current payers are on older plans. Grandfather them and tell them first."
+      ],
+      "firstMove": "Publish the ladder on 5 October and grandfather current payers. In the sales sprint, alternate €290 and €490 for the Brand team plan on consecutive offers, and €49 and €69 per account for agencies, each with a 30-day money-back guarantee. Pass bar by 30 October: at least 3 closes at list price, with no discount given; if the higher price closes as often as the lower, keep the higher.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "E comunque 3,40 al mese oppure 99, mi hai detto? [and anyway 340 a month or 99, you told me?]",
+          "tier": "E2",
+          "who": "Manager over the social team, tax services brand",
+          "conv": "639a2880-b816-4dc5-836a-108d77152d2f",
+          "ms": 1058971
+        },
+        {
+          "kind": "call",
+          "text": "è come avere un'altra persona nel team che analizza tutto. Cioè, magari mille così al primo giorno, al giorno uno, mi sembrerebbero tanti, però 600 li spenderei sicuramente. [1,000 on day one seems a lot, 600 I would surely spend]",
+          "tier": "E2",
+          "who": "Brand manager, tax services brand (likely budget holder)",
+          "conv": "bbca2a1a-774b-4247-b578-69ec67ed7f8b",
+          "ms": 1129946
+        },
+        {
+          "kind": "call",
+          "text": "conoscendo gli investimenti che ha fatto l'azienda sul tool di advertising non più di 490 euro. [given what the company spends on ad tools, no more than 490]",
+          "tier": "E3",
+          "who": "Social media lead reporting to the CMO, listed enterprise",
+          "conv": "60e2a91f-4322-41b0-8320-9216c991e2af",
+          "ms": 1250642
+        },
+        {
+          "kind": "call",
+          "text": "in questo momento della mia azienda, te ne darei 300 mese. [at this stage of my company I would give you 300 a month]",
+          "tier": "E2",
+          "who": "Owner, small DTC brand",
+          "conv": "38f54f4a-f09c-4684-8687-1a842c6dd940",
+          "ms": 1201480
+        },
+        {
+          "kind": "call",
+          "text": "comunque 500 è tanto. cinquanta cento euro in più sì. Fa un lavoro praticamente metà della settimana di un social media manager mi sembra. [500 is a lot; it does half an SMM's week]",
+          "tier": "E3",
+          "who": "Social media manager, wellness brand (owner is the buyer)",
+          "conv": "c3c79e9a-137f-4def-b131-5c3bd9791850",
+          "ms": 2061380
+        },
+        {
+          "kind": "call",
+          "text": "il tipo che c'ha la pizzeria paga 9 euro al mese, c'ha i dati e capisce un minimo di cose. [the pizzeria owner pays 9 a month for the incumbent, gets data and understands a bit]",
+          "tier": "E4",
+          "who": "Lead founder, in a demo with a travel brand team",
+          "conv": "bd04de4f-1471-4297-8453-3adb45bb3d86",
+          "ms": 1952968
+        },
+        {
+          "kind": "competitor",
+          "text": "Trigger lists Pro at €44 for the solo creator, Max at €89 and Full at €441, with a 10% annual discount and no trial.",
+          "source": "Trigger pricing",
+          "url": "https://trigger.online/pricing",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Brika packages on tracked creators and data history from $9 to $99, with a 30-day money-back guarantee on all plans.",
+          "source": "Brika pricing",
+          "url": "https://www.brika.ai/pricing",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "compare",
+          "title": "Packaging against the closest peers (Trigger proposed first)",
+          "columns": [
+            "Trigger proposed",
+            "Trigger today",
+            "Sandcastles",
+            "Socialinsider",
+            "Brika"
+          ],
+          "rows": [
+            {
+              "label": "Entry paid price a month",
+              "values": [
+                "€39",
+                "€44",
+                "$49",
+                "€89",
+                "$9"
+              ]
+            },
+            {
+              "label": "Annual discount",
+              "values": [
+                "about 17%",
+                "10%",
+                "20%",
+                "about 17%",
+                "not stated"
+              ]
+            },
+            {
+              "label": "Trial or guarantee",
+              "values": [
+                "30-day money-back",
+                "no",
+                "risk-free",
+                "14-day trial",
+                "30-day money-back"
+              ]
+            },
+            {
+              "label": "Priced by connected account",
+              "values": [
+                "yes",
+                "no",
+                "partial",
+                "partial",
+                "no"
+              ]
+            },
+            {
+              "label": "Plan for the person who reports to a boss or client",
+              "values": [
+                "yes",
+                "no",
+                "no",
+                "partial",
+                "no"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "bars",
+          "title": "Stated willingness to pay by who pays, EUR a month (none of it is a payment)",
+          "unit": "€",
+          "items": [
+            {
+              "label": "Freelancer or creator paying personally",
+              "value": 100,
+              "note": "10 to 150 stated; one freelancer pays for no tools today"
+            },
+            {
+              "label": "Small agency, per client account",
+              "value": 80,
+              "note": "15 to 100 per account; 70 to 80 said unprompted"
+            },
+            {
+              "label": "Small agency, bundle",
+              "value": 300,
+              "note": "250 to 400; 490 accepted without pushback once"
+            },
+            {
+              "label": "Brand team budget holder",
+              "value": 200,
+              "note": "reported at 200 against a champion's 400 to 450"
+            },
+            {
+              "label": "Brand team champion",
+              "value": 500,
+              "note": "most converge on 400 to 600, often after a 1,000 anchor"
+            },
+            {
+              "label": "Enterprise media, per month of an annual budget",
+              "value": 833,
+              "note": "10,000 a year called comfortable; 7k to 15k stated"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "founder-sales-motion",
+      "title": "Founder-led sales to the warm network, as a weekly motion",
+      "summary": "Turn the channel that produced every warm deal into a repeatable weekly motion: a report on the prospect's own account as the opener, a call with the budget holder, a written offer from the ladder with a follow-up date, and every outcome logged in VSI.",
+      "column": "recommended",
+      "bet": "We believe that the 37 organisations already met in 101 calls, most of them in the lead founder's network, are the fastest source of the next 20 paying customers if each gets a report on its own account and a call with whoever holds the budget. We will know when 25 reports produce 10 budget-holder calls and 6 new paying customers by 30 October.",
+      "problem": "Every warm deal came through a founder-run call, yet no brand-team call ends with a dated purchase, seven April trials have no recorded outcome, and the last external call was on 4 September. Cold free reports to strangers drew shallow replies; response rose to 8.7 to 9% only after the ask changed to a call.",
+      "impact": 3,
+      "effort": 1,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "Revenue may concentrate in the lead founder's consulting clients, which would make it a service. Track how much new MRR is tied to consulting.",
+        "The network may run out after 40 organisations. Plan the next source (affiliates and the benchmark) to start in November.",
+        "Prospects may ask for consulting instead of the tool, as two already did. Offer the report as the product, and price any consulting separately.",
+        "The warm network is Italian and Instagram-first, so results may not transfer to other markets."
+      ],
+      "firstMove": "In week one, list the 37 organisations in VSI plus the April trials, rank them by the signals on record (asked for multi-account, named a budget, used the hook tool), build the report for the first 15 and send each with a request for 20 minutes with the budget holder. Pass bar by 9 October: 5 budget-holder calls booked; fewer than 2 means the champion cannot open the door and the offer goes to the budget holder directly.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "our best strategy is still to talk to them face to face and probably closing the, uh, the full plan rather than the $99 or the $49.",
+          "tier": "E2",
+          "who": "Lead founder, internal team meeting",
+          "conv": "209f7f39-7694-4f61-8d43-f8e653e8309d",
+          "ms": 964666
+        },
+        {
+          "kind": "call",
+          "text": "the big tickets generally don't really respond to ads that much, but they they do need like a salesperson",
+          "tier": "E2",
+          "who": "Lead founder, internal team meeting",
+          "conv": "209f7f39-7694-4f61-8d43-f8e653e8309d",
+          "ms": 1053897
+        },
+        {
+          "kind": "call",
+          "text": "lo utilizzerei anche, cioè, proprio lunedì invece che usare Not Just possiamo usare questo. [I would use it on Monday instead of Not Just Analytics]",
+          "tier": "E5",
+          "who": "Marketing lead, multi-country travel brand, one-week trial",
+          "conv": "bd04de4f-1471-4297-8453-3adb45bb3d86",
+          "ms": 2094604
+        },
+        {
+          "kind": "call",
+          "text": "Ok, cioè secondo me [the trial user] non l'ha utilizzato in questo mese. [I think she did not use it this month]",
+          "tier": "E4",
+          "who": "Manager over the social team, tax services brand",
+          "conv": "639a2880-b816-4dc5-836a-108d77152d2f",
+          "ms": 790979
+        },
+        {
+          "kind": "call",
+          "text": "spray and paint",
+          "tier": "E3",
+          "who": "Team member on the free-report outreach to prospects",
+          "conv": "f2cd6140-a058-43fc-8566-6fd37ff5b972",
+          "ms": 1615337
+        },
+        {
+          "kind": "signal",
+          "text": "Outreach response rose to 8.7 to 9% after the call to action changed to 'book a call' or 'check Trigger out'.",
+          "tier": "E3",
+          "source": "VSI, internal meeting 26 August 2026"
+        },
+        {
+          "kind": "competitor",
+          "text": "Arcads sold a done-for-you service before building a dashboard and reached about $5K MRR in its first week.",
+          "source": "Latka, Arcads",
+          "url": "https://getlatka.com/blog/arcads-revenue-ceo",
+          "date": "2025-11"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "flow",
+          "title": "A warm deal today, and as a defined motion",
+          "before": [
+            {
+              "step": "Demo call with the champion"
+            },
+            {
+              "step": "Trial or design-partner access",
+              "time": "7 days, often extended"
+            },
+            {
+              "step": "Price negotiated from a 1,000 anchor"
+            },
+            {
+              "step": "'I will show my boss'"
+            },
+            {
+              "step": "No recorded outcome"
+            }
+          ],
+          "after": [
+            {
+              "step": "Why-report on their own account",
+              "time": "day 0"
+            },
+            {
+              "step": "Champion forwards it to the budget holder"
+            },
+            {
+              "step": "20 minutes with the budget holder",
+              "time": "within 10 days"
+            },
+            {
+              "step": "Written offer from the ladder, 30-day money-back"
+            },
+            {
+              "step": "Decision logged in VSI",
+              "time": "within 30 days"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "seo-free-tools",
+      "title": "Free tools that can rank, on a site that can be found",
+      "summary": "Unblock and finish the four free tool pages, fix the sitemap, titles and descriptions, and add six pages matched to the questions social media managers already search for, in Italian and English, each feeding the Hook Analyzer and the report.",
+      "column": "recommended",
+      "bet": "We believe that pages built around the questions practitioners already ask ('why did my reel flop', 'Instagram client report', the hook check itself) will bring a steady flow of the right visitors at no media cost, as free tools did for Socialinsider and Submagic. We will know when organic search brings 1,000 visits a month to the tool pages by mid-December.",
+      "problem": "robots.txt blocks two of the four free tool pages and a slug that does not exist, the sitemap lists retired pages, key pages have no meta description, the pricing page is titled 'Pricing', and a search for the brand returns mostly Trigger.dev.",
+      "impact": 2,
+      "effort": 1,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Search takes months to pay back. The hygiene fixes cost a day; the six new pages wait until those are indexed.",
+        "Off-topic tools bring traffic that does not convert, as Submagic learned. Every page must end in the hook check or the report.",
+        "AI answers in search may take the click. An llm.txt and clear, quotable pages help answer engines cite Trigger, as Not Just Analytics already does."
+      ],
+      "firstMove": "On 28 September, remove the robots.txt blocks on /script-analysis and /media-analysis, fix the /profile-analyser slug, drop retired URLs from the sitemap, write titles and meta descriptions for every public page, resolve the cookie-banner contradiction, and submit the sitemap to Search Console. Pass bar in two weeks: all four tool pages indexed and each appearing for its exact tool query in Italian and English.",
+      "evidence": [
+        {
+          "kind": "competitor",
+          "text": "robots.txt disallows /script-analysis, /media-analysis, /chat and /profile-analyser.",
+          "source": "Trigger robots.txt",
+          "url": "https://trigger.online/robots.txt",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "The sitemap lists retired and blocked pages among its 25 URLs.",
+          "source": "Trigger sitemap",
+          "url": "https://trigger.online/sitemap.xml",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Search already returns trigger.online/hook-analysis for 'free Instagram hook analyzer tool'.",
+          "source": "Trigger Hook Analyser",
+          "url": "https://trigger.online/hook-analysis",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "About 67% of Socialinsider's desktop visits come from organic search (estimate).",
+          "source": "Similarweb, socialinsider.io (estimate)",
+          "url": "https://www.similarweb.com/website/socialinsider.io/",
+          "date": "2026-08"
+        },
+        {
+          "kind": "competitor",
+          "text": "Submagic's SEO became its second channel through 17 free tools matched to the core job.",
+          "source": "Superframeworks, Submagic case study",
+          "url": "https://superframeworks.com/case-study/submagic",
+          "date": "2025"
+        },
+        {
+          "kind": "competitor",
+          "text": "Not Just Analytics, the Italian incumbent, grows on a free profile tool, programmatic category pages and an llm.txt.",
+          "source": "Not Just Analytics homepage",
+          "url": "https://www.notjustanalytics.com/",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "market",
+          "text": "A free Instagram audit offer drew 101 comments: free diagnosis draws crowds.",
+          "source": "r/InstagramMarketing, free Instagram audit offer thread",
+          "url": "https://www.reddit.com/r/InstagramMarketing/comments/1pexlzl/",
+          "date": "2025-12-05"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "Posts asking the questions these pages would answer (nine subreddits, Jan 2025 to Sep 2026)",
+          "unit": "posts",
+          "items": [
+            {
+              "label": "Hooks and the first seconds",
+              "value": 4104
+            },
+            {
+              "label": "Why a post flopped or reach dropped",
+              "value": 2820
+            },
+            {
+              "label": "Tool recommendation requests",
+              "value": 1833
+            },
+            {
+              "label": "Competitors and benchmarking",
+              "value": 1540
+            },
+            {
+              "label": "Reporting and ROI for clients or bosses",
+              "value": 790
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "pre-publish-check",
+      "title": "A pre-publish check for the draft, against the account's own winners",
+      "summary": "Before posting, the manager drops in a draft (hook, script, cover or carousel) and gets a read against the account's own outliers and its peers, with the one change most likely to help, so the plan the boss sees has been checked rather than guessed.",
+      "column": "recommended",
+      "bet": "We believe that pre-production feedback, the second most common job in the calls, becomes a weekly habit for paying teams when it compares a draft with the account's own winners rather than a generic score, and that the habit is what keeps them paying between reports. We will know when paying accounts run at least 4 checks a week each for 4 weeks.",
+      "problem": "Trials go quiet when the founder is not in the loop, and value is episodic: useful after a flop, then idle. The pre-production job is asked for in the calls, pre-publish creative checks are sold to enterprises, and the video-first analysers ignore stills and carousels, the format with nine times the saves.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "next",
+      "risks": [
+        "Instagram's Trial Reels and Edits already give free pre-release tests with real viewers. The check must work on stills and carousels and before shooting, where those do not.",
+        "It edges into prediction, the most polarising concept. Frame it as 'closer to your winners because', never as a forecast of views.",
+        "Analysis of a text-only hook is less accurate than with full media, per product feedback. Ask for the cover or first frame."
+      ],
+      "firstMove": "Give the 10 most active paying and trial accounts a draft check on the current engine for two weeks and ask them to run every planned post through it. Pass bar: 6 of 10 run 4 or more checks a week in week two; fewer than 3 means the check is a novelty, not a habit.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "mi aiuti ad essere più preparato nel pre [help me be better prepared before production]",
+          "tier": "E4",
+          "who": "Runs content and scripts, consumer e-commerce brand",
+          "conv": "58f5295c-e26d-4f6f-a0d0-aa1685074131",
+          "ms": 1272260
+        },
+        {
+          "kind": "call",
+          "text": "Cioè, a me gasa un sacco in realtà questa roba qua dello script, devo essere sincera. [the script feature really excites me]",
+          "tier": "E2",
+          "who": "Social media, tax services brand (boss is the buyer)",
+          "conv": "ca295c9c-7f57-4150-b805-19a2a21635ab",
+          "ms": 1459293
+        },
+        {
+          "kind": "call",
+          "text": "Questo mi piace tantissimo. Cioè, proprio vedi, magari è come se ti confrontassi immediatamente con una copywriter o un esperto [like instant feedback from a copywriter or an expert]",
+          "tier": "E3",
+          "who": "Social content lead, fintech SMB, self-described power user",
+          "conv": "d7dc3c41-fed5-47bd-bf88-1a285c00b652",
+          "ms": 718980
+        },
+        {
+          "kind": "call",
+          "text": "Secondo me la cosa è sarà lungo il periodo per farlo diventare una costante, è una questione di abitudine. [making it constant will take time, it is habit]",
+          "tier": "E3",
+          "who": "Social media, tax services brand (boss is the buyer)",
+          "conv": "ca295c9c-7f57-4150-b805-19a2a21635ab",
+          "ms": 2474530
+        },
+        {
+          "kind": "competitor",
+          "text": "Dash Social sells Vision AI prediction of which photos and videos will perform to enterprise brands, sales-led.",
+          "source": "Dash Social predictive AI",
+          "url": "https://www.dashsocial.com/features/predictive-ai",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "market",
+          "text": "System1's ad-testing revenue grew 38% in FY25, with a social product planned: pre-testing creative is proven paid where media money is at stake.",
+          "source": "System1 Group Annual Report FY2025",
+          "url": "https://system1group.com/wp-content/uploads/2025/07/S1_ARA_-FY2025-9-July-2025.pdf",
+          "date": "2025-07-09"
+        },
+        {
+          "kind": "trend",
+          "text": "Trial Reels test new Reels with non-followers first, free, since 10 December 2024.",
+          "source": "Meta, Trial Reels",
+          "url": "https://about.fb.com/news/2024/12/trial-reels-try-content-non-followers-first-see-what-perfoms-best/",
+          "date": "2024-12-10"
+        },
+        {
+          "kind": "trend",
+          "text": "Carousels earn nine times the saves of single images.",
+          "source": "Sotrender, Instagram reach is down in 2026",
+          "url": "https://www.sotrender.com/blog/2026/08/instagram-reach-is-down-what-the-data-actually-says/",
+          "date": "2026-08-11"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "compare",
+          "title": "Checking a post before it goes out (Trigger proposed first)",
+          "columns": [
+            "Trigger check",
+            "Instagram Trial Reels",
+            "vidIQ AI Coach",
+            "Dash Social Vision AI"
+          ],
+          "rows": [
+            {
+              "label": "Works before followers see the post",
+              "values": [
+                "yes",
+                "yes",
+                "no",
+                "yes"
+              ]
+            },
+            {
+              "label": "Reads stills and carousels",
+              "values": [
+                "yes",
+                "no",
+                "no",
+                "yes"
+              ]
+            },
+            {
+              "label": "Compares with the account's private insights",
+              "values": [
+                "yes",
+                "yes",
+                "no",
+                "yes"
+              ]
+            },
+            {
+              "label": "Explains why in words",
+              "values": [
+                "yes",
+                "no",
+                "partial",
+                "partial"
+              ]
+            },
+            {
+              "label": "Price",
+              "values": [
+                "from €39",
+                "free",
+                "free to €31",
+                "sales-led"
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "affiliate-programme",
+      "title": "An affiliate programme for freelance managers and social educators",
+      "summary": "Pay 30% recurring for 12 months to freelancers, social media educators and agency leads who bring paying customers, with a 60-day cookie, no bidding on the brand in ads, and the shareable read card and report footer as their links.",
+      "column": "recommended",
+      "bet": "We believe that the people social media managers already learn from will sell Trigger to their audiences if they earn on it, as affiliates did for Submagic, 1of10 and EasyGen, and that the report and read card make the link travel on its own. We will know when 20 affiliates are active and bring 5 paying customers by 18 December.",
+      "problem": "Trigger has 173 Instagram followers, no named creator partner and no affiliate programme, while every category tool that grew past $10k MRR had an audience or an affiliate crowd. In the calls, peer proof moves price: an agency owner would pay five times more if a peer used it.",
+      "impact": 2,
+      "effort": 1,
+      "confidence": "E2",
+      "horizon": "next",
+      "risks": [
+        "At €39 to €290 a month the payouts are small, so big creators will ignore it. Aim at many small educators and freelancers, as Submagic did.",
+        "Affiliate audiences skew to hobby creators who pay nothing. Pay on paid conversions only, and favour educators of professional social media managers.",
+        "Affiliates bidding on the brand or spamming. Ban paid search on the brand in the terms."
+      ],
+      "firstMove": "Invite 30 people from the network and user base (freelancers who teach social, the design partner, agency leads) to a beta at 30% for 12 months through an off-the-shelf affiliate tool, each with a code and a read card. Pass bar in two weeks: 10 accept and 3 share a link publicly; if fewer than 5 accept, the offer or the audience is wrong.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Cinquecento euro al mese se ho visto uno accanto a me a cui sto copiando i compiti, che lo usa e gli ha cambiato la vita. [500 a month if a peer used it and it changed his life]",
+          "tier": "E2",
+          "who": "Agency owner, small agency",
+          "conv": "c83eeef2-dc34-4405-a7a2-c41a97469235",
+          "ms": 1419468
+        },
+        {
+          "kind": "call",
+          "text": "è la cosa che mi è venuto anche automatico dire alla mia ex collega, oh provalo, perché è troppo figo. [I told my ex-colleague to try it straight away]",
+          "tier": "E4",
+          "who": "Marketing lead (organic and paid), outdoor startup",
+          "conv": "5bfe9afc-2370-4c1d-b398-7aca645a667e",
+          "ms": 1750731
+        },
+        {
+          "kind": "competitor",
+          "text": "Submagic pays 30% lifetime recurring, with no paid ads by affiliates and a $50 minimum.",
+          "source": "Submagic affiliate programme",
+          "url": "https://www.submagic.co/affiliate",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "1of10 pays 30% lifetime with a 60-day cookie.",
+          "source": "1of10 affiliate programme",
+          "url": "https://www.1of10.com/affiliate",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Virlo pays 20% lifetime with a 60-day cookie.",
+          "source": "Virlo affiliate programme",
+          "url": "https://virlo.tolt.io",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Sandcastles pays 20% on all paid customers.",
+          "source": "Sandcastles affiliate programme",
+          "url": "https://sandcastles.tolt.io",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "EasyGen's affiliates bring 18% of revenue at 20%.",
+          "source": "Rewardful, EasyGen affiliate revenue",
+          "url": "https://www.rewardful.com/articles/how-easygen-built-revenue-stream-through-affiliate-marketing",
+          "date": "2025-01-24"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "Recurring commission offered by category tools",
+          "unit": "%",
+          "items": [
+            {
+              "label": "Submagic (lifetime)",
+              "value": 30
+            },
+            {
+              "label": "1of10 (lifetime)",
+              "value": 30
+            },
+            {
+              "label": "Taplio (12 months)",
+              "value": 30
+            },
+            {
+              "label": "Virlo (lifetime)",
+              "value": 20
+            },
+            {
+              "label": "Sandcastles",
+              "value": 20
+            },
+            {
+              "label": "Typefully",
+              "value": 20
+            },
+            {
+              "label": "Trigger today",
+              "value": 0,
+              "note": "no programme on public pages"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "benchmark-report",
+      "title": "A behavioural benchmark of Italian brand Instagram",
+      "summary": "A free twice-yearly report on what outlier posts from Italian brands have in common, in the terms of Trigger's framework (reward mix, hook tension, format), built from public counts and a reading of the creative, published with its method for press and backlinks.",
+      "column": "recommended",
+      "bet": "We believe that the first behavioural benchmark in the category, starting in the market where Trigger has its network, will earn citations and signups from social media managers and agency leads who read trade press, as numbers-only benchmarks already do for Socialinsider, Buffer and Dash. We will know when it is cited by 3 Italian marketing outlets and brings 150 signups in 30 days.",
+      "problem": "Nobody publishes what outliers have in common behaviourally; every benchmark counts numbers, and Rival IQ's annual report has lapsed. Practitioners ask for exactly this: references that beat the account's average.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "next",
+      "risks": [
+        "Business Discovery returns public counts only and is rate-capped, so the corpus stays small. Read fewer posts more deeply, and say so.",
+        "If the score is not validated, a benchmark built on it is fragile. Publish after the backtest in the score initiative.",
+        "Press may not bite. Pitch the one surprising finding, not the report."
+      ],
+      "firstMove": "Pick 100 Italian brand accounts across 5 sectors, pull 90 days of public posts through Business Discovery, mark outliers against each account's own median, and read 300 of them with the engine. Pass bar in two weeks: at least 3 patterns that hold in 3 or more sectors and survive a sceptical editor's read; if none, do not publish.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "ti tira giù un listone di 10 reference più performanti che superino la media delle performance del profilo, sarebbe oro colato. [10 references beating the profile average would be pure gold]",
+          "tier": "E3",
+          "who": "Social media manager, health startup",
+          "conv": "fa785ed4-9e50-4b77-a85d-da2e6eb2b573",
+          "ms": 484597
+        },
+        {
+          "kind": "call",
+          "text": "Eh, questo figo [that is cool, on cross-account format trends]",
+          "tier": "E2",
+          "who": "Marketing lead, multi-country travel brand, one-week trial",
+          "conv": "bd04de4f-1471-4297-8453-3adb45bb3d86",
+          "ms": 1719463
+        },
+        {
+          "kind": "competitor",
+          "text": "Socialinsider's free 2026 benchmarks are built on 70M posts.",
+          "source": "Socialinsider 2026 social media benchmarks",
+          "url": "https://www.socialinsider.io/social-media-benchmarks",
+          "date": "2026-01-16"
+        },
+        {
+          "kind": "competitor",
+          "text": "Buffer's Instagram benchmarks use 27M posts and 273k accounts.",
+          "source": "Buffer Instagram benchmarks",
+          "url": "https://buffer.com/social-media-benchmarks/instagram",
+          "date": "2026-09-13"
+        },
+        {
+          "kind": "competitor",
+          "text": "Rival IQ lists no 2026 benchmark report.",
+          "source": "Rival IQ benchmark reports",
+          "url": "https://www.rivaliq.com/benchmark-reports/",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Dash's April 2026 finding on non-follower views was picked up as a data story.",
+          "source": "Dash Social 2026 benchmarks press release",
+          "url": "https://www.dashsocial.com/press-release/2026-social-media-benchmarks",
+          "date": "2026-04-15"
+        },
+        {
+          "kind": "trend",
+          "text": "Business Discovery gives public counts for other professional accounts, the legal basis for a peer corpus.",
+          "source": "Meta for Developers, IG User Business Discovery reference",
+          "url": "https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/business_discovery",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "market",
+          "text": "Italian influencer marketing is projected at €425M in 2026, up 10.4%.",
+          "source": "Il Sole 24 Ore, influencer marketing in Italy worth 425 million",
+          "url": "https://en.ilsole24ore.com/art/influencer-marketing-in-italia-market-worth-425-million-fees-down-celebrities-AI0kWmyD",
+          "date": "2026-07-02"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "quote",
+          "text": "ti tira giù un listone di 10 reference più performanti che superino la media delle performance del profilo, sarebbe oro colato.",
+          "who": "Social media manager, health startup",
+          "conv": "fa785ed4-9e50-4b77-a85d-da2e6eb2b573",
+          "ms": 484597,
+          "title": "What practitioners asked for before it existed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "claude-connector",
+      "title": "Trigger's reading inside Claude and ChatGPT",
+      "summary": "An MCP connector and a Claude skill for paying accounts that return Trigger's reading of a post or an account, with the evidence behind it, inside the assistant where social media managers already draft their reports.",
+      "column": "shortlist",
+      "bet": "We believe that managers who already write reports with Claude or ChatGPT will use Trigger more, and churn less, if its reading arrives there with the data already attached, which is what they could not do alone. We will know when half of the paying accounts given the connector use it at least weekly for a month.",
+      "problem": "Prospects tried to do this analysis in Claude and Gemini and gave up because of the data feeding. Connectors became table stakes in 2026 and competitors ship them, but no call asked for one, so demand is untested.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E1",
+      "horizon": "next",
+      "risks": [
+        "It can give away the value that should be paid for. Offer it on paid plans only.",
+        "Image handling through connectors is still poor, per practitioners. Return the reading, not the images.",
+        "It serves existing users more than it acquires new ones. Keep it behind the report and the workspace in the queue."
+      ],
+      "firstMove": "Wrap the existing post-read and hook-check endpoints as an MCP server for paying accounts only, give it to 10 of them, and watch whether they use it while writing reports. Pass bar in two weeks: 5 of 10 use it at least twice; otherwise shelve it until a buyer asks.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "è una cosa che abbiamo provato a fare in passato utilizzando Cloud, Gemini. È molto complicato perché gli devi dare una quantità di dati, enormi [we tried with Claude and Gemini; you must feed huge amounts of data]",
+          "tier": "E4",
+          "who": "Creator-owner, creator-led business",
+          "conv": "218185b3-9d3a-4e39-8499-332034c024af",
+          "ms": 409122
+        },
+        {
+          "kind": "competitor",
+          "text": "Sandcastles markets its Claude plugin as a way to find out why a post failed.",
+          "source": "Sandcastles MCP",
+          "url": "https://sandcastles.ai/mcp",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Metricool shows competitor analysis done in Claude through its MCP (7 September 2026).",
+          "source": "Metricool, competitor analysis with Claude through MCP",
+          "url": "https://metricool.com/metricool-mcp-competitor-analysis-claude/",
+          "date": "2026-09-07"
+        },
+        {
+          "kind": "market",
+          "text": "Agencies are building Claude skills to replace subscriptions, including client reporting.",
+          "source": "r/agency, replacing subscriptions with in-house tools and Claude skills",
+          "url": "https://www.reddit.com/r/agency/comments/1v8z05c/",
+          "date": "2026-07-28"
+        },
+        {
+          "kind": "market",
+          "text": "\"worked fine for the copy but the image handling was a mess\" on running social through Claude or ChatGPT connectors.",
+          "source": "r/socialmediamanagers, running social through Claude or ChatGPT connectors",
+          "url": "https://www.reddit.com/r/socialmediamanagers/comments/1wce9l7/",
+          "date": "2026-09-10"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "Agents, Claude and MCP talk per 1,000 posts, r/socialmedia and r/SocialMediaMarketing",
+          "unit": "per 1,000",
+          "items": [
+            {
+              "label": "2025 Q1",
+              "value": 3
+            },
+            {
+              "label": "2025 Q2",
+              "value": 6
+            },
+            {
+              "label": "2025 Q3",
+              "value": 4
+            },
+            {
+              "label": "2025 Q4",
+              "value": 5
+            },
+            {
+              "label": "2026 Q1",
+              "value": 13
+            },
+            {
+              "label": "2026 Q2",
+              "value": 26
+            },
+            {
+              "label": "2026 Q3 to 25 Sep",
+              "value": 10
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "meta-ads-self-serve",
+      "title": "Meta ads to European social media managers as the growth engine",
+      "summary": "The September plan: Meta ads targeting European social media managers, sending them to sign up for the free plan and upgrade to a paid plan through the new limits and Pro teasers.",
+      "column": "parked",
+      "bet": "The founders' bet is that targeted ads will bring the right people and produce trustworthy data on about 2,000 social media managers. We park it as a growth engine because the self-serve path has not converted and the test has no pass bar; it survives only as a capped test pointed at the public Hook Analyzer, judged by the bar in the kill criteria.",
+      "problem": "Six of 512 signups opened pricing and one paid; the lead founder says ad traffic to a payment page will not buy and big accounts do not respond to ads. No spend, success threshold or result is recorded, and the category's paid-ads winners scaled ads only after payback was proven.",
+      "impact": 1,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Spending before the funnel converts measures the funnel's leaks, not demand, and burns cash that the sales sprint needs.",
+        "Ad clicks from mobile Instagram land in a product that needs a desktop session and a connected professional account.",
+        "Without a written bar, any result can be read as success."
+      ],
+      "firstMove": "Keep only the spend already committed, point every ad at the public Hook Analyzer instead of signup, and write the bar before the next euro: stop on 30 October unless ads bring at least one paying customer per €500 spent or connected professional accounts at under €15 each.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "our best strategy is still to talk to them face to face and probably closing the, uh, the full plan rather than the $99 or the $49.",
+          "tier": "E2",
+          "who": "Lead founder, internal team meeting",
+          "conv": "209f7f39-7694-4f61-8d43-f8e653e8309d",
+          "ms": 964666
+        },
+        {
+          "kind": "call",
+          "text": "the big tickets generally don't really respond to ads that much, but they they do need like a salesperson",
+          "tier": "E2",
+          "who": "Lead founder, internal team meeting",
+          "conv": "209f7f39-7694-4f61-8d43-f8e653e8309d",
+          "ms": 1053897
+        },
+        {
+          "kind": "call",
+          "text": "it's very possible that among like the people who created an account, there are people that are not even Instagram creators or they don't even use social in general.",
+          "tier": "E3",
+          "who": "Lead founder, internal team meeting",
+          "conv": "209f7f39-7694-4f61-8d43-f8e653e8309d",
+          "ms": 1053897
+        },
+        {
+          "kind": "call",
+          "text": "We already have 3 of them ready.",
+          "tier": "E4",
+          "who": "Lead founder, internal team meeting",
+          "conv": "7191dfe5-fbef-4a90-943f-8bac50e35693",
+          "ms": 273352
+        },
+        {
+          "kind": "competitor",
+          "text": "Submagic spends $20K to $50K a month on paid ads, which became profitable only after 8 months, on top of affiliates and SEO.",
+          "source": "Latka, Submagic playbook",
+          "url": "https://getlatka.com/blog/submagic-revenue-bootstrap-ceo",
+          "date": "2025-06"
+        },
+        {
+          "kind": "market",
+          "text": "Hard-paywall apps convert download to paid at 12.11% against 2.18% for freemium by day 35 (consumer apps, an analogy only).",
+          "source": "RevenueCat, State of Subscription Apps 2025",
+          "url": "https://www.revenuecat.com/state-of-subscription-apps-2025",
+          "date": "2025"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "The freemium relaunch funnel to 4 August",
+          "unit": "people",
+          "items": [
+            {
+              "label": "Signups",
+              "value": 512
+            },
+            {
+              "label": "Opened the pricing modal",
+              "value": 6,
+              "note": "one of them internal"
+            },
+            {
+              "label": "Paid self-serve",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "freemium-limits",
+      "title": "Tighter free limits, credits and Pro teasers on hook analysis",
+      "summary": "The 1 September change: new limits on free hook and script analysis and Pro teasers, after July's five expiring credits a month, to push free users to upgrade.",
+      "column": "parked",
+      "bet": "The team's bet is that habit plus scarcity converts: make users rely on the tools, then gate them. We park it because it rations the one feature with proof and the page that can rank, while the value that has a budget owner (the report, more accounts) stays invisible on free.",
+      "problem": "Free users almost never see the paid part, so its value is hard to grasp; an adviser warned that credits create usage anxiety; the free allowance is stated three different ways. OpusClip's pattern is the opposite: the analysis is free to see on the product people want, and the paid step is attached to an output.",
+      "impact": 1,
+      "effort": 1,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Loosening the free hook limit may raise model costs. Cap by day, not by month, and watch cost per connected account.",
+        "Reversing a change a month after launch can look indecisive. Frame it as moving the gate to where the value is."
+      ],
+      "firstMove": "Move the gate: keep hook checks generous with a daily cap rather than monthly credits, and gate what has a budget owner (the monthly report, a second connected account, history beyond 30 days). Pass bar in two weeks: pricing views per active free user at least three times the week before the change.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "we are being a little bit too uh, good with our users",
+          "tier": "E2",
+          "who": "Team member, internal team meeting",
+          "conv": "49dfd359-651d-4fa2-9495-bff2420f087e",
+          "ms": 550447
+        },
+        {
+          "kind": "call",
+          "text": "you will have 5 credits that will expire. So you have 5 credits per month, which is nothing.",
+          "tier": "E2",
+          "who": "Lead founder, internal team meeting",
+          "conv": "6119a37f-8605-43a1-841d-ab96e2fc2578",
+          "ms": 189980
+        },
+        {
+          "kind": "call",
+          "text": "i crediti secondo me sono una cosa che coglieranno tutti nel tempo, nel senso che secondo me ti creano un'ansia di utilizzo enorme [credits create huge usage anxiety]",
+          "tier": "E3",
+          "who": "AI product founder, practitioner",
+          "conv": "c45ee558-ae99-427d-b786-3afbf6b91bdb",
+          "ms": 1427015
+        },
+        {
+          "kind": "call",
+          "text": "nella parte free diciamo che non hai quasi mai esposizione a questa parte, diventa complesso capire il valore effettivo aggiunto [on free you almost never see the paid part, so its value is hard to grasp]",
+          "tier": "E2",
+          "who": "Lead founder, in a product review with an external UX reviewer",
+          "conv": "cf617367-cfae-409a-9678-ebecd73edb13",
+          "ms": 1093420
+        },
+        {
+          "kind": "call",
+          "text": "So like we just said that users have no idea what to do with Trigger.",
+          "tier": "E2",
+          "who": "Team member, internal team meeting",
+          "conv": "49dfd359-651d-4fa2-9495-bff2420f087e",
+          "ms": 776229
+        },
+        {
+          "kind": "competitor",
+          "text": "OpusClip hides its virality score on free and attaches it to every clip on paid plans.",
+          "source": "OpusClip virality score help",
+          "url": "https://help.opus.pro/docs/article/virality-score",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "market",
+          "text": "A Metricool reviewer: \"I couldn't access all of the analytics or create my own custom reports without upgrading\".",
+          "source": "Metricool reviews, Trustpilot",
+          "url": "https://www.trustpilot.com/review/metricool.com",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "quote",
+          "text": "i crediti secondo me sono una cosa che coglieranno tutti nel tempo, nel senso che secondo me ti creano un'ansia di utilizzo enorme",
+          "who": "AI product founder, practitioner, October 2025",
+          "conv": "c45ee558-ae99-427d-b786-3afbf6b91bdb",
+          "ms": 1427015,
+          "title": "The warning on record"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "more-platforms-now",
+      "title": "TikTok, LinkedIn and Stories before February",
+      "summary": "Extending coverage beyond Instagram feed and Reels to TikTok, LinkedIn and Stories, as a prospect was told for February.",
+      "column": "parked",
+      "bet": "The bet is that Instagram-only coverage is costing deals. We park it for 16 weeks because no lost deal in VSI is shown to depend on it, TikTok offers no commercial research API, and a second platform would split a small team before the first one sells.",
+      "problem": "LinkedIn came up in at least six calls and TikTok in several, and the team knows LinkedIn-only users will not convert today. Competitors like Sandcastles, Virlo and Brika cover TikTok too; LinkedIn's creator analytics API is a new legitimate door.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Staying Instagram-only while reach falls there may cap the market. Revisit on the counted lost deals, not on requests.",
+        "Promises already made to a prospect may cost trust. Tell them the date is moving and why."
+      ],
+      "firstMove": "Do not build. For 16 weeks, tag every lost deal and churned account with the platform it needed, and read the LinkedIn member post analytics API terms. Revisit on 18 January: build LinkedIn first if at least 5 lost deals name it.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Adesso è prevalentemente LinkedIn. [now it is mainly LinkedIn]",
+          "tier": "E2",
+          "who": "First marketing hire, B2B SaaS on LinkedIn",
+          "conv": "fa2ddb46-7797-496e-9db8-d9ce7f902147",
+          "ms": 498477
+        },
+        {
+          "kind": "call",
+          "text": "abbiamo persone ad esempio che sappiamo che non convertiranno mai in questa fase perché lo utilizzano solo per LinkedIn [some users will never convert because they use it only for LinkedIn]",
+          "tier": "E2",
+          "who": "Lead founder, in a product review with an external UX reviewer",
+          "conv": "cf617367-cfae-409a-9678-ebecd73edb13",
+          "ms": 1093420
+        },
+        {
+          "kind": "trend",
+          "text": "LinkedIn's member post analytics API adds saves, sends, link clicks and followers gained from version 2026-04.",
+          "source": "LinkedIn API docs, Member Post Statistics",
+          "url": "https://learn.microsoft.com/en-us/linkedin/marketing/community-management/members/post-statistics",
+          "date": "2026-05-15"
+        },
+        {
+          "kind": "trend",
+          "text": "TikTok's Research API is non-commercial only.",
+          "source": "TikTok Research API",
+          "url": "https://developers.tiktok.com/products/research-api/",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "market",
+          "text": "Creators report TikTok growing faster than Instagram with the same videos.",
+          "source": "r/InstagramMarketing, reach in 2026 is dead on Instagram",
+          "url": "https://www.reddit.com/r/InstagramMarketing/comments/1sw8gmz/",
+          "date": "2026-04-26"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "compare",
+          "title": "Platforms covered (Trigger first)",
+          "columns": [
+            "Trigger",
+            "Sandcastles",
+            "Virlo",
+            "Brika"
+          ],
+          "rows": [
+            {
+              "label": "Instagram",
+              "values": [
+                "yes",
+                "yes",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "TikTok",
+              "values": [
+                "no",
+                "yes",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "YouTube Shorts",
+              "values": [
+                "no",
+                "yes",
+                "yes",
+                "no"
+              ]
+            },
+            {
+              "label": "Reads the connected account's private insights",
+              "values": [
+                "yes",
+                "partial",
+                "no",
+                "partial"
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": []
+    }
+  ]
+}

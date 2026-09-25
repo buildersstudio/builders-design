@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monthly why-report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0A0A;--paper:#FFFFFF;--beige:#F8F7F3;--beige2:#F1EFE8;--line:#E7E4DC;--line2:#D8D4CA;
+  --muted:#6B6B6B;--grey:#9CA3AF;--graphite:#2C2C2C;
+  --good:#2F7D4F;--good-soft:#E6F1EA;--warn:#B4540F;--warn-soft:#F7ECE1;
+  --r-l:22px;--r-m:16px;--r-s:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Stack Sans Headline",system-ui,sans-serif;color:var(--ink);background:var(--beige2);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.cap{display:flex;align-items:center;gap:14px;padding:9px 24px;background:var(--ink);color:#EDEBE6;font-size:12.5px}
+.cap b{font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:10.5px;color:#fff;background:#2C2C2C;border-radius:20px;padding:3px 10px}
+.cap .r{margin-left:auto;opacity:.6}
+/* editor bar: what the social media manager sees around the report */
+.bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:12px 28px}
+.bar .logo svg{height:22px;width:auto;display:block}
+.bar .crumb{font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .crumb b{color:var(--ink);font-weight:500}
+.bar .acts{margin-left:auto;display:flex;gap:8px;align-items:center}
+.seg{display:inline-flex;background:var(--beige2);border-radius:30px;padding:3px}
+.seg button{border:0;background:transparent;border-radius:30px;padding:6px 13px;font-size:13px;color:var(--muted)}
+.seg button.on{background:var(--paper);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.sw{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);border:0;background:none}
+.sw i{width:34px;height:20px;border-radius:20px;background:var(--line2);position:relative;transition:.2s}
+.sw i::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.sw.on i{background:var(--ink)}.sw.on i::after{left:16px}
+.btn{border:1px solid var(--line2);background:var(--paper);border-radius:40px;padding:8px 15px;font-weight:500;font-size:13.5px;white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
+.btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.status{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.status.sent::before{background:var(--good)}
+
+/* the report page */
+.page{max-width:1040px;margin:28px auto 60px;background:var(--paper);border-radius:28px;box-shadow:0 30px 80px -50px rgba(0,0,0,.35);overflow:hidden}
+.cover{position:relative;padding:40px 48px 36px;color:#fff;overflow:hidden}
+.cover .bg{position:absolute;inset:0;background:url("/ventures/trigger/gallery/backgrounds/art-37-wave-blue-orange.jpg") center/cover}
+.cover .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.62),rgba(10,10,10,.2))}
+.cover > *{position:relative}
+.from{display:flex;align-items:center;gap:12px;font-size:13px;opacity:.92}
+.agency{display:flex;align-items:center;gap:9px;font-weight:500;font-size:15px}
+.agency i{width:28px;height:28px;border-radius:8px;background:#fff;color:var(--ink);display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:600}
+.from .for{margin-left:auto;text-align:right}
+.lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.cover .lbl{color:rgba(255,255,255,.75);display:block;margin-top:44px}
+.cover h1{font-size:44px;line-height:1.08;letter-spacing:-.032em;font-weight:500;max-width:780px;margin:10px 0 14px}
+.cover p{max-width:680px;color:rgba(255,255,255,.88);font-size:16px}
+.body{padding:36px 48px 44px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kpi{background:var(--beige);border-radius:var(--r-m);padding:16px 18px}
+.kpi .n{font-size:30px;font-weight:500;letter-spacing:-.03em;line-height:1.1;margin-top:6px}
+.kpi .d{font-size:13px;margin-top:4px;font-weight:500}
+.kpi .d.up{color:var(--good)}.kpi .d.down{color:var(--warn)}
+.kpi small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.note{font-size:12.5px;color:var(--muted);margin-top:10px}
+h2{font-size:26px;letter-spacing:-.025em;font-weight:500;line-height:1.15;margin:44px 0 6px}
+.h2sub{color:var(--muted);font-size:14.5px;margin-bottom:18px}
+.why{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;border:1px solid var(--line);border-radius:var(--r-l);padding:16px;margin-bottom:12px}
+.why .thumb{border-radius:var(--r-m);background-size:cover;background-position:center;aspect-ratio:4/5;position:relative}
+.why .thumb span{position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,.9);border-radius:20px;font-size:11.5px;padding:3px 9px}
+.why .top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.why h3{font-size:19px;font-weight:500;letter-spacing:-.015em;line-height:1.25}
+.pill{font-size:12.5px;font-weight:500;padding:3px 10px;border-radius:20px;white-space:nowrap}
+.pill.up{background:var(--good-soft);color:var(--good)}.pill.down{background:var(--warn-soft);color:var(--warn)}
+.mech{display:inline-flex;gap:6px;align-items:center;font-size:12.5px;color:var(--graphite);background:var(--beige2);border-radius:20px;padding:4px 11px;margin:10px 0 8px}
+.mech i{width:7px;height:7px;border-radius:50%;background:var(--ink)}
+.why p{font-size:14.5px;color:var(--graphite)}
+.why .ev{margin-top:10px;border:0;background:none;font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;padding:0}
+.evbox{display:none;margin-top:12px;background:var(--beige);border-radius:var(--r-s);padding:12px 14px;font-size:13px}
+.evbox.on{display:block}
+.evbox table{width:100%;border-collapse:collapse}
+.evbox td{padding:5px 0;border-top:1px solid var(--line)}
+.evbox tr:first-child td{border-top:0}
+.evbox td:last-child{text-align:right;font-weight:500}
+.peers{border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden}
+.prow{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1.4fr);gap:12px;padding:13px 18px;border-top:1px solid var(--line);align-items:center;font-size:14px}
+.prow:first-child{border-top:0;background:var(--beige);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.track{height:6px;background:var(--line);border-radius:6px;position:relative}
+.track i{position:absolute;top:-3px;width:12px;height:12px;border-radius:50%;background:var(--ink);transform:translateX(-50%)}
+.track b{position:absolute;top:-4px;width:2px;height:14px;background:var(--grey);transform:translateX(-50%)}
+.acts3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.act{border-radius:var(--r-l);background:var(--beige);padding:18px;display:flex;flex-direction:column;gap:8px}
+.act .k{font-size:12px;color:var(--muted)}
+.act h3{font-size:17px;font-weight:500;letter-spacing:-.01em;line-height:1.3}
+.act p{font-size:13.5px;color:var(--graphite)}
+.act label{margin-top:auto;display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted);cursor:pointer}
+.act input{accent-color:var(--ink);width:16px;height:16px}
+.foot{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:16px;font-size:12.5px;color:var(--muted);align-items:center;flex-wrap:wrap}
+.foot .rd{margin-left:auto;display:flex;align-items:center;gap:8px}
+.foot .rd svg{height:14px;width:auto;color:var(--ink)}
+.edit [contenteditable="true"]{outline:1.5px dashed var(--line2);outline-offset:4px;border-radius:6px}
+.edit .cover [contenteditable="true"]{outline-color:rgba(255,255,255,.55)}
+/* modal */
+.scrim{position:fixed;inset:0;background:rgba(10,10,10,.45);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+.scrim.on{display:flex}
+.modal{background:var(--paper);border-radius:var(--r-l);max-width:540px;width:100%;padding:26px;max-height:92vh;overflow:auto}
+.modal h2{margin:0 0 4px;font-size:24px}
+.modal p.s{color:var(--muted);font-size:14px;margin-bottom:16px}
+.field{display:block;margin-bottom:12px}
+.field span{display:block;font-size:12.5px;color:var(--muted);margin-bottom:5px}
+.field input,.field textarea{width:100%;border:1px solid var(--line2);border-radius:var(--r-s);padding:10px 12px;font-size:14px;background:var(--paper)}
+.field textarea{min-height:110px;resize:vertical}
+.mrow{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(16px);opacity:0;transition:.25s;background:var(--ink);color:#fff;padding:11px 16px;border-radius:12px;font-size:13.5px;z-index:60;max-width:92vw;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%)}
+@media (max-width:980px){.bar .crumb{display:none}}
+@media (max-width:760px){
+  .cap{flex-wrap:wrap;gap:4px 10px;padding:8px 16px}.cap .r{display:none}
+  .bar{padding:10px 16px;flex-wrap:wrap;gap:10px}
+  .bar .acts{margin-left:0;width:100%;flex-wrap:wrap}
+  .bar .hide-s{display:none}
+  .page{margin:0;border-radius:0}
+  .cover{padding:26px 18px}
+  .from{flex-wrap:wrap}.from .for{margin-left:0;text-align:left;width:100%}
+  .cover .lbl{margin-top:26px}
+  .cover h1{font-size:29px}
+  .cover p{font-size:15px}
+  .body{padding:24px 16px 32px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi .n{font-size:24px}
+  h2{font-size:22px;margin-top:34px}
+  .why{grid-template-columns:88px minmax(0,1fr);gap:12px;padding:12px}
+  .why h3{font-size:16px}
+  .why p{font-size:14px}
+  .prow{grid-template-columns:minmax(0,1fr) 120px;row-gap:6px}
+  .prow > :nth-child(4){grid-column:1 / -1}
+  .prow:first-child > :nth-child(3),.prow:first-child > :nth-child(4){display:none}
+  .acts3{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype</b><span>The monthly why-report a social media manager sends to a client or boss. Sample brand, sample agency, sample numbers.</span><span class="r">Trigger product vision</span></div>
+
+<div class="bar">
+  <span class="logo"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="8.36 34.85 767.96 196.69" fill="none" role="img" aria-label="Trigger">
+<path d="M196.192 45.032H224.086V187.553H196.192V45.032ZM151.807 45.032H268.471V69.2606H151.807V45.032ZM260.055 73.5362H287.337V187.553H260.055V73.5362ZM287.337 130.748L284.283 110.795C284.283 107.266 284.622 103.194 285.301 98.5792C286.116 93.9642 287.812 89.5529 290.391 85.3451C292.97 81.0016 296.906 77.4047 302.2 74.5542C307.494 71.7038 314.688 70.2786 323.782 70.2786V97.154C315.773 97.154 309.055 98.1041 303.625 100.004C298.196 101.905 294.124 105.23 291.409 109.981C288.694 114.732 287.337 121.654 287.337 130.748ZM328.644 73.5362H355.927V187.553H328.644V73.5362ZM327.626 34.852H357.149V64.5778H327.626V34.852ZM412.784 186.739C402.061 186.739 392.831 184.363 385.094 179.613C377.493 174.862 371.657 168.143 367.585 159.456C363.513 150.633 361.477 140.385 361.477 128.712C361.477 116.903 363.513 106.655 367.585 97.9684C371.657 89.1457 377.493 82.359 385.094 77.6083C392.831 72.7218 402.061 70.2786 412.784 70.2786C425.95 70.2786 435.859 74.0113 442.51 81.4767C449.297 88.8063 453.844 99.4615 456.151 113.442L455.744 144.389C454.387 152.941 452.147 160.406 449.025 166.786C445.903 173.165 441.424 178.119 435.588 181.649C429.751 185.042 422.15 186.739 412.784 186.739ZM421.539 231.531C409.459 231.531 399.618 229.631 392.017 225.83C384.551 222.029 378.851 217.075 374.914 210.967C370.978 204.995 368.467 198.819 367.381 192.439H395.478C396.971 198.005 400.025 201.805 404.64 203.841C409.391 205.877 415.024 206.895 421.539 206.895C426.018 206.895 430.09 206.081 433.755 204.452C437.556 202.823 440.61 200.176 442.917 196.511C445.225 192.847 446.378 187.824 446.378 181.445H473.661C473.661 192.168 471.353 201.262 466.739 208.728C462.124 216.193 455.88 221.826 448.007 225.626C440.27 229.563 431.448 231.531 421.539 231.531ZM417.263 162.103C427.172 162.103 434.502 159.049 439.252 152.941C444.003 146.833 446.378 138.757 446.378 128.712C446.378 118.532 444.003 110.388 439.252 104.28C434.502 98.0363 427.172 94.9144 417.263 94.9144C408.169 94.9144 401.247 97.9684 396.496 104.076C391.745 110.184 389.37 118.396 389.37 128.712C389.37 138.892 391.745 147.036 396.496 153.144C401.247 159.117 408.169 162.103 417.263 162.103ZM446.378 181.445V73.5362H473.661V181.445H446.378ZM531.048 186.739C520.325 186.739 511.095 184.363 503.358 179.613C495.757 174.862 489.92 168.143 485.848 159.456C481.776 150.633 479.74 140.385 479.74 128.712C479.74 116.903 481.776 106.655 485.848 97.9684C489.92 89.1457 495.757 82.359 503.358 77.6083C511.095 72.7218 520.325 70.2786 531.048 70.2786C544.214 70.2786 554.123 74.0113 560.774 81.4767C567.56 88.8063 572.108 99.4615 574.415 113.442L574.008 144.389C572.65 152.941 570.411 160.406 567.289 166.786C564.167 173.165 559.688 178.119 553.851 181.649C548.015 185.042 540.414 186.739 531.048 186.739ZM539.803 231.531C527.722 231.531 517.882 229.631 510.281 225.83C502.815 222.029 497.114 217.075 493.178 210.967C489.242 204.995 486.731 198.819 485.645 192.439H513.742C515.235 198.005 518.289 201.805 522.904 203.841C527.655 205.877 533.288 206.895 539.803 206.895C544.282 206.895 548.354 206.081 552.019 204.452C555.819 202.823 558.873 200.176 561.181 196.511C563.488 192.847 564.642 187.824 564.642 181.445H591.925C591.925 192.168 589.617 201.262 585.002 208.728C580.387 216.193 574.144 221.826 566.271 225.626C558.534 229.563 549.711 231.531 539.803 231.531ZM535.527 162.103C545.436 162.103 552.765 159.049 557.516 152.941C562.267 146.833 564.642 138.757 564.642 128.712C564.642 118.532 562.267 110.388 557.516 104.28C552.765 98.0363 545.436 94.9144 535.527 94.9144C526.433 94.9144 519.511 97.9684 514.76 104.076C510.009 110.184 507.634 118.396 507.634 128.712C507.634 138.892 510.009 147.036 514.76 153.144C519.511 159.117 526.433 162.103 535.527 162.103ZM564.642 181.445V73.5362H591.925V181.445H564.642ZM654.842 190.811C643.033 190.811 632.785 188.3 624.098 183.277C615.411 178.119 608.625 170.993 603.738 161.899C598.988 152.805 596.612 142.421 596.612 130.748C596.612 118.939 598.988 108.488 603.738 99.3936C608.625 90.2994 615.411 83.1734 624.098 78.0155C632.785 72.8576 643.033 70.2786 654.842 70.2786C662.579 70.2786 669.841 71.8396 676.628 74.9614C683.55 78.0833 689.522 82.6304 694.545 88.6027C699.567 94.4393 703.232 101.701 705.539 110.388C707.846 118.939 708.254 128.712 706.761 139.707H612.086V117.311H688.844L679.478 123.011C680.157 118.532 679.614 114.121 677.849 109.777C676.22 105.434 673.506 101.905 669.705 99.19C665.905 96.3396 660.95 94.9144 654.842 94.9144C647.648 94.9144 641.812 96.4753 637.333 99.5972C632.853 102.719 629.596 107.063 627.56 112.628C625.524 118.057 624.506 124.097 624.506 130.748C624.506 137.263 625.524 143.236 627.56 148.665C629.596 154.094 632.853 158.37 637.333 161.492C641.812 164.614 647.648 166.175 654.842 166.175C660.95 166.175 665.972 164.75 669.909 161.899C673.845 159.049 676.56 155.52 678.053 151.312H706.964C705.335 159.185 702.146 166.107 697.395 172.079C692.644 177.916 686.672 182.531 679.478 185.924C672.284 189.182 664.072 190.811 654.842 190.811ZM712.59 73.5362H739.873V187.553H712.59V73.5362ZM739.873 130.748L736.819 110.795C736.819 107.266 737.158 103.194 737.837 98.5792C738.651 93.9642 740.348 89.5529 742.927 85.3451C745.506 81.0016 749.442 77.4047 754.736 74.5542C760.029 71.7038 767.223 70.2786 776.318 70.2786V97.154C768.309 97.154 761.59 98.1041 756.161 100.004C750.732 101.905 746.66 105.23 743.945 109.981C741.23 114.732 739.873 121.654 739.873 130.748Z" fill="currentColor"/><path d="M117.47 186.833L75.4512 123.316L86.8839 114.358L98.8005 105.39L148.925 162.925L117.47 186.833ZM59.8704 188.05L27.4335 165.492L75.0831 105.891L86.8839 114.358L99.1687 122.815L59.8704 188.05ZM82.3401 128.497L8.36883 111.175L19.6821 73.6488L90.9435 100.229L86.8839 114.358L82.3401 128.497ZM72.363 114.665L65.9171 38.7747L105.123 37.9463L101.889 114.041L86.8839 114.358L72.363 114.665ZM92.0207 128.293L86.8839 114.358L82.231 100.413L152.306 70.8466L165.194 107.861L92.0207 128.293Z" fill="currentColor"/>
+</svg></span>
+  <span class="crumb">Sample Agency workspace · <b>Sample Coffee Co.</b> · Reports</span>
+  <div class="acts">
+    <div class="seg" id="month"><button data-m="aug">August</button><button class="on" data-m="sep">September</button></div>
+    <button class="sw on hide-s" id="wl"><i></i>White-label</button>
+    <button class="btn" id="edit">Edit text</button>
+    <button class="btn hide-s" id="pdf">Download PDF</button>
+    <span class="status" id="status">Draft</span>
+    <button class="btn dark" data-open="send">Send to client</button>
+  </div>
+</div>
+
+<article class="page" id="page">
+  <header class="cover">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="from">
+      <span class="agency" id="agency"><i>SA</i>Sample Agency</span>
+      <span class="for">Prepared for the marketing lead, Sample Coffee Co.<br>@sample.coffee · Instagram</span>
+    </div>
+    <span class="lbl" id="mLbl">September 2026 · monthly read</span>
+    <h1 data-edit id="headline">Carousels that open on a question brought in new people; product Reels with a slow first second lost them.</h1>
+    <p data-edit id="lede">Organic reach grew for the second month, almost all of it from people who do not follow you yet. Below: the three posts that did it and why, the one that fell short and why, and three things to try in October.</p>
+  </header>
+
+  <div class="body">
+    <div class="kpis" id="kpis"></div>
+    <p class="note">Organic only: boosted posts are excluded from every number. Compared with the account's own median of the previous 90 days.</p>
+
+    <h2>What worked, and why</h2>
+    <p class="h2sub">Posts that beat the account's own baseline, with the reason Trigger reads in the creative.</p>
+    <div id="wins"></div>
+
+    <h2>What fell short, and why</h2>
+    <p class="h2sub">One post under the baseline, and what it tells us.</p>
+    <div id="miss"></div>
+
+    <h2>Against the accounts you compete with</h2>
+    <p class="h2sub">12 coffee and café accounts in Italy, chosen with you in June. Public counts only for peers.</p>
+    <div class="peers" id="peers"></div>
+
+    <h2>Three things to try in October</h2>
+    <p class="h2sub">Each one follows from a cause above. Tick what you approve and we will plan it in.</p>
+    <div class="acts3" id="acts"></div>
+
+    <div class="foot">
+      <span>Every cause cites the posts and numbers it rests on.</span>
+      <span>Questions: your account manager at Sample Agency</span>
+      <span class="rd" id="readby">Read with <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="8.36 34.85 767.96 196.69" fill="none" role="img" aria-label="Trigger">
+<path d="M196.192 45.032H224.086V187.553H196.192V45.032ZM151.807 45.032H268.471V69.2606H151.807V45.032ZM260.055 73.5362H287.337V187.553H260.055V73.5362ZM287.337 130.748L284.283 110.795C284.283 107.266 284.622 103.194 285.301 98.5792C286.116 93.9642 287.812 89.5529 290.391 85.3451C292.97 81.0016 296.906 77.4047 302.2 74.5542C307.494 71.7038 314.688 70.2786 323.782 70.2786V97.154C315.773 97.154 309.055 98.1041 303.625 100.004C298.196 101.905 294.124 105.23 291.409 109.981C288.694 114.732 287.337 121.654 287.337 130.748ZM328.644 73.5362H355.927V187.553H328.644V73.5362ZM327.626 34.852H357.149V64.5778H327.626V34.852ZM412.784 186.739C402.061 186.739 392.831 184.363 385.094 179.613C377.493 174.862 371.657 168.143 367.585 159.456C363.513 150.633 361.477 140.385 361.477 128.712C361.477 116.903 363.513 106.655 367.585 97.9684C371.657 89.1457 377.493 82.359 385.094 77.6083C392.831 72.7218 402.061 70.2786 412.784 70.2786C425.95 70.2786 435.859 74.0113 442.51 81.4767C449.297 88.8063 453.844 99.4615 456.151 113.442L455.744 144.389C454.387 152.941 452.147 160.406 449.025 166.786C445.903 173.165 441.424 178.119 435.588 181.649C429.751 185.042 422.15 186.739 412.784 186.739ZM421.539 231.531C409.459 231.531 399.618 229.631 392.017 225.83C384.551 222.029 378.851 217.075 374.914 210.967C370.978 204.995 368.467 198.819 367.381 192.439H395.478C396.971 198.005 400.025 201.805 404.64 203.841C409.391 205.877 415.024 206.895 421.539 206.895C426.018 206.895 430.09 206.081 433.755 204.452C437.556 202.823 440.61 200.176 442.917 196.511C445.225 192.847 446.378 187.824 446.378 181.445H473.661C473.661 192.168 471.353 201.262 466.739 208.728C462.124 216.193 455.88 221.826 448.007 225.626C440.27 229.563 431.448 231.531 421.539 231.531ZM417.263 162.103C427.172 162.103 434.502 159.049 439.252 152.941C444.003 146.833 446.378 138.757 446.378 128.712C446.378 118.532 444.003 110.388 439.252 104.28C434.502 98.0363 427.172 94.9144 417.263 94.9144C408.169 94.9144 401.247 97.9684 396.496 104.076C391.745 110.184 389.37 118.396 389.37 128.712C389.37 138.892 391.745 147.036 396.496 153.144C401.247 159.117 408.169 162.103 417.263 162.103ZM446.378 181.445V73.5362H473.661V181.445H446.378ZM531.048 186.739C520.325 186.739 511.095 184.363 503.358 179.613C495.757 174.862 489.92 168.143 485.848 159.456C481.776 150.633 479.74 140.385 479.74 128.712C479.74 116.903 481.776 106.655 485.848 97.9684C489.92 89.1457 495.757 82.359 503.358 77.6083C511.095 72.7218 520.325 70.2786 531.048 70.2786C544.214 70.2786 554.123 74.0113 560.774 81.4767C567.56 88.8063 572.108 99.4615 574.415 113.442L574.008 144.389C572.65 152.941 570.411 160.406 567.289 166.786C564.167 173.165 559.688 178.119 553.851 181.649C548.015 185.042 540.414 186.739 531.048 186.739ZM539.803 231.531C527.722 231.531 517.882 229.631 510.281 225.83C502.815 222.029 497.114 217.075 493.178 210.967C489.242 204.995 486.731 198.819 485.645 192.439H513.742C515.235 198.005 518.289 201.805 522.904 203.841C527.655 205.877 533.288 206.895 539.803 206.895C544.282 206.895 548.354 206.081 552.019 204.452C555.819 202.823 558.873 200.176 561.181 196.511C563.488 192.847 564.642 187.824 564.642 181.445H591.925C591.925 192.168 589.617 201.262 585.002 208.728C580.387 216.193 574.144 221.826 566.271 225.626C558.534 229.563 549.711 231.531 539.803 231.531ZM535.527 162.103C545.436 162.103 552.765 159.049 557.516 152.941C562.267 146.833 564.642 138.757 564.642 128.712C564.642 118.532 562.267 110.388 557.516 104.28C552.765 98.0363 545.436 94.9144 535.527 94.9144C526.433 94.9144 519.511 97.9684 514.76 104.076C510.009 110.184 507.634 118.396 507.634 128.712C507.634 138.892 510.009 147.036 514.76 153.144C519.511 159.117 526.433 162.103 535.527 162.103ZM564.642 181.445V73.5362H591.925V181.445H564.642ZM654.842 190.811C643.033 190.811 632.785 188.3 624.098 183.277C615.411 178.119 608.625 170.993 603.738 161.899C598.988 152.805 596.612 142.421 596.612 130.748C596.612 118.939 598.988 108.488 603.738 99.3936C608.625 90.2994 615.411 83.1734 624.098 78.0155C632.785 72.8576 643.033 70.2786 654.842 70.2786C662.579 70.2786 669.841 71.8396 676.628 74.9614C683.55 78.0833 689.522 82.6304 694.545 88.6027C699.567 94.4393 703.232 101.701 705.539 110.388C707.846 118.939 708.254 128.712 706.761 139.707H612.086V117.311H688.844L679.478 123.011C680.157 118.532 679.614 114.121 677.849 109.777C676.22 105.434 673.506 101.905 669.705 99.19C665.905 96.3396 660.95 94.9144 654.842 94.9144C647.648 94.9144 641.812 96.4753 637.333 99.5972C632.853 102.719 629.596 107.063 627.56 112.628C625.524 118.057 624.506 124.097 624.506 130.748C624.506 137.263 625.524 143.236 627.56 148.665C629.596 154.094 632.853 158.37 637.333 161.492C641.812 164.614 647.648 166.175 654.842 166.175C660.95 166.175 665.972 164.75 669.909 161.899C673.845 159.049 676.56 155.52 678.053 151.312H706.964C705.335 159.185 702.146 166.107 697.395 172.079C692.644 177.916 686.672 182.531 679.478 185.924C672.284 189.182 664.072 190.811 654.842 190.811ZM712.59 73.5362H739.873V187.553H712.59V73.5362ZM739.873 130.748L736.819 110.795C736.819 107.266 737.158 103.194 737.837 98.5792C738.651 93.9642 740.348 89.5529 742.927 85.3451C745.506 81.0016 749.442 77.4047 754.736 74.5542C760.029 71.7038 767.223 70.2786 776.318 70.2786V97.154C768.309 97.154 761.59 98.1041 756.161 100.004C750.732 101.905 746.66 105.23 743.945 109.981C741.23 114.732 739.873 121.654 739.873 130.748Z" fill="currentColor"/><path d="M117.47 186.833L75.4512 123.316L86.8839 114.358L98.8005 105.39L148.925 162.925L117.47 186.833ZM59.8704 188.05L27.4335 165.492L75.0831 105.891L86.8839 114.358L99.1687 122.815L59.8704 188.05ZM82.3401 128.497L8.36883 111.175L19.6821 73.6488L90.9435 100.229L86.8839 114.358L82.3401 128.497ZM72.363 114.665L65.9171 38.7747L105.123 37.9463L101.889 114.041L86.8839 114.358L72.363 114.665ZM92.0207 128.293L86.8839 114.358L82.231 100.413L152.306 70.8466L165.194 107.861L92.0207 128.293Z" fill="currentColor"/>
+</svg></span>
+    </div>
+  </div>
+</article>
+
+<div class="scrim" id="send"><div class="modal">
+  <h2>Send the September read</h2>
+  <p class="s">The client gets a link to this page and a PDF. They do not need a Trigger account.</p>
+  <label class="field"><span>To</span><input value="marketing.lead@sample.coffee"></label>
+  <label class="field"><span>Copy</span><input value="owner@sample.coffee"></label>
+  <label class="field"><span>Message</span><textarea>Hi, here is September. The short version: carousels that open on a question keep bringing in new people, and we want to fix the first second of the product Reels. Three proposals for October at the end; tick the ones you approve.</textarea></label>
+  <div class="mrow"><button class="btn" data-close>Cancel</button><button class="btn dark" id="doSend">Send</button></div>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const G="/ventures/trigger/gallery/backgrounds/";
+const DATA={
+ sep:{
+  label:"September 2026 · monthly read",
+  headline:"Carousels that open on a question brought in new people; product Reels with a slow first second lost them.",
+  lede:"Organic reach grew for the second month, almost all of it from people who do not follow you yet. Below: the three posts that did it and why, the one that fell short and why, and three things to try in October.",
+  kpis:[["Organic reach","48.2k","+31%","up"],["Saves","1,940","+52%","up"],["Shares","612","+18%","up"],["New follows","384","-6%","down"]],
+  wins:[
+   {img:"art-41-coffee-cup-still-life.jpg",type:"Carousel · 8 slides",t:"“Why does your espresso taste bitter?”",m:"3.1x median saves",mech:"Tension: a question the viewer wants closed",p:"The first slide asks a question most home baristas have asked themselves, and does not answer it until slide five. People swiped to find out and saved it to come back. It is the same pattern as your best post in July.",ev:[["Saves","612 vs median 197"],["Reach from non-followers","71%"],["Slide 5 reached by","58% of viewers"],["Same pattern among peers","4 of 12 accounts this month"]]},
+   {img:"art-34-oranges-checkerboard.jpg",type:"Reel · 21 s",t:"“We roasted 40 kilos to find the one you'll like”",m:"2.4x median reach",mech:"Reward: a specific number makes the promise real",p:"The number in the first line made the effort visible, and the payoff (one blend chosen for you) was clear before the second cut. Watch time held past the reveal, which is when Instagram widens distribution.",ev:[["Reach","14.9k vs median 6.2k"],["Shares","188"],["Viewers past 3 seconds","64%"],["Paid reach excluded","0 (not boosted)"]]},
+   {img:"art-22-friends-sunglasses.jpg",type:"Photo · customer post",t:"“Saturday, 9:40, the queue outside”",m:"1.9x median shares",mech:"Relatability: a moment regulars recognise",p:"A real queue on a real morning read as proof, not promotion. It was shared mostly by people tagging a friend, which is the signal that brings a local account to new neighbours.",ev:[["Shares","141 vs median 74"],["Tagged a friend","62% of comments"],["Posted","Saturday 10:05"]]}
+  ],
+  miss:[{img:"art-38-pizza-slice-gradient.jpg",type:"Reel · 34 s",t:"“Our new autumn blend is here”",m:"0.4x median reach",mech:"Missing tension: the first second announces, it does not ask",p:"It opened on the pack shot with the name of the blend, which strangers read as an advert and scrolled past in the first second. The same footage with a question or a taste promise first would likely have held; the September carousel shows the pattern works for this audience.",ev:[["Reach","2.5k vs median 6.2k"],["Viewers past 3 seconds","22%"],["Skip rate","high (Instagram's own reading)"]],down:true}],
+  peers:[["Carousels a month",0.62,0.45,"You post more carousels than 8 of 12 peers"],["Share of reach from non-followers",0.71,0.52,"Ahead of the peer median"],["Saves per post",0.66,0.50,"Third of 12"],["Reels that hold past 3 seconds",0.38,0.55,"Behind: the first second is where to work"]],
+  acts:[["From the carousel","Two more question-led carousels","Pick two questions customers ask at the counter and hold the answer until the middle slide."],["From the missed Reel","Re-cut the autumn Reel","Same footage, a taste promise in the first second and the name at the end. Post it as a Trial Reel first."],["From the queue photo","A Saturday series","One unpolished photo every Saturday morning, asking regulars to tag who they bring."]]
+ },
+ aug:{
+  label:"August 2026 · monthly read",
+  headline:"A quiet month: reach held while posting dropped, carried by one carousel about milk.",
+  lede:"With the team on holiday, posts fell from 14 to 8, and reach held because one carousel travelled. The read on why, and what it set up for September.",
+  kpis:[["Organic reach","36.8k","+4%","up"],["Saves","1,276","+9%","up"],["Shares","519","-3%","down"],["New follows","409","+2%","up"]],
+  wins:[{img:"art-13-daisies-blue-red.jpg",type:"Carousel · 6 slides",t:"“Oat, cow or none? What milk does to your cappuccino”",m:"2.2x median saves",mech:"Reward: a useful comparison worth keeping",p:"A side-by-side people could not get elsewhere, framed around their own habit. It was saved and returned to, and it became the template for September.",ev:[["Saves","433 vs median 197"],["Reach from non-followers","64%"]]}],
+  miss:[{img:"art-17-blue-shadow-red-field.jpg",type:"Reel · 28 s",t:"“Closed for holidays, see you soon”",m:"0.5x median reach",mech:"Low relatability: about us, not them",p:"Useful information, but nothing in it was for the viewer. It could have been a story rather than a Reel.",ev:[["Reach","3.1k vs median 6.2k"]],down:true}],
+  peers:[["Carousels a month",0.40,0.45,"Around the peer median"],["Share of reach from non-followers",0.64,0.52,"Ahead of the peer median"],["Saves per post",0.55,0.50,"Fifth of 12"],["Reels that hold past 3 seconds",0.41,0.55,"Behind the peer median"]],
+  acts:[["From the milk carousel","Repeat the comparison format","A September carousel built the same way, on a question customers ask."],["From the holiday Reel","Move notices to stories","Keep the feed for posts made for the viewer."],["From the peers","Test a first-second hook","Try one Reel that opens on a question."]]
+ }
+};
+let month="sep",editing=false;
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600)}
+function card(w,i,kind){return `<div class="why"><div class="thumb" style="background-image:url('${G+w.img}')"><span>${w.type.split(" · ")[0]}</span></div><div><div class="top"><h3>${w.t}</h3><span class="pill ${w.down?"down":"up"}">${w.m}</span></div><span class="mech"><i></i>${w.mech}</span><p data-edit>${w.p}</p><button class="ev" data-k="${kind}${i}">Show the evidence</button><div class="evbox" id="ev-${kind}${i}"><table>${w.ev.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table></div></div></div>`}
+function render(){
+  const d=DATA[month];
+  $("#mLbl").textContent=d.label;$("#headline").textContent=d.headline;$("#lede").textContent=d.lede;
+  $("#kpis").innerHTML=d.kpis.map(k=>`<div class="kpi"><span class="lbl">${k[0]}</span><div class="n">${k[1]}</div><div class="d ${k[3]}">${k[2]} vs 90-day median</div></div>`).join("");
+  $("#wins").innerHTML=d.wins.map((w,i)=>card(w,i,"w")).join("");
+  $("#miss").innerHTML=d.miss.map((w,i)=>card(w,i,"m")).join("");
+  $("#peers").innerHTML=`<div class="prow"><span>Measure</span><span>You, and peer median</span><span>Index, you vs peers</span><span>Where you stand</span></div>`+d.peers.map(p=>`<div class="prow"><span>${p[0]}</span><span><div class="track"><b style="left:${p[2]*100}%"></b><i style="left:${p[1]*100}%"></i></div></span><span style="color:var(--muted)">${Math.round(p[1]*100)} vs ${Math.round(p[2]*100)}</span><span>${p[3]}</span></div>`).join("");
+  $("#acts").innerHTML=d.acts.map((a,i)=>`<div class="act"><span class="k">${a[0]}</span><h3>${a[1]}</h3><p data-edit>${a[2]}</p><label><input type="checkbox" data-a="${i}">Approve for next month</label></div>`).join("");
+  $$(".ev").forEach(b=>b.onclick=()=>{const box=$("#ev-"+b.dataset.k);box.classList.toggle("on");b.textContent=box.classList.contains("on")?"Hide the evidence":"Show the evidence"});
+  $$("[data-a]").forEach(c=>c.onchange=()=>toast(c.checked?"Approved: the agency sees it in the plan (sample)":"Approval removed"));
+  setEdit(editing);
+}
+function setEdit(on){editing=on;$("#page").classList.toggle("edit",on);$$("[data-edit]").forEach(e=>e.contentEditable=on?"true":"false");$("#edit").textContent=on?"Done editing":"Edit text"}
+$$("#month button").forEach(b=>b.onclick=()=>{$$("#month button").forEach(x=>x.classList.remove("on"));b.classList.add("on");month=b.dataset.m;render();$("#status").textContent=month==="aug"?"Sent 2 Sep":"Draft";$("#status").classList.toggle("sent",month==="aug")});
+$("#wl").onclick=()=>{const on=$("#wl").classList.toggle("on");$("#agency").innerHTML=on?"<i>SA</i>Sample Agency":"Prepared with Trigger";toast(on?"White-label on: the agency's name leads":"White-label off")};
+$("#edit").onclick=()=>{setEdit(!editing);if(editing)toast("Click any paragraph to edit it")};
+$("#pdf").onclick=()=>toast("PDF saved (sample)");
+$$("[data-open]").forEach(b=>b.onclick=()=>$("#"+b.dataset.open).classList.add("on"));
+$$("[data-close]").forEach(b=>b.onclick=()=>b.closest(".scrim").classList.remove("on"));
+$$(".scrim").forEach(s=>s.addEventListener("click",e=>{if(e.target===s)s.classList.remove("on")}));
+$("#doSend").onclick=()=>{$("#send").classList.remove("on");$("#status").textContent="Sent today";$("#status").classList.add("sent");toast("Sample only: nothing was sent")};
+render();
+</script>
+</body>
+</html>

@@ -1704,12 +1704,12 @@
             {
               "label": "Doctorine",
               "x": 0.02,
-              "y": 1.0,
+              "y": 1,
               "us": true
             },
             {
               "label": "Postman",
-              "x": 1.0,
+              "x": 1,
               "y": 0.55
             },
             {
@@ -1725,7 +1725,7 @@
             {
               "label": "Stainless",
               "x": 0.6,
-              "y": 0.0
+              "y": 0
             },
             {
               "label": "Fern",
@@ -1922,128 +1922,6 @@
             {
               "label": "Curated skill",
               "value": 50.5
-            }
-          ]
-        }
-      ],
-      "notes": []
-    },
-    {
-      "id": "stainless-regen",
-      "title": "Regenerate orphaned Stainless SDKs, with a receipt",
-      "summary": "Import stainless.yml and the existing generated SDK, regenerate it with matching type names, and show a receipt proving the public surface did not change, for teams that lost their pipeline when Stainless closed.",
-      "column": "shortlist",
-      "bet": "We believe that some Stainless customers outside the AI labs still have no regeneration pipeline four months after the shutdown and will try a vendor who proves the regenerated SDK is identical at the surface. We will know when 3 of 20 maintainers contacted let us regenerate one SDK.",
-      "problem": "Stainless customers kept their code but lost the pipeline that kept it current, which is the only forced-switch trigger in this market with a proven budget.",
-      "impact": 2,
-      "effort": 2,
-      "confidence": "E1",
-      "horizon": "now",
-      "risks": [
-        "Fern, Scalar, Speakeasy and WorkOS published migration paths within weeks of the shutdown; the easy switchers have gone.",
-        "The buyer who just lost a startup vendor is the least willing to adopt another very small one; the Hacker News reaction was about exactly that.",
-        "It pulls Doctorine back toward SDK generation, the part of the market being given away."
-      ],
-      "firstMove": "Search public GitHub for SDK repositories with Stainless-generated headers and no commits since May, pick 20 outside the AI labs, and offer each maintainer a free regeneration with a surface-diff receipt. Stop after two weeks if fewer than three reply.",
-      "evidence": [
-        {
-          "kind": "market",
-          "text": "A Stainless customer on Hacker News: their SDKs, come September, will need to be maintained by someone other than Stainless.",
-          "source": "Ask HN: What are Stainless users doing now?",
-          "url": "https://news.ycombinator.com/item?id=48202774",
-          "date": "2026-05-20"
-        },
-        {
-          "kind": "trend",
-          "text": "Anthropic acquired Stainless on 18 May 2026 and wound down the hosted products; new signups, projects and SDKs stopped that day.",
-          "source": "Stainless is joining Anthropic",
-          "url": "https://www.stainless.com/blog/stainless-is-joining-anthropic/",
-          "date": "2026-05-18"
-        },
-        {
-          "kind": "competitor",
-          "text": "Scalar reads stainless.yml directly and Fern matches Stainless type names for backward-compatible migration.",
-          "source": "Scalar: the Stainless wind-down",
-          "url": "https://scalar.com/blog/posts/2026-08-16-stainless-wind-down",
-          "date": "2026-08-16"
-        },
-        {
-          "kind": "market",
-          "text": "Hacker News on the shutdown: closing the service will make everyone turn away from similar solutions if they are provided by a startup.",
-          "source": "Hacker News: Anthropic acquires Stainless",
-          "url": "https://news.ycombinator.com/item?id=48182281",
-          "date": "2026-05-18"
-        },
-        {
-          "kind": "competitor",
-          "text": "Doctorine already maps Fern, Stainless, Speakeasy and ReadMe configuration into mapped, degraded and unsupported buckets.",
-          "source": "Doctorine migrations",
-          "url": "https://doctorine.xyz/solutions/migrations/",
-          "date": "2026-09-25"
-        },
-        {
-          "kind": "competitor",
-          "text": "Stainless had about $1M ARR on hundreds of customers in December 2024.",
-          "source": "SiliconANGLE: Stainless gets $25M in funding",
-          "url": "https://siliconangle.com/2024/12/10/stainless-software-gets-25m-funding-bring-ai-generated-sdks-developers/",
-          "date": "2024-12-10"
-        }
-      ],
-      "viz": [
-        {
-          "kind": "compare",
-          "title": "Where a Stainless customer can go now",
-          "columns": [
-            "Doctorine",
-            "Fern (Postman)",
-            "Scalar",
-            "Speakeasy"
-          ],
-          "rows": [
-            {
-              "label": "Reads stainless.yml or matches its types",
-              "values": [
-                "yes",
-                "yes",
-                "yes",
-                "partial"
-              ]
-            },
-            {
-              "label": "Machine-readable receipt with output hashes per release",
-              "values": [
-                "yes",
-                "no",
-                "no",
-                "no"
-              ]
-            },
-            {
-              "label": "Independent of a platform or lab",
-              "values": [
-                "yes",
-                "no",
-                "yes",
-                "yes"
-              ]
-            },
-            {
-              "label": "Published pricing for SDKs",
-              "values": [
-                "no",
-                "partial",
-                "yes",
-                "no"
-              ]
-            },
-            {
-              "label": "Installed base",
-              "values": [
-                "none",
-                "200+ customers",
-                "16k-star open source",
-                "Enterprise"
-              ]
             }
           ]
         }
@@ -2407,6 +2285,128 @@
           "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
           "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
           "ms": 4151738
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "stainless-regen",
+      "title": "Regenerate orphaned Stainless SDKs, with a receipt",
+      "summary": "Import stainless.yml and the existing generated SDK, regenerate it with matching type names, and show a receipt proving the public surface did not change, for teams that lost their pipeline when Stainless closed.",
+      "column": "shortlist",
+      "bet": "We believe that some Stainless customers outside the AI labs still have no regeneration pipeline four months after the shutdown and will try a vendor who proves the regenerated SDK is identical at the surface. We will know when 3 of 20 maintainers contacted let us regenerate one SDK.",
+      "problem": "Stainless customers kept their code but lost the pipeline that kept it current, which is the only forced-switch trigger in this market with a proven budget.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E1",
+      "horizon": "now",
+      "risks": [
+        "Fern, Scalar, Speakeasy and WorkOS published migration paths within weeks of the shutdown; the easy switchers have gone.",
+        "The buyer who just lost a startup vendor is the least willing to adopt another very small one; the Hacker News reaction was about exactly that.",
+        "It pulls Doctorine back toward SDK generation, the part of the market being given away."
+      ],
+      "firstMove": "Search public GitHub for SDK repositories with Stainless-generated headers and no commits since May, pick 20 outside the AI labs, and offer each maintainer a free regeneration with a surface-diff receipt. Stop after two weeks if fewer than three reply.",
+      "evidence": [
+        {
+          "kind": "market",
+          "text": "A Stainless customer on Hacker News: their SDKs, come September, will need to be maintained by someone other than Stainless.",
+          "source": "Ask HN: What are Stainless users doing now?",
+          "url": "https://news.ycombinator.com/item?id=48202774",
+          "date": "2026-05-20"
+        },
+        {
+          "kind": "trend",
+          "text": "Anthropic acquired Stainless on 18 May 2026 and wound down the hosted products; new signups, projects and SDKs stopped that day.",
+          "source": "Stainless is joining Anthropic",
+          "url": "https://www.stainless.com/blog/stainless-is-joining-anthropic/",
+          "date": "2026-05-18"
+        },
+        {
+          "kind": "competitor",
+          "text": "Scalar reads stainless.yml directly and Fern matches Stainless type names for backward-compatible migration.",
+          "source": "Scalar: the Stainless wind-down",
+          "url": "https://scalar.com/blog/posts/2026-08-16-stainless-wind-down",
+          "date": "2026-08-16"
+        },
+        {
+          "kind": "market",
+          "text": "Hacker News on the shutdown: closing the service will make everyone turn away from similar solutions if they are provided by a startup.",
+          "source": "Hacker News: Anthropic acquires Stainless",
+          "url": "https://news.ycombinator.com/item?id=48182281",
+          "date": "2026-05-18"
+        },
+        {
+          "kind": "competitor",
+          "text": "Doctorine already maps Fern, Stainless, Speakeasy and ReadMe configuration into mapped, degraded and unsupported buckets.",
+          "source": "Doctorine migrations",
+          "url": "https://doctorine.xyz/solutions/migrations/",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Stainless had about $1M ARR on hundreds of customers in December 2024.",
+          "source": "SiliconANGLE: Stainless gets $25M in funding",
+          "url": "https://siliconangle.com/2024/12/10/stainless-software-gets-25m-funding-bring-ai-generated-sdks-developers/",
+          "date": "2024-12-10"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "compare",
+          "title": "Where a Stainless customer can go now",
+          "columns": [
+            "Doctorine",
+            "Fern (Postman)",
+            "Scalar",
+            "Speakeasy"
+          ],
+          "rows": [
+            {
+              "label": "Reads stainless.yml or matches its types",
+              "values": [
+                "yes",
+                "yes",
+                "yes",
+                "partial"
+              ]
+            },
+            {
+              "label": "Machine-readable receipt with output hashes per release",
+              "values": [
+                "yes",
+                "no",
+                "no",
+                "no"
+              ]
+            },
+            {
+              "label": "Independent of a platform or lab",
+              "values": [
+                "yes",
+                "no",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "Published pricing for SDKs",
+              "values": [
+                "no",
+                "partial",
+                "yes",
+                "no"
+              ]
+            },
+            {
+              "label": "Installed base",
+              "values": [
+                "none",
+                "200+ customers",
+                "16k-star open source",
+                "Enterprise"
+              ]
+            }
+          ]
         }
       ],
       "notes": []

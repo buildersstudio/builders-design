@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Hook Analyzer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0A0A;--paper:#FFFFFF;--beige:#F8F7F3;--beige2:#F1EFE8;--line:#E7E4DC;--line2:#D8D4CA;
+  --muted:#6B6B6B;--grey:#9CA3AF;--graphite:#2C2C2C;
+  --good:#2F7D4F;--good-soft:#E6F1EA;--warn:#B4540F;--warn-soft:#F7ECE1;
+  --r-l:22px;--r-m:16px;--r-s:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Stack Sans Headline",system-ui,sans-serif;font-weight:400;color:var(--ink);background:var(--paper);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.cap{display:flex;align-items:center;gap:14px;padding:9px 24px;background:var(--ink);color:#EDEBE6;font-size:12.5px;position:relative;z-index:30}
+.cap b{font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:10.5px;color:#fff;background:#2C2C2C;border-radius:20px;padding:3px 10px}
+.cap .r{margin-left:auto;opacity:.6}
+
+/* nav */
+.nav{display:flex;align-items:center;gap:28px;padding:18px 32px;position:relative;z-index:5}
+.logo{display:flex;align-items:center;color:var(--ink);text-decoration:none}
+.logo svg{height:26px;width:auto}
+.links{display:flex;gap:6px}
+.links a{text-decoration:none;font-size:14px;color:var(--muted);padding:7px 12px;border-radius:20px}
+.links a.on{color:var(--ink);background:var(--beige2)}
+.nav .acts{margin-left:auto;display:flex;gap:8px}
+.btn{border:1px solid var(--line2);background:var(--paper);border-radius:10px;padding:9px 16px;font-weight:500;font-size:14px;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.pill{border-radius:40px}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.btn:disabled{opacity:.45;cursor:default}
+
+/* hero */
+.hero{position:relative;padding:38px 32px 120px;text-align:center;overflow:hidden}
+.hero .bg{position:absolute;inset:0;background:url("/ventures/trigger/gallery/backgrounds/art-06-dancer-orange-bloom.jpg") center 40%/cover;filter:saturate(1.05)}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.38),rgba(10,10,10,.18) 55%,rgba(255,255,255,0) 100%)}
+.hero > *{position:relative}
+.eyebrow{display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px);padding:6px 12px;border-radius:30px}
+h1{font-size:60px;line-height:1.02;letter-spacing:-.035em;font-weight:500;color:#fff;margin:22px auto 14px;max-width:880px}
+.hero p.sub{color:rgba(255,255,255,.88);font-size:17px;max-width:640px;margin:0 auto 34px}
+.ask{max-width:820px;margin:0 auto;background:var(--beige);border-radius:var(--r-m);box-shadow:0 30px 60px -30px rgba(0,0,0,.45);text-align:left;padding:18px 18px 14px}
+.ask textarea{width:100%;border:0;background:transparent;resize:none;font-size:20px;line-height:1.35;letter-spacing:-.01em;min-height:62px;outline:none;padding:4px 6px}
+.ask textarea::placeholder{color:var(--grey)}
+.ask .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.chip{border:1px solid var(--line2);background:var(--paper);border-radius:30px;padding:6px 13px;font-size:13px;color:var(--graphite)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.ask .left{margin-right:auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.ask .left span{font-size:12px;color:var(--muted);margin-right:2px}
+.go{width:44px;height:44px;border-radius:50%;border:0;background:var(--ink);color:#fff;display:grid;place-items:center;flex-shrink:0}
+.go svg{width:18px;height:18px}
+.left-count{font-size:12.5px;color:var(--muted)}
+.examples{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.examples button{border:0;background:rgba(255,255,255,.78);backdrop-filter:blur(6px);border-radius:30px;padding:8px 14px;font-size:13.5px;color:var(--ink)}
+.examples button:hover{background:#fff}
+
+/* result */
+.wrap{max-width:1180px;margin:-70px auto 0;padding:0 32px;position:relative;z-index:3}
+.result{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-l);padding:26px}
+.card.beige{background:var(--beige);border-color:transparent}
+.lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.hooktxt{font-size:25px;line-height:1.25;letter-spacing:-.02em;font-weight:500;margin:10px 0 20px}
+.meters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:22px}
+.meter{background:var(--beige);border-radius:var(--r-m);padding:14px 16px}
+.meter .n{font-size:34px;font-weight:500;letter-spacing:-.03em;line-height:1;margin:6px 0 10px}
+.meter .bar{height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.meter .bar i{display:block;height:100%;background:var(--ink);border-radius:6px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.meter small{display:block;color:var(--muted);font-size:12.5px;margin-top:8px}
+.same{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);background:var(--good-soft);color:#24553A;border-radius:var(--r-s);padding:10px 12px;margin-bottom:22px}
+.same svg{flex-shrink:0;margin-top:2px}
+.reads{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.reads h3{font-size:15px;font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.reads h3 i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.reads ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.reads li{font-size:14px;color:var(--graphite);line-height:1.45}
+.rew{margin-top:24px;border-top:1px solid var(--line);padding-top:20px}
+.rew-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.rw{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:var(--r-s);padding:12px 14px;background:var(--paper);text-align:left;width:100%}
+.rw:hover{border-color:var(--line2);background:var(--beige)}
+.rw b{font-weight:500;font-size:14.5px;letter-spacing:-.005em}
+.rw small{display:block;color:var(--muted);font-size:12.5px;font-weight:400;margin-top:2px}
+.delta{font-size:13px;font-weight:500;color:var(--good);background:var(--good-soft);padding:3px 9px;border-radius:20px;white-space:nowrap}
+.delta.neg{color:var(--warn);background:var(--warn-soft)}
+.use{font-size:12.5px;color:var(--muted)}
+
+.side{display:flex;flex-direction:column;gap:22px}
+.share{position:relative;border-radius:var(--r-l);overflow:hidden;min-height:330px;color:#fff;padding:24px;display:flex;flex-direction:column}
+.share .sbg{position:absolute;inset:0;background:url("/ventures/trigger/gallery/backgrounds/art-09-profile-silhouette-magenta.jpg") center/cover}
+.share .sbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.55))}
+.share > *{position:relative}
+.share .top{display:flex;align-items:center;justify-content:space-between}
+.share .top svg{height:18px;width:auto;color:#fff}
+.share .top span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.share q{display:block;font-size:24px;line-height:1.2;letter-spacing:-.02em;font-weight:500;margin-top:auto;quotes:"\201C" "\201D"}
+.share .sc{display:flex;gap:16px;margin-top:16px;font-size:13px}
+.share .sc b{display:block;font-size:22px;font-weight:500;letter-spacing:-.02em}
+.share .foot{margin-top:14px;font-size:12px;opacity:.8}
+.share-acts{display:flex;gap:8px;margin-top:12px}
+.lock h3{font-size:19px;font-weight:500;letter-spacing:-.015em;margin:8px 0 6px}
+.lock p{font-size:14px;color:var(--muted)}
+.blur{margin:16px 0;display:flex;flex-direction:column;gap:8px;position:relative}
+.blur .it{display:flex;gap:12px;align-items:center;background:var(--paper);border-radius:var(--r-s);padding:10px;filter:blur(3.5px);opacity:.8;user-select:none}
+.blur .it i{width:40px;height:40px;border-radius:9px;background-size:cover;flex-shrink:0}
+.blur .it b{font-weight:500;font-size:13.5px}
+.blur .it small{display:block;color:var(--muted);font-size:12px}
+.blur .over{position:absolute;inset:0;display:grid;place-items:center}
+.blur .over span{background:var(--ink);color:#fff;border-radius:30px;padding:7px 14px;font-size:13px}
+.fine{font-size:12.5px;color:var(--muted);margin-top:12px}
+.fine a{cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+
+/* how */
+.how{max-width:1180px;margin:70px auto 0;padding:0 32px}
+.how h2{font-size:36px;letter-spacing:-.03em;font-weight:500;line-height:1.1;max-width:640px}
+.how .intro{color:var(--muted);max-width:620px;margin-top:10px}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.three .card h3{font-size:18px;font-weight:500;letter-spacing:-.01em;margin:10px 0 6px}
+.three .card p{font-size:14px;color:var(--muted)}
+.three .art{height:140px;border-radius:var(--r-m);background-size:cover;background-position:center}
+footer{max-width:1180px;margin:70px auto 0;padding:26px 32px 40px;border-top:1px solid var(--line);display:flex;gap:18px;color:var(--muted);font-size:13px;flex-wrap:wrap}
+footer span:last-child{margin-left:auto}
+
+/* modal */
+.scrim{position:fixed;inset:0;background:rgba(10,10,10,.45);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+.scrim.on{display:flex}
+.modal{background:var(--paper);border-radius:var(--r-l);max-width:980px;width:100%;max-height:92vh;overflow:auto;padding:28px}
+.modal.sm{max-width:520px}
+.mh{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px}
+.mh h2{font-size:26px;font-weight:500;letter-spacing:-.025em;line-height:1.15}
+.mh p{color:var(--muted);font-size:14px;margin-top:4px}
+.x{margin-left:auto;border:0;background:var(--beige2);width:34px;height:34px;border-radius:50%;flex-shrink:0;font-size:18px;line-height:1}
+.toggle{display:inline-flex;background:var(--beige2);border-radius:30px;padding:3px;margin-bottom:18px}
+.toggle button{border:0;background:transparent;border-radius:30px;padding:6px 14px;font-size:13px;color:var(--muted)}
+.toggle button.on{background:var(--paper);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.plan{border:1px solid var(--line);border-radius:var(--r-m);padding:18px;display:flex;flex-direction:column;gap:8px}
+.plan.hi{background:var(--beige);border-color:transparent}
+.plan .who{font-size:12px;color:var(--muted)}
+.plan h3{font-size:17px;font-weight:500}
+.plan .p{font-size:30px;font-weight:500;letter-spacing:-.03em;line-height:1}
+.plan .p small{font-size:13px;font-weight:400;color:var(--muted);letter-spacing:0}
+.plan ul{list-style:none;font-size:13px;color:var(--graphite);display:flex;flex-direction:column;gap:6px;margin:6px 0 10px}
+.plan ul li::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ink);margin:0 8px 2px 0}
+.plan .btn{margin-top:auto;justify-content:center}
+.guar{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:13px;color:var(--muted)}
+.guar span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--good);margin-right:7px;vertical-align:1px}
+.connect-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin:6px 0 18px}
+.connect-list li{display:flex;gap:10px;font-size:14px}
+.connect-list li b{font-weight:500}
+.connect-list li i{width:22px;height:22px;border-radius:50%;background:var(--beige2);display:grid;place-items:center;font-style:normal;font-size:12px;flex-shrink:0}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(16px);opacity:0;transition:.25s;background:var(--ink);color:#fff;padding:11px 16px;border-radius:12px;font-size:13.5px;z-index:60;max-width:92vw;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.empty{display:none}
+.out{display:none}
+.out.on{display:block}
+.limit{display:none;text-align:center;padding:30px}
+.limit.on{display:block}
+
+@media (max-width:1100px){
+  .result{grid-template-columns:minmax(0,1fr)}
+  .plans{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  .cap{flex-wrap:wrap;gap:4px 10px;padding:8px 16px}.cap .r{display:none}
+  .nav{padding:14px 16px;gap:12px}.links{display:none}
+  .nav .acts .btn:first-child{display:none}
+  .hero{padding:26px 16px 96px}
+  h1{font-size:38px}
+  .hero p.sub{font-size:15.5px;margin-bottom:24px}
+  .ask{padding:14px}
+  .ask textarea{font-size:17px}
+  .ask .left{width:100%}
+  .wrap{padding:0 16px;margin-top:-60px}
+  .card{padding:18px}
+  .hooktxt{font-size:20px}
+  .meters{grid-template-columns:minmax(0,1fr);gap:8px}
+  .meter{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center}
+  .meter .n{font-size:28px;margin:0;grid-row:span 2}
+  .meter small{margin-top:0;grid-column:2}
+  .reads{grid-template-columns:minmax(0,1fr)}
+  .rw{grid-template-columns:1fr auto}
+  .rw .use{display:none}
+  .how{padding:0 16px;margin-top:50px}
+  .how h2{font-size:28px}
+  .three{grid-template-columns:minmax(0,1fr)}
+  .plans{grid-template-columns:minmax(0,1fr)}
+  .modal{padding:20px}
+  footer{padding:22px 16px 34px}
+  footer span:last-child{margin-left:0}
+}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype</b><span>The free public Hook Analyzer and its upgrade path, with sample data. Scores here come from a small demo rule set, not from Trigger's model.</span><span class="r">Trigger product vision</span></div>
+
+<header class="nav">
+  <a class="logo" href="#" aria-label="Trigger"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="8.36 34.85 767.96 196.69" fill="none" role="img" aria-label="Trigger">
+<path d="M196.192 45.032H224.086V187.553H196.192V45.032ZM151.807 45.032H268.471V69.2606H151.807V45.032ZM260.055 73.5362H287.337V187.553H260.055V73.5362ZM287.337 130.748L284.283 110.795C284.283 107.266 284.622 103.194 285.301 98.5792C286.116 93.9642 287.812 89.5529 290.391 85.3451C292.97 81.0016 296.906 77.4047 302.2 74.5542C307.494 71.7038 314.688 70.2786 323.782 70.2786V97.154C315.773 97.154 309.055 98.1041 303.625 100.004C298.196 101.905 294.124 105.23 291.409 109.981C288.694 114.732 287.337 121.654 287.337 130.748ZM328.644 73.5362H355.927V187.553H328.644V73.5362ZM327.626 34.852H357.149V64.5778H327.626V34.852ZM412.784 186.739C402.061 186.739 392.831 184.363 385.094 179.613C377.493 174.862 371.657 168.143 367.585 159.456C363.513 150.633 361.477 140.385 361.477 128.712C361.477 116.903 363.513 106.655 367.585 97.9684C371.657 89.1457 377.493 82.359 385.094 77.6083C392.831 72.7218 402.061 70.2786 412.784 70.2786C425.95 70.2786 435.859 74.0113 442.51 81.4767C449.297 88.8063 453.844 99.4615 456.151 113.442L455.744 144.389C454.387 152.941 452.147 160.406 449.025 166.786C445.903 173.165 441.424 178.119 435.588 181.649C429.751 185.042 422.15 186.739 412.784 186.739ZM421.539 231.531C409.459 231.531 399.618 229.631 392.017 225.83C384.551 222.029 378.851 217.075 374.914 210.967C370.978 204.995 368.467 198.819 367.381 192.439H395.478C396.971 198.005 400.025 201.805 404.64 203.841C409.391 205.877 415.024 206.895 421.539 206.895C426.018 206.895 430.09 206.081 433.755 204.452C437.556 202.823 440.61 200.176 442.917 196.511C445.225 192.847 446.378 187.824 446.378 181.445H473.661C473.661 192.168 471.353 201.262 466.739 208.728C462.124 216.193 455.88 221.826 448.007 225.626C440.27 229.563 431.448 231.531 421.539 231.531ZM417.263 162.103C427.172 162.103 434.502 159.049 439.252 152.941C444.003 146.833 446.378 138.757 446.378 128.712C446.378 118.532 444.003 110.388 439.252 104.28C434.502 98.0363 427.172 94.9144 417.263 94.9144C408.169 94.9144 401.247 97.9684 396.496 104.076C391.745 110.184 389.37 118.396 389.37 128.712C389.37 138.892 391.745 147.036 396.496 153.144C401.247 159.117 408.169 162.103 417.263 162.103ZM446.378 181.445V73.5362H473.661V181.445H446.378ZM531.048 186.739C520.325 186.739 511.095 184.363 503.358 179.613C495.757 174.862 489.92 168.143 485.848 159.456C481.776 150.633 479.74 140.385 479.74 128.712C479.74 116.903 481.776 106.655 485.848 97.9684C489.92 89.1457 495.757 82.359 503.358 77.6083C511.095 72.7218 520.325 70.2786 531.048 70.2786C544.214 70.2786 554.123 74.0113 560.774 81.4767C567.56 88.8063 572.108 99.4615 574.415 113.442L574.008 144.389C572.65 152.941 570.411 160.406 567.289 166.786C564.167 173.165 559.688 178.119 553.851 181.649C548.015 185.042 540.414 186.739 531.048 186.739ZM539.803 231.531C527.722 231.531 517.882 229.631 510.281 225.83C502.815 222.029 497.114 217.075 493.178 210.967C489.242 204.995 486.731 198.819 485.645 192.439H513.742C515.235 198.005 518.289 201.805 522.904 203.841C527.655 205.877 533.288 206.895 539.803 206.895C544.282 206.895 548.354 206.081 552.019 204.452C555.819 202.823 558.873 200.176 561.181 196.511C563.488 192.847 564.642 187.824 564.642 181.445H591.925C591.925 192.168 589.617 201.262 585.002 208.728C580.387 216.193 574.144 221.826 566.271 225.626C558.534 229.563 549.711 231.531 539.803 231.531ZM535.527 162.103C545.436 162.103 552.765 159.049 557.516 152.941C562.267 146.833 564.642 138.757 564.642 128.712C564.642 118.532 562.267 110.388 557.516 104.28C552.765 98.0363 545.436 94.9144 535.527 94.9144C526.433 94.9144 519.511 97.9684 514.76 104.076C510.009 110.184 507.634 118.396 507.634 128.712C507.634 138.892 510.009 147.036 514.76 153.144C519.511 159.117 526.433 162.103 535.527 162.103ZM564.642 181.445V73.5362H591.925V181.445H564.642ZM654.842 190.811C643.033 190.811 632.785 188.3 624.098 183.277C615.411 178.119 608.625 170.993 603.738 161.899C598.988 152.805 596.612 142.421 596.612 130.748C596.612 118.939 598.988 108.488 603.738 99.3936C608.625 90.2994 615.411 83.1734 624.098 78.0155C632.785 72.8576 643.033 70.2786 654.842 70.2786C662.579 70.2786 669.841 71.8396 676.628 74.9614C683.55 78.0833 689.522 82.6304 694.545 88.6027C699.567 94.4393 703.232 101.701 705.539 110.388C707.846 118.939 708.254 128.712 706.761 139.707H612.086V117.311H688.844L679.478 123.011C680.157 118.532 679.614 114.121 677.849 109.777C676.22 105.434 673.506 101.905 669.705 99.19C665.905 96.3396 660.95 94.9144 654.842 94.9144C647.648 94.9144 641.812 96.4753 637.333 99.5972C632.853 102.719 629.596 107.063 627.56 112.628C625.524 118.057 624.506 124.097 624.506 130.748C624.506 137.263 625.524 143.236 627.56 148.665C629.596 154.094 632.853 158.37 637.333 161.492C641.812 164.614 647.648 166.175 654.842 166.175C660.95 166.175 665.972 164.75 669.909 161.899C673.845 159.049 676.56 155.52 678.053 151.312H706.964C705.335 159.185 702.146 166.107 697.395 172.079C692.644 177.916 686.672 182.531 679.478 185.924C672.284 189.182 664.072 190.811 654.842 190.811ZM712.59 73.5362H739.873V187.553H712.59V73.5362ZM739.873 130.748L736.819 110.795C736.819 107.266 737.158 103.194 737.837 98.5792C738.651 93.9642 740.348 89.5529 742.927 85.3451C745.506 81.0016 749.442 77.4047 754.736 74.5542C760.029 71.7038 767.223 70.2786 776.318 70.2786V97.154C768.309 97.154 761.59 98.1041 756.161 100.004C750.732 101.905 746.66 105.23 743.945 109.981C741.23 114.732 739.873 121.654 739.873 130.748Z" fill="currentColor"/><path d="M117.47 186.833L75.4512 123.316L86.8839 114.358L98.8005 105.39L148.925 162.925L117.47 186.833ZM59.8704 188.05L27.4335 165.492L75.0831 105.891L86.8839 114.358L99.1687 122.815L59.8704 188.05ZM82.3401 128.497L8.36883 111.175L19.6821 73.6488L90.9435 100.229L86.8839 114.358L82.3401 128.497ZM72.363 114.665L65.9171 38.7747L105.123 37.9463L101.889 114.041L86.8839 114.358L72.363 114.665ZM92.0207 128.293L86.8839 114.358L82.231 100.413L152.306 70.8466L165.194 107.861L92.0207 128.293Z" fill="currentColor"/>
+</svg></a>
+  <nav class="links">
+    <a class="on" href="#">Hook Analyzer</a>
+    <a href="#">Script Analyzer</a>
+    <a href="#">Profile Analyzer</a>
+    <a href="#" data-open="plans">Pricing</a>
+  </nav>
+  <div class="acts"><button class="btn">Log in</button><button class="btn dark" data-open="connect">Sign up</button></div>
+</header>
+
+<section class="hero">
+  <div class="bg" aria-hidden="true"></div>
+  <span class="eyebrow">Free · no account needed</span>
+  <h1>Will this hook stop the scroll?</h1>
+  <p class="sub">Paste the first line of a Reel, carousel or caption. Trigger reads it the way a stranger would in the first second, and tells you why it holds or slips.</p>
+  <div class="ask">
+    <textarea id="hook" rows="2" placeholder="Paste your hook, for example: Why your espresso tastes bitter (it's not the machine)"></textarea>
+    <div class="row">
+      <div class="left" id="fmt"><span>Format</span>
+        <button class="chip on" data-f="Reel">Reel</button><button class="chip" data-f="Carousel">Carousel</button><button class="chip" data-f="Photo">Photo caption</button>
+      </div>
+      <span class="left-count" id="left">3 of 3 free checks left today</span>
+      <button class="go" id="go" aria-label="Analyse hook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+    </div>
+  </div>
+  <div class="examples" id="ex">
+    <button>Why your espresso tastes bitter (it's not the machine)</button>
+    <button>We roasted 40 kilos of coffee to find the one you'll actually like</button>
+    <button>Our new autumn blend is here</button>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="result">
+    <section class="card" id="readCard">
+      <div class="out on" id="out">
+        <span class="lbl" id="fmtLbl">Your hook · Reel</span>
+        <p class="hooktxt" id="hookOut"></p>
+        <div class="meters">
+          <div class="meter"><span class="lbl">Relatability</span><div class="n" id="mR">0</div><div class="bar"><i id="bR" style="width:0"></i></div><small>Does a stranger see themselves in it</small></div>
+          <div class="meter"><span class="lbl">Tension</span><div class="n" id="mT">0</div><div class="bar"><i id="bT" style="width:0"></i></div><small>Is there a gap they need closed</small></div>
+          <div class="meter"><span class="lbl">Reward</span><div class="n" id="mW">0</div><div class="bar"><i id="bW" style="width:0"></i></div><small>Is it clear what they get for staying</small></div>
+        </div>
+        <div class="same"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Same hook, same score. This read uses the words only and no account data, so it is a starting point; connect your account to see how it compares with the hooks that already worked for your audience.</span></div>
+        <div class="reads">
+          <div><h3><i style="background:var(--good)"></i>What holds attention</h3><ul id="pos"></ul></div>
+          <div><h3><i style="background:var(--warn)"></i>What lets people scroll</h3><ul id="neg"></ul></div>
+        </div>
+        <div class="rew">
+          <span class="lbl">Three rewrites, read the same way</span>
+          <div class="rew-list" id="rew"></div>
+        </div>
+      </div>
+      <div class="limit" id="limit">
+        <span class="lbl">Free checks used for today</span>
+        <p class="hooktxt" style="margin:10px auto 8px;max-width:520px">You have used today's three free checks.</p>
+        <p style="color:var(--muted);max-width:480px;margin:0 auto 18px">Connect your Instagram for free to keep checking today and see your own winners, or come back tomorrow.</p>
+        <button class="btn dark pill" data-open="connect">Connect Instagram, free</button>
+      </div>
+    </section>
+
+    <aside class="side">
+      <div>
+        <div class="share" id="shareCard">
+          <div class="sbg" aria-hidden="true"></div>
+          <div class="top"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="8.36 34.85 767.96 196.69" fill="none" role="img" aria-label="Trigger">
+<path d="M196.192 45.032H224.086V187.553H196.192V45.032ZM151.807 45.032H268.471V69.2606H151.807V45.032ZM260.055 73.5362H287.337V187.553H260.055V73.5362ZM287.337 130.748L284.283 110.795C284.283 107.266 284.622 103.194 285.301 98.5792C286.116 93.9642 287.812 89.5529 290.391 85.3451C292.97 81.0016 296.906 77.4047 302.2 74.5542C307.494 71.7038 314.688 70.2786 323.782 70.2786V97.154C315.773 97.154 309.055 98.1041 303.625 100.004C298.196 101.905 294.124 105.23 291.409 109.981C288.694 114.732 287.337 121.654 287.337 130.748ZM328.644 73.5362H355.927V187.553H328.644V73.5362ZM327.626 34.852H357.149V64.5778H327.626V34.852ZM412.784 186.739C402.061 186.739 392.831 184.363 385.094 179.613C377.493 174.862 371.657 168.143 367.585 159.456C363.513 150.633 361.477 140.385 361.477 128.712C361.477 116.903 363.513 106.655 367.585 97.9684C371.657 89.1457 377.493 82.359 385.094 77.6083C392.831 72.7218 402.061 70.2786 412.784 70.2786C425.95 70.2786 435.859 74.0113 442.51 81.4767C449.297 88.8063 453.844 99.4615 456.151 113.442L455.744 144.389C454.387 152.941 452.147 160.406 449.025 166.786C445.903 173.165 441.424 178.119 435.588 181.649C429.751 185.042 422.15 186.739 412.784 186.739ZM421.539 231.531C409.459 231.531 399.618 229.631 392.017 225.83C384.551 222.029 378.851 217.075 374.914 210.967C370.978 204.995 368.467 198.819 367.381 192.439H395.478C396.971 198.005 400.025 201.805 404.64 203.841C409.391 205.877 415.024 206.895 421.539 206.895C426.018 206.895 430.09 206.081 433.755 204.452C437.556 202.823 440.61 200.176 442.917 196.511C445.225 192.847 446.378 187.824 446.378 181.445H473.661C473.661 192.168 471.353 201.262 466.739 208.728C462.124 216.193 455.88 221.826 448.007 225.626C440.27 229.563 431.448 231.531 421.539 231.531ZM417.263 162.103C427.172 162.103 434.502 159.049 439.252 152.941C444.003 146.833 446.378 138.757 446.378 128.712C446.378 118.532 444.003 110.388 439.252 104.28C434.502 98.0363 427.172 94.9144 417.263 94.9144C408.169 94.9144 401.247 97.9684 396.496 104.076C391.745 110.184 389.37 118.396 389.37 128.712C389.37 138.892 391.745 147.036 396.496 153.144C401.247 159.117 408.169 162.103 417.263 162.103ZM446.378 181.445V73.5362H473.661V181.445H446.378ZM531.048 186.739C520.325 186.739 511.095 184.363 503.358 179.613C495.757 174.862 489.92 168.143 485.848 159.456C481.776 150.633 479.74 140.385 479.74 128.712C479.74 116.903 481.776 106.655 485.848 97.9684C489.92 89.1457 495.757 82.359 503.358 77.6083C511.095 72.7218 520.325 70.2786 531.048 70.2786C544.214 70.2786 554.123 74.0113 560.774 81.4767C567.56 88.8063 572.108 99.4615 574.415 113.442L574.008 144.389C572.65 152.941 570.411 160.406 567.289 166.786C564.167 173.165 559.688 178.119 553.851 181.649C548.015 185.042 540.414 186.739 531.048 186.739ZM539.803 231.531C527.722 231.531 517.882 229.631 510.281 225.83C502.815 222.029 497.114 217.075 493.178 210.967C489.242 204.995 486.731 198.819 485.645 192.439H513.742C515.235 198.005 518.289 201.805 522.904 203.841C527.655 205.877 533.288 206.895 539.803 206.895C544.282 206.895 548.354 206.081 552.019 204.452C555.819 202.823 558.873 200.176 561.181 196.511C563.488 192.847 564.642 187.824 564.642 181.445H591.925C591.925 192.168 589.617 201.262 585.002 208.728C580.387 216.193 574.144 221.826 566.271 225.626C558.534 229.563 549.711 231.531 539.803 231.531ZM535.527 162.103C545.436 162.103 552.765 159.049 557.516 152.941C562.267 146.833 564.642 138.757 564.642 128.712C564.642 118.532 562.267 110.388 557.516 104.28C552.765 98.0363 545.436 94.9144 535.527 94.9144C526.433 94.9144 519.511 97.9684 514.76 104.076C510.009 110.184 507.634 118.396 507.634 128.712C507.634 138.892 510.009 147.036 514.76 153.144C519.511 159.117 526.433 162.103 535.527 162.103ZM564.642 181.445V73.5362H591.925V181.445H564.642ZM654.842 190.811C643.033 190.811 632.785 188.3 624.098 183.277C615.411 178.119 608.625 170.993 603.738 161.899C598.988 152.805 596.612 142.421 596.612 130.748C596.612 118.939 598.988 108.488 603.738 99.3936C608.625 90.2994 615.411 83.1734 624.098 78.0155C632.785 72.8576 643.033 70.2786 654.842 70.2786C662.579 70.2786 669.841 71.8396 676.628 74.9614C683.55 78.0833 689.522 82.6304 694.545 88.6027C699.567 94.4393 703.232 101.701 705.539 110.388C707.846 118.939 708.254 128.712 706.761 139.707H612.086V117.311H688.844L679.478 123.011C680.157 118.532 679.614 114.121 677.849 109.777C676.22 105.434 673.506 101.905 669.705 99.19C665.905 96.3396 660.95 94.9144 654.842 94.9144C647.648 94.9144 641.812 96.4753 637.333 99.5972C632.853 102.719 629.596 107.063 627.56 112.628C625.524 118.057 624.506 124.097 624.506 130.748C624.506 137.263 625.524 143.236 627.56 148.665C629.596 154.094 632.853 158.37 637.333 161.492C641.812 164.614 647.648 166.175 654.842 166.175C660.95 166.175 665.972 164.75 669.909 161.899C673.845 159.049 676.56 155.52 678.053 151.312H706.964C705.335 159.185 702.146 166.107 697.395 172.079C692.644 177.916 686.672 182.531 679.478 185.924C672.284 189.182 664.072 190.811 654.842 190.811ZM712.59 73.5362H739.873V187.553H712.59V73.5362ZM739.873 130.748L736.819 110.795C736.819 107.266 737.158 103.194 737.837 98.5792C738.651 93.9642 740.348 89.5529 742.927 85.3451C745.506 81.0016 749.442 77.4047 754.736 74.5542C760.029 71.7038 767.223 70.2786 776.318 70.2786V97.154C768.309 97.154 761.59 98.1041 756.161 100.004C750.732 101.905 746.66 105.23 743.945 109.981C741.23 114.732 739.873 121.654 739.873 130.748Z" fill="currentColor"/><path d="M117.47 186.833L75.4512 123.316L86.8839 114.358L98.8005 105.39L148.925 162.925L117.47 186.833ZM59.8704 188.05L27.4335 165.492L75.0831 105.891L86.8839 114.358L99.1687 122.815L59.8704 188.05ZM82.3401 128.497L8.36883 111.175L19.6821 73.6488L90.9435 100.229L86.8839 114.358L82.3401 128.497ZM72.363 114.665L65.9171 38.7747L105.123 37.9463L101.889 114.041L86.8839 114.358L72.363 114.665ZM92.0207 128.293L86.8839 114.358L82.231 100.413L152.306 70.8466L165.194 107.861L92.0207 128.293Z" fill="currentColor"/>
+</svg><span>Hook read</span></div>
+          <q id="shareHook"></q>
+          <div class="sc"><div><b id="sR">0</b>Relatability</div><div><b id="sT">0</b>Tension</div><div><b id="sW">0</b>Reward</div></div>
+          <div class="foot">Read with Trigger · trigger.online/hook-analysis</div>
+        </div>
+        <div class="share-acts">
+          <button class="btn pill" id="copy"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy link to this read</button>
+          <button class="btn pill ghost" id="dl">Save image</button>
+        </div>
+      </div>
+
+      <div class="card beige lock">
+        <span class="lbl">The step up</span>
+        <h3>Check it against your own account</h3>
+        <p>With your account connected, Trigger compares this hook with the posts that beat your own median for reach, saves and shares, and with the accounts you measure yourself against. That is the part a generic score cannot do.</p>
+        <div class="blur" aria-hidden="true">
+          <div class="it"><i style="background-image:url('/ventures/trigger/gallery/backgrounds/art-41-coffee-cup-still-life.jpg')"></i><div><b>Your best hook in 90 days</b><small>3.1x your median saves · opens on a question</small></div></div>
+          <div class="it"><i style="background-image:url('/ventures/trigger/gallery/backgrounds/art-34-oranges-checkerboard.jpg')"></i><div><b>Closest to this one</b><small>1.8x your median reach · same tension, weaker reward</small></div></div>
+          <div class="it"><i style="background-image:url('/ventures/trigger/gallery/backgrounds/art-13-daisies-blue-red.jpg')"></i><div><b>Peer outlier this month</b><small>4 of 12 peers used this pattern</small></div></div>
+          <div class="over"><span>Connect to unlock</span></div>
+        </div>
+        <button class="btn dark pill" data-open="connect" style="width:100%;justify-content:center">Connect Instagram, free</button>
+        <p class="fine">Free keeps three hook checks a day and three explained posts a month. Solo is €39 a month for unlimited checks and the monthly why-report. <a data-open="plans">See all plans</a></p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<section class="how">
+  <h2>A read, not a random number.</h2>
+  <p class="intro">Every hook is read on three things people have responded to for a century of behavioural research. The science is how it works; the answer is in plain words.</p>
+  <div class="three">
+    <div class="card"><div class="art" style="background-image:url('/ventures/trigger/gallery/backgrounds/art-22-friends-sunglasses.jpg')"></div><h3>Relatability</h3><p>Whether the viewer recognises a moment, a problem or a person like them in the first line.</p></div>
+    <div class="card"><div class="art" style="background-image:url('/ventures/trigger/gallery/backgrounds/art-05-comet-spray-horizon.jpg')"></div><h3>Tension</h3><p>Whether the line opens a gap (a question, a contradiction, a mistake) that only the rest of the post closes.</p></div>
+    <div class="card"><div class="art" style="background-image:url('/ventures/trigger/gallery/backgrounds/art-12-sun-over-dunes.jpg')"></div><h3>Reward</h3><p>Whether it is clear, and specific, what the viewer gets for staying: a result, a number, a method.</p></div>
+  </div>
+</section>
+
+<footer><span>Trigger</span><span>Hook Analyzer</span><span>Script Analyzer</span><span>Profile Analyzer</span><span>Pricing</span><span>Cookies: only what the tool needs</span></footer>
+
+<!-- plans -->
+<div class="scrim" id="plans"><div class="modal">
+  <div class="mh"><div><h2>One price for each way of working</h2><p>Pay for what you manage. Every plan reads organic performance only, separate from paid.</p></div><button class="x" data-close aria-label="Close">×</button></div>
+  <div class="toggle" id="bill"><button class="on" data-b="m">Monthly</button><button data-b="y">Annual, two months free</button></div>
+  <div class="plans">
+    <div class="plan"><span class="who">Try it</span><h3>Free</h3><div class="p">€0</div><ul><li>3 hook checks a day</li><li>1 connected account</li><li>3 explained posts a month</li></ul><button class="btn pill" data-open="connect">Start free</button></div>
+    <div class="plan"><span class="who">One account, yours or one client</span><h3>Solo</h3><div class="p" data-m="39" data-y="32.50">€39 <small>a month</small></div><ul><li>Unlimited hook and script checks</li><li>Monthly why-report</li><li>15 peer accounts</li></ul><button class="btn pill dark" data-open="connect">Choose Solo</button></div>
+    <div class="plan hi"><span class="who">Agencies and freelancers</span><h3>Agency</h3><div class="p" data-m="49" data-y="40.83">€49 <small>per account a month</small></div><ul><li>From 3 client accounts</li><li>White-label client reports</li><li>Unlimited seats</li></ul><button class="btn pill dark" data-open="connect">Choose Agency</button></div>
+    <div class="plan"><span class="who">In-house brand teams</span><h3>Brand team</h3><div class="p" data-m="290" data-y="241.67">€290 <small>a month</small></div><ul><li>Up to 3 brand accounts, 5 seats</li><li>Boss-ready monthly report</li><li>Pre-publish checks, 50 peers</li></ul><button class="btn pill" data-open="connect">Talk to us</button></div>
+  </div>
+  <div class="guar"><span>30-day money-back guarantee</span><span>Cancel in one click</span><span>A reminder before every renewal</span></div>
+</div></div>
+
+<!-- connect -->
+<div class="scrim" id="connect"><div class="modal sm">
+  <div class="mh"><div><h2>Connect a professional Instagram account</h2><p>Free. It takes about a minute, and you can disconnect at any time.</p></div><button class="x" data-close aria-label="Close">×</button></div>
+  <ul class="connect-list">
+    <li><i>1</i><div><b>Trigger reads</b> reach, saves, shares and follows on your posts, which public tools cannot see.</div></li>
+    <li><i>2</i><div><b>It never posts</b> or comments on your behalf.</div></li>
+    <li><i>3</i><div><b>Paid is kept apart:</b> boosted reach is excluded from every organic number.</div></li>
+  </ul>
+  <button class="btn dark pill" id="doConnect" style="width:100%;justify-content:center">Continue with Instagram</button>
+  <p class="fine">Business and Creator accounts only, as required by Instagram since December 2024.</p>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+let fmt = "Reel", left = 3;
+
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600)}
+
+// deterministic demo read: same text always gives the same numbers
+function h(s){let x=2166136261;for(const c of s){x^=c.charCodeAt(0);x=Math.imul(x,16777619)}return (x>>>0)}
+function feats(t){
+  const s=t.toLowerCase();
+  const words=s.split(/\s+/).filter(Boolean);
+  return {
+    words:words.length,
+    q:/\?/.test(s)||/^(why|how|what|when|who)\b/.test(s),
+    you:/\b(you|your|you're|you'll)\b/.test(s),
+    we:/\b(we|our|i|my)\b/.test(s),
+    num:/\d/.test(s),
+    contrast:/\b(not|never|stop|but|instead|wrong|mistake|nobody|no one)\b/.test(s)||/\(.*\)/.test(s),
+    concrete:/\b(kilos?|minutes?|seconds?|days?|euro|€|steps?|ways?|times?)\b/.test(s),
+    promo:/\b(new|here|launch|available|now|shop|discount|collection)\b/.test(s),
+    how:/\b(how|find|learn|get|make)\b/.test(s)
+  };
+}
+function score(t){
+  const f=feats(t),o=h(t.trim().toLowerCase());
+  const c=v=>Math.max(8,Math.min(96,Math.round(v)));
+  let R=34+(f.you?24:0)+(f.we?8:0)+(f.contrast?6:0)-(f.promo?12:0)+(o%7);
+  let T=26+(f.q?22:0)+(f.contrast?20:0)+(f.num?6:0)-(f.words>16?12:0)-(f.promo?10:0)+((o>>3)%7);
+  let W=30+(f.num?16:0)+(f.concrete?14:0)+(f.how?10:0)+(f.you?6:0)-(f.words>18?8:0)+((o>>6)%7);
+  return {R:c(R),T:c(T),W:c(W),f};
+}
+function reads(s){
+  const f=s.f,pos=[],neg=[];
+  if(f.you) pos.push("It speaks to the viewer directly, so the first line is about them rather than about the brand.");
+  if(f.q) pos.push("It opens a question the viewer wants answered, which is the gap that keeps a thumb still.");
+  if(f.contrast) pos.push("It contradicts what most people assume, which reads as new information in the first second.");
+  if(f.num||f.concrete) pos.push("A concrete detail makes the promise believable and specific.");
+  if(f.we&&!f.you) pos.push("A first-person voice feels like a real person talking, not an announcement.");
+  if(!f.you) neg.push("Nothing in it is about the viewer yet; add who it is for or the moment they will recognise.");
+  if(!f.q&&!f.contrast) neg.push("There is no gap to close: the line tells the whole story, so there is little reason to stay.");
+  if(!f.num&&!f.concrete) neg.push("The reward is vague; say what they get, in a number or a result.");
+  if(f.promo) neg.push("It reads as an announcement, and people scroll past announcements from accounts they do not know.");
+  if(f.words>16) neg.push("It is long for a first line; the idea should land in about ten words.");
+  if(!pos.length) pos.push("It is short and easy to read on a phone.");
+  if(!neg.length) neg.push("Little to fix in the words. Check that the first frame shows the same idea as the line.");
+  return {pos:pos.slice(0,3),neg:neg.slice(0,3)};
+}
+function rewrites(t){
+  const base=t.replace(/[.?!]+$/,"").trim();
+  const lower=base.charAt(0).toLowerCase()+base.slice(1);
+  const out=[];
+  out.push({t:"Why "+lower.replace(/^why\s+/i,"")+"?",why:"Turns the statement into a question the viewer wants closed"});
+  out.push({t:"You are doing this wrong: "+lower,why:"Adds a contradiction aimed at the viewer"});
+  out.push({t:base+", in 30 seconds",why:"Makes the reward concrete and short"});
+  if(/^why/i.test(base)) out[0]={t:"Nobody tells you "+lower.replace(/^why\s+/i,"why "),why:"Keeps the question and adds a secret"};
+  return out;
+}
+function avg(s){return (s.R+s.T+s.W)/3}
+function set(id,v){$(id).textContent=v}
+function render(t){
+  const s=score(t),r=reads(s);
+  set("#hookOut","\u201C"+t+"\u201D");set("#shareHook",t);
+  set("#fmtLbl","Your hook · "+fmt);
+  [["R",s.R],["T",s.T],["W",s.W]].forEach(([k,v])=>{set("#m"+k,v);set("#s"+k,v);$("#b"+k).style.width=v+"%"});
+  $("#pos").innerHTML=r.pos.map(x=>"<li>"+x+"</li>").join("");
+  $("#neg").innerHTML=r.neg.map(x=>"<li>"+x+"</li>").join("");
+  const a=avg(s);
+  $("#rew").innerHTML=rewrites(t).map(w=>{const ws=score(w.t),d=Math.round(avg(ws)-a);return `<button class="rw" data-t="${w.t.replace(/"/g,"&quot;")}"><span><b>${w.t}</b><small>${w.why}</small></span><span class="delta${d<0?" neg":""}">${d>=0?"+":""}${d} overall</span><span class="use">Read this</span></button>`}).join("");
+  $$(".rw").forEach(b=>b.onclick=()=>{$("#hook").value=b.dataset.t;run(true)});
+}
+function run(free){
+  const t=$("#hook").value.trim();
+  if(!t){toast("Paste a hook first");$("#hook").focus();return}
+  if(!free){
+    if(left<=0){$("#out").classList.remove("on");$("#limit").classList.add("on");return}
+    left--;set("#left",left+" of 3 free checks left today");
+  }
+  $("#limit").classList.remove("on");$("#out").classList.add("on");
+  render(t);
+  if(innerWidth<760) $("#readCard").scrollIntoView({behavior:"smooth",block:"start"});
+}
+$("#go").onclick=()=>run(false);
+$("#hook").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();run(false)}});
+$$("#ex button").forEach(b=>b.onclick=()=>{$("#hook").value=b.textContent;run(false)});
+$$("#fmt .chip").forEach(b=>b.onclick=()=>{$$("#fmt .chip").forEach(x=>x.classList.remove("on"));b.classList.add("on");fmt=b.dataset.f;set("#fmtLbl","Your hook · "+fmt)});
+$("#copy").onclick=()=>toast("Link copied: trigger.online/r/7kq2 (sample)");
+$("#dl").onclick=()=>toast("Image saved (sample)");
+$$("[data-open]").forEach(b=>b.addEventListener("click",e=>{e.preventDefault();$$(".scrim").forEach(s=>s.classList.remove("on"));$("#"+b.dataset.open).classList.add("on")}));
+$$("[data-close]").forEach(b=>b.onclick=()=>b.closest(".scrim").classList.remove("on"));
+$$(".scrim").forEach(s=>s.addEventListener("click",e=>{if(e.target===s)s.classList.remove("on")}));
+$("#doConnect").onclick=()=>{$("#connect").classList.remove("on");toast("Sample only: this would open Instagram's login")};
+$$("#bill button").forEach(b=>b.onclick=()=>{$$("#bill button").forEach(x=>x.classList.remove("on"));b.classList.add("on");const y=b.dataset.b==="y";$$(".plan .p[data-m]").forEach(p=>{const v=y?p.dataset.y:p.dataset.m;const unit=p.querySelector("small").textContent;p.innerHTML="€"+v+" <small>"+unit+"</small>"})});
+// first render with a sample so the page is never empty
+$("#hook").value="Why your espresso tastes bitter (it's not the machine)";render($("#hook").value);
+</script>
+</body>
+</html>
