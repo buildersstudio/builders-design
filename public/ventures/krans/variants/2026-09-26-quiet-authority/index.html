@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krans · Every decision, with the evidence behind it</title>
+<meta name="description" content="Krans keeps a living model of your company from its calls, meetings, Slack threads and documents. Every claim is cited, graded E0 to E5, and loses weight when nobody repeats it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap">
+<style>
+:root{
+  --paper:#F4F4F1; --panel:#ECECE7; --white:#FBFBF9;
+  --ink:#111315; --ink2:#4A4F54; --ink3:#878B90; --rule:#D8D9D3; --rule2:#E4E4DF;
+  --plate:#0F1113; --plate2:#16191C; --prule:rgba(244,244,241,.09); --pink2:rgba(244,244,241,.62); --pink3:rgba(244,244,241,.4);
+  --teal:#0C7563; --tealL:#5CD0B8;
+  --m:72px; --max:1296px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.num,.t{font-variant-numeric:tabular-nums}
+.wrap{max-width:calc(var(--max) + var(--m)*2);margin:0 auto;padding:0 var(--m)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px}
+.lab{font-size:11px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);font-stretch:100%}
+.lab.i{color:var(--ink)}
+.lab.tl{color:var(--teal)}
+.cap{font-size:13px;line-height:1.5;color:var(--ink3);margin-top:16px;display:flex;gap:14px}
+.cap b{color:var(--ink);font-weight:600;white-space:nowrap}
+
+/* nav */
+nav{position:sticky;top:0;z-index:30;background:rgba(244,244,241,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;align-items:center;height:64px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{width:26px;height:26px}
+.brand span{font-size:19px;font-weight:600;letter-spacing:-.03em}
+nav ul{list-style:none;display:flex;gap:28px;margin-left:56px}
+nav ul a{font-size:14px;color:var(--ink2)}
+nav ul a:hover{color:var(--ink)}
+nav .r{margin-left:auto;display:flex;gap:20px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 18px;border-radius:4px;font-size:14.5px;font-weight:500;transition:background .2s,box-shadow .2s;white-space:nowrap}
+.btn.sm{height:36px;padding:0 14px;font-size:13.5px}
+.btn.ink{background:var(--ink);color:var(--paper)}
+.btn.ink:hover{background:#000}
+.btn.line{box-shadow:inset 0 0 0 1px var(--rule);color:var(--ink)}
+.btn.line:hover{box-shadow:inset 0 0 0 1px var(--ink3)}
+.lnk{font-size:14.5px;font-weight:500;display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+.lnk svg{width:12px;height:12px}
+
+/* hero */
+.hero{padding:72px 0 120px}
+.hero .grid{align-items:stretch}
+.hl{grid-column:1/6;display:flex;flex-direction:column}
+.hl .lab{margin-bottom:32px}
+h1{font-size:62px;line-height:1.02;font-weight:500;letter-spacing:-.036em}
+.hl p{margin-top:28px;font-size:18px;color:var(--ink2);max-width:440px}
+.hl .ctas{display:flex;gap:24px;align-items:center;margin-top:36px}
+.toc{margin-top:auto;padding-top:48px}
+.toc .lab{margin-bottom:10px;display:block}
+.toc a{display:grid;grid-template-columns:36px 1fr auto;padding:10px 0;border-top:1px solid var(--rule);font-size:14px;color:var(--ink2);transition:color .2s}
+.toc a:last-child{border-bottom:1px solid var(--rule)}
+.toc a:hover{color:var(--ink)}
+.toc a span:first-child{color:var(--ink3)}
+.toc a span:last-child{color:var(--ink3);font-size:12.5px}
+.hr{grid-column:6/13}
+
+/* the plate */
+.plate{background:var(--plate);color:var(--paper);border-radius:10px;padding:28px 32px 26px;box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 30px 60px -30px rgba(17,19,21,.45)}
+.plate .top{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--prule)}
+.plate .lab{color:var(--pink3)}
+.plate .lab.on{color:var(--tealL)}
+.plate h3{font-size:28px;line-height:1.18;font-weight:500;letter-spacing:-.025em;margin:22px 0 22px;max-width:560px}
+.read{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--prule);border-bottom:1px solid var(--prule)}
+.read div{padding:14px 0 14px 16px;border-left:1px solid var(--prule)}
+.read div:first-child{padding-left:0;border-left:0}
+.read b{display:block;font-size:26px;font-weight:500;letter-spacing:-.02em;line-height:1.1;margin-top:6px}
+.read b small{font-size:13px;font-weight:400;color:var(--pink2);letter-spacing:0;margin-left:4px}
+.plot{margin-top:18px}
+.plot svg{display:block;width:100%;height:auto}
+.ctab{margin-top:10px;width:100%;border-collapse:collapse;font-size:13px}
+.ctab td{padding:9px 0;border-top:1px solid var(--prule);vertical-align:baseline}
+.ctab td.g{width:44px;color:var(--tealL);font-weight:600}
+.ctab td.s{color:var(--pink2)}
+.ctab td.w{text-align:right;color:var(--pink3);white-space:nowrap;padding-left:16px}
+.decide{margin-top:18px;display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;padding:16px 18px;border-radius:6px;background:var(--plate2);box-shadow:inset 0 0 0 1px var(--prule)}
+.decide p{font-size:15px;font-weight:500;letter-spacing:-.01em}
+.decide p span{display:block;font-size:12.5px;font-weight:400;color:var(--pink3);margin-top:2px}
+.decide .o{text-align:right}
+.decide .o b{font-size:22px;font-weight:500;letter-spacing:-.02em}
+.decide .o span{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--pink3);font-weight:500}
+
+/* sections */
+.sec{padding:128px 0;border-top:1px solid var(--rule)}
+.sh{margin-bottom:64px}
+.sh .no{grid-column:1/3;font-size:15px;color:var(--ink3);font-weight:500}
+.sh .no b{display:block;color:var(--ink);font-weight:500;font-size:11px;letter-spacing:.13em;text-transform:uppercase;margin-top:6px}
+.sh h2{grid-column:3/10;font-size:46px;line-height:1.06;font-weight:500;letter-spacing:-.032em}
+.sh p{grid-column:3/9;margin-top:22px;font-size:17.5px;color:var(--ink2)}
+.body{grid-column:3/13}
+
+/* inputs */
+.inputs{display:grid;grid-template-columns:repeat(10,1fr);column-gap:24px}
+.itab{grid-column:1/6;width:100%;border-collapse:collapse}
+.itab th{text-align:left;padding:0 0 12px;border-bottom:1px solid var(--ink)}
+.itab td{padding:16px 16px 16px 0;border-bottom:1px solid var(--rule);vertical-align:top;font-size:15px}
+.itab td:first-child{font-weight:500;width:32%}
+.itab td:last-child{color:var(--ink2);padding-right:0}
+.itab td small{display:block;color:var(--ink3);font-size:13px;margin-top:2px;font-weight:400}
+.photo{grid-column:6/11}
+.photo .im{aspect-ratio:3/2.2;overflow:hidden;border-radius:6px;background:var(--panel)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.8) contrast(1.02)}
+
+/* method */
+.rules{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--ink)}
+.rulec{padding:32px 32px 40px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:52px 1fr;gap:0 8px}
+.rulec:nth-child(2n){padding-left:32px;padding-right:0;border-left:1px solid var(--rule)}
+.rulec .n{font-size:14px;color:var(--ink3);padding-top:4px}
+.rulec h3{font-size:24px;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.rulec p{margin-top:10px;color:var(--ink2);font-size:15.5px;max-width:440px}
+.rulec .dg{grid-column:2;margin-top:24px;height:64px}
+.rulec .dg svg{height:100%;width:auto;display:block}
+
+/* scale */
+.ruler{border-top:1px solid var(--ink);padding-top:40px}
+.ruler svg{display:block;width:100%;height:auto}
+.defs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.def{border-top:1px solid var(--rule);padding-top:16px}
+.def b{font-size:22px;font-weight:500;letter-spacing:-.02em}
+.def p{color:var(--ink2);font-size:15.5px;margin-top:4px}
+
+/* ageing */
+.age{display:grid;grid-template-columns:repeat(10,1fr);column-gap:24px}
+.age .fig{grid-column:1/8;background:var(--white);border:1px solid var(--rule);border-radius:8px;padding:28px 28px 20px}
+.age .fig .hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.age .fig .hd h4{font-size:17px;font-weight:500;letter-spacing:-.01em}
+.age .fig svg{display:block;width:100%;height:auto}
+.age .notes{grid-column:8/11}
+.age .notes li{list-style:none;padding:18px 0;border-top:1px solid var(--rule);font-size:15px;color:var(--ink2)}
+.age .notes li b{display:block;color:var(--ink);font-weight:500;font-size:16px;margin-bottom:4px}
+
+/* decisions */
+.dec{display:grid;grid-template-columns:repeat(10,1fr);column-gap:24px;align-items:start}
+.doc{grid-column:1/7;background:var(--white);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.doc .dh{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--rule);background:var(--panel)}
+.doc .db{padding:28px 28px 8px}
+.doc h4{font-size:24px;font-weight:500;letter-spacing:-.02em;line-height:1.2;margin:10px 0 24px;max-width:520px}
+.blk{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--rule2)}
+.blk p{font-size:15px;color:var(--ink2)}
+.blk p b{color:var(--ink);font-weight:500}
+.optt{width:100%;border-collapse:collapse;font-size:14px}
+.optt td{padding:8px 0;border-bottom:1px solid var(--rule2)}
+.optt tr:last-child td{border-bottom:0}
+.optt td:first-child{width:28px;color:var(--ink3)}
+.optt td.r{text-align:right;font-weight:500}
+.optt tr.k td{color:var(--teal)}
+.optt tr.k td:first-child{color:var(--teal)}
+.doc .df{display:flex;gap:8px;padding:16px 28px 24px;border-top:1px solid var(--rule2);margin-top:8px;align-items:center}
+.pill{font-size:12.5px;font-weight:500;padding:6px 11px;border-radius:4px;box-shadow:inset 0 0 0 1px var(--rule);color:var(--ink)}
+.pill.k{background:var(--ink);color:var(--paper);box-shadow:none}
+.doc .df .q{margin-left:auto;font-size:13px;color:var(--teal);font-weight:500}
+.dec .side{grid-column:7/11;padding-top:8px}
+.dec .side h3{font-size:24px;font-weight:500;letter-spacing:-.02em;line-height:1.25}
+.dec .side p{color:var(--ink2);margin-top:14px;font-size:15.5px}
+.dec .side .lab{display:block;margin-bottom:12px}
+.dec .side + .side{margin-top:0}
+.sidebox{border-top:1px solid var(--rule);padding-top:24px;margin-top:36px}
+
+/* surfaces */
+.surf{border-top:1px solid var(--ink)}
+.srow{display:grid;grid-template-columns:repeat(10,1fr);column-gap:24px;padding:28px 0;border-bottom:1px solid var(--rule);align-items:start}
+.srow .k{grid-column:1/3;font-size:18px;font-weight:500;letter-spacing:-.01em}
+.srow .d{grid-column:3/7;color:var(--ink2);font-size:15.5px}
+.srow .x{grid-column:7/11}
+.mini{background:var(--white);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;font-size:13.5px}
+.mini .l{display:flex;justify-content:space-between;color:var(--ink3);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:8px}
+.mini .ln{display:grid;grid-template-columns:48px 1fr;gap:10px;padding:6px 0;border-top:1px solid var(--rule2)}
+.mini .ln:first-of-type{border-top:0}
+.mini .ln span{color:var(--ink3)}
+.mini .ln em{font-style:normal;font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;display:block}
+.bars{display:grid;grid-template-columns:auto 1fr auto;gap:8px 12px;align-items:center}
+.bars i{display:block;height:3px;background:var(--rule);position:relative}
+.bars i b{position:absolute;left:0;top:0;bottom:0;background:var(--ink)}
+
+/* who */
+.who{display:grid;grid-template-columns:repeat(3,1fr);column-gap:24px;border-top:1px solid var(--ink)}
+.who div{padding-top:24px}
+.who h3{font-size:22px;font-weight:500;letter-spacing:-.02em;line-height:1.25;margin:12px 0 12px}
+.who p{color:var(--ink2);font-size:15.5px}
+
+/* origin */
+.orig{display:grid;grid-template-columns:repeat(10,1fr);column-gap:24px;align-items:end}
+.orig .im{grid-column:1/5;aspect-ratio:4/5;overflow:hidden;border-radius:6px}
+.orig .im img{width:100%;height:100%;object-fit:cover;object-position:50% 32%;display:block;filter:saturate(.72) contrast(1.03)}
+.orig .tx{grid-column:6/11;padding-bottom:8px}
+.orig h3{font-size:34px;font-weight:500;letter-spacing:-.028em;line-height:1.12}
+.orig p{margin-top:18px;color:var(--ink2);font-size:16.5px}
+.orig dl{display:grid;grid-template-columns:1fr 1fr;margin-top:36px;border-top:1px solid var(--rule)}
+.orig dl div{padding-top:14px}
+.orig dt{font-weight:500}
+.orig dd{color:var(--ink3);font-size:14px}
+
+/* close */
+.close{background:var(--plate);color:var(--paper);padding:136px 0 0}
+.close h2{grid-column:1/9;font-size:64px;line-height:1.02;font-weight:500;letter-spacing:-.036em}
+.close p{grid-column:1/7;margin-top:24px;font-size:18px;color:var(--pink2)}
+.close .ctas{grid-column:1/-1;display:flex;gap:16px;margin-top:40px}
+.close .btn.ink{background:var(--paper);color:var(--ink)}
+.close .btn.line{box-shadow:inset 0 0 0 1px rgba(244,244,241,.24);color:var(--paper)}
+.close .spec{grid-column:9/13;grid-row:1/4;align-self:end;border-top:1px solid var(--prule)}
+.close .spec div{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--prule);font-size:14px}
+.close .spec span{color:var(--pink3)}
+footer{margin-top:120px;border-top:1px solid var(--prule)}
+footer .wrap{display:flex;align-items:center;gap:32px;height:88px;font-size:13px;color:var(--pink3)}
+footer .brand span{font-size:16px;color:var(--paper)}
+footer .brand svg{width:22px;height:22px}
+footer .fl{display:flex;gap:24px}
+footer .by{margin-left:auto}
+
+.rv{opacity:0;transform:translateY(12px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:1200px){
+  :root{--m:40px}
+  .hl{grid-column:1/-1}
+  .hr{grid-column:1/-1;margin-top:56px}
+  .toc{display:none}
+}
+@media (max-width:900px){
+  :root{--m:20px}
+  nav ul,.signin{display:none}
+  nav .wrap{height:58px}
+  .hero{padding:44px 0 80px}
+  .hl .lab{margin-bottom:22px}
+  h1{font-size:42px;line-height:1.04}
+  .hl p{font-size:16.5px;margin-top:20px}
+  .hl .ctas{margin-top:28px}
+  .hr{margin-top:44px}
+  .plate{padding:20px 18px;border-radius:8px}
+  .plate h3{font-size:21px}
+  .read{grid-template-columns:1fr 1fr}
+  .read div:nth-child(3){padding-left:0;border-left:0}
+  .read div:nth-child(n+3){border-top:1px solid var(--prule)}
+  .read b{font-size:22px}
+  .ctab td.s{display:none}
+  .decide{grid-template-columns:1fr 1fr;gap:12px}
+  .decide p{grid-column:1/-1}
+  .decide .o{text-align:left}
+  .sec{padding:88px 0}
+  .grid.sh{display:block}
+  .sh{margin-bottom:40px}
+  .sh .no{display:flex;gap:10px;align-items:baseline;margin-bottom:16px}
+  .sh .no b{margin:0}
+  .sh h2{font-size:32px;line-height:1.1}
+  .sh p{font-size:16px;margin-top:16px}
+  .grid > .body{grid-column:1/-1}
+  .body{display:block}
+  .inputs,.age,.dec,.orig{display:block}
+  .photo{margin-top:40px}
+  .rules{grid-template-columns:1fr}
+  .rulec,.rulec:nth-child(2n){padding:28px 0;border-left:0;grid-template-columns:40px 1fr}
+  .defs{grid-template-columns:1fr;gap:0}
+  .def{padding:16px 0}
+  .age .fig{padding:18px 14px 12px}
+  .age .notes{margin-top:32px}
+  .doc .db{padding:20px 18px 4px}
+  .doc h4{font-size:20px}
+  .blk{grid-template-columns:1fr;gap:6px}
+  .doc .df{padding:14px 18px 18px;flex-wrap:wrap}
+  .doc .df .q{margin-left:0;width:100%;margin-top:6px}
+  .dec .side{margin-top:40px}
+  .srow{display:block}
+  .srow .d{margin-top:8px}
+  .srow .x{margin-top:16px}
+  .who{grid-template-columns:1fr}
+  .who div{padding:24px 0;border-bottom:1px solid var(--rule)}
+  .orig .im{aspect-ratio:4/4.2}
+  .orig .tx{margin-top:32px}
+  .orig h3{font-size:28px}
+  .close{padding-top:88px}
+  .close .grid{display:block}
+  .close h2{font-size:40px}
+  .close p{font-size:16px}
+  .close .ctas{flex-direction:column}
+  .close .ctas .btn{justify-content:center}
+  .close .spec{margin-top:48px}
+  footer{margin-top:72px}
+  footer .wrap{flex-wrap:wrap;height:auto;padding-top:24px;padding-bottom:24px;gap:14px 24px}
+  footer .by{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="mk" fill="none" stroke="currentColor" stroke-width="3.2">
+      <circle cx="34.1" cy="44.9" r="32.1"/><circle cx="42.6" cy="52.3" r="32.1"/><circle cx="50.9" cy="40.3" r="32.1"/><circle cx="36.9" cy="34.1" r="32.1"/>
+    </g>
+  </defs>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Krans"><svg viewBox="0 0 85 86.5"><use href="#mk"/></svg><span>krans</span></a>
+    <ul>
+      <li><a href="#method">Method</a></li>
+      <li><a href="#decisions">Product</a></li>
+      <li><a href="#who">Who it is for</a></li>
+      <li><a href="#">Updates</a></li>
+    </ul>
+    <div class="r">
+      <a class="signin" href="#" style="font-size:14px;color:var(--ink2)">Sign in</a>
+      <a class="btn ink sm" href="#close">Book a walkthrough</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap grid">
+    <div class="hl">
+      <span class="lab i">Company intelligence for startups and scale-ups</span>
+      <h1>Every decision,<br>with the evidence behind it.</h1>
+      <p>Krans reads what your company already produces and keeps a living model of it. Every claim in that model is cited to who said it and when, graded from E0 to E5, and loses weight when nobody repeats it.</p>
+      <div class="ctas">
+        <a class="btn ink" href="#close">Book a walkthrough</a>
+        <a class="lnk" href="#method">Read the method <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1 6h10M6.5 1.5 11 6l-4.5 4.5"/></svg></a>
+      </div>
+      <div class="toc">
+        <span class="lab">On this page</span>
+        <a href="#inputs"><span class="t">01</span><span>What Krans reads</span><span>Inputs</span></a>
+        <a href="#method"><span class="t">02</span><span>How a sentence becomes evidence</span><span>Method</span></a>
+        <a href="#scale"><span class="t">03</span><span>The evidence scale</span><span>E0 to E5</span></a>
+        <a href="#ageing"><span class="t">04</span><span>Evidence that ages</span><span>Sixty days</span></a>
+        <a href="#decisions"><span class="t">05</span><span>From evidence to decisions</span><span>Positions</span></a>
+      </div>
+    </div>
+    <div class="hr">
+      <div class="plate" role="img" aria-label="A claim in Krans with nine cited conversations, its grade, and the decision that follows">
+        <div class="top"><span class="lab">Context · Go-to-market · Claim</span><span class="lab on">Signal · decision-grade</span></div>
+        <h3>Security review stalls every pilot.</h3>
+        <div class="read">
+          <div><span class="lab">Grade</span><b class="t">E5</b></div>
+          <div><span class="lab">Conversations</span><b class="t">9</b></div>
+          <div><span class="lab">Span</span><b class="t">14<small>weeks</small></b></div>
+          <div><span class="lab">Last heard</span><b class="t">2<small>days ago</small></b></div>
+        </div>
+        <div class="plot"><svg id="p1" viewBox="0 0 720 196"></svg></div>
+        <table class="ctab t">
+          <tr><td class="g">E5</td><td>Pilot start held until IT signs off</td><td class="s">Halden · Discovery call · 14:20</td><td class="w">2 days ago</td></tr>
+          <tr><td class="g">E4</td><td>Procurement signs once IT clears the security pack</td><td class="s">Kestrel Express · Call · 14:02</td><td class="w">6 days ago</td></tr>
+          <tr><td class="g">E3</td><td>Security questionnaire raised before scope</td><td class="s">#sales · Slack thread</td><td class="w">3 weeks ago</td></tr>
+        </table>
+        <div class="decide">
+          <p>Position: move the security review before the demo.<span>Halden, close probability 54% today</span></p>
+          <div class="o"><span>Review first</span><b class="t" style="color:var(--tealL)">81%</b></div>
+          <div class="o"><span>As is</span><b class="t" style="color:var(--pink2)">49%</b></div>
+        </div>
+      </div>
+      <div class="cap"><b>Fig. 1</b><span>One claim as Krans holds it: every conversation behind it, cited and graded, and the decision that follows from it.</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="inputs">
+  <div class="wrap grid sh rv">
+    <div class="no t">01<b>Inputs</b></div>
+    <h2>Krans reads what your company already produces.</h2>
+    <p>Most of what a company needs to decide has already been said, in a call, a meeting or a thread. It is rarely read twice. Krans connects to the tools where it is said, once, and reads all of it.</p>
+  </div>
+  <div class="wrap grid">
+    <div class="body inputs">
+      <table class="itab rv">
+        <tr><th class="lab i">Source</th><th class="lab i">From</th></tr>
+        <tr><td>Customer calls</td><td>Google Meet, Microsoft Teams, Granola, Read.ai, or a transcript upload</td></tr>
+        <tr><td>Internal meetings</td><td>The same recorders, so decisions half-made on a Monday are kept</td></tr>
+        <tr><td>Threads</td><td>Slack</td></tr>
+        <tr><td>Documents</td><td>Notion and Google Drive</td></tr>
+        <tr><td>Pipeline</td><td>Stages and deals, read next to what buyers said</td></tr>
+      </table>
+      <figure class="photo rv">
+        <div class="im"><img src="img/call-listening-daylight.jpg" alt="A founder listening to a customer call at a table by a window, notebook beside the laptop" loading="lazy"></div>
+        <figcaption class="cap"><b>Fig. 2</b><span>The call ends, and what was said in it is already cited and graded. A review of the call follows minutes later.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="method">
+  <div class="wrap grid sh rv">
+    <div class="no t">02<b>Method</b></div>
+    <h2>How a sentence becomes evidence.</h2>
+    <p>Each input is broken into its smallest defensible unit, a passage in someone’s own words, and placed against the part of the model it touches. Four rules decide how much it carries.</p>
+  </div>
+  <div class="wrap grid">
+    <div class="body rules">
+      <div class="rulec rv"><span class="n t">2.1</span><div><h3>Cited</h3><p>Every learning is pinned to who said it and when, and links back to the call, thread or document it came from.</p></div><div class="dg"><svg id="d1" viewBox="0 0 300 64"></svg></div></div>
+      <div class="rulec rv"><span class="n t">2.2</span><div><h3>Graded</h3><p>Every learning sits on an evidence scale, from E0, vague, to E5, they put something at stake.</p></div><div class="dg"><svg id="d2" viewBox="0 0 300 64"></svg></div></div>
+      <div class="rulec rv"><span class="n t">2.3</span><div><h3>Hardened</h3><p>One buyer saying it is noise. The same thing heard across several calls hardens into a signal.</p></div><div class="dg"><svg id="d3" viewBox="0 0 300 64"></svg></div></div>
+      <div class="rulec rv"><span class="n t">2.4</span><div><h3>Aged</h3><p>A claim nobody has repeated for sixty days loses weight, along with the positions built on it.</p></div><div class="dg"><svg id="d4" viewBox="0 0 300 64"></svg></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="scale">
+  <div class="wrap grid sh rv">
+    <div class="no t">03<b>The evidence scale</b></div>
+    <h2>Not every sentence weighs the same.</h2>
+    <p>A passing remark and a signed budget are both evidence, and they are not worth the same. Krans grades every learning before it touches the model.</p>
+  </div>
+  <div class="wrap grid">
+    <div class="body rv">
+      <div class="ruler"><svg id="ruler" viewBox="0 0 1000 120" aria-label="Evidence scale from E0 to E5"></svg></div>
+      <div class="defs">
+        <div class="def"><b class="t">E0</b><p>Vague. A feeling, a rumour, a remark without a source.</p></div>
+        <div class="def"><b class="t">E3</b><p>A concrete quote with impact.</p></div>
+        <div class="def"><b class="t" style="color:var(--teal)">E5</b><p>They put something at stake.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="ageing">
+  <div class="wrap grid sh rv">
+    <div class="no t">04<b>Ageing</b></div>
+    <h2>Evidence ages. So does confidence.</h2>
+    <p>Nothing stays validated on the strength of one conversation from last spring. What you see is the state of the evidence today, not the day it was first heard.</p>
+  </div>
+  <div class="wrap grid">
+    <div class="body age">
+      <figure class="fig rv">
+        <div class="hd"><h4>Buyers want a human review gate</h4><span class="lab">One signal · 14 weeks</span></div>
+        <svg id="p3" viewBox="0 0 760 300" aria-label="Signal weight rising to decision-grade by week 9, then declining when nothing new is heard"></svg>
+        <figcaption class="cap" style="margin-top:8px"><b>Fig. 3</b><span>Each mark is another account saying it. The line falls when nothing new arrives.</span></figcaption>
+      </figure>
+      <ul class="notes rv">
+        <li><b>Decay is automatic</b>and visible on every claim and position.</li>
+        <li><b>Promotion never runs backwards</b>A signal that reached decision-grade keeps its history. Its weight is what moves.</li>
+        <li><b>Fresh evidence restores it</b>in a day, the next time someone says it.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="decisions">
+  <div class="wrap grid sh rv">
+    <div class="no t">05<b>Decisions</b></div>
+    <h2>From evidence to the decisions that are yours to make.</h2>
+    <p>Krans reads everything it knows about your company and pulls out the decisions in front of you. Each one says what it noticed, which way it would go and why, and what the other options would need to be true.</p>
+  </div>
+  <div class="wrap grid">
+    <div class="body dec">
+      <article class="doc rv">
+        <div class="dh"><span class="lab i">Position · Pricing</span><span class="lab tl">Needs you</span></div>
+        <div class="db">
+          <span class="lab t">Moved overnight · evidence 34, was 61</span>
+          <h4>Per-seat pricing holds.</h4>
+          <div class="blk"><span class="lab">What Krans noticed</span><p><b>6 clients signaled they need more features</b> than the current tier gives them, and the pipeline has been flat for 19 days while calls say the pricing changed.</p></div>
+          <div class="blk"><span class="lab">Decided before</span><p>Per-seat pricing, in #pricing on 2 September.</p></div>
+          <div class="blk"><span class="lab">Options</span>
+            <table class="optt t">
+              <tr><td>A</td><td>Keep per-seat pricing as decided</td><td class="r"></td></tr>
+              <tr class="k"><td>B</td><td>Add a tier with the features clients asked for</td><td class="r">Recommended</td></tr>
+              <tr><td>C</td><td>Hold until the next five calls</td><td class="r"></td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="df"><span class="pill k">Adopt</span><span class="pill">Bet with a deadline</span><span class="pill">Park</span><span class="q">What would have to be true for A?</span></div>
+      </article>
+      <div class="side rv">
+        <span class="lab">Needs you, or needs data</span>
+        <h3>Krans will not take a view it cannot support.</h3>
+        <p>A position marked Needs you is ready to decide. One marked Needs data says so, and waits for the evidence instead of guessing.</p>
+        <div class="sidebox">
+          <span class="lab">It argues against itself</span>
+          <h3>Ask what would have to be true for the option it turned down.</h3>
+          <p>It answers with your own evidence, so the case against a decision is made before the decision, not after it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="surfaces">
+  <div class="wrap grid sh rv">
+    <div class="no t">06<b>Surfaces</b></div>
+    <h2>The same model, wherever the work happens.</h2>
+  </div>
+  <div class="wrap grid">
+    <div class="body surf">
+      <div class="srow rv"><span class="k">Threads</span><p class="d">Every conversation with a company joined into one story, with stage, warmth and close probability rewritten after each call.</p>
+        <div class="x mini"><div class="l"><span>Kestrel Express</span><span class="t">Proposal · 19 days</span></div>
+          <div class="bars t"><span>Close</span><i><b style="width:62%"></b></i><span>62%</span><span>Budget</span><i><b style="width:78%;background:var(--teal)"></b></i><span>€1.8K/mo</span></div>
+          <div style="margin-top:10px;color:var(--ink2)">Pilot scope agreed, budget ring-fenced for H2. Main risk: group procurement.</div></div></div>
+      <div class="srow rv"><span class="k">Reflections</span><p class="d">A review of each call minutes after it ends: what helped, what hurt, and what you missed.</p>
+        <div class="x mini"><div class="l"><span>Discovery call</span><span class="t">42:17</span></div>
+          <div class="ln"><span class="t">14:20</span><div><em style="color:var(--teal)">Helped</em>You got a cost-of-inaction number before any product talk.</div></div>
+          <div class="ln"><span class="t">29:07</span><div><em>Hurt</em>Price landed before value did, so the number became the topic.</div></div></div></div>
+      <div class="srow rv"><span class="k">Overview</span><p class="d">Everything that needs attention, sorted by attention rather than alphabet, one line each.</p>
+        <div class="x mini"><div class="l"><span>Monday</span><span class="t">07:04</span></div><div>Halden needs you. Pipeline flat for 19 days while calls say the pricing changed.</div></div></div>
+      <div class="srow rv"><span class="k">Ask Krans</span><p class="d">Answers from your own calls, deals, signals and documents. Every answer shows what it is based on.</p>
+        <div class="x mini"><div class="l"><span>Ask Krans</span><span class="t">⌘0</span></div><div style="font-weight:500">What is blocking the Kestrel deal?</div><div style="color:var(--ink2);margin-top:4px">Procurement signs once IT clears the security pack. From the 14:02 call.</div></div></div>
+      <div class="srow rv"><span class="k">MCP server</span><p class="d">The same context inside Claude or Cursor. Every claim carries its evidence tier and its citations.</p>
+        <div class="x mini"><div class="l"><span>mcp.krans.ai</span><span>Read only</span></div><div style="color:var(--ink2)">Conversations, signals, reflections and context, from one endpoint.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="who">
+  <div class="wrap grid sh rv">
+    <div class="no t">07<b>Who it is for</b></div>
+    <h2>For the people who carry the decision.</h2>
+    <p>Startups and scale-ups, anywhere, that decide from what customers, the team and the market tell them.</p>
+  </div>
+  <div class="wrap grid">
+    <div class="body who rv">
+      <div><span class="lab i">Founders and CEOs</span><h3>Know which bets are backed, and which are guesses.</h3><p>Monday morning you know what needs you and why, and where the evidence behind a plan has worn thin.</p></div>
+      <div><span class="lab i">Product leads</span><h3>Argue the roadmap from what customers said.</h3><p>Requests and objections join the evidence with their source, so one loud customer stays one data point.</p></div>
+      <div><span class="lab i">Commercial leads</span><h3>Walk into the call knowing what killed the last three.</h3><p>Every account as one story, next steps written after the call, and an honest review of each one.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap grid">
+    <div class="body orig">
+      <div class="im rv"><img src="img/team-michael-van-lier-sharon-klaver-walking.webp" alt="Sharon Klaver and Michael van Lier, founders of Krans" loading="lazy"></div>
+      <div class="tx rv">
+        <span class="lab">08 · Origin</span>
+        <h3 style="margin-top:18px">Built on learnings from a decade of ventures built inside Builders.</h3>
+        <p>The same rule runs through every part of the product: what was said, by whom, when, and how much it can carry.</p>
+        <dl><div><dt>Michael van Lier</dt><dd>Co-founder</dd></div><div><dt>Sharon Klaver</dt><dd>Co-founder</dd></div></dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="close">
+  <div class="wrap grid">
+    <h2>Decide from what is true, and see why it is true.</h2>
+    <p>Bring your own calls, threads and documents to a walkthrough, and see them as a model you can check.</p>
+    <div class="ctas"><a class="btn ink" href="#">Book a walkthrough</a><a class="btn line" href="#">Read the product updates</a></div>
+    <div class="spec t">
+      <div><span>Inputs</span>Calls, meetings, Slack, Notion, Drive, pipeline</div>
+      <div><span>Grades</span>E0 to E5</div>
+      <div><span>Ageing</span>Sixty days without repetition</div>
+      <div><span>Refresh</span>Every night</div>
+      <div><span>Access</span>App, Ask Krans, MCP</div>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap">
+      <a class="brand" href="#"><svg viewBox="0 0 85 86.5" style="color:var(--paper)"><use href="#mk"/></svg><span>krans</span></a>
+      <div class="fl"><a href="#">Product updates</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+      <span class="by">Built on learnings from a decade of ventures built inside Builders.</span>
+    </div>
+  </footer>
+</section>
+
+<script>
+(() => {
+  const F = `font-family="Instrument Sans, sans-serif" style="font-variant-numeric:tabular-nums"`;
+  const T = (x,y,t,a="start",c="#878B90",s=11,w=500,ls=".1em") => `<text x="${x}" y="${y}" text-anchor="${a}" fill="${c}" font-size="${s}" font-weight="${w}" letter-spacing="${ls}" ${F}>${t}</text>`;
+
+  // Fig 1: nine conversations across fourteen weeks, height = grade, plus accumulated weight
+  (() => {
+    const s = document.getElementById("p1"); if (!s) return;
+    const W = Math.max(300, Math.round(s.getBoundingClientRect().width || 720)), L = 30, R = 8, top = 12, base = 160, X = w => L + (W-L-R)*w/14, Y = g => base - (g/5)*(base-top);
+    const conv = [[0.6,2],[2.2,1],[3.8,3],[5.6,2],[7.4,3],[9.2,4],[11,3],[13.1,4],[13.7,5]];
+    let o = "";
+    for (let g=0; g<=5; g++){ const y = Y(g); o += `<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="rgba(244,244,241,${g===0?.22:.07})"/>` + T(L-10, y+3.5, "E"+g, "end", "rgba(244,244,241,.38)", 9.5, 500, ".04em"); }
+    (W < 520 ? [0,4,8,14] : [0,4,8,12,14]).forEach(w => o += T(X(w), base+22, "W"+w, w===14?"end":"middle", "rgba(244,244,241,.38)", 9.5, 500, ".04em"));
+    conv.forEach(([w,g]) => { const x = X(w); o += `<line x1="${x}" x2="${x}" y1="${base}" y2="${Y(g)}" stroke="#5CD0B8" stroke-width="1.5"/><circle cx="${x}" cy="${Y(g)}" r="3.4" fill="#0F1113" stroke="#5CD0B8" stroke-width="1.5"/>`; });
+    o += T(L+4, top+4, W < 520 ? "ONE MARK PER CONVERSATION" : "EACH MARK IS ONE CONVERSATION · HEIGHT IS ITS GRADE", "start", "rgba(244,244,241,.5)", 9.5, 600);
+    s.setAttribute("viewBox", `0 0 ${W} 196`); s.innerHTML = o;
+  })();
+
+  // method diagrams
+  (() => {
+    const I = "#111315", G = "#878B90", K = "#0C7563";
+    const d1 = document.getElementById("d1");
+    if (d1) d1.innerHTML = `<rect x="1" y="16" width="96" height="32" rx="3" fill="none" stroke="${I}"/>` + T(12,36,"LEARNING","start",I,10,600) + `<path d="M97 32 H120 M120 18 V46 M120 18 H136 M120 46 H136" fill="none" stroke="${G}"/>` + T(142,22,"OPS LEAD","start",I,10,600) + T(142,50,"CALL · 14:20","start",G,10,500);
+    const d2 = document.getElementById("d2");
+    if (d2){ let o = `<line x1="4" x2="296" y1="40" y2="40" stroke="${I}"/>`; for (let g=0; g<=5; g++){ const x = 4 + g*58.4; o += `<line x1="${x}" x2="${x}" y1="${34}" y2="${46}" stroke="${I}"/>` + T(x, 62, "E"+g, g===0?"start":g===5?"end":"middle", g===5?K:G, 10, 600, ".04em"); } o += `<path d="M${4+3*58.4} 30 l-5 -8 h10 z" fill="${K}"/>`; d2.innerHTML = o; }
+    const d3 = document.getElementById("d3");
+    if (d3){ let o = ""; [[8,14],[30,44],[52,24],[74,50],[96,18],[118,36]].forEach(([x,y]) => o += `<circle cx="${x}" cy="${y}" r="3" fill="none" stroke="${G}"/>`); o += `<path d="M130 32 H170" stroke="${G}"/><path d="M164 27 l6 5 l-6 5" fill="none" stroke="${G}"/>`; for (let i=0;i<5;i++) o += `<circle cx="${190+i*14}" cy="32" r="3.4" fill="${K}"/>`; o += T(190, 58, "SIGNAL", "start", K, 10, 600); d3.innerHTML = o; }
+    const d4 = document.getElementById("d4");
+    if (d4){ let o = `<line x1="4" x2="296" y1="52" y2="52" stroke="${G}"/>`; let p = "M4 10"; for (let x=4; x<=296; x+=4){ const t = (x-4)/292; p += ` L${x} ${10 + 38*Math.pow(t,1.6)}`; } o += `<path d="${p}" fill="none" stroke="${I}" stroke-width="1.4"/>` + T(4, 64, "DAY 0", "start", G, 10, 600) + T(296, 64, "DAY 60", "end", G, 10, 600); d4.innerHTML = o; }
+  })();
+
+  // ruler
+  (() => {
+    const s = document.getElementById("ruler"); if (!s) return;
+    const RW = Math.max(300, Math.round(s.getBoundingClientRect().width || 1000)); s.setAttribute("viewBox", `0 0 ${RW} 120`);
+    const L = 2, R = RW - 2, y = 64, minor = RW < 600 ? 25 : 50; let o = `<line x1="${L}" x2="${R}" y1="${y}" y2="${y}" stroke="#111315" stroke-width="1.2"/>`;
+    for (let i=0; i<=minor; i++){ const x = L + (R-L)*i/minor, major = i%(minor/5)===0; o += `<line x1="${x}" x2="${x}" y1="${y}" y2="${y + (major?18:i%5===0?10:6)}" stroke="#111315" stroke-opacity="${major?1:.35}"/>`; if (major){ const g = i/(minor/5); o += T(x, y-14, "E"+g, g===0?"start":g===5?"end":"middle", g===5?"#0C7563":"#111315", 15, 600, ".02em"); } }
+    // weight band under the ruler: how much a learning can carry
+    o += `<path d="M${L} 108 C ${L+300} 108, ${R-260} 98, ${R} 90 L ${R} 108 Z" fill="#0C7563" fill-opacity=".22"/>`;
+    o += T(L, 104, "HOW MUCH A LEARNING CAN CARRY", "start", "#878B90", 10, 600);
+    s.innerHTML = o;
+  })();
+
+  // Fig 3: ageing chart
+  (() => {
+    const s = document.getElementById("p3"); if (!s) return;
+    const W = Math.max(300, Math.round(s.getBoundingClientRect().width || 760)), n = W < 520, L = n ? 6 : 118, R = 12, top = 20, base = 250, X = w => L + (W-L-R)*w/14, Y = v => base - v*(base-top);
+    const v = [0.06,0.14,0.26,0.24,0.42,0.5,0.47,0.55,0.8,0.9,0.82,0.74,0.66,0.58,0.52];
+    const lines = [["DECISION-GRADE",0.72],["VALIDATED",0.48],["EMERGING",0.24]];
+    let o = "";
+    lines.forEach(([t,y]) => o += `<line x1="${L}" x2="${W-R}" y1="${Y(y)}" y2="${Y(y)}" stroke="#111315" stroke-opacity=".18" stroke-dasharray="2 4"/>` + (n ? T(W-R, Y(y)-5, t, "end", "#878B90", 9, 600) : T(L-12, Y(y)+3.5, t, "end", "#878B90", 9.5, 600)));
+    o += `<line x1="${L}" x2="${W-R}" y1="${base}" y2="${base}" stroke="#111315" stroke-opacity=".5"/>`;
+    (n ? [0,4,9,14] : [0,4,8,9,14]).forEach(w => o += T(X(w), base+20, "W"+w, n && w===0 ? "start" : n && w===14 ? "end" : "middle", w===9?"#0C7563":"#878B90", 9.5, 600, ".04em"));
+    const pt = i => `${X(i).toFixed(1)} ${Y(v[i]).toFixed(1)}`;
+    o += `<path d="M${pt(0)} ${v.slice(1,10).map((_,i)=>"L"+pt(i+1)).join(" ")} L${X(9)} ${base} L${X(0)} ${base} Z" fill="#0C7563" fill-opacity=".07"/>`;
+    o += `<path d="M${pt(0)} ${v.slice(1,10).map((_,i)=>"L"+pt(i+1)).join(" ")}" fill="none" stroke="#0C7563" stroke-width="1.8"/>`;
+    o += `<path d="M${pt(9)} ${v.slice(10).map((_,i)=>"L"+pt(i+10)).join(" ")}" fill="none" stroke="#111315" stroke-width="1.6" stroke-dasharray="5 4"/>`;
+    o += `<line x1="${X(9)}" x2="${X(9)}" y1="${top}" y2="${base}" stroke="#0C7563" stroke-opacity=".35"/>` + (n ? T(X(9)-6, base-10, "LAST HEARD", "end", "#0C7563", 9, 600) : T(X(9)+8, base-10, "LAST HEARD · W9", "start", "#0C7563", 9.5, 600));
+    o += T(n ? W-R : X(12.4), n ? Y(v[14])+22 : Y(v[12])+24, "LOSING WEIGHT", n ? "end" : "middle", "#111315", 9.5, 600);
+    const marks = {1:"NW",2:"MH",4:"KE",5:"HD",8:"MG",9:"NW"};
+    s.setAttribute("viewBox", `0 0 ${W} 280`);
+    Object.entries(marks).forEach(([i,t]) => { i = +i; o += `<circle cx="${X(i)}" cy="${Y(v[i])}" r="3.6" fill="#FBFBF9" stroke="#0C7563" stroke-width="1.6"/>` + T(X(i), Y(v[i])-11, t, "middle", "#111315", 9.5, 600, ".04em"); });
+    if (n) { /* keep x labels clear of the edge */ }
+    s.innerHTML = o;
+  })();
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".rv").forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

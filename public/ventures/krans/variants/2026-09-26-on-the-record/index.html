@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krans · Know what is true about your company</title>
+<meta name="description" content="Krans reads your calls, meetings, Slack threads and documents, and keeps a living model of your company, every claim cited and graded.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0B0B0C; --night-2:#121214; --night-3:#1A1A1D;
+  --line:rgba(239,233,219,.12); --line-2:rgba(239,233,219,.22);
+  --cream:#EFE9DB; --cream-2:rgba(239,233,219,.66); --cream-3:rgba(239,233,219,.44);
+  --paper:#F4EFE4; --paper-2:#EAE4D6; --rule:#DDD6C6;
+  --ink:#1D1E22; --ink-2:#5F5C55; --ink-3:#8E897E;
+  --orange:#F95738; --blue:#30BCED; --purple:#5E239D; --teal:#16695C; --amber:#EFA92A;
+  --pad:64px; --max:1312px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--night);-webkit-text-size-adjust:100%}
+body{background:var(--night);color:var(--cream);font-family:"Geist",system-ui,sans-serif;font-size:17px;line-height:1.55;font-feature-settings:"ss01","tnum" 0;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video,svg{display:block}
+a{color:inherit;text-decoration:none}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.wrap{max-width:calc(var(--max) + var(--pad)*2);margin:0 auto;padding:0 var(--pad)}
+.label{font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;line-height:1.3}
+.btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:999px;font-size:15px;font-weight:500;letter-spacing:-.005em;transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease)}
+.btn-solid{background:var(--cream);color:var(--ink)}
+.btn-solid:hover{background:var(--orange);color:#fff}
+.btn-ghost{border:1px solid var(--line-2);color:var(--cream)}
+.btn-ghost:hover{border-color:var(--cream)}
+.btn svg{width:14px;height:14px}
+
+/* ---------- nav ---------- */
+.nav{position:absolute;inset:0 0 auto 0;z-index:20}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:88px}
+.logo{height:23px;width:auto;color:var(--cream)}
+.nav-links{display:flex;align-items:center;gap:36px;font-size:14.5px;color:var(--cream-2)}
+.nav-links a:not(.btn):hover{color:var(--cream)}
+.nav .btn{height:40px;padding:0 18px;font-size:14px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100vh;height:100svh;min-height:680px;max-height:1100px;overflow:hidden;background:#07080A}
+.stage{position:absolute;top:50%;--w:max(100vw, calc(100svh * 2.357));width:var(--w);aspect-ratio:3168/1344;transform:translateY(-50%);left:clamp(calc(100vw - var(--w)), calc(62vw - var(--w) * .735), 0px)}
+.hero .stage{--w:max(100vw, calc(min(100svh,1100px) * 2.357))}
+.stage img,.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stage video{opacity:0;transition:opacity 1.2s ease}
+.stage video.on{opacity:1}
+.hero-shade{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(7,8,10,.92) 0%,rgba(7,8,10,.74) 30%,rgba(7,8,10,.12) 58%,rgba(7,8,10,0) 70%),
+  linear-gradient(0deg,rgba(7,8,10,.9) 0%,rgba(7,8,10,0) 26%),
+  linear-gradient(180deg,rgba(7,8,10,.55) 0%,rgba(7,8,10,0) 18%)}
+.hero-copy{position:absolute;left:0;right:0;bottom:128px;z-index:5}
+.hero-copy .label{color:var(--cream-2);display:flex;align-items:center;gap:10px;margin-bottom:26px}
+.sq{width:7px;height:7px;background:var(--orange);display:inline-block;flex:none}
+h1{font-size:clamp(46px,6.4vw,94px);font-weight:500;letter-spacing:-.045em;line-height:.97;max-width:10ch}
+.hero-sub{margin-top:28px;max-width:500px;font-size:18.5px;line-height:1.5;color:var(--cream-2);letter-spacing:-.005em}
+.hero-cta{display:flex;gap:12px;margin-top:36px}
+
+/* pinned annotation */
+.pin{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;background:var(--orange);z-index:4}
+.pin::after{content:"";position:absolute;inset:-9px;border:1px solid rgba(249,87,56,.7);animation:ping 2.6s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(.4);opacity:1}80%,100%{transform:scale(1.5);opacity:0}}
+.wire{position:absolute;inset:0;pointer-events:none;z-index:3;width:100%;height:100%}
+.wire polyline{fill:none;stroke:rgba(239,233,219,.5);stroke-width:1}
+.hero-card{position:absolute;right:var(--pad);top:15.5%;width:336px;z-index:6}
+@media (min-width:1600px){.hero-card{right:calc((100vw - var(--max))/2)}}
+
+/* product card (cream, like the app) */
+.kc{background:var(--paper);color:var(--ink);border-radius:12px;padding:18px 20px 18px;box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 30px 60px -20px rgba(0,0,0,.6),0 8px 20px -8px rgba(0,0,0,.35)}
+.kc-top{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--ink-3)}
+.kc-top .src{display:flex;align-items:center;gap:8px}
+.kc-top .src svg{width:15px;height:15px}
+.grade{font-size:11.5px;font-weight:600;letter-spacing:.06em;padding:3px 7px 3px;border-radius:5px;background:rgba(94,35,157,.1);color:var(--purple)}
+.grade.e5{background:rgba(249,87,56,.12);color:#D63F22}
+.kc q,.kc .q{display:block;quotes:none;margin-top:12px;font-size:17px;line-height:1.38;letter-spacing:-.012em;color:var(--ink)}
+.kc .cite{margin-top:12px;color:var(--ink-3);font-size:10.5px}
+.kc .bar{margin-top:14px;height:3px;border-radius:3px;background:var(--rule);overflow:hidden}
+.kc .bar i{display:block;height:100%;background:var(--teal);border-radius:3px;transition:width .3s linear}
+.kc .meta{display:flex;justify-content:space-between;margin-top:8px;font-size:10.5px;color:var(--ink-3)}
+.kc .title{margin-top:12px;font-size:19px;font-weight:500;letter-spacing:-.02em;line-height:1.25}
+.kc .body{margin-top:6px;font-size:14.5px;line-height:1.45;color:var(--ink-2)}
+.tag-purple{color:var(--purple)} .tag-orange{color:#D63F22} .tag-blue{color:#1C9FCF} .tag-teal{color:var(--teal)}
+
+/* chapter rail */
+.rail{position:absolute;left:0;right:0;bottom:0;z-index:6}
+.rail ol{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
+.rail li{border-top:1px solid var(--line-2);padding:14px 0 30px;display:flex;gap:14px;color:var(--cream-3)}
+.rail li b{font-weight:500;color:var(--cream-2)}
+.rail li.on{border-top-color:var(--orange);color:var(--cream-2)}
+.rail li.on b{color:var(--cream)}
+.rail a{display:flex;gap:14px;width:100%}
+.rail a:hover b{color:var(--cream)}
+
+/* fixed chapter indicator */
+.chap{position:fixed;left:24px;bottom:24px;z-index:40;display:flex;align-items:center;gap:14px;height:40px;padding:0 16px 0 14px;border-radius:999px;background:rgba(18,18,20,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);opacity:0;transform:translateY(8px);transition:opacity .4s var(--ease),transform .4s var(--ease);pointer-events:none}
+.chap.show{opacity:1;transform:none}
+.chap .ticks{display:flex;gap:4px}
+.chap .ticks i{width:14px;height:2px;background:var(--line-2);transition:background .3s}
+.chap .ticks i.on{background:var(--orange)}
+.chap span{font-size:13px;color:var(--cream-2)}
+.chap span b{font-weight:500;color:var(--cream);margin-right:8px}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.sec{padding:152px 0 0}
+.sec-head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.sec-head .label{grid-column:1/-1;color:var(--cream-3);display:flex;gap:14px;margin-bottom:26px}
+.sec-head .label b{color:var(--orange);font-weight:500}
+h2{grid-column:1/8;font-size:clamp(36px,4.2vw,62px);font-weight:500;letter-spacing:-.04em;line-height:1.02}
+.sec-head p{grid-column:9/13;color:var(--cream-2);font-size:17px;line-height:1.6}
+.sec-head.wide h2{grid-column:1/10}
+.sec-head.wide p{grid-column:1/7;margin-top:28px}
+
+/* heard */
+.stills{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:80px}
+.still{position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:var(--night-2)}
+.still>img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.6s var(--ease)}
+.still.in>img{transform:scale(1)}
+.still::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,8,10,.55) 0%,rgba(7,8,10,0) 22%,rgba(7,8,10,0) 50%,rgba(7,8,10,.7) 100%);z-index:1}
+.still .cap{position:absolute;top:20px;left:20px;right:20px;z-index:2;display:flex;justify-content:space-between;color:var(--cream)}
+.still .cap span:last-child{color:var(--cream-2)}
+.still .kc{position:absolute;left:14px;right:14px;bottom:14px;z-index:2;padding:16px 18px}
+.still .kc q,.still .kc .q{font-size:16px}
+.sources{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--cream-2);font-size:15px}
+.sources .label{color:var(--cream-3);margin-right:8px}
+
+/* weighed */
+.scale{margin-top:88px;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-bottom:1px solid var(--line-2)}
+.step{position:relative;height:480px;border-left:1px solid var(--line);padding:0 20px;display:flex;flex-direction:column;justify-content:flex-end}
+.step.s0{border-left:0;padding-left:0}
+.step .col{position:absolute;left:20px;right:20px;bottom:0;background:linear-gradient(180deg,rgba(239,233,219,.16),rgba(239,233,219,.05));height:0;transition:height 1.2s var(--ease)}
+.step.s0 .col{left:0}
+.step.e5 .col{background:linear-gradient(180deg,rgba(249,87,56,.95),rgba(249,87,56,.55))}
+.scale.in .step .col{height:var(--h)}
+.step .e{position:relative;font-size:clamp(40px,4.6vw,72px);font-weight:500;letter-spacing:-.05em;line-height:1;padding-bottom:18px}
+.step-desc{display:grid;grid-template-columns:repeat(6,1fr)}
+.step-desc div{padding:18px 20px 0;border-left:1px solid var(--line);font-size:15px;color:var(--cream-2);min-height:64px;line-height:1.4}
+.step-desc div:first-child{border-left:0;padding-left:0}
+.step-desc div.dim{color:var(--cream-3)}
+.scale{position:relative}
+.chips{position:absolute;inset:0;pointer-events:none;z-index:2}
+.chip{position:absolute;width:340px;background:var(--paper);color:var(--ink);border-radius:10px;padding:13px 15px 12px;box-shadow:0 20px 40px -18px rgba(0,0,0,.7)}
+.chip .q{font-size:15px;line-height:1.35;letter-spacing:-.01em}
+.chip .cite{margin-top:8px;font-size:10px;color:var(--ink-3)}
+.chip::after{content:"";position:absolute;left:100%;top:50%;height:1px;background:rgba(239,233,219,.55)}
+.chip::before{content:"";position:absolute;top:50%;width:7px;height:7px;margin-top:-3px;background:var(--cream);z-index:1}
+.chip.c5{right:calc(100%/6 + 28px);top:calc(10% - 38px)}
+.chip.c5::after{width:48px}
+.chip.c5::before{left:calc(100% + 44px)}
+.chip.c4{right:calc(200%/6 + 28px);top:calc(38% - 38px)}
+.chip.c4::after{width:48px}
+.chip.c4::before{left:calc(100% + 44px)}
+.chip{opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease) .9s,transform .6s var(--ease) .9s}
+.scale.in .chip{opacity:1;transform:none}
+
+/* product windows */
+.win{background:var(--paper);color:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 60px 120px -40px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.04)}
+.win-bar{display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 24px;border-bottom:1px solid var(--rule);color:var(--ink-3)}
+.win-bar .l{display:flex;align-items:center;gap:12px;color:var(--ink)}
+.win-bar .l svg{width:18px;height:18px;color:var(--ink)}
+.win-bar .l span{font-size:14px;font-weight:500;letter-spacing:-.01em}
+.win-bar .l em{font-style:normal;color:var(--ink-3);font-size:14px}
+.win-body{padding:36px 40px 34px}
+.win-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px}
+.win-head .label{color:var(--ink-3)}
+.win-head strong{font-size:22px;font-weight:500;letter-spacing:-.02em;color:var(--ink)}
+.win-foot{margin-top:18px;padding-top:18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:24px;color:var(--ink-3)}
+.hardened .win{margin-top:80px}
+.chart{width:100%;height:auto;margin-top:18px}
+.chart text{font-family:"Geist",sans-serif}
+.chart-m{display:none}
+.chart path,.chart line{vector-effect:non-scaling-stroke}
+.chart .path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 2.4s var(--ease)}
+.in .chart .path{stroke-dashoffset:0}
+.chart .area{opacity:0;transition:opacity 1.2s ease 1.2s}
+.in .chart .area{opacity:1}
+.chart .dot{opacity:0;transition:opacity .4s ease}
+.pos-chart text{font-size:12.5px}
+.pos-chart .big{font-size:15px}
+.in .chart .dot{opacity:1}
+.prims{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:72px}
+.prim{border-top:1px solid var(--line-2);padding-top:22px}
+.prim .label{color:var(--orange)}
+.prim h3{margin-top:14px;font-size:22px;font-weight:500;letter-spacing:-.025em;line-height:1.2;max-width:22ch}
+.prim p{margin-top:12px;color:var(--cream-2);font-size:15.5px;line-height:1.55;max-width:38ch}
+
+/* aged: sticky crossfade */
+.aged{height:280vh;margin-top:152px}
+.aged-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#07080A}
+.aged .stage{--w:max(100vw, calc(100svh * 2.357))}
+.aged .later{opacity:var(--p,0)}
+.aged-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,8,10,.9) 0%,rgba(7,8,10,.62) 34%,rgba(7,8,10,0) 64%),linear-gradient(0deg,rgba(7,8,10,.7) 0%,rgba(7,8,10,0) 30%)}
+.aged-copy{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);z-index:5}
+.aged-copy .label{color:var(--cream-3);display:flex;gap:14px;margin-bottom:26px}
+.aged-copy .label b{color:var(--orange);font-weight:500}
+.aged-copy h2{max-width:12ch}
+.swap{display:grid}
+.swap h2{grid-area:1/1;align-self:end;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.swap .h-b{opacity:0;transform:translateY(12px)}
+.aged.late .h-a{opacity:0;transform:translateY(-12px)}
+.aged.late .h-b{opacity:1;transform:none}
+.aged-copy p{margin-top:26px;max-width:440px;color:var(--cream-2)}
+.day{position:absolute;left:0;right:0;bottom:44px;z-index:5}
+.day .wrap{display:flex;align-items:center;gap:20px}
+.day .track{flex:1;height:1px;background:var(--line-2);position:relative}
+.day .track i{position:absolute;left:0;top:-1px;height:3px;background:var(--cream);width:calc(var(--p,0) * 100%)}
+.day .n{font-size:15px;color:var(--cream);min-width:84px}
+.day .n2{font-size:15px;color:var(--cream-3);min-width:60px;text-align:right}
+.aged-card{position:absolute;right:var(--pad);top:25%;width:336px;z-index:6}
+@media (min-width:1600px){.aged-card{right:calc((100vw - var(--max))/2)}}
+.aged-card .kc{transition:none}
+.aged-card .state{display:flex;align-items:center;gap:8px}
+.aged-card .state i{width:7px;height:7px;border-radius:50%;background:var(--teal)}
+
+/* decided */
+.frame{margin-top:80px;position:relative;aspect-ratio:21/9;overflow:hidden}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,11,12,1) 0%,rgba(11,11,12,0) 30%),linear-gradient(180deg,rgba(11,11,12,.6) 0%,rgba(11,11,12,0) 20%)}
+.frame .cap{position:absolute;left:0;right:0;top:28px;z-index:2}
+.frame .cap .wrap{display:flex;justify-content:space-between;color:var(--cream-2)}
+.decide{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-top:-180px;position:relative;z-index:3;align-items:start}
+.decide .txt{grid-column:1/5;padding-top:220px}
+.decide .txt h3{font-size:28px;font-weight:500;letter-spacing:-.03em;line-height:1.15}
+.decide .txt p{margin-top:18px;color:var(--cream-2);font-size:16px}
+.decide .win{grid-column:6/13}
+.claim{border:1px solid var(--rule);border-radius:12px;padding:20px 22px;background:#F8F4EB}
+.claim .top{display:flex;justify-content:space-between;color:var(--ink-3)}
+.claim .q{margin-top:12px;font-size:21px;letter-spacing:-.02em;line-height:1.3}
+.goes{margin-top:30px;display:flex;justify-content:space-between;color:var(--ink-3)}
+.actions{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hold{height:40px;padding:0 18px;border-radius:8px;border:1px solid var(--rule);display:inline-flex;align-items:center;font-size:14px;color:var(--ink);background:var(--paper)}
+.move{height:40px;padding:0 18px;border-radius:8px;display:inline-flex;align-items:center;font-size:14px;color:#fff;background:var(--teal);margin-left:8px}
+
+/* surfaces */
+.surf{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-top:0}
+.surf-h{grid-column:1/6}
+.surf h2{font-size:clamp(36px,4.2vw,62px)}
+.surf .intro{margin-top:28px;color:var(--cream-2);max-width:420px}
+.surf dl{grid-column:7/13;border-top:1px solid var(--line-2)}
+.surf dl div{display:grid;grid-template-columns:180px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+.surf dt{font-weight:500;font-size:17px;letter-spacing:-.01em}
+.surf dd{color:var(--cream-2);font-size:16px}
+
+/* founders */
+.team{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.team .ph{grid-column:span 3;position:relative}
+.team .ph img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;filter:grayscale(1) contrast(1.02) brightness(.92)}
+.team .ph .label{margin-top:14px;color:var(--cream-2);display:flex;justify-content:space-between}
+.team .ph .label span:first-child{color:var(--cream)}
+.team .t{grid-column:8/13}
+.team .t h3{font-size:clamp(28px,2.6vw,38px);font-weight:500;letter-spacing:-.035em;line-height:1.12}
+.team .t p{margin-top:20px;color:var(--cream-2)}
+
+/* close */
+.close{padding:200px 0 0;text-align:left}
+.close h2{font-size:clamp(44px,7vw,104px);letter-spacing:-.05em;line-height:.98}
+.close h2 span{color:var(--cream-3)}
+.close .row{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-top:48px}
+.close .row p{max-width:460px;color:var(--cream-2)}
+footer{margin-top:160px;border-top:1px solid var(--line);padding:36px 0 44px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;color:var(--cream-3);font-size:14px}
+footer .logo{height:18px;color:var(--cream-2)}
+footer nav{display:flex;gap:28px}
+footer nav a:hover{color:var(--cream)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.hero-card{opacity:0;transform:translateY(12px);transition:opacity .9s var(--ease) 1s,transform .9s var(--ease) 1s}
+.loaded .hero-card{opacity:1;transform:none}
+.wire{opacity:0;transition:opacity .9s ease 1.5s}
+.loaded .wire{opacity:1}
+
+/* ---------- responsive ---------- */
+@media (max-width:1180px){
+  :root{--pad:40px}
+  .nav-links a.hide-md{display:none}
+  .wire,.pin{display:none}
+  h2{grid-column:1/-1}
+  .sec-head p{grid-column:1/-1;max-width:620px;margin-top:24px}
+  .decide .txt{grid-column:1/-1;padding-top:200px}
+  .decide .win{grid-column:1/-1}
+  .surf-h,.surf dl{grid-column:1/-1}
+  .surf dl{margin-top:48px}
+  .team .ph{grid-column:span 6}
+  .team .t{grid-column:1/-1;margin-top:40px}
+}
+@media (max-width:760px){
+  :root{--pad:20px}
+  body{font-size:16px}
+  .nav .wrap{height:72px}
+  .logo{height:20px}
+  .nav-links{gap:0}
+  .nav-links a:not(.btn){display:none}
+  .nav .btn{height:38px;padding:0 16px;font-size:13.5px}
+  .hero{height:auto;min-height:0;max-height:none;padding-top:72px;background:#07080A}
+  .hero-media{position:relative;height:118vw;overflow:hidden}
+  .hero .stage{--w:calc(118vw * 2.357);left:calc(52vw - var(--w) * .735)}
+  .hero-shade{background:linear-gradient(0deg,rgba(7,8,10,1) 0%,rgba(7,8,10,0) 40%),linear-gradient(180deg,rgba(7,8,10,.9) 0%,rgba(7,8,10,0) 26%)}
+  .hero-copy{position:relative;bottom:auto;margin-top:-64px}
+  .hero-copy .label{margin-bottom:18px}
+  h1{font-size:46px;letter-spacing:-.045em}
+  .hero-sub{font-size:17px;margin-top:20px}
+  .hero-cta{margin-top:28px;flex-wrap:wrap}
+  .hero-cta .btn{flex:1 1 auto;justify-content:center}
+  .hero-card{position:relative;right:auto;top:auto;width:auto;margin:36px var(--pad) 0}
+  .wire,.pin{display:none}
+  .rail{position:relative;margin-top:48px}
+  .rail ol{grid-template-columns:repeat(5,1fr);gap:8px}
+  .rail li{padding:12px 0 26px;flex-direction:column;gap:4px;font-size:12px}
+  .rail li b{font-size:12px}
+  .rail a{flex-direction:column;gap:4px}
+  .chap{display:none}
+  .sec{padding-top:112px}
+  h2{font-size:36px;letter-spacing:-.04em}
+  .sec-head .label{margin-bottom:20px}
+  .sec-head p{font-size:16px}
+  .stills{grid-template-columns:1fr;gap:14px;margin-top:48px}
+  .sources{gap:8px 18px;font-size:14.5px}
+  .sources .label{width:100%}
+  .scale{margin-top:48px}
+  .step{height:300px;padding:0 8px}
+  .step .col{left:8px;right:8px}
+  .step .e{font-size:28px;letter-spacing:-.04em;padding-bottom:12px}
+  .step-desc{grid-template-columns:1fr 1fr 1fr}
+  .step-desc div{padding:16px 0 0;border:0;font-size:14px;min-height:0}
+  .step-desc div.dim{display:none}
+  .step-desc div:not(.dim)::before{display:block;font-weight:500;color:var(--cream);margin-bottom:4px}
+  .step-desc div:nth-child(1)::before{content:"E0"}
+  .step-desc div:nth-child(4)::before{content:"E3"}
+  .step-desc div:nth-child(6)::before{content:"E5"}
+  .step-desc{gap:14px}
+  .chips{position:static;grid-column:1/-1;display:flex;flex-direction:column-reverse;gap:10px;margin-bottom:44px}
+  .chip{position:relative;width:auto;right:auto!important;top:auto!important}
+  .chip::after,.chip::before{display:none}
+  .chart-d{display:none}
+  .chart-m{display:block}
+  .pos-chart text{font-size:22px}
+  .pos-chart .big{font-size:28px}
+  .win{border-radius:12px}
+  .win-bar{height:44px;padding:0 16px}
+  .win-bar .r{display:none}
+  .win-body{padding:22px 18px 20px}
+  .win-head{flex-direction:column;gap:6px}
+  .win-head strong{font-size:18px}
+  .win-foot{flex-direction:column;gap:6px}
+  .hardened .win{margin-top:48px}
+  .prims{grid-template-columns:1fr;gap:32px;margin-top:56px}
+  .aged{height:240vh;margin-top:112px}
+  .aged .stage{left:calc(50vw - var(--w) * .66)}
+  .aged-shade{background:linear-gradient(0deg,rgba(7,8,10,.96) 0%,rgba(7,8,10,.7) 45%,rgba(7,8,10,.1) 75%)}
+  .aged-copy{top:auto;bottom:96px;transform:none}
+  .aged-copy h2{font-size:34px}
+  .aged-copy p{font-size:15.5px;margin-top:16px}
+  .aged-card{left:var(--pad);right:var(--pad);top:88px;width:auto}
+  .day{bottom:36px}
+  .frame{aspect-ratio:4/3;margin-top:48px}
+  .frame img{object-position:78% 50%}
+  .frame .cap .wrap span:last-child{display:none}
+  .frame::after{background:linear-gradient(0deg,rgba(11,11,12,1) 0%,rgba(11,11,12,0) 34%),linear-gradient(180deg,rgba(11,11,12,.85) 0%,rgba(11,11,12,0) 30%)}
+  .frame .cap{top:16px}
+  .decide{margin-top:-60px}
+  .decide .txt{padding-top:60px}
+  .decide .txt h3{font-size:24px}
+  .claim{padding:16px}
+  .claim .top{flex-direction:column;gap:4px}
+  .claim .q{font-size:18px}
+  .actions{flex-direction:column;align-items:flex-start}
+  .surf dl div{grid-template-columns:1fr;gap:4px;padding:16px 0}
+  .team .ph{grid-column:span 6}
+  .team .ph .label{flex-direction:column;gap:2px;font-size:10.5px}
+  .close{padding-top:140px}
+  .close h2{font-size:48px}
+  .close .row{flex-direction:column;align-items:flex-start;gap:28px}
+  footer{margin-top:110px}
+  footer .wrap{flex-direction:column;align-items:flex-start;gap:18px}
+  footer nav{gap:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ring" viewBox="0 0 85 86.5"><g fill="currentColor"><path fill-rule="evenodd" d="M0 44.875a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM4 44.875a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M8.4316 52.3069a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM12.4316 52.3069a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M16.75 40.3296a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM20.75 40.3296a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M2.7734 34.125a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM6.7734 34.125a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/></g></symbol>
+    <symbol id="logo" viewBox="0 0 319.6 86.5"><g fill="currentColor"><path fill-rule="evenodd" d="M0 44.875a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM4 44.875a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M8.4316 52.3069a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM12.4316 52.3069a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M16.75 40.3296a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM20.75 40.3296a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M2.7734 34.125a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM6.7734 34.125a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path d="M96.75 75V5.25H107.19V43.68H108.18L127.89 23.25H140.67L120.42 43.86L143.1 75H130.5L113.76 51.42H112.77L107.19 57.09V75H96.75Z"/><path d="M145.728 75V23.25H156.078V32.07H156.528C159.138 24.69 165.258 22.17 174.168 22.17V31.62C160.038 32.16 156.258 38.91 156.258 53.85V75H145.728Z"/><path d="M199.64 22.17C212.06 22.17 220.61 27.84 220.61 39.36V75H210.26V69.42H209.54C203.78 74.19 197.84 76.08 191.9 76.08C181.55 76.08 175.43 70.5 175.43 61.5C175.43 50.88 184.61 46.56 193.43 44.130L210.26 39.63V39.27C210.26 33.42 206.39 30.09 199.1 30.09C192.26 30.09 186.59 33.240 182.27 38.1L176.42 31.62C182.54 25.14 190.91 22.17 199.64 22.17ZM194.51 68.16C200.360 68.16 205.49 65.1 210.26 60.24V47.73L195.23 52.05C189.38 53.76 185.87 56.28 185.87 60.87C185.87 65.1 188.93 68.16 194.51 68.16Z"/><path d="M230.134 75V23.25H240.574V29.82H241.114C243.814 25.59 249.034 22.17 256.324 22.17C266.404 22.17 273.064 28.56 273.064 40.44V75H262.714V43.05C262.714 35.22 259.924 30.9 252.904 30.9C244.894 30.9 240.664 36.57 240.664 44.76V75H230.134Z"/><path d="M299.097 76.08C290.187 76.08 282.087 71.31 277.767 65.28L284.247 59.07C287.037 63.48 292.347 68.070 299.727 68.07C304.677 68.07 309.087 65.82 309.087 60.6C309.087 56.37 305.937 54.75 301.167 53.58L293.337 51.51C286.587 49.71 280.197 45.75 280.197 37.11C280.197 27.57 287.937 22.17 299.097 22.17C308.727 22.17 314.847 26.67 318.717 32.07L312.597 37.74C309.717 32.88 304.317 29.91 298.737 29.91C293.787 29.91 290.277 32.25 290.277 36.39C290.277 39.72 292.977 41.16 296.757 42.15L304.137 44.13C310.977 46.02 319.527 49.53 319.527 59.79C319.527 70.41 310.437 76.08 299.097 76.08Z"/></g></symbol>
+    <symbol id="meet" viewBox="0 0 24 20"><path d="M0 4.5 4.5 0H14v6H6v8H0z" fill="#2684FC"/><path d="M0 14h6v6H1.5A1.5 1.5 0 0 1 0 18.5z" fill="#0066DA"/><path d="M6 14h8v6H6z" fill="#00AC47"/><path d="M14 0h.5A1.5 1.5 0 0 1 16 1.5V6h-2z" fill="#FFBA00"/><path d="M14 6h2v8h-2z" fill="#00832D"/><path d="M16 7.2 24 1v18l-8-6.2z" fill="#00AC47"/><path d="M6 6h8v8H6z" fill="#fff"/><path d="M14 14h2v4.5a1.5 1.5 0 0 1-1.5 1.5H14z" fill="#00832D"/></symbol>
+    <symbol id="arrow" viewBox="0 0 14 14"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" aria-label="Krans"><svg class="logo" viewBox="0 0 319.6 86.5"><use href="#logo"/></svg></a>
+    <nav class="nav-links">
+      <a href="#heard">Product</a>
+      <a href="#weighed" class="hide-md">How it works</a>
+      <a href="#team" class="hide-md">Company</a>
+      <a href="#close">Updates</a>
+      <a class="btn btn-solid" href="#close">Book a walkthrough</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <div class="hero-media">
+    <div class="stage" id="heroStage">
+      <img src="scene-call-night.jpg" alt="A founder alone in a meeting room at dusk, listening to a customer on a video call" fetchpriority="high">
+      <video id="heroVid" src="scene-call-night.mp4" muted loop playsinline preload="auto" poster="scene-call-night.jpg" aria-hidden="true"></video>
+      <i class="pin" id="heroPin" style="left:66%;top:60%"></i>
+    </div>
+    <div class="hero-shade"></div>
+    <svg class="wire" id="heroWire"><polyline id="heroLine" points="0,0"/></svg>
+  </div>
+
+  <div class="hero-copy">
+    <div class="wrap">
+      <div class="label"><i class="sq"></i>For startups and scale-ups</div>
+      <h1>Know what is true about your company.</h1>
+      <p class="hero-sub">Krans reads your calls, meetings, Slack threads and documents, and keeps a living model of your company. Every claim is cited to who said it and when, and graded on how much it can carry.</p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#close">Book a walkthrough <svg><use href="#arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#heard">See how it works</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-card" id="heroCard">
+    <div class="kc">
+      <div class="kc-top"><span class="src label"><svg><use href="#meet"/></svg>Learning</span><span class="grade num">E4</span></div>
+      <q>&ldquo;We lose about forty thousand a month in rework.&rdquo;</q>
+      <div class="cite label num">Ops lead &middot; Discovery call &middot; 14:20</div>
+    </div>
+  </div>
+
+  <div class="rail">
+    <div class="wrap">
+      <ol>
+        <li class="on"><a href="#heard"><span class="num">01</span><b>Heard</b></a></li>
+        <li><a href="#weighed"><span class="num">02</span><b>Weighed</b></a></li>
+        <li><a href="#hardened"><span class="num">03</span><b>Hardened</b></a></li>
+        <li><a href="#aged"><span class="num">04</span><b>Aged</b></a></li>
+        <li><a href="#decided"><span class="num">05</span><b>Decided</b></a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 HEARD ================= -->
+<section class="sec heard" id="heard" data-chap="0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label rv"><b class="num">01</b>Heard</div>
+      <h2 class="rv">The truth about your company is already being said.</h2>
+      <p class="rv d1">On customer calls, in the Monday meeting, in the review after the call. Krans reads all of it as it arrives, and every learning keeps its source: who said it, and when. Nobody writes a summary.</p>
+    </div>
+
+    <div class="stills">
+      <figure class="still rv">
+        <img src="still-customer-call.jpg" alt="A founder on a customer call by a canal window at dusk" loading="lazy">
+        <figcaption class="cap label"><span>On the call</span><span>Google Meet</span></figcaption>
+        <div class="kc">
+          <div class="kc-top"><span class="src label"><svg><use href="#meet"/></svg>Learning</span><span class="grade e5 num">E5</span></div>
+          <q>&ldquo;Security review is where every pilot goes to die.&rdquo;</q>
+          <div class="cite label num">CTO &middot; Follow-up call &middot; 31:05</div>
+        </div>
+      </figure>
+      <figure class="still rv d1">
+        <img src="still-monday-meeting.jpg" alt="A product meeting at a long table, one colleague at the whiteboard" loading="lazy">
+        <figcaption class="cap label"><span>In the Monday meeting</span><span>Internal</span></figcaption>
+        <div class="kc">
+          <div class="kc-top"><span class="label tag-purple">Position &middot; Halden</span><span class="label num">Evidence 34</span></div>
+          <div class="title">Pricing outdated</div>
+          <div class="body">6 clients signaled they need more features.</div>
+          <div class="bar"><i style="width:34%;background:var(--purple)"></i></div>
+        </div>
+      </figure>
+      <figure class="still rv d2">
+        <img src="still-after-the-call.jpg" alt="A product lead reading late in an empty office, rain on the window" loading="lazy">
+        <figcaption class="cap label"><span>After the call</span><span>Reflection</span></figcaption>
+        <div class="kc">
+          <div class="kc-top"><span class="label">Reflection &middot; <span class="tag-purple">Missed</span></span><span class="label num">9 calls</span></div>
+          <div class="q">The economic buyer stayed silent in 6 of 9, and all six deals are stuck.</div>
+          <div class="cite label">Nobody asked them a direct question &middot; <span style="white-space:nowrap">This quarter</span></div>
+        </div>
+      </figure>
+    </div>
+
+    <div class="sources rv">
+      <span class="label">Reads from</span>
+      <span>Google Meet</span><span>Microsoft Teams</span><span>Granola</span><span>Read.ai</span><span>Transcript upload</span><span>Slack</span><span>Notion</span><span>Google Drive</span><span>Pipeline numbers</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 WEIGHED ================= -->
+<section class="sec weighed" id="weighed" data-chap="1">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label rv"><b class="num">02</b>Weighed</div>
+      <h2 class="rv">Not everything said weighs the same.</h2>
+      <p class="rv d1">Krans grades every learning on an evidence scale, from E0, something vague, to E5, where they put something at stake. A passing remark and a commitment never carry the same weight in your model.</p>
+    </div>
+
+    <div class="scale" id="scale">
+      <div class="chips">
+        <div class="chip c5"><div class="q">&ldquo;Security review is where every pilot goes to die.&rdquo;</div><div class="cite label num">E5 &middot; CTO &middot; Follow-up call &middot; 31:05</div></div>
+        <div class="chip c4"><div class="q">&ldquo;We lose about forty thousand a month in rework.&rdquo;</div><div class="cite label num">E4 &middot; Ops lead &middot; Discovery call &middot; 14:20</div></div>
+      </div>
+      <div class="step s0" style="--h:8%"><div class="col"></div><div class="e num">E0</div></div>
+      <div class="step" style="--h:18%"><div class="col"></div><div class="e num">E1</div></div>
+      <div class="step" style="--h:30%"><div class="col"></div><div class="e num">E2</div></div>
+      <div class="step" style="--h:45%"><div class="col"></div><div class="e num">E3</div></div>
+      <div class="step e4" style="--h:62%"><div class="col"></div><div class="e num">E4</div></div>
+      <div class="step e5" style="--h:90%"><div class="col"></div><div class="e num">E5</div></div>
+    </div>
+    <div class="step-desc">
+      <div>Vague</div><div class="dim"></div><div class="dim"></div><div>A concrete quote with impact</div><div class="dim"></div><div>They put something at stake</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 HARDENED ================= -->
+<section class="sec hardened" id="hardened" data-chap="2">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label rv"><b class="num">03</b>Hardened</div>
+      <h2 class="rv">Heard once, it is a learning. Heard across calls, it hardens into a signal.</h2>
+      <p class="rv d1">One buyer saying it is noise. When the same thing keeps coming up across calls and threads, Krans joins it into one signal and tracks it week by week, and it fades again when nobody repeats it.</p>
+    </div>
+
+    <div class="win rv" id="sigWin">
+      <div class="win-bar">
+        <div class="l"><svg viewBox="0 0 85 86.5"><use href="#ring"/></svg><span>Krans</span><em>Signal history</em></div>
+        <div class="r label">Updated overnight</div>
+      </div>
+      <div class="win-body">
+        <div class="win-head"><span class="label num">One signal &middot; 14 weeks</span><strong>&ldquo;Buyers want a human review gate&rdquo;</strong></div>
+        <svg class="chart chart-d" viewBox="0 0 1200 430" aria-label="Signal strength over fourteen weeks, crossing emerging, validated and decision-grade">
+          <g font-size="13" letter-spacing="1.2" fill="#8E897E">
+            <line x1="60" x2="1150" y1="300" y2="300" stroke="#EFA92A" stroke-opacity=".55" stroke-dasharray="4 6"/>
+            <line x1="60" x2="1150" y1="200" y2="200" stroke="#30BCED" stroke-opacity=".6" stroke-dasharray="4 6"/>
+            <line x1="60" x2="1150" y1="112" y2="112" stroke="#5E239D" stroke-opacity=".45" stroke-dasharray="4 6"/>
+            <text x="60" y="290">EMERGING</text>
+            <text x="60" y="190">VALIDATED</text>
+            <text x="60" y="102">DECISION-GRADE</text>
+          </g>
+          <path class="area" d="M60 395 L138 345 L255 290 L348 306 L411 226 L489 181 L684 206 L762 126 L864 92 L1150 150 L1150 400 L60 400Z" fill="#5E239D" fill-opacity=".07"/>
+          <path class="path" style="--len:1500" d="M60 395 L138 345 L255 290 L348 306 L411 226 L489 181 L684 206 L762 126 L864 92 L1150 150" fill="none" stroke="#5E239D" stroke-width="3" stroke-linejoin="round"/>
+          <g class="dots" fill="#5E239D" font-size="13" letter-spacing=".5">
+            <circle class="dot" cx="138" cy="345" r="6"/><text class="dot" x="138" y="326" text-anchor="middle" fill="#5F5C55">NW</text>
+            <circle class="dot" cx="255" cy="290" r="6"/><text class="dot" x="255" y="271" text-anchor="middle" fill="#5F5C55">MH</text>
+            <circle class="dot" cx="411" cy="226" r="6"/><text class="dot" x="426" y="248" fill="#5F5C55">KE</text>
+            <circle class="dot" cx="489" cy="181" r="6"/><text class="dot" x="489" y="162" text-anchor="middle" fill="#5F5C55">HD</text>
+            <circle class="dot" cx="762" cy="126" r="6"/><text class="dot" x="748" y="116" text-anchor="end" fill="#5F5C55">MG</text>
+            <circle class="dot" cx="864" cy="92" r="6"/><text class="dot" x="864" y="73" text-anchor="middle" fill="#5F5C55">NW</text>
+          </g>
+          <line x1="60" x2="1150" y1="400" y2="400" stroke="#DDD6C6"/>
+          <g font-size="13" fill="#8E897E" class="num">
+            <text x="60" y="424" text-anchor="middle">W0</text><text x="372" y="424" text-anchor="middle">W4</text><text x="684" y="424" text-anchor="middle">W8</text><text x="1150" y="424" text-anchor="middle">W14</text>
+          </g>
+        </svg>
+        <svg class="chart chart-m" viewBox="0 0 400 300" aria-hidden="true">
+          <g font-size="11" letter-spacing="1" fill="#8E897E">
+            <line x1="10" x2="390" y1="191.9" y2="191.9" stroke="#EFA92A" stroke-opacity=".6" stroke-dasharray="3 5"/>
+            <line x1="10" x2="390" y1="113.8" y2="113.8" stroke="#30BCED" stroke-opacity=".65" stroke-dasharray="3 5"/>
+            <line x1="10" x2="390" y1="45.0" y2="45.0" stroke="#5E239D" stroke-opacity=".5" stroke-dasharray="3 5"/>
+            <text x="10" y="184.9">EMERGING</text><text x="10" y="106.8">VALIDATED</text><text x="10" y="38.0">DECISION-GRADE</text>
+          </g>
+          <path class="area" d="M10.0 266.1 L37.2 227.0 L78.0 184.1 L110.4 196.6 L132.4 134.1 L159.6 98.9 L227.5 118.4 L254.7 55.9 L290.3 29.4 L390.0 74.7 L390 270 L10 270Z" fill="#5E239D" fill-opacity=".07"/>
+          <path class="path" style="--len:700" d="M10.0 266.1 L37.2 227.0 L78.0 184.1 L110.4 196.6 L132.4 134.1 L159.6 98.9 L227.5 118.4 L254.7 55.9 L290.3 29.4 L390.0 74.7" fill="none" stroke="#5E239D" stroke-width="2.5" stroke-linejoin="round"/>
+          <g fill="#5E239D"><circle class="dot" cx="37.2" cy="227.0" r="4.5"/><circle class="dot" cx="78.0" cy="184.1" r="4.5"/><circle class="dot" cx="132.4" cy="134.1" r="4.5"/><circle class="dot" cx="159.6" cy="98.9" r="4.5"/><circle class="dot" cx="254.7" cy="55.9" r="4.5"/><circle class="dot" cx="290.3" cy="29.4" r="4.5"/></g>
+          <line x1="10" x2="390" y1="270" y2="270" stroke="#DDD6C6"/>
+          <g font-size="11" fill="#8E897E" class="num"><text x="10" y="290">W0</text><text x="227.5" y="290" text-anchor="middle">W8</text><text x="390" y="290" text-anchor="end">W14</text></g>
+        </svg>
+        <div class="win-foot label"><span>Each dot is another conversation saying it</span><span>The line falls when nothing new arrives</span></div>
+      </div>
+    </div>
+
+    <div class="prims">
+      <div class="prim rv"><div class="label">Threads</div><h3>Nothing a buyer said gets lost, even months later.</h3><p>Every conversation with a company joins one thread Krans keeps reading from, so context builds across calls and across the team.</p></div>
+      <div class="prim rv d1"><div class="label">Signals</div><h3>One buyer saying it is noise. Five saying it is a signal.</h3><p>A signal hardens when the same thing keeps coming up across calls and threads, and fades again when nobody repeats it.</p></div>
+      <div class="prim rv d2"><div class="label">Positions</div><h3>You see which of your bets are backed, and which are guesses.</h3><p>Every claim about your market, pricing or wedge is tracked over time with an evidence score, so conviction becomes something you can audit.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 AGED ================= -->
+<section class="aged" id="aged" data-chap="3">
+  <div class="aged-pin">
+    <div class="stage">
+      <img src="scene-call-night.jpg" alt="" loading="lazy">
+      <img class="later" src="scene-sixty-days-later.jpg" alt="The same meeting room sixty days later, empty, in flat morning light" loading="lazy">
+    </div>
+    <div class="aged-shade"></div>
+    <div class="aged-copy">
+      <div class="wrap">
+        <div class="label"><b class="num">04</b>Aged</div>
+        <div class="swap"><h2 class="h-a">Today, it carries weight.</h2><h2 class="h-b" aria-hidden="true">Sixty days later, nobody has said it again.</h2></div>
+        <p>Evidence ages. A claim nobody has repeated for sixty days loses weight, and so do the positions built on it, so your model never rests on something only one call believed.</p>
+      </div>
+    </div>
+    <div class="aged-card">
+      <div class="kc" id="agedKc">
+        <div class="kc-top"><span class="src label"><svg><use href="#meet"/></svg>Learning</span><span class="grade num">E4</span></div>
+        <q>&ldquo;We lose about forty thousand a month in rework.&rdquo;</q>
+        <div class="cite label num">Ops lead &middot; Discovery call &middot; 14:20</div>
+        <div class="bar"><i id="agedBar" style="width:86%"></i></div>
+        <div class="meta label"><span class="state" id="agedState"><i></i>Weight</span><span class="num" id="agedLast">Last repeated today</span></div>
+      </div>
+    </div>
+    <div class="day">
+      <div class="wrap"><span class="n label num" id="dayN">Day 0</span><span class="track"><i></i></span><span class="n2 label num">Day 60</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 DECIDED ================= -->
+<section class="sec decided" id="decided" data-chap="4">
+  <div class="wrap">
+    <div class="sec-head wide">
+      <div class="label rv"><b class="num">05</b>Decided</div>
+      <h2 class="rv">Decide from what is true, not from the loudest voice or the last call.</h2>
+    </div>
+  </div>
+  <div class="frame rv">
+    <img src="scene-morning-decision.jpg" alt="The same meeting room the next morning, the founder talking a decision through with two colleagues" loading="lazy">
+    <div class="cap"><div class="wrap label"><span>The same room, the next morning</span><span>Positions</span></div></div>
+  </div>
+  <div class="wrap">
+    <div class="decide">
+      <div class="txt rv">
+        <h3>Evidence turned into scored decisions, with options.</h3>
+        <p>Positions turn the evidence into scored decisions with options: where a deal or a bet really stands, what you could do next, and where each option is likely to take it. The learnings behind it stay cited, and the call you make stays on the record.</p>
+      </div>
+      <div class="win rv d1" id="posWin">
+        <div class="win-bar">
+          <div class="l"><svg viewBox="0 0 85 86.5"><use href="#ring"/></svg><span>Krans</span><em>Tonight&rsquo;s run</em></div>
+          <div class="r label num">47 calls &middot; 312 threads &middot; 9 docs</div>
+        </div>
+        <div class="win-body">
+          <div class="claim">
+            <div class="top label"><span class="tag-purple">Claim &middot; Halden</span><span class="num" style="color:var(--ink)">E5 &middot; 9 conversations</span></div>
+            <div class="q">Security review stalls every pilot. Move it before the demo.</div>
+          </div>
+          <div class="goes label"><span>Where Halden goes</span><span>Close probability</span></div>
+          <svg class="chart pos-chart" viewBox="0 0 600 220" aria-label="Close probability now 54 percent; 81 percent with the review before the demo, 49 percent as is">
+            <line x1="380" x2="380" y1="20" y2="196" stroke="#B9B2A3" stroke-dasharray="2 5"/>
+            <path class="path" style="--len:420" d="M20 168 L70 163 L120 165 L175 150 L230 140 L290 130 L340 120 L380 112" fill="none" stroke="#3A3A3E" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M380 112 C430 108 470 92 560 60" fill="none" stroke="#16695C" stroke-width="2.5" stroke-dasharray="6 6"/>
+            <path d="M380 112 L560 122" fill="none" stroke="#9A958A" stroke-width="2" stroke-dasharray="4 6"/>
+            <circle cx="380" cy="112" r="6" fill="#1D1E22"/>
+            <circle cx="560" cy="60" r="7" fill="#16695C"/>
+            <circle cx="560" cy="122" r="5" fill="#9A958A"/>
+            <g font-size="12.5" letter-spacing="1" class="num">
+              <text x="366" y="104" text-anchor="end" fill="#1D1E22" font-weight="600" font-size="15" class="big">54%</text>
+              <text x="560" y="36" text-anchor="end" fill="#8E897E">REVIEW BEFORE DEMO <tspan fill="#16695C" font-weight="600" class="big">81%</tspan></text>
+              <text x="560" y="150" text-anchor="end" fill="#8E897E">AS IS <tspan fill="#8E897E" font-weight="600" class="big">49%</tspan></text>
+              <text x="380" y="214" text-anchor="middle" fill="#8E897E">NOW</text>
+            </g>
+          </svg>
+          <div class="actions">
+            <div><span class="hold">Hold</span><span class="move">Review before demo</span></div>
+            <span class="label" style="color:var(--ink-3)">Your call, on the record</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SURFACES ================= -->
+<section class="sec" id="surfaces">
+  <div class="wrap">
+    <div class="surf">
+      <div class="surf-h"><h2 class="rv">One model of your company, wherever you work.</h2>
+      <p class="intro rv d1">Nothing is filed as notes. The model is what you look at, and every new signal updates it, so it is never out of date.</p></div>
+      <dl class="rv d1">
+        <div><dt>Threads</dt><dd>Every conversation with a company, joined into one story.</dd></div>
+        <div><dt>Positions</dt><dd>Evidence turned into scored decisions, with options.</dd></div>
+        <div><dt>Pages</dt><dd>Stage, warmth and close probability, written from the calls.</dd></div>
+        <div><dt>Overview</dt><dd>Everything sorted by what needs your attention.</dd></div>
+        <div><dt>Reflections</dt><dd>A review of each call, minutes after it ends: what helped, what hurt, what you missed.</dd></div>
+        <div><dt>Ask Krans</dt><dd>Answers from your own sources, with the evidence attached.</dd></div>
+        <div><dt>MCP server</dt><dd>The same context inside Claude or Cursor.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section class="sec" id="team">
+  <div class="wrap">
+    <div class="team">
+      <figure class="ph rv"><img src="founder-michael-van-lier.webp" alt="Michael van Lier" loading="lazy"><figcaption class="label"><span>Michael van Lier</span><span>Founder</span></figcaption></figure>
+      <figure class="ph rv d1"><img src="founder-sharon-klaver.webp" alt="Sharon Klaver" loading="lazy"><figcaption class="label"><span>Sharon Klaver</span><span>Founder</span></figcaption></figure>
+      <div class="t rv d2">
+        <h3>Built on a decade of building companies.</h3>
+        <p>Krans is built by Michael van Lier and Sharon Klaver, on learnings from a decade of ventures built inside Builders.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLOSE ================= -->
+<section class="close" id="close">
+  <div class="wrap">
+    <h2 class="rv">Instinct starts companies.<br><span>Evidence compounds them.</span></h2>
+    <div class="row rv d1">
+      <p>See your own calls, meetings and threads turned into a model you can check, with the evidence behind every line.</p>
+      <a class="btn btn-solid" href="https://krans.ai">Book a walkthrough <svg><use href="#arrow"/></svg></a>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap">
+      <svg class="logo" viewBox="0 0 319.6 86.5"><use href="#logo"/></svg>
+      <nav><a href="https://krans.ai">Product updates</a><a href="https://krans.ai">Privacy</a><a href="https://krans.ai">Terms</a></nav>
+      <span>krans.ai</span>
+    </div>
+  </footer>
+</section>
+</main>
+
+<div class="chap" id="chap" aria-hidden="true">
+  <div class="ticks"><i></i><i></i><i></i><i></i><i></i></div>
+  <span><b class="num" id="chapN">01</b><span id="chapT">Heard</span></span>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(function(){ document.body.classList.add('loaded'); });
+
+  // hero video
+  var v = document.getElementById('heroVid');
+  if (v && !reduce) {
+    v.addEventListener('playing', function(){ v.classList.add('on'); });
+    var p = v.play(); if (p && p.catch) p.catch(function(){});
+  }
+
+  // wire from pin to card
+  var pin = document.getElementById('heroPin'), card = document.getElementById('heroCard'), line = document.getElementById('heroLine'), hero = document.getElementById('hero');
+  function wire(){
+    if (!pin || getComputedStyle(pin).display === 'none') return;
+    var h = hero.getBoundingClientRect(), a = pin.getBoundingClientRect(), c = card.getBoundingClientRect();
+    var x1 = a.left + a.width/2 - h.left, y1 = a.top + a.height/2 - h.top, ey = c.top - h.top + 34, x2 = c.left - h.left;
+    line.setAttribute('points', x1 + ',' + (y1 - 12) + ' ' + x1 + ',' + ey + ' ' + x2 + ',' + ey);
+  }
+  wire(); addEventListener('resize', wire); setTimeout(wire, 1200); setTimeout(wire, 2200);
+
+  // reveals
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.18, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv,.still,#scale,.win').forEach(function(el){ io.observe(el); });
+
+  // chapters
+  var chap = document.getElementById('chap'), ticks = chap.querySelectorAll('i'), names = ['Heard','Weighed','Hardened','Aged','Decided'];
+  var secs = [].slice.call(document.querySelectorAll('[data-chap]'));
+  // aged scroll scene
+  var aged = document.getElementById('aged'), agedBar = document.getElementById('agedBar'), agedKc = document.getElementById('agedKc'), dayN = document.getElementById('dayN'), agedLast = document.getElementById('agedLast'), agedState = document.getElementById('agedState');
+  function onScroll(){
+    var y = innerHeight * .5, cur = -1;
+    secs.forEach(function(s, i){ var r = s.getBoundingClientRect(); if (r.top < y) cur = +s.dataset.chap; });
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    var close = document.getElementById('close').getBoundingClientRect().top;
+    var ar = aged.getBoundingClientRect();
+    var inAged = ar.top < innerHeight * .5 && ar.bottom > innerHeight * .5;
+    chap.classList.toggle('show', heroBottom < innerHeight * .4 && close > innerHeight * .6 && cur >= 0 && !inAged);
+    if (cur >= 0){
+      document.getElementById('chapN').textContent = '0' + (cur + 1);
+      document.getElementById('chapT').textContent = names[cur];
+      ticks.forEach(function(t, i){ t.classList.toggle('on', i <= cur); });
+    }
+    var r = aged.getBoundingClientRect(), total = r.height - innerHeight;
+    var p = Math.min(1, Math.max(0, -r.top / total));
+    var q = Math.min(1, Math.max(0, (p - .12) / .72));
+    aged.style.setProperty('--p', q.toFixed(3));
+    var day = Math.round(q * 60);
+    dayN.textContent = 'Day ' + day;
+    agedBar.style.width = (86 - q * 62).toFixed(1) + '%';
+    agedBar.style.background = q > .6 ? '#9A958A' : '';
+    agedKc.style.opacity = (1 - q * .38).toFixed(3);
+    agedLast.textContent = day === 0 ? 'Last repeated today' : 'Last repeated ' + day + (day === 1 ? ' day' : ' days') + ' ago';
+    agedState.lastChild.textContent = q > .6 ? 'Fading' : 'Weight';
+    aged.classList.toggle('late', q > .5);
+    agedState.firstChild.style.background = q > .6 ? '#9A958A' : '';
+  }
+  addEventListener('scroll', onScroll, {passive:true}); addEventListener('resize', onScroll); onScroll();
+})();
+</script>
+</body>
+</html>

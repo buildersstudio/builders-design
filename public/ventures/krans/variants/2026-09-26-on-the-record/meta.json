@@ -1,0 +1,16 @@
+{
+  "title": "On the Record",
+  "created": "2026-09-26",
+  "note": "A five-scene film shot in one meeting room (heard, weighed, hardened, aged, decided), with the real Krans cards pinned onto cinematic stills and the same room crossfading to empty sixty days later as a claim loses its weight.",
+  "credits": [
+    { "file": "scene-call-night.jpg", "source": "Generated with Higgsfield, Cinema Studio Image 2.5 (job f6931d4f), laptop logo removed with a Nano Banana edit (job 3848b3c5)", "author": "Higgsfield AI", "url": "https://higgsfield.ai" },
+    { "file": "scene-call-night.mp4", "source": "Generated with Higgsfield, Seedance 2.5 image-to-video from scene-call-night (job 36d7eae2), 6 s loop, no audio", "author": "Higgsfield AI", "url": "https://higgsfield.ai" },
+    { "file": "scene-sixty-days-later.jpg", "source": "Generated with Higgsfield, Nano Banana edit of scene-call-night, same room empty sixty days later (job 2462cb26)", "author": "Higgsfield AI", "url": "https://higgsfield.ai" },
+    { "file": "scene-morning-decision.jpg", "source": "Generated with Higgsfield, Nano Banana edit of scene-call-night, same room the next morning (job 3b4197ff)", "author": "Higgsfield AI", "url": "https://higgsfield.ai" },
+    { "file": "still-customer-call.jpg", "source": "Generated with Higgsfield, Nano Banana 2 (job 8b8c2dc9), cropped to 3:4", "author": "Higgsfield AI", "url": "https://higgsfield.ai" },
+    { "file": "still-monday-meeting.jpg", "source": "Generated with Higgsfield, Nano Banana 2 (job f650c5fd)", "author": "Higgsfield AI", "url": "https://higgsfield.ai" },
+    { "file": "still-after-the-call.jpg", "source": "Generated with Higgsfield, Nano Banana 2 (job c0c37704)", "author": "Higgsfield AI", "url": "https://higgsfield.ai" },
+    { "file": "founder-michael-van-lier.webp", "source": "Krans gallery, founders", "author": "Krans", "url": "/ventures/krans/gallery/founders/founder-michael-van-lier.webp" },
+    { "file": "founder-sharon-klaver.webp", "source": "Krans gallery, founders", "author": "Krans", "url": "/ventures/krans/gallery/founders/founder-sharon-klaver.webp" }
+  ]
+}

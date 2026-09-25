@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krans · Know what is still true</title>
+<meta name="description" content="Krans keeps a living model of your company. Every claim is cited and graded, and evidence ages.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0A0C; --s1:#121215; --s2:#18181C; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --tx:#EDECE7; --tx2:#B4B4B8; --mute:#85868C; --faint:#55565C; --orange:#F95738; --orange2:#FF7A5C;
+  --w:1312px; --pad:64px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:"Geist",system-ui,sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.tn{font-variant-numeric:tabular-nums}
+.wrap{max-width:calc(var(--w) + var(--pad)*2);margin:0 auto;padding:0 var(--pad)}
+.label{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.label.hi{color:var(--tx)}
+.btn{display:inline-flex;align-items:center;height:48px;padding:0 22px;border-radius:8px;font-size:15px;font-weight:500;transition:background .2s,border-color .2s,color .2s}
+.btn-o{background:var(--orange);color:#0A0A0C}
+.btn-o:hover{background:var(--orange2)}
+.btn-l{border:1px solid var(--line2);color:var(--tx)}
+.btn-l:hover{border-color:rgba(255,255,255,.4)}
+.g{display:inline-flex;align-items:center;justify-content:center;height:22px;min-width:30px;padding:0 7px;border-radius:5px;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;border:1px solid var(--line2);color:var(--tx2);white-space:nowrap}
+
+nav{position:sticky;top:0;z-index:30;background:rgba(10,10,12,.78);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.scrolled{border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo svg{height:25px;width:auto;fill:var(--tx);display:block}
+.links{display:flex;gap:34px;font-size:15px;color:var(--tx2)}
+.links a:hover{color:var(--tx)}
+.nav .btn{height:38px;padding:0 16px;font-size:14px}
+
+/* hero */
+.hero{min-height:calc(100vh - 72px);max-height:980px;display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding-top:56px;padding-bottom:56px}
+.h-left{grid-column:1/6;display:flex;flex-direction:column;justify-content:space-between}
+.h-left h1{font-size:104px;line-height:.92;font-weight:600;letter-spacing:-.05em}
+.h-left h1 .st{display:inline-block;animation:thin 7s cubic-bezier(.5,0,.3,1) infinite}
+@keyframes thin{0%,18%{font-weight:600;opacity:1}55%,70%{font-weight:200;opacity:.38}88%,100%{font-weight:600;opacity:1}}
+.h-left .sub{font-size:18px;line-height:1.55;color:var(--tx2);max-width:480px;margin:30px 0 30px}
+.legend{border-top:1px solid var(--line);padding-top:18px}
+.lg{display:flex;align-items:center;gap:16px;margin-top:12px;font-size:22px;letter-spacing:-.02em;white-space:nowrap}
+.lg i{flex:1;height:1px;background:linear-gradient(90deg,rgba(237,236,231,.5),rgba(237,236,231,.08));min-width:24px}
+.h-left .ctas{display:flex;gap:10px;flex-wrap:wrap}
+.eyebrow{display:flex;gap:12px;align-items:center;margin-bottom:36px}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(249,87,56,.16)}
+
+.board{grid-column:6/13;background:var(--s1);border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.b-top{display:flex;align-items:center;justify-content:space-between;height:54px;padding:0 24px;border-bottom:1px solid var(--line)}
+.b-top .l{display:flex;gap:14px;align-items:center}
+.b-top .dots{display:flex;gap:7px}.b-top .dots i{width:10px;height:10px;border-radius:50%;background:#2A2A2F}
+.clock{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--mute)}
+.clock b{font-size:13px;font-weight:600;color:var(--tx);font-variant-numeric:tabular-nums;min-width:52px;text-align:right}
+.feed{height:52px;border-bottom:1px solid var(--line);padding:0 24px;display:flex;align-items:center;gap:12px;font-size:13px;color:var(--mute);overflow:hidden;position:relative}
+.feed .pill{display:inline-flex;align-items:center;gap:8px;color:var(--tx);transition:opacity .4s,transform .4s}
+.feed .pill.out{opacity:0;transform:translateY(-8px)}
+.feed .pill i{width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.feed .pill span{color:var(--mute)}
+.rows{flex:1;display:flex;flex-direction:column}
+.row{flex:1;display:grid;grid-template-columns:1fr 150px;gap:20px;align-items:center;padding:0 24px;border-bottom:1px solid var(--line);position:relative;min-height:84px}
+.row:last-child{border-bottom:0}
+.row::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:2px;background:var(--orange);transform:scaleY(0);transition:transform .3s}
+.row.hit::before{transform:scaleY(1)}
+.row .c{font-size:27px;line-height:1.12;letter-spacing:-.025em;transition:font-weight .5s,opacity .5s,color .3s}
+.row.hit .c{color:#fff}
+.row .m{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.row .m .t{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+.row .m .t .age{min-width:74px;text-align:right}
+.row .wb{width:150px;height:3px;background:rgba(255,255,255,.08);border-radius:2px;position:relative;overflow:visible}
+.row .wb i{position:absolute;left:0;top:0;bottom:0;background:var(--tx);border-radius:2px;transition:width .5s,background .3s}
+.row.lost .wb i{background:var(--faint)}
+.row .flag{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);opacity:0;transition:opacity .3s}
+.row.lost .flag{opacity:1}
+.b-foot{height:46px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:12px;color:var(--faint)}
+
+/* sections */
+section{padding:170px 0 0}
+.head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:72px;align-items:end}
+.head .label{grid-column:1/-1;margin-bottom:22px}
+.head h2{grid-column:1/8;font-size:76px;line-height:.96;font-weight:600;letter-spacing:-.048em}
+.head h2 .dim{color:var(--faint);font-weight:300}
+.head p{grid-column:9/13;font-size:18px;line-height:1.55;color:var(--tx2)}
+
+/* scrubber */
+.scrub{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:40px 44px 36px}
+.sc-top{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.sc-claim{grid-column:1/8}
+.sc-claim .label{margin-bottom:18px;display:block}
+.sc-claim .c{font-size:56px;line-height:1;letter-spacing:-.04em;transition:font-weight .15s,opacity .15s}
+.sc-read{grid-column:8/13;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.sc-read div{padding:16px 0 0}
+.sc-read div+div{padding-left:20px;border-left:1px solid var(--line)}
+.sc-read b{display:block;font-size:40px;font-weight:500;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;margin-top:10px}
+.sc-read b small{font-size:18px;color:var(--mute);letter-spacing:0;margin-left:3px;font-weight:400}
+.sc-read .pos b{color:var(--orange)}
+.sc-chart{margin-top:40px;position:relative;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.sc-chart svg{width:100%;height:auto;display:block;overflow:visible}
+.sc-hint{display:flex;justify-content:space-between;margin-top:18px;font-size:13px;color:var(--mute)}
+.handle{cursor:ew-resize}
+.sc-hint .mo{display:none}
+.sc-chart svg{cursor:ew-resize}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+.rules div{border-top:1px solid var(--line);padding-top:20px}
+.rules b{display:block;font-size:18px;font-weight:500;letter-spacing:-.01em;margin-bottom:6px}
+.rules span{font-size:15px;color:var(--mute)}
+
+/* grades as weight */
+.grades{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.gr{padding:34px 22px 34px 0;border-right:1px solid var(--line)}
+.gr+.gr{padding-left:22px}
+.gr:last-child{border-right:0}
+.gr .code{font-size:96px;line-height:.85;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.gr .n{margin-top:26px;font-size:17px;font-weight:500}
+.gr .d{font-size:14px;color:var(--mute);margin-top:4px;line-height:1.4}
+.gr .wt{margin-top:22px;height:3px;background:rgba(255,255,255,.08);border-radius:2px}
+.gr .wt i{display:block;height:100%;background:var(--tx);border-radius:2px}
+
+/* influx */
+.influx{background:var(--s1);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.in-top{display:flex;justify-content:space-between;align-items:center;height:54px;padding:0 28px;border-bottom:1px solid var(--line)}
+.in-body{padding:36px 28px 30px}
+.in-body svg{width:100%;height:auto;display:block}
+.flow{stroke-dasharray:6 10;animation:flow 2.4s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-32}}
+
+/* positions */
+.pgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:30px 32px 30px}
+.card .top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.pcard{grid-column:1/8}
+.pcard h3{font-size:46px;line-height:1.02;letter-spacing:-.04em;font-weight:600;margin:28px 0 8px}
+.pcard .ev{display:flex;align-items:baseline;gap:14px;margin:18px 0 26px}
+.pcard .ev b{font-size:64px;font-weight:500;letter-spacing:-.05em;line-height:1;color:var(--orange);font-variant-numeric:tabular-nums}
+.pcard .ev s{font-size:26px;color:var(--faint);text-decoration-thickness:1px}
+.pcard .ev span{font-size:14px;color:var(--mute)}
+.moved{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:rgba(249,87,56,.14);color:var(--orange2);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.under{border-top:1px solid var(--line)}
+.under div{display:grid;grid-template-columns:1fr 44px 90px 150px;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+.under div span{color:var(--tx2)}
+.under div em{font-style:normal;font-size:13px;color:var(--mute);text-align:right;font-variant-numeric:tabular-nums}
+.under .wb{height:3px;background:rgba(255,255,255,.08);border-radius:2px;position:relative}
+.under .wb i{position:absolute;left:0;top:0;bottom:0;background:var(--tx);border-radius:2px}
+.under .old span{color:var(--faint)}
+.under .old .wb i{background:var(--faint)}
+.pside{grid-column:8/13;display:flex;flex-direction:column;gap:24px}
+.brief .when{font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums}
+.brief p{font-size:24px;line-height:1.25;letter-spacing:-.02em;font-weight:500;margin:22px 0 18px}
+.brief .sm{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.decided{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.decided .q{font-size:20px;line-height:1.35;letter-spacing:-.015em;color:var(--tx);margin-top:22px}
+.decided .who{margin-top:18px;font-size:13px;color:var(--mute)}
+
+/* photo */
+.photo{position:relative;height:720px;border-radius:14px;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:center 45%;filter:brightness(1.18) contrast(1.04)}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,12,.72) 0%,rgba(10,10,12,.2) 55%,rgba(10,10,12,0) 100%)}
+.photo .cap{position:absolute;z-index:1;left:56px;bottom:56px;max-width:640px}
+.photo .cap h3{font-size:58px;line-height:1;letter-spacing:-.045em;font-weight:600}
+.photo .cap p{margin-top:22px;font-size:17px;color:var(--tx2);max-width:460px}
+.photo .credit{position:absolute;z-index:1;right:24px;bottom:20px;font-size:12px;color:rgba(255,255,255,.5)}
+
+/* surfaces */
+.surfs{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.sf{border-top:1px solid var(--line2);padding-top:26px;display:flex;flex-direction:column}
+.sf.a{grid-column:1/7}.sf.b{grid-column:7/13}
+.sf .label{margin-bottom:14px}
+.sf h3{font-size:30px;line-height:1.08;letter-spacing:-.03em;font-weight:600;max-width:520px}
+.sf p{font-size:16px;color:var(--tx2);margin-top:14px;max-width:520px}
+.sf .ui{margin-top:28px;background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:20px 22px;flex:1}
+.sf + .sf.a,.sf.a ~ .sf.a{margin-top:56px}
+.sf.b ~ .sf.b{margin-top:56px}
+.rl{display:grid;grid-template-columns:52px 2px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.rl:last-child{border-bottom:0;padding-bottom:2px}
+.rl:first-child{padding-top:2px}
+.rl .ts{font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:3px}
+.rl .bar{border-radius:2px}
+.rl .k{font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+.rl p{font-size:16px;line-height:1.35;margin-top:3px}
+.th{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.th>div{border:1px solid var(--line);border-radius:8px;padding:14px}
+.th .k{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.th .v{font-size:24px;font-weight:500;letter-spacing:-.03em;margin:6px 0 10px;font-variant-numeric:tabular-nums}
+.th .trk{height:3px;background:rgba(255,255,255,.08);border-radius:2px}.th .trk i{display:block;height:100%;border-radius:2px}
+.th-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.th-h b{font-size:18px;font-weight:600;letter-spacing:-.02em}
+.th-h span{font-size:12px;color:var(--mute)}
+.th-s{font-size:15px;color:var(--tx2);margin-bottom:16px}
+.ask .q{display:flex;gap:10px;align-items:center;border:1px solid var(--line2);border-radius:8px;padding:12px 14px;font-size:15px}
+.ask .q i{width:7px;height:7px;border-radius:50%;background:var(--orange)}
+.ask .a{font-size:16px;line-height:1.5;margin-top:14px;color:var(--tx)}
+.ask sup{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;border-radius:4px;border:1px solid var(--line2);font-size:11px;font-weight:600;color:var(--tx2);vertical-align:2px;margin:0 2px}
+.mcp{font-size:14px}
+.mcp .ep{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line2);border-radius:8px;padding:12px 14px}
+.mcp .ep b{font-weight:500}
+.mcp .ep span{font-size:12px;color:var(--mute)}
+.mcp .cl{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.mcp .cl span{border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--tx2);font-size:13px}
+.mcp .note{margin-top:14px;font-size:13px;color:var(--mute)}
+
+/* sources */
+.srcs{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start}
+.srcs .big{grid-column:1/9;font-size:58px;line-height:1.1;letter-spacing:-.045em;font-weight:600}
+.srcs .big span{transition:color .5s,font-weight .5s;color:var(--faint);font-weight:300}
+.srcs .big span.on{color:var(--tx);font-weight:600}
+.srcs .side{grid-column:9/13;font-size:17px;color:var(--tx2)}
+.srcs .side p+p{margin-top:16px}
+
+/* who + team */
+.aud{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:stretch}
+.aud .img{grid-column:1/7;border-radius:14px;overflow:hidden;position:relative;min-height:600px}
+.aud .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.aud .img .credit{position:absolute;left:20px;bottom:16px;font-size:12px;color:rgba(255,255,255,.5)}
+.aud .txt{grid-column:7/13;display:flex;flex-direction:column;justify-content:space-between;padding-left:32px}
+.aud h3{font-size:46px;line-height:1.02;letter-spacing:-.04em;font-weight:600}
+.aud ul{list-style:none}
+.aud li{border-top:1px solid var(--line);padding:18px 0;display:grid;grid-template-columns:1fr 1.4fr;gap:20px;font-size:15px;color:var(--tx2)}
+.aud li b{color:var(--tx);font-weight:500;font-size:17px}
+.team{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-top:24px}
+.fd{grid-column:span 3;display:flex;flex-direction:column}
+.fd img{aspect-ratio:1/1;object-fit:cover;border-radius:12px;filter:grayscale(1) brightness(.92) contrast(1.05)}
+.fd b{margin-top:14px;font-size:17px;font-weight:500}
+.fd span{font-size:14px;color:var(--mute)}
+.team .txt{grid-column:7/13;align-self:end;padding-left:32px}
+.team .txt p{font-size:17px;color:var(--tx2);max-width:460px}
+
+/* close */
+.close{padding:200px 0 130px}
+.close h2{font-size:150px;line-height:.9;letter-spacing:-.06em;font-weight:600}
+.close h2 span{display:block}
+.close h2 .w1{font-weight:200;color:var(--faint)}
+.close-row{display:flex;justify-content:space-between;align-items:end;margin-top:56px;gap:40px}
+.close-row p{font-size:19px;color:var(--tx2);max-width:500px}
+footer{border-top:1px solid var(--line);padding:32px 0 48px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:14px;color:var(--mute)}
+.foot .logo svg{height:22px}
+.foot .fl{display:flex;gap:28px}
+
+.rv{opacity:0;transform:translateY(16px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.h-left h1 .st{animation:none}.flow{animation:none}}
+
+@media (max-width:1180px){
+  :root{--pad:40px}
+  .h-left h1{font-size:84px}
+  .row .c{font-size:23px}
+  .close h2{font-size:120px}
+  .gr .code{font-size:76px}
+}
+@media (max-width:900px){
+  :root{--pad:20px}
+  .links{display:none}
+  .hero{grid-template-columns:1fr;min-height:0;max-height:none;padding-top:36px;padding-bottom:0;gap:40px}
+  .h-left,.board{grid-column:1/-1}
+  .h-left h1{font-size:68px}
+  .eyebrow{margin-bottom:24px}
+  .h-left .sub{font-size:17px;margin:24px 0 26px}
+  .b-top{padding:0 16px}
+  .feed{padding:0 16px;font-size:12px}
+  .feed .pill span.x{display:none}
+  .row{grid-template-columns:1fr;gap:10px;padding:16px 16px;min-height:0}
+  .row .c{font-size:21px}
+  .row .m{flex-direction:row;align-items:center;justify-content:space-between}
+  .row .wb{width:90px}
+  .b-foot{padding:0 16px}
+  .legend{margin-top:36px}
+  .lg{font-size:17px;gap:12px}
+  .b-foot span+span{display:none}
+  section{padding-top:112px}
+  .head{grid-template-columns:1fr;margin-bottom:40px}
+  .head h2,.head p{grid-column:1/-1}
+  .head h2{font-size:46px}
+  .head p{font-size:17px;margin-top:22px}
+  .scrub{padding:24px 18px 22px}
+  .sc-top{grid-template-columns:1fr;min-height:0;gap:26px}
+  .sc-claim,.sc-read{grid-column:1/-1}
+  .sc-claim .c{font-size:34px;min-height:70px}
+  .sc-read b{font-size:28px}
+  .sc-read b small{font-size:14px}
+  .sc-read div+div{padding-left:12px}
+  .sc-chart{margin-top:24px}
+  .sc-chart svg text{font-size:44px}
+  .sc-chart .mx,#sc60t{display:none}
+  .sc-hint .mo{display:inline}
+  .sc-hint{flex-direction:column;gap:4px}
+  .rules{grid-template-columns:1fr;gap:0}
+  .rules div{padding:18px 0}
+  .grades{grid-template-columns:repeat(2,1fr)}
+  .gr{padding:22px 14px 22px 0}
+  .gr+.gr{padding-left:0}
+  .gr:nth-child(even){padding-left:14px;border-right:0}
+  .gr:nth-child(-n+4){border-bottom:1px solid var(--line)}
+  .gr .code{font-size:60px}
+  .in-top{padding:0 16px}
+  .in-body{padding:18px 10px 16px;overflow-x:auto}
+  .in-body svg{min-width:720px}
+  .pgrid{grid-template-columns:1fr;gap:16px}
+  .pcard,.pside{grid-column:1/-1}
+  .card{padding:22px 18px}
+  .pcard h3{font-size:32px}
+  .pcard .ev b{font-size:48px}
+  .under div{grid-template-columns:1fr 40px 64px;row-gap:6px}
+  .under div em{grid-column:1/-1;text-align:left}
+  .photo{height:520px}
+  .photo::after{background:linear-gradient(0deg,rgba(10,10,12,.8) 0%,rgba(10,10,12,.2) 60%,rgba(10,10,12,0) 100%)}
+  .photo .cap{left:20px;right:20px;bottom:28px}
+  .photo .cap h3{font-size:34px}
+  .photo .credit{top:14px;bottom:auto;right:14px}
+  .surfs{grid-template-columns:1fr;gap:0}
+  .sf.a,.sf.b{grid-column:1/-1;margin-top:56px}
+  .sf:first-child{margin-top:0}
+  .sf h3{font-size:26px}
+  .sf .ui{padding:16px}
+  .th{grid-template-columns:1fr}
+  .srcs{grid-template-columns:1fr}
+  .srcs .big,.srcs .side{grid-column:1/-1}
+  .srcs .big{font-size:36px}
+  .aud{grid-template-columns:1fr;gap:32px}
+  .aud .img,.aud .txt{grid-column:1/-1}
+  .aud .img{min-height:340px}
+  .aud .txt{padding-left:0;gap:28px}
+  .aud h3{font-size:32px}
+  .aud li{grid-template-columns:1fr;gap:4px}
+  .team{grid-template-columns:1fr 1fr;gap:14px}
+  .fd{grid-column:span 1}
+  .team .txt{grid-column:1/-1;padding-left:0;margin-top:12px}
+  .close{padding:120px 0 80px}
+  .close h2{font-size:64px}
+  .close-row{flex-direction:column;align-items:flex-start;gap:24px}
+  .close-row p{font-size:17px}
+  .foot{flex-direction:column;align-items:flex-start}
+  .foot .fl{flex-wrap:wrap;gap:18px}
+}
+@media (max-width:420px){
+  .h-left h1{font-size:58px}
+  .head h2{font-size:40px}
+  .close h2{font-size:54px}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap nav">
+    <a class="logo" href="#" aria-label="Krans">
+      <svg viewBox="0 0 319.6 86.5" role="img" aria-label="Krans"><path fill-rule="evenodd" d="M0 44.875a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM4 44.875a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M8.4316 52.3069a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM12.4316 52.3069a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M16.75 40.3296a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM20.75 40.3296a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M2.7734 34.125a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM6.7734 34.125a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path d="M96.75 75V5.25H107.19V43.68H108.18L127.89 23.25H140.67L120.42 43.86L143.1 75H130.5L113.76 51.42H112.77L107.19 57.09V75H96.75Z"/><path d="M145.728 75V23.25H156.078V32.07H156.528C159.138 24.69 165.258 22.17 174.168 22.17V31.62C160.038 32.16 156.258 38.91 156.258 53.85V75H145.728Z"/><path d="M199.64 22.17C212.06 22.17 220.61 27.84 220.61 39.36V75H210.26V69.42H209.54C203.78 74.19 197.84 76.08 191.9 76.08C181.55 76.08 175.43 70.5 175.43 61.5C175.43 50.88 184.61 46.56 193.43 44.13L210.26 39.63V39.27C210.26 33.42 206.39 30.09 199.1 30.09C192.26 30.09 186.59 33.24 182.27 38.1L176.42 31.62C182.54 25.14 190.91 22.17 199.64 22.17ZM194.51 68.16C200.36 68.16 205.49 65.1 210.26 60.24V47.73L195.23 52.05C189.38 53.76 185.87 56.28 185.87 60.87C185.87 65.1 188.93 68.16 194.51 68.16Z"/><path d="M230.134 75V23.25H240.574V29.82H241.114C243.814 25.59 249.034 22.17 256.324 22.17C266.404 22.17 273.064 28.56 273.064 40.44V75H262.714V43.05C262.714 35.22 259.924 30.9 252.904 30.9C244.894 30.9 240.664 36.57 240.664 44.76V75H230.134Z"/><path d="M299.097 76.08C290.187 76.08 282.087 71.31 277.767 65.28L284.247 59.07C287.037 63.48 292.347 68.07 299.727 68.07C304.677 68.07 309.087 65.82 309.087 60.6C309.087 56.37 305.937 54.75 301.167 53.58L293.337 51.51C286.587 49.71 280.197 45.75 280.197 37.11C280.197 27.57 287.937 22.17 299.097 22.17C308.727 22.17 314.847 26.67 318.717 32.07L312.597 37.74C309.717 32.88 304.317 29.91 298.737 29.91C293.787 29.91 290.277 32.25 290.277 36.39C290.277 39.72 292.977 41.16 296.757 42.15L304.137 44.13C310.977 46.02 319.527 49.53 319.527 59.79C319.527 70.41 310.437 76.08 299.097 76.08Z"/></svg>
+    </a>
+    <div class="links">
+      <a href="#ages">Evidence ages</a>
+      <a href="#grades">Grades</a>
+      <a href="#positions">Positions</a>
+      <a href="#product">Product</a>
+    </div>
+    <a class="btn btn-o" href="#close">Book a walkthrough</a>
+  </div>
+</nav>
+
+<header class="wrap hero">
+  <div class="h-left">
+    <div>
+      <div class="eyebrow rv"><i></i><span class="label hi">For ventures and scale-ups</span></div>
+      <h1 class="rv">Know what is <span class="st">still</span> true.</h1>
+      <p class="sub rv">Krans keeps a living model of your company from every call, meeting, Slack thread and document. Every claim is cited and graded, and evidence ages: what nobody has repeated for sixty days loses weight, along with the decisions built on it.</p>
+      <div class="ctas"><a class="btn btn-o" href="#close">Book a walkthrough</a><a class="btn btn-l" href="#ages">See evidence age</a></div>
+    </div>
+    <div class="legend rv">
+      <span class="label">How to read the model</span>
+      <div class="lg"><span style="font-weight:640">Heard this week</span><i></i><span style="font-weight:200;opacity:.34">Sixty days, no repeat</span></div>
+    </div>
+  </div>
+
+  <div class="board rv" id="board" aria-label="A live sample of claims in a company model, losing weight as they age and regaining it when new evidence arrives">
+    <div class="b-top">
+      <div class="l"><span class="dots"><i></i><i></i><i></i></span><span class="label">Krans · Company model</span></div>
+      <div class="clock">Day <b id="day">0</b></div>
+    </div>
+    <div class="feed"><span class="pill" id="pill"><i></i><b id="pillT">Reading new calls</b><span class="x" id="pillS"></span></span></div>
+    <div class="rows" id="rows"></div>
+    <div class="b-foot"><span>Sample data · type weight is evidence weight</span><span>Sixty days without a repeat and a claim loses weight</span></div>
+  </div>
+</header>
+
+<section id="ages">
+  <div class="wrap">
+    <div class="head">
+      <span class="label rv">Evidence ages</span>
+      <h2 class="rv">Evidence ages.<br><span class="dim">So does confidence.</span></h2>
+      <p class="rv">Nothing stays validated on the strength of one conversation. Drag the day forward and watch a claim lose weight when nobody repeats it, and the position built on it soften with it.</p>
+    </div>
+    <div class="scrub rv">
+      <div class="sc-top">
+        <div class="sc-claim"><span class="label">Signal · heard across 5 accounts</span><div class="c" id="scC">Per-seat pricing holds.</div></div>
+        <div class="sc-read">
+          <div><span class="label">Last heard</span><b id="scAge">0<small>days</small></b></div>
+          <div><span class="label">Weight</span><b id="scW">1.00</b></div>
+          <div class="pos"><span class="label">Position</span><b id="scP">61</b></div>
+        </div>
+      </div>
+      <div class="sc-chart" id="scChart">
+        <svg viewBox="0 0 1220 260" id="scSvg" role="img" aria-label="Weight of a claim over 120 days, with a draggable day marker">
+          <g font-family="Geist" font-size="12" fill="#55565C" style="font-variant-numeric:tabular-nums">
+            <line x1="0" x2="1220" y1="220" y2="220" stroke="rgba(255,255,255,.12)"/>
+            <text x="0" y="248">0</text><text class="mx" x="305" y="248" text-anchor="middle">30</text><text x="610" y="248" text-anchor="middle">60</text><text class="mx" x="915" y="248" text-anchor="middle">90</text><text x="1220" y="248" text-anchor="end">120</text>
+          </g>
+          <rect id="scZone" x="0" y="20" width="0" height="200" fill="rgba(249,87,56,.06)"/>
+          <line id="sc60" x1="0" x2="0" y1="20" y2="220" stroke="rgba(249,87,56,.55)" stroke-dasharray="3 5"/>
+          <text id="sc60t" x="0" y="14" font-family="Geist" font-size="12" font-weight="600" letter-spacing="1.4" fill="#F95738">SIXTY DAYS, NO REPEAT</text>
+          <path id="scArea" fill="rgba(237,236,231,.05)"/>
+          <path id="scLine" fill="none" stroke="#EDECE7" stroke-width="2.5" stroke-linejoin="round"/>
+          <g id="scDots"></g>
+          <g class="handle" id="scH">
+            <line id="scHl" x1="0" x2="0" y1="20" y2="220" stroke="#F95738" stroke-width="2"/>
+            <circle id="scHc" cx="0" cy="0" r="8" fill="#0A0A0C" stroke="#F95738" stroke-width="3"/>
+          </g>
+        </svg>
+      </div>
+      <div class="sc-hint"><span>Dots are hearings, each cited to a call or thread.<span class="mo"> Shaded: sixty days with no repeat.</span> Sample data.</span><span>Drag, or use the arrow keys</span></div>
+    </div>
+    <div class="rules">
+      <div class="rv"><b>Decay is automatic, and visible</b><span>Weight falls on its own when nothing new confirms a claim, and you can see it fall.</span></div>
+      <div class="rv"><b>Promotion never runs backwards</b><span>A claim that became a signal stays a signal. Its weight is what moves.</span></div>
+      <div class="rv"><b>Fresh evidence restores it</b><span>One new call that says it again, and the weight comes back within a day.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="grades">
+  <div class="wrap">
+    <div class="head">
+      <span class="label rv">Grades</span>
+      <h2 class="rv">The grade sets how much a learning can carry.</h2>
+      <p class="rv">Every learning is cited to who said it and when, and graded from E0 to E5. On this page, as in the model, a heavier grade is set in a heavier weight.</p>
+    </div>
+    <div class="grades rv">
+      <div class="gr"><div class="code" style="font-weight:150;color:#6E6F75">E0</div><div class="n">Inferred</div><div class="d">No direct quote</div><div class="wt"><i style="width:10%"></i></div></div>
+      <div class="gr"><div class="code" style="font-weight:250;color:#8B8C91">E1</div><div class="n">Vague</div><div class="d">A general or soft quote</div><div class="wt"><i style="width:26%"></i></div></div>
+      <div class="gr"><div class="code" style="font-weight:350;color:#A9A9AD">E2</div><div class="n">Specific</div><div class="d">A clear statement, with context</div><div class="wt"><i style="width:44%"></i></div></div>
+      <div class="gr"><div class="code" style="font-weight:470;color:#C6C6C8">E3</div><div class="n">Impact</div><div class="d">Quantified or described impact</div><div class="wt"><i style="width:62%"></i></div></div>
+      <div class="gr"><div class="code" style="font-weight:620;color:#E2E1DD">E4</div><div class="n">Behavioural</div><div class="d">Spend, a workaround, a process change</div><div class="wt"><i style="width:80%"></i></div></div>
+      <div class="gr"><div class="code" style="font-weight:800;color:#F95738">E5</div><div class="n">Committed</div><div class="d">A pilot, an intro, a payment, their data</div><div class="wt"><i style="width:100%;background:#F95738"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="influx">
+  <div class="wrap">
+    <div class="head">
+      <span class="label rv">Everything in, everything weighed</span>
+      <h2 class="rv">Nobody types anything in.</h2>
+      <p class="rv">Calls arrive from Google Meet, Microsoft Teams, Granola, Read.ai or a transcript upload; documents from Notion and Google Drive; threads from Slack. Each becomes learnings, the learnings harden into signals, and anything that cannot be placed is counted as unused.</p>
+    </div>
+    <div class="influx rv">
+      <div class="in-top"><span class="label hi">Influx · all time</span><span class="label">Sample data</span></div>
+      <div class="in-body">
+        <svg viewBox="0 0 1240 500" role="img" aria-label="Sources flow into learnings, then signals and claims, with unused items counted separately">
+          <defs>
+            <linearGradient id="gA" x1="0" x2="1"><stop offset="0" stop-color="#EDECE7" stop-opacity=".16"/><stop offset="1" stop-color="#EDECE7" stop-opacity=".08"/></linearGradient>
+            <linearGradient id="gB" x1="0" x2="1"><stop offset="0" stop-color="#EDECE7" stop-opacity=".1"/><stop offset="1" stop-color="#F95738" stop-opacity=".22"/></linearGradient>
+          </defs>
+          <g font-family="Geist" font-size="15" fill="#EDECE7">
+            <!-- sources -->
+            <g id="srcBoxes"></g>
+            <!-- flows -->
+            <path d="M232 52 C330 52 330 150 420 150 L420 206 C330 206 330 52 232 88Z" fill="url(#gA)"/>
+            <path d="M232 132 C330 132 330 206 420 206 L420 236 C330 236 330 150 232 168Z" fill="url(#gA)"/>
+            <path d="M232 212 C330 212 330 236 420 236 L420 246 C330 246 330 222 232 228Z" fill="url(#gA)" />
+            <path d="M232 292 C330 292 330 246 420 246 L420 250 C330 250 330 298 232 300Z" fill="url(#gA)"/>
+            <path d="M232 372 C330 372 330 250 420 250 L420 252 C330 252 330 374 232 374Z" fill="url(#gA)"/>
+            <path d="M232 450 C330 450 330 252 420 252 L420 253 C330 253 330 451 232 451Z" fill="url(#gA)"/>
+            <rect x="420" y="150" width="6" height="104" rx="2" fill="#EDECE7"/>
+            <text x="436" y="126" font-size="17" font-weight="600">Learnings</text>
+            <text x="436" y="146" font-size="13" fill="#85868C" style="font-variant-numeric:tabular-nums">8,288 · ×8.0 per call</text>
+            <path d="M426 150 C560 150 560 176 690 176 L690 230 C560 230 560 228 426 228Z" fill="url(#gA)"/>
+            <path d="M426 232 C560 232 560 330 690 330 L690 340 C560 340 560 254 426 254Z" fill="rgba(255,255,255,.05)"/>
+            <rect x="690" y="176" width="6" height="54" rx="2" fill="#B4B4B8"/>
+            <text x="690" y="162" font-size="17" font-weight="600">Signals</text>
+            <text x="760" y="162" font-size="13" fill="#85868C" style="font-variant-numeric:tabular-nums">2,062</text>
+            <path d="M696 176 C820 176 820 110 930 110 L930 300 C820 300 820 230 696 230Z" fill="url(#gB)"/>
+            <rect x="930" y="110" width="6" height="190" rx="2" fill="#F95738"/>
+            <text x="930" y="84" font-size="17" font-weight="600">Claims</text>
+            <text x="930" y="102" font-size="13" fill="#85868C" style="font-variant-numeric:tabular-nums">9,373</text>
+            <text x="706" y="330" font-size="14" fill="#85868C">Mined, nothing found</text>
+            <text x="706" y="349" font-size="12" fill="#55565C" style="font-variant-numeric:tabular-nums">219 items · no extractable claims</text>
+            <g id="claimRows"></g>
+            <path class="flow" d="M232 70 C330 70 330 178 423 178" stroke="#F95738" stroke-width="1.5" fill="none" opacity=".8"/>
+            <path class="flow" d="M426 190 C560 190 560 200 693 200" stroke="#F95738" stroke-width="1.5" fill="none" opacity=".8"/>
+            <path class="flow" d="M696 204 C820 204 820 190 933 190" stroke="#F95738" stroke-width="1.5" fill="none" opacity=".8"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="positions">
+  <div class="wrap">
+    <div class="head">
+      <span class="label rv">Positions</span>
+      <h2 class="rv">Decisions soften with their evidence.</h2>
+      <p class="rv">A position is a decision with its evidence attached. When the claims under it age, its score moves, and Monday morning names the account or decision that needs you, and why.</p>
+    </div>
+    <div class="pgrid">
+      <div class="card pcard rv">
+        <div class="top"><span class="label">Position · Halden</span><span class="moved">Moved</span></div>
+        <h3>Per-seat pricing holds.</h3>
+        <div class="ev"><b>34</b><s>61</s><span>Evidence score, down from 61 · decided in #pricing, 2 Sep</span></div>
+        <div class="under">
+          <div class="old"><span>“Seats are how we buy everything.”</span><span class="g">E2</span><span class="wb"><i style="width:22%"></i></span><em>74 days ago</em></div>
+          <div class="old"><span>Pricing accepted on the first pilot</span><span class="g">E5</span><span class="wb"><i style="width:38%"></i></span><em>66 days ago</em></div>
+          <div><span>“We moved our last tool to a flat fee.”</span><span class="g">E4</span><span class="wb"><i style="width:84%;background:#F95738"></i></span><em>Against · 3 days ago</em></div>
+          <div><span>Pricing contradicted in 4 of the last 5 calls</span><span class="g">E3</span><span class="wb"><i style="width:70%;background:#F95738"></i></span><em>Against · this week</em></div>
+        </div>
+      </div>
+      <div class="pside">
+        <div class="card brief rv">
+          <div class="top"><span class="label hi">Monday 07:04</span><span class="when">3 accounts</span></div>
+          <p>Halden needs you. Pipeline flat for 19 days while calls say the pricing changed.</p>
+          <span class="sm">Northwind holding · Kestrel moved</span>
+        </div>
+        <div class="card decided rv">
+          <div class="top"><span class="label">On the record</span><span class="g">Hold</span></div>
+          <div class="q">Every position is scored against what was actually decided, and by whom, so you can see which bets are backed and which are guesses.</div>
+          <div class="aud">Sample data</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="photo rv">
+      <img src="img/whiteboard-at-dusk.jpg" alt="An empty meeting room at dusk with a whiteboard of half-erased notes" loading="lazy">
+      <div class="cap"><span class="label" style="display:block;margin-bottom:18px">The whiteboard from last spring</span><h3>Nothing stays true on the strength of one old conversation.</h3><p>A plan written on a Tuesday is still on the wall in June. Krans keeps asking the calls whether it holds.</p></div>
+      <span class="credit">Image generated with Higgsfield</span>
+    </div>
+  </div>
+</section>
+
+<section id="product">
+  <div class="wrap">
+    <div class="head">
+      <span class="label rv">Product</span>
+      <h2 class="rv">One model. Every view reads from it.</h2>
+      <p class="rv">Threads, pages, the overview, Reflections, Ask Krans and the MCP server all draw on the same living model, so every answer carries its grade, its source and its age.</p>
+    </div>
+    <div class="surfs">
+      <div class="sf a rv">
+        <span class="label">Threads and pages</span>
+        <h3>Every conversation with a company, as one story.</h3>
+        <p>Stage, warmth and close probability, rewritten after every call. Nothing leaves with a person.</p>
+        <div class="ui">
+          <div class="th-h"><b>Kestrel Express</b><span>Proposal · 19 days in stage</span></div>
+          <div class="th-s">6 calls and 4 emails. Pilot scope agreed, budget ring-fenced for H2.</div>
+          <div class="th">
+            <div><div class="k">Close</div><div class="v">62%</div><div class="trk"><i style="width:62%;background:#EDECE7"></i></div></div>
+            <div><div class="k">Warmth</div><div class="v">Warm</div><div class="trk"><i style="width:70%;background:#30BCED"></i></div></div>
+            <div><div class="k">Budget fit</div><div class="v">€1.8K/mo</div><div class="trk"><i style="width:80%;background:#F95738"></i></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="sf b rv">
+        <span class="label">Reflections</span>
+        <h3>Every call, honestly reviewed, minutes after it ends.</h3>
+        <p>What helped, what hurt and what you missed, with the timestamp to replay it.</p>
+        <div class="ui">
+          <div class="rl"><span class="ts">14:20</span><span class="bar" style="background:#30BCED"></span><div><span class="k" style="color:#30BCED">Helped</span><p>You got a cost-of-inaction number before any product talk.</p></div></div>
+          <div class="rl"><span class="ts">29:07</span><span class="bar" style="background:#F95738"></span><div><span class="k" style="color:#F95738">Hurt</span><p>Price landed before value did, so the number became the topic.</p></div></div>
+          <div class="rl"><span class="ts">9 calls</span><span class="bar" style="background:#9B6CE0"></span><div><span class="k" style="color:#B28BEA">Missed</span><p>The economic buyer stayed silent in 6 of 9, and all six deals are stuck.</p></div></div>
+        </div>
+      </div>
+      <div class="sf a rv">
+        <span class="label">Ask Krans</span>
+        <h3>Answers from your own sources, with their age.</h3>
+        <p>Ask about one account or the whole company, and every sentence in the answer is cited.</p>
+        <div class="ui ask">
+          <div class="q"><i></i>Does per-seat pricing still hold?</div>
+          <div class="a">Less than it did. The evidence for it is more than sixty days old<sup>1</sup>, and four of the last five calls pushed back on it<sup>2</sup>. The position moved from 61 to 34<sup>3</sup>.</div>
+        </div>
+      </div>
+      <div class="sf b rv">
+        <span class="label">MCP server</span>
+        <h3>The same truth, inside your AI.</h3>
+        <p>Point Claude, Cursor or your own agents at it, and an update writes itself from real evidence.</p>
+        <div class="ui mcp">
+          <div class="ep"><b>Krans MCP server</b><span>Read only</span></div>
+          <div class="cl"><span>Claude</span><span>Cursor</span><span>Your own agents</span></div>
+          <div class="note">One endpoint: conversations, signals, reflections, context. Every claim carries its evidence tier and its citations.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="wrap srcs">
+    <div class="big rv" id="srcBig"><span>Google Meet</span>, <span>Microsoft Teams</span>, <span>Granola</span>, <span>Read.ai</span>, <span>transcript uploads</span>, <span>Slack</span>, <span>Notion</span>, <span>Google Drive</span>, <span>pipeline numbers</span>.</div>
+    <div class="side rv"><span class="label" style="display:block;margin-bottom:18px">What it reads</span><p>What your company already produces: customer calls, internal meetings, Slack threads, documents and pipeline numbers. Connect your tools once.</p><p>Every new signal updates the model, and every claim in it keeps a date.</p></div>
+  </div>
+</section>
+
+<section id="who">
+  <div class="wrap">
+    <div class="aud">
+      <div class="img rv"><img src="img/founder-after-late-call.jpg" alt="A founder alone at a desk at night after a customer call" loading="lazy"><span class="credit">Image generated with Higgsfield</span></div>
+      <div class="txt rv">
+        <div><span class="label" style="display:block;margin-bottom:20px">Who it is for</span><h3>For companies that decide from what customers, the team and the market tell them.</h3></div>
+        <ul>
+          <li><b>Founders and CEOs</b><span>Where the company really stands, with the evidence behind it, instead of the loudest voice or the last call.</span></li>
+          <li><b>Product leads</b><span>Which bets are backed and which are guesses, and which claims have gone quiet.</span></li>
+          <li><b>Commercial leads</b><span>Every deal’s next step, written from the calls minutes after they end.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="team">
+      <div class="fd rv"><img src="img/founder-michael-van-lier.webp" alt="Michael van Lier" loading="lazy"><b>Michael van Lier</b><span>Founder</span></div>
+      <div class="fd rv"><img src="img/founder-sharon-klaver.webp" alt="Sharon Klaver" loading="lazy"><b>Sharon Klaver</b><span>Founder</span></div>
+      <div class="txt rv"><span class="label" style="display:block;margin-bottom:16px">Who builds it</span><p>Krans is founded by Michael van Lier and Sharon Klaver, and built on learnings from a decade of ventures built inside Builders.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="close" id="close">
+  <div class="wrap">
+    <h2 class="rv"><span class="w1">Decide on what</span><span>is still true.</span></h2>
+    <div class="close-row rv">
+      <p>Instinct starts companies. Evidence compounds them. See your own calls weighed in a walkthrough.</p>
+      <a class="btn btn-o" href="https://krans.ai">Book a walkthrough</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#" aria-label="Krans"><svg viewBox="0 0 85 86.5" role="img" aria-label="Krans"><path fill-rule="evenodd" d="M0 44.875a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM4 44.875a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M8.4316 52.3069a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM12.4316 52.3069a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M16.75 40.3296a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM20.75 40.3296a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M2.7734 34.125a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM6.7734 34.125a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/></svg></a>
+    <div class="fl"><a href="#ages">Evidence ages</a><a href="#grades">Grades</a><a href="#positions">Positions</a><a href="https://krans.ai">krans.ai</a></div>
+    <span>Built inside Builders</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>8)},{passive:true});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+  /* ---------- live board ---------- */
+  var claims=[
+    {t:'Security review stalls every pilot.',g:'E5',base:1,heard:[2,11,19,27,36,44,53,61,70,79,88,97,106,115],src:['Google Meet','Negotiation call','CFO']},
+    {t:'Market is healthy.',g:'E4',base:.9,heard:[4,22,40,58,76,94,112],src:['Microsoft Teams','Demo call','Head of ops']},
+    {t:'Buyers want a human review gate.',g:'E4',base:.86,heard:[-30,64],src:['Granola','Discovery call','Product lead']},
+    {t:'Email sells other USPs than the website.',g:'E3',base:.72,heard:[-12,33],src:['Slack','#marketing','Growth lead']},
+    {t:'Per-seat pricing holds.',g:'E2',base:.6,heard:[-40],src:['Notion','Pricing doc','Founder']},
+    {t:'Customers love the new pricing.',g:'E1',base:.4,heard:[-8],src:['Read.ai','Intro call','Founder']}
+  ];
+  var rowsEl=document.getElementById('rows'),dayEl=document.getElementById('day'),pill=document.getElementById('pill'),pT=document.getElementById('pillT'),pS=document.getElementById('pillS');
+  claims.forEach(function(c){
+    var r=document.createElement('div');r.className='row';
+    r.innerHTML='<div class="c"></div><div class="m"><div class="t"><span class="flag">Lost weight</span><span class="g">'+c.g+'</span><span class="age"></span></div><div class="wb"><i></i></div></div>';
+    r.querySelector('.c').textContent=c.t;rowsEl.appendChild(r);c.el=r;c.cEl=r.querySelector('.c');c.aEl=r.querySelector('.age');c.bEl=r.querySelector('.wb i');
+  });
+  function lastHeard(c,d){var l=-999;c.heard.forEach(function(h){if(h<=d)l=h});return l}
+  function decay(age){if(age<=21)return 1;if(age<=60)return 1-(age-21)/39*.22;return Math.max(.16,.78-(age-60)/22*.62)}
+  function render(d,flash){
+    dayEl.textContent=d;
+    claims.forEach(function(c){
+      var age=d-lastHeard(c,d),w=c.base*decay(age);
+      c.cEl.style.fontWeight=Math.round(160+640*w);c.cEl.style.opacity=(.26+.74*w).toFixed(2);
+      c.aEl.textContent=age===0?'heard today':age+(age===1?' day ago':' days ago');
+      c.bEl.style.width=(w*100).toFixed(1)+'%';
+      c.el.classList.toggle('lost',age>=60);
+    });
+  }
+  var day=24,hitT;
+  function tick(){
+    day=(day+1)%121;
+    var hit=null;claims.forEach(function(c){if(c.heard.indexOf(day)>-1)hit=c});
+    render(day);
+    if(hit){
+      pill.classList.add('out');
+      setTimeout(function(){pT.textContent='New evidence · '+hit.src[0];pS.textContent='· '+hit.src[1]+' · '+hit.src[2]+' · lands on “'+hit.t.replace(/\.$/,'')+'”';pill.classList.remove('out')},180);
+      claims.forEach(function(c){c.el.classList.remove('hit')});hit.el.classList.add('hit');clearTimeout(hitT);hitT=setTimeout(function(){hit.el.classList.remove('hit')},900);
+    }
+  }
+  render(24);
+  if(!reduce){setInterval(tick,200)}else{render(72)}
+
+  /* ---------- scrubber ---------- */
+  var W=1220,X=function(d){return d/120*W},Y=function(w){return 220-w*190};
+  var hear=[0,6,13,21,29];
+  function wAt(d){var l=0;hear.forEach(function(h){if(h<=d)l=h});var age=d-l;return {age:age,w:decay(age)}}
+  var pts=[];for(var d=0;d<=120;d+=1){pts.push([X(d),Y(wAt(d).w*.92)])}
+  var line='M'+pts.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)}).join(' L');
+  document.getElementById('scLine').setAttribute('d',line);
+  document.getElementById('scArea').setAttribute('d',line+' L'+W+' 220 L0 220Z');
+  var dots='';hear.forEach(function(h){dots+='<circle cx="'+X(h)+'" cy="'+Y(wAt(h).w*.92)+'" r="5" fill="#EDECE7"/>'});
+  document.getElementById('scDots').innerHTML=dots;
+  var x60=X(29+60);
+  ['sc60'].forEach(function(id){var e=document.getElementById(id);e.setAttribute('x1',x60);e.setAttribute('x2',x60)});
+  var t60=document.getElementById('sc60t');t60.setAttribute('x',x60+10);
+  var z=document.getElementById('scZone');z.setAttribute('x',x60);z.setAttribute('width',W-x60);
+  var scC=document.getElementById('scC'),scAge=document.getElementById('scAge'),scW=document.getElementById('scW'),scP=document.getElementById('scP'),hl=document.getElementById('scHl'),hc=document.getElementById('scHc');
+  var cur=36;
+  function setDay(d){cur=Math.max(0,Math.min(120,Math.round(d)));var r=wAt(cur),w=r.w;
+    var x=X(cur);hl.setAttribute('x1',x);hl.setAttribute('x2',x);hc.setAttribute('cx',x);hc.setAttribute('cy',Y(w*.92));
+    scC.style.fontWeight=Math.round(160+640*w);scC.style.opacity=(.3+.7*w).toFixed(2);
+    scAge.innerHTML=r.age+'<small>'+(r.age===1?'day':'days')+'</small>';scW.textContent=w.toFixed(2);
+    scP.textContent=Math.round(34+27*Math.max(0,(w-.16)/.84));
+  }
+  setDay(cur);
+  var svg=document.getElementById('scSvg'),drag=false;
+  function fromEvent(e){var r=svg.getBoundingClientRect(),cx=(e.touches?e.touches[0].clientX:e.clientX);return (cx-r.left)/r.width*120}
+  svg.addEventListener('pointerdown',function(e){drag=true;setDay(fromEvent(e));svg.setPointerCapture&&svg.setPointerCapture(e.pointerId)});
+  svg.addEventListener('pointermove',function(e){if(drag)setDay(fromEvent(e))});
+  addEventListener('pointerup',function(){drag=false});
+  var chart=document.getElementById('scChart');chart.tabIndex=0;
+  chart.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){setDay(cur+3);e.preventDefault()}if(e.key==='ArrowLeft'){setDay(cur-3);e.preventDefault()}});
+  // gentle autoplay once in view, until the visitor touches it
+  var touched=false;svg.addEventListener('pointerdown',function(){touched=true});chart.addEventListener('keydown',function(){touched=true});
+  var sio=new IntersectionObserver(function(es){if(es[0].isIntersecting&&!reduce){sio.disconnect();var d=cur;var t=setInterval(function(){if(touched||d>=104){clearInterval(t);return}d+=1;setDay(d)},45)}},{threshold:.5});
+  sio.observe(chart);
+
+  /* ---------- influx boxes ---------- */
+  var S=[['Notion','2,647'],['Google Meet','885'],['Uploads','108'],['Granola','30'],['Google Drive','6'],['Read.ai','1']];
+  var sb='';S.forEach(function(s,i){var y=40+i*80;sb+='<rect x="0" y="'+(y-6)+'" width="226" height="52" rx="8" fill="#18181C" stroke="rgba(255,255,255,.1)"/><text x="18" y="'+(y+26)+'">'+s[0]+'</text><text x="208" y="'+(y+26)+'" text-anchor="end" fill="#85868C" style="font-variant-numeric:tabular-nums">'+s[1]+'</text>'});
+  document.getElementById('srcBoxes').innerHTML=sb;
+  var C=[['Pipeline','1,804',1],['Discovery','13',0],['Founder','13',0],['Product','7',0],['Market','3',0],['GTM','3',0],['Unused','3,151',2]];
+  var cr='';C.forEach(function(c,i){var y=92+i*56;var col=c[2]===2?'#55565C':'#EDECE7';
+    cr+='<path d="M936 '+(116+i*27)+' C1000 '+(116+i*27)+' 1000 '+(y+20)+' 1030 '+(y+20)+'" stroke="'+(c[2]===2?'rgba(255,255,255,.14)':'rgba(249,87,56,.4)')+'" stroke-width="'+(c[2]?6:1.5)+'" fill="none"/>';
+    cr+='<rect x="1030" y="'+y+'" width="210" height="40" rx="7" fill="#18181C" stroke="rgba(255,255,255,.1)"/><text x="1046" y="'+(y+25)+'" fill="'+col+'">'+c[0]+'</text><text x="1224" y="'+(y+25)+'" text-anchor="end" fill="#85868C" style="font-variant-numeric:tabular-nums">'+c[1]+'</text>'});
+  document.getElementById('claimRows').innerHTML=cr;
+
+  /* ---------- sources ---------- */
+  var sp=[].slice.call(document.querySelectorAll('#srcBig span')),k=0;
+  var so=new IntersectionObserver(function(es){if(es[0].isIntersecting){so.disconnect();(function step(){if(k<sp.length){sp[k++].classList.add('on');setTimeout(step,reduce?0:160)}})()}},{threshold:.4});
+  so.observe(document.getElementById('srcBig'));
+})();
+</script>
+</body>
+</html>
