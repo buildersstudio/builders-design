@@ -86,7 +86,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .menu-web .dock-tip { left: calc(100% + 10px); }
 .menu-web:hover .dock-tip { opacity: 1; transform: translate(0, -50%); }
 .menu-list { display: flex; flex-direction: column; gap: 1px; }
-.menu-link { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 10px; border-radius: 8px; color: var(--muted); transition: color 0.15s, background 0.15s; }
+.menu-link { display: flex; justify-content: space-between; align-items: center; padding: 7px 10px; border-radius: 8px; color: var(--muted); transition: color 0.15s, background 0.15s; }
 .menu-link:hover { color: var(--ink); }
 .menu-link[aria-current="page"] { color: var(--ink); background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 0.5px rgba(0, 0, 0, 0.06); }
 .menu-link small { font-size: 11px; color: var(--faint); font-feature-settings: "tnum" 1; }
@@ -726,3 +726,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .wb-tree > ul > li { align-items: flex-start; }
 .wb-tree > ul > li > ul::before { top: 50px; }
 .wb-tree > ul > li > .wb-node { position: sticky; top: 0; }
+.menu-label { display: flex; align-items: center; gap: 10px; }
+.menu-icon { flex: none; opacity: .55; transition: opacity .15s; }
+.menu-link:hover .menu-icon, .menu-link[aria-current="page"] .menu-icon { opacity: 1; }

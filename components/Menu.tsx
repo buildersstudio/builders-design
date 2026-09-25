@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SectionIcon } from "./SectionIcon";
 
 type Props = { slug: string; name: string; url?: string; logo?: string; sections: { key: string; label: string; count: number }[] };
 
@@ -21,7 +22,7 @@ export function Menu({ slug, name, url, logo, sections }: Props) {
       <nav className="menu-list">
         {sections.map((s) => (
           <Link key={s.key} href={`/${slug}/${s.key}`} className="menu-link" aria-current={active === s.key ? "page" : undefined}>
-            {s.label}
+            <span className="menu-label"><SectionIcon name={s.key} />{s.label}</span>
             {s.count > 0 && s.key !== "brand" && <small>{s.count}</small>}
           </Link>
         ))}
