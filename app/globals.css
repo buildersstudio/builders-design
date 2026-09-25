@@ -630,9 +630,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .wb-li.on { background: var(--wash); }
 .wb-li.on span { color: var(--muted); }
 .wb-li.missing b { color: var(--faint); }
-.wb-stage { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+.wb-stage { flex: 1; display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+.wb-devices button { display: grid; place-items: center; padding: 5px 10px; }
+.wb-devices svg { display: block; }
 .wb-stage-bar { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
-.wb-url { font-size: 12.5px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wb-url { min-width: 0; font-size: 12.5px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .wb-frame-box { flex: 1; min-height: 0; display: flex; justify-content: center; margin-bottom: 18px; }
 .wb-frame { position: relative; overflow: hidden; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px var(--line), 0 24px 50px -34px rgba(0,0,0,.35); }
 .wb-frame.phone { border-radius: 30px; box-shadow: 0 0 0 7px #151515, 0 0 0 8px #2a2a2a, 0 30px 60px -30px rgba(0,0,0,.45); margin-top: 8px; }

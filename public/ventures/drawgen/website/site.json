@@ -22,7 +22,7 @@
       "id": "2026-09-26-v2",
       "title": "The symbol at work",
       "created": "2026-09-26",
-      "note": "Same copy and positioning, rebuilt from the founders' Astro source. The accent moves from cyan to a signal mint in the family of the forest green; the home hero draws the logo's two planes with a quote assembling on them; the industry headers become drawing sheets with a today and with drawgen switch; every Product menu item has its own page with a live, illustrative product moment; the Industries menu carries generated industry photographs, credited in credits.json.",
+      "note": "Same copy and positioning, rebuilt from the founders' Astro source, with a signal mint accent in the family of the forest green. The home hero puts the headline across the page and builds the starting price on an example assembly, each line lighting the parts it comes from; what it costs you and why now becomes a ledger with a drawing per sourced number; industry cards come forward on hover with the plane outlined in mint; the close and the footer become one full screen with a lit wordmark. Every Product menu item has its own page, and the Industries menu carries generated industry photographs, credited in credits.json.",
       "status": "draft",
       "source": "built"
     }

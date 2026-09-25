@@ -1,0 +1,532 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation "Ventures" [ref=e3]:
+      - link [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Builders Design" [ref=e5]
+      - generic [ref=e6]:
+        - link "Builders" [ref=e7] [cursor=pointer]:
+          - /url: /builders/journeys
+        - link "Krans" [ref=e12] [cursor=pointer]:
+          - /url: /krans/journeys
+        - link "Day Zero" [ref=e13] [cursor=pointer]:
+          - /url: /day-zero/journeys
+        - link "Trigger" [ref=e18] [cursor=pointer]:
+          - /url: /trigger/journeys
+        - link "drawgen" [ref=e23] [cursor=pointer]:
+          - /url: /drawgen/journeys
+        - link "Doctorine" [ref=e24] [cursor=pointer]:
+          - /url: /doctorine/journeys
+        - link "BayesAI" [ref=e25] [cursor=pointer]:
+          - /url: /bayesai/journeys
+          - generic [ref=e26]: B
+        - link "Modou" [ref=e27] [cursor=pointer]:
+          - /url: /modou/journeys
+          - generic [ref=e28]: M
+        - link "Corestone" [ref=e29] [cursor=pointer]:
+          - /url: /corestone/journeys
+          - generic [ref=e30]: C
+        - link "CTO FEST '27" [ref=e31] [cursor=pointer]:
+          - /url: /cto-festival/journeys
+        - link "Cortena" [ref=e36] [cursor=pointer]:
+          - /url: /cortena/journeys
+        - link "Avery" [ref=e41] [cursor=pointer]:
+          - /url: /avery/journeys
+        - link "Everday" [ref=e46] [cursor=pointer]:
+          - /url: /everday/journeys
+        - link "MakiMode" [ref=e51] [cursor=pointer]:
+          - /url: /makimode/journeys
+        - link "Katasaga" [ref=e56] [cursor=pointer]:
+          - /url: /katasaga/journeys
+        - link "243" [ref=e61] [cursor=pointer]:
+          - /url: /243/journeys
+        - link "Gustavo" [ref=e66] [cursor=pointer]:
+          - /url: /gustavo/journeys
+        - button "+" [ref=e67] [cursor=pointer]
+    - complementary [ref=e68]:
+      - generic [ref=e69]: Corestone
+      - navigation [ref=e71]:
+        - link "Journeys 1" [ref=e72] [cursor=pointer]:
+          - /url: /corestone/journeys
+          - generic [ref=e73]: Journeys
+          - generic [ref=e77]: "1"
+        - link "Competitors 12" [ref=e78] [cursor=pointer]:
+          - /url: /corestone/competitors
+          - generic [ref=e79]: Competitors
+          - generic [ref=e84]: "12"
+        - link "Vision" [ref=e85] [cursor=pointer]:
+          - /url: /corestone/vision
+        - separator [ref=e89]
+        - link "Brand variants" [ref=e90] [cursor=pointer]:
+          - /url: /corestone/variants
+        - link "Brand book" [ref=e95] [cursor=pointer]:
+          - /url: /corestone/brand
+        - link "Website" [ref=e100] [cursor=pointer]:
+          - /url: /corestone/website
+        - link "Social" [ref=e104] [cursor=pointer]:
+          - /url: /corestone/social
+        - link "Presentations" [ref=e108] [cursor=pointer]:
+          - /url: /corestone/presentations
+        - link "Gallery" [ref=e114] [cursor=pointer]:
+          - /url: /corestone/gallery
+      - generic [ref=e120]:
+        - img "Builders" [ref=e121]
+        - generic [ref=e122]: Design
+    - main [ref=e123]:
+      - generic [ref=e124]:
+        - heading "Journeys1" [level=1] [ref=e125]
+        - button "Copy a prompt for your model" [ref=e127] [cursor=pointer]
+      - generic [ref=e130]:
+        - navigation [ref=e132]:
+          - button "From field records to data a designer can use Engineering geologist between field and design" [pressed] [ref=e133] [cursor=pointer]:
+            - generic [ref=e134]: From field records to data a designer can use
+            - generic [ref=e135]: Engineering geologist between field and design
+        - generic [ref=e137]:
+          - generic [ref=e139]: Who
+          - generic [ref=e141]:
+            - generic [ref=e142]: "01"
+            - generic [ref=e143]: Drill and log in the field
+          - generic [ref=e144]:
+            - generic [ref=e145]: "02"
+            - generic [ref=e146]: Lab and test results arrive
+          - generic [ref=e147]:
+            - generic [ref=e148]: "03"
+            - generic [ref=e149]: Retype into the master workbook
+          - generic [ref=e150]:
+            - generic [ref=e151]: "04"
+            - generic [ref=e152]: Check and reinterpret
+          - generic [ref=e153]:
+            - generic [ref=e154]: "05"
+            - generic [ref=e155]: Draw logs, sections and the report
+          - generic [ref=e156]:
+            - generic [ref=e157]: "06"
+            - generic [ref=e158]: Hand over to design
+          - generic [ref=e159]: Decide
+          - generic [ref=e170]:
+            - generic [ref=e171]: As is
+            - generic [ref=e172]: What they do today
+          - generic [ref=e173]:
+            - button "Crews log on paper sheets at the rig and photograph core boxes on a phone" [ref=e174] [cursor=pointer]
+            - button "Remote sites with no power or signal log by hand; someone retypes it into Excel later" [ref=e176] [cursor=pointer]
+            - button "A logging vendor puts manual entry at about 30 minutes per log (vendor claim) web" [ref=e178] [cursor=pointer]:
+              - generic [ref=e179]: A logging vendor puts manual entry at about 30 minutes per log (vendor claim)
+              - generic [ref=e180]: web
+          - generic [ref=e182]:
+            - button "Labs send certificates as PDFs, often scans, each lab in its own layout" [ref=e183] [cursor=pointer]
+            - 'button "Each survey method returns its own list: georadar, geoelectric, in-situ tests" [ref=e185] [cursor=pointer]'
+          - generic [ref=e187]:
+            - button "Values retyped into a master Excel, one tab per borehole, read by in-house Python" [ref=e188] [cursor=pointer]
+            - button "Bluebeam OCR helps on scans, then every number is checked again by hand" [ref=e190] [cursor=pointer]
+            - button "gINT support ends in 2028 and HoleBASE in 2027; users are being moved to a cloud subscription web" [ref=e192] [cursor=pointer]:
+              - generic [ref=e193]: gINT support ends in 2028 and HoleBASE in 2027; users are being moved to a cloud subscription
+              - generic [ref=e194]: web
+          - generic [ref=e196]:
+            - button "Geologists compare logs with core photos and rerun tests with their own procedures" [ref=e197] [cursor=pointer]
+            - button "QA/QC means going back to the paper to see what the logger actually wrote" [ref=e199] [cursor=pointer]
+          - generic [ref=e201]:
+            - button "Stratigraphic columns drawn in AutoCAD, or written to DXF by in-house scripts" [ref=e202] [cursor=pointer]
+            - button "Reports of 150 to 200 pages assembled by hand from tables and charts" [ref=e204] [cursor=pointer]
+          - generic [ref=e206]:
+            - button "Tunnel designers need an editable DWG longitudinal profile, not a PDF" [ref=e207] [cursor=pointer]
+            - button "Geotechnical and structural teams trade inputs by email across calculation rounds" [ref=e209] [cursor=pointer]
+            - button "Designers end up rebuilding boreholes from old PDF appendices, a data platform vendor writes web" [ref=e211] [cursor=pointer]:
+              - generic [ref=e212]: Designers end up rebuilding boreholes from old PDF appendices, a data platform vendor writes
+              - generic [ref=e213]: web
+          - generic [ref=e215]:
+            - generic [ref=e216]: Pains
+            - generic [ref=e217]: Where it hurts
+          - generic [ref=e218]:
+            - button "Field sheets come back in handwriting that is hard or impossible to read E3 1 quote" [ref=e219] [cursor=pointer]:
+              - generic [ref=e220]: Field sheets come back in handwriting that is hard or impossible to read
+              - generic [ref=e221]:
+                - generic "Evidence E3" [ref=e222]:
+                  - emphasis [ref=e229]: E3
+                - generic [ref=e230]: 1 quote
+            - button "Core photos arrive tilted, reversed, feet in frame, boxes filled right to left E4 1 quote" [ref=e231] [cursor=pointer]:
+              - generic [ref=e232]: Core photos arrive tilted, reversed, feet in frame, boxes filled right to left
+              - generic [ref=e233]:
+                - generic "Evidence E4" [ref=e234]:
+                  - emphasis [ref=e241]: E4
+                - generic [ref=e242]: 1 quote
+          - generic [ref=e243]:
+            - button "Almost all incoming data is PDF; a real database is rare E4 1 quote" [ref=e244] [cursor=pointer]:
+              - generic [ref=e245]: Almost all incoming data is PDF; a real database is rare
+              - generic [ref=e246]:
+                - generic "Evidence E4" [ref=e247]:
+                  - emphasis [ref=e254]: E4
+                - generic [ref=e255]: 1 quote
+            - button "Every lab has its own certificate layout, so scripts written for one break on the next E4 1 quote" [ref=e256] [cursor=pointer]:
+              - generic [ref=e257]: Every lab has its own certificate layout, so scripts written for one break on the next
+              - generic [ref=e258]:
+                - generic "Evidence E4" [ref=e259]:
+                  - emphasis [ref=e266]: E4
+                - generic [ref=e267]: 1 quote
+          - generic [ref=e268]:
+            - button "Extraction, not interpretation, is where most of the time goes E4 1 quote" [ref=e269] [cursor=pointer]:
+              - generic [ref=e270]: Extraction, not interpretation, is where most of the time goes
+              - generic [ref=e271]:
+                - generic "Evidence E4" [ref=e272]:
+                  - emphasis [ref=e279]: E4
+                - generic [ref=e280]: 1 quote
+            - button "OCR on scans turns numbers into letters, worst on archive data E4 1 quote" [ref=e281] [cursor=pointer]:
+              - generic [ref=e282]: OCR on scans turns numbers into letters, worst on archive data
+              - generic [ref=e283]:
+                - generic "Evidence E4" [ref=e284]:
+                  - emphasis [ref=e291]: E4
+                - generic [ref=e292]: 1 quote
+            - 'button "Logging software saved nothing: moving data on to Leapfrog meant going back to CSV E4 1 quote" [ref=e293] [cursor=pointer]':
+              - generic [ref=e294]: "Logging software saved nothing: moving data on to Leapfrog meant going back to CSV"
+              - generic [ref=e295]:
+                - generic "Evidence E4" [ref=e296]:
+                  - emphasis [ref=e303]: E4
+                - generic [ref=e304]: 1 quote
+          - generic [ref=e305]:
+            - button "Errors in third-party logs are abundant, and the reviewer signs the corrections E4 1 quote" [ref=e306] [cursor=pointer]:
+              - generic [ref=e307]: Errors in third-party logs are abundant, and the reviewer signs the corrections
+              - generic [ref=e308]:
+                - generic "Evidence E4" [ref=e309]:
+                  - emphasis [ref=e316]: E4
+                - generic [ref=e317]: 1 quote
+            - button "RQD logged at 90% where the photo shows 20%, caught only by eye E4 1 quote" [ref=e318] [cursor=pointer]:
+              - generic [ref=e319]: RQD logged at 90% where the photo shows 20%, caught only by eye
+              - generic [ref=e320]:
+                - generic "Evidence E4" [ref=e321]:
+                  - emphasis [ref=e328]: E4
+                - generic [ref=e329]: 1 quote
+            - button "Hole length differs between files and has to be traced back to photographed PDFs E3 1 quote" [ref=e330] [cursor=pointer]:
+              - generic [ref=e331]: Hole length differs between files and has to be traced back to photographed PDFs
+              - generic [ref=e332]:
+                - generic "Evidence E3" [ref=e333]:
+                  - emphasis [ref=e340]: E3
+                - generic [ref=e341]: 1 quote
+            - button "UK highway AGS files pass format checks, then fail data-quality review and are reissued web" [ref=e342] [cursor=pointer]:
+              - generic [ref=e343]: UK highway AGS files pass format checks, then fail data-quality review and are reissued
+              - generic [ref=e344]: web
+          - generic [ref=e346]:
+            - button "Most practitioners draw columns in AutoCAD, a tool not made for it E3 1 quote" [ref=e347] [cursor=pointer]:
+              - generic [ref=e348]: Most practitioners draw columns in AutoCAD, a tool not made for it
+              - generic [ref=e349]:
+                - generic "Evidence E3" [ref=e350]:
+                  - emphasis [ref=e357]: E3
+                - generic [ref=e358]: 1 quote
+            - button "Assembling tables and charts into long reports is slow E3 1 quote" [ref=e359] [cursor=pointer]:
+              - generic [ref=e360]: Assembling tables and charts into long reports is slow
+              - generic [ref=e361]:
+                - generic "Evidence E3" [ref=e362]:
+                  - emphasis [ref=e369]: E3
+                - generic [ref=e370]: 1 quote
+            - button "On Eng-Tips, small firms say gINT costs too much and fall back to Excel logs and AutoCAD fences web" [ref=e371] [cursor=pointer]:
+              - generic [ref=e372]: On Eng-Tips, small firms say gINT costs too much and fall back to Excel logs and AutoCAD fences
+              - generic [ref=e373]: web
+          - generic [ref=e375]:
+            - button "A revised input is missed between email rounds and the calculation is rerun E4 1 quote" [ref=e376] [cursor=pointer]:
+              - generic [ref=e377]: A revised input is missed between email rounds and the calculation is rerun
+              - generic [ref=e378]:
+                - generic "Evidence E4" [ref=e379]:
+                  - emphasis [ref=e386]: E4
+                - generic [ref=e387]: 1 quote
+            - button "Sampling happens up to a year before design; by handover the context is lost E3 1 quote" [ref=e388] [cursor=pointer]:
+              - generic [ref=e389]: Sampling happens up to a year before design; by handover the context is lost
+              - generic [ref=e390]:
+                - generic "Evidence E3" [ref=e391]:
+                  - emphasis [ref=e398]: E3
+                - generic [ref=e399]: 1 quote
+          - generic [ref=e400]:
+            - generic [ref=e401]: Heard in calls
+            - generic [ref=e402]: From VSI conversations
+          - generic [ref=e403]:
+            - button "“ mi fa paura la scrittura di gallina dei vari utenti Owner, small drilling and ground investigation firm, Italy E3 15:04 VSI ↗" [ref=e404] [cursor=pointer]:
+              - generic [ref=e405]: “
+              - generic [ref=e406]: mi fa paura la scrittura di gallina dei vari utenti
+              - generic [ref=e407]: Owner, small drilling and ground investigation firm, Italy
+              - generic [ref=e408]:
+                - generic "Evidence E3" [ref=e409]:
+                  - emphasis [ref=e416]: E3
+                - generic [ref=e417]: 15:04
+                - generic [ref=e418]: VSI ↗
+            - button "“ normalmente si vede la foto con i piedi dentro, la foto inclinata, la foto fatta a rovescio. Owner, small drilling and ground investigation firm, Italy E4 24:30 VSI ↗" [ref=e419] [cursor=pointer]:
+              - generic [ref=e420]: “
+              - generic [ref=e421]: normalmente si vede la foto con i piedi dentro, la foto inclinata, la foto fatta a rovescio.
+              - generic [ref=e422]: Owner, small drilling and ground investigation firm, Italy
+              - generic [ref=e423]:
+                - generic "Evidence E4" [ref=e424]:
+                  - emphasis [ref=e431]: E4
+                - generic [ref=e432]: 24:30
+                - generic [ref=e433]: VSI ↗
+            - button "“ généralement ça se fait à la main, et après il y a derrière les ressources géologistes ou une personne qui pourrait s'occuper pour refaire ça sur Excel. Resource geologist, quarry and mining modelling consultant E4 2:15 VSI ↗" [ref=e434] [cursor=pointer]:
+              - generic [ref=e435]: “
+              - generic [ref=e436]: généralement ça se fait à la main, et après il y a derrière les ressources géologistes ou une personne qui pourrait s'occuper pour refaire ça sur Excel.
+              - generic [ref=e437]: Resource geologist, quarry and mining modelling consultant
+              - generic [ref=e438]:
+                - generic "Evidence E4" [ref=e439]:
+                  - emphasis [ref=e446]: E4
+                - generic [ref=e447]: 2:15
+                - generic [ref=e448]: VSI ↗
+          - generic [ref=e449]:
+            - button "“ Nella stramaggioranza dei casi, e direi il 99% dei casi, PDF. Geologist, geotechnical team of an international design consultancy, Italy E4 2:07 VSI ↗" [ref=e450] [cursor=pointer]:
+              - generic [ref=e451]: “
+              - generic [ref=e452]: Nella stramaggioranza dei casi, e direi il 99% dei casi, PDF.
+              - generic [ref=e453]: Geologist, geotechnical team of an international design consultancy, Italy
+              - generic [ref=e454]:
+                - generic "Evidence E4" [ref=e455]:
+                  - emphasis [ref=e462]: E4
+                - generic [ref=e463]: 2:07
+                - generic [ref=e464]: VSI ↗
+            - button "“ Se il laboratorio A dopo 6 mesi cambia il formato del suo certificato, la procedura scritta 6 mesi prima non funziona più. Geologist, geotechnical team of an international design consultancy, Italy E4 9:45 VSI ↗" [ref=e465] [cursor=pointer]:
+              - generic [ref=e466]: “
+              - generic [ref=e467]: Se il laboratorio A dopo 6 mesi cambia il formato del suo certificato, la procedura scritta 6 mesi prima non funziona più.
+              - generic [ref=e468]: Geologist, geotechnical team of an international design consultancy, Italy
+              - generic [ref=e469]:
+                - generic "Evidence E4" [ref=e470]:
+                  - emphasis [ref=e477]: E4
+                - generic [ref=e478]: 9:45
+                - generic [ref=e479]: VSI ↗
+            - button "“ we receive more likely PDFs and we are trying with the, directly with the expert to understand because depending on experience, sometimes we cannot read the results. Infrastructure project manager, rail design consultancy, Greece E3 37:50 VSI ↗" [ref=e480] [cursor=pointer]:
+              - generic [ref=e481]: “
+              - generic [ref=e482]: we receive more likely PDFs and we are trying with the, directly with the expert to understand because depending on experience, sometimes we cannot read the results.
+              - generic [ref=e483]: Infrastructure project manager, rail design consultancy, Greece
+              - generic [ref=e484]:
+                - generic "Evidence E3" [ref=e485]:
+                  - emphasis [ref=e492]: E3
+                - generic [ref=e493]: 37:50
+                - generic [ref=e494]: VSI ↗
+          - generic [ref=e495]:
+            - button "“ quello che ci porta via più tempo è estrarre i dati Geologist, geotechnical team of an international design consultancy, Italy E4 9:45 VSI ↗" [ref=e496] [cursor=pointer]:
+              - generic [ref=e497]: “
+              - generic [ref=e498]: quello che ci porta via più tempo è estrarre i dati
+              - generic [ref=e499]: Geologist, geotechnical team of an international design consultancy, Italy
+              - generic [ref=e500]:
+                - generic "Evidence E4" [ref=e501]:
+                  - emphasis [ref=e508]: E4
+                - generic [ref=e509]: 9:45
+                - generic [ref=e510]: VSI ↗
+            - button "“ non li prende, li prende male, il numero diventa una lettera. Geotechnical data specialist, international design consultancy, Italy E4 17:07 VSI ↗" [ref=e511] [cursor=pointer]:
+              - generic [ref=e512]: “
+              - generic [ref=e513]: non li prende, li prende male, il numero diventa una lettera.
+              - generic [ref=e514]: Geotechnical data specialist, international design consultancy, Italy
+              - generic [ref=e515]:
+                - generic "Evidence E4" [ref=e516]:
+                  - emphasis [ref=e523]: E4
+                - generic [ref=e524]: 17:07
+                - generic [ref=e525]: VSI ↗
+            - button "“ Era mucho postproceso para meter toda la información en geo y no era inmediato el paso. Geologist, Spanish slate producer E4 0:00 VSI ↗" [ref=e526] [cursor=pointer]:
+              - generic [ref=e527]: “
+              - generic [ref=e528]: Era mucho postproceso para meter toda la información en geo y no era inmediato el paso.
+              - generic [ref=e529]: Geologist, Spanish slate producer
+              - generic [ref=e530]:
+                - generic "Evidence E4" [ref=e531]:
+                  - emphasis [ref=e538]: E4
+                - generic [ref=e539]: 0:00
+                - generic [ref=e540]: VSI ↗
+            - button "“ même pour un seul log, tu as minimum 4 fichiers Excel. Resource geologist, quarry and mining modelling consultant E3 22:05 VSI ↗" [ref=e541] [cursor=pointer]:
+              - generic [ref=e542]: “
+              - generic [ref=e543]: même pour un seul log, tu as minimum 4 fichiers Excel.
+              - generic [ref=e544]: Resource geologist, quarry and mining modelling consultant
+              - generic [ref=e545]:
+                - generic "Evidence E3" [ref=e546]:
+                  - emphasis [ref=e553]: E3
+                - generic [ref=e554]: 22:05
+                - generic [ref=e555]: VSI ↗
+          - generic [ref=e556]:
+            - button "“ Sì, sì, errori ce ne sono a iosa Geologist, geotechnical team of an international design consultancy, Italy E4 7:46 VSI ↗" [ref=e557] [cursor=pointer]:
+              - generic [ref=e558]: “
+              - generic [ref=e559]: Sì, sì, errori ce ne sono a iosa
+              - generic [ref=e560]: Geologist, geotechnical team of an international design consultancy, Italy
+              - generic [ref=e561]:
+                - generic "Evidence E4" [ref=e562]:
+                  - emphasis [ref=e569]: E4
+                - generic [ref=e570]: 7:46
+                - generic [ref=e571]: VSI ↗
+            - button "“ comment tu peux mettre le RQD à 90% alors que la photo à cette profondeur-là t'as que 20%? Senior engineering geologist, infrastructure tenders E4 25:38 VSI ↗" [ref=e572] [cursor=pointer]:
+              - generic [ref=e573]: “
+              - generic [ref=e574]: comment tu peux mettre le RQD à 90% alors que la photo à cette profondeur-là t'as que 20%?
+              - generic [ref=e575]: Senior engineering geologist, infrastructure tenders
+              - generic [ref=e576]:
+                - generic "Evidence E4" [ref=e577]:
+                  - emphasis [ref=e584]: E4
+                - generic [ref=e585]: 25:38
+                - generic [ref=e586]: VSI ↗
+            - button "“ quand on fait du QA/QC, on part chercher dans le papier ce que la personne a dit. Resource geologist, quarry and mining modelling consultant E3 3:30 VSI ↗" [ref=e587] [cursor=pointer]:
+              - generic [ref=e588]: “
+              - generic [ref=e589]: quand on fait du QA/QC, on part chercher dans le papier ce que la personne a dit.
+              - generic [ref=e590]: Resource geologist, quarry and mining modelling consultant
+              - generic [ref=e591]:
+                - generic "Evidence E3" [ref=e592]:
+                  - emphasis [ref=e599]: E3
+                - generic [ref=e600]: 3:30
+                - generic [ref=e601]: VSI ↗
+          - generic [ref=e602]:
+            - button "“ diciamo che il 90% degli utenti usa in maniera impropria AutoCAD. Owner, small drilling and ground investigation firm, Italy E3 3:49 VSI ↗" [ref=e603] [cursor=pointer]:
+              - generic [ref=e604]: “
+              - generic [ref=e605]: diciamo che il 90% degli utenti usa in maniera impropria AutoCAD.
+              - generic [ref=e606]: Owner, small drilling and ground investigation firm, Italy
+              - generic [ref=e607]:
+                - generic "Evidence E3" [ref=e608]:
+                  - emphasis [ref=e615]: E3
+                - generic [ref=e616]: 3:49
+                - generic [ref=e617]: VSI ↗
+            - button "“ report che solitamente sono anche molto lunghi. 150-200 pagine, 1000. Geologist, geotechnical team of an international design consultancy, Italy E3 13:57 VSI ↗" [ref=e618] [cursor=pointer]:
+              - generic [ref=e619]: “
+              - generic [ref=e620]: report che solitamente sono anche molto lunghi. 150-200 pagine, 1000.
+              - generic [ref=e621]: Geologist, geotechnical team of an international design consultancy, Italy
+              - generic [ref=e622]:
+                - generic "Evidence E3" [ref=e623]:
+                  - emphasis [ref=e630]: E3
+                - generic [ref=e631]: 13:57
+                - generic [ref=e632]: VSI ↗
+          - generic [ref=e633]:
+            - button "“ So you cannot work in a PDF, you need DWG. Infrastructure project manager, rail design consultancy, Greece E3 39:57 VSI ↗" [ref=e634] [cursor=pointer]:
+              - generic [ref=e635]: “
+              - generic [ref=e636]: So you cannot work in a PDF, you need DWG.
+              - generic [ref=e637]: Infrastructure project manager, rail design consultancy, Greece
+              - generic [ref=e638]:
+                - generic "Evidence E3" [ref=e639]:
+                  - emphasis [ref=e646]: E3
+                - generic [ref=e647]: 39:57
+                - generic [ref=e648]: VSI ↗
+            - button "“ Really, it happens several times and then you have a big crash between the teams. Infrastructure project manager, rail design consultancy, Greece E4 32:15 VSI ↗" [ref=e649] [cursor=pointer]:
+              - generic [ref=e650]: “
+              - generic [ref=e651]: Really, it happens several times and then you have a big crash between the teams.
+              - generic [ref=e652]: Infrastructure project manager, rail design consultancy, Greece
+              - generic [ref=e653]:
+                - generic "Evidence E4" [ref=e654]:
+                  - emphasis [ref=e661]: E4
+                - generic [ref=e662]: 32:15
+                - generic [ref=e663]: VSI ↗
+            - button "“ It comes too late, I forgot what he did Infrastructure project manager, rail design consultancy, Greece E3 37:09 VSI ↗" [ref=e664] [cursor=pointer]:
+              - generic [ref=e665]: “
+              - generic [ref=e666]: It comes too late, I forgot what he did
+              - generic [ref=e667]: Infrastructure project manager, rail design consultancy, Greece
+              - generic [ref=e668]:
+                - generic "Evidence E3" [ref=e669]:
+                  - emphasis [ref=e676]: E3
+                - generic [ref=e677]: 37:09
+                - generic [ref=e678]: VSI ↗
+          - generic [ref=e679]:
+            - generic [ref=e680]: Ideas
+            - generic [ref=e681]: How we could solve it
+          - 'button "A capture guide and a cheap fixed rig: every box shot nadiral, same light, with a colour card I E" [ref=e683] [cursor=pointer]':
+            - generic [ref=e684]: "A capture guide and a cheap fixed rig: every box shot nadiral, same light, with a colour card"
+            - generic [ref=e685]:
+              - generic "Impact 2 of 3" [ref=e686]: I
+              - generic "Effort 1 of 3" [ref=e690]: E
+          - button "A certificate reader that does not depend on layout, tuned on the labs a firm actually uses I E" [ref=e695] [cursor=pointer]:
+            - generic [ref=e696]: A certificate reader that does not depend on layout, tuned on the labs a firm actually uses
+            - generic [ref=e697]:
+              - generic "Impact 3 of 3" [ref=e698]: I
+              - generic "Effort 2 of 3" [ref=e702]: E
+          - generic [ref=e706]:
+            - button "Batch reading of logs and certificates into one borehole table, every value linked to its page I E" [ref=e707] [cursor=pointer]:
+              - generic [ref=e708]: Batch reading of logs and certificates into one borehole table, every value linked to its page
+              - generic [ref=e709]:
+                - generic "Impact 3 of 3" [ref=e710]: I
+                - generic "Effort 2 of 3" [ref=e714]: E
+            - button "Export to the firm's own Excel template, AGS 4 and the Leapfrog CSV set I E" [ref=e718] [cursor=pointer]:
+              - generic [ref=e719]: Export to the firm's own Excel template, AGS 4 and the Leapfrog CSV set
+              - generic [ref=e720]:
+                - generic "Impact 3 of 3" [ref=e721]: I
+                - generic "Effort 1 of 3" [ref=e725]: E
+          - generic [ref=e729]:
+            - 'button "A validation report: cross-file checks on depths, lengths, units and values, each flag linked to its page I E" [ref=e730] [cursor=pointer]':
+              - generic [ref=e731]: "A validation report: cross-file checks on depths, lengths, units and values, each flag linked to its page"
+              - generic [ref=e732]:
+                - generic "Impact 3 of 3" [ref=e733]: I
+                - generic "Effort 2 of 3" [ref=e737]: E
+            - button "A photo-based RQD and fracture estimate beside the logged value, the geologist decides I E" [ref=e741] [cursor=pointer]:
+              - generic [ref=e742]: A photo-based RQD and fracture estimate beside the logged value, the geologist decides
+              - generic [ref=e743]:
+                - generic "Impact 2 of 3" [ref=e744]: I
+                - generic "Effort 3 of 3" [ref=e748]: E
+          - generic [ref=e752]:
+            - button "Logs and sections generated as DXF from the checked table, with core photos beside each column I E" [ref=e753] [cursor=pointer]:
+              - generic [ref=e754]: Logs and sections generated as DXF from the checked table, with core photos beside each column
+              - generic [ref=e755]:
+                - generic "Impact 3 of 3" [ref=e756]: I
+                - generic "Effort 2 of 3" [ref=e760]: E
+            - 'button "A draft factual report: tables, charts and appendices pulled from the same table I E" [ref=e764] [cursor=pointer]':
+              - generic [ref=e765]: "A draft factual report: tables, charts and appendices pulled from the same table"
+              - generic [ref=e766]:
+                - generic "Impact 2 of 3" [ref=e767]: I
+                - generic "Effort 3 of 3" [ref=e771]: E
+          - 'button "A versioned project record: the designer sees which borehole values changed since the last round I E" [ref=e776] [cursor=pointer]':
+            - generic [ref=e777]: "A versioned project record: the designer sees which borehole values changed since the last round"
+            - generic [ref=e778]:
+              - generic "Impact 2 of 3" [ref=e779]: I
+              - generic "Effort 2 of 3" [ref=e783]: E
+          - generic [ref=e787]:
+            - generic [ref=e788]: With Corestone
+            - generic [ref=e789]: The flow with the venture
+          - button "Crews shoot each box the same way; sheets and photos land in one project inbox" [ref=e791] [cursor=pointer]
+          - button "Certificates dropped in as they come; values read whatever the lab's layout" [ref=e794] [cursor=pointer]
+          - button "One borehole table per project, written in the formats the firm already uses" [ref=e797] [cursor=pointer]
+          - button "Every inconsistency listed with its source; accepted or corrected, and the change recorded" [ref=e800] [cursor=pointer]
+          - button "Logs and sections redraw when a value is corrected; the report draft reads the same table" [ref=e803] [cursor=pointer]
+          - button "The designer gets the DWG profile and the table from one source, with a log of changes" [ref=e806] [cursor=pointer]
+          - button [ref=e809] [cursor=pointer]:
+            - generic [ref=e810]:
+              - text: ICP
+              - generic "Evidence E4" [ref=e811]:
+                - emphasis [ref=e818]: E4
+            - generic [ref=e819]: Engineering geologist between field and design
+            - generic [ref=e820]: Small and mid-size ground investigation firms and the geotechnical teams of design consultancies, Italy, Greece, UK and Iberia; mining resource geologists share the same workflow
+            - paragraph [ref=e821]: The geologist or geotechnical engineer who receives drilling records, core photos and lab certificates from crews and labs, checks them, and turns them into the tables, logs and sections a designer works from.
+            - paragraph [ref=e822]:
+              - generic [ref=e823]: Trigger
+              - text: A campaign closes and a batch of field sheets, scans and certificates lands, or a project inherits archive boreholes that exist only on paper.
+            - list [ref=e824]:
+              - listitem [ref=e825]: Get every borehole value out of PDFs and scans into one table
+              - listitem [ref=e826]: Catch the errors in third-party logs before they become design parameters
+              - listitem [ref=e827]: Produce logs, sections and the report tables without redrawing them
+              - listitem [ref=e828]: Hand the designer data in the format the calculation needs
+            - paragraph [ref=e829]:
+              - generic [ref=e830]: The question
+              - text: Can Corestone own the step between messy field and lab documents and the first table a geologist trusts, and is that step worth paying for?
+          - generic [ref=e831]:
+            - paragraph [ref=e832]: "Ten recorded calls, nine with learnings, agree on where the time goes: not in interpretation or modelling, but in getting field sheets, scanned logs and lab certificates into a table someone can trust. The E4 pains come from design-side geologists, a small drilling firm, mining and exploration geologists and a rail design manager, and they repeat across construction and mining: data arrives as PDF in almost every case, each lab uses its own layout, OCR mangles scans, logs carry errors that only a geologist's eye catches, and the checked data then has to be redrawn by hand. The one E5 is a data pack promised by a small drilling firm. The evidence is thin on who pays and how much: a client-side manager doubts anyone would buy a validation tool, and no specialist contractor has been interviewed for the tender-check angle."
+            - generic [ref=e833]:
+              - generic [ref=e834]:
+                - generic [ref=e835]: "01"
+                - generic "Evidence E4" [ref=e836]:
+                  - emphasis [ref=e843]: E4
+              - text: "Start where the time goes: reading and checking logs and lab certificates"
+              - paragraph [ref=e844]: Every call with E4 pains put the hours in extraction and checking, not in modelling; one design team says interpretation is fast once the data is in.
+            - generic [ref=e845]:
+              - generic [ref=e846]:
+                - generic [ref=e847]: "02"
+                - generic "Evidence E3" [ref=e848]:
+                  - emphasis [ref=e855]: E3
+              - text: Lead with a free validation report on a firm's own logs
+              - paragraph [ref=e856]: It is the product, the demo and the discovery call in one, and the drilling firm has already promised a data pack to test on.
+            - generic [ref=e857]:
+              - generic [ref=e858]:
+                - generic [ref=e859]: "03"
+                - generic "Evidence E4" [ref=e860]:
+                  - emphasis [ref=e867]: E4
+              - text: Write into the formats firms already use instead of asking them to move
+              - paragraph [ref=e868]: A logging tool that added post-processing before Leapfrog was abandoned for CSV; the design team runs its own Excel and Python chain.
+            - generic [ref=e869]:
+              - generic [ref=e870]:
+                - generic [ref=e871]: "04"
+                - generic "Evidence E3" [ref=e872]:
+                  - emphasis [ref=e879]: E3
+              - text: Keep photo RQD as an assist beside the logged value
+              - paragraph [ref=e880]: The sharpest error heard is RQD by eye, but core imaging incumbents exist and one slate geologist sees little gain for his rock.
+            - generic [ref=e881]:
+              - generic [ref=e882]:
+                - generic [ref=e883]: "05"
+                - generic "Evidence E3" [ref=e884]:
+                  - emphasis [ref=e891]: E3
+              - text: Do not build 3D modelling or a Leapfrog substitute
+              - paragraph [ref=e892]: Advisors ruled it out, and a design team says Italian clients do not pay for 3D ground models today.
+            - generic [ref=e893]:
+              - generic [ref=e894]:
+                - generic [ref=e895]: "06"
+                - generic "Evidence E2" [ref=e896]:
+                  - emphasis [ref=e903]: E2
+              - text: Test who pays before building for a buyer
+              - paragraph [ref=e904]: A client-side manager doubts anyone would pay for validation and the design geologists need manager approval to share data; no contractor has been interviewed for the tender angle.
+        - generic [ref=e907]:
+          - generic [ref=e908]: VSI · 10 conversations · compiled 2026-09-25
+          - button "7 web sources" [ref=e909] [cursor=pointer]
+          - generic [ref=e910]: Updated 2026-09-25
+  - status

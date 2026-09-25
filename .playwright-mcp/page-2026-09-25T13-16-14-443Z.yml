@@ -1,0 +1,174 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]: Vision prototype
+    - text: A validation report on a firm's own drill logs and lab certificates. Sample data, not a real project.
+    - generic [ref=e4]: Corestone
+  - banner [ref=e5]:
+    - generic [ref=e6]: Corestone
+    - generic [ref=e12]: Projects / Sample viaduct, pier foundations / Validation
+    - generic [ref=e13]:
+      - button "Download PDF" [ref=e14] [cursor=pointer]
+      - button "Export clean dataset" [ref=e15] [cursor=pointer]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: Validation report
+        - heading "24 boreholes read, 37 things to check before this goes to design" [level=1] [ref=e20]
+        - paragraph [ref=e21]: "Every value was read from the field sheets, logs and lab certificates you uploaded, cross-checked across files, and linked back to the page it came from. Nothing has been changed: each flag waits for a geologist's decision."
+      - generic [ref=e22]: 28 open, 9 resolved
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]: Documents
+        - generic [ref=e27]: "61"
+        - generic [ref=e28]: 24 logs, 29 certificates, 8 photo sets
+      - generic [ref=e29]:
+        - generic [ref=e30]: Values read
+        - generic [ref=e31]: 3,412
+        - generic [ref=e32]: 96 read with low confidence
+      - generic [ref=e33]:
+        - generic [ref=e34]: High
+        - generic [ref=e35]: "9"
+        - generic [ref=e36]: would change a design parameter
+      - generic [ref=e37]:
+        - generic [ref=e38]: Medium
+        - generic [ref=e39]: "18"
+        - generic [ref=e40]: inconsistent between files
+      - generic [ref=e41]:
+        - generic [ref=e42]: Low
+        - generic [ref=e43]: "10"
+        - generic [ref=e44]: format, units, missing fields
+    - generic [ref=e45]:
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - heading "Flags" [level=2] [ref=e48]
+          - generic [ref=e49]:
+            - button "All 37" [ref=e50] [cursor=pointer]
+            - button "High" [ref=e51] [cursor=pointer]
+            - button "Medium" [ref=e52] [cursor=pointer]
+            - button "Low" [ref=e53] [cursor=pointer]
+        - table [ref=e55]:
+          - rowgroup [ref=e56]:
+            - row [ref=e57]:
+              - columnheader "Severity" [ref=e58]
+              - columnheader "Check" [ref=e59]
+              - columnheader "Hole" [ref=e60]
+              - columnheader "Depth" [ref=e61]
+              - columnheader "Stated / found" [ref=e62]
+              - columnheader "Source" [ref=e63]
+          - rowgroup [ref=e64]:
+            - row [ref=e65] [cursor=pointer]:
+              - cell "High" [ref=e66]
+              - cell "RQD logged vs core photo Photo estimate far below the logged value" [ref=e68]:
+                - generic [ref=e69]: RQD logged vs core photo
+                - text: Photo estimate far below the logged value
+              - cell "BH-07" [ref=e70]
+              - cell "14.0 to 15.5 m" [ref=e71]
+              - cell "90% 22%" [ref=e72]
+              - cell "Log p.3, photo box 5" [ref=e73]
+            - row [ref=e74] [cursor=pointer]:
+              - cell "High" [ref=e75]
+              - cell "Certificate vs log UCS on the certificate differs from the log" [ref=e77]:
+                - generic [ref=e78]: Certificate vs log
+                - text: UCS on the certificate differs from the log
+              - cell "BH-12" [ref=e79]
+              - cell "21.3 m" [ref=e80]
+              - cell "38 MPa 3.8 MPa" [ref=e81]
+              - cell "Lab cert 12-04 p.2" [ref=e82]
+            - row [ref=e83] [cursor=pointer]:
+              - cell "High" [ref=e84]
+              - cell "Hole length across files Collar file and lithology file disagree" [ref=e86]:
+                - generic [ref=e87]: Hole length across files
+                - text: Collar file and lithology file disagree
+              - cell "BH-03" [ref=e88]
+              - cell "End of hole" [ref=e89]
+              - cell "30.0 m 25.5 m" [ref=e90]
+              - cell "Collar.xlsx, Litho.xlsx" [ref=e91]
+            - row [ref=e92] [cursor=pointer]:
+              - cell "Medium" [ref=e93]
+              - cell "Handwriting read with low confidence SPT blow count could be 8 or 9" [ref=e95]:
+                - generic [ref=e96]: Handwriting read with low confidence
+                - text: SPT blow count could be 8 or 9
+              - cell "BH-09" [ref=e97]
+              - cell "6.0 m" [ref=e98]
+              - cell "8? 8 or 9" [ref=e99]
+              - cell "Field sheet p.1" [ref=e100]
+            - row [ref=e101] [cursor=pointer]:
+              - cell "Medium" [ref=e102]
+              - cell "Coordinates Local grid looks shifted from the national grid" [ref=e104]:
+                - generic [ref=e105]: Coordinates
+                - text: Local grid looks shifted from the national grid
+              - cell "BH-18" [ref=e106]
+              - cell "Collar" [ref=e107]
+              - cell "Local about 35 m offset" [ref=e108]
+              - cell "Site plan p.1" [ref=e109]
+            - row [ref=e110] [cursor=pointer]:
+              - cell "Medium" [ref=e111]
+              - cell "Depth order Core boxes filled right to left" [ref=e113]:
+                - generic [ref=e114]: Depth order
+                - text: Core boxes filled right to left
+              - cell "BH-21" [ref=e115]
+              - cell "9.0 to 12.0 m" [ref=e116]
+              - cell "left to right right to left" [ref=e117]
+              - cell "Photo box 3" [ref=e118]
+            - row [ref=e119] [cursor=pointer]:
+              - cell "Low" [ref=e120]
+              - cell "Units Moisture content without units" [ref=e122]:
+                - generic [ref=e123]: Units
+                - text: Moisture content without units
+              - cell "BH-05" [ref=e124]
+              - cell "3.2 m" [ref=e125]
+              - cell "18 18 %" [ref=e126]
+              - cell "Lab cert 05-01 p.1" [ref=e127]
+            - row [ref=e128] [cursor=pointer]:
+              - cell "Low" [ref=e129]
+              - cell "Missing field Water strike not recorded" [ref=e131]:
+                - generic [ref=e132]: Missing field
+                - text: Water strike not recorded
+              - cell "BH-14" [ref=e133]
+              - cell "-" [ref=e134]
+              - cell "blank not stated" [ref=e135]
+              - cell "Field sheet p.2" [ref=e136]
+            - row [ref=e137]:
+              - cell "The sample shows 8 of the 37 flags." [ref=e138]
+      - complementary [ref=e139]:
+        - generic [ref=e140]:
+          - generic [ref=e141]: High
+          - text: BH-07, 14.0 to 15.5 m
+          - heading "RQD logged at 90%, photo reads about 22%" [level=3] [ref=e142]
+          - paragraph [ref=e143]: Pieces of 10 cm or more cover about a fifth of the run in the box photo. The value feeds the rock mass parameters for pier P4.
+          - generic [ref=e144]:
+            - generic [ref=e145]:
+              - generic [ref=e146]: Stated in the file
+              - generic [ref=e147]: 90%
+            - generic [ref=e148]:
+              - generic [ref=e149]: Found by the check
+              - generic [ref=e150]: 22%
+          - 'figure "Box 5, 14.0 to 15.5 m, sample image Red lines: fractures read" [ref=e151]':
+            - img "Sample core box photo with fractures marked" [ref=e152]
+            - generic [ref=e200]:
+              - generic [ref=e201]: Box 5, 14.0 to 15.5 m, sample image
+              - generic [ref=e202]: "Red lines: fractures read"
+          - generic [ref=e203]:
+            - button "Accept 22%" [ref=e204] [cursor=pointer]
+            - button "Keep 90%" [ref=e205] [cursor=pointer]
+            - button "Ask the lab or driller" [ref=e206] [cursor=pointer]
+          - generic [ref=e207]: Decision is recorded with your name, the date and the source, and the logs and sections are redrawn from the corrected table.
+        - generic [ref=e208]:
+          - generic [ref=e209]: Where the flags come from
+          - generic [ref=e210]:
+            - generic [ref=e211]:
+              - generic [ref=e212]: Core photo vs log
+              - generic [ref=e215]: "11"
+            - generic [ref=e216]:
+              - generic [ref=e217]: Depth and length
+              - generic [ref=e220]: "9"
+            - generic [ref=e221]:
+              - generic [ref=e222]: Certificate vs log
+              - generic [ref=e225]: "7"
+            - generic [ref=e226]:
+              - generic [ref=e227]: Coordinates
+              - generic [ref=e230]: "4"
+            - generic [ref=e231]:
+              - generic [ref=e232]: Units and format
+              - generic [ref=e235]: "6"
+    - paragraph [ref=e236]: Sample data. Borehole ids, values and counts are invented to show the product and do not describe any real site or client.

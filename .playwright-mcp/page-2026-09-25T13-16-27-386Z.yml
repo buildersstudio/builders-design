@@ -1,0 +1,173 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]: Vision prototype
+    - text: Field sheets and scanned logs in, a checked borehole table out. Sample data, not a real project.
+    - generic [ref=f1e4]: Corestone
+  - banner [ref=f1e5]:
+    - generic [ref=f1e6]: Corestone
+    - generic [ref=f1e12]: Projects / Sample viaduct, pier foundations / Read documents
+    - generic [ref=f1e13]:
+      - button "Validation report" [ref=f1e14] [cursor=pointer]
+      - button "Approve BH-09" [ref=f1e15] [cursor=pointer]
+  - generic [ref=f1e16]:
+    - complementary [ref=f1e17]:
+      - generic [ref=f1e18]: Batch
+      - heading "24 logs, 29 certificates" [level=2] [ref=f1e19]
+      - generic [ref=f1e22] [cursor=pointer]:
+        - generic [ref=f1e23]: BH-07 field sheet
+        - generic [ref=f1e24]: Read, 0 questions
+      - generic [ref=f1e28] [cursor=pointer]:
+        - generic [ref=f1e29]: BH-08 field sheet
+        - generic [ref=f1e30]: Read, 0 questions
+      - generic [ref=f1e34] [cursor=pointer]:
+        - generic [ref=f1e35]: BH-09 field sheet
+        - generic [ref=f1e36]: Read, 2 questions
+      - generic [ref=f1e40] [cursor=pointer]:
+        - generic [ref=f1e41]: Lab cert 09-01
+        - generic [ref=f1e42]: Read, 14 values
+      - generic [ref=f1e46] [cursor=pointer]:
+        - generic [ref=f1e47]: BH-10 scanned log
+        - generic [ref=f1e48]: Read, 5 questions
+      - generic [ref=f1e52] [cursor=pointer]:
+        - generic [ref=f1e53]: BH-11 field sheet
+        - generic [ref=f1e54]: Reading
+      - generic [ref=f1e56]: Drop field sheets, scans, lab PDFs and core photos. Any layout, any lab.
+    - generic [ref=f1e57]:
+      - generic [ref=f1e58]:
+        - heading "BH-09 field sheet, page 1" [level=2] [ref=f1e59]
+        - generic [ref=f1e60]: Scan, phone photo
+      - img "Sample handwritten borehole field sheet" [ref=f1e62]:
+        - generic [ref=f1e64]: BOREHOLE RECORD
+        - generic [ref=f1e65]: Hole
+        - generic [ref=f1e66]: BH-09
+        - generic [ref=f1e67]: Date
+        - generic [ref=f1e68]: 12/3
+        - generic [ref=f1e69]: Rig
+        - generic [ref=f1e70]: rotary, T2 101
+        - generic [ref=f1e71]: E / N
+        - generic [ref=f1e72]: 4521.3 / 8810.7
+        - generic [ref=f1e83]:
+          - generic [ref=f1e84]: DEPTH m
+          - generic [ref=f1e85]: DESCRIPTION
+          - generic [ref=f1e86]: SPT N
+          - generic [ref=f1e87]: REC %
+          - generic [ref=f1e88]: RQD
+        - generic [ref=f1e89]:
+          - generic [ref=f1e90]: 0.0 - 1.2
+          - generic [ref=f1e91]: made ground, brown
+          - generic [ref=f1e92]: sandy, brick frags
+          - generic [ref=f1e94]: 1.2 - 4.5
+          - generic [ref=f1e95]: firm grey CLAY, silty
+          - generic [ref=f1e96]: "6"
+          - generic [ref=f1e98]: 4.5 - 7.8
+          - generic [ref=f1e99]: med dense SAND, fine
+          - generic [ref=f1e100]: to med, wet at 5.1
+          - generic [ref=f1e101]: "8"
+          - generic [ref=f1e103]: 7.8 - 9.6
+          - generic [ref=f1e104]: dense GRAVEL, sandy
+          - generic [ref=f1e105]: "34"
+          - generic [ref=f1e107]: 9.6 - 12.0
+          - generic [ref=f1e108]: weathered LIMESTONE
+          - generic [ref=f1e109]: v. fractured
+          - generic [ref=f1e110]: "72"
+          - generic [ref=f1e111]: "18"
+          - generic [ref=f1e113]: 12.0 - 15.0
+          - generic [ref=f1e114]: LIMESTONE, grey,
+          - generic [ref=f1e115]: mod. strong
+          - generic [ref=f1e116]: "96"
+          - generic [ref=f1e117]: 6?
+          - generic [ref=f1e118]: water strike 5.1, rose to 4.6 after 20 min
+          - generic [ref=f1e119]: EOH 15.0
+      - paragraph [ref=f1e123]: "Orange: values the reader is not sure of. Shaded: the row selected in the table."
+    - generic [ref=f1e124]:
+      - generic [ref=f1e125]:
+        - heading "Borehole table" [level=2] [ref=f1e126]
+        - generic [ref=f1e127]: 6 layers, 23 values, 2 questions
+      - table [ref=f1e129]:
+        - rowgroup [ref=f1e130]:
+          - row [ref=f1e131]:
+            - columnheader "From m" [ref=f1e132]
+            - columnheader "To m" [ref=f1e133]
+            - columnheader "Description" [ref=f1e134]
+            - columnheader "Unit" [ref=f1e135]
+            - columnheader "SPT N" [ref=f1e136]
+            - columnheader "Rec %" [ref=f1e137]
+            - columnheader "RQD %" [ref=f1e138]
+        - rowgroup [ref=f1e139]:
+          - row [ref=f1e140]:
+            - cell "0.0" [ref=f1e141]
+            - cell "1.2" [ref=f1e142]
+            - cell "Made ground, brown, sandy, brick fragments" [ref=f1e143]
+            - cell "MG" [ref=f1e144]
+            - cell [ref=f1e145]
+            - cell [ref=f1e146]
+            - cell [ref=f1e147]
+          - row [ref=f1e148]:
+            - cell "1.2" [ref=f1e149]
+            - cell "4.5" [ref=f1e150]
+            - cell "Firm grey silty CLAY" [ref=f1e151]
+            - cell "A1" [ref=f1e152]
+            - cell "6" [ref=f1e153]
+            - cell [ref=f1e154]
+            - cell [ref=f1e155]
+          - row [ref=f1e156]:
+            - cell "4.5" [ref=f1e157]
+            - cell "7.8" [ref=f1e158]
+            - cell "Medium dense fine to medium SAND, wet from 5.1 m" [ref=f1e159]
+            - cell "A2" [ref=f1e160]
+            - cell "8 or 9" [ref=f1e161]
+            - cell [ref=f1e162]
+            - cell [ref=f1e163]
+          - row [ref=f1e164]:
+            - cell "7.8" [ref=f1e165]
+            - cell "9.6" [ref=f1e166]
+            - cell "Dense sandy GRAVEL" [ref=f1e167]
+            - cell "A3" [ref=f1e168]
+            - cell "34" [ref=f1e169]
+            - cell [ref=f1e170]
+            - cell [ref=f1e171]
+          - row [ref=f1e172]:
+            - cell "9.6" [ref=f1e173]
+            - cell "12.0" [ref=f1e174]
+            - cell "Weathered LIMESTONE, very fractured" [ref=f1e175]
+            - cell "R1" [ref=f1e176]
+            - cell [ref=f1e177]
+            - cell "72" [ref=f1e178]
+            - cell "18" [ref=f1e179]
+          - row [ref=f1e180]:
+            - cell "12.0" [ref=f1e181]
+            - cell "15.0" [ref=f1e182]
+            - cell "Grey moderately strong LIMESTONE" [ref=f1e183]
+            - cell "R2" [ref=f1e184]
+            - cell [ref=f1e185]
+            - cell "96" [ref=f1e186]
+            - cell "6 or 60" [ref=f1e187]
+      - generic [ref=f1e188]:
+        - generic [ref=f1e189]:
+          - text: "SPT N at 5.0 m: is it 8 or 9?"
+          - paragraph [ref=f1e190]: Both keep the layer in the same density class, so nothing downstream changes. Your answer trains the reader on this crew's handwriting.
+        - generic [ref=f1e191]:
+          - button "8" [ref=f1e192] [cursor=pointer]
+          - button "9" [ref=f1e193] [cursor=pointer]
+      - generic [ref=f1e194]:
+        - generic [ref=f1e195]:
+          - text: "RQD at 12.0 to 15.0 m: 6 or 60?"
+          - paragraph [ref=f1e196]: Recovery is 96% and the rock is described as moderately strong, which fits 60 better. The core photo for this run gives about 58.
+        - generic [ref=f1e197]:
+          - button "6" [ref=f1e198] [cursor=pointer]
+          - button "60" [ref=f1e199] [cursor=pointer]
+      - generic [ref=f1e200]: Export the checked table
+      - generic [ref=f1e201]:
+        - generic [ref=f1e202]:
+          - generic [ref=f1e203]: Firm template
+          - text: Your master Excel, same tabs
+        - generic [ref=f1e204]:
+          - generic [ref=f1e205]: AGS 4
+          - text: Validated before export
+        - generic [ref=f1e206]:
+          - generic [ref=f1e207]: Leapfrog CSV set
+          - text: Collar, survey, lithology, intervals
+        - generic [ref=f1e208]:
+          - generic [ref=f1e209]: Log drawing
+          - text: DXF, with core photos
+  - paragraph [ref=f1e210]: Sample data. The borehole, coordinates and values are invented to show the product and do not describe any real site or client.

@@ -13,7 +13,7 @@ For manufacturers who build to order
 # Quotes built on data, not memory.
 drawgen connects the systems your data already lives in, so every quote is faster to send and priced on what similar jobs actually cost.
 Talk to us The drawgen vision, 0:23
-Illustrative example: a starting price of €19,800 built from the 3D model, purchase history and three similar past jobs, waiting for your estimator's approval. Made-up data, not real output.
+Illustrative example: a starting price of €19,800 for an example assembly, built from the parts measured off the 3D model, the last prices paid for bought-out parts and three similar past jobs, waiting for your estimator's approval. Made-up data, not real output.
 Vision
 
 ## Manufacturing has evolved. The systems behind it haven't.
@@ -52,31 +52,29 @@ Buy on what you have actually paid, not on habit.
 Built on the drawgen record
 
 ## What it costs you, and why now
+A What it costs you
 Time
 2 weeks
 of real work, in a three-and-a-half-month order at a German machine builder. The rest was questions, clarification and waiting.
-Source:
-- Staufen AG, lean order fulfilment in machinery and plant engineering, 2018 (opens in a new tab)
+Source: Staufen AG, lean order fulfilment in machinery and plant engineering, 2018 (opens in a new tab)
 In 2023, Fraunhofer studied the quote process at a German special machine builder. Prices in Excel, quotes rebuilt from old ones in Word, and colleagues asked for every cost and delivery date.
-Source: Fraunhofer IEM, Systems Engineering for the offer phase in special purpose machinery, DfX-Symposium 2023 (opens in a new tab)
+Fraunhofer IEM, Systems Engineering for the offer phase in special purpose machinery, DfX-Symposium 2023 (opens in a new tab)
 Margin
 −40% to +70%
 In a study of tool and die making, quoted cost against actual cost ran from minus 40% to plus 70%. Different trade, same one-off, engineering-led work.
-Source:
-- WZL RWTH Aachen and Werkzeugbau-Akademie, Erfolgreich kalkulieren im Werkzeugbau, 2015 (opens in a new tab)
+Source: WZL RWTH Aachen and Werkzeugbau-Akademie, Erfolgreich kalkulieren im Werkzeugbau, 2015 (opens in a new tab)
+B Why now
 Knowledge
 The same in every market
+- UK 55,000 manufacturing vacancies unfilled Make UK, 2025 (opens in a new tab)
+- US up to 1.9 million manufacturing jobs unfilled by 2033 Deloitte and The Manufacturing Institute, 2024 (opens in a new tab)
+- Australia about 70,000 engineers retiring this decade Engineers Australia, 2026 (opens in a new tab)
+- Germany 178,000 short by 2034 IW Köln for the Impuls-Stiftung, 2024 (opens in a new tab)
 The person who knows what a job really costs is retiring faster than they are replaced.
-Source:
-- UK: 55,000 manufacturing vacancies unfilled. Make UK, 2025 (opens in a new tab)
-- US: up to 1.9 million manufacturing jobs unfilled by 2033. Deloitte and The Manufacturing Institute, 2024 (opens in a new tab)
-- Australia: about 70,000 engineers retiring this decade. Engineers Australia, 2026 (opens in a new tab)
-- Germany: 178,000 short by 2034. IW Köln for the Impuls-Stiftung, 2024 (opens in a new tab)
 Speed
 Years to months
 Chinese manufacturers have compressed development cycles from years to months while staying 20 to 30% cheaper.
-Source:
-- Roland Berger, China's cost and speed advantage, 2026 (opens in a new tab)
+Source: Roland Berger, China's cost and speed advantage, 2026 (opens in a new tab)
 - Your CAD files never leave your machine
 - Nothing estimated, anything unclear flagged
 - Everything editable, nothing sent unchecked
@@ -95,11 +93,6 @@ Source:
 
 ## Built to give your team time back, not to replace anyone.
 It takes the repetitive work off your engineers and estimators: the measuring, the retyping, the chasing. The judgement stays with them: tolerances, datums, what to quote and who to buy from. Everything it produces is editable, and nothing goes out until your people have checked it.
-
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
 
 ---
 
@@ -163,11 +156,6 @@ Illustrative example : a supplier comparison from purchase history, with an RFQ 
 - Everything editable, nothing sent unchecked
 - Built for manufacturers who build to order
 
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
-
 ---
 
 URL: https://drawgen.co/product/record/
@@ -221,11 +209,6 @@ Next: BOM
 - Costing Data-driven quotes that match what the job actually costs.
 - Sourcing Buy on what you have actually paid, not on habit.
 Product
-
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
 
 ---
 
@@ -285,11 +268,6 @@ Next: Drawings
 - Sourcing Buy on what you have actually paid, not on habit.
 Product
 
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
-
 ---
 
 URL: https://drawgen.co/product/drawings/
@@ -346,11 +324,6 @@ Next: Costing
 - Costing Data-driven quotes that match what the job actually costs.
 - Sourcing Buy on what you have actually paid, not on habit.
 Product
-
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
 
 ---
 
@@ -420,11 +393,6 @@ Next: Sourcing
 - Sourcing Buy on what you have actually paid, not on habit.
 Product
 
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
-
 ---
 
 URL: https://drawgen.co/product/sourcing/
@@ -491,11 +459,6 @@ Next: The drawgen record
 - Sourcing Buy on what you have actually paid, not on habit.
 Product
 
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
-
 ---
 
 URL: https://drawgen.co/industry/special-machinery/
@@ -535,11 +498,6 @@ Illustrative example : a supplier comparison from purchase history, with an RFQ 
 - A robotic cell being commissioned: a six-axis robot with a parallel gripper over a welded fixture table, inside mesh safety fencing. Automation and robotic cells A BOM that is right the first time, bought-out and custom.
 - Primed wide-flange steel beams and a large welded platform frame with thick base plates, resting on timber blocks in a fabrication shop. Heavy fabrication and steel Big steel, measured off the model, not with a tape.
 - A steel lifting beam hanging from a chain hoist on a pillar jib crane, with test weights on the floor below. Lifting equipment Quoted with the engineering in it, not discovered after.
-
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
 
 ---
 
@@ -581,11 +539,6 @@ Illustrative example : a supplier comparison from purchase history, with an RFQ 
 - Primed wide-flange steel beams and a large welded platform frame with thick base plates, resting on timber blocks in a fabrication shop. Heavy fabrication and steel Big steel, measured off the model, not with a tape.
 - A steel lifting beam hanging from a chain hoist on a pillar jib crane, with test weights on the floor below. Lifting equipment Quoted with the engineering in it, not discovered after.
 
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
-
 ---
 
 URL: https://drawgen.co/industry/packaging/
@@ -625,11 +578,6 @@ Illustrative example : a supplier comparison from purchase history, with an RFQ 
 - A robotic cell being commissioned: a six-axis robot with a parallel gripper over a welded fixture table, inside mesh safety fencing. Automation and robotic cells A BOM that is right the first time, bought-out and custom.
 - Primed wide-flange steel beams and a large welded platform frame with thick base plates, resting on timber blocks in a fabrication shop. Heavy fabrication and steel Big steel, measured off the model, not with a tape.
 - A steel lifting beam hanging from a chain hoist on a pillar jib crane, with test weights on the floor below. Lifting equipment Quoted with the engineering in it, not discovered after.
-
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
 
 ---
 
@@ -671,11 +619,6 @@ Illustrative example : a supplier comparison from purchase history, with an RFQ 
 - Primed wide-flange steel beams and a large welded platform frame with thick base plates, resting on timber blocks in a fabrication shop. Heavy fabrication and steel Big steel, measured off the model, not with a tape.
 - A steel lifting beam hanging from a chain hoist on a pillar jib crane, with test weights on the floor below. Lifting equipment Quoted with the engineering in it, not discovered after.
 
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
-
 ---
 
 URL: https://drawgen.co/industry/heavy-fabrication/
@@ -716,11 +659,6 @@ Illustrative example : a supplier comparison from purchase history, with an RFQ 
 - A robotic cell being commissioned: a six-axis robot with a parallel gripper over a welded fixture table, inside mesh safety fencing. Automation and robotic cells A BOM that is right the first time, bought-out and custom.
 - A steel lifting beam hanging from a chain hoist on a pillar jib crane, with test weights on the floor below. Lifting equipment Quoted with the engineering in it, not discovered after.
 
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
-
 ---
 
 URL: https://drawgen.co/industry/lifting/
@@ -760,11 +698,6 @@ Illustrative example : a supplier comparison from purchase history, with an RFQ 
 - A stainless case-packing machine under final assembly, guard doors open, pneumatic cylinders and an infeed conveyor with cardboard cases. Packaging machinery Packaging lines priced on your history, not your memory.
 - A robotic cell being commissioned: a six-axis robot with a parallel gripper over a welded fixture table, inside mesh safety fencing. Automation and robotic cells A BOM that is right the first time, bought-out and custom.
 - Primed wide-flange steel beams and a large welded platform frame with thick base plates, resting on timber blocks in a fabrication shop. Heavy fabrication and steel Big steel, measured off the model, not with a tape.
-
-## Show us one of your jobs.
-The fastest way to see whether this works for you is to try it on something real. Talk to us
-- drawgenhelp@gmail.com
-- LinkedIn (opens in a new tab)
 
 ---
 

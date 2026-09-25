@@ -1,21 +1,19 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { SiteFile, SiteMap, SitePage } from "@/lib/website";
-import { toast } from "./ui";
 
 /**
  * A venture's website: every version kept side by side, previewed per page, language and device,
  * mapped as a sitemap, and checked for SEO and LLM conventions straight from the published HTML.
  */
 
-type Tab = "preview" | "sitemap" | "seo" | "versions";
+type Tab = "preview" | "sitemap" | "seo";
 const DEVICES = { desktop: 1440, tablet: 834, mobile: 390 } as const;
 type Device = keyof typeof DEVICES;
 
 export function WebsiteBuilder({ slug, site: initialSite, maps }: { slug: string; site: SiteFile; maps: Record<string, SiteMap> }) {
-  const [site, setSite] = useState(initialSite);
+  const site = initialSite;
   const [vid, setVid] = useState(site.current);
   const [lang, setLang] = useState(site.defaultLang);
   const [tab, setTab] = useState<Tab>("preview");
@@ -30,6 +28,16 @@ export function WebsiteBuilder({ slug, site: initialSite, maps }: { slug: string
   const src = file ? base(vid) + file : undefined;
 
   useEffect(() => { if (!map.pages.some((p) => p.id === pageId)) setPageId(map.pages[0]?.id); if (!langsHere.some((l) => l.code === lang)) setLang(langsHere[0]?.code ?? site.defaultLang); }, [vid]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const [shown, setShown] = useState<string | undefined>(page?.path);
+  const [live, setLive] = useState<string | undefined>(src);
+  useEffect(() => { setShown(page?.path); setLive(src); }, [page?.path, vid, lang, src]);
+  /** the page the preview has navigated to, as its public path */
+  const toPublic = (loc: string) => {
+    const rel = decodeURIComponent(loc.split(base(vid))[1] ?? "");
+    const hit = map.pages.find((p) => Object.values(p.langs).some((f) => f === rel || f === rel + "index.html" || f.replace(/index\.html$/, "") === rel));
+    return hit?.path ?? "/" + rel.replace(/index\.html$/, "").replace(new RegExp(`^${lang}/`), "");
+  };
 
   const open = (p: SitePage) => { setPageId(p.id); setTab("preview"); };
 
@@ -47,34 +55,30 @@ export function WebsiteBuilder({ slug, site: initialSite, maps }: { slug: string
             {langsHere.map((l) => <button key={l.code} aria-pressed={l.code === lang} onClick={() => setLang(l.code)} title={l.label}>{l.code.toUpperCase()}</button>)}
           </div>
         )}
+        {tab === "preview" && (
+          <div className="wb-seg wb-devices">
+            {(Object.keys(DEVICES) as Device[]).map((d) => (
+              <button key={d} aria-pressed={d === device} onClick={() => setDevice(d)} title={`${d[0].toUpperCase() + d.slice(1)}, ${DEVICES[d]}px`} aria-label={d}><DeviceIcon d={d} /></button>
+            ))}
+          </div>
+        )}
+        {tab === "preview" && shown && <span className="wb-url">{site.domain ?? ""}{shown}</span>}
         <div className="wb-seg wb-tabs">
-          {(["preview", "sitemap", "seo", "versions"] as Tab[]).map((t) => (
-            <button key={t} aria-pressed={t === tab} onClick={() => setTab(t)}>{{ preview: "Preview", sitemap: "Sitemap", seo: "SEO & LLM", versions: "Versions" }[t]}</button>
+          {(["preview", "sitemap", "seo"] as Tab[]).map((t) => (
+            <button key={t} aria-pressed={t === tab} onClick={() => setTab(t)}>{{ preview: "Preview", sitemap: "Sitemap", seo: "SEO & LLM" }[t]}</button>
           ))}
         </div>
-        {src && <a className="wb-open" href={src} target="_blank" rel="noreferrer">Open page ↗</a>}
+        {src && <a className="wb-open" href={(tab === "preview" && live) || src} target="_blank" rel="noreferrer">Open page ↗</a>}
       </div>
 
       {tab === "preview" && (
-        <div className="wb-preview">
-          <PageList map={map} current={page?.id} onPick={(p) => setPageId(p.id)} lang={lang} />
-          <div className="wb-stage">
-            <div className="wb-stage-bar">
-              <div className="wb-seg">
-                {(Object.keys(DEVICES) as Device[]).map((d) => <button key={d} aria-pressed={d === device} onClick={() => setDevice(d)}>{d[0].toUpperCase() + d.slice(1)}</button>)}
-              </div>
-              {page && <span className="wb-url">{site.domain ?? ""}{page.path}{lang !== site.defaultLang ? ` · ${lang}` : ""}</span>}
-            </div>
-            {src ? <Frame key={src + device} src={src} width={DEVICES[device]} phone={device !== "desktop"} /> : <div className="wb-none">This page has no file in this language.</div>}
-          </div>
+        <div className="wb-stage">
+          {src ? <Frame key={src + device} src={src} width={DEVICES[device]} phone={device !== "desktop"} onPath={(p) => { setShown(toPublic(p)); setLive(p); }} /> : <div className="wb-none">This page has no file in this language.</div>}
         </div>
       )}
 
       {tab === "sitemap" && <Sitemap map={map} lang={lang} onOpen={open} />}
       {tab === "seo" && <Seo key={vid + lang} base={base(vid)} map={map} site={site} lang={lang} onOpen={open} />}
-      {tab === "versions" && (
-        <Versions slug={slug} site={site} maps={maps} base={base} current={vid} onSite={setSite} onPick={(id) => { setVid(id); setTab("preview"); }} />
-      )}
 
       {version?.note && tab === "preview" && <p className="wb-note">{version.title}: {version.note}</p>}
     </div>
@@ -83,7 +87,18 @@ export function WebsiteBuilder({ slug, site: initialSite, maps }: { slug: string
 
 /* ---------- a page scaled to fit, at a real device width ---------- */
 
-function Frame({ src, width, phone }: { src: string; width: number; phone?: boolean }) {
+function DeviceIcon({ d }: { d: Device }) {
+  const p = { fill: "none", stroke: "currentColor", strokeWidth: 1.25, strokeLinecap: "square" as const, strokeLinejoin: "miter" as const };
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden>
+      {d === "desktop" && <><rect x="1.5" y="2.5" width="13" height="8.5" {...p} /><path d="M5.5 13.5h5M8 11v2.5" {...p} /></>}
+      {d === "tablet" && <><rect x="3" y="1.5" width="10" height="13" {...p} /><path d="M7 12.5h2" {...p} /></>}
+      {d === "mobile" && <><rect x="4.5" y="1.5" width="7" height="13" {...p} /><path d="M7.25 12.5h1.5" {...p} /></>}
+    </svg>
+  );
+}
+
+function Frame({ src, width, phone, onPath }: { src: string; width: number; phone?: boolean; onPath?: (path: string) => void }) {
   const box = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
   useEffect(() => {
@@ -100,37 +115,10 @@ function Frame({ src, width, phone }: { src: string; width: number; phone?: bool
     <div className="wb-frame-box" ref={box}>
       {size.w > 0 && (
         <div className={`wb-frame${phone ? " phone" : ""}`} style={{ width: w, height: size.h - (phone ? 8 : 0) }}>
-          <iframe src={src} title="Page preview" style={{ width, height: (size.h - (phone ? 8 : 0)) / scale, transform: `scale(${scale})` }} />
+          <iframe src={src} title="Page preview" onLoad={(e) => { try { onPath?.((e.currentTarget.contentWindow?.location.pathname) ?? ""); } catch { /* cross-origin */ } }} style={{ width, height: (size.h - (phone ? 8 : 0)) / scale, transform: `scale(${scale})` }} />
         </div>
       )}
     </div>
-  );
-}
-
-/* ---------- page list, grouped like the site ---------- */
-
-function PageList({ map, current, onPick, lang }: { map: SiteMap; current?: string; onPick: (p: SitePage) => void; lang: string }) {
-  const core = map.pages.filter((p) => p.type !== "cms");
-  const cols = map.collections ?? [];
-  const Item = ({ p }: { p: SitePage }) => (
-    <button className={`wb-li${p.id === current ? " on" : ""}${p.langs[lang] ? "" : " missing"}`} onClick={() => onPick(p)} title={p.path}>
-      <b>{p.title}</b><span>{p.path}</span>
-    </button>
-  );
-  return (
-    <nav className="wb-list">
-      <span className="wb-lk">Pages</span>
-      {core.map((p) => <Item key={p.id} p={p} />)}
-      {cols.map((c) => {
-        const items = map.pages.filter((p) => p.type === "cms" && p.collection === c.key);
-        return items.length ? (
-          <div key={c.key}>
-            <span className="wb-lk">{c.label}<em>{items.length}</em></span>
-            {items.map((p) => <Item key={p.id} p={p} />)}
-          </div>
-        ) : null;
-      })}
-    </nav>
   );
 }
 
@@ -288,89 +276,6 @@ function Seo({ base, map, site, lang, onOpen }: { base: string; map: SiteMap; si
           );
         })}
       </div>
-    </div>
-  );
-}
-
-/* ---------- versions: the evolution, a side by side compare, a new version ---------- */
-
-function Versions({ slug, site, maps, base, current, onSite, onPick }: {
-  slug: string; site: SiteFile; maps: Record<string, SiteMap>; base: (id: string) => string; current: string; onSite: (s: SiteFile) => void; onPick: (id: string) => void;
-}) {
-  const router = useRouter();
-  const list = [...site.versions].reverse();
-  const [a, setA] = useState(list[1]?.id ?? list[0]?.id);
-  const [b, setB] = useState(list[0]?.id);
-  const paths = [...new Set([...(maps[a]?.pages ?? []), ...(maps[b]?.pages ?? [])].map((p) => p.path))];
-  const [path, setPath] = useState("/");
-  const fileFor = (id: string) => { const p = maps[id]?.pages.find((x) => x.path === path); return p ? base(id) + (p.langs[site.defaultLang] ?? Object.values(p.langs)[0]) : undefined; };
-  const [draft, setDraft] = useState<{ title: string; note: string } | null>(null);
-
-  const create = async () => {
-    if (!draft?.title.trim()) return;
-    const n = site.versions.length + 1;
-    const id = `${new Date().toISOString().slice(0, 10)}-v${n}`;
-    const r = await fetch("/api/website", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ venture: slug, from: current, id, title: draft.title.trim(), note: draft.note.trim() }) });
-    const j = await r.json().catch(() => ({}));
-    toast(r.ok ? j.message : j.error ?? "Could not create the version");
-    if (r.ok) { onSite(j.site); setDraft(null); router.refresh(); }
-  };
-
-  return (
-    <div className="wb-versions">
-      <div className="wb-timeline">
-        {list.map((v) => (
-          <div key={v.id} className={`wb-vcard${v.id === current ? " on" : ""}`}>
-            <div className="wb-vtop"><span className={`wb-status ${v.status ?? ""}`}>{v.status ?? "version"}</span><span>{v.created}</span></div>
-            <b>{v.title}</b>
-            {v.note && <p>{v.note}</p>}
-            <div className="wb-vfoot">
-              <span>{maps[v.id]?.pages.length ?? 0} pages{v.source === "imported" ? " · imported" : ""}</span>
-              <button onClick={() => onPick(v.id)}>Preview</button>
-            </div>
-          </div>
-        ))}
-        <div className="wb-vcard wb-vnew">
-          {draft ? (
-            <>
-              <b>New version from {site.versions.find((v) => v.id === current)?.title}</b>
-              <input placeholder="Title, e.g. Pricing and security pages" value={draft.title} onChange={(e) => setDraft({ ...draft, title: e.target.value })} />
-              <textarea placeholder="What changes and why" rows={3} value={draft.note} onChange={(e) => setDraft({ ...draft, note: e.target.value })} />
-              <div className="wb-vfoot"><button onClick={() => setDraft(null)}>Cancel</button><button className="solid" onClick={create}>Create draft</button></div>
-            </>
-          ) : (
-            <>
-              <b>Start a new version</b>
-              <p>For a new direction or a restructure. Small edits belong in the current version, so the history stays readable.</p>
-              <div className="wb-vfoot"><span /><button className="solid" onClick={() => setDraft({ title: "", note: "" })}>New version</button></div>
-            </>
-          )}
-        </div>
-      </div>
-
-      {site.versions.length > 1 && (
-        <div className="wb-compare">
-          <div className="wb-compare-bar">
-            <span className="wb-lk">Compare</span>
-            <select value={a} onChange={(e) => setA(e.target.value)}>{list.map((v) => <option key={v.id} value={v.id}>{v.title}</option>)}</select>
-            <span>with</span>
-            <select value={b} onChange={(e) => setB(e.target.value)}>{list.map((v) => <option key={v.id} value={v.id}>{v.title}</option>)}</select>
-            <span>on</span>
-            <select value={path} onChange={(e) => setPath(e.target.value)}>{paths.map((p) => <option key={p} value={p}>{p}</option>)}</select>
-          </div>
-          <div className="wb-compare-grid">
-            {[a, b].map((id, k) => {
-              const f = fileFor(id);
-              return (
-                <div key={k} className="wb-compare-cell">
-                  <span className="wb-lk">{site.versions.find((v) => v.id === id)?.title}</span>
-                  {f ? <Frame key={f} src={f} width={1440} /> : <div className="wb-none">Not in this version</div>}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -1,0 +1,669 @@
+- generic [active] [ref=f7e1]:
+  - generic [ref=f7e2]:
+    - navigation "Ventures" [ref=f7e3]:
+      - link [ref=f7e4] [cursor=pointer]:
+        - /url: /
+        - img "Builders Design" [ref=f7e5]
+      - generic [ref=f7e6]:
+        - link "Builders" [ref=f7e7] [cursor=pointer]:
+          - /url: /builders/vision
+        - link "Krans" [ref=f7e12] [cursor=pointer]:
+          - /url: /krans/vision
+        - link "Day Zero" [ref=f7e13] [cursor=pointer]:
+          - /url: /day-zero/vision
+        - link "Trigger" [ref=f7e18] [cursor=pointer]:
+          - /url: /trigger/vision
+        - link "drawgen" [ref=f7e23] [cursor=pointer]:
+          - /url: /drawgen/vision
+        - link "Doctorine" [ref=f7e24] [cursor=pointer]:
+          - /url: /doctorine/vision
+        - link "BayesAI" [ref=f7e25] [cursor=pointer]:
+          - /url: /bayesai/vision
+          - generic [ref=f7e26]: B
+        - link "Modou" [ref=f7e27] [cursor=pointer]:
+          - /url: /modou/vision
+          - generic [ref=f7e28]: M
+        - link "Corestone" [ref=f7e29] [cursor=pointer]:
+          - /url: /corestone/vision
+          - generic [ref=f7e30]: C
+        - link "CTO FEST '27" [ref=f7e31] [cursor=pointer]:
+          - /url: /cto-festival/vision
+        - link "Cortena" [ref=f7e36] [cursor=pointer]:
+          - /url: /cortena/vision
+        - link "Avery" [ref=f7e41] [cursor=pointer]:
+          - /url: /avery/vision
+        - link "Everday" [ref=f7e46] [cursor=pointer]:
+          - /url: /everday/vision
+        - link "MakiMode" [ref=f7e51] [cursor=pointer]:
+          - /url: /makimode/vision
+        - link "Katasaga" [ref=f7e56] [cursor=pointer]:
+          - /url: /katasaga/vision
+        - link "243" [ref=f7e61] [cursor=pointer]:
+          - /url: /243/vision
+        - link "Gustavo" [ref=f7e66] [cursor=pointer]:
+          - /url: /gustavo/vision
+        - button "+" [ref=f7e67] [cursor=pointer]
+    - complementary [ref=f7e68]:
+      - generic [ref=f7e69]: Corestone
+      - navigation [ref=f7e71]:
+        - link "Journeys 1" [ref=f7e72] [cursor=pointer]:
+          - /url: /corestone/journeys
+          - generic [ref=f7e73]: Journeys
+          - generic [ref=f7e77]: "1"
+        - link "Competitors 12" [ref=f7e78] [cursor=pointer]:
+          - /url: /corestone/competitors
+          - generic [ref=f7e79]: Competitors
+          - generic [ref=f7e84]: "12"
+        - link "Vision 11" [ref=f7e85] [cursor=pointer]:
+          - /url: /corestone/vision
+          - generic [ref=f7e86]: Vision
+          - generic [ref=f7e89]: "11"
+        - separator [ref=f7e90]
+        - link "Brand variants" [ref=f7e91] [cursor=pointer]:
+          - /url: /corestone/variants
+        - link "Brand book" [ref=f7e96] [cursor=pointer]:
+          - /url: /corestone/brand
+        - link "Website" [ref=f7e101] [cursor=pointer]:
+          - /url: /corestone/website
+        - link "Social" [ref=f7e105] [cursor=pointer]:
+          - /url: /corestone/social
+        - link "Presentations" [ref=f7e109] [cursor=pointer]:
+          - /url: /corestone/presentations
+        - link "Gallery" [ref=f7e115] [cursor=pointer]:
+          - /url: /corestone/gallery
+      - generic [ref=f7e121]:
+        - img "Builders" [ref=f7e122]
+        - generic [ref=f7e123]: Design
+    - main [ref=f7e124]:
+      - generic [ref=f7e125]:
+        - heading "Vision11" [level=1] [ref=f7e126]
+        - button "Copy a prompt for your model" [ref=f7e128] [cursor=pointer]
+      - generic [ref=f7e131]:
+        - generic [ref=f7e132]:
+          - generic [ref=f7e133]: Vision
+          - paragraph [ref=f7e134] [cursor=pointer]: "Corestone is the reader and checker between the field and the design: drop in the drill logs, field sheets, scans, core photos and lab certificates of a campaign, and get back one borehole table where every value is linked to the page it came from, every inconsistency is listed for a geologist to decide, and the logs, sections and exports the firm already uses are drawn from the checked data."
+        - generic [ref=f7e135]:
+          - 'button "Recommended direction Own the step between messy field documents and the first borehole table a geologist trusts: read a campaign''s field sheets, scanned logs, lab certificates and core photos, check them against each other, and hand back the checked table, every inconsistency with its source, and the exports and drawings the firm already uses. Reading alone is becoming a commodity, so sell the check: start with a free validation report on a firm''s own boreholes, price per project or per file, and treat core-photo RQD as one check inside that report rather than as the product." [ref=f7e136] [cursor=pointer]':
+            - generic [ref=f7e137]: Recommended direction
+            - generic [ref=f7e138]: "Own the step between messy field documents and the first borehole table a geologist trusts: read a campaign's field sheets, scanned logs, lab certificates and core photos, check them against each other, and hand back the checked table, every inconsistency with its source, and the exports and drawings the firm already uses. Reading alone is becoming a commodity, so sell the check: start with a free validation report on a firm's own boreholes, price per project or per file, and treat core-photo RQD as one check inside that report rather than as the product."
+          - button "Winning patterns 3 One owner holds the incumbents, and it is moving them to the cloud Reading PDF logs is already a crowded, fast category" [ref=f7e139] [cursor=pointer]:
+            - generic [ref=f7e140]:
+              - text: Winning patterns
+              - emphasis [ref=f7e141]: "3"
+            - generic [ref=f7e142]: One owner holds the incumbents, and it is moving them to the cloud
+            - generic [ref=f7e143]: Reading PDF logs is already a crowded, fast category
+          - button "The problem 3 The hours go into getting data out of documents Valid format is not valid data" [ref=f7e144] [cursor=pointer]:
+            - generic [ref=f7e145]:
+              - text: The problem
+              - emphasis [ref=f7e146]: "3"
+            - generic [ref=f7e147]: The hours go into getting data out of documents
+            - generic [ref=f7e148]: Valid format is not valid data
+          - button "Trends 3 Data standards are tightening on quality, not only format The sector wants automation because it lacks people" [ref=f7e149] [cursor=pointer]:
+            - generic [ref=f7e150]:
+              - text: Trends
+              - emphasis [ref=f7e151]: "3"
+            - generic [ref=f7e152]: Data standards are tightening on quality, not only format
+            - generic [ref=f7e153]: The sector wants automation because it lacks people
+          - button "Status from VSI 4 Strong on pain, silent on price The direction has moved faster than the evidence" [ref=f7e154] [cursor=pointer]:
+            - generic [ref=f7e155]:
+              - text: Status from VSI
+              - emphasis [ref=f7e156]: "4"
+            - generic [ref=f7e157]: Strong on pain, silent on price
+            - generic [ref=f7e158]: The direction has moved faster than the evidence
+          - generic [ref=f7e159]:
+            - generic [ref=f7e160]: VSI · 10 conversations · 2026-09-25
+            - button "22 web sources" [ref=f7e161] [cursor=pointer]
+            - generic [ref=f7e162]: Updated 2026-09-25
+        - generic [ref=f7e163]:
+          - generic [ref=f7e164]:
+            - generic [ref=f7e165]:
+              - generic [ref=f7e166]: Recommended
+              - generic [ref=f7e167]: "7"
+              - emphasis [ref=f7e168]: Proposed from the evidence
+            - generic [ref=f7e169]:
+              - generic [ref=f7e170]:
+                - generic [ref=f7e171]:
+                  - generic [ref=f7e172]: now
+                  - generic [ref=f7e173]: Prototype
+                  - generic "Confidence E3" [ref=f7e174]:
+                    - emphasis [ref=f7e181]: E3
+                - generic [ref=f7e182]: "Log to table: field sheets, scans and logs read into one borehole table"
+                - paragraph [ref=f7e183]: Read a batch of handwritten field sheets, scanned logs and digital logs into one borehole table per project, with every value linked to the page and position it came from and every uncertain character asked as a question, then write it into the firm's own Excel template, AGS 4 and the Leapfrog CSV set.
+                - generic [ref=f7e184]:
+                  - generic [ref=f7e185]:
+                    - generic "5 Calls" [ref=f7e186]: "5"
+                    - generic "2 Competitors" [ref=f7e187]: "2"
+                  - generic [ref=f7e188]:
+                    - generic "Impact 3 of 3" [ref=f7e189]: I
+                    - generic "Effort 2 of 3" [ref=f7e193]: E
+              - generic [ref=f7e197]:
+                - generic [ref=f7e198]:
+                  - generic [ref=f7e199]: now
+                  - generic [ref=f7e200]: Prototype
+                  - generic "Confidence E2" [ref=f7e201]:
+                    - emphasis [ref=f7e208]: E2
+                - generic [ref=f7e209]: "Validation report: every inconsistency in a campaign, linked to its source"
+                - paragraph [ref=f7e210]: Cross-check a campaign's logs, certificates, collar and survey files and core photos against each other, and return a report of every inconsistency (depths, hole lengths, units, copied values, coordinates, RQD against the photo), each linked to the page, graded by whether it would change a design parameter, and waiting for a geologist's decision.
+                - generic [ref=f7e211]:
+                  - generic [ref=f7e212]:
+                    - generic "4 Calls" [ref=f7e213]: "4"
+                    - generic "1 Signals" [ref=f7e214]: "1"
+                    - generic "1 Trends" [ref=f7e215]: "1"
+                    - generic "1 Competitors" [ref=f7e216]: "1"
+                  - generic [ref=f7e217]:
+                    - generic "Impact 3 of 3" [ref=f7e218]: I
+                    - generic "Effort 2 of 3" [ref=f7e222]: E
+              - generic [ref=f7e226]:
+                - generic [ref=f7e227]:
+                  - generic [ref=f7e228]: now
+                  - generic "Confidence E3" [ref=f7e229]:
+                    - emphasis [ref=f7e236]: E3
+                - generic [ref=f7e237]: Lab certificate reader that does not break when the layout changes
+                - paragraph [ref=f7e238]: Read laboratory and in-situ test certificates (grading, Atterberg limits, CBR, Proctor, triaxial, pressuremeter, UCS) from any lab's PDF or scan into the same table, keeping the raw values and the lab's interpreted ones side by side.
+                - generic [ref=f7e239]:
+                  - generic [ref=f7e240]:
+                    - generic "2 Calls" [ref=f7e241]: "2"
+                    - generic "2 Signals" [ref=f7e242]: "2"
+                    - generic "1 Competitors" [ref=f7e243]: "1"
+                    - generic "1 Trends" [ref=f7e244]: "1"
+                  - generic [ref=f7e245]:
+                    - generic "Impact 3 of 3" [ref=f7e246]: I
+                    - generic "Effort 2 of 3" [ref=f7e250]: E
+              - generic [ref=f7e254]:
+                - generic [ref=f7e255]:
+                  - generic [ref=f7e256]: next
+                  - generic "Confidence E3" [ref=f7e257]:
+                    - emphasis [ref=f7e264]: E3
+                - generic [ref=f7e265]: Logs and sections drawn from the checked table
+                - paragraph [ref=f7e266]: Generate borehole logs with core photos beside each column, fence sections between holes and the editable DWG or DXF longitudinal profile a tunnel or rail designer asks for, redrawn automatically whenever a value in the table is corrected.
+                - generic [ref=f7e267]:
+                  - generic [ref=f7e268]:
+                    - generic "4 Calls" [ref=f7e269]: "4"
+                    - generic "1 Market" [ref=f7e270]: "1"
+                    - generic "1 Competitors" [ref=f7e271]: "1"
+                  - generic [ref=f7e272]:
+                    - generic "Impact 3 of 3" [ref=f7e273]: I
+                    - generic "Effort 2 of 3" [ref=f7e277]: E
+              - generic [ref=f7e281]:
+                - generic [ref=f7e282]:
+                  - generic [ref=f7e283]: next
+                  - generic "Confidence E2" [ref=f7e284]:
+                    - emphasis [ref=f7e291]: E2
+                - generic [ref=f7e292]: "Core photo check: RQD and fractures estimated beside the logged value"
+                - paragraph [ref=f7e293]: Read core-box photos to estimate recovery, RQD and fracture positions per run, show the estimate beside the logged value in the validation report, and give crews a simple capture guide and fixed rig so every photo is nadiral, lit the same and carries a colour card.
+                - generic [ref=f7e294]:
+                  - generic [ref=f7e295]:
+                    - generic "5 Calls" [ref=f7e296]: "5"
+                    - generic "2 Competitors" [ref=f7e297]: "2"
+                  - generic [ref=f7e298]:
+                    - generic "Impact 2 of 3" [ref=f7e299]: I
+                    - generic "Effort 3 of 3" [ref=f7e303]: E
+              - generic [ref=f7e307]:
+                - generic [ref=f7e308]:
+                  - generic [ref=f7e309]: next
+                  - generic "Confidence E3" [ref=f7e310]:
+                    - emphasis [ref=f7e317]: E3
+                - generic [ref=f7e318]: "Archive rescue: old paper boreholes translated, georeferenced and mapped"
+                - paragraph [ref=f7e319]: Read decades-old scanned borehole records in any language, translate descriptions, detect the likely coordinate reference system, flag the ambiguous ones, and place the holes on a map with the rest of the project's data.
+                - generic [ref=f7e320]:
+                  - generic [ref=f7e321]:
+                    - generic "5 Calls" [ref=f7e322]: "5"
+                    - generic "1 Market" [ref=f7e323]: "1"
+                  - generic [ref=f7e324]:
+                    - generic "Impact 2 of 3" [ref=f7e325]: I
+                    - generic "Effort 2 of 3" [ref=f7e329]: E
+              - generic [ref=f7e333]:
+                - generic [ref=f7e334]:
+                  - generic [ref=f7e335]: later
+                  - generic "Confidence E2" [ref=f7e336]:
+                    - emphasis [ref=f7e343]: E2
+                - generic [ref=f7e344]: Change record for the design handover
+                - paragraph [ref=f7e345]: Keep every borehole value versioned with its source and the geologist's decision, so each calculation round shows the designer exactly which values changed since the last one, and the ground data is shared from one place instead of by email.
+                - generic [ref=f7e346]:
+                  - generic [ref=f7e347]:
+                    - generic "3 Calls" [ref=f7e348]: "3"
+                    - generic "1 Journeys" [ref=f7e349]: "1"
+                    - generic "1 Competitors" [ref=f7e350]: "1"
+                  - generic [ref=f7e351]:
+                    - generic "Impact 2 of 3" [ref=f7e352]: I
+                    - generic "Effort 2 of 3" [ref=f7e356]: E
+          - generic [ref=f7e360]:
+            - generic [ref=f7e361]:
+              - generic [ref=f7e362]: Shortlist
+              - generic [ref=f7e363]: "0"
+              - emphasis [ref=f7e364]: Worth a closer look
+            - generic [ref=f7e365]: Drop an initiative here
+          - generic [ref=f7e367]:
+            - generic [ref=f7e368]:
+              - generic [ref=f7e369]: Validating
+              - generic [ref=f7e370]: "0"
+              - emphasis [ref=f7e371]: Testing the riskiest assumption
+            - generic [ref=f7e372]: Drop an initiative here
+          - generic [ref=f7e374]:
+            - generic [ref=f7e375]:
+              - generic [ref=f7e376]: Building
+              - generic [ref=f7e377]: "0"
+              - emphasis [ref=f7e378]: Committed
+            - generic [ref=f7e379]: Drop an initiative here
+          - generic [ref=f7e381]:
+            - generic [ref=f7e382]:
+              - generic [ref=f7e383]: Parked
+              - generic [ref=f7e384]: "4"
+              - emphasis [ref=f7e385]: Not now, and why
+            - generic [ref=f7e386]:
+              - generic [ref=f7e387]:
+                - generic [ref=f7e388]:
+                  - generic [ref=f7e389]: later
+                  - generic "Confidence E2" [ref=f7e390]:
+                    - emphasis [ref=f7e397]: E2
+                - generic [ref=f7e398]: Draft factual report from the checked data
+                - paragraph [ref=f7e399]: Assemble the tables, charts, logs and appendices of a factual ground investigation report from the checked table, in the firm's own structure, leaving interpretation to the geologist.
+                - generic [ref=f7e400]:
+                  - generic [ref=f7e401]:
+                    - generic "2 Calls" [ref=f7e402]: "2"
+                    - generic "1 Signals" [ref=f7e403]: "1"
+                    - generic "1 Trends" [ref=f7e404]: "1"
+                  - generic [ref=f7e405]:
+                    - generic "Impact 2 of 3" [ref=f7e406]: I
+                    - generic "Effort 3 of 3" [ref=f7e410]: E
+              - generic [ref=f7e414]:
+                - generic [ref=f7e415]:
+                  - generic [ref=f7e416]: later
+                  - generic "Confidence E1" [ref=f7e417]:
+                    - emphasis [ref=f7e424]: E1
+                - generic [ref=f7e425]: Tender GI check for specialist contractors
+                - paragraph [ref=f7e426]: Read a tender's ground investigation package against public borehole records and a contractor's past jobs, and flag gaps and inconsistencies that would change the price before the bid goes in.
+                - generic [ref=f7e427]:
+                  - generic [ref=f7e428]:
+                    - generic "2 Signals" [ref=f7e429]: "2"
+                    - generic "2 Calls" [ref=f7e430]: "2"
+                    - generic "1 Competitors" [ref=f7e431]: "1"
+                  - generic [ref=f7e432]:
+                    - generic "Impact 3 of 3" [ref=f7e433]: I
+                    - generic "Effort 3 of 3" [ref=f7e437]: E
+              - generic [ref=f7e441]:
+                - generic [ref=f7e442]:
+                  - generic [ref=f7e443]: later
+                  - generic "Confidence E2" [ref=f7e444]:
+                    - emphasis [ref=f7e451]: E2
+                - generic [ref=f7e452]: Light 3D borehole viewer and ground model
+                - paragraph [ref=f7e453]: Place boreholes at their coordinates over topography, correlate them into a simple 3D ground model and overlay a tunnel or pit design to estimate volumes.
+                - generic [ref=f7e454]:
+                  - generic [ref=f7e455]:
+                    - generic "3 Calls" [ref=f7e456]: "3"
+                    - generic "1 Competitors" [ref=f7e457]: "1"
+                  - generic [ref=f7e458]:
+                    - generic "Impact 2 of 3" [ref=f7e459]: I
+                    - generic "Effort 3 of 3" [ref=f7e463]: E
+              - generic [ref=f7e467]:
+                - generic [ref=f7e468]:
+                  - generic [ref=f7e469]: later
+                  - generic "Confidence E2" [ref=f7e470]:
+                    - emphasis [ref=f7e477]: E2
+                - generic [ref=f7e478]: Technical specification generator for tenders
+                - paragraph [ref=f7e479]: Generate the standard part of a construction tender's technical specifications from a project description, leaving only the project-specific clauses to write.
+                - generic [ref=f7e480]:
+                  - generic [ref=f7e481]:
+                    - generic "2 Calls" [ref=f7e482]: "2"
+                    - generic "1 Signals" [ref=f7e483]: "1"
+                  - generic [ref=f7e484]:
+                    - generic "Impact 2 of 3" [ref=f7e485]: I
+                    - generic "Effort 2 of 3" [ref=f7e489]: E
+        - complementary [ref=f7e493]:
+          - generic [ref=f7e494]:
+            - combobox [ref=f7e495] [cursor=pointer]:
+              - option "Recommended" [selected]
+              - option "Shortlist"
+              - option "Validating"
+              - option "Building"
+              - option "Parked"
+            - button "Close" [ref=f7e496] [cursor=pointer]: ×
+          - generic [ref=f7e497]:
+            - generic [ref=f7e498]: now
+            - generic [ref=f7e499]:
+              - text: Confidence
+              - generic "Confidence E2" [ref=f7e500]:
+                - emphasis [ref=f7e507]: E2
+            - generic [ref=f7e508]:
+              - text: Impact
+              - generic "Impact 3 of 3" [ref=f7e509]: I
+            - generic [ref=f7e513]:
+              - text: Effort
+              - generic "Effort 2 of 3" [ref=f7e514]: E
+          - 'heading "Validation report: every inconsistency in a campaign, linked to its source" [level=2] [ref=f7e518]'
+          - paragraph [ref=f7e519]: Cross-check a campaign's logs, certificates, collar and survey files and core photos against each other, and return a report of every inconsistency (depths, hole lengths, units, copied values, coordinates, RQD against the photo), each linked to the page, graded by whether it would change a design parameter, and waiting for a geologist's decision.
+          - generic [ref=f7e520]:
+            - heading "The bet" [level=4] [ref=f7e521]
+            - paragraph [ref=f7e522]: We believe that a free validation report on a firm's own boreholes will show errors the firm did not know it had, and will open a conversation about paying to run it on every campaign. We will know when at least 3 of the first 10 firms that receive a report ask for it on a live project.
+          - generic [ref=f7e523]:
+            - heading "The problem" [level=4] [ref=f7e524]
+            - paragraph [ref=f7e525]: Errors in third-party logs are abundant and the reviewing geologist signs the corrections, yet the only check today is a person comparing files, photos and paper by eye.
+          - generic [ref=f7e526]:
+            - heading "What the data shows" [level=4] [ref=f7e527]
+            - figure "What each tool says it does with ground investigation documents (Corestone column is the proposed product; others from public pages)" [ref=f7e528]:
+              - table [ref=f7e530]:
+                - rowgroup [ref=f7e531]:
+                  - row [ref=f7e532]:
+                    - columnheader [ref=f7e533]
+                    - columnheader "Corestone" [ref=f7e534]
+                    - columnheader "BoreholeAI" [ref=f7e535]
+                    - columnheader "Civils.ai" [ref=f7e536]
+                    - columnheader "GeoLayer" [ref=f7e537]
+                    - columnheader "OpenGround" [ref=f7e538]
+                    - columnheader "AGS validator" [ref=f7e539]
+                - rowgroup [ref=f7e540]:
+                  - row [ref=f7e541]:
+                    - cell "Reads PDF or scanned logs" [ref=f7e542]
+                    - cell "●" [ref=f7e543]
+                    - cell "●" [ref=f7e544]
+                    - cell "●" [ref=f7e545]
+                    - cell "●" [ref=f7e546]
+                    - cell "◐" [ref=f7e547]
+                    - cell "○" [ref=f7e548]
+                  - row [ref=f7e549]:
+                    - cell "Confidence shown per value" [ref=f7e550]
+                    - cell "●" [ref=f7e551]
+                    - cell "●" [ref=f7e552]
+                    - cell "not stated" [ref=f7e553]
+                    - cell "not stated" [ref=f7e554]
+                    - cell "not stated" [ref=f7e555]
+                    - cell "○" [ref=f7e556]
+                  - row [ref=f7e557]:
+                    - cell "Checks file format" [ref=f7e558]
+                    - cell "●" [ref=f7e559]
+                    - cell "not stated" [ref=f7e560]
+                    - cell "not stated" [ref=f7e561]
+                    - cell "not stated" [ref=f7e562]
+                    - cell "●" [ref=f7e563]
+                    - cell "●" [ref=f7e564]
+                  - row [ref=f7e565]:
+                    - cell "Checks content across logs, certificates and photos" [ref=f7e566]
+                    - cell "●" [ref=f7e567]
+                    - cell "not stated" [ref=f7e568]
+                    - cell "not stated" [ref=f7e569]
+                    - cell "not stated" [ref=f7e570]
+                    - cell "not stated" [ref=f7e571]
+                    - cell "○" [ref=f7e572]
+                  - row [ref=f7e573]:
+                    - cell "Flags graded by effect on design parameters" [ref=f7e574]
+                    - cell "●" [ref=f7e575]
+                    - cell "○" [ref=f7e576]
+                    - cell "○" [ref=f7e577]
+                    - cell "○" [ref=f7e578]
+                    - cell "○" [ref=f7e579]
+                    - cell "○" [ref=f7e580]
+                  - row [ref=f7e581]:
+                    - cell "Every decision recorded with its source" [ref=f7e582]
+                    - cell "●" [ref=f7e583]
+                    - cell "not stated" [ref=f7e584]
+                    - cell "not stated" [ref=f7e585]
+                    - cell "not stated" [ref=f7e586]
+                    - cell "◐" [ref=f7e587]
+                    - cell "○" [ref=f7e588]
+            - figure "The error only an eye catches today" [ref=f7e589]:
+              - blockquote [ref=f7e591]: “comment tu peux mettre le RQD à 90% alors que la photo à cette profondeur-là t'as que 20%?”
+              - generic [ref=f7e592]:
+                - text: Senior engineering geologist, infrastructure tenders ·
+                - link "Open in VSI at 25:38 ↗" [ref=f7e593] [cursor=pointer]:
+                  - /url: https://vsi.builders.studio/conversations/6332d8ac-94cc-4db2-83a7-424876c3f7bc
+          - generic [ref=f7e594]:
+            - heading "Vision prototype" [level=4] [ref=f7e595]
+            - iframe [ref=f7e597]:
+              - generic [ref=f8e1]:
+                - generic [ref=f8e2]:
+                  - generic [ref=f8e3]: Vision prototype
+                  - text: A validation report on a firm's own drill logs and lab certificates. Sample data, not a real project.
+                  - generic [ref=f8e4]: Corestone
+                - banner [ref=f8e5]:
+                  - generic [ref=f8e6]: Corestone
+                  - generic [ref=f8e12]: Projects / Sample viaduct, pier foundations / Validation
+                  - generic [ref=f8e13]:
+                    - button "Download PDF" [ref=f8e14] [cursor=pointer]
+                    - button "Export clean dataset" [ref=f8e15] [cursor=pointer]
+                - main [ref=f8e16]:
+                  - generic [ref=f8e17]:
+                    - generic [ref=f8e18]:
+                      - generic [ref=f8e19]: Validation report
+                      - heading "24 boreholes read, 37 things to check before this goes to design" [level=1] [ref=f8e20]
+                      - paragraph [ref=f8e21]: "Every value was read from the field sheets, logs and lab certificates you uploaded, cross-checked across files, and linked back to the page it came from. Nothing has been changed: each flag waits for a geologist's decision."
+                    - generic [ref=f8e22]: 28 open, 9 resolved
+                  - generic [ref=f8e24]:
+                    - generic [ref=f8e25]:
+                      - generic [ref=f8e26]: Documents
+                      - generic [ref=f8e27]: "61"
+                      - generic [ref=f8e28]: 24 logs, 29 certificates, 8 photo sets
+                    - generic [ref=f8e29]:
+                      - generic [ref=f8e30]: Values read
+                      - generic [ref=f8e31]: 3,412
+                      - generic [ref=f8e32]: 96 read with low confidence
+                    - generic [ref=f8e33]:
+                      - generic [ref=f8e34]: High
+                      - generic [ref=f8e35]: "9"
+                      - generic [ref=f8e36]: would change a design parameter
+                    - generic [ref=f8e37]:
+                      - generic [ref=f8e38]: Medium
+                      - generic [ref=f8e39]: "18"
+                      - generic [ref=f8e40]: inconsistent between files
+                    - generic [ref=f8e41]:
+                      - generic [ref=f8e42]: Low
+                      - generic [ref=f8e43]: "10"
+                      - generic [ref=f8e44]: format, units, missing fields
+                  - generic [ref=f8e45]:
+                    - generic [ref=f8e46]:
+                      - generic [ref=f8e47]:
+                        - heading "Flags" [level=2] [ref=f8e48]
+                        - generic [ref=f8e49]:
+                          - button "All 37" [ref=f8e50] [cursor=pointer]
+                          - button "High" [ref=f8e51] [cursor=pointer]
+                          - button "Medium" [ref=f8e52] [cursor=pointer]
+                          - button "Low" [ref=f8e53] [cursor=pointer]
+                      - table [ref=f8e55]:
+                        - rowgroup [ref=f8e56]:
+                          - row [ref=f8e57]:
+                            - columnheader "Severity" [ref=f8e58]
+                            - columnheader "Check" [ref=f8e59]
+                            - columnheader "Hole" [ref=f8e60]
+                            - columnheader "Depth" [ref=f8e61]
+                            - columnheader "Stated / found" [ref=f8e62]
+                            - columnheader "Source" [ref=f8e63]
+                        - rowgroup [ref=f8e64]:
+                          - row [ref=f8e65] [cursor=pointer]:
+                            - cell "High" [ref=f8e66]
+                            - cell "RQD logged vs core photo Photo estimate far below the logged value" [ref=f8e68]:
+                              - generic [ref=f8e69]: RQD logged vs core photo
+                              - text: Photo estimate far below the logged value
+                            - cell "BH-07" [ref=f8e70]
+                            - cell "14.0 to 15.5 m" [ref=f8e71]
+                            - cell "90% 22%" [ref=f8e72]
+                            - cell "Log p.3, photo box 5" [ref=f8e73]
+                          - row [ref=f8e74] [cursor=pointer]:
+                            - cell "High" [ref=f8e75]
+                            - cell "Certificate vs log UCS on the certificate differs from the log" [ref=f8e77]:
+                              - generic [ref=f8e78]: Certificate vs log
+                              - text: UCS on the certificate differs from the log
+                            - cell "BH-12" [ref=f8e79]
+                            - cell "21.3 m" [ref=f8e80]
+                            - cell "38 MPa 3.8 MPa" [ref=f8e81]
+                            - cell "Lab cert 12-04 p.2" [ref=f8e82]
+                          - row [ref=f8e83] [cursor=pointer]:
+                            - cell "High" [ref=f8e84]
+                            - cell "Hole length across files Collar file and lithology file disagree" [ref=f8e86]:
+                              - generic [ref=f8e87]: Hole length across files
+                              - text: Collar file and lithology file disagree
+                            - cell "BH-03" [ref=f8e88]
+                            - cell "End of hole" [ref=f8e89]
+                            - cell "30.0 m 25.5 m" [ref=f8e90]
+                            - cell "Collar.xlsx, Litho.xlsx" [ref=f8e91]
+                          - row [ref=f8e92] [cursor=pointer]:
+                            - cell "Medium" [ref=f8e93]
+                            - cell "Handwriting read with low confidence SPT blow count could be 8 or 9" [ref=f8e95]:
+                              - generic [ref=f8e96]: Handwriting read with low confidence
+                              - text: SPT blow count could be 8 or 9
+                            - cell "BH-09" [ref=f8e97]
+                            - cell "6.0 m" [ref=f8e98]
+                            - cell "8? 8 or 9" [ref=f8e99]
+                            - cell "Field sheet p.1" [ref=f8e100]
+                          - row [ref=f8e101] [cursor=pointer]:
+                            - cell "Medium" [ref=f8e102]
+                            - cell "Coordinates Local grid looks shifted from the national grid" [ref=f8e104]:
+                              - generic [ref=f8e105]: Coordinates
+                              - text: Local grid looks shifted from the national grid
+                            - cell "BH-18" [ref=f8e106]
+                            - cell "Collar" [ref=f8e107]
+                            - cell "Local about 35 m offset" [ref=f8e108]
+                            - cell "Site plan p.1" [ref=f8e109]
+                          - row [ref=f8e110] [cursor=pointer]:
+                            - cell "Medium" [ref=f8e111]
+                            - cell "Depth order Core boxes filled right to left" [ref=f8e113]:
+                              - generic [ref=f8e114]: Depth order
+                              - text: Core boxes filled right to left
+                            - cell "BH-21" [ref=f8e115]
+                            - cell "9.0 to 12.0 m" [ref=f8e116]
+                            - cell "left to right right to left" [ref=f8e117]
+                            - cell "Photo box 3" [ref=f8e118]
+                          - row [ref=f8e119] [cursor=pointer]:
+                            - cell "Low" [ref=f8e120]
+                            - cell "Units Moisture content without units" [ref=f8e122]:
+                              - generic [ref=f8e123]: Units
+                              - text: Moisture content without units
+                            - cell "BH-05" [ref=f8e124]
+                            - cell "3.2 m" [ref=f8e125]
+                            - cell "18 18 %" [ref=f8e126]
+                            - cell "Lab cert 05-01 p.1" [ref=f8e127]
+                          - row [ref=f8e128] [cursor=pointer]:
+                            - cell "Low" [ref=f8e129]
+                            - cell "Missing field Water strike not recorded" [ref=f8e131]:
+                              - generic [ref=f8e132]: Missing field
+                              - text: Water strike not recorded
+                            - cell "BH-14" [ref=f8e133]
+                            - cell "-" [ref=f8e134]
+                            - cell "blank not stated" [ref=f8e135]
+                            - cell "Field sheet p.2" [ref=f8e136]
+                          - row [ref=f8e137]:
+                            - cell "The sample shows 8 of the 37 flags." [ref=f8e138]
+                    - complementary [ref=f8e139]:
+                      - generic [ref=f8e140]:
+                        - generic [ref=f8e141]: High
+                        - text: BH-07, 14.0 to 15.5 m
+                        - heading "RQD logged at 90%, photo reads about 22%" [level=3] [ref=f8e142]
+                        - paragraph [ref=f8e143]: Pieces of 10 cm or more cover about a fifth of the run in the box photo. The value feeds the rock mass parameters for pier P4.
+                        - generic [ref=f8e144]:
+                          - generic [ref=f8e145]:
+                            - generic [ref=f8e146]: Stated in the file
+                            - generic [ref=f8e147]: 90%
+                          - generic [ref=f8e148]:
+                            - generic [ref=f8e149]: Found by the check
+                            - generic [ref=f8e150]: 22%
+                        - 'figure "Box 5, 14.0 to 15.5 m, sample image Red lines: fractures read" [ref=f8e151]':
+                          - img "Sample core box photo with fractures marked" [ref=f8e152]
+                          - generic [ref=f8e200]:
+                            - generic [ref=f8e201]: Box 5, 14.0 to 15.5 m, sample image
+                            - generic [ref=f8e202]: "Red lines: fractures read"
+                        - generic [ref=f8e203]:
+                          - button "Accept 22%" [ref=f8e204] [cursor=pointer]
+                          - button "Keep 90%" [ref=f8e205] [cursor=pointer]
+                          - button "Ask the lab or driller" [ref=f8e206] [cursor=pointer]
+                        - generic [ref=f8e207]: Decision is recorded with your name, the date and the source, and the logs and sections are redrawn from the corrected table.
+                      - generic [ref=f8e208]:
+                        - generic [ref=f8e209]: Where the flags come from
+                        - generic [ref=f8e210]:
+                          - generic [ref=f8e211]:
+                            - generic [ref=f8e212]: Core photo vs log
+                            - generic [ref=f8e215]: "11"
+                          - generic [ref=f8e216]:
+                            - generic [ref=f8e217]: Depth and length
+                            - generic [ref=f8e220]: "9"
+                          - generic [ref=f8e221]:
+                            - generic [ref=f8e222]: Certificate vs log
+                            - generic [ref=f8e225]: "7"
+                          - generic [ref=f8e226]:
+                            - generic [ref=f8e227]: Coordinates
+                            - generic [ref=f8e230]: "4"
+                          - generic [ref=f8e231]:
+                            - generic [ref=f8e232]: Units and format
+                            - generic [ref=f8e235]: "6"
+                  - paragraph [ref=f8e236]: Sample data. Borehole ids, values and counts are invented to show the product and do not describe any real site or client.
+            - generic [ref=f7e598]:
+              - button "Larger" [ref=f7e599] [cursor=pointer]
+              - link "Open full screen ↗" [ref=f7e600] [cursor=pointer]:
+                - /url: /ventures/corestone/vision/prototypes/validation-report/index.html
+          - generic [ref=f7e601]:
+            - heading "Evidence" [level=4] [ref=f7e602]
+            - generic [ref=f7e603]:
+              - generic [ref=f7e604]:
+                - generic [ref=f7e605]: Calls
+                - generic [ref=f7e607]:
+                  - paragraph [ref=f7e608]: “Sì, sì, errori ce ne sono a iosa”
+                  - generic [ref=f7e609]:
+                    - generic "Confidence E4" [ref=f7e610]:
+                      - emphasis [ref=f7e617]: E4
+                    - emphasis [ref=f7e618]: Geologist, geotechnical team of an international design consultancy, Italy
+                    - link "Open in VSI at 7:46 ↗" [ref=f7e619] [cursor=pointer]:
+                      - /url: https://vsi.builders.studio/conversations/24f24725-4fd7-4a43-b3c8-5e5d39033a2a
+                - generic [ref=f7e620]:
+                  - paragraph [ref=f7e621]: “comment tu peux mettre le RQD à 90% alors que la photo à cette profondeur-là t'as que 20%?”
+                  - generic [ref=f7e622]:
+                    - generic "Confidence E4" [ref=f7e623]:
+                      - emphasis [ref=f7e630]: E4
+                    - emphasis [ref=f7e631]: Senior engineering geologist, infrastructure tenders
+                    - link "Open in VSI at 25:38 ↗" [ref=f7e632] [cursor=pointer]:
+                      - /url: https://vsi.builders.studio/conversations/6332d8ac-94cc-4db2-83a7-424876c3f7bc
+                - generic [ref=f7e633]:
+                  - paragraph [ref=f7e634]: “The ideal tool creates the four drillhole files from the base data and runs the QC across them, because a hole length that differs between files forces a trip back to the photographed PDFs.”
+                  - generic [ref=f7e635]:
+                    - generic "Confidence E3" [ref=f7e636]:
+                      - emphasis [ref=f7e643]: E3
+                    - emphasis [ref=f7e644]: Resource geologist, quarry and mining modelling consultant
+                    - link "Open in VSI at 23:17 ↗" [ref=f7e645] [cursor=pointer]:
+                      - /url: https://vsi.builders.studio/conversations/1f0c7846-02c2-4f39-92dc-d08449a27faf
+                - generic [ref=f7e646]:
+                  - paragraph [ref=f7e647]: “I'm just not aware that there is anyone who would Really go out of their way and spend money on such a tool.”
+                  - generic [ref=f7e648]:
+                    - generic "Confidence E2" [ref=f7e649]:
+                      - emphasis [ref=f7e656]: E2
+                    - emphasis [ref=f7e657]: Project manager, client-side civil engineering consultancy, UK
+                    - link "Open in VSI at 24:21 ↗" [ref=f7e658] [cursor=pointer]:
+                      - /url: https://vsi.builders.studio/conversations/8871f2d3-8d98-4d3b-9c98-28cf92c1c474
+              - generic [ref=f7e659]:
+                - generic [ref=f7e660]: Signals
+                - generic [ref=f7e662]:
+                  - paragraph [ref=f7e663]: "Venture idea on record: send twenty borehole logs or one AGS export, get back every inconsistency found, as lead magnet, discovery call and demo in one."
+                  - generic [ref=f7e664]:
+                    - generic "Confidence E2" [ref=f7e665]:
+                      - emphasis [ref=f7e672]: E2
+                    - emphasis [ref=f7e673]: VSI decision-log
+              - generic [ref=f7e674]:
+                - generic [ref=f7e675]: Competitors
+                - generic [ref=f7e677]:
+                  - paragraph [ref=f7e678]: BoreholeAI turns a PDF log into XLSX, AGS, CSV and JSON in under three minutes, with a confidence score per cell.
+                  - generic [ref=f7e679]:
+                    - emphasis [ref=f7e680]: BoreholeAI homepage
+                    - emphasis [ref=f7e681]: 2026-09-25
+                    - link "www.boreholeai.com ↗" [ref=f7e682] [cursor=pointer]:
+                      - /url: https://www.boreholeai.com/
+              - generic [ref=f7e683]:
+                - generic [ref=f7e684]: Trends
+                - generic [ref=f7e686]:
+                  - paragraph [ref=f7e687]: National Highways holds about 23,000 AGS files; files that passed format validation still failed its data-quality checks and were reissued.
+                  - generic [ref=f7e688]:
+                    - emphasis [ref=f7e689]: Ground Engineering
+                    - emphasis [ref=f7e690]: 2026-09-23
+                    - link "www.geplus.co.uk ↗" [ref=f7e691] [cursor=pointer]:
+                      - /url: https://www.geplus.co.uk/features/raising-the-bar-for-ground-investigation-data-quality-23-09-2026/
+          - generic [ref=f7e692]:
+            - heading "What would prove it wrong" [level=4] [ref=f7e693]
+            - list [ref=f7e694]:
+              - listitem [ref=f7e695]: Most reports find little that matters, so they read as a nice-to-have. Grade every flag by whether it would change a design parameter and lead with those.
+              - listitem [ref=f7e696]: Checks that are rule-based are already free in AGS validators, so a report that only checks format has no value. The report must check content across files and against photos.
+              - listitem [ref=f7e697]: Contractors see validation as another layer of cost; a client-side manager doubted anyone would pay. Sell it to the geologist who signs the data, not to the party being checked.
+              - listitem [ref=f7e698]: False flags waste the reviewer's time and kill trust quickly. Track the share of flags the geologist accepts.
+          - generic [ref=f7e699]:
+            - heading "First move" [level=4] [ref=f7e700]
+            - paragraph [ref=f7e701]: In the two weeks from 28 September, write the first twenty checks (hole length across files, depth order, units, values copied from certificates, coordinates against the site plan, logged RQD against photo estimate), run them on the first two data sets, and have one geologist grade every flag as real, trivial or wrong.
+          - generic [ref=f7e702]:
+            - heading "Notes" [level=4] [ref=f7e703]
+            - textbox "Add a note from the discussion" [ref=f7e704]
+            - button "Add note" [disabled] [ref=f7e705] [cursor=pointer]
+  - status
+  - button "Open Next.js Dev Tools" [ref=f7e711] [cursor=pointer]
+  - alert [ref=f7e715]

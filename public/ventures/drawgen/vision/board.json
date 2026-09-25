@@ -1293,7 +1293,7 @@
       "id": "assembly-run",
       "title": "One run per assembly, views and datums set once",
       "summary": "drawgen reads the whole assembly, proposes a sheet and views for every unique part, and asks the designer to confirm views and click datums and a tolerance class once before it dimensions everything.",
-      "column": "validating",
+      "column": "shortlist",
       "bet": "We believe that letting the designer confirm views and datums for a whole assembly in one pass, then dimensioning every part from those choices, will get design offices at ETO machine builders to release drawgen sheets without redrawing. We will know when a design partner releases a full assembly's part drawings with fewer returns than their own baseline.",
       "problem": "Existing tools handle single parts, not assemblies, and fail on views and datums, which is exactly what checkers send back; SOLIDWORKS auto-dimensioning was dropped for being unreadable.",
       "impact": 3,
@@ -1402,7 +1402,7 @@
       "id": "parts-list",
       "title": "Costed parts list from the same assembly",
       "summary": "One click turns the assembly into a classified, measured parts list (profiles with cut lengths, plates with area and thickness, machined parts, bought-in items, coating areas and mass), renamed where names are unusable, which the estimator prices with their own rates and exports to Excel.",
-      "column": "validating",
+      "column": "shortlist",
       "bet": "We believe that a parts list measured from the solid, with the estimator's own rates applied line by line, will replace the hand extraction into Excel for sales engineers at ETO machine builders and fabricators. We will know when two design partners send a real quote built from it and say which lines they had to correct.",
       "problem": "Engineers extract part data from the 3D model into Excel by hand for every quote because badly named components make the BOM unusable, taking 2 to 4 hours per assembly.",
       "impact": 3,
@@ -1629,3 +1629,4 @@
     ]
   }
 }
+
