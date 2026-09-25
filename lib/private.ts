@@ -5,6 +5,15 @@
  */
 export const PRIVATE_VENTURES = ["trigger", "day-zero", "builders", "cto-festival", "cortena", "avery", "everday", "makimode", "katasaga", "243"];
 
+/**
+ * Ventures hidden from the platform: left out of the home grid and the dock, their platform
+ * pages return 404, and their files under /ventures/<slug>/ return 404 on the live site.
+ * The files stay in the repo. Visible only on the local dev server.
+ */
+export const HIDDEN_VENTURES = ["cody-saxton"];
+
+export const isHidden = (slug?: string) => !!slug && HIDDEN_VENTURES.includes(slug);
+
 export const isPrivate = (slug?: string) => !!slug && PRIVATE_VENTURES.includes(slug);
 
 /** The value stored in the unlock cookie: a hash of the password, never the password itself. */

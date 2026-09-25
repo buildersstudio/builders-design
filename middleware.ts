@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { UNLOCK_COOKIE, isPrivate, unlockToken } from "./lib/private";
+import { UNLOCK_COOKIE, isHidden, isPrivate, unlockToken } from "./lib/private";
 
 // Two gates.
 // 1. Optional: SITE_PASSWORD on Vercel puts the whole platform behind basic auth (shared decks stay open).
@@ -19,6 +19,7 @@ export async function middleware(req: NextRequest) {
   }
 
   const slug = seg[0] === "ventures" ? seg[1] : seg[0] === "p" || seg[0] === "api" ? undefined : seg[0];
+  if (isHidden(slug) && process.env.NODE_ENV !== "development") return new NextResponse("Not found", { status: 404, headers: { "x-robots-tag": "noindex" } });
   if (!isPrivate(slug)) return NextResponse.next();
   // badges stay visible, so the dock and the home grid can show a private venture with its lock
   if (seg[0] === "ventures" && seg.length === 3 && /^badge\./.test(seg[2])) return NextResponse.next();

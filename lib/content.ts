@@ -5,6 +5,7 @@ import type { SiteFile, SiteMap } from "./website";
 import path from "node:path";
 import matter from "gray-matter";
 import type { Brand, Deck } from "./types";
+import { isHidden } from "./private";
 
 export * from "./types";
 
@@ -61,13 +62,13 @@ const dirs = (p: string) =>
 export function getVentures(): Venture[] {
   return dirs(ROOT)
     .map((slug) => getVenture(slug))
-    .filter((v): v is Venture => !!v)
+    .filter((v): v is Venture => !!v && !isHidden(v.slug))
     .sort((a, b) => a.order - b.order || a.name.localeCompare(b.name));
 }
 
 export function getVenture(slug: string): Venture | null {
   const file = path.join(ROOT, slug, "venture.md");
-  if (!exists(file)) return null;
+  if (!exists(file) || (isHidden(slug) && process.env.NODE_ENV !== "development")) return null;
   const { data, content } = matter(fs.readFileSync(file, "utf8"));
   const badge = ["badge.svg", "badge.png"].find((f) => exists(path.join(ROOT, slug, f)));
   return {
