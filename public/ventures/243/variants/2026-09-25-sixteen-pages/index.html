@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>243 · Sixteen pages back</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F7F3; --white:#FFFFFF; --ink:#0F1412; --ink-2:#4B524E; --ink-3:#88908B;
+  --line:rgba(15,20,18,.09); --line-2:rgba(15,20,18,.16);
+  --g:oklch(0.5 0.13 150); --g-ink:oklch(0.38 0.1 150); --g-soft:oklch(0.95 0.035 150); --g-mid:oklch(0.86 0.07 150);
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --lift:0 1px 2px rgba(15,20,18,.05),0 12px 30px -8px rgba(15,20,18,.12),0 50px 90px -30px rgba(15,20,18,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper);overflow-x:clip}
+body{font-family:"Figtree",system-ui,sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;font-size:17px;line-height:1.55;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+.label{font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+.label.g{color:var(--g-ink)}
+.num{font-variant-numeric:tabular-nums}
+nav{height:84px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:26px;letter-spacing:-.045em}
+.logo svg{width:30px;height:30px}
+.nav-r{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500;color:var(--ink-2)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 28px;border-radius:999px;background:var(--g-ink);color:#fff;font-weight:600;font-size:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 12px 26px -10px oklch(0.38 0.1 150 / .7);transition:transform .2s var(--ease);white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn.sm{height:40px;padding:0 18px;font-size:14px}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1.08fr;gap:56px;align-items:center;min-height:800px;padding-bottom:30px}
+.hero h1{font-size:74px;line-height:.95;letter-spacing:-.05em;font-weight:800;margin:22px 0 26px}
+.hero h1 span{color:var(--g)}
+.hero .sub{font-size:20px;color:var(--ink-2);max-width:520px}
+.hero .ctas{display:flex;gap:12px;margin-top:34px}
+.hero .fine{margin-top:18px;font-size:14px;color:var(--ink-3)}
+.scene{position:relative;height:720px}
+.scene .photo{position:absolute;right:0;top:0;width:88%;height:100%;border-radius:32px;overflow:hidden;box-shadow:var(--lift)}
+.scene .photo img{width:100%;height:100%;object-fit:cover;object-position:30% 50%;display:block}
+.scene .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,14,12,.35))}
+.phone{position:absolute;left:0;bottom:-26px;width:292px;border-radius:44px;padding:10px;background:linear-gradient(150deg,#E9ECE8,#C9CEC9);box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 40px 80px -24px rgba(10,14,12,.55),0 0 0 1px rgba(15,20,18,.08);z-index:2}
+.screen{height:600px;border-radius:35px;background:#fff;overflow:hidden;position:relative}
+.screen .bar{display:flex;justify-content:space-between;align-items:center;padding:18px 18px 0;font-weight:800;font-size:16px;letter-spacing:-.03em}
+.screen .bar span{display:flex;align-items:center;gap:6px}
+.screen .bar em{font-style:normal;font-size:11px;font-weight:600;padding:5px 9px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--line-2);letter-spacing:0}
+.screen .rv{text-align:center;padding:24px 18px 0}
+.screen .rv svg{width:126px;height:126px}
+.screen .who{font-size:12.5px;color:var(--ink-2);font-weight:500;margin-top:6px}
+.screen h5{font-size:31px;line-height:1.02;letter-spacing:-.045em;color:var(--g-ink);font-weight:800;margin:6px 0 10px}
+.screen .tag{font-size:13px;color:var(--ink-2);line-height:1.45}
+.screen .fl{font-size:12px;color:var(--g-ink);font-weight:600;margin-top:10px;line-height:1.4}
+.screen .chips{display:flex;gap:5px;justify-content:center;margin-top:14px}
+.screen .chips i{font-style:normal;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:13px;background:#F3F4F1}
+.screen .chips i.c{background:var(--g-soft);color:var(--g-ink)}
+.screen .pager{position:absolute;left:10px;right:10px;bottom:10px;border-radius:14px;box-shadow:0 0 0 1px var(--line),0 10px 24px rgba(15,20,18,.1);padding:9px 12px;display:flex;justify-content:space-between;font-size:11px;color:var(--ink-3);background:#fff}
+.screen .pager b{color:var(--ink)}
+.tabs{position:absolute;right:26px;top:26px;z-index:2;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.tabs span{background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-radius:999px;padding:8px 14px 8px 10px;font-size:13px;font-weight:600;display:flex;gap:8px;align-items:center;box-shadow:0 10px 24px -12px rgba(0,0,0,.4)}
+.tabs span i{font-style:normal;width:20px;height:20px;border-radius:50%;background:var(--g-soft);color:var(--g-ink);display:grid;place-items:center;font-size:11px;font-weight:700}
+
+/* part heads */
+section{padding:130px 0}
+.part-head{display:grid;grid-template-columns:260px 1fr;gap:40px;align-items:start;margin-bottom:60px}
+.part-head .n{font-size:15px;font-weight:700;color:var(--g-ink)}
+.part-head .n b{display:block;font-size:120px;line-height:.8;letter-spacing:-.06em;color:var(--g-mid);font-weight:800;margin-bottom:14px}
+.h2{font-size:58px;line-height:1.02;letter-spacing:-.045em;font-weight:800}
+.lede{font-size:19px;color:var(--ink-2);max-width:640px;margin-top:18px}
+
+.portrait{display:grid;grid-template-columns:260px 1fr;gap:40px}
+.portrait blockquote{font-size:32px;line-height:1.3;letter-spacing:-.02em;font-weight:500;color:var(--ink)}
+.portrait blockquote mark{background:linear-gradient(transparent 60%,var(--g-soft) 60%);color:inherit}
+.portrait .src{margin-top:22px;font-size:14px;color:var(--ink-3)}
+.strengths{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:70px}
+.strength{background:var(--white);border-radius:22px;padding:28px;box-shadow:var(--lift)}
+.strength .num{font-weight:700;color:var(--g)}
+.strength h4{font-size:22px;letter-spacing:-.025em;margin:28px 0 8px;font-weight:700}
+.strength p{color:var(--ink-2);font-size:15.5px}
+
+.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.room{background:var(--white);border-radius:26px;overflow:hidden;box-shadow:var(--lift);display:flex;flex-direction:column}
+.room .ph{position:relative;aspect-ratio:4/3;overflow:hidden}
+.room .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s var(--ease)}
+.room:hover .ph img{transform:scale(1.04)}
+.room .ph span{position:absolute;left:16px;top:16px;background:rgba(255,255,255,.92);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700}
+.room .tx{padding:24px 26px 26px;display:flex;flex-direction:column;gap:14px;flex:1}
+.room h4{font-size:23px;line-height:1.2;letter-spacing:-.025em;font-weight:700}
+.room .w{font-size:15px;color:var(--ink-2);padding-top:14px;border-top:1px solid var(--line);margin-top:auto}
+.room .w b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+
+.gaps{display:grid;gap:10px}
+.gap-h{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 6px 4px}
+.gap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gap div{padding:24px 26px;border-radius:20px;font-size:21px;line-height:1.35;letter-spacing:-.01em}
+.gap .you{background:var(--white);font-weight:600;box-shadow:0 0 0 1px var(--line)}
+.gap .they{background:var(--g-soft);color:var(--g-ink);font-weight:500}
+.helps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.help{border-radius:22px;padding:26px;background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.help:after{content:"";position:absolute;right:-80px;bottom:-80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(closest-side,oklch(0.6 0.13 150 / .45),transparent)}
+.help small{font-size:13px;color:rgba(255,255,255,.6);font-weight:500;display:block}
+.help b{display:block;font-size:22px;letter-spacing:-.02em;line-height:1.2;margin:10px 0 12px;font-weight:700;position:relative;z-index:1}
+.help p{font-size:15px;color:rgba(255,255,255,.72);position:relative;z-index:1}
+
+.share{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.sharecard{background:var(--white);border-radius:28px;padding:34px;box-shadow:var(--lift);max-width:500px}
+.sharecard .top{display:flex;align-items:center;gap:18px}
+.sharecard svg{width:88px;height:88px;flex:none}
+.sharecard .who{font-size:13px;color:var(--ink-3);font-weight:600}
+.sharecard h5{font-size:28px;letter-spacing:-.04em;line-height:1.05;color:var(--g-ink);font-weight:800;margin-top:4px}
+.sharecard p{color:var(--ink-2);margin:20px 0;font-size:16px}
+.vote{border-top:1px solid var(--line);padding-top:20px}
+.vote b{display:block;font-size:15px;margin-bottom:12px}
+.vote div{display:flex;gap:8px}
+.vote span{padding:9px 16px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-2);font-size:14px;font-weight:600}
+.vote span.on{background:var(--g-ink);color:#fff;box-shadow:none}
+
+.end{padding:0 0 120px}
+.end .box{border-radius:36px;overflow:hidden;position:relative;min-height:520px;display:flex;align-items:flex-end;color:#fff;box-shadow:var(--lift)}
+.end .box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.end .box:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(8,14,11,.85),rgba(8,14,11,.35) 60%,rgba(8,14,11,.1))}
+.end .in{position:relative;z-index:2;padding:70px}
+.end h2{font-size:72px;line-height:.96;letter-spacing:-.05em;font-weight:800;max-width:700px}
+.end p{font-size:19px;color:rgba(255,255,255,.8);margin:18px 0 32px;max-width:520px}
+.end .btn{background:#fff;color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;font-size:14px;color:var(--ink-3)}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+footer p{max-width:720px}
+
+@media (max-width:1100px){
+  .hero{grid-template-columns:1fr;min-height:0;padding-top:20px}
+  .part-head,.portrait{grid-template-columns:1fr;gap:10px}
+  .part-head .n b{font-size:80px}
+  .rooms{grid-template-columns:1fr 1fr}
+  .share{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  nav{height:68px}.nav-r a:not(.btn){display:none}
+  .hero h1{font-size:44px}.hero .sub{font-size:17px}.hero .ctas .btn{height:48px;padding:0 20px;font-size:15px}
+  .scene{height:560px}
+  .scene .photo{width:100%;height:420px}
+  .phone{width:220px;bottom:0;left:12px}.screen{height:440px}
+  .screen .rv svg{width:80px;height:80px}.screen h5{font-size:23px}.screen .tag{font-size:11.5px}.screen .fl{display:none}
+  .tabs{display:none}
+  section{padding:80px 0}
+  .h2{font-size:36px}.lede{font-size:16px}
+  .portrait blockquote{font-size:22px}
+  .strengths,.rooms,.helps{grid-template-columns:1fr}
+  .gap-h{display:none}.gap{grid-template-columns:1fr;gap:6px;margin-bottom:10px}.gap div{font-size:17px;padding:18px}
+  .end .in{padding:36px 22px}.end h2{font-size:42px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#"><svg viewBox="-6 -6 112 112" id="logo" aria-hidden="true"></svg>243</a>
+    <div class="nav-r">
+      <a href="#who">Who you are</a>
+      <a href="#life">Your life</a>
+      <a href="#grow">Growing</a>
+      <a class="btn sm" href="https://243-fable.vercel.app/#/test">Take the test</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="label g">A read of you, in four parts</div>
+      <h1>Sixteen scenes in.<br><span>Sixteen pages back.</span></h1>
+      <p class="sub">Answer sixteen everyday scenes in about three minutes. 243 writes back who you are, how you tend to be in love, friendship, family, work and money, how you come across, and what tends to help.</p>
+      <div class="ctas"><a class="btn" href="https://243-fable.vercel.app/#/test">Take the test <span aria-hidden="true">→</span></a><a class="btn ghost" href="#life">Read an example</a></div>
+      <p class="fine">The example on this page is the read of The Balanced Diplomat.</p>
+    </div>
+    <div class="scene">
+      <div class="photo"><img src="img/reading-on-windowsill.jpg" alt="A woman on a windowsill reading on her phone"></div>
+      <div class="tabs"><span><i>1</i>Portrait</span><span><i>2</i>Love · Friends · Work</span><span><i>3</i>How you are perceived</span></div>
+      <div class="phone"><div class="screen">
+        <div class="bar"><span><svg viewBox="-6 -6 112 112" width="16" height="16" id="mini"></svg>243</span><em>Share</em></div>
+        <div class="rv">
+          <svg viewBox="-6 -6 112 112" id="rv"></svg>
+          <p class="who">Sam, you read as</p>
+          <h5>The Balanced Diplomat</h5>
+          <p class="tag">You keep things smooth and fair, and you can hold two sides of a story without needing to pick one.</p>
+          <p class="fl">The middle of every sharpener: fair, adaptable and even.</p>
+          <div class="chips"><i class="c">T</i><i class="c">L</i><i>M</i><i>B</i><i>E</i></div>
+        </div>
+        <div class="pager"><span>←</span><span><b>1</b> / 16 · Next: Portrait</span><span style="color:#0F1412">→</span></div>
+      </div></div>
+    </div>
+  </header>
+</div>
+
+<section id="who">
+  <div class="wrap">
+    <div class="part-head">
+      <div class="n"><b class="num">01</b>Part 1 · Who you are</div>
+      <div><h2 class="h2">A portrait you would recognise, and a few things you may not have connected.</h2></div>
+    </div>
+    <div class="portrait">
+      <div class="label">Portrait</div>
+      <div>
+        <blockquote>You are the calm in most rooms you enter, and you produce it without effort or announcement. You see the reasonable version of almost everyone, including people who are at odds with each other. <mark>The cost is subtle and slow: your own position tends to stay unspoken.</mark></blockquote>
+        <p class="src">From the read of The Balanced Diplomat, page 2 of 16.</p>
+      </div>
+    </div>
+    <div class="strengths">
+      <div class="strength"><span class="num">01</span><h4>You see all the sides</h4><p>Where others see a fight, you see two reasonable people with different information.</p></div>
+      <div class="strength"><span class="num">02</span><h4>You lower the stakes</h4><p>Things that would escalate elsewhere stay workable around you, because you refuse to treat disagreement as danger.</p></div>
+      <div class="strength"><span class="num">03</span><h4>You are fair when it costs you</h4><p>People trust your read because it is not bent toward you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="life" style="background:var(--white)">
+  <div class="wrap">
+    <div class="part-head">
+      <div class="n"><b class="num">02</b>Part 2 · Your life</div>
+      <div><h2 class="h2">The same shape, in six rooms.</h2><p class="lede">Each room gets its own page: how you tend to be there, what works in your favour, what is worth watching, and what tends to help.</p></div>
+    </div>
+    <div class="rooms">
+      <div class="room"><div class="ph"><img src="img/kitchen-morning-couple.jpg" alt="A couple talking in a kitchen in the morning"><span>Love</span></div><div class="tx"><h4>You are easy to love and easy to live with.</h4><p class="w"><b>Worth watching</b>Your partner cannot locate your preference, so every decision lands on them.</p></div></div>
+      <div class="room"><div class="ph"><img src="img/friends-cafe-evening.jpg" alt="Three friends at a cafe table in the evening"><span>Friends</span></div><div class="tx"><h4>You are the friend everyone can be in a room with.</h4><p class="w"><b>What tends to help</b>Take a side sometimes, out loud, even a small one.</p></div></div>
+      <div class="room"><div class="ph"><img src="img/family-lunch-table.jpg" alt="Hands passing a bowl at a family lunch table"><span>Family</span></div><div class="tx"><h4>You are the family's shock absorber.</h4><p class="w"><b>Worth watching</b>You translate for everyone and speak for no one, least of all yourself.</p></div></div>
+      <div class="room"><div class="ph"><img src="img/colleagues-studio-desk.jpg" alt="Two colleagues discussing a sketch at a desk"><span>Work</span></div><div class="tx"><h4>You make difficult teams function.</h4><p class="w"><b>What tends to help</b>Say your view once, plainly, in the meeting, before the consensus forms rather than after.</p></div></div>
+      <div class="room"><div class="ph"><img src="img/notebook-tea-receipt.jpg" alt="Hands writing in a notebook next to a receipt and tea"><span>Money</span></div><div class="tx"><h4>You are rarely reckless and rarely anxious about money.</h4><p class="w"><b>Worth watching</b>You under-negotiate for yourself because asking feels like conflict.</p></div></div>
+      <div class="room"><div class="ph"><img src="img/morning-walk-park.jpg" alt="A person walking alone in a park in the early morning"><span>Body &amp; energy</span></div><div class="tx"><h4>Your baseline is calm, and you recover from most things.</h4><p class="w"><b>Worth watching</b>Fine can hide a slow decline in energy, fitness or mood that nobody flags.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="grow">
+  <div class="wrap">
+    <div class="part-head">
+      <div class="n"><b class="num">03</b>Part 3 · Growing from here</div>
+      <div><h2 class="h2">How it feels from the inside, and how it lands on the people close to you.</h2></div>
+    </div>
+    <div class="gap-h label"><span>How you see it</span><span>How it lands on others</span></div>
+    <div class="gaps">
+      <div class="gap"><div class="you">"I am flexible."</div><div class="they">"I cannot locate their actual preference, so every decision lands on me."</div></div>
+      <div class="gap"><div class="you">"I am keeping the peace."</div><div class="they">"Nothing ever gets decided, and I am starting to feel like the only one who cares."</div></div>
+      <div class="gap"><div class="you">"I am being fair."</div><div class="they">"Sometimes I do not want fair. I want them on my side."</div></div>
+    </div>
+    <div class="helps">
+      <div class="help"><small>When someone asks what you want</small><b>Answer before you have checked what they want.</b><p>The friction comes later, when nobody can find your preference.</p></div>
+      <div class="help"><small>When you have agreed to something you will not do</small><b>Say the no now, while it is still cheap.</b><p>A late no costs the other person a plan. An early one costs them a sentence.</p></div>
+      <div class="help"><small>When a decision has waited more than a month</small><b>Make one small irreversible move.</b><p>Book it, send it, sign it. Comfort does not generate deadlines on its own.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="share" style="padding-top:40px">
+  <div class="wrap share">
+    <div>
+      <div class="n label g" style="margin-bottom:18px">Part 4 · Before you go</div>
+      <h2 class="h2">Send it to the people who know you, and tell us how it read.</h2>
+      <p class="lede">Every result has its own link. Feedback is tied to the result, not to you, and it helps make the reads more honest.</p>
+    </div>
+    <div class="sharecard">
+      <div class="top"><svg viewBox="-6 -6 112 112" id="share-shape"></svg><div><div class="who">Sam · 243</div><h5>The Balanced Diplomat</h5></div></div>
+      <p>You keep things smooth and fair, and you can hold two sides of a story without needing to pick one.</p>
+      <div class="vote"><b>Does this sound like Sam?</b><div><span class="on">Spot on</span><span>Partly</span><span>Not really</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <div class="box">
+      <img src="img/friends-cafe-evening.jpg" alt="">
+      <div class="in">
+        <h2>Three minutes of scenes. A read worth arguing with.</h2>
+        <p>Use the parts that are useful, and argue with the rest. Your name is optional.</p>
+        <a class="btn" href="https://243-fable.vercel.app/#/test">Take the test <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap"><span>243 · The shape of who you are</span><p>A reflective tool, generated from a short set of questions and written with the help of AI. It is not a clinical assessment, and it will be wrong in places.</p></div></footer>
+
+<script>
+const ANG=[0,1,2,3,4].map(i=>-Math.PI/2+i*2*Math.PI/5);
+function blob(b,R=44,cx=50,cy=50){const p=b.map((v,i)=>{const r=R*(.5+.25*v);return[cx+r*Math.cos(ANG[i]),cy+r*Math.sin(ANG[i])]});let d=`M${p[0][0].toFixed(2)} ${p[0][1].toFixed(2)}`;for(let i=0;i<5;i++){const p0=p[(i+4)%5],p1=p[i],p2=p[(i+1)%5],p3=p[(i+2)%5];d+=` C${(p1[0]+(p2[0]-p0[0])/5).toFixed(2)} ${(p1[1]+(p2[1]-p0[1])/5).toFixed(2)} ${(p2[0]-(p3[0]-p1[0])/5).toFixed(2)} ${(p2[1]-(p3[1]-p1[1])/5).toFixed(2)} ${p2[0].toFixed(2)} ${p2[1].toFixed(2)}`}return d+"Z"}
+let n=0;function shape(b,h){const id="s"+(++n);return `<defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="oklch(0.78 0.16 ${h})"/><stop offset="1" stop-color="oklch(0.52 0.2 ${h})"/></linearGradient></defs><path d="${blob(b,47)}" fill="oklch(0.93 0.05 ${h})"/><path d="${blob(b,41)}" fill="url(#${id})"/>`}
+const TLMBE=[0,1,1,1,1];
+document.getElementById("logo").innerHTML=`<path d="${blob([2,1,1,0,1],47)}" fill="oklch(0.86 0.07 150)"/><path d="${blob([2,1,1,0,1],39,48,52)}" fill="oklch(0.38 0.1 150)"/>`;
+document.getElementById("rv").innerHTML=shape(TLMBE,150);
+document.getElementById("share-shape").innerHTML=shape(TLMBE,150);
+document.getElementById("mini").innerHTML=`<path d="${blob(TLMBE,48)}" fill="oklch(0.55 0.17 150)"/>`;
+</script>
+</body>
+</html>

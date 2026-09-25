@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>243 · Sixteen scenes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2EEE6; --paper-2:#E9E3D8; --card:#FFFDF9; --ink:#16141A; --ink-2:#4E4A52; --ink-3:#8A8590;
+  --line:rgba(22,20,26,.09); --line-2:rgba(22,20,26,.16);
+  --h:22; --acc:oklch(0.58 0.19 var(--h)); --acc-ink:oklch(0.42 0.15 var(--h)); --acc-soft:oklch(0.93 0.05 var(--h));
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --lift:0 1px 1px rgba(40,28,20,.04),0 6px 14px rgba(40,28,20,.06),0 30px 60px -12px rgba(40,28,20,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper);overflow-x:clip}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;font-size:17px;line-height:1.55;overflow-x:clip}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.35;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.num{font-variant-numeric:tabular-nums}
+
+/* nav */
+nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;height:84px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:25px;letter-spacing:-.04em}
+.logo svg{width:30px;height:30px;display:block}
+.nav-r{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500;color:var(--ink-2)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:999px;background:var(--ink);color:#fff;font-weight:600;font-size:16px;box-shadow:0 1px 0 rgba(255,255,255,.15) inset,0 10px 24px -8px rgba(22,20,26,.5);transition:transform .2s var(--ease)}
+.btn:hover{transform:translateY(-1px)}
+.btn.sm{height:40px;padding:0 18px;font-size:14px}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2)}
+
+/* hero */
+.hero{position:relative;min-height:790px;display:grid;grid-template-columns:440px 1fr;gap:30px;align-items:center;padding-bottom:40px}
+.hero h1{font-size:78px;line-height:.94;letter-spacing:-.055em;font-weight:800;margin:22px 0 26px}
+.hero h1 span{color:var(--acc);transition:color .6s var(--ease)}
+.hero p.sub{font-size:19px;color:var(--ink-2);max-width:460px}
+.hero .ctas{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+.hero .fine{margin-top:18px;font-size:14px;color:var(--ink-3)}
+
+.stage{position:relative;display:grid;grid-template-columns:390px 1fr;align-items:center;min-height:660px}
+.lamp{position:absolute;right:-40px;top:-120px;width:720px;height:720px;border-radius:50%;background:radial-gradient(closest-side,oklch(0.96 0.04 var(--h) / .9),oklch(0.94 0.03 var(--h) / 0) 70%);transition:background .8s var(--ease)}
+.shape-wrap{position:relative;z-index:1;margin-left:14px;margin-right:-40px;text-align:center;padding-bottom:30px}
+.shape-wrap svg{width:360px;height:360px;overflow:visible;margin:0 auto;display:block;filter:drop-shadow(0 30px 40px oklch(0.5 0.15 var(--h) / .28))}
+.shape-name{margin-top:-6px;font-size:15px;color:var(--ink-3);font-weight:500;min-height:24px}
+.shape-name b{display:block;font-size:26px;letter-spacing:-.035em;color:var(--acc-ink);font-weight:800;line-height:1.1;margin-top:2px}
+.chips{display:flex;gap:6px;justify-content:center;margin-top:14px}
+.chips i{font-style:normal;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-weight:700;font-size:16px;background:rgba(255,255,255,.55);color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--line);transition:all .4s var(--ease)}
+.chips i.on{background:var(--card);color:var(--ink);box-shadow:0 6px 16px -6px rgba(40,28,20,.25)}
+.chips i.core.on{background:var(--acc-soft);color:var(--acc-ink)}
+
+.deck{position:relative;z-index:2;width:390px;order:-1}
+.deck .ghost-card{position:absolute;inset:0;border-radius:24px;background:var(--card);box-shadow:var(--lift)}
+.deck .g1{transform:translate(-12px,14px) rotate(-2.2deg);opacity:.8}
+.deck .g2{transform:translate(-24px,28px) rotate(-4.4deg);opacity:.5}
+.card{position:relative;background:var(--card);border-radius:24px;padding:26px 26px 22px;box-shadow:var(--lift)}
+.card .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.segs{display:flex;gap:4px;flex:1;margin-right:18px}
+.segs i{height:3px;flex:1;border-radius:3px;background:var(--line-2)}
+.segs i.done{background:var(--ink)}
+.segs i.now{background:var(--acc)}
+.card .count{font-size:13px;color:var(--ink-3);font-weight:600}
+.card .count b{color:var(--ink)}
+.scene{font-size:25px;line-height:1.18;letter-spacing:-.025em;font-weight:700;min-height:60px}
+.prompt{color:var(--ink-2);margin:10px 0 16px;font-size:16px;font-weight:500}
+.answers{display:grid;gap:7px}
+.answer{all:unset;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);font-size:15px;line-height:1.4;transition:all .18s var(--ease)}
+.answer:hover{box-shadow:inset 0 0 0 1px var(--line-2),0 6px 16px -8px rgba(40,28,20,.25);transform:translateY(-1px)}
+.answer .k{flex:none;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.answer.sel{background:var(--ink);color:#fff}
+.answer.sel .k{color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+.card .foot{display:flex;justify-content:space-between;margin-top:16px;font-size:13px;color:var(--ink-3)}
+.card .foot button{all:unset;cursor:pointer;color:var(--ink-2);font-weight:600}
+.fade{animation:fade .45s var(--ease) both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+
+/* sections */
+section.band{padding:130px 0}
+.h2{font-size:60px;line-height:1;letter-spacing:-.045em;font-weight:800;max-width:900px}
+.lede{font-size:20px;color:var(--ink-2);max-width:620px;margin-top:22px}
+
+.moment{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:center}
+.photo{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;box-shadow:var(--lift)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9)}
+.photo .float{position:absolute;left:28px;right:28px;bottom:28px;background:rgba(255,253,249,.94);backdrop-filter:blur(8px);border-radius:20px;padding:22px 22px 18px;box-shadow:0 20px 50px -20px rgba(0,0,0,.45)}
+.photo .float .scene{font-size:21px;min-height:0}
+.photo .float .answer{font-size:14px;padding:10px 12px}
+.moment ul{list-style:none;margin-top:38px;display:grid;gap:0}
+.moment li{padding:20px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:44px 1fr;gap:10px;font-size:17px;color:var(--ink-2)}
+.moment li b{color:var(--ink);font-weight:700;display:block;font-size:18px;margin-bottom:2px}
+.moment li .n{font-weight:700;color:var(--ink-3)}
+
+.dims{margin-top:64px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.dim{background:var(--card);border-radius:20px;padding:22px;box-shadow:var(--lift)}
+.dim .label{display:flex;justify-content:space-between}
+.dim h3{font-size:19px;letter-spacing:-.02em;margin:14px 0 14px;line-height:1.25;font-weight:700;min-height:48px}
+.dim .bands{display:grid;gap:6px}
+.dim .bands span{display:flex;gap:10px;align-items:center;font-size:15px;color:var(--ink-2)}
+.dim .bands span i{font-style:normal;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:700;background:var(--paper);color:var(--ink)}
+
+.cores{margin-top:90px;display:grid;grid-template-columns:repeat(9,1fr);gap:10px;align-items:end}
+.core{text-align:center}
+.core svg{width:100%;height:auto;display:block;filter:drop-shadow(0 14px 16px rgba(40,28,20,.14));transition:transform .4s var(--ease)}
+.core:hover svg{transform:translateY(-6px) rotate(-5deg)}
+.core b{display:block;font-size:15px;margin-top:6px;letter-spacing:-.01em}
+.core small{font-size:12px;color:var(--ink-3);font-weight:600;letter-spacing:.1em}
+.maths{margin-top:50px;display:flex;align-items:baseline;gap:22px;font-weight:800;letter-spacing:-.04em;font-size:44px;color:var(--ink-3)}
+.maths b{color:var(--ink)}
+.maths span{font-size:17px;letter-spacing:0;font-weight:500;color:var(--ink-2);max-width:420px;line-height:1.45;margin-left:18px}
+
+.read{display:grid;grid-template-columns:1fr 1fr;gap:70px;margin-top:64px;align-items:start}
+.parts{display:grid;gap:10px}
+.part{display:grid;grid-template-columns:70px 1fr;padding:22px 0;border-top:1px solid var(--line)}
+.part .label{padding-top:5px}
+.part h4{font-size:22px;letter-spacing:-.02em;font-weight:700}
+.part p{color:var(--ink-2);font-size:16px;margin-top:4px}
+.sheet{position:relative}
+.sheet .page{position:relative;background:var(--card);border-radius:24px;padding:36px;box-shadow:var(--lift)}
+.sheet .under{position:absolute;inset:0;background:var(--card);border-radius:24px;box-shadow:var(--lift);transform:rotate(-2.4deg) translate(-10px,10px);opacity:.7}
+.sheet .eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-ink)}
+.sheet h5{font-size:34px;letter-spacing:-.04em;margin:12px 0 22px;line-height:1.05;font-weight:800}
+.sheet h5 em{font-style:normal;color:var(--acc)}
+.tells{display:grid;gap:10px}
+.tells div{display:grid;grid-template-columns:34px 1fr;font-size:16px;line-height:1.45;padding:14px 16px;border-radius:14px;background:var(--paper)}
+.tells div span{font-weight:700;color:var(--acc-ink)}
+.sheet .src{margin-top:18px;font-size:13px;color:var(--ink-3)}
+
+.end{padding:40px 0 120px}
+.end .box{position:relative;overflow:hidden;border-radius:36px;background:var(--ink);color:#fff;padding:90px 80px;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:40px}
+.end .box:after{content:"";position:absolute;right:-160px;top:-160px;width:620px;height:620px;border-radius:50%;background:radial-gradient(closest-side,oklch(0.6 0.19 22 / .35),transparent)}
+.end h2{font-size:64px;line-height:.98;letter-spacing:-.05em;font-weight:800}
+.end p{color:rgba(255,255,255,.7);margin-top:18px;font-size:18px;max-width:520px}
+.end .btn{background:#fff;color:var(--ink);margin-top:34px}
+.end svg{position:relative;z-index:1;width:340px;height:340px;justify-self:center;filter:drop-shadow(0 40px 50px rgba(0,0,0,.4))}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;font-size:14px;color:var(--ink-3)}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+footer p{max-width:720px}
+
+@media (max-width:1100px){
+  .hero{grid-template-columns:1fr;min-height:0;padding-top:20px}
+  .stage{max-width:680px}
+  .dims{grid-template-columns:1fr 1fr}
+  .cores{grid-template-columns:repeat(5,1fr);row-gap:30px}
+  .moment,.read,.end .box{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  nav{height:68px}.nav-r a:not(.btn){display:none}
+  .hero h1{font-size:56px}
+  .hero p.sub{font-size:17px}
+  .stage{min-height:0;display:flex;flex-direction:column-reverse;gap:10px}
+  .lamp{display:none}
+  .shape-wrap,.deck{position:relative;inset:auto;width:100%;margin:0;order:0}
+  .shape-wrap svg{width:240px;height:240px;margin:0 auto}
+  .deck .g2{display:none}
+  .scene{font-size:21px}
+  section.band{padding:80px 0}
+  .h2{font-size:38px}.lede{font-size:17px}
+  .dims{grid-template-columns:1fr}
+  .dim h3{min-height:0}
+  .cores{grid-template-columns:repeat(3,1fr)}
+  .maths{font-size:30px;flex-wrap:wrap;gap:10px}.maths span{margin-left:0}
+  .photo{aspect-ratio:auto;background:var(--card)}.photo img{height:380px}.photo .float{position:relative;left:auto;right:auto;bottom:auto;margin:-60px 12px 12px;padding:16px}
+  .sheet .page{padding:24px}.sheet h5{font-size:26px}
+  .end .box{padding:48px 24px;border-radius:26px}.end h2{font-size:40px}.end svg{width:220px;height:220px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#"><svg viewBox="-6 -6 112 112" aria-hidden="true"><path id="logo-halo" fill="oklch(0.86 0.06 22)"/><path id="logo-mark" fill="#16141A"/></svg>243</a>
+    <div class="nav-r">
+      <a href="#how">How it reads you</a>
+      <a href="#read">What you get back</a>
+      <a class="btn sm" href="https://243-fable.vercel.app/#/test">Take the test</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="label">Sixteen scenes · about three minutes</div>
+      <h1>The shape of who <span>you are.</span></h1>
+      <p class="sub">Sixteen everyday scenes, three or four honest answers each. In return you get a shape that is yours, one of 243 names, and a read of how you are in love, friendship, family, work and money.</p>
+      <div class="ctas">
+        <a class="btn" href="https://243-fable.vercel.app/#/test">Take the test <span aria-hidden="true">→</span></a>
+        <a class="btn ghost" href="https://243-fable.vercel.app/#/types">The nine cores</a>
+      </div>
+      <p class="fine">Answer for your usual self. Pick the closest, not the perfect answer.</p>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="lamp"></div>
+      <div class="shape-wrap">
+        <svg viewBox="-6 -6 112 112" aria-label="Your shape so far">
+          <defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop id="hg0" offset="0"/><stop id="hg1" offset="1"/></linearGradient></defs>
+          <g id="h-rings"></g><path id="h-halo"/><path id="h-mark" fill="url(#hg)"/><g id="h-pts"></g>
+        </svg>
+        <div class="shape-name" id="sname">Your shape, before any answers</div>
+        <div class="chips" id="chips"><i class="core">·</i><i class="core">·</i><i>·</i><i>·</i><i>·</i></div>
+      </div>
+      <div class="deck">
+        <div class="ghost-card g2"></div><div class="ghost-card g1"></div>
+        <div class="card" id="card"></div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<section class="band" id="scene" style="background:linear-gradient(var(--paper),var(--paper-2))">
+  <div class="wrap moment">
+    <div class="photo">
+      <img src="img/reading-on-windowsill.jpg" alt="A woman on a windowsill reading a message on her phone">
+      <div class="float">
+        <div class="label" style="margin-bottom:10px">Scene 6 of 16 · Volume</div>
+        <div class="scene">Someone close to you sends a short, flat reply.</div>
+        <div class="prompt">What happens inside you?</div>
+        <div class="answers">
+          <div class="answer"><span class="k">1</span>Not much. If something is wrong, they will say.</div>
+          <div class="answer"><span class="k">2</span>I notice, and assume it is nothing unless it repeats.</div>
+          <div class="answer sel"><span class="k">3</span>I wonder what shifted and replay the last exchange.</div>
+          <div class="answer"><span class="k">4</span>I feel it immediately and cannot quite put it down.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="label">The questions</div>
+      <h2 class="h2" style="margin-top:18px">No statements to rate. Moments you have already lived.</h2>
+      <p class="lede">243 does not ask whether you agree that you are outgoing. It puts you in a scene and asks what you actually do, which is the question people can answer honestly.</p>
+      <ul>
+        <li><span class="n num">01</span><div><b>Someone you are close to has gone quiet on you.</b>Reach out, ask them directly, or give it space.</div></li>
+        <li><span class="n num">03</span><div><b>Someone you respect disagrees with your decision.</b>Trust your own read, reconsider, or change course.</div></li>
+        <li><span class="n num">05</span><div><b>A free weekend is coming.</b>Already planned, half open, or nothing booked at all.</div></li>
+        <li><span class="n num">16</span><div><b>Two people you care about are arguing in front of you.</b>Smooth it, say who is right, or stay out of it.</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="how">
+  <div class="wrap">
+    <div class="label">How it reads you</div>
+    <h2 class="h2" style="margin-top:18px">Five dimensions, three positions each. That is your shape.</h2>
+    <p class="lede">Each point of the shape is one dimension, and it sits on the inner, middle or outer ring depending on where you landed. Move and Eye place you in one of nine cores. Compass, Frame and Volume give your core its adjective.</p>
+    <div class="dims" id="dims"></div>
+    <div class="cores" id="cores"></div>
+    <div class="maths num"><b>9</b> cores <b>× 27</b> adjectives <b>= 243</b> <span>shapes, and every one of them has its own name, from The Unshakable Keeper to The Radiant Explorer.</span></div>
+  </div>
+</section>
+
+<section class="band" id="read" style="background:linear-gradient(var(--paper-2),var(--paper))">
+  <div class="wrap">
+    <div class="label">What you get back</div>
+    <h2 class="h2" style="margin-top:18px">A sixteen-page read, in four parts.</h2>
+    <div class="read">
+      <div class="parts">
+        <div class="part"><span class="label num">Part 1</span><div><h4>Who you are</h4><p>Your read, a portrait, your shape explained point by point, the engine running underneath and your strengths.</p></div></div>
+        <div class="part"><span class="label num">Part 2</span><div><h4>Your life</h4><p>The same shape in six rooms: love, friends, family, work, money, and body, rest and energy.</p></div></div>
+        <div class="part"><span class="label num">Part 3</span><div><h4>Growing from here</h4><p>How other people perceive you, what happens when your usual move is taken too far, and small adjustments that tend to help.</p></div></div>
+        <div class="part"><span class="label num">Part 4</span><div><h4>Before you go</h4><p>A link to share your result, and a few questions on how well it read you.</p></div></div>
+      </div>
+      <div class="sheet">
+        <div class="under"></div>
+        <div class="page">
+          <div class="eyebrow">Part 1 · Who you are · The engine</div>
+          <h5>What is running <em>underneath.</em></h5>
+          <div class="label" style="margin-bottom:12px">You probably…</div>
+          <div class="tells">
+            <div><span class="num">01</span>You re-read a message you sent to check how the tone might land.</div>
+            <div><span class="num">02</span>You have said "no worries" while actively worrying.</div>
+            <div><span class="num">03</span>At a table, you know what everyone needs before the food arrives.</div>
+          </div>
+          <p class="src">From the read of a Keeper, the core that moves toward people and watches for what could go wrong.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <div class="box">
+      <div>
+        <h2>Sixteen scenes. About three minutes.</h2>
+        <p>Your name is optional, and the read can address you by it. Share the result with the people who know you, and ask them whether it is right.</p>
+        <a class="btn" href="https://243-fable.vercel.app/#/test">Take the test <span aria-hidden="true">→</span></a>
+      </div>
+      <svg viewBox="-6 -6 112 112" id="end-shape" aria-hidden="true"></svg>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>243 · The shape of who you are</span>
+    <p>243 is a reflective tool, generated from a short set of questions and written with the help of AI. It is not a clinical assessment, and it will be wrong in places.</p>
+  </div>
+</footer>
+
+<script>
+const DIMS=[
+ {name:"Move",q:"When it counts, you move",b:[["T","Toward","toward people"],["A","Against","against the problem"],["W","Away","away to think"]]},
+ {name:"Eye",q:"Your attention goes first to",b:[["G","Guard","what could go wrong"],["L","Level","what is actually there"],["R","Reach","what could go right"]]},
+ {name:"Compass",q:"Your standard comes from",b:[["I","Inner","inside"],["M","Mutual","a negotiation"],["O","Outer","how it lands"]]},
+ {name:"Frame",q:"Plans and commitments are",b:[["P","Planned","structure you rely on"],["B","Balanced","scaffolding you revise"],["F","Freeform","options you keep open"]]},
+ {name:"Volume",q:"Feelings register",b:[["S","Steady","quietly"],["E","Even","in proportion"],["V","Vivid","at full volume"]]}];
+const CORES={TG:["The Keeper",22],TL:["The Diplomat",150],TR:["The Spark",75],AG:["The Architect",255],AL:["The Operator",195],AR:["The Driver",40],WG:["The Sentinel",280],WL:["The Observer",225],WR:["The Explorer",305]};
+const ADJ={IPS:"Unshakable",IPE:"Steadfast",IPV:"Resolute",IBS:"Composed",IBE:"Assured",IBV:"Ardent",IFS:"Unhurried",IFE:"Untethered",IFV:"Untamed",MPS:"Reliable",MPE:"Measured",MPV:"Devoted",MBS:"Levelheaded",MBE:"Balanced",MBV:"Warm",MFS:"Easygoing",MFE:"Adaptable",MFV:"Spirited",OPS:"Considerate",OPE:"Attentive",OPV:"Tender",OBS:"Gracious",OBE:"Attuned",OBV:"Heartfelt",OFS:"Gentle",OFE:"Open",OFV:"Radiant"};
+/* one real scene per dimension, in the test's own words */
+const SCENES=[
+ {d:0,n:1,scene:"Someone you are close to has gone quiet on you, and you do not know why.",prompt:"What do you actually do?",a:[[0,"Reach out. Check in, make sure we are okay."],[1,"Ask them directly what is going on. I would rather have it out."],[2,"Give it space. I think it over and let them come to me."]]},
+ {d:1,n:2,scene:"You are about to say yes to something new.",prompt:"What runs through your head?",a:[[-2,"Everything that could go wrong, and whether I could handle it."],[-1,"Whether I honestly have the bandwidth."],[1,"What it could lead to."],[2,"The best version of how it plays out. I am already in."]]},
+ {d:2,n:3,scene:"You have made a decision. Then someone you respect disagrees.",prompt:"What happens next?",a:[[-2,"I hear them out, but I trust my own read."],[-1,"I reconsider, and usually stay with my judgment."],[1,"I reconsider seriously. Their view carries real weight."],[2,"I often change course. If they see it, there is probably something to it."]]},
+ {d:3,n:5,scene:"A free weekend is coming.",prompt:"What does it look like right now?",a:[[-2,"Already planned. I like knowing the shape of it."],[-1,"A couple of things fixed, the rest open."],[1,"Loose ideas, nothing booked."],[2,"Nothing. I will see what I feel like."]]},
+ {d:4,n:6,scene:"Someone close to you sends a short, flat reply.",prompt:"What happens inside you?",a:[[-2,"Not much. If something is wrong, they will say."],[-1,"I notice, and assume it is nothing unless it repeats."],[1,"I wonder what shifted and replay the last exchange."],[2,"I feel it immediately and cannot quite put it down."]]}];
+
+/* the app's own mark: five points on three rings, joined by a smooth closed curve */
+const ANG=[0,1,2,3,4].map(i=>-Math.PI/2+i*2*Math.PI/5);
+function blob(b,R=44,cx=50,cy=50){const p=b.map((v,i)=>{const r=R*(.5+.25*v);return[cx+r*Math.cos(ANG[i]),cy+r*Math.sin(ANG[i])]});let d=`M${p[0][0].toFixed(2)} ${p[0][1].toFixed(2)}`;for(let i=0;i<5;i++){const p0=p[(i+4)%5],p1=p[i],p2=p[(i+1)%5],p3=p[(i+2)%5];d+=` C${(p1[0]+(p2[0]-p0[0])/5).toFixed(2)} ${(p1[1]+(p2[1]-p0[1])/5).toFixed(2)} ${(p2[0]-(p3[0]-p1[0])/5).toFixed(2)} ${(p2[1]-(p3[1]-p1[1])/5).toFixed(2)} ${p2[0].toFixed(2)} ${p2[1].toFixed(2)}`}return d+"Z"}
+let gid=0;
+function blobSVG(b,h){const id="b"+(++gid);return `<defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="oklch(0.8 0.15 ${h})"/><stop offset="1" stop-color="oklch(0.5 0.2 ${h})"/></linearGradient></defs><path d="${blob(b,47)}" fill="oklch(0.92 0.05 ${h})"/><path d="${blob(b,41)}" fill="url(#${id})"/>`}
+const code=b=>b.map((v,i)=>DIMS[i].b[v][0]).join("");
+
+/* logo */
+const LB=[2,1,1,0,1];
+document.getElementById("logo-halo").setAttribute("d",blob(LB,48));
+document.getElementById("logo-mark").setAttribute("d",blob(LB,40,47,52));
+
+/* hero demo */
+const state={step:0,ans:[],bands:[1,1,1,1,1],hue:250};
+let cur=[1,1,1,1,1],anim;
+function paint(b){document.getElementById("h-halo").setAttribute("d",blob(b,47));document.getElementById("h-mark").setAttribute("d",blob(b,41));document.getElementById("h-pts").innerHTML=b.map((v,i)=>{const r=41*(.5+.25*v);return state.ans[i]===undefined?"":`<circle cx="${(50+r*Math.cos(ANG[i])).toFixed(2)}" cy="${(50+r*Math.sin(ANG[i])).toFixed(2)}" r="2.1" fill="#fff" stroke="oklch(0.42 0.15 ${state.hue})" stroke-width="1.1"/>`}).join("")}
+document.getElementById("h-rings").innerHTML=[.5,.75,1].map(k=>`<circle cx="50" cy="50" r="${41*k}" fill="none" stroke="rgba(22,20,26,.16)" stroke-width=".3" stroke-dasharray="1 1.2"/>`).join("")+ANG.map((a,i)=>`<line x1="50" y1="50" x2="${50+46*Math.cos(a)}" y2="${50+46*Math.sin(a)}" stroke="rgba(22,20,26,.12)" stroke-width=".3"/><text x="${50+53*Math.cos(a)}" y="${50+53*Math.sin(a)+1.3}" text-anchor="middle" font-size="3.6" font-weight="700" letter-spacing=".5" fill="#8A8590">${["MOVE","EYE","COMPASS","FRAME","VOLUME"][i]}</text>`).join("");
+function setHue(h){state.hue=h;document.documentElement.style.setProperty("--h",h);document.getElementById("h-halo").setAttribute("fill",`oklch(0.92 0.05 ${h})`);document.getElementById("hg0").setAttribute("stop-color",`oklch(0.8 0.15 ${h})`);document.getElementById("hg1").setAttribute("stop-color",`oklch(0.5 0.2 ${h})`)}
+function morph(to){cancelAnimationFrame(anim);const from=cur.slice(),t0=performance.now();const f=t=>{let k=Math.min(1,(t-t0)/700);k=1-Math.pow(1-k,3);cur=from.map((v,i)=>v+(to[i]-v)*k);paint(cur);if(k<1)anim=requestAnimationFrame(f)};anim=requestAnimationFrame(f)}
+function chips(){const c=document.getElementById("chips").children;for(let i=0;i<5;i++){const done=state.ans[i]!==undefined;c[i].textContent=done?DIMS[i].b[state.bands[i]][0]:"·";c[i].classList.toggle("on",done)}}
+function nameLine(){const n=document.getElementById("sname");const k=state.ans.length;
+  if(k===0){n.innerHTML="Your shape, before any answers";return}
+  if(k<2){n.innerHTML=`${DIMS[0].name}: ${DIMS[0].b[state.bands[0]][1]}<b>Still drawing</b>`;return}
+  const cc=code(state.bands),core=CORES[cc.slice(0,2)];
+  n.innerHTML=k<5?`Your core so far<b>${core[0]}</b>`:`A five-scene preview reads you as<b>The ${ADJ[cc.slice(2)]} ${core[0].replace("The ","")}</b>`}
+function renderCard(){
+  const c=document.getElementById("card");
+  if(state.step>=SCENES.length){
+    c.innerHTML=`<div class="fade"><div class="top"><div class="segs">${SCENES.map(()=>'<i class="done"></i>').join("")}</div><span class="count"><b>5</b> / 5</span></div>
+    <div class="label" style="margin-bottom:10px">Preview complete</div><div class="scene">That was five of the sixteen scenes.</div>
+    <p class="prompt">The full test asks each dimension more than once, and turns the answers into a sixteen-page read.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px"><a class="btn sm" href="https://243-fable.vercel.app/#/test">Take all sixteen</a><button class="btn sm ghost" id="again" style="border:0;cursor:pointer;font-family:inherit">Start over</button></div></div>`;
+    document.getElementById("again").onclick=()=>{state.step=0;state.ans=[];state.bands=[1,1,1,1,1];setHue(22);morph([1,1,1,1,1]);chips();nameLine();renderCard()};return}
+  const s=SCENES[state.step];
+  c.innerHTML=`<div class="fade"><div class="top"><div class="segs">${SCENES.map((_,i)=>`<i class="${i<state.step?"done":i===state.step?"now":""}"></i>`).join("")}</div><span class="count">Scene <b class="num">${s.n}</b> of 16</span></div>
+  <div class="scene">${s.scene}</div><div class="prompt">${s.prompt}</div>
+  <div class="answers">${s.a.map((a,i)=>`<button class="answer" data-i="${i}"><span class="k">${i+1}</span><span>${a[1]}</span></button>`).join("")}</div>
+  <div class="foot"><span>${DIMS[s.d].name} · press 1–${s.a.length}</span><button id="back" ${state.step?"":"style='visibility:hidden'"}>← Back</button></div></div>`;
+  c.querySelectorAll(".answer").forEach(b=>b.onclick=()=>choose(+b.dataset.i));
+  const bk=document.getElementById("back");if(bk)bk.onclick=()=>{state.step--;state.ans.length=state.step;renderCard();chips();nameLine()};
+}
+function choose(i){const s=SCENES[state.step];const v=s.a[i][0];
+  document.querySelectorAll("#card .answer")[i].classList.add("sel");
+  state.bands[s.d]=s.d===0?v:(v<=-2?0:v>=2?2:1);state.ans[s.d]=i;
+  if(state.ans[0]!==undefined&&state.ans[1]!==undefined)setHue(CORES[code(state.bands).slice(0,2)][1]);
+  morph(state.bands.slice());chips();nameLine();
+  setTimeout(()=>{state.step++;renderCard()},260)}
+document.addEventListener("keydown",e=>{if(state.step<SCENES.length&&/^[1-4]$/.test(e.key)&&+e.key<=SCENES[state.step].a.length)choose(+e.key-1)});
+setHue(22);paint(cur);renderCard();
+
+/* dimensions */
+document.getElementById("dims").innerHTML=DIMS.map((d,i)=>`<div class="dim"><div class="label"><span>${d.name}</span><span>${i<2?"Core":"Sharpener"}</span></div><h3>${d.q}…</h3><div class="bands">${d.b.map(b=>`<span><i>${b[0]}</i>${b[2]}</span>`).join("")}</div></div>`).join("");
+/* the nine cores, each in its plainest variant */
+document.getElementById("cores").innerHTML=Object.entries(CORES).map(([k,[n,h]])=>`<div class="core"><svg viewBox="-6 -6 112 112">${blobSVG(k.split("").map((l,i)=>DIMS[i].b.findIndex(b=>b[0]===l)).concat([1,1,1]),h)}</svg><small>${k[0]} · ${k[1]}</small><b>${n.replace("The ","")}</b></div>`).join("");
+/* closing shape: The Steadfast Keeper, TGIPE */
+document.getElementById("end-shape").innerHTML=blobSVG([0,0,0,0,1],22);
+</script>
+</body>
+</html>

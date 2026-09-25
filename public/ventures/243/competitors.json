@@ -1,0 +1,14 @@
+[
+  { "name": "16Personalities", "url": "https://www.16personalities.com", "kind": "direct" },
+  { "name": "Dimensional", "url": "https://www.dimensional.me", "kind": "direct" },
+  { "name": "Truity", "url": "https://www.truity.com", "kind": "direct" },
+  { "name": "PrinciplesYou", "url": "https://principlesyou.com", "kind": "direct" },
+  { "name": "The Enneagram Institute", "url": "https://www.enneagraminstitute.com", "kind": "direct" },
+  { "name": "Understand Myself", "url": "https://www.understandmyself.com", "kind": "direct" },
+  { "name": "Crystal", "url": "https://www.crystalknows.com", "kind": "direct" },
+  { "name": "Traitify", "url": "https://www.traitify.com", "kind": "direct" },
+  { "name": "Co-Star", "url": "https://www.costarastrology.com", "kind": "adjacent" },
+  { "name": "The Pattern", "url": "https://www.thepattern.com", "kind": "adjacent" },
+  { "name": "How We Feel", "url": "https://howwefeel.org", "kind": "adjacent" },
+  { "name": "Finch", "url": "https://finchcare.com", "kind": "adjacent" }
+]

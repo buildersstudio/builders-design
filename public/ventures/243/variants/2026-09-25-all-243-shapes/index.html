@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>243 · All 243 shapes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09090D; --bg-2:#101017; --surf:#14141C; --surf-2:#1B1B25; --ink:#F4F3F8; --ink-2:#A9A8B6; --ink-3:#6E6D7C;
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);overflow-x:clip}
+body{font-family:"Inter Tight",system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;font-size:17px;line-height:1.55;overflow-x:clip}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.5;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1300px;margin:0 auto;padding:0 40px}
+.label{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.num{font-variant-numeric:tabular-nums}
+nav{position:relative;z-index:10;height:80px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:11px;font-weight:700;font-size:24px;letter-spacing:-.04em}
+.logo svg{width:32px;height:32px}
+.nav-r{display:flex;gap:30px;align-items:center;font-size:15px;color:var(--ink-2)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 24px;border-radius:12px;background:var(--ink);color:#0B0B10;font-weight:600;font-size:16px;box-shadow:0 0 0 1px rgba(255,255,255,.2),0 10px 30px -10px rgba(255,255,255,.35);transition:transform .2s var(--ease)}
+.btn:hover{transform:translateY(-1px)}
+.btn.sm{height:38px;padding:0 16px;font-size:14px;border-radius:10px}
+.btn.ghost{background:rgba(255,255,255,.04);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2)}
+
+/* hero */
+.hero{position:relative;height:820px;overflow:hidden}
+.hero-copy{position:relative;z-index:3;display:grid;grid-template-columns:1fr 400px;align-items:end;gap:60px;padding-top:40px}
+.hero h1{font-size:76px;line-height:.92;letter-spacing:-.06em;font-weight:700}
+.hero h1 span{color:var(--ink-3)}
+.hero .sub{font-size:18px;color:var(--ink-2)}
+.hero .ctas{display:flex;gap:10px;margin-top:26px}
+.field{position:absolute;left:50%;top:360px;width:1404px;margin-left:-702px;perspective:1500px;z-index:1}
+.plane{transform:rotateX(26deg);transform-origin:50% 0;transform-style:preserve-3d}
+.grid{display:grid;grid-template-columns:repeat(27,1fr);gap:0;position:relative}
+.cell{position:relative;aspect-ratio:1;display:grid;place-items:center;cursor:pointer}
+.cell svg{width:84%;height:84%;overflow:visible;transition:transform .35s var(--ease),filter .35s var(--ease),opacity .35s}
+.cell:hover svg{transform:translateY(-10px) scale(1.18)}
+.cell.on svg{transform:translateY(-14px) scale(1.32);filter:drop-shadow(0 0 14px oklch(0.7 0.2 var(--h) / .9))}
+.grid.dim .cell:not(.on):not(:hover) svg{opacity:.55}
+.light{position:absolute;inset:0;background:radial-gradient(70% 60% at 50% 55%,transparent 35%,var(--bg) 85%),linear-gradient(var(--bg) 38%,transparent 48%);pointer-events:none;z-index:2}
+.spot{position:absolute;left:50%;top:300px;width:1100px;height:600px;margin-left:-550px;background:radial-gradient(closest-side,rgba(140,130,255,.10),transparent);z-index:0;pointer-events:none}
+.callout{position:absolute;z-index:4;width:300px;padding:16px 18px;border-radius:16px;background:rgba(20,20,28,.82);backdrop-filter:blur(14px);box-shadow:0 0 0 1px var(--line-2),0 30px 60px -20px rgba(0,0,0,.8);transition:left .35s var(--ease),top .35s var(--ease)}
+.callout:before{content:"";position:absolute;left:28px;top:-7px;width:14px;height:14px;background:inherit;transform:rotate(45deg);box-shadow:-1px -1px 0 var(--line-2)}
+.callout .code{display:flex;gap:4px;margin-bottom:10px}
+.callout .code i{font-style:normal;width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:700;background:rgba(255,255,255,.06);color:var(--ink-2)}
+.callout .code i.c{background:oklch(0.35 0.1 var(--h));color:oklch(0.9 0.08 var(--h))}
+.callout b{display:block;font-size:20px;letter-spacing:-.03em;font-weight:700;line-height:1.15}
+.callout p{font-size:14px;color:var(--ink-2);margin-top:6px;line-height:1.45}
+.legend{position:absolute;z-index:3;left:0;right:0;bottom:26px;display:flex;justify-content:space-between;font-size:13px;color:var(--ink-3)}
+
+/* sections */
+section{position:relative;padding:140px 0}
+.h2{font-size:64px;line-height:1;letter-spacing:-.04em;font-weight:700;max-width:880px}
+.h2 span{color:var(--ink-3)}
+.lede{font-size:19px;color:var(--ink-2);max-width:600px;margin-top:22px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+
+.matrix{display:grid;grid-template-columns:90px repeat(3,1fr);gap:10px;margin-top:70px}
+.matrix .ax{display:flex;flex-direction:column;justify-content:center;font-size:14px;color:var(--ink-2);padding-right:6px}
+.matrix .ax b{color:var(--ink);font-weight:700;font-size:15px}
+.matrix .ax.top{padding:0 4px 6px}
+.core{position:relative;border-radius:20px;padding:22px;background:linear-gradient(180deg,var(--surf-2),var(--surf));box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 0 0 1px var(--line);overflow:hidden;min-height:210px}
+.core:before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(closest-side,oklch(0.6 0.18 var(--h) / .28),transparent)}
+.core svg{position:relative;width:70px;height:70px;overflow:visible;filter:drop-shadow(0 12px 18px oklch(0.4 0.2 var(--h) / .6))}
+.core .k{position:absolute;right:20px;top:22px;font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--ink-3)}
+.core h3{font-size:22px;letter-spacing:-.03em;margin-top:14px;font-weight:700}
+.core p{font-size:14.5px;color:var(--ink-2);margin-top:6px;line-height:1.45}
+
+.adj{margin-top:70px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.adj .col{border-radius:20px;background:var(--surf);box-shadow:0 0 0 1px var(--line);padding:24px}
+.adj .col h4{font-size:15px;color:var(--ink-2);font-weight:500;margin:6px 0 16px}
+.adj .col h4 b{color:var(--ink);font-weight:700}
+.adj .words{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.adj .words span{font-size:15px;padding:10px 10px;border-radius:10px;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--line);display:flex;flex-direction:column;gap:2px}
+.adj .words span small{font-size:11px;letter-spacing:.14em;color:var(--ink-3);font-weight:600}
+.adj .words span.hl{background:oklch(0.3 0.09 22);box-shadow:inset 0 0 0 1px oklch(0.55 0.15 22)}
+.adj .words span.hl small{color:oklch(0.85 0.08 22)}
+
+.diagram{position:relative;border-radius:28px;background:radial-gradient(80% 70% at 50% 40%,#1A1622,var(--bg-2));box-shadow:0 0 0 1px var(--line);padding:30px;display:grid;place-items:center}
+.diagram svg{width:100%;max-width:560px;height:auto;overflow:visible}
+.dims{display:grid;gap:0;margin-top:40px}
+.dims div{display:grid;grid-template-columns:120px 44px 1fr;align-items:center;padding:16px 0;border-top:1px solid var(--line);font-size:16px;color:var(--ink-2)}
+.dims div b{color:var(--ink);font-weight:600}
+.dims div i{font-style:normal;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:13px;background:rgba(255,255,255,.06);color:var(--ink)}
+.dims div i.c{background:oklch(0.35 0.1 22);color:oklch(0.9 0.08 22)}
+
+.phone{justify-self:center;width:340px;border-radius:48px;padding:12px;background:linear-gradient(160deg,#2A2A33,#101015);box-shadow:0 0 0 1px rgba(255,255,255,.1),0 60px 120px -30px rgba(0,0,0,.9),0 30px 160px -60px oklch(0.6 0.18 22 / .5)}
+.screen{border-radius:38px;background:#fff;color:#0e0e12;overflow:hidden;height:680px;position:relative;font-family:"Inter Tight",sans-serif}
+.screen .bar{display:flex;justify-content:space-between;align-items:center;padding:20px 20px 0;font-weight:700;font-size:17px;letter-spacing:-.03em}
+.screen .bar span{display:flex;gap:7px;align-items:center}
+.screen .bar em{font-style:normal;font-size:12px;font-weight:600;padding:6px 10px;border-radius:9px;box-shadow:inset 0 0 0 1px rgba(14,14,18,.16);letter-spacing:0}
+.screen .reveal{text-align:center;padding:26px 22px 0}
+.screen .reveal svg{width:150px;height:150px}
+.screen .who{font-size:13px;color:#55565f;font-weight:500;margin-top:8px}
+.screen h5{font-size:34px;line-height:1.02;letter-spacing:-.04em;color:oklch(0.42 0.15 22);margin:6px 0 10px;font-weight:700}
+.screen .tag{font-size:14px;color:#55565f;line-height:1.45}
+.screen .fl{font-size:13px;color:oklch(0.42 0.15 22);font-weight:500;margin-top:10px;line-height:1.4}
+.screen .chips{display:flex;gap:5px;justify-content:center;margin-top:16px}
+.screen .chips i{font-style:normal;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-weight:600;background:#f6f6f8}
+.screen .chips i.c{background:oklch(0.935 0.045 22);color:oklch(0.42 0.15 22)}
+.screen .pager{position:absolute;left:12px;right:12px;bottom:12px;border-radius:16px;box-shadow:0 0 0 1px rgba(14,14,18,.08),0 12px 30px rgba(14,14,18,.1);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#8b8c96;background:#fff}
+.screen .pager b{color:#0e0e12}
+.pages{list-style:none;margin-top:40px}
+.pages li{padding:16px 0;border-top:1px solid var(--line);display:flex;gap:18px;font-size:16px;color:var(--ink-2)}
+.pages li b{display:block;color:var(--ink);font-weight:600;font-size:18px;margin-bottom:2px}
+.pages li span{color:var(--ink-3);width:22px;flex:none;padding-top:2px}
+
+.cta{padding:60px 0 150px;text-align:center}
+.cta .shapes{display:flex;justify-content:center;gap:18px;margin-bottom:48px}
+.cta .shapes svg{width:64px;height:64px;overflow:visible;filter:drop-shadow(0 16px 20px rgba(0,0,0,.6))}
+.cta h2{font-size:84px;line-height:.95;letter-spacing:-.06em;font-weight:700}
+.cta p{color:var(--ink-2);font-size:19px;margin:22px auto 34px;max-width:560px}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;font-size:14px;color:var(--ink-3)}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+footer p{max-width:700px}
+
+@media (max-width:1100px){
+  .hero-copy{grid-template-columns:1fr}
+  .hero h1{font-size:76px}
+  .split{grid-template-columns:1fr}
+  .matrix{grid-template-columns:70px repeat(3,1fr)}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  nav{height:66px}.nav-r a:not(.btn){display:none}
+  .hero{height:auto;padding-bottom:30px}
+  .hero-copy{padding-top:26px;gap:18px}
+  .hero h1{font-size:54px}
+  .hero .sub{font-size:16px}
+  .field{position:relative;left:auto;top:auto;width:760px;margin:30px 0 0 -185px}
+  .callout{display:none}.legend .hov{display:none}
+  .legend{position:relative;bottom:auto;margin-top:0;flex-direction:column;gap:4px}
+  section{padding:80px 0}
+  .h2{font-size:38px}.lede{font-size:16px}
+  .matrix{grid-template-columns:1fr;margin-top:40px}
+  .matrix .ax{display:none}
+  .core{min-height:0}
+  .adj{grid-template-columns:1fr;margin-top:40px}
+  .dims div{grid-template-columns:90px 40px 1fr;font-size:14px}
+  
+  .phone{width:300px}.screen{height:610px}
+  .cta h2{font-size:46px}.cta .shapes{gap:8px}.cta .shapes svg{width:34px;height:34px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#"><svg viewBox="0 0 100 100" id="logo" aria-hidden="true"></svg>243</a>
+    <div class="nav-r">
+      <a href="#cores">Nine cores</a>
+      <a href="#adjectives">27 adjectives</a>
+      <a href="#read">The read</a>
+      <a class="btn sm" href="https://243-fable.vercel.app/#/test">Take the test</a>
+    </div>
+  </nav>
+</div>
+
+<header class="hero">
+  <div class="spot"></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1>243 shapes.<br><span>One of them</span> is yours.</h1>
+      <div>
+        <p class="sub">Sixteen everyday scenes place you on five dimensions. Your answers draw one of 243 shapes, and every shape has its own name and its own read.</p>
+        <div class="ctas"><a class="btn" href="https://243-fable.vercel.app/#/test">Find yours <span aria-hidden="true">→</span></a><a class="btn ghost" href="https://243-fable.vercel.app/#/types">Browse the cores</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="field"><div class="plane"><div class="grid" id="grid"></div></div></div>
+  <div class="light"></div>
+  <div class="callout" id="callout"></div>
+  <div class="wrap" style="position:relative;height:100%;pointer-events:none"><div class="legend"><span>Every result, one per shape. Rows are the nine cores, columns the 27 adjectives.</span><span class="hov">Hover a shape to read its name</span></div></div>
+</header>
+
+<section id="cores">
+  <div class="wrap">
+    <div class="label">Rows · the nine cores</div>
+    <h2 class="h2" style="margin-top:18px">Two questions decide your core. <span>How you move, and what you notice first.</span></h2>
+    <p class="lede">Move is where you go when something matters: toward people, against the problem, or away to think. Eye is where your attention lands first. Three by three, that is nine cores, and each one carries the deep part of the read.</p>
+    <div class="matrix" id="matrix"></div>
+  </div>
+</section>
+
+<section id="adjectives" style="background:linear-gradient(var(--bg),var(--bg-2) 30%,var(--bg))">
+  <div class="wrap">
+    <div class="label">Columns · the 27 adjectives</div>
+    <h2 class="h2" style="margin-top:18px">Three sharpeners give your core its word.</h2>
+    <p class="lede">Compass is whose judgment you trust. Frame is how you hold plans. Volume is how loudly feelings register. Each combination is one word, shared across the nine cores, so a Keeper can be Steadfast, Tender or Untamed.</p>
+    <div class="adj" id="adj"></div>
+  </div>
+</section>
+
+<section id="shape">
+  <div class="wrap split" style="align-items:center">
+    <div>
+      <div class="label">One of the 243</div>
+      <h2 class="h2" style="margin-top:18px">The Steadfast Keeper, <span>drawn point by point.</span></h2>
+      <p class="lede">Each point of the shape is one dimension. Whether it sits on the inner, middle or outer ring is the position you took. Your code and your shape are the same five answers.</p>
+      <div class="dims">
+        <div><span>Move</span><i class="c">T</i><span><b>Toward.</b> When it counts, you move toward people.</span></div>
+        <div><span>Eye</span><i class="c">G</i><span><b>Guard.</b> Your attention goes first to what could go wrong.</span></div>
+        <div><span>Compass</span><i>I</i><span><b>Inner.</b> Your standard comes from inside.</span></div>
+        <div><span>Frame</span><i>P</i><span><b>Planned.</b> Plans and commitments are structure you rely on.</span></div>
+        <div><span>Volume</span><i>E</i><span><b>Even.</b> Feelings register in proportion.</span></div>
+      </div>
+    </div>
+    <div class="diagram"><svg viewBox="-40 -24 180 134" id="diagram" aria-label="The Steadfast Keeper shape, annotated by dimension"></svg></div>
+  </div>
+</section>
+
+<section id="read" style="padding-top:60px">
+  <div class="wrap split" style="align-items:center">
+    <div class="phone"><div class="screen">
+      <div class="bar"><span><svg viewBox="-6 -6 112 112" width="18" height="18" id="mini"></svg>243</span><em>Share</em></div>
+      <div class="reveal">
+        <svg viewBox="-6 -6 112 112" id="reveal-shape"></svg>
+        <p class="who">Alex, you read as</p>
+        <h5>The Steadfast Keeper</h5>
+        <p class="tag">You hold the people around you together, and you notice trouble in a relationship long before anyone names it.</p>
+        <p class="fl">Your own judgment leads, structure holds you, and your reactions stay in proportion to events.</p>
+        <div class="chips"><i class="c">T</i><i class="c">G</i><i>I</i><i>P</i><i>E</i></div>
+      </div>
+      <div class="pager"><span>←</span><span><b>1</b> / 16 · Next: Portrait</span><span style="color:#0e0e12">→</span></div>
+    </div></div>
+    <div>
+      <div class="label">Then it reads you</div>
+      <h2 class="h2" style="margin-top:18px">Sixteen pages, <span>written for your shape.</span></h2>
+      <p class="lede">The name is where the read starts. Swipe through a portrait, the engine underneath, your strengths, six rooms of your life and the moves that tend to help.</p>
+      <ul class="pages">
+        <li><span class="num">1</span><div><b>Who you are</b>Your read · Portrait · Your shape · The engine · Strengths</div></li>
+        <li><span class="num">2</span><div><b>Your life</b>Love · Friends · Family · Work · Money · Body and energy</div></li>
+        <li><span class="num">3</span><div><b>Growing from here</b>How you are perceived · When it tips · What helps</div></li>
+        <li><span class="num">4</span><div><b>Before you go</b>Share and feedback</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="shapes" id="cta-shapes"></div>
+    <h2>Which one<br>are you?</h2>
+    <p>Sixteen scenes, about three minutes. Answer for your usual self, and pick the closest answer rather than the perfect one.</p>
+    <a class="btn" href="https://243-fable.vercel.app/#/test">Take the test <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+<footer><div class="wrap"><span>243 · The shape of who you are</span><p>A reflective tool, generated from a short set of questions and written with the help of AI. It is not a clinical assessment, and it will be wrong in places.</p></div></footer>
+
+<script>
+const DIMS=[["Move",["T","A","W"],["Toward","Against","Away"]],["Eye",["G","L","R"],["Guard","Level","Reach"]],["Compass",["I","M","O"],["Inner","Mutual","Outer"]],["Frame",["P","B","F"],["Planned","Balanced","Freeform"]],["Volume",["S","E","V"],["Steady","Even","Vivid"]]];
+const CORES={TG:["The Keeper",22,"You hold the people around you together, and you notice trouble in a relationship long before anyone names it."],TL:["The Diplomat",150,"You keep things smooth and fair, and you can hold two sides of a story without needing to pick one."],TR:["The Spark",75,"You bring people and plans to life, and you mean every yes you say, even the ones you cannot keep."],AG:["The Architect",255,"You hold the standard when nobody else will, and you see the flaw in the plan before it becomes the flaw in the outcome."],AL:["The Operator",195,"You handle things. When something breaks, you are the call people make, and you are usually already on your way."],AR:["The Driver",40,"You make things happen. Waiting feels like losing, and most of the time you are right to move."],WG:["The Sentinel",280,"You see it coming. You have thought it through, prepared for it, and quietly kept a little distance so it cannot reach you."],WL:["The Observer",225,"You watch, you wait, and most things settle. You are the calm that other people mistake for either wisdom or boredom."],WR:["The Explorer",305,"You follow the idea. The next thing has always been the real thing, and you are usually already halfway there."]};
+const ADJ={IPS:"Unshakable",IPE:"Steadfast",IPV:"Resolute",IBS:"Composed",IBE:"Assured",IBV:"Ardent",IFS:"Unhurried",IFE:"Untethered",IFV:"Untamed",MPS:"Reliable",MPE:"Measured",MPV:"Devoted",MBS:"Levelheaded",MBE:"Balanced",MBV:"Warm",MFS:"Easygoing",MFE:"Adaptable",MFV:"Spirited",OPS:"Considerate",OPE:"Attentive",OPV:"Tender",OBS:"Gracious",OBE:"Attuned",OBV:"Heartfelt",OFS:"Gentle",OFE:"Open",OFV:"Radiant"};
+const ANG=[0,1,2,3,4].map(i=>-Math.PI/2+i*2*Math.PI/5);
+function blob(b,R=44,cx=50,cy=50){const p=b.map((v,i)=>{const r=R*(.5+.25*v);return[cx+r*Math.cos(ANG[i]),cy+r*Math.sin(ANG[i])]});let d=`M${p[0][0].toFixed(2)} ${p[0][1].toFixed(2)}`;for(let i=0;i<5;i++){const p0=p[(i+4)%5],p1=p[i],p2=p[(i+1)%5],p3=p[(i+2)%5];d+=` C${(p1[0]+(p2[0]-p0[0])/5).toFixed(2)} ${(p1[1]+(p2[1]-p0[1])/5).toFixed(2)} ${(p2[0]-(p3[0]-p1[0])/5).toFixed(2)} ${(p2[1]-(p3[1]-p1[1])/5).toFixed(2)} ${p2[0].toFixed(2)} ${p2[1].toFixed(2)}`}return d+"Z"}
+const bandsOf=c=>c.split("").map((l,i)=>DIMS[i][1].indexOf(l));
+let gid=0;
+/* a lit object: gradient body, a soft top highlight, a faint halo */
+function lit(b,h,halo=true){const g="g"+(++gid),s="s"+gid;return `<defs><linearGradient id="${g}" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="oklch(0.84 0.14 ${h})"/><stop offset=".55" stop-color="oklch(0.62 0.2 ${h})"/><stop offset="1" stop-color="oklch(0.38 0.17 ${h})"/></linearGradient><radialGradient id="${s}" cx=".35" cy=".25" r=".45"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>${halo?`<path d="${blob(b,47)}" fill="oklch(0.6 0.15 ${h})" opacity=".18"/>`:""}<path d="${blob(b,41)}" fill="url(#${g})"/><path d="${blob(b,41)}" fill="url(#${s})"/>`}
+function flat(b,h){const g="g"+(++gid);return `<defs><linearGradient id="${g}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="oklch(0.78 0.16 ${h})"/><stop offset="1" stop-color="oklch(0.52 0.2 ${h})"/></linearGradient></defs><path d="${blob(b,47)}" fill="oklch(0.93 0.05 ${h})"/><path d="${blob(b,41)}" fill="url(#${g})"/>`}
+
+/* logo: the shape on its three rings */
+document.getElementById("logo").innerHTML=`<circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3"/><path d="${blob([2,1,1,0,1],40)}" fill="#F4F3F8"/>`;
+
+/* the field: all 243 */
+const CK=Object.keys(CORES),AK=Object.keys(ADJ);
+const grid=document.getElementById("grid");
+let html="";
+CK.forEach(ck=>AK.forEach(ak=>{const code=ck+ak;html+=`<div class="cell" data-code="${code}" style="--h:${CORES[ck][1]}"><svg viewBox="-6 -6 112 112">${lit(bandsOf(code),CORES[ck][1],false)}</svg></div>`}));
+grid.innerHTML=html;
+const call=document.getElementById("callout");
+function show(code){
+  grid.querySelectorAll(".cell.on").forEach(c=>c.classList.remove("on"));
+  const cell=grid.querySelector(`[data-code="${code}"]`);cell.classList.add("on");grid.classList.add("dim");
+  const c=CORES[code.slice(0,2)];call.style.setProperty("--h",c[1]);
+  call.innerHTML=`<div class="code">${code.split("").map((l,i)=>`<i class="${i<2?"c":""}">${l}</i>`).join("")}</div><b>The ${ADJ[code.slice(2)]} ${c[0].replace("The ","")}</b><p>${c[2]}</p>`;
+  if(innerWidth<=640)return;
+  const r=cell.getBoundingClientRect(),hr=document.querySelector(".hero").getBoundingClientRect();
+  call.style.left=(r.left-hr.left+r.width/2-35)+"px";call.style.top=(r.bottom-hr.top+14)+"px";
+}
+const TOUR=["ALMBE","ARIBV","TRMFV","AGIPS","TLOBE","ALOPE","TRMBV","AGMPE"];let ti=0,hov=false,timer;
+grid.addEventListener("mouseover",e=>{const c=e.target.closest(".cell");if(c){hov=true;show(c.dataset.code)}});
+grid.addEventListener("mouseleave",()=>{hov=false});
+addEventListener("resize",()=>show(grid.querySelector(".cell.on").dataset.code));
+requestAnimationFrame(()=>{show(TOUR[0]);timer=setInterval(()=>{if(!hov){ti=(ti+1)%TOUR.length;show(TOUR[ti])}},3200)});
+
+/* nine cores as a matrix */
+const M=document.getElementById("matrix");
+let mh=`<div></div>`+DIMS[1][2].map((n,i)=>`<div class="ax top"><b>${DIMS[1][1][i]} · ${n}</b>${["what could go wrong","what is actually there","what could go right"][i]}</div>`).join("");
+DIMS[0][1].forEach((m,mi)=>{mh+=`<div class="ax"><b>${m} · ${DIMS[0][2][mi]}</b>${["toward people","against the problem","away to think"][mi]}</div>`;DIMS[1][1].forEach(e=>{const k=m+e,c=CORES[k];mh+=`<div class="core" style="--h:${c[1]}"><svg viewBox="-6 -6 112 112">${lit(bandsOf(k+"MBE"),c[1])}</svg><span class="k">${m} · ${e}</span><h3>${c[0]}</h3><p>${c[2]}</p></div>`})});
+M.innerHTML=mh;
+
+/* adjectives by compass */
+document.getElementById("adj").innerHTML=DIMS[2][1].map((c,ci)=>`<div class="col"><div class="label">Compass · ${DIMS[2][2][ci]}</div><h4>Your standard comes from <b>${["inside","a negotiation","how it lands"][ci]}</b></h4><div class="words">${AK.filter(k=>k[0]===c).map(k=>`<span class="${k==="IPE"?"hl":""}"><small>${k}</small>${ADJ[k]}</span>`).join("")}</div></div>`).join("");
+
+/* annotated diagram, as in the app */
+(function(){const b=[0,0,0,0,1],h=22,R=41;const rings=[.5,.75,1].map(k=>`<circle cx="50" cy="50" r="${R*k}" fill="none" stroke="rgba(255,255,255,.18)" stroke-width=".35" stroke-dasharray="1.2 1.2"/>`).join("");
+const sp=ANG.map(a=>`<line x1="50" y1="50" x2="${50+R*Math.cos(a)}" y2="${50+R*Math.sin(a)}" stroke="rgba(255,255,255,.14)" stroke-width=".35"/>`).join("");
+const pts=b.map((v,i)=>{const r=R*(.5+.25*v);return `<circle cx="${50+r*Math.cos(ANG[i])}" cy="${50+r*Math.sin(ANG[i])}" r="2.3" fill="#0B0B10" stroke="oklch(0.82 0.12 ${h})" stroke-width="1"/>`}).join("");
+const labs=ANG.map((a,i)=>{const lx=50+(R+10)*Math.cos(a),ly=50+(R+10)*Math.sin(a);const an=Math.abs(Math.cos(a))<.2?"middle":Math.cos(a)>0?"start":"end";const dy=Math.sin(a)<-.9?-2:Math.sin(a)>.5?6:2;return `<text x="${lx}" y="${ly+dy-4.6}" text-anchor="${an}" font-size="3.4" font-weight="600" letter-spacing=".5" fill="#6E6D7C">${DIMS[i][0].toUpperCase()}</text><text x="${lx}" y="${ly+dy+1.8}" text-anchor="${an}" font-size="5.2" font-weight="700" fill="#F4F3F8">${DIMS[i][2][b[i]]}</text>`}).join("");
+document.getElementById("diagram").innerHTML=rings+sp+lit(b,h)+pts+labs})();
+
+document.getElementById("reveal-shape").innerHTML=flat([0,0,0,0,1],22);
+document.getElementById("mini").innerHTML=`<path d="${blob([0,0,0,0,1],48)}" fill="oklch(0.55 0.17 22)"/>`;
+document.getElementById("cta-shapes").innerHTML=CK.map(k=>`<svg viewBox="-6 -6 112 112">${lit(bandsOf(k+"MBE"),CORES[k][1],false)}</svg>`).join("");
+</script>
+</body>
+</html>
