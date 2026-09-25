@@ -1,0 +1,9 @@
+{
+  "title": "Weave",
+  "created": "2026-09-27",
+  "note": "Krans as a loom: every connected tool drops a warp thread from the top of the page, every company is a weft thread woven across it, and each crossing knots into a tagged learning, so injection, call reflections, signals and the four use cases are all shown as the same fabric tightening under a travelling wave.",
+  "credits": [
+    { "file": "img/logos/*.svg", "source": "Connected tool logos as used on krans.ai (krans-website-v2/public/logos)", "author": "Respective trademark holders", "url": "https://krans.ai" },
+    { "file": "index.html (weave patterns)", "source": "Drawn in code on canvas and SVG", "author": "Krans", "url": "https://krans.ai" }
+  ]
+}
