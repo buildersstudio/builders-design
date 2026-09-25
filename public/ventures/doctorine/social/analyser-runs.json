@@ -1,0 +1,1246 @@
+{
+  "tool": "Doctorine Docs Analyser, https://doctorine.dev/",
+  "method": "Each docs portal was submitted to the analyser's own endpoint (POST https://doctorine.dev/api/agent-readiness/scan, the same call the page makes) on 25 September 2026. The response combines the Cloudflare Agent Ready benchmark signals with Doctorine's own probes. Sites that came back as 'Incomplete scan' (the analyser withholds a score when too many signals cannot be verified) were retried up to three more times, spaced 20 to 30 seconds apart; the record kept is the latest scored run, or otherwise the attempt with the fewest unverified signals. Nothing here is estimated: a null score means the tool did not return one.",
+  "date": "2026-09-25",
+  "summary": {
+    "sitesRun": 33,
+    "scored": 16,
+    "incomplete": 17,
+    "scoreMin": 52,
+    "scoreMax": 95,
+    "scoreMedian": 74.0,
+    "scoreMean": 74.3,
+    "agentReady80plus": 6,
+    "notes": [
+      "API Catalog missing on 27 of 33 sites and MCP Server Card missing on 27 of 33 (both Cloudflare benchmark checks, measured on every site, including incomplete scans).",
+      "Agent Skills index missing on 22 of 33; Content Signals missing on 21 of 33; Markdown for Agents (content negotiation) passed on 19 of 33.",
+      "Readable without JavaScript passed on all 31 sites where it could be measured (2 unverified); llms.txt index passed on 26 of 33.",
+      "Among the 16 scored sites, the average category scores were: Agent and API discovery 40, Findability 83, Readable content 73, Delivery and efficiency 91, Bot policy and trust 91.",
+      "Among the 16 scored sites, all 9 scoring 73 or more passed Markdown for Agents, and all 7 scoring below 70 failed it.",
+      "Sitemap freshness (lastmod dates) needed review on 12 of 33 sites.",
+      "17 of 33 sites returned 'Incomplete scan' with no score, most often because the analyser's probes for the machine-readable API spec and MCP endpoint were limited or unavailable. This may be the analyser's probe budget rather than the sites; it has not been diagnosed."
+    ]
+  },
+  "runs": [
+    {
+      "name": "Resend",
+      "url": "https://resend.com/docs",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:06:32.082Z",
+      "score": 95,
+      "scoreLabel": "Agent-ready",
+      "level": "Agent-Native",
+      "platform": "Mintlify",
+      "passed": 23,
+      "measured": 25,
+      "categories": {
+        "Findability": 83,
+        "Readable content": 100,
+        "Bot policy and trust": 100,
+        "Agent and API discovery": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "Clean URL redirects"
+      ],
+      "needsReview": [
+        "Full-text docs bundle"
+      ],
+      "unverified": [],
+      "attempts": 1,
+      "region": "US/other"
+    },
+    {
+      "name": "Notion",
+      "url": "https://developers.notion.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:12:57.102Z",
+      "score": 93,
+      "scoreLabel": "Agent-ready",
+      "level": "Agent-Integrated",
+      "platform": "Mintlify",
+      "passed": 20,
+      "measured": 24,
+      "categories": {
+        "Agent and API discovery": 78,
+        "Findability": 88,
+        "Readable content": 100,
+        "Bot policy and trust": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog"
+      ],
+      "needsReview": [
+        "API spec load cost",
+        "Full-text docs bundle",
+        "Clean URL redirects"
+      ],
+      "unverified": [],
+      "attempts": 2,
+      "region": "US/other"
+    },
+    {
+      "name": "Cloudflare",
+      "url": "https://developers.cloudflare.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:05:09.460Z",
+      "score": 92,
+      "scoreLabel": "Agent-ready",
+      "level": "Agent-Integrated",
+      "platform": "Bespoke platform",
+      "passed": 19,
+      "measured": 24,
+      "categories": {
+        "Agent and API discovery": 81,
+        "Delivery and efficiency": 69,
+        "Findability": 93,
+        "Readable content": 100,
+        "Bot policy and trust": 100
+      },
+      "failing": [],
+      "needsReview": [
+        "Working MCP endpoint",
+        "API spec load cost",
+        "Efficient re-fetching",
+        "Compressed responses",
+        "Full-text docs bundle"
+      ],
+      "unverified": [],
+      "attempts": 1,
+      "region": "US/other"
+    },
+    {
+      "name": "Clerk",
+      "url": "https://clerk.com/docs",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:08:01.116Z",
+      "score": 92,
+      "scoreLabel": "Agent-ready",
+      "level": "Agent-Integrated",
+      "platform": "Bespoke platform",
+      "passed": 21,
+      "measured": 25,
+      "categories": {
+        "Agent and API discovery": 66,
+        "Findability": 93,
+        "Readable content": 100,
+        "Bot policy and trust": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "MCP Server Card"
+      ],
+      "needsReview": [
+        "Working MCP endpoint",
+        "API spec load cost",
+        "Full-text docs bundle"
+      ],
+      "unverified": [],
+      "attempts": 1,
+      "region": "US/other"
+    },
+    {
+      "name": "bunq",
+      "url": "https://doc.bunq.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:20:23.669Z",
+      "score": 91,
+      "scoreLabel": "Agent-ready",
+      "level": "Agent-Integrated",
+      "platform": "GitBook",
+      "passed": 21,
+      "measured": 25,
+      "categories": {
+        "Agent and API discovery": 63,
+        "Findability": 93,
+        "Readable content": 100,
+        "Bot policy and trust": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "Agent Skills"
+      ],
+      "needsReview": [
+        "API spec load cost",
+        "Full-text docs bundle"
+      ],
+      "unverified": [],
+      "attempts": 2,
+      "region": "Europe"
+    },
+    {
+      "name": "Vercel",
+      "url": "https://vercel.com/docs",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:06:13.426Z",
+      "score": 87,
+      "scoreLabel": "Agent-ready",
+      "level": "Agent-Native",
+      "platform": "Bespoke platform",
+      "passed": 20,
+      "measured": 26,
+      "categories": {
+        "Agent and API discovery": 54,
+        "Findability": 88,
+        "Delivery and efficiency": 81,
+        "Readable content": 100,
+        "Bot policy and trust": 100
+      },
+      "failing": [
+        "MCP Server Card",
+        "Working MCP endpoint"
+      ],
+      "needsReview": [
+        "API spec load cost",
+        "Full-text docs bundle",
+        "Real 404 responses",
+        "Efficient re-fetching"
+      ],
+      "unverified": [],
+      "attempts": 1,
+      "region": "US/other"
+    },
+    {
+      "name": "Stripe",
+      "url": "https://docs.stripe.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:04:24.247Z",
+      "score": 76,
+      "scoreLabel": "Strong foundation",
+      "level": "Agent-Integrated",
+      "platform": "Bespoke platform",
+      "passed": 15,
+      "measured": 23,
+      "categories": {
+        "Agent and API discovery": 17,
+        "Findability": 80,
+        "Delivery and efficiency": 63,
+        "Readable content": 100,
+        "Bot policy and trust": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "Agent discovery links"
+      ],
+      "needsReview": [
+        "Sitemap freshness",
+        "Efficient re-fetching",
+        "First-byte response time"
+      ],
+      "unverified": [
+        "API spec load cost"
+      ],
+      "attempts": 1,
+      "region": "US/other"
+    },
+    {
+      "name": "Anthropic (Claude)",
+      "url": "https://platform.claude.com/docs/en/home",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:10:20.421Z",
+      "score": 75,
+      "scoreLabel": "Strong foundation",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 14,
+      "measured": 23,
+      "categories": {
+        "Agent and API discovery": 28,
+        "Findability": 75,
+        "Bot policy and trust": 82,
+        "Delivery and efficiency": 81,
+        "Readable content": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Machine-readable API spec",
+        "Agent discovery links",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Full-text docs bundle",
+        "Sitemap freshness",
+        "Efficient re-fetching"
+      ],
+      "unverified": [
+        "API spec load cost"
+      ],
+      "attempts": 2,
+      "region": "US/other"
+    },
+    {
+      "name": "Slack",
+      "url": "https://docs.slack.dev/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:12:31.278Z",
+      "score": 73,
+      "scoreLabel": "Strong foundation",
+      "level": "Basic Web Presence",
+      "platform": "Docusaurus",
+      "passed": 14,
+      "measured": 23,
+      "categories": {
+        "Agent and API discovery": 17,
+        "Findability": 70,
+        "Bot policy and trust": 82,
+        "Readable content": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "Real 404 responses",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Full-text docs bundle",
+        "Clean URL redirects",
+        "Sitemap freshness"
+      ],
+      "unverified": [
+        "API spec load cost"
+      ],
+      "attempts": 2,
+      "region": "US/other"
+    },
+    {
+      "name": "Supabase",
+      "url": "https://supabase.com/docs",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:06:21.618Z",
+      "score": 68,
+      "scoreLabel": "Strong foundation",
+      "level": "Bot-Aware",
+      "platform": "Bespoke platform",
+      "passed": 17,
+      "measured": 25,
+      "categories": {
+        "Readable content": 32,
+        "Agent and API discovery": 54,
+        "Findability": 81,
+        "Bot policy and trust": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "Markdown for agents",
+        "Markdown page mirrors",
+        "Token cost per page",
+        "MCP Server Card",
+        "Working MCP endpoint",
+        "Agent discovery links"
+      ],
+      "needsReview": [
+        "API spec load cost",
+        "Full-text docs bundle"
+      ],
+      "unverified": [],
+      "attempts": 1,
+      "region": "US/other"
+    },
+    {
+      "name": "Adyen",
+      "url": "https://docs.adyen.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:06:54.565Z",
+      "score": 64,
+      "scoreLabel": "Strong foundation",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 13,
+      "measured": 23,
+      "categories": {
+        "Agent and API discovery": 0,
+        "Readable content": 58,
+        "Bot policy and trust": 82,
+        "Findability": 87,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "Markdown for agents",
+        "Token cost per page",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Full-text docs bundle",
+        "Sitemap freshness"
+      ],
+      "unverified": [
+        "API spec load cost"
+      ],
+      "attempts": 1,
+      "region": "Europe"
+    },
+    {
+      "name": "PostHog",
+      "url": "https://posthog.com/docs",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:07:52.513Z",
+      "score": 59,
+      "scoreLabel": "Partially ready",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 13,
+      "measured": 24,
+      "categories": {
+        "Agent and API discovery": 25,
+        "Readable content": 32,
+        "Findability": 79,
+        "Bot policy and trust": 84,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Working MCP endpoint",
+        "Markdown for agents",
+        "Markdown page mirrors",
+        "Token cost per page",
+        "Agent discovery links",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "API spec load cost",
+        "Sitemap freshness"
+      ],
+      "unverified": [],
+      "attempts": 1,
+      "region": "US/other"
+    },
+    {
+      "name": "GoCardless",
+      "url": "https://docs.gocardless.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:27:12.481Z",
+      "score": 59,
+      "scoreLabel": "Partially ready",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 13,
+      "measured": 24,
+      "categories": {
+        "Agent and API discovery": 25,
+        "Readable content": 32,
+        "Findability": 81,
+        "Bot policy and trust": 82,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Working MCP endpoint",
+        "Markdown for agents",
+        "Markdown page mirrors",
+        "Token cost per page",
+        "Agent discovery links",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "API spec load cost",
+        "Full-text docs bundle"
+      ],
+      "unverified": [],
+      "attempts": 2,
+      "region": "Europe"
+    },
+    {
+      "name": "Mistral AI",
+      "url": "https://docs.mistral.ai/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:07:11.163Z",
+      "score": 57,
+      "scoreLabel": "Partially ready",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 11,
+      "measured": 23,
+      "categories": {
+        "Agent and API discovery": 25,
+        "Readable content": 32,
+        "Findability": 77,
+        "Bot policy and trust": 77,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Working MCP endpoint",
+        "Markdown for agents",
+        "Markdown page mirrors",
+        "Token cost per page",
+        "robots.txt",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "API spec load cost",
+        "Full-text docs bundle",
+        "Sitemap freshness"
+      ],
+      "unverified": [
+        "AI agent access rules"
+      ],
+      "attempts": 1,
+      "region": "Europe"
+    },
+    {
+      "name": "Datadog",
+      "url": "https://docs.datadoghq.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:07:40.740Z",
+      "score": 56,
+      "scoreLabel": "Partially ready",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 12,
+      "measured": 22,
+      "categories": {
+        "Agent and API discovery": 0,
+        "Readable content": 32,
+        "Findability": 86,
+        "Bot policy and trust": 82,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "Markdown for agents",
+        "Markdown page mirrors",
+        "Token cost per page",
+        "Agent discovery links",
+        "Content Signals"
+      ],
+      "needsReview": [],
+      "unverified": [
+        "API spec load cost"
+      ],
+      "attempts": 1,
+      "region": "US/other"
+    },
+    {
+      "name": "Linear",
+      "url": "https://linear.app/docs",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:05:56.983Z",
+      "score": 52,
+      "scoreLabel": "Partially ready",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 10,
+      "measured": 25,
+      "categories": {
+        "Agent and API discovery": 0,
+        "Findability": 68,
+        "Readable content": 45,
+        "Bot policy and trust": 84,
+        "Delivery and efficiency": 69
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "Agent discovery links",
+        "Real 404 responses",
+        "Markdown for agents",
+        "Token cost per page",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Full-text docs bundle",
+        "agents.md instructions",
+        "Markdown page mirrors",
+        "Efficient re-fetching",
+        "Compressed responses"
+      ],
+      "unverified": [
+        "API spec load cost"
+      ],
+      "attempts": 1,
+      "region": "US/other"
+    },
+    {
+      "name": "Mapbox",
+      "url": "https://docs.mapbox.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:08:44.249Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Basic Web Presence",
+      "platform": "Docusaurus",
+      "passed": 10,
+      "measured": 18,
+      "categories": {
+        "Agent and API discovery": null,
+        "Findability": null,
+        "Readable content": null,
+        "Bot policy and trust": 82,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Working MCP endpoint",
+        "Agent discovery links",
+        "Markdown for agents",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Sitemap freshness"
+      ],
+      "unverified": [
+        "Machine-readable API spec",
+        "API spec load cost",
+        "llms.txt index",
+        "Full-text docs bundle",
+        "agents.md instructions",
+        "Markdown page mirrors",
+        "Token cost per page"
+      ],
+      "attempts": 3,
+      "region": "US/other"
+    },
+    {
+      "name": "Algolia",
+      "url": "https://www.algolia.com/doc",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:08:53.110Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Basic Web Presence",
+      "platform": "Mintlify",
+      "passed": 15,
+      "measured": 21,
+      "categories": {
+        "Agent and API discovery": null,
+        "Bot policy and trust": 82,
+        "Findability": 83,
+        "Readable content": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "llms.txt index",
+        "Full-text docs bundle"
+      ],
+      "unverified": [
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "API spec load cost"
+      ],
+      "attempts": 3,
+      "region": "US/other"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://developers.openai.com/api/docs",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:11:37.548Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 15,
+      "measured": 22,
+      "categories": {
+        "Agent and API discovery": null,
+        "Findability": 75,
+        "Bot policy and trust": 82,
+        "Readable content": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Agent discovery links",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Full-text docs bundle",
+        "Sitemap freshness"
+      ],
+      "unverified": [
+        "Machine-readable API spec",
+        "API spec load cost"
+      ],
+      "attempts": 4,
+      "region": "US/other"
+    },
+    {
+      "name": "Plaid",
+      "url": "https://plaid.com/docs/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:13:25.187Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 15,
+      "measured": 22,
+      "categories": {
+        "Agent and API discovery": null,
+        "Readable content": 74,
+        "Bot policy and trust": 84,
+        "Findability": 88,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Markdown page mirrors",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Full-text docs bundle",
+        "Clean URL redirects"
+      ],
+      "unverified": [
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "API spec load cost"
+      ],
+      "attempts": 4,
+      "region": "US/other"
+    },
+    {
+      "name": "Mollie",
+      "url": "https://docs.mollie.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:07:02.639Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 6,
+      "measured": 10,
+      "categories": {
+        "Agent and API discovery": null,
+        "Bot policy and trust": null,
+        "Findability": null,
+        "Readable content": null
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "agents.md instructions"
+      ],
+      "unverified": [
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "API spec load cost",
+        "Direct agent access",
+        "Machine-readable content license",
+        "Full-text docs bundle",
+        "Agent discovery links",
+        "Real 404 responses",
+        "Clean URL redirects",
+        "Sitemap freshness",
+        "Markdown page mirrors",
+        "Readable without JavaScript",
+        "Token cost per page",
+        "Efficient re-fetching",
+        "Compressed responses",
+        "First-byte response time"
+      ],
+      "attempts": 2,
+      "region": "Europe"
+    },
+    {
+      "name": "Twitch",
+      "url": "https://dev.twitch.tv/docs",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:09:16.353Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Not Ready",
+      "platform": "Bespoke platform",
+      "passed": 8,
+      "measured": 16,
+      "categories": {
+        "Agent and API discovery": null,
+        "Findability": null,
+        "Readable content": null,
+        "Bot policy and trust": 82,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Sitemap",
+        "Agent discovery links",
+        "Markdown for agents",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Token cost per page"
+      ],
+      "unverified": [
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "API spec load cost",
+        "llms.txt index",
+        "Full-text docs bundle",
+        "Real 404 responses",
+        "Sitemap freshness",
+        "agents.md instructions",
+        "Markdown page mirrors",
+        "Machine-readable content license",
+        "security.txt contact"
+      ],
+      "attempts": 3,
+      "region": "US/other"
+    },
+    {
+      "name": "Spotify",
+      "url": "https://developer.spotify.com/documentation/web-api",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:08:33.249Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Not Ready",
+      "platform": "Bespoke platform",
+      "passed": 11,
+      "measured": 21,
+      "categories": {
+        "Agent and API discovery": 21,
+        "Readable content": 32,
+        "Findability": null,
+        "Bot policy and trust": 82,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Working MCP endpoint",
+        "Markdown for agents",
+        "Markdown page mirrors",
+        "Token cost per page",
+        "Sitemap",
+        "Agent discovery links",
+        "Content Signals"
+      ],
+      "needsReview": [],
+      "unverified": [
+        "API spec load cost",
+        "Sitemap freshness"
+      ],
+      "attempts": 3,
+      "region": "Europe"
+    },
+    {
+      "name": "Sentry",
+      "url": "https://docs.sentry.io/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:07:31.013Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Agent-Readable",
+      "platform": "Bespoke platform",
+      "passed": 16,
+      "measured": 21,
+      "categories": {
+        "Agent and API discovery": null,
+        "Findability": 80,
+        "Readable content": 100,
+        "Bot policy and trust": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Agent discovery links"
+      ],
+      "needsReview": [
+        "Sitemap freshness"
+      ],
+      "unverified": [
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "API spec load cost"
+      ],
+      "attempts": 3,
+      "region": "US/other"
+    },
+    {
+      "name": "Klarna",
+      "url": "https://docs.klarna.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:08:21.650Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 10,
+      "measured": 19,
+      "categories": {
+        "Agent and API discovery": null,
+        "Readable content": null,
+        "Findability": 79,
+        "Bot policy and trust": 82,
+        "Delivery and efficiency": 81
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Markdown for agents",
+        "Token cost per page",
+        "Agent discovery links",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Sitemap freshness",
+        "Efficient re-fetching"
+      ],
+      "unverified": [
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "API spec load cost",
+        "Markdown page mirrors"
+      ],
+      "attempts": 3,
+      "region": "Europe"
+    },
+    {
+      "name": "Shopify",
+      "url": "https://shopify.dev/docs",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:12:03.850Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 13,
+      "measured": 20,
+      "categories": {
+        "Agent and API discovery": null,
+        "Findability": 65,
+        "Bot policy and trust": 82,
+        "Readable content": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "llms.txt index",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Clean URL redirects",
+        "Sitemap freshness"
+      ],
+      "unverified": [
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "API spec load cost"
+      ],
+      "attempts": 4,
+      "region": "US/other"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://docs.github.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:04:47.100Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Not Ready",
+      "platform": "Bespoke platform",
+      "passed": 12,
+      "measured": 21,
+      "categories": {
+        "Agent and API discovery": 0,
+        "Findability": null,
+        "Bot policy and trust": 82,
+        "Delivery and efficiency": 81,
+        "Readable content": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "Sitemap",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Clean URL redirects",
+        "Efficient re-fetching"
+      ],
+      "unverified": [
+        "API spec load cost",
+        "Sitemap freshness"
+      ],
+      "attempts": 4,
+      "region": "US/other"
+    },
+    {
+      "name": "Twilio",
+      "url": "https://www.twilio.com/docs",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:04:36.936Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Agent-Readable",
+      "platform": "Bespoke platform",
+      "passed": 14,
+      "measured": 20,
+      "categories": {
+        "Agent and API discovery": null,
+        "Findability": 69,
+        "Readable content": 100,
+        "Bot policy and trust": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "Agent discovery links"
+      ],
+      "needsReview": [
+        "llms.txt index",
+        "Clean URL redirects"
+      ],
+      "unverified": [
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "API spec load cost"
+      ],
+      "attempts": 4,
+      "region": "US/other"
+    },
+    {
+      "name": "Hugging Face",
+      "url": "https://huggingface.co/docs",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:08:09.680Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 15,
+      "measured": 22,
+      "categories": {
+        "Readable content": 32,
+        "Findability": null,
+        "Bot policy and trust": 84,
+        "Agent and API discovery": 83,
+        "Delivery and efficiency": 81
+      },
+      "failing": [
+        "Markdown for agents",
+        "Markdown page mirrors",
+        "Token cost per page",
+        "Agent discovery links",
+        "Content Signals",
+        "MCP Server Card"
+      ],
+      "needsReview": [
+        "Efficient re-fetching"
+      ],
+      "unverified": [
+        "llms.txt index",
+        "Full-text docs bundle",
+        "agents.md instructions",
+        "Machine-readable content license",
+        "API spec load cost"
+      ],
+      "attempts": 3,
+      "region": "US/other"
+    },
+    {
+      "name": "Postmark",
+      "url": "https://postmarkapp.com/developer",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:09:22.939Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Agent-Integrated",
+      "platform": "Bespoke platform",
+      "passed": 13,
+      "measured": 15,
+      "categories": {
+        "Agent and API discovery": null,
+        "Findability": null,
+        "Readable content": null,
+        "Delivery and efficiency": 100,
+        "Bot policy and trust": 100
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card"
+      ],
+      "needsReview": [],
+      "unverified": [
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "API spec load cost",
+        "Full-text docs bundle",
+        "Real 404 responses",
+        "Sitemap freshness",
+        "Markdown page mirrors",
+        "Token cost per page",
+        "Efficient re-fetching"
+      ],
+      "attempts": 3,
+      "region": "US/other"
+    },
+    {
+      "name": "Mews",
+      "url": "https://docs.mews.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:34:21.448Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Agent-Integrated",
+      "platform": "GitBook",
+      "passed": 20,
+      "measured": 23,
+      "categories": {
+        "Agent and API discovery": null,
+        "Findability": 93,
+        "Readable content": 100,
+        "Bot policy and trust": 100,
+        "Delivery and efficiency": 100
+      },
+      "failing": [
+        "API Catalog",
+        "Agent Skills"
+      ],
+      "needsReview": [
+        "Full-text docs bundle"
+      ],
+      "unverified": [
+        "Machine-readable API spec",
+        "API spec load cost"
+      ],
+      "attempts": 3,
+      "region": "Europe"
+    },
+    {
+      "name": "Booking.com",
+      "url": "https://developers.booking.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:30:57.825Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Not Ready",
+      "platform": "Redocly",
+      "passed": 10,
+      "measured": 20,
+      "categories": {
+        "Readable content": 32,
+        "Agent and API discovery": null,
+        "Findability": 68,
+        "Bot policy and trust": 77,
+        "Delivery and efficiency": 81
+      },
+      "failing": [
+        "Markdown for agents",
+        "Markdown page mirrors",
+        "Token cost per page",
+        "API Catalog",
+        "Agent Skills",
+        "robots.txt",
+        "Agent discovery links",
+        "Content Signals"
+      ],
+      "needsReview": [
+        "Sitemap freshness",
+        "Efficient re-fetching"
+      ],
+      "unverified": [
+        "Machine-readable API spec",
+        "API spec load cost",
+        "AI agent access rules"
+      ],
+      "attempts": 2,
+      "region": "Europe"
+    },
+    {
+      "name": "bol",
+      "url": "https://developers.bol.com/",
+      "date": "2026-09-25",
+      "measuredAt": "2026-09-25T10:32:40.726Z",
+      "score": null,
+      "scoreLabel": "Incomplete scan",
+      "level": "Basic Web Presence",
+      "platform": "Bespoke platform",
+      "passed": 3,
+      "measured": 9,
+      "categories": {
+        "Agent and API discovery": null,
+        "Findability": null,
+        "Readable content": null,
+        "Bot policy and trust": null
+      },
+      "failing": [
+        "API Catalog",
+        "MCP Server Card",
+        "Agent Skills",
+        "llms.txt index",
+        "Markdown for agents",
+        "Content Signals"
+      ],
+      "needsReview": [],
+      "unverified": [
+        "Working MCP endpoint",
+        "Machine-readable API spec",
+        "API spec load cost",
+        "Full-text docs bundle",
+        "Agent discovery links",
+        "Real 404 responses",
+        "Clean URL redirects",
+        "Sitemap freshness",
+        "agents.md instructions",
+        "Markdown page mirrors",
+        "Readable without JavaScript",
+        "Token cost per page",
+        "Direct agent access",
+        "Machine-readable content license",
+        "security.txt contact",
+        "Efficient re-fetching",
+        "Compressed responses",
+        "First-byte response time"
+      ],
+      "attempts": 2,
+      "region": "Europe"
+    }
+  ]
+}

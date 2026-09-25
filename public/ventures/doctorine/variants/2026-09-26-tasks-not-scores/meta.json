@@ -1,0 +1,6 @@
+{
+  "title": "Tasks, not scores",
+  "created": "2026-09-26",
+  "note": "A bold sky blue scoreboard that puts a static readiness score of 91 out of 100 next to the 9 of 20 real tasks agents finished on the same sample API, with a live mini eval that fills the task grid, then the five tasks, what each surface finished and cost, and the path from free report to paid gate.",
+  "credits": []
+}

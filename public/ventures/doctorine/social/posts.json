@@ -1,0 +1,294 @@
+[
+  {
+    "id": "01",
+    "angle": "The launch",
+    "format": "portrait",
+    "layout": "type",
+    "dark": true,
+    "label": "Docs Analyser, now on its own",
+    "title": "Can AI agents *use your docs?*",
+    "body": "Paste a documentation portal and get a 0 to 100 score for how well agents find, read and use it.",
+    "captions": [
+      "The Docs Analyser is now a standalone tool.\n\nPaste the URL of a documentation portal and it scores, from 0 to 100, how well AI agents can find, read and use it. It runs 27 checks in five groups, from API discovery to bot policy, and tells you what failed, why it matters and how to fix it.\n\nNo account, no migration, no spec upload. It reads the docs you already publish.\n\ndoctorine.dev",
+      "Coding agents now read your API docs before most developers do. The question is whether they get anything useful out of them.\n\nThe Docs Analyser answers that for any public portal: a 0 to 100 score, five category scores and a check list with the fix for each miss. It is free and it works on the docs you already have.\n\ndoctorine.dev",
+      "We have split the Docs Analyser out into its own tool.\n\nOne input, your docs URL. One output, a report on whether agents can discover your API, read your pages as Markdown, find what changed and reach the content without hitting a wall.\n\nRun it on your own portal and see what an agent sees.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "02",
+    "angle": "Try it on your docs",
+    "format": "portrait",
+    "layout": "product",
+    "dark": true,
+    "label": "doctorine.dev",
+    "title": "One URL in. What an agent sees, out.",
+    "photo": "/ventures/doctorine/gallery/screenshots/doctorine-dev-analyser-home.jpg",
+    "captions": [
+      "Paste your docs URL, press Analyze, and read the report.\n\nThe analyser checks whether agents can discover your API, read your pages as Markdown, tell fresh pages from stale ones and reach the content without a challenge wall. Every miss comes with why it matters and how to fix it.\n\ndoctorine.dev",
+      "The fastest way to know how agents experience your documentation is to look at it the way they do.\n\nThat is what the Docs Analyser does: one URL, 27 checks, a score out of 100 and a report you can share with the team that owns the portal.\n\ndoctorine.dev",
+      "Before you write an llms.txt or ship an MCP server, find out what is already there.\n\nThe Docs Analyser reads your public portal and tells you which agent-facing pieces exist, which are missing and which could not be verified. It takes about ten seconds.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "03",
+    "angle": "We ran it on 33 docs sites",
+    "format": "square",
+    "layout": "stat",
+    "stat": "33",
+    "label": "Docs Analyser, 25 September 2026",
+    "title": "Public API docs sites, one analyser, one day. Here is what we saw.",
+    "captions": [
+      "We ran the Docs Analyser on 33 well-known public API documentation sites on 25 September 2026, from payments and messaging to developer platforms and AI labs.\n\n16 returned a full score, between 52 and 95 with a median of 74. The other 17 came back as incomplete scans, which we report as such rather than guess. Over the next posts we share what the results have in common.\n\ndoctorine.dev",
+      "33 API docs sites, one tool, one day.\n\nThe short version: almost every site is readable by agents, and very few tell agents where the API is. 27 of the 33 had no API Catalog and 27 had no MCP Server Card. Every site where the check could run served its content without needing JavaScript.\n\nThe full run log is public, and you can run the same check on your own docs.\n\ndoctorine.dev",
+      "We wanted to know what agent-ready API docs look like in practice, so we ran our own analyser on 33 of the best-known public portals.\n\nWhat we found is less about good and bad docs and more about which layer is missing. The pages are fine. The machine-readable signposts around them mostly are not there yet.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "04",
+    "angle": "The spread of scores",
+    "format": "portrait",
+    "layout": "stat",
+    "stat": "52–95",
+    "dark": true,
+    "label": "16 full scores",
+    "title": "The range across the API docs sites that returned a full score. *Median 74.*",
+    "captions": [
+      "Of the 33 API docs sites we ran through the Docs Analyser, 16 returned a full score. The lowest was 52, the highest 95, and the median 74.\n\nSix scored 87 or more and were labelled agent-ready. The analyser does not grade the writing; what separated the top from the bottom was whether an agent could ask for Markdown and find the API from a standard location.\n\ndoctorine.dev",
+      "52 to 95.\n\nThat is the spread across 16 well-known API docs portals on 25 September 2026. None of them is badly written. The difference is in the plumbing agents rely on: content negotiation, catalogs, discovery links and fresh sitemaps.\n\nThe good news is that most of it is a configuration change, not a rewrite.\n\ndoctorine.dev",
+      "A 43-point gap between well-known API docs sites, measured the same way on the same day.\n\nThe median was 74 and six sites scored 87 or more. The lower half shared a pattern we will cover next: agents asking for Markdown got HTML back.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "05",
+    "angle": "The most common failing check",
+    "format": "square",
+    "layout": "stat",
+    "stat": "27/33",
+    "label": "Most common miss",
+    "title": "API docs sites with no API Catalog. The same number had no MCP Server Card.",
+    "captions": [
+      "The most common miss in our run of 33 API docs sites was not about content at all.\n\n27 had no API Catalog, the well-known file that points agents to the API descriptions a company publishes. 27 had no MCP Server Card, the file that tells an agent which MCP server exists and how to connect before it opens a session.\n\nBoth are small files. Without them, an agent has to guess from prose and navigation.\n\ndoctorine.dev",
+      "27 of 33.\n\nThat is how many well-known API docs sites had no machine-readable catalog of their APIs when we ran the Docs Analyser on 25 September 2026. The same number had no MCP Server Card.\n\nAgents are good at reading pages. They are much better when you tell them where the contract is.\n\ndoctorine.dev",
+      "If you fix one thing after running the Docs Analyser, it is probably discovery.\n\nAcross 33 public API docs sites, API Catalog and MCP Server Card were each missing on 27. These checks come from the Cloudflare Agent Ready benchmark, which the analyser runs alongside its own probes, so they were measured on every site.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "06",
+    "angle": "Read fine, find badly",
+    "format": "portrait",
+    "layout": "product",
+    "dark": true,
+    "label": "Category scores",
+    "title": "Agents can read most docs. *They struggle to find the API.*",
+    "body": "Average across 16 scored sites: discovery 40, findability 83, delivery 91.",
+    "photo": "/ventures/doctorine/gallery/product/analyser-category-scores-stripe.webp",
+    "captions": [
+      "Every report breaks the score into five groups: agent and API discovery, findability, delivery and efficiency, readable content, and bot policy and trust.\n\nAcross the 16 API docs sites that returned a full score, discovery averaged 40. Findability averaged 83, and delivery and bot policy 91 each. Every site where the check could run served its docs without needing JavaScript.\n\nThe pages are there. The signposts to the API mostly are not.\n\ndoctorine.dev",
+      "The weakest group in our run was not content, speed or bot policy. It was discovery.\n\nAgent and API discovery asks whether an agent can find the API catalog, the spec, the MCP server and the skills without reading the site like a human. Across 16 scored sites it averaged 40 out of 100.\n\ndoctorine.dev",
+      "Discovery 40. Findability 83. Delivery 91. Bot policy 91.\n\nThose are the average category scores across 16 well-known API docs sites on 25 September 2026. Most teams have solved serving pages to agents. Far fewer have published the machine-readable map that tells an agent what the API is and where to start.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "07",
+    "angle": "One check split the table",
+    "format": "portrait",
+    "layout": "type",
+    "label": "What separated the scores",
+    "title": "Every site under 70 failed one check: *Markdown for agents.*",
+    "body": "All nine sites at 73 or above passed it.",
+    "captions": [
+      "One check split our results cleanly.\n\nOf the 16 API docs sites that returned a full score, all seven below 70 failed Markdown for agents: when an agent asks for Markdown, the site sends HTML. All nine at 73 or above passed it.\n\nMarkdown strips layout, cuts tokens and keeps the hierarchy an agent needs. It is also one of the easier fixes on the list.\n\ndoctorine.dev",
+      "If your docs score is in the fifties or sixties, check this first.\n\nIn our run of API docs sites, every site under 70 failed the same check, Markdown for agents, and every site at 73 or above passed it. The fix is to return a Markdown version of the page at the same URL, or to advertise one, when an agent asks for it.\n\ndoctorine.dev",
+      "Nine sites passed Markdown for agents and scored 73 or more. Seven failed it and scored under 70.\n\nCorrelation, not proof, and the sample is 16 sites. But it matches what Mintlify reports: by August 2026, 83% of agent traffic on its hosted docs used machine-friendly routes such as Markdown, llms.txt and skills.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "08",
+    "angle": "A surprising check: sitemap dates",
+    "format": "square",
+    "layout": "stat",
+    "stat": "12/33",
+    "dark": true,
+    "label": "Sitemap freshness",
+    "title": "Docs sitemaps with no lastmod dates. Agents cannot tell current pages from abandoned ones.",
+    "captions": [
+      "A small check that surprised us: sitemap freshness.\n\n12 of the 33 API docs sites we ran had a sitemap with no lastmod dates. That date is the one freshness signal a crawler can read without fetching every page. Without it, an agent either re-reads everything or cannot tell a current guide from one nobody has touched in years.\n\ndoctorine.dev",
+      "Your sitemap can tell agents which pages are current. On 12 of 33 API docs sites we checked, it did not.\n\nThe fix is to emit an accurate lastmod for every page from your docs build. Accurate matters: a date that changes on every deploy is as unhelpful as no date at all.\n\ndoctorine.dev",
+      "Developers complain about stale docs more than almost anything else. Agents have the same problem, and they do not complain.\n\nOn 12 of 33 docs sites in our run, the sitemap gave agents no way to judge freshness at all. The Docs Analyser flags it under findability, with the fix.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "09",
+    "angle": "What the best ones do",
+    "format": "landscape",
+    "layout": "product",
+    "dark": true,
+    "label": "Top of the run",
+    "title": "What a *95* looks like.",
+    "photo": "/ventures/doctorine/gallery/product/analyser-score-report-resend-95.webp",
+    "captions": [
+      "The highest score in our run was Resend at 95, followed by Notion at 93, Cloudflare and Clerk at 92, bunq at 91 and Vercel at 87.\n\nWhat they share: Markdown at the same URL when an agent asks, a valid llms.txt, compact pages that do not waste tokens on chrome, and open bot policy. All six also scored above 50 on agent and API discovery, where the average across scored sites was 40.\n\ndoctorine.dev",
+      "Six API docs sites scored 87 or more in our run on 25 September 2026: Resend, Notion, Cloudflare, Clerk, bunq and Vercel.\n\nNone of them got there with better prose. They got there by answering agents in the format agents ask for and publishing the files agents look for first.\n\ndoctorine.dev",
+      "What does a 95 look like?\n\nOn Resend's docs on 25 September 2026, discovery, readable content, delivery and bot policy all scored 100. The only failed check was a redirect on the way to the content, plus one item flagged for review. It is a useful reference for anyone deciding what to fix first.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "10",
+    "angle": "How to read a report",
+    "format": "landscape",
+    "layout": "product",
+    "dark": true,
+    "label": "Reading a report",
+    "title": "Strong pages. *Missing signposts.*",
+    "photo": "/ventures/doctorine/gallery/product/analyser-score-report-stripe-76.webp",
+    "captions": [
+      "How to read a Docs Analyser report, using Stripe's docs as measured on 25 September 2026.\n\nThe score was 76, a strong foundation. Readable content and bot policy scored 100: agents get compact Markdown and are let in. The misses were all in discovery: no API catalog, no MCP server card, no working MCP endpoint on the docs origin, no agent discovery links, and a spec published as a GitHub repository rather than a fetchable document.\n\nThat is the typical shape: great pages, missing signposts.\n\ndoctorine.dev",
+      "The headline of every report is written the same way: the grade, then how many things agents looked for and did not find, each linked to its check.\n\nFor Stripe's docs on 25 September 2026 that was 76 and five things, all in agent and API discovery. Everything about reading the pages passed.\n\ndoctorine.dev",
+      "A score is only useful if it tells you what to do next.\n\nEach report lists what was not found, what needs review and what could not be verified, and every miss opens into why it matters and how to fix it. You can share the report or send it by email to whoever owns the portal.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "11",
+    "angle": "Agents are the majority reader",
+    "format": "portrait",
+    "layout": "stat",
+    "stat": "66%",
+    "label": "Mintlify, July 2026",
+    "title": "Share of documentation traffic that came from AI agents on Mintlify-hosted docs.",
+    "captions": [
+      "Agents are now the main reader of API documentation.\n\nOn Mintlify-hosted docs, agents went from 15.2% of traffic at the start of 2026 to 66% in July, and roughly two agent requests for every human page load in August. In March, Claude Code and Cursor made up 95.6% of the agent traffic Mintlify could identify.\n\nSources: Mintlify, The state of agent traffic in documentation (March 2026), The state of docs traffic (July 2026) and State of Knowledge highlights (September 2026).\n\ndoctorine.dev",
+      "Two out of three.\n\nThat is the share of docs traffic Mintlify attributed to AI agents in July 2026, up from 15.2% at the start of the year. If your docs were designed for people clicking through a sidebar, most of your readers are now doing something else.\n\nSource: Mintlify, The state of docs traffic, 29 July 2026.\n\ndoctorine.dev",
+      "Your docs have a new majority reader, and it does not use your navigation.\n\nMintlify reported 213M agent requests against 105M human page loads in July 2026, and 83% of agent traffic using machine-friendly routes like Markdown, llms.txt and skills by August. The Docs Analyser checks whether those routes exist on your portal.\n\nSources: Mintlify, July and September 2026.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "12",
+    "angle": "Markdown and llms.txt cut dead ends",
+    "format": "square",
+    "layout": "stat",
+    "stat": "0.11",
+    "dark": true,
+    "label": "404s per agent task",
+    "title": "With Markdown and llms.txt, down from 2.23 when agents navigated HTML.",
+    "captions": [
+      "Format changes how often an agent gets lost.\n\nIn Mintlify's navigation benchmark, 2,400 tests over 20 sites, agents hit 2.23 404 errors per task on HTML, 1.42 on Markdown and 0.11 on Markdown plus llms.txt, using up to 60% fewer tokens.\n\nSource: Mintlify, Highlights from the 2026 State of Knowledge Report, 16 September 2026.\n\ndoctorine.dev",
+      "From 2.23 dead ends per task to 0.11.\n\nThat is the difference Mintlify measured between agents navigating HTML docs and agents given Markdown and an llms.txt index. In our own run of 33 API docs sites, 26 published a valid llms.txt, but only 19 returned Markdown when asked.\n\nSource: Mintlify, September 2026.\n\ndoctorine.dev",
+      "Every 404 an agent hits is a guess that went wrong, and a guess that cost tokens.\n\nMintlify's benchmark put the number at 2.23 per task on HTML and 0.11 with Markdown plus llms.txt. The Docs Analyser checks both, along with real 404s, so an agent never mistakes an error page for content.\n\nSource: Mintlify, 16 September 2026.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "13",
+    "angle": "A score is not a finished task",
+    "format": "portrait",
+    "layout": "stat",
+    "stat": "43.7%",
+    "label": "MCP-Universe, August 2025",
+    "title": "Share of real MCP tasks GPT-5 completed. *Readable is not the same as usable.*",
+    "captions": [
+      "A readiness score tells you whether agents can find and read your docs. It does not tell you whether they can finish the job.\n\nIn Salesforce AI Research's MCP-Universe benchmark, GPT-5 completed 43.7% of real-world tasks on MCP servers. In WAPIIBench, no open-source model solved more than 40% of web API integration tasks, with hallucinated endpoints and wrong arguments.\n\nSources: MCP-Universe, arXiv 2508.14704; WAPIIBench, arXiv 2509.20172.\n\ndoctorine.dev",
+      "Static checks are necessary. They are not sufficient.\n\nA docs portal can pass every discovery and Markdown check and an agent can still pick the wrong endpoint. Benchmarks put real task success well under half: 43.7% for GPT-5 on real MCP servers in MCP-Universe.\n\nThat gap, between readable and usable, is the part we are working on next.\n\nSource: arXiv 2508.14704, August 2025.\n\ndoctorine.dev",
+      "Static agent readiness scores are now free: Fern launched one in April 2026, Cloudflare days later, and ours is at doctorine.dev. What none of them publishes is whether an agent actually completed a task against the API.\n\nThe benchmarks say that is where things break: 43.7% task success for GPT-5 on real MCP servers. A score is where you start. Task success is what your users feel.\n\nSource: MCP-Universe, arXiv 2508.14704.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "14",
+    "angle": "From score to task eval",
+    "format": "portrait",
+    "layout": "type",
+    "dark": true,
+    "label": "What comes next",
+    "title": "Can an agent read your docs? Next question: *can it finish the task?*",
+    "captions": [
+      "The Docs Analyser answers the first question: can an agent find and read your documentation.\n\nThe next question is harder and more useful: given your docs, your spec and your MCP server, can a coding agent complete a real task against your API, and does it still manage after your next release. That is the direction we are building towards.\n\ndoctorine.dev",
+      "Reading is the easy part for an agent. Choosing the right endpoint, passing the right arguments and handling the error it gets back is where integrations fail.\n\nWe are extending Doctorine from a static score to a task check: real tasks, run by agents, against your API, with a record of what passed.\n\ndoctorine.dev",
+      "A static score measures what is on the page. A task eval measures what happens when an agent uses it.\n\nWe built the first to start the conversation, and it is free at doctorine.dev. The second is what we think every API release will need once agents are the main integrators.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "15",
+    "angle": "Docs drift",
+    "format": "square",
+    "layout": "stat",
+    "stat": "55%",
+    "label": "Postman State of the API, 2025",
+    "title": "Of API teams name inconsistent or outdated documentation as a collaboration blocker, the most cited one.",
+    "captions": [
+      "Docs drift is the oldest problem in API documentation, and agents make it quieter.\n\nIn Postman's 2025 State of the API survey of more than 5,700 respondents, 93% of teams reported collaboration blockers, and the most cited, by 55%, was inconsistent or outdated documentation. A developer who hits a stale page files a ticket. An agent just answers anyway.\n\nSource: Postman, 2025 State of the API Report.\n\ndoctorine.dev",
+      "More than half of API teams name inconsistent or outdated documentation as a collaboration blocker, the most cited one in Postman's 2025 survey.\n\nWhen the reader is an agent, stale docs do not produce a complaint. They produce a plausible integration that calls a field that no longer exists. The only fix that scales is checking every release before it ships.\n\nSource: Postman, 2025 State of the API Report.\n\ndoctorine.dev",
+      "The spec changes, the docs lag, the SDK lags further.\n\n55% of API teams in Postman's 2025 survey named inconsistent or outdated documentation as a blocker, more than any other. Doctorine starts from one approved API contract and publishes docs, SDKs, CLI, MCP server and skills from it, so they move together.\n\nSource: Postman, 2025 State of the API Report.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "16",
+    "angle": "The release gate",
+    "format": "portrait",
+    "layout": "type",
+    "label": "Doctorine",
+    "title": "Check every output. *Publish only what passed.*",
+    "body": "Docs, SDKs, CLI, MCP server and Agent Skills from one approved API contract.",
+    "captions": [
+      "Most API tooling generates. Very little of it checks.\n\nDoctorine turns one approved OpenAPI contract into a docs portal, TypeScript, Python and Go SDKs, a CLI, an MCP server and Agent Skills, checks each output before release, and publishes only what passed. Everything around the API ships as one release.\n\ndoctorine.dev",
+      "A release gate for everything around your API.\n\nWhen the contract changes, every surface that depends on it has to change too, and the risk is the one that did not. Doctorine checks each output against the contract before release and holds back anything that fails.\n\ndoctorine.dev",
+      "Generating an SDK is the easy half. Keeping it honest after the next change is the hard half.\n\nThat is why Doctorine is built around a check, not a generator: one approved contract in, every output verified, only what passed goes out.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "17",
+    "angle": "How to fix: API Catalog",
+    "format": "portrait",
+    "layout": "product",
+    "dark": true,
+    "label": "How to fix one check",
+    "title": "Add an API Catalog. One file, at a well-known path.",
+    "photo": "/ventures/doctorine/gallery/product/analyser-check-api-catalog-missing.webp",
+    "captions": [
+      "The most common miss in our run of 33 API docs sites, and one of the smallest to fix.\n\nAn API Catalog is a machine-readable file at /.well-known/api-catalog (RFC 9727) that lists the API descriptions you publish, with links to each OpenAPI document. An agent that lands on your domain can read it and go straight to the contract instead of guessing from prose.\n\nPublish it, point each entry at a fetchable spec, and run the analyser again.\n\ndoctorine.dev",
+      "How to fix API Catalog not found, in three steps.\n\nPublish your OpenAPI description at a stable, fetchable URL, not only as a repository. Serve a catalog at /.well-known/api-catalog that links to it. Re-run the Docs Analyser to confirm it validates and lists a usable description.\n\n27 of 33 sites in our run had not done this yet.\n\ndoctorine.dev",
+      "Why this matters, in the analyser's own words: agents can discover contracts directly instead of guessing from prose or client-side navigation.\n\nThe API Catalog is a small well-known file, defined in RFC 9727, that tells them where those contracts are. It is also the check most API docs sites in our run were missing.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "18",
+    "angle": "Behind the checks",
+    "format": "portrait",
+    "layout": "product",
+    "dark": true,
+    "label": "Behind the checks",
+    "title": "27 checks, five groups, *and a fix for every miss.*",
+    "photo": "/ventures/doctorine/gallery/product/analyser-checklist-findability.webp",
+    "captions": [
+      "What the Docs Analyser actually does when you paste a URL.\n\nIt runs the Cloudflare Agent Ready benchmark and adds its own probes: whether missing pages return real 404s, whether URLs resolve without redirect chains, whether the sitemap carries dates, whether pages are readable without JavaScript, how many tokens a page costs, and whether an MCP endpoint answers a real initialize call.\n\nEvery check says what was assessed, why it matters and how to fix it.\n\ndoctorine.dev",
+      "27 checks in five groups: agent and API discovery, findability, delivery and efficiency, readable content, and bot policy and trust.\n\nSome come from Cloudflare's Agent Ready benchmark. The rest are Doctorine's own probes, such as whether a missing page returns a real 404 instead of a page that looks like content, and whether the sitemap carries dates.\n\ndoctorine.dev",
+      "We do not just check whether an MCP server is declared. The analyser sends a real initialize request to the common MCP paths on your docs origin and reports whether anything answers.\n\nThe same idea runs through the other checks: test what an agent would do, not only what a file claims.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "19",
+    "angle": "No score beats a wrong score",
+    "format": "square",
+    "layout": "stat",
+    "stat": "17/33",
+    "label": "Incomplete scans",
+    "title": "Sites where the analyser could not verify enough signals, and said so instead of guessing.",
+    "captions": [
+      "An honest number from our run: 17 of the 33 API docs sites we tried came back as incomplete scans, even after retries.\n\nWhen the analyser cannot verify enough of the signals, most often the API spec and MCP probes, it withholds the overall score and marks each check it could not verify. We would rather show you no number than a confident wrong one.\n\ndoctorine.dev",
+      "Not every scan finishes, and the report says so.\n\nIn our run of 33 docs sites, 17 returned Incomplete scan. The checks that could run are still listed as passed or missing, and the rest are marked unverified rather than counted as failures.\n\nIf your portal comes back incomplete, run it again later.\n\ndoctorine.dev",
+      "A tool that grades other people's docs should be strict with itself first.\n\nThe Docs Analyser only gives an overall score when enough of its 27 checks could be verified. On 25 September 2026 that was 16 of the 33 sites we ran. The other 17 got a partial report and no score.\n\ndoctorine.dev"
+    ]
+  },
+  {
+    "id": "20",
+    "angle": "The spec is the weak link",
+    "format": "portrait",
+    "layout": "stat",
+    "stat": "17.2%",
+    "dark": true,
+    "label": "APIs.guru, September 2026",
+    "title": "Of the OpenAPI specs in the largest open directory are invalid. *Agents start from the spec.*",
+    "captions": [
+      "Everything an agent does against your API starts from the contract, and the contract is often the weakest part.\n\nIn the APIs.guru directory, 688 of 3,992 OpenAPI specs are invalid, 17.2%. In our own run of 33 docs sites, the analyser could confirm a fetchable machine-readable spec on 12; on 14 it could not verify either way.\n\nSource: APIs.guru metrics API, queried 25 September 2026.\n\ndoctorine.dev",
+      "688 invalid specs out of 3,992.\n\nThat is the state of the largest open directory of OpenAPI definitions. A docs portal can be beautifully written and still hand agents a contract they cannot load. The analyser checks whether your spec is published, fetchable and affordable to ingest.\n\nSource: APIs.guru, September 2026.\n\ndoctorine.dev",
+      "Before docs, before SDKs, before an MCP server, there is the spec.\n\n17.2% of the specs in APIs.guru are invalid, and a published GitHub repository is not the same as a spec an agent can fetch. Doctorine starts every release from one approved contract for that reason.\n\nSource: APIs.guru metrics API, 25 September 2026.\n\ndoctorine.dev"
+    ]
+  }
+]

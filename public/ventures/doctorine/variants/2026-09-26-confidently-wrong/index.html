@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en" class="js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doctorine: confidently wrong</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F3EC;--card:#FFFDF9;--ink:#18140E;--ink2:#3B342A;--muted:#6B6253;--faint:#9B9079;--line:#E6DFD2;--line2:#D6CDBD;
+  --red:#D93A1F;--red-soft:#FBE3DC;--green:#16804A;--green-soft:#DDF0E3;--code:#1B1813;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+pre,code{font-family:"JetBrains Mono",ui-monospace,monospace}
+.wrap{max-width:1360px;margin:0 auto;padding:0 40px}
+.label{font-size:12.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.tn{font-variant-numeric:tabular-nums}
+h1,h2,h3{font-weight:800;letter-spacing:-.045em;line-height:.95}
+
+nav{height:80px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:23px;letter-spacing:-.04em}
+.logo img{width:32px;height:32px}
+.links{display:flex;gap:32px;align-items:center;font-weight:600;font-size:16px;color:var(--ink2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:999px;font-weight:700;font-size:16.5px;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ink{background:var(--ink);color:var(--paper)}
+.btn.line{border:1.5px solid var(--ink)}
+.btn.sm{padding:10px 18px;font-size:15px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 600px;gap:60px;align-items:center;padding:30px 0 90px}
+.hero>*{min-width:0}
+.hero h1{font-size:98px;letter-spacing:-.055em;line-height:.9}
+.hero h1 .red{color:var(--red)}
+.hero h1 .ln{display:block}
+.lede{font-size:21px;color:var(--ink2);margin-top:30px;max-width:580px;line-height:1.45}
+.urlform{display:flex;gap:8px;margin-top:34px;max-width:560px;background:var(--card);border:1.5px solid var(--line2);border-radius:999px;padding:6px}
+.urlform input{flex:1;min-width:0;border:0;background:none;padding:0 18px;font-size:17px;outline:none}
+.urlform input::placeholder{color:var(--faint)}
+.small{font-size:14.5px;color:var(--muted);margin-top:14px}
+
+/* trace */
+.trace{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 70px -40px rgba(60,40,10,.35);overflow:hidden}
+.tr-h{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;align-items:start}
+.tr-h b{display:block;font-size:17px;letter-spacing:-.01em}
+.tr-h small{display:block;font-size:13.5px;color:var(--muted);margin-top:2px}
+.samp{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line2);border-radius:999px;padding:4px 9px;white-space:nowrap}
+.tr-body{padding:16px 22px 18px;min-height:470px;display:flex;flex-direction:column;gap:10px}
+.st{display:grid;grid-template-columns:22px 1fr;gap:10px;opacity:0;transform:translateY(6px);transition:.35s}
+.st.on{opacity:1;transform:none}
+.st .i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;background:#EFE9DE;color:var(--muted);margin-top:1px}
+.st .i.bad{background:var(--red-soft);color:var(--red)}
+.st .i.good{background:var(--green-soft);color:var(--green)}
+.st p{font-size:15px;color:var(--ink2)}
+.st p b{color:var(--ink)}
+.st pre{margin-top:6px;background:var(--code);color:#E9E2D4;border-radius:10px;padding:9px 12px;font-size:12.5px;line-height:1.6;overflow-x:auto}
+.st pre .c{color:#8A8170}.st pre .r{color:#FF9A85}.st pre .g{color:#7EDBA6}.st pre .y{color:#E7C38A}
+.say{background:#F1ECE3;border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:15.5px;font-weight:600;display:inline-block}
+.say .ok{display:inline-flex;gap:6px;align-items:center;margin-left:8px;font-size:12.5px;font-weight:800;color:var(--green);letter-spacing:.04em}
+.verdict{margin-top:auto;border-radius:14px;padding:14px 16px;background:var(--red);color:#fff;opacity:0;transform:scale(.97);transition:.35s}
+.verdict.on{opacity:1;transform:none}
+.verdict.pass{background:var(--green)}
+.verdict b{display:block;font-size:17px;letter-spacing:-.01em}
+.verdict span{display:block;font-size:14.5px;opacity:.9;margin-top:2px}
+.tr-f{display:flex;gap:8px;justify-content:space-between;align-items:center;padding:14px 22px;border-top:1px solid var(--line);background:#FBF8F2}
+.tr-f p{font-size:13.5px;color:var(--muted)}
+.tr-f .btn{padding:10px 16px;font-size:14.5px}
+.tr-f .btn:disabled{opacity:.4;cursor:default;transform:none}
+
+/* quiet failures */
+.quiet{padding:120px 0}
+.q-h{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:end;margin-bottom:60px}
+.q-h h2{font-size:80px}
+.q-h p{font-size:20px;color:var(--ink2);max-width:560px}
+.q-grid{display:grid;grid-template-columns:420px 1fr;gap:28px;align-items:stretch}
+.photo{border-radius:22px;overflow:hidden;position:relative;min-height:520px}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.photo figcaption{position:absolute;left:18px;bottom:18px;right:18px;background:rgba(24,20,14,.82);color:#F7F3EC;border-radius:14px;padding:12px 16px;font-size:15px;font-weight:600;backdrop-filter:blur(4px)}
+.tbl{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.tbl .r{display:grid;grid-template-columns:1.05fr 1.2fr 1.2fr;gap:24px;padding:24px 28px;border-bottom:1px solid var(--line);align-items:start}
+.tbl .r:last-child{border-bottom:0}
+.tbl .r.hd{padding:16px 28px;background:#FBF8F2}
+.tbl .task b{display:block;font-size:19px;letter-spacing:-.02em;line-height:1.2}
+.tbl .task span{display:block;font-size:14.5px;color:var(--muted);margin-top:4px}
+.tbl .said{font-size:17px;font-weight:600;position:relative;padding-left:16px}
+.tbl .said:before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:3px;border-radius:2px;background:var(--green)}
+.tbl .real{font-size:17px;color:var(--red);font-weight:700;position:relative;padding-left:16px}
+.tbl .real:before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:3px;border-radius:2px;background:var(--red)}
+.tbl .real small{display:block;color:var(--muted);font-weight:500;font-size:14.5px;margin-top:4px}
+
+/* report */
+.report{padding:40px 0 120px}
+.rep{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:40px;box-shadow:0 30px 80px -50px rgba(60,40,10,.35)}
+.rep-top{display:flex;justify-content:space-between;align-items:start;gap:30px;flex-wrap:wrap}
+.rep-top h2{font-size:56px;max-width:720px}
+.rep-top p{color:var(--muted);font-size:16.5px;margin-top:14px;max-width:620px}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:999px;padding:4px;background:var(--paper)}
+.seg button{padding:8px 16px;border-radius:999px;font-weight:700;font-size:14.5px;color:var(--muted)}
+.seg button.on{background:var(--ink);color:var(--paper)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kpi{padding:22px 24px 22px 0}
+.kpi+.kpi{padding-left:24px;border-left:1px solid var(--line)}
+.kpi .v{font-size:52px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.kpi .v small{font-size:22px;color:var(--faint);font-weight:700}
+.kpi .v.bad{color:var(--red)}
+.kpi b{display:block;font-size:15px;margin-top:10px}
+.kpi span{display:block;font-size:13.5px;color:var(--muted)}
+.gridwrap{display:grid;grid-template-columns:1fr 380px;gap:30px;margin-top:30px}
+.gridwrap>*{min-width:0}
+table{width:100%;border-collapse:collapse}
+th{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 8px 12px}
+td{padding:6px 8px;border-top:1px solid var(--line)}
+td.tk b{display:block;font-size:15.5px;letter-spacing:-.01em;line-height:1.2}
+td.tk span{font-size:13px;color:var(--muted)}
+.cell{width:100%;border-radius:10px;padding:10px 10px;text-align:left;font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:7px;border:1.5px solid transparent;transition:.15s}
+.cell i{width:9px;height:9px;border-radius:50%;flex:none}
+.cell.p{background:var(--green-soft);color:var(--green)}.cell.p i{background:var(--green)}
+.cell.f{background:var(--red-soft);color:var(--red)}.cell.f i{background:var(--red)}
+.cell.fl{background:#F3EBDC;color:#8A6A2B}.cell.fl i{background:#C4973E}
+.cell.sel{border-color:var(--ink)}
+.why{background:var(--paper);border-radius:18px;padding:24px}
+.why h3{font-size:24px;letter-spacing:-.03em;line-height:1.1;margin-top:10px}
+.why p{font-size:15.5px;color:var(--ink2);margin-top:12px}
+.why ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.why li{display:grid;grid-template-columns:62px 1fr;gap:10px;font-size:14.5px}
+.why li b{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.rep-foot{margin-top:24px;font-size:13.5px;color:var(--muted)}
+
+/* stays fixed */
+.fixed{padding:40px 0 120px;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.fixed h2{font-size:72px}
+.fixed p{font-size:19px;color:var(--ink2);margin-top:22px;max-width:520px}
+.fixed ol{list-style:none;margin-top:30px;border-top:1px solid var(--line2)}
+.fixed ol li{padding:16px 0;border-bottom:1px solid var(--line2);display:grid;grid-template-columns:40px 1fr;font-size:17px}
+.fixed ol li b{font-weight:800;color:var(--faint)}
+.diff{background:var(--code);color:#E9E2D4;border-radius:22px;overflow:hidden}
+.diff .h{padding:14px 20px;border-bottom:1px solid #2E2A23;font-size:14px;display:flex;justify-content:space-between;color:#A69E8F}
+.diff .h b{color:#F7F3EC;font-weight:700}
+.diff pre{padding:20px;font-size:13.5px;line-height:1.75;overflow-x:auto}
+.diff .c{color:#7C7465}.diff .r{color:#FF9A85}.diff .g{color:#7EDBA6}
+.gatebar{display:flex;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid #2E2A23;font-size:14.5px;font-family:"Hanken Grotesk",sans-serif}
+.gatebar i{width:10px;height:10px;border-radius:50%;background:#46D583}
+
+/* fair */
+.fair{padding:110px 0;border-top:1px solid var(--line2)}
+.fair h2{font-size:64px;max-width:900px}
+.fair-g{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;margin-top:56px}
+.fair-g div{border-top:3px solid var(--ink);padding-top:18px}
+.fair-g b{display:block;font-size:22px;letter-spacing:-.025em;line-height:1.15}
+.fair-g p{color:var(--muted);font-size:16px;margin-top:10px}
+
+/* end */
+.end{background:var(--ink);color:var(--paper);padding:120px 0 60px}
+.end h2{font-size:120px;letter-spacing:-.06em;line-height:.88;max-width:1100px}
+.end h2 span{color:#FF7A5E}
+.end p{font-size:20px;color:#CFC6B6;margin-top:28px;max-width:620px}
+.end .urlform{background:#221E17;border-color:#3A342A}
+.end .urlform input{color:var(--paper)}
+.end .btn.ink{background:var(--paper);color:var(--ink)}
+.end footer{margin-top:120px;padding-top:26px;border-top:1px solid #2E2A23;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;color:#8A8170}
+
+.js .rv{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
+.js .rv.in{opacity:1;transform:none}
+
+@media (max-width:1200px){
+  .hero{grid-template-columns:1fr}
+  .hero h1{font-size:86px}
+  .q-h,.fixed{grid-template-columns:1fr;gap:28px}
+  .q-grid{grid-template-columns:1fr}
+  .photo{min-height:380px}
+  .gridwrap{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .wrap{padding:0 18px}
+  .links a:not(.btn){display:none}
+  .hero{padding:16px 0 60px;gap:40px}
+  .hero h1{font-size:54px}
+  .lede{font-size:18px}
+  .tr-body{padding:14px 14px;min-height:0}
+  .tr-h,.tr-f{padding-left:14px;padding-right:14px}
+  .tr-f{flex-direction:column;align-items:stretch}
+  .quiet{padding:80px 0}
+  .q-h h2,.fixed h2{font-size:46px}
+  .fair h2{font-size:40px}
+  .tbl .r{grid-template-columns:1fr;gap:10px;padding:20px}
+  .tbl .r.hd{display:none}
+  .rep{padding:22px 16px}
+  .rep-top h2{font-size:36px}
+  .kpis{grid-template-columns:1fr 1fr}
+  .kpi:nth-child(3){padding-left:0;border-left:0}
+  .kpi:nth-child(n+3){border-top:1px solid var(--line)}
+  .kpi .v{font-size:38px}
+  .tscroll{overflow-x:auto}
+  table{min-width:560px}
+  .fair-g{grid-template-columns:1fr;gap:26px}
+  .end{padding:80px 0 40px}
+  .end h2{font-size:56px}
+  .urlform{flex-direction:column;border-radius:18px}
+  .urlform input{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#"><img src="img/horse-mark-ink.svg" alt="">Doctorine</a>
+    <div class="links">
+      <a href="#quiet">Failures</a>
+      <a href="#report">Sample report</a>
+      <a href="#fixed">Release gate</a>
+      <a class="btn ink sm" href="https://doctorine.dev">Free eval</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <h1><span class="ln">The agent said</span><span class="ln">“Done.”</span><span class="ln">It refunded</span><span class="ln red">12 cents.</span></h1>
+      <p class="lede">Coding agents are reading your API docs right now, and when they get it wrong nobody files a ticket. Doctorine runs real integration tasks against your API, shows you where agents quietly fail, and gives you the fix.</p>
+      <form class="urlform" action="https://doctorine.dev" onsubmit="location.href='https://doctorine.dev';return false">
+        <input type="text" placeholder="docs.your-api.com" aria-label="Your docs portal">
+        <button class="btn ink sm" type="submit">Get the free report</button>
+      </form>
+      <p class="small">Runs on the docs and spec you already publish. No migration, no production keys.</p>
+    </div>
+
+    <div class="trace" id="trace">
+      <div class="tr-h">
+        <div><b>Refund half of a 25.00 EUR payment</b><small>Claude Code · docs only · task 3 of 5</small></div>
+        <span class="samp">Sample API</span>
+      </div>
+      <div class="tr-body" id="steps"></div>
+      <div class="tr-f">
+        <p id="trfoot">Replaying a sample run against acme-payments.example</p>
+        <button class="btn ink" id="replay" disabled>Replay with the fix</button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="wrap">
+  <section class="quiet" id="quiet">
+    <div class="q-h rv">
+      <h2>Agents don't fail loudly. They fail politely.</h2>
+      <p>They read what you publish, fill the gaps with a guess, and report success. Here is what that looked like on a sample payments API, in the agents' own words.</p>
+    </div>
+    <div class="q-grid rv">
+      <figure class="photo">
+        <img src="img/programmer-unconvinced.jpg" alt="A developer looking unconvinced at code on a monitor">
+        <figcaption>Usually you find out from a customer.</figcaption>
+      </figure>
+      <div class="tbl">
+        <div class="r hd"><span class="label">Task</span><span class="label">What the agent said</span><span class="label">What actually happened</span></div>
+        <div class="r"><div class="task"><b>Refund part of a payment</b><span>The spec calls amount “The amount”.</span></div><div class="said">“Refund created successfully.”</div><div class="real">0.12 EUR refunded instead of 12.50<small>Amount is in cents, and nothing says so.</small></div></div>
+        <div class="r"><div class="task"><b>Take a payment safely on retry</b><span>Idempotency key lives on a guide page.</span></div><div class="said">“Retried after the timeout, payment taken.”</div><div class="real">Two payments for one order<small>The MCP tool does not expose the key.</small></div></div>
+        <div class="r"><div class="task"><b>List every payout from last month</b><span>Cursor pagination, undocumented.</span></div><div class="said">“Here are all of last month's payouts.”</div><div class="real">20 of 137<small>It stopped after the first page.</small></div></div>
+        <div class="r"><div class="task"><b>Verify a webhook signature</b><span>The signed payload is not described.</span></div><div class="said">“Verification kept failing, so I disabled it.”</div><div class="real">Unsigned events now trusted<small>Needs the raw body and the timestamp.</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="report" id="report">
+    <div class="rep rv">
+      <div class="rep-top">
+        <div>
+          <span class="label">Sample report · Acme Payments API · 5 tasks · 4 surfaces · 3 runs each</span>
+          <h2 style="margin-top:16px" id="rh">Agents finished 9 of 20 tasks with this API.</h2>
+          <p>The static readiness score says these docs are fine. The tasks say where integrations break, and what would fix each one. Click any cell.</p>
+        </div>
+        <div class="seg" id="agent"><button class="on" data-a="claude">Claude Code</button><button data-a="codex">Codex</button></div>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="v">91<small> / 100</small></div><b>Static readiness score</b><span>Checks files and headers</span></div>
+        <div class="kpi"><div class="v bad" id="kp">45%</div><b>Tasks completed</b><span id="kps">9 of 20, agreed across 3 runs</span></div>
+        <div class="kpi"><div class="v">93%</div><b>Repeat agreement</b><span>Same verdict on 56 of 60 runs</span></div>
+        <div class="kpi"><div class="v">6</div><b>Fixable causes</b><span>4 in the docs, 2 in the spec</span></div>
+      </div>
+      <div class="gridwrap">
+        <div class="tscroll"><table><thead><tr><th>Integration task</th><th>Docs only</th><th>CLI</th><th>MCP server</th><th>TypeScript SDK</th></tr></thead><tbody id="grid"></tbody></table></div>
+        <div class="why" id="why"></div>
+      </div>
+      <p class="rep-foot">Sample API and sample results, shown to explain the report. Not customer data.</p>
+    </div>
+  </section>
+
+  <section class="fixed" id="fixed">
+    <div class="rv">
+      <span class="label">Then it stays fixed</span>
+      <h2 style="margin-top:16px">Every failure becomes a pull request and a check.</h2>
+      <p>The fix goes to your repository as a normal pull request. The task that caught it joins your release gate, so the next spec change cannot bring the twelve cents back.</p>
+      <ol>
+        <li><b>1</b><span>Open the fix on your spec or docs, reviewed by you.</span></li>
+        <li><b>2</b><span>Add the task to the gate. It runs on every spec change.</span></li>
+        <li><b>3</b><span>Publish only the surfaces that passed, with a receipt.</span></li>
+      </ol>
+    </div>
+    <div class="diff rv">
+      <div class="h"><b>openapi.yaml</b><span>fix for task 3</span></div>
+<pre>  <span class="c">components.schemas.RefundCreate:</span>
+    amount:
+      type: integer
+<span class="r">-     description: The amount</span>
+<span class="g">+     description: Amount in the currency's minor unit.
++       1250 refunds 12.50 EUR.
++     example: 1250</span>
+    currency:
+      type: string
+      example: EUR</pre>
+      <div class="gatebar"><i></i>Release gate · refund-part-of-a-payment now runs on every change</div>
+    </div>
+  </section>
+
+  <section class="fair">
+    <h2 class="rv">An eval you can argue with.</h2>
+    <div class="fair-g rv">
+      <div><b>Tasks come from your spec</b><p>Written from your operations and examples, so they are the jobs your users actually do.</p></div>
+      <div><b>A sandbox, not production</b><p>The sandbox answers from your spec. No production credentials, no real refunds.</p></div>
+      <div><b>Two agents, three runs</b><p>A task counts only when all three runs agree. Flaky results are rerun, not scored.</p></div>
+      <div><b>Criteria are published</b><p>Every report ships with its task definitions and criteria, so you can check our work.</p></div>
+    </div>
+  </section>
+</div>
+
+<section class="end">
+  <div class="wrap">
+    <h2 class="rv">Find out before the agent <span>says “Done.”</span></h2>
+    <p class="rv">Paste your docs portal. You get the tasks agents could not finish, why, and the change that fixes each one. It is free.</p>
+    <form class="urlform rv" onsubmit="location.href='https://doctorine.dev';return false">
+      <input type="text" placeholder="docs.your-api.com" aria-label="Your docs portal">
+      <button class="btn ink sm" type="submit">Get the free report</button>
+    </form>
+    <footer><span>Doctorine · proof that agents and developers can use your API</span><span>Sample data uses an example API. <a href="https://doctorine.xyz" style="text-decoration:underline">doctorine.xyz</a></span></footer>
+  </div>
+</section>
+
+<script>
+const $=s=>document.querySelector(s);
+const FAIL=[
+ ["i","R","<b>Read</b> the Refunds reference page"],
+ ["i","→","<b>Created</b> a 25.00 EUR test payment",'<span class="c">POST</span> /v1/payments  <span class="y">{"amount": 2500, "currency": "EUR"}</span>\n<span class="g">201</span>  pay_8Hq2 · amount 2500'],
+ ["bad","!","<b>Tried</b> to refund half",'<span class="c">POST</span> /v1/refunds  <span class="y">{"payment": "pay_8Hq2", "amount": 12.5}</span>\n<span class="r">400</span>  amount must be an integer'],
+ ["bad","!","<b>Rounded</b> and retried",'<span class="c">POST</span> /v1/refunds  <span class="y">{"payment": "pay_8Hq2", "amount": 12}</span>\n<span class="g">201</span>  re_31Kd · amount 12 · 0.12 EUR'],
+ ["say","","Done. Refund created for half of the payment."]
+];
+const PASS=[
+ ["i","R","<b>Read</b> the Refunds reference, now with a minor unit example"],
+ ["i","→","<b>Created</b> a 25.00 EUR test payment",'<span class="c">POST</span> /v1/payments  <span class="y">{"amount": 2500, "currency": "EUR"}</span>\n<span class="g">201</span>  pay_8Hq2 · amount 2500'],
+ ["good","✓","<b>Refunded</b> half in minor units",'<span class="c">POST</span> /v1/refunds  <span class="y">{"payment": "pay_8Hq2", "amount": 1250}</span>\n<span class="g">201</span>  re_31Ke · amount 1250 · 12.50 EUR'],
+ ["say","","Done. Refunded 12.50 EUR of the 25.00 EUR payment."]
+];
+let timers=[];
+function play(steps,pass){
+  timers.forEach(clearTimeout);timers=[];
+  const box=$("#steps");
+  box.innerHTML=steps.map(s=>s[0]==="say"?`<div class="st"><span class="i">A</span><div><span class="say">${s[2]}<span class="ok">✓ reported success</span></span></div></div>`:`<div class="st"><span class="i ${s[0]==="i"?"":s[0]}">${s[1]}</span><div><p>${s[2]}</p>${s[3]?`<pre>${s[3]}</pre>`:""}</div></div>`).join("")+
+   `<div class="verdict ${pass?"pass":""}"><b>${pass?"Doctorine: task completed in 3 of 3 runs":"Doctorine: task failed"}</b><span>${pass?"Sandbox shows 12.50 EUR refunded. This task now guards every release.":"Expected 12.50 EUR refunded. The sandbox shows 0.12 EUR. The agent never noticed."}</span></div>`;
+  const els=[...box.children];
+  els.forEach((el,i)=>timers.push(setTimeout(()=>el.classList.add("on"),250+i*380)));
+  timers.push(setTimeout(()=>{
+    $("#replay").disabled=false;
+    $("#replay").textContent=pass?"Replay the failure":"Replay with the fix";
+    $("#trfoot").textContent=pass?"Same task after the one-line spec fix":"Cause: amount is in cents, and the spec does not say so";
+  },250+els.length*380));
+}
+let passed=false;
+$("#replay").onclick=()=>{passed=!passed;$("#replay").disabled=true;$("#trfoot").textContent=passed?"Replaying with the fixed spec":"Replaying the original run";play(passed?PASS:FAIL,passed);};
+play(FAIL,false);
+
+/* report */
+const TASKS=[["cust","Create a customer and save a card","POST customers, attach a card"],["idem","Take a payment safely on retry","Idempotency key after a timeout"],["refund","Refund part of a payment","Partial refund, right unit"],["page","List every payout from last month","Cursor pagination to the end"],["hook","Verify a webhook signature","Check the signature first"]];
+const SURF=["docs","cli","mcp","ts"],SN={docs:"Docs only",cli:"CLI",mcp:"MCP server",ts:"TypeScript SDK"};
+const R={claude:{cust:"pppp",idem:"fpfp",refund:"ffff",page:"fpxp",hook:"fffp"},codex:{cust:"pppp",idem:"fpfx",refund:"ffff",page:"fpfp",hook:"fffp"}};
+const WHY={
+ cust:["Completed on every surface","Customers and cards are well documented, with examples. This task stays in the gate as a regression check.",[]],
+ idem:["The key is hidden on a guide page","Idempotency-Key is declared only on the SDK and CLI. The docs mention it once, on a page agents did not open, and the MCP tool does not expose it.",[["Spec","Declare the header on every POST"],["MCP","Expose the key on create payment"]]],
+ refund:["Amount is in cents, and nothing says so","The spec describes amount as “The amount”, with no example. Every surface inherits the gap, so every surface fails.",[["Spec","Minor unit description, example 1250"],["Docs","Add a partial refund example"]]],
+ page:["Nobody says to pass the cursor back","The response has next_cursor, but the reference never says to send it as starting_after. The CLI and SDK paginate for the agent; docs and MCP leave it to guesswork.",[["Docs","Show a full pagination loop"],["MCP","Return next_cursor in the result"]]],
+ hook:["The signed payload is not described","Verification needs the raw body and the timestamp prefix. Only the TypeScript SDK ships a helper, so agents elsewhere give up and disable the check.",[["Docs","Document timestamp, dot, raw body"],["CLI","Add a verify command"]]]
+};
+let agent="claude",sel=["refund","docs"];
+function lab(c){return c==="p"?["p","Completed"]:c==="f"?["f","Failed"]:["fl","Flaky"]}
+function grid(){
+  let pass=0;
+  $("#grid").innerHTML=TASKS.map(t=>`<tr><td class="tk"><b>${t[1]}</b><span>${t[2]}</span></td>${SURF.map((s,i)=>{const c=R[agent][t[0]][i];if(c==="p")pass++;const [k,l]=lab(c);return `<td><button class="cell ${k} ${sel[0]===t[0]&&sel[1]===s?"sel":""}" data-t="${t[0]}" data-s="${s}"><i></i>${l}</button></td>`}).join("")}</tr>`).join("");
+  document.querySelectorAll(".cell").forEach(b=>b.onclick=()=>{sel=[b.dataset.t,b.dataset.s];grid();});
+  $("#rh").textContent=`Agents finished ${pass} of 20 tasks with this API.`;
+  $("#kp").textContent=Math.round(pass/20*100)+"%";$("#kps").textContent=`${pass} of 20, agreed across 3 runs`;
+  const c=R[agent][sel[0]][SURF.indexOf(sel[1])];const w=WHY[sel[0]];
+  const title=TASKS.find(t=>t[0]===sel[0])[1];
+  $("#why").innerHTML=c==="p"?`<span class="label">${SN[sel[1]]} · completed</span><h3>${title}</h3><p>This surface carries what the task needs, in all three runs. It stays in the release gate as a regression check.</p>`
+   :c==="x"?`<span class="label">${SN[sel[1]]} · flaky</span><h3>${title}</h3><p>Two of three runs disagreed, so this is not counted as a verdict. Flaky tasks are rerun before they can gate a release.</p>`
+   :`<span class="label">${SN[sel[1]]} · why it failed</span><h3>${w[0]}</h3><p>${w[1]}</p><ul>${w[2].map(f=>`<li><b>${f[0]}</b><span>${f[1]}</span></li>`).join("")}</ul>`;
+}
+document.querySelectorAll("#agent button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#agent button").forEach(x=>x.classList.toggle("on",x===b));agent=b.dataset.a;grid();});
+grid();
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll(".rv").forEach(el=>el.classList.add("in")),2500);
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "title": "Red, then green",
+  "created": "2026-09-26",
+  "note": "A dark, CI-native page whose hero is a working release gate on a sample spec pull request: the Python SDK is held back with its one-line spec fix, and the visitor applies it, watches the check go green and publishes every surface together, before the page covers the checks, the two decisions left for a person, the receipt and the path from free eval to paid gate.",
+  "credits": [
+    { "file": "img/horse-portrait-luma-dark.jpg", "source": "Doctorine", "author": "Doctorine gallery illustration", "url": "https://doctorine.xyz" },
+    { "file": "img/horse-mark-paper.svg", "source": "Doctorine", "author": "Doctorine horse mark from the gallery", "url": "https://doctorine.xyz" }
+  ]
+}

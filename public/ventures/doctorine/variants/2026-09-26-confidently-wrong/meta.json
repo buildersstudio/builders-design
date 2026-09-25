@@ -1,0 +1,9 @@
+{
+  "title": "Confidently wrong",
+  "created": "2026-09-26",
+  "note": "A warm paper page told as one agent run: the hero replays a sample trace where a coding agent refunds 12 cents instead of 12.50 EUR and reports success, the visitor replays it with the one-line spec fix, and the page follows with the other polite failures, the free eval report, the fix as a pull request and gate check, and how the eval stays fair.",
+  "credits": [
+    { "file": "img/programmer-unconvinced.jpg", "source": "Pexels", "author": "cottonbro studio", "url": "https://www.pexels.com/photo/programmer-looking-with-dissatisfaction-6804594/" },
+    { "file": "img/horse-mark-ink.svg", "source": "Doctorine", "author": "Doctorine horse mark from the gallery", "url": "https://doctorine.xyz" }
+  ]
+}

@@ -1,0 +1,512 @@
+{
+  "updated": "2026-09-25",
+  "sources": {
+    "vsi": { "venture": "batch-0-aria", "conversations": 8, "compiled": "2026-09-25" },
+    "web": [
+      { "title": "Postman: 2025 State of the API Report", "url": "https://www.postman.com/state-of-api/2025/", "date": "2025-10-08" },
+      { "title": "A First Look at the Deprecation of RESTful APIs (arXiv 2008.12808)", "url": "https://arxiv.org/abs/2008.12808", "date": "2020" },
+      { "title": "APIs.guru metrics", "url": "https://api.apis.guru/v2/metrics.json", "date": "2026-09-25" },
+      { "title": "From REST to MCP: API wrapping and automated server generation (arXiv 2507.16044)", "url": "https://arxiv.org/abs/2507.16044", "date": "2026-04-06" },
+      { "title": "MCP-Universe: benchmarking LLMs with real-world MCP servers (arXiv 2508.14704)", "url": "https://arxiv.org/abs/2508.14704", "date": "2025-08-21" },
+      { "title": "Benchmarking Web API Integration Code Generation (arXiv 2509.20172)", "url": "https://arxiv.org/abs/2509.20172", "date": "2026-07-03" },
+      { "title": "Fern: How we built Agent Score to improve Fern Docs", "url": "https://buildwithfern.com/post/agent-score", "date": "2026-04-07" },
+      { "title": "Mintlify: The state of docs traffic, 2026 midyear report", "url": "https://www.mintlify.com/blog/state-of-docs-traffic", "date": "2026-07-29" },
+      { "title": "Hacker News: Agent Skills", "url": "https://news.ycombinator.com/item?id=46871173", "date": "2026-02-03" },
+      { "title": "Hacker News: Show HN Mcp2cli", "url": "https://news.ycombinator.com/item?id=47305149", "date": "2026-03-09" },
+      { "title": "Hacker News: Ask HN, how do you catch OpenAPI drift before the UI breaks?", "url": "https://news.ycombinator.com/item?id=47245103", "date": "2026-03-04" },
+      { "title": "Hacker News: Anthropic acquires Stainless", "url": "https://news.ycombinator.com/item?id=48182281", "date": "2026-05-18" },
+      { "title": "GitHub Community: How are you keeping API documentation in sync with GitHub?", "url": "https://github.com/orgs/community/discussions/205083", "date": "2026-08-16" },
+      { "title": "Reddit r/technicalwriting: crawling technical documentation for llms.txt", "url": "https://reddit.com/r/technicalwriting/comments/1nhq2st/", "date": "2025-09-15" },
+      { "title": "Reddit r/ExperiencedDevs: How do you guys keep documentation up to date?", "url": "https://reddit.com/r/ExperiencedDevs/comments/1nebg0u/", "date": "2025-09-11" }
+    ]
+  },
+  "summary": "The customer evidence is thin: four outside conversations, all with engineers, none with a buyer, and none of VSI's 88 signals validated. What it does show is sharp. On the publishing side the time goes into getting a correct change approved, not into writing it: one public-API developer says a change takes two to three weeks of review while the writing takes seconds (E4). One engineering lead says most APIs have no usable spec to generate from (E4). The consumer side rests on web data, where agents now read most docs traffic and still fail most real tasks. Both point where the vision board does: prove that tasks still pass and take a review step away, before generating more surfaces. Next, talk to ten people who own an API budget.",
+  "icps": [
+    {
+      "id": "api-owner",
+      "name": "Public API owner, release side",
+      "segment": "Companies whose external REST API serves paying clients and partners, mid-size to large",
+      "who": "Backend and platform teams who ship spec changes, and the platform or API product lead who answers for what clients see.",
+      "trigger": "A spec change is merged and has to reach docs, tooling and clients without breaking integrations pinned to older versions.",
+      "jobs": [
+        "Get a correct change approved and published in days, not weeks",
+        "Decide whether a change is a fix or a breaking change, and for whom",
+        "Keep docs, tutorials and tooling in step with the spec for every version"
+      ],
+      "evidence": "E4",
+      "notes": "The E4 pains come from one backend developer at one large commerce SaaS, who says he is not a decider. No platform lead, API product manager, DevRel lead or technical writer has been interviewed, although the plan names them as the ICP. Copy reviewers who approve spec wording are a stakeholder the plan does not name."
+    },
+    {
+      "id": "eng-lead-unspecced",
+      "name": "Engineering lead with unspecced APIs",
+      "segment": "Corporate and mid-size engineering teams whose APIs grew without OpenAPI and must now serve partners or the public",
+      "who": "Senior developers who set the team's tooling rules, keep docs as Markdown in Git and would rather build a tool than buy one.",
+      "trigger": "An internal tool has to become a public or partner API, with the versioning, structure and docs it never had.",
+      "jobs": [
+        "Find out how far the APIs are from a usable spec",
+        "Retrofit structure and versioning without a week of senior time",
+        "Adopt tooling that runs inside the company's own infrastructure"
+      ],
+      "evidence": "E4",
+      "notes": "One engineering lead, E3 to E4. His estimate that 90% of teams lack a usable spec is not a measurement; the board's first move counts it on the 200-company target list. He requires in-VPN deployment, which one voice cannot yet make a segment rule."
+    },
+    {
+      "id": "integrator-agent",
+      "name": "Integrating developer and coding agent",
+      "segment": "Developers at client and partner companies, and the coding agents they direct, building on someone else's API",
+      "who": "The people and agents who read the docs, pick a surface and write the integration. They feel the failure but do not pay Doctorine.",
+      "trigger": "A task needs a third-party API, or an API version they pinned changes under them.",
+      "jobs": [
+        "Get a working integration on the first attempt",
+        "Use the surface that costs the fewest tokens and retries",
+        "Keep the integration working when the API changes"
+      ],
+      "evidence": "E3",
+      "notes": "No integrator was interviewed as such: the E3 signals come from producers describing their clients and from two engineers. Web data carries this journey. Treated as the source of proof for the API owner, not as a buyer, as the vision board parks the consumer kit."
+    }
+  ],
+  "journeys": [
+    {
+      "id": "change-to-release",
+      "title": "From spec change to a release clients can use",
+      "icp": "api-owner",
+      "question": "Can a check on the pull request replace a review layer instead of adding one, and get a change out in days?",
+      "stages": [
+        {
+          "id": "change-made",
+          "name": "Change is made",
+          "feel": 1,
+          "asis": [
+            { "text": "An agent writes the spec and code change in seconds, supervised by the developer" },
+            { "text": "Several teams edit the same spec, so a change needs coordination before it is ready" }
+          ],
+          "pains": [
+            { "text": "One spec, many teams: every change needs collaboration between developers first", "tier": "E3", "quotes": ["q-owner-multiteam"] }
+          ],
+          "quotes": [
+            { "id": "q-owner-seconds", "text": "We do it all by AI and AI agents. So the actual work is nothing. So it is done free in just seconds if we know what to do.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E4", "kind": "workflow", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 745655, "date": "2026-09-09" },
+            { "id": "q-owner-multiteam", "text": "the APIs are not dedicated to only one team or one developer, then the changes applied to that spec needs collaborations between the devs.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E3", "kind": "pain_point", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 273305, "date": "2026-09-09" }
+          ],
+          "ideas": [
+            { "text": "Run the agent task suite on the pull request that changes the spec, before any human looks", "impact": 3, "effort": 2, "why": "Writing now costs nothing, so the first check should be automatic too" }
+          ],
+          "tobe": [
+            { "text": "The spec pull request opens and Doctorine rebuilds every surface and runs the task suite" }
+          ]
+        },
+        {
+          "id": "classify-change",
+          "name": "Classify the change",
+          "feel": -1,
+          "asis": [
+            { "text": "Date-based versions every quarter: fixes are backported, breaking changes go to a new version" },
+            { "text": "Consumers are external companies, so consistency matters more than for internal teams" }
+          ],
+          "pains": [
+            { "text": "Hard to tell a fix from a breaking change, such as a tax fix that alters client reports", "tier": "E4", "quotes": ["q-owner-versioning"] },
+            { "text": "87.3% of API versions that broke something deprecated nothing first, in a study of 2,224 specs", "source": "web" },
+            { "text": "60% of API teams version their APIs but only 26% use semantic versioning (Postman 2025)", "source": "web" }
+          ],
+          "quotes": [
+            { "id": "q-owner-versioning", "text": "sometimes it is very hard to decide if this this change is a bug fix or a breaking change.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E4", "kind": "pain_point", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 273305, "date": "2026-09-09" },
+            { "id": "q-owner-external", "text": "The consumers of our APIs for the company that I'm working in is not the developers inside the company, but the external clients and the external companies.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E4", "kind": "workflow", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 273305, "date": "2026-09-09" }
+          ],
+          "ideas": [
+            { "text": "Label each change as fix or breaking and list the pinned versions and clients it affects", "impact": 3, "effort": 2, "why": "The call's clearest E4 pain, and the first of the change-review rules" }
+          ],
+          "tobe": [
+            { "text": "The gate labels the change and names the versions and consumers it touches" }
+          ]
+        },
+        {
+          "id": "review-approve",
+          "name": "Review and approve",
+          "feel": -2,
+          "asis": [
+            { "text": "Developers review, ask other models to review, then QA calls the APIs by hand in Postman" },
+            { "text": "Copy or content specialists sign off the wording before the spec pull request can merge" }
+          ],
+          "pains": [
+            { "text": "One change takes two to three weeks to reach the docs site, spent in review, not writing", "tier": "E4", "quotes": ["q-owner-weeks"] },
+            { "text": "Company terminology rules for external wording are checked by hand, in several layers", "tier": "E3", "quotes": ["q-owner-terms"] },
+            { "text": "A tool that adds pull requests to review per language will not be used", "tier": "E3", "quotes": ["q-owner-morereview"] }
+          ],
+          "quotes": [
+            { "id": "q-owner-weeks", "text": "it may take 2, 3 weeks for a single change to be published in the website, in our documentation website.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E4", "kind": "pain_point", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 745655, "date": "2026-09-09" },
+            { "id": "q-owner-terms", "text": "But the way we talk with the external clients should follow some specific rules or some specific conventions.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E3", "kind": "workflow", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 2035313, "date": "2026-09-09" },
+            { "id": "q-owner-morereview", "text": "So if it's like If it needs more reviews, more PR reviews, and more time and money, then it won't work for us.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E3", "kind": "objection", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 4469159, "date": "2026-09-09" }
+          ],
+          "ideas": [
+            { "text": "Show on the pull request which checks passed, so a reviewer can skip a step they do today", "impact": 3, "effort": 2, "why": "The only buyable version: it must remove a review, never add one" },
+            { "text": "Terminology and wording rules that flag only the lines a copy reviewer must read", "impact": 2, "effort": 2, "why": "Pre-answers the judgement calls that stretch review into weeks" }
+          ],
+          "tobe": [
+            { "text": "Reviewers approve from the flagged items; everything else has already passed" }
+          ]
+        },
+        {
+          "id": "publish-surfaces",
+          "name": "Publish the surfaces",
+          "feel": -1,
+          "asis": [
+            { "text": "The spec renders in a hosted docs vendor; hand-written Markdown tutorials ship beside it" },
+            { "text": "Some endpoints go live but stay out of the docs until a target client has tested them" }
+          ],
+          "pains": [
+            { "text": "Tutorials go stale and point at an old version while the spec itself is current", "tier": "E4", "quotes": ["q-owner-tutorial"] },
+            { "text": "Live endpoints are hidden from the docs for months, so the spec is not the whole truth", "tier": "E4", "quotes": ["q-owner-hidden", "q-owner-wholetruth"] },
+            { "text": "Outdated docs are the top collaboration blocker, named by 55% of API teams (Postman 2025)", "source": "web" }
+          ],
+          "quotes": [
+            { "id": "q-owner-tutorial", "text": "For sure, the OpenAPI spec will be updated automatically, but we will live with existing outdated tutorials", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E4", "kind": "pain_point", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 273305, "date": "2026-09-09" },
+            { "id": "q-owner-hidden", "text": "Although the public API themselves are published, but somehow invisible from the documents.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E4", "kind": "workflow", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 992423, "date": "2026-09-09" },
+            { "id": "q-owner-wholetruth", "text": "Yeah, it is a source of truth, but maybe not the whole truth.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E3", "kind": "product_feedback", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 1523639, "date": "2026-09-09" }
+          ],
+          "ideas": [
+            { "text": "List every tutorial that references an operation the change touched", "impact": 2, "effort": 1, "why": "Folds the stale-tutorial pain into the gate instead of a writing agent" },
+            { "text": "Staged or partner-only visibility for endpoints that are live but not yet public", "impact": 2, "effort": 2, "why": "Deliberate hiding is a manual workaround today" }
+          ],
+          "tobe": [
+            { "text": "Only surfaces that passed are published, with a receipt; held-back ones are listed" }
+          ]
+        },
+        {
+          "id": "clients-integrate",
+          "name": "Clients integrate",
+          "feel": -1,
+          "asis": [
+            { "text": "Clients pin a different version per API and integrate from the rendered portal" },
+            { "text": "The docs vendor's MCP server only reads docs; no SDK, CLI or action MCP is offered" }
+          ],
+          "pains": [
+            { "text": "Clients still send many questions to the team despite a polished portal", "tier": "E3", "quotes": ["q-owner-questions"] },
+            { "text": "An SDK that tracks the latest spec would change behaviour for clients on pinned versions", "tier": "E3", "quotes": ["q-owner-pinned"] }
+          ],
+          "quotes": [
+            { "id": "q-owner-questions", "text": "they had a lot of questions asking us It seems like that document was not human-readable enough for them.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E3", "kind": "pain_point", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 4030785, "date": "2026-09-09" },
+            { "id": "q-owner-pinned", "text": "And once the SDK upgraded based on the API spec upgrades, then that would cause some unwanted behavioral changes.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E3", "kind": "objection", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 3684722, "date": "2026-09-09" },
+            { "id": "q-owner-docsmcp", "text": "For the access part, no. This MCP is just for the documentation.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E2", "kind": "workflow", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 2525225, "date": "2026-09-09" }
+          ],
+          "ideas": [
+            { "text": "Report which client tasks agents fail on the owner's API, and what caused each failure", "impact": 3, "effort": 2, "why": "Integration failures are invisible to the owner today" }
+          ],
+          "tobe": [
+            { "text": "Task success per surface and per version is tracked after every release" }
+          ]
+        },
+        {
+          "id": "fix-rollback",
+          "name": "Fix and roll back",
+          "feel": -1,
+          "asis": [
+            { "text": "Affected customers hear of a rollback by email or a call from the account team" },
+            { "text": "Each surface that must be kept current costs a person to maintain" }
+          ],
+          "pains": [
+            { "text": "No clear way to tell external consumers about an update or a rollback", "tier": "E3", "quotes": ["q-owner-rollback"] },
+            { "text": "Keeping a CLI and an SDK current is seen as one person each", "tier": "E1", "quotes": ["q-owner-people"] }
+          ],
+          "quotes": [
+            { "id": "q-owner-rollback", "text": "Then how is the update mechanism and how are we conveying it to our external, uh, consumers?", "who": "Engineer, large e-commerce platform with partner APIs", "tier": "E3", "kind": "pain_point", "conv": "d30b491d-4cea-44d8-b619-32f7772ec9f5", "ms": 337330, "date": "2026-07-18" },
+            { "id": "q-owner-people", "text": "So for the CLI front, I need one person. For the SDK front, I need one person to keep everything updated out there.", "who": "Engineer, large e-commerce platform with partner APIs", "tier": "E1", "kind": "pain_point", "conv": "d30b491d-4cea-44d8-b619-32f7772ec9f5", "ms": 205623, "date": "2026-07-18" }
+          ],
+          "ideas": [
+            { "text": "Roll back every surface together in one step, with a changelog entry for consumers", "impact": 2, "effort": 2, "why": "Rollback communication is an E3 pain no current capability covers" }
+          ],
+          "tobe": [
+            { "text": "A rollback reverts docs, CLI, MCP and SDKs as one release and tells consumers what changed" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "api-to-first-release",
+      "title": "From an unspecced API to a first verified release",
+      "icp": "eng-lead-unspecced",
+      "question": "Is spec repair, not generation, the way in for teams whose APIs were never specced?",
+      "stages": [
+        {
+          "id": "going-public",
+          "name": "An API has to go public",
+          "feel": -1,
+          "asis": [
+            { "text": "Internal APIs are unversioned; a new version simply replaces the old path" },
+            { "text": "The pain arrives once, when an internal tool must serve outside consumers" }
+          ],
+          "pains": [
+            { "text": "Making one internal tool public took a two-week retrofit of every API", "tier": "E4", "quotes": ["q-lead-public", "q-lead-2week"] }
+          ],
+          "quotes": [
+            { "id": "q-lead-public", "text": "one of the internal tools, we had to make it public. So now we have to go through the pain of going through all of the APIs", "who": "Engineering lead, corporate platform team", "tier": "E4", "kind": "pain_point", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 428979, "date": "2026-09-17" },
+            { "id": "q-lead-2week", "text": "it was like a 2-week turnaround where we kind of went ahead and banged our head against the codebase and fixed it.", "who": "Engineering lead, corporate platform team", "tier": "E4", "kind": "pain_point", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 428979, "date": "2026-09-17" }
+          ],
+          "ideas": [
+            { "text": "Offer the spec report when a team scopes a public or partner API", "impact": 2, "effort": 1, "why": "The trigger is rare but sharp; the rest of the time nobody looks" }
+          ],
+          "tobe": [
+            { "text": "The team points Doctorine at the repository the day the API is scoped to go public" }
+          ]
+        },
+        {
+          "id": "assess-apis",
+          "name": "Assess the APIs",
+          "feel": -2,
+          "asis": [
+            { "text": "Many APIs have no OpenAPI spec, structure or docs; they work and return data" }
+          ],
+          "pains": [
+            { "text": "Most APIs are not OpenAPI compatible, so generation tools do not apply at all", "tier": "E4", "quotes": ["q-lead-notopenapi"] },
+            { "text": "Teams claim a usable spec they do not have, then decline for that reason", "tier": "E3", "quotes": ["q-lead-theydonot", "q-lead-90"] },
+            { "text": "17.2% of specs in the largest public OpenAPI directory are invalid (688 of 3,992)", "source": "web" }
+          ],
+          "quotes": [
+            { "id": "q-lead-notopenapi", "text": "So my problem is I have a lot of APIs that are not OpenAPI compatible. So they're just thrown together without any real structure or documentation.", "who": "Engineering lead, corporate platform team", "tier": "E4", "kind": "pain_point", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 679524, "date": "2026-09-17" },
+            { "id": "q-lead-theydonot", "text": "the people you're gonna reach out to are gonna tell you they have OpenAPI expect APIs. They do not.", "who": "Engineering lead, corporate platform team", "tier": "E3", "kind": "objection", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 2230484, "date": "2026-09-17" },
+            { "id": "q-lead-90", "text": "So those trash APIs that just work, that's 90% of the people you're going to talk to.", "who": "Engineering lead, corporate platform team", "tier": "E3", "kind": "pain_point", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 2230484, "date": "2026-09-17" }
+          ],
+          "ideas": [
+            { "text": "Free score of how far a spec is from what generation and agents need, per endpoint", "impact": 3, "effort": 1, "why": "Measures the input before asking for any commitment" }
+          ],
+          "tobe": [
+            { "text": "A report says, in plain terms, what blocks generation and agent use on each endpoint" }
+          ]
+        },
+        {
+          "id": "retrofit-spec",
+          "name": "Retrofit the spec",
+          "feel": -2,
+          "asis": [
+            { "text": "A senior engineer retrofits with a coding agent and checks its output by hand" }
+          ],
+          "pains": [
+            { "text": "Retrofit takes a capable engineer about ten hours, spread over a week of context switching", "tier": "E3", "quotes": ["q-lead-lies"] },
+            { "text": "Nobody touches legacy code unless they are forced to", "tier": "E3", "quotes": ["q-lead-legacy"] },
+            { "text": "Automated spec repair lifted MCP generation from 76% to 94.2% of tools on 80 real contracts", "source": "web" }
+          ],
+          "quotes": [
+            { "id": "q-lead-lies", "text": "you need a highly capable engineer that understands what Cloud Code does and what the OpenAPI spec is, because AI always lies to you.", "who": "Engineering lead, corporate platform team", "tier": "E3", "kind": "objection", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 2332529, "date": "2026-09-17" },
+            { "id": "q-lead-legacy", "text": "No, nobody touches legacy code unless they need to.", "who": "Engineering lead, corporate platform team", "tier": "E3", "kind": "pain_point", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 2332529, "date": "2026-09-17" },
+            { "id": "q-lead-button", "text": "Even better, give me a button that I can click and it raises a PR directly and says, hey, I fixed your crappy code, merge this", "who": "Engineering lead, corporate platform team", "tier": "E3", "kind": "product_request", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 768364, "date": "2026-09-17" }
+          ],
+          "ideas": [
+            { "text": "One repair pull request with the mechanical fixes, judgement calls left as review comments", "impact": 3, "effort": 2, "why": "The one concrete entry product a practitioner asked for" }
+          ],
+          "tobe": [
+            { "text": "The team merges a repair pull request instead of spending a senior engineer's week" }
+          ]
+        },
+        {
+          "id": "choose-tooling",
+          "name": "Choose tooling",
+          "feel": -1,
+          "asis": [
+            { "text": "Code and docs live as Markdown in Git; anything outside Git does not exist" },
+            { "text": "The lead builds his own tools when he can, as he did with an AI pull request reviewer" }
+          ],
+          "pains": [
+            { "text": "Would not go out of his way for an SDK or CLI, only take it if it comes automatically", "tier": "E2", "quotes": ["q-lead-outofway"] },
+            { "text": "Engineers are always short, so every tool has to justify the effort it asks for", "tier": "E3", "quotes": ["q-lead-people"] }
+          ],
+          "quotes": [
+            { "id": "q-lead-built", "text": "yeah, we didn't want to use CodeRabbit, so we just, I built my own.", "who": "Engineering lead, corporate platform team", "tier": "E4", "kind": "workflow", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 36136, "date": "2026-09-17" },
+            { "id": "q-lead-outofway", "text": "Would I go out of my way to do it? No.", "who": "Engineering lead, corporate platform team", "tier": "E2", "kind": "objection", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 580998, "date": "2026-09-17" },
+            { "id": "q-lead-people", "text": "You never have enough people.", "who": "Engineering lead, corporate platform team", "tier": "E3", "kind": "objection", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 2302280, "date": "2026-09-17" }
+          ],
+          "ideas": [
+            { "text": "Start on the spec and docs the team already has, as a GitHub Action, with no portal move", "impact": 3, "effort": 1, "why": "A no-migration start removes the heaviest first ask" }
+          ],
+          "tobe": [
+            { "text": "The trial starts as a check on the team's own repository, not as a new portal" }
+          ]
+        },
+        {
+          "id": "deploy-procure",
+          "name": "Deploy and procure",
+          "feel": -2,
+          "asis": [
+            { "text": "Corporate tools run inside the company VPN with its own LLM keys, on an annual licence" }
+          ],
+          "pains": [
+            { "text": "Hosted SaaS is a hard blocker where every tool must run inside the company's network", "tier": "E4", "quotes": ["q-lead-vpn"] },
+            { "text": "It must be configurable enough that the buyer never has to develop for it", "tier": "E2", "quotes": ["q-lead-develop"] },
+            { "text": "After Stainless shut down, HN commenters say buyers will turn away from startup vendors", "source": "web" }
+          ],
+          "quotes": [
+            { "id": "q-lead-vpn", "text": "I get your tool, I deploy it in my own virtual machine inside the VPN, and I just copy paste my secret key", "who": "Engineering lead, corporate platform team", "tier": "E4", "kind": "decision_criteria", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 923084, "date": "2026-09-17" },
+            { "id": "q-lead-develop", "text": "because if I buy your tool, I don't want to develop for it.", "who": "Engineering lead, corporate platform team", "tier": "E2", "kind": "decision_criteria", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 1113792, "date": "2026-09-17" },
+            { "id": "q-lead-midsize", "text": "Which actually, by the way, is usually mid-sized or large organizations. I don't see a lot of small orgs benefiting as much.", "who": "Engineering lead, corporate platform team", "tier": "E3", "kind": "decision_criteria", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 2103040, "date": "2026-09-17" }
+          ],
+          "ideas": [
+            { "text": "Keep outputs and receipts in the customer's own repository so nothing is locked in", "impact": 2, "effort": 1, "why": "Answers vendor-risk fear without building self-hosting yet" },
+            { "text": "Ask every buyer whether hosting blocks a pilot; build self-hosting only if two say yes", "impact": 1, "effort": 1, "why": "One E4 voice is not yet a segment requirement" }
+          ],
+          "tobe": [
+            { "text": "The pilot runs on the public spec and repository, and the team owns every output" }
+          ]
+        },
+        {
+          "id": "first-release",
+          "name": "First verified release",
+          "feel": 0,
+          "asis": [
+            { "text": "Static analysis and an AI reviewer already run on every pull request before a human" }
+          ],
+          "pains": [
+            { "text": "Unless CI enforces it, a spec change can merge without the docs build or any checks", "source": "web" }
+          ],
+          "quotes": [
+            { "id": "q-lead-steps", "text": "So static code, AI review, only at the 3rd step do you have a human that intervenes and looks at the code.", "who": "Engineering lead, corporate platform team", "tier": "E4", "kind": "workflow", "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591", "ms": 36136, "date": "2026-09-17" }
+          ],
+          "ideas": [
+            { "text": "Put the gate in the existing chain, after static checks and before the human reviewer", "impact": 3, "effort": 2, "why": "Fits a review pipeline the lead already built and trusts" }
+          ],
+          "tobe": [
+            { "text": "Every later spec change passes the gate before the new version reaches anyone" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "task-to-integration",
+      "title": "From a task to a working integration",
+      "icp": "integrator-agent",
+      "question": "Will failed agent tasks, shown to the API owner with their cause, be the reason the owner acts?",
+      "stages": [
+        {
+          "id": "find-api",
+          "name": "Find the API and its docs",
+          "feel": 0,
+          "asis": [
+            { "text": "Coding agents fetch docs at task time and prefer Markdown and llms.txt routes", "source": "web" },
+            { "text": "Agents made 66% of traffic on one large docs platform by July 2026", "source": "web" }
+          ],
+          "pains": [
+            { "text": "When the agent misses the skill file, it falls back to reading all the docs again", "tier": "E3", "quotes": ["q-int-skill"] },
+            { "text": "In one vendor's evals the skill was never invoked in 56% of cases", "source": "web" }
+          ],
+          "quotes": [
+            { "id": "q-int-skill", "text": "if the agent by some means misses that there's a SCILMD file, then you are going to basically read the docs again.", "who": "Engineer, large e-commerce platform with partner APIs", "tier": "E3", "kind": "pain_point", "conv": "d30b491d-4cea-44d8-b619-32f7772ec9f5", "ms": 2578611, "date": "2026-07-18" }
+          ],
+          "ideas": [
+            { "text": "Test whether agents find and use each surface, not only whether it exists", "impact": 3, "effort": 2, "why": "Static readiness scores are free from four vendors and disagree" }
+          ],
+          "tobe": [
+            { "text": "The eval records which surface each agent found and whether it used it" }
+          ]
+        },
+        {
+          "id": "read-docs",
+          "name": "Read and understand",
+          "feel": -1,
+          "asis": [
+            { "text": "Developers read the rendered reference and tutorials; agents read whatever they can fetch" }
+          ],
+          "pains": [
+            { "text": "Docs are not updated after later changes, so they stop reflecting the system", "tier": "E4", "quotes": ["q-int-stale"] },
+            { "text": "Pasting a major API's docs into an agent gave 90% HTML and 10% content, per a writer", "source": "web" }
+          ],
+          "quotes": [
+            { "id": "q-int-stale", "text": "Let's say 3 months later we need to make an adjustment to the feature. We just do it and we don't update the documents usually.", "who": "Frontend engineer, mid-size consumer platform, internal API consumer", "tier": "E4", "kind": "pain_point", "conv": "3ecdd87e-b208-4b3f-b1d2-6b500786c928", "ms": 79390, "date": "2026-07-26" }
+          ],
+          "ideas": [
+            { "text": "Name the exact page, schema or missing example behind each failed task", "impact": 3, "effort": 2, "why": "Turns a failure into a fix the owner can act on" }
+          ],
+          "tobe": [
+            { "text": "Each failure points to the page or schema that caused it, in the owner's report" }
+          ]
+        },
+        {
+          "id": "pick-surface",
+          "name": "Pick a surface",
+          "feel": 0,
+          "asis": [
+            { "text": "Agents write their own client from the spec or call a CLI; SDKs are used where they exist" }
+          ],
+          "pains": [
+            { "text": "Language SDKs look like overkill when an agent can write the calling code itself", "tier": "E2", "quotes": ["q-int-overkill"] },
+            { "text": "30 MCP tools cost about 3,600 tokens a turn, used or not, per an HN builder", "source": "web" }
+          ],
+          "quotes": [
+            { "id": "q-int-overkill", "text": "it's not expensive for them to ask agents to look at the OpenAPI spec and write the code for themselves.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E2", "kind": "objection", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 3684722, "date": "2026-09-09" },
+            { "id": "q-int-cli", "text": "CLI, yeah, today when we use it with AI agents, that could be much more efficient.", "who": "Backend developer, multi-country commerce SaaS with a public API", "tier": "E2", "kind": "product_request", "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9", "ms": 3596165, "date": "2026-09-09" }
+          ],
+          "ideas": [
+            { "text": "Run the same tasks through docs, CLI, MCP and SDK and publish pass rate and tokens", "impact": 2, "effort": 1, "why": "Evidence leans CLI for agents; prove it before leading with it" }
+          ],
+          "tobe": [
+            { "text": "Consumers get a CLI with JSON output and a curated MCP server; SDKs on request" }
+          ]
+        },
+        {
+          "id": "first-call",
+          "name": "Make the first call",
+          "feel": -2,
+          "asis": [
+            { "text": "The agent writes the integration and runs it; bad docs show up as plausible wrong answers" }
+          ],
+          "pains": [
+            { "text": "GPT-5 solved 43.7% of real MCP tasks; open models under 40% of web API integration tasks", "source": "web" },
+            { "text": "On bad docs an agent throws no error; it answers anyway with what it hallucinates", "source": "web" }
+          ],
+          "quotes": [],
+          "ideas": [
+            { "text": "Five real tasks per API, two agents, three runs each, with repeat agreement measured", "impact": 3, "effort": 2, "why": "A gate is only possible if results do not flip between runs" }
+          ],
+          "tobe": [
+            { "text": "The same tasks run on every release, so a broken integration is caught before clients" }
+          ]
+        },
+        {
+          "id": "keep-working",
+          "name": "Keep it working after changes",
+          "feel": -2,
+          "asis": [
+            { "text": "Consumers pin versions per API and upgrade when they are forced to" }
+          ],
+          "pains": [
+            { "text": "Schema drift between backend and frontend types goes unnoticed until a user hits it", "tier": "E3", "quotes": ["q-int-drift"] },
+            { "text": "An internal SDK falls out of date with the API it wraps", "tier": "E3", "quotes": ["q-int-sdk"] },
+            { "text": "Spec and live API drift costs 30 to 60 minutes in devtools per UI breakage, per an HN dev", "source": "web" }
+          ],
+          "quotes": [
+            { "id": "q-int-drift", "text": "it has happened that this stuff goes unnoticed and a user runs into a problem.", "who": "Frontend engineer, mid-size consumer platform, internal API consumer", "tier": "E3", "kind": "pain_point", "conv": "3ecdd87e-b208-4b3f-b1d2-6b500786c928", "ms": 573560, "date": "2026-07-26" },
+            { "id": "q-int-sdk", "text": "it reminded me of the times that we had issues with SDK being out of date.", "who": "Frontend engineer, mid-size consumer platform, internal API consumer", "tier": "E3", "kind": "pain_point", "conv": "3ecdd87e-b208-4b3f-b1d2-6b500786c928", "ms": 3281300, "date": "2026-07-26" }
+          ],
+          "ideas": [
+            { "text": "Rerun consumers' tasks against every new version before it ships", "impact": 3, "effort": 2, "why": "Staleness and drift lead the market's counted complaints" }
+          ],
+          "tobe": [
+            { "text": "Consumers see a last-verified mark on each surface and version" }
+          ]
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "title": "Lead with the agent task eval on the docs a team already has",
+      "why": "Nobody asked for more surfaces: the one publisher calls the writing work nothing, generation is given away and static scores are free. A failed task on a team's own API is both the proof and the opener. Demand is untested, so settle it on the first 30 reports.",
+      "tier": "E2"
+    },
+    {
+      "title": "The gate must replace a review step, never add one",
+      "why": "Two to three weeks of review per change is the only E4 publisher pain, and the same developer said a tool that adds pull requests to review will not be used. Ask every buyer which step the checks would let them skip.",
+      "tier": "E4"
+    },
+    {
+      "title": "Where there is no usable spec, open a repair pull request first",
+      "why": "Unspecced APIs are an E4 pain and the repair button is the only entry product a practitioner asked for. The 90% estimate is one person's, so count usable specs on the target list before building.",
+      "tier": "E4"
+    },
+    {
+      "title": "CLI and a curated MCP first; SDKs on request and pinned per version",
+      "why": "A generated SDK that follows the latest spec would break clients pinned to older versions (E3), and the CLI is the surface named for agents (E2). Let the eval's surface comparison confirm it.",
+      "tier": "E3"
+    },
+    {
+      "title": "Start in the team's own repository and hold self-hosting until two buyers ask",
+      "why": "In-VPN deployment is an E4 constraint from one corporate lead. A GitHub Action on the existing spec, with outputs the team owns, avoids both a portal migration and building self-hosting too early.",
+      "tier": "E4"
+    }
+  ]
+}
