@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cody Saxton, Illuminator</title>
+<meta name="description" content="Cody Saxton, Illuminator Omnimedia. Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wall:#FFFFFF;
+  --ink:#141414;
+  --line:#1B1B1B;
+  --hair:#D9D6D0;
+  --faint:#ECEAE6;
+  --muted:#6F6C66;
+  --far:#F4F3F0;
+  --accent:#B5543C;
+  --ease:cubic-bezier(.22,.61,.24,1);
+  --slow:900ms;
+  --gut:80px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--wall);color:var(--ink);font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:16px;line-height:1.5;font-feature-settings:"tnum" 0;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block;max-width:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.cap{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* views */
+#view{min-height:100vh;opacity:1;transition:opacity var(--slow) var(--ease)}
+#view.out{opacity:0;transition-duration:420ms}
+
+/* ---------- entrance ---------- */
+.entrance{position:relative;height:100vh;min-height:680px;overflow:hidden}
+.entrance .ceil{position:absolute;left:0;right:0;top:36px;height:1px;background:var(--line)}
+.entrance .ceil2{position:absolute;left:0;right:0;top:42px;height:1px;background:var(--hair)}
+.entrance .floor{position:absolute;left:0;right:0;bottom:84px;height:1px;background:var(--line)}
+.entrance .skirt{position:absolute;left:0;right:0;bottom:98px;height:1px;background:var(--hair)}
+.e-name{position:absolute;left:var(--gut);top:132px;font-weight:500;font-size:clamp(60px,11.4vw,178px);line-height:.88;letter-spacing:-.045em;white-space:nowrap}
+.e-sub{position:absolute;left:var(--gut);top:calc(132px + clamp(60px,11.4vw,178px)*.88 + 34px);display:flex;gap:0;font-size:clamp(20px,2.1vw,30px);letter-spacing:-.012em;line-height:1.1}
+.e-sub span{display:block;width:clamp(180px,24vw,346px)}
+.e-text{position:absolute;left:var(--gut);top:calc(132px + clamp(60px,11.4vw,178px)*.88 + 128px);max-width:440px;font-size:19px;line-height:1.45;letter-spacing:-.005em}
+.e-info{position:absolute;left:var(--gut);bottom:128px;display:grid;grid-template-columns:repeat(3,auto);column-gap:56px;row-gap:6px}
+.e-info .cap{margin-bottom:6px}
+.e-info p{font-size:14px;line-height:1.45}
+.e-mark{position:absolute;right:var(--gut);top:66px;display:flex;align-items:center;gap:12px}
+.e-mark img{height:14px;width:auto;opacity:.9}
+.e-block{position:absolute;left:var(--gut);right:var(--gut);bottom:30px;display:flex;justify-content:space-between;align-items:center}
+.door{position:absolute;right:calc(var(--gut) + 64px);bottom:84px;width:clamp(210px,17.5vw,262px);height:min(60vh,540px);display:block;cursor:pointer}
+.door .frame{position:absolute;inset:0;border:1px solid var(--line);border-bottom:0}
+.door .frame2{position:absolute;inset:-9px -9px 0 -9px;border:1px solid var(--hair);border-bottom:0}
+.door .beyond{position:absolute;inset:1px 1px 0 1px;background:var(--far);overflow:hidden;transition:background var(--slow) var(--ease)}
+.door .bfloor{position:absolute;left:0;right:0;bottom:0;height:22%;background:#EAE8E3;border-top:1px solid #BDB9B2}
+.door .bskirt{position:absolute;left:0;right:0;bottom:calc(22% + 7px);height:1px;background:#DDD9D2}
+.door .bwork{position:absolute;left:50%;bottom:calc(22% + 38%);width:21%;transform:translateX(-50%);outline:1px solid #D2CEC7;transition:transform 1.6s var(--ease)}
+.door .bside{position:absolute;top:0;bottom:22%;left:0;width:1px;background:#CFCBC4}
+.door .bside.r{left:auto;right:18%}
+.door .enter{position:absolute;left:0;right:0;bottom:-60px;text-align:center;font-size:13px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+.door .enter i{display:block;width:1px;height:14px;background:var(--line);margin:0 auto 8px;transition:height .9s var(--ease)}
+.door:hover .beyond{background:#EFEDE9}
+.door:hover .bwork{transform:translateX(-50%) scale(1.08)}
+.door:hover .enter i{height:22px}
+
+/* ---------- chrome ---------- */
+.bar{position:fixed;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gut);background:rgba(255,255,255,.94);z-index:30;transition:opacity .6s var(--ease)}
+.bar::after{content:"";position:absolute;left:var(--gut);right:var(--gut);bottom:0;height:1px;background:var(--faint)}
+.bar.hide{opacity:0;pointer-events:none}
+.wm{display:flex;align-items:baseline;gap:14px}
+.wm b{font-weight:600;font-size:15px;letter-spacing:-.01em}
+.wm span{font-size:13px;color:var(--muted)}
+.crumb{position:absolute;left:50%;transform:translateX(-50%);font-size:13px;color:var(--muted);white-space:nowrap}
+.crumb b{color:var(--ink);font-weight:500}
+.links{display:flex;gap:28px;font-size:13px}
+.links a{color:var(--muted);transition:color .4s}
+.links a:hover,.links a.on{color:var(--ink)}
+
+.here{position:fixed;right:24px;bottom:24px;width:188px;background:rgba(255,255,255,.96);border:1px solid var(--faint);padding:10px 10px 8px;z-index:25;transition:opacity .6s var(--ease)}
+.here.hide{opacity:0;pointer-events:none}
+.here .cap{font-size:9px;letter-spacing:.1em;white-space:nowrap;gap:8px;display:flex;justify-content:space-between;margin-bottom:6px}
+.here svg{display:block;width:100%;height:auto}
+.here .fine{fill:none;stroke:#141414;stroke-width:3}
+
+/* ---------- plan ---------- */
+.plan-page{padding:120px var(--gut) 72px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:64px;align-items:start;max-width:1600px;margin:0 auto}
+.plan-head{grid-column:1/-1;display:flex;justify-content:space-between;align-items:end}
+.plan-head h1{font-weight:500;font-size:40px;letter-spacing:-.03em;line-height:1}
+.plan-head p{font-size:14px;color:var(--muted)}
+.plan svg{width:100%;height:auto;display:block;overflow:visible}
+.plan .room-hit{fill:transparent;cursor:pointer;transition:fill .7s var(--ease)}
+.plan .room-g:hover .room-hit,.plan .room-g:focus .room-hit,.plan .room-g.hl .room-hit{fill:#F6F4F0}
+.plan .room-g{outline:none}
+.plan .rl-no{font-size:11px;letter-spacing:.14em;fill:var(--muted);font-weight:500}
+.plan .rl-name{font-size:21px;letter-spacing:-.02em;fill:var(--ink);font-weight:500}
+.plan .rl-sub{font-size:11px;letter-spacing:.12em;fill:var(--muted);text-transform:uppercase}
+.plan .fine{stroke:var(--line);stroke-width:.75;fill:none}
+.plan .tick{stroke:var(--ink);stroke-width:1.4}
+.plan .draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 2.2s var(--ease) forwards}
+.plan .walls{animation:fadein 1.4s var(--ease) both}
+.plan .ticks{animation:fadein 1.6s var(--ease) .9s both}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.legend h2{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--muted);padding-bottom:12px;border-bottom:1px solid var(--line)}
+.legend a.row{display:grid;grid-template-columns:28px 1fr auto;gap:6px;padding:14px 0;border-bottom:1px solid var(--faint);font-size:15px;align-items:baseline;transition:padding .5s var(--ease)}
+.legend a.row:hover{padding-left:6px}
+.legend a.row em{font-style:normal;color:var(--muted);font-size:13px}
+.legend a.row small{grid-column:2/-1;font-size:12.5px;color:var(--muted)}
+.legend .foot{margin-top:28px;font-size:12.5px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+.legend .foot a:hover{color:var(--ink)}
+
+/* ---------- room ---------- */
+.room-page{padding:112px 0 140px}
+.room-intro-m{display:none}
+.walls-wrap{padding:0 var(--gut);max-width:1600px;margin:0 auto}
+.wall{position:relative;margin:0 auto}
+.wall .w-ceil{position:absolute;left:0;right:0;top:0;height:1px;background:var(--line)}
+.wall .w-edge{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+.wall .w-edge.l{left:0}.wall .w-edge.r{right:0}
+.wall .w-floor{position:absolute;left:-24px;right:-24px;bottom:0;height:1px;background:var(--line)}
+.wall .w-skirt{position:absolute;left:0;right:0;bottom:13px;height:1px;background:var(--hair)}
+.work{position:absolute;cursor:zoom-in;opacity:0;transform:translateY(10px);transition:opacity 1.4s var(--ease),transform 1.4s var(--ease)}
+.work.in{opacity:1;transform:none}
+.work img{width:100%;height:100%;object-fit:cover;outline:1px solid var(--hair);outline-offset:0;background:var(--far);transition:outline-color .6s}
+.work:hover img{outline-color:#A9A59E}
+.lbl{position:absolute;left:calc(100% + 12px);bottom:0;width:88px;font-size:10.5px;line-height:1.35;color:var(--muted);transition:color .5s}
+.lbl b{display:block;color:var(--ink);font-weight:600;font-size:10.5px;letter-spacing:.04em}
+.work:hover .lbl{color:var(--ink)}
+.vinyl{position:absolute;left:44px;width:300px}
+.vinyl .cap{margin-bottom:18px}
+.vinyl h1{font-weight:500;font-size:46px;letter-spacing:-.035em;line-height:.98}
+.vinyl p{margin-top:16px;font-size:14px;line-height:1.5;color:var(--ink)}
+.vinyl p + p{margin-top:6px;color:var(--muted)}
+.empty-note{position:absolute;left:0;right:0;text-align:center;font-size:13px;color:var(--muted)}
+.empty-note b{display:block;font-weight:500;color:var(--ink);font-size:15px;margin-bottom:4px}
+.tb{display:flex;justify-content:space-between;gap:24px;margin:14px auto 76px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tb b{color:var(--ink);font-weight:600}
+.panel{position:absolute;border:1px solid var(--line);background:#fff;padding:18px 16px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;opacity:0;transform:translateY(10px);transition:opacity 1.4s var(--ease),transform 1.4s var(--ease),background .6s}
+.panel.in{opacity:1;transform:none}
+.panel:hover{background:#F8F7F4}
+.panel h3{font-weight:500;font-size:22px;letter-spacing:-.025em;line-height:1.05}
+.panel p{font-size:12px;line-height:1.45;color:var(--muted)}
+.panel .lbl{bottom:-1px}
+.furn{position:absolute;bottom:14px;border:1px solid var(--line);border-bottom:0;background:#fff}
+.furn::before{content:"";position:absolute;left:-10px;right:-10px;top:-1px;height:1px;background:var(--line)}
+.furn span{position:absolute;left:0;right:0;top:12px;text-align:center}
+.guide{max-width:1600px;margin:0 auto;padding:0 var(--gut)}
+.guide-h{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--line);padding-bottom:12px}
+.guide-h h2{font-weight:500;font-size:28px;letter-spacing:-.025em}
+.guide ol{list-style:none;columns:2;column-gap:64px;margin-top:6px}
+.guide li{break-inside:avoid}
+.guide li a{display:grid;grid-template-columns:52px 1fr auto;gap:10px;padding:10px 0;border-bottom:1px solid var(--faint);font-size:14px;align-items:baseline}
+.guide li a span:first-child{font-weight:600;font-size:12px}
+.guide li a em{font-style:normal;color:var(--muted);font-size:12.5px}
+.guide li a:hover span:nth-child(2){text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.doors{max-width:1600px;margin:72px auto 0;padding:0 var(--gut)}
+.doors .cap{margin-bottom:14px}
+.doors div{display:flex;flex-wrap:wrap;gap:12px}
+.doors a{border:1px solid var(--line);padding:14px 20px 13px;font-size:14px;transition:background .5s,color .5s}
+.doors a:hover{background:var(--ink);color:#fff}
+
+/* ---------- sheet (handout) ---------- */
+.sheet{padding:136px var(--gut) 160px;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:320px minmax(0,680px);gap:80px}
+.sheet aside{position:sticky;top:112px;align-self:start}
+.sheet aside .cap{margin-bottom:18px}
+.sheet aside h1{font-weight:500;font-size:52px;letter-spacing:-.04em;line-height:.98}
+.sheet aside a.back{display:inline-block;margin-top:28px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--hair);padding-bottom:2px}
+.sheet aside a.back:hover{color:var(--ink);border-color:var(--ink)}
+.sheet aside nav{margin-top:40px;display:flex;flex-direction:column;gap:8px;font-size:13px}
+.sheet aside nav a{color:var(--muted)}
+.sheet aside nav a.on,.sheet aside nav a:hover{color:var(--ink)}
+.prose{font-size:16px;line-height:1.62}
+.prose h2{font-weight:500;font-size:22px;letter-spacing:-.02em;margin:48px 0 12px;line-height:1.2}
+.prose h2:first-child{margin-top:0}
+.prose h3{font-weight:600;font-size:15px;margin:28px 0 6px}
+.prose p{margin:0 0 14px}
+.prose ul{margin:0 0 14px 18px}
+.prose li{margin-bottom:6px}
+.prose .lead{font-size:22px;line-height:1.4;letter-spacing:-.012em;margin-bottom:28px}
+.entry{display:grid;grid-template-columns:140px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--faint)}
+.entry:last-child{border-bottom:1px solid var(--faint)}
+.entry .d{font-size:13px;color:var(--muted)}
+.entry h3{margin:0 0 6px;font-size:16px;font-weight:600}
+.entry p{margin:0;font-size:15px;color:#2A2A2A}
+.entry figure{margin-top:16px}
+.entry figure img{max-height:360px;width:auto;outline:1px solid var(--hair)}
+.entry figcaption{font-size:12px;color:var(--muted);margin-top:8px}
+.entry a.pdf{display:inline-block;margin-top:12px;font-size:13px;border-bottom:1px solid var(--ink)}
+.note{padding:20px 0;border-top:1px solid var(--faint)}
+.note .d{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.note p{margin:0}
+form.contact{margin-top:32px;display:grid;gap:22px}
+form.contact label{display:block}
+form.contact label span{display:block;margin-bottom:8px}
+form.contact input,form.contact textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--line);padding:8px 0;border-radius:0}
+form.contact textarea{min-height:140px;resize:vertical;border:1px solid var(--line);padding:12px}
+form.contact input:focus,form.contact textarea:focus{outline:none;border-color:var(--accent)}
+.hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;padding:15px 26px 14px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;transition:background .5s}
+.btn:hover{background:#333}
+form.contact .btn{justify-self:start}
+.sent{font-size:14px;color:var(--muted)}
+
+/* ---------- detail ---------- */
+.detail{position:fixed;inset:0;background:#fff;z-index:50;display:grid;grid-template-columns:minmax(0,1fr) 400px;opacity:0;pointer-events:none;transition:opacity .8s var(--ease)}
+.detail.open{opacity:1;pointer-events:auto}
+.d-stage{position:relative;display:flex;align-items:center;justify-content:center;padding:88px 64px 72px}
+.d-stage .d-floor{position:absolute;left:64px;right:0;bottom:44px;height:1px;background:var(--line)}
+.d-stage .d-skirt{position:absolute;left:64px;right:0;bottom:57px;height:1px;background:var(--hair)}
+.d-img{max-width:100%;max-height:calc(100vh - 200px);width:auto;height:auto;outline:1px solid var(--hair);cursor:zoom-in;transition:opacity .6s var(--ease)}
+.d-info{border-left:1px solid var(--faint);padding:96px 48px 40px;display:flex;flex-direction:column;overflow-y:auto}
+.d-top{position:absolute;top:0;left:0;right:0;height:64px;display:flex;justify-content:space-between;align-items:center;padding:0 32px 0 64px;z-index:2}
+.d-top a,.d-top button{font-size:13px;color:var(--muted)}
+.d-top a:hover,.d-top button:hover{color:var(--ink)}
+.d-info .no{font-size:12px;font-weight:600;letter-spacing:.06em;margin-bottom:26px}
+.d-info .series{margin-bottom:14px}
+.d-info h2{font-weight:500;font-size:40px;letter-spacing:-.035em;line-height:1}
+.d-info .med{margin-top:14px;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.d-info .price{margin-top:30px;font-size:28px;letter-spacing:-.02em;font-weight:500}
+.d-info .inc{margin-top:6px;font-size:13.5px;color:var(--muted)}
+.d-info .btn{margin-top:26px;align-self:stretch}
+.d-info .wd{margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.d-info .wd a{border-bottom:1px solid var(--hair);color:var(--ink)}
+.d-info .ph{margin-top:28px;padding-top:14px;border-top:1px solid var(--faint);font-size:12.5px;color:var(--muted)}
+.d-info .give{margin-top:auto;padding-top:36px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.d-nav{display:flex;justify-content:space-between;margin-top:22px;padding-top:16px;border-top:1px solid var(--faint);font-size:13px}
+.d-nav button{color:var(--muted)}
+.d-nav button:hover{color:var(--ink)}
+.zoom{position:fixed;inset:0;background:#fff;z-index:60;overflow:hidden;cursor:zoom-out;opacity:0;pointer-events:none;transition:opacity .6s var(--ease);touch-action:none}
+.zoom.open{opacity:1;pointer-events:auto}
+.zoom img{position:absolute;left:0;top:0;max-width:none;will-change:transform}
+.zoom .hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:#fff;padding:6px 10px}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  :root{--gut:40px}
+  .plan-page{grid-template-columns:1fr;gap:40px}
+  .sheet{grid-template-columns:1fr;gap:40px}
+  .sheet aside{position:static}
+  .detail{grid-template-columns:1fr;overflow-y:auto}
+  .d-stage{min-height:70vh;padding:80px 24px 64px}
+  .d-stage .d-floor,.d-stage .d-skirt{left:0}
+  .d-info{border-left:0;border-top:1px solid var(--faint);padding:32px 24px 48px;overflow:visible}
+  .d-top{position:fixed;background:#fff;padding:0 24px}
+  .crumb{display:none}
+}
+@media (max-width:700px){
+  :root{--gut:16px}
+  body{font-size:15px}
+  .entrance{height:auto;min-height:100svh;padding:72px 16px 0;display:flex;flex-direction:column}
+  .entrance .ceil{top:24px}.entrance .ceil2{top:30px}
+  .e-mark{position:static;order:-1;margin-bottom:34px}
+  .e-name,.e-sub,.e-text,.e-info,.e-block{position:static}
+  .e-name{font-size:clamp(58px,19vw,80px);white-space:normal;line-height:.9}
+  .e-sub{margin-top:22px;font-size:20px;gap:24px}
+  .e-sub span{width:auto}
+  .e-text{margin-top:26px;font-size:17px}
+  .door{position:relative;right:auto;bottom:auto;align-self:center;width:62%;height:300px;margin-top:40px}
+  .door .enter{bottom:-62px}
+  .entrance .floor,.entrance .skirt{display:none}
+  .door-wrap{order:1;margin-bottom:64px;position:relative;border-bottom:1px solid var(--line);display:flex;flex-direction:column;align-items:center}
+  .e-info{order:2;grid-template-columns:1fr 1.4fr;margin-top:40px;column-gap:24px;row-gap:18px}
+  .e-info > div:last-child{grid-column:1/-1}
+  .e-block{order:3;margin:44px 0 22px;flex-direction:column;align-items:flex-start;gap:6px}
+  .bar{height:56px}
+  .wm span{display:none}
+  .links{gap:18px}
+  .links a.hm{display:none}
+  .here{width:112px;right:12px;bottom:12px;padding:7px 7px 5px}
+  #here-name{display:none}
+  .plan-page{padding:88px 16px 64px}
+  .plan-head{flex-direction:column;align-items:flex-start;gap:8px}
+  .plan-head h1{font-size:32px}
+  .plan .rl-name{font-size:26px}
+  .plan .rl-sub{display:none}
+  .room-page{padding:84px 0 150px}
+  .room-intro-m{display:block;padding:12px 16px 40px}
+  .room-intro-m h1{font-weight:500;font-size:40px;letter-spacing:-.035em;line-height:1;margin-top:14px}
+  .room-intro-m p{margin-top:12px;font-size:14px}
+  .room-intro-m p + p{margin-top:4px;color:var(--muted)}
+  .walls-wrap{padding:0 24px}
+  .lbl{left:auto;right:0;top:calc(100% + 10px);bottom:auto;width:auto;text-align:right}
+  .tb{font-size:10px;margin-bottom:56px}
+  .tb span:nth-child(3){display:none}
+  .guide ol{columns:1}
+  .guide li a{grid-template-columns:44px 1fr}
+  .guide li a em{grid-column:2}
+  .sheet{padding:96px 16px 120px}
+  .sheet aside h1{font-size:40px}
+  .entry{grid-template-columns:1fr;gap:6px}
+  .d-info h2{font-size:32px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:1ms !important;animation-duration:1ms !important;animation-delay:0ms !important}
+  .work,.panel{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<header class="bar hide" id="bar">
+  <a class="wm" href="#/"><b>Cody Saxton</b><span>Illuminator</span></a>
+  <div class="crumb" id="crumb"></div>
+  <nav class="links" id="links">
+    <a href="#/plan" data-k="plan">Plan</a>
+    <a href="#/room/reception" data-k="reception" class="hm">Reception</a>
+    <a href="#/room/reading-room" data-k="reading-room" class="hm">Reading room</a>
+  </nav>
+</header>
+<main id="view" aria-live="polite"></main>
+<a class="here hide" id="here" href="#/plan" aria-label="Floor plan, you are here"><div class="cap"><span>You are here</span><span id="here-name"></span></div><div id="here-svg"></div></a>
+
+<div class="detail" id="detail" role="dialog" aria-modal="true" aria-label="Artwork">
+  <div class="d-top"><a href="#/" id="d-back">Back to the room</a><button id="d-close" aria-label="Close">Close</button></div>
+  <div class="d-stage"><div class="d-skirt"></div><div class="d-floor"></div><img class="d-img" id="d-img" alt=""></div>
+  <div class="d-info" id="d-info"></div>
+</div>
+<div class="zoom" id="zoom" aria-hidden="true"><img id="z-img" alt=""><div class="hint">Move to look closer · Esc to close</div></div>
+
+<script>
+(function(){
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s);
+const view = $('#view'), bar = $('#bar'), here = $('#here');
+let DATA = null, WORKS = [], current = null, renderedKey = null, roomProgress = 0;
+
+/* ---------- building ---------- */
+const ROOMS = [
+  {id:'reception', label:'Reception', short:'Reception', rect:[40,330,340,580], kind:'reception', sub:'About · Contact · Legal', doors:['ink-lings','terracotta-subconscious']},
+  {id:'ink-lings', no:1, label:'ink-lings', short:'Room 1', series:'ink-lings', rect:[40,40,600,330], doors:['reception','color-wonderings','terracotta-subconscious']},
+  {id:'color-wonderings', no:2, label:'color wonderings', short:'Room 2', series:'color wonderings', rect:[600,40,960,330], doors:['ink-lings','reading-room']},
+  {id:'terracotta-subconscious', no:3, label:'terracotta subconscious', short:'Room 3', series:'terracotta subconscious', rect:[340,330,660,580], doors:['reception','ink-lings','reading-room']},
+  {id:'reading-room', label:'Reading room', short:'Reading room', rect:[660,330,960,580], kind:'reading', sub:'Thoughts · Workshops · News', doors:['terracotta-subconscious','color-wonderings']}
+];
+const R = id => ROOMS.find(r => r.id === id);
+const roomName = r => r.no ? `Room ${r.no}, ${r.label}` : r.label;
+
+const H_WALLS = [ [40,40,960,[]], [40,330,960,[[160,210],[450,500],[790,840]]], [40,580,960,[[150,210]]] ];
+const V_WALLS = [ [40,40,580,[]], [960,40,580,[]], [600,40,330,[[160,210]]], [340,330,580,[[500,550]]], [660,330,580,[[500,550]]] ];
+// door swings: [hinge x, hinge y, leaf end x, leaf end y, arc end x, arc end y, sweep]
+const DOORS = [
+  [150,580,150,530,210,580,1], [160,330,160,380,210,330,0], [450,330,450,280,500,330,1], [790,330,790,380,840,330,0],
+  [340,500,390,500,340,550,1], [660,500,710,500,660,550,1], [600,160,650,160,600,210,1]
+];
+
+function segs(a, b, gaps){ const out=[]; let s=a; gaps.forEach(([g0,g1])=>{ out.push([s,g0]); s=g1; }); out.push([s,b]); return out; }
+
+function ticksFor(room, n){
+  if(!n) return '';
+  const [x0,y0,x1,y1] = room.rect, i = 13;
+  const pts = [], step = 4;
+  const edges = [ [x0+i,y0+i,x1-i,y0+i,'h'], [x1-i,y0+i,x1-i,y1-i,'v'], [x1-i,y1-i,x0+i,y1-i,'h'], [x0+i,y1-i,x0+i,y0+i,'v'] ];
+  const doorPts = DOORS.map(d => [(d[0]+d[4])/2, (d[1]+d[5])/2]);
+  edges.forEach(([ax,ay,bx,by,o]) => {
+    const len = Math.hypot(bx-ax, by-ay);
+    for(let t=26; t<len-26; t+=step){
+      const x = ax + (bx-ax)*t/len, y = ay + (by-ay)*t/len;
+      if(doorPts.some(([dx,dy]) => Math.hypot(dx-x,dy-y) < 52)) continue;
+      pts.push([x,y,o]);
+    }
+  });
+  let s = '';
+  for(let k=0;k<n;k++){
+    const p = pts[Math.floor((k+.5)*pts.length/n)];
+    s += p[2]==='h' ? `<line class="tick" x1="${p[0]-5}" y1="${p[1]}" x2="${p[0]+5}" y2="${p[1]}"/>` : `<line class="tick" x1="${p[0]}" y1="${p[1]-5}" x2="${p[0]}" y2="${p[1]+5}"/>`;
+  }
+  return s;
+}
+
+function planSVG(opts={}){
+  const mini = !!opts.mini, cur = opts.current;
+  const sw = mini ? 9 : 5;
+  let walls = '';
+  H_WALLS.forEach(([a,y,b,g]) => segs(a,b,g).forEach(([s,e]) => walls += `<line x1="${s}" y1="${y}" x2="${e}" y2="${y}"/>`));
+  V_WALLS.forEach(([x,a,b,g]) => segs(a,b,g).forEach(([s,e]) => walls += `<line x1="${x}" y1="${s}" x2="${x}" y2="${e}"/>`));
+  let fills = '', labels = '', ticks = '', doors = '';
+  ROOMS.forEach(r => {
+    const [x0,y0,x1,y1] = r.rect, cx=(x0+x1)/2, cy=(y0+y1)/2;
+    const n = r.series ? WORKS.filter(w => w.series === r.series).length : 0;
+    if(mini){
+      if(r.id === cur) fills += `<rect x="${x0}" y="${y0}" width="${x1-x0}" height="${y1-y0}" fill="#F1ECE6"/>`;
+      return;
+    }
+    const subTxt = r.series ? (n ? `${n} works` : 'Empty') : r.sub;
+    fills += `<g class="room-g" tabindex="0" role="link" aria-label="${roomName(r)}" data-room="${r.id}">
+      <rect class="room-hit" x="${x0+3}" y="${y0+3}" width="${x1-x0-6}" height="${y1-y0-6}"/>
+      <text class="rl-no" x="${cx}" y="${cy-26}" text-anchor="middle">${r.no ? 'ROOM '+r.no : '&#160;'}</text>
+      <text class="rl-name" x="${cx}" y="${cy+2}" text-anchor="middle">${r.label}</text>
+      <text class="rl-sub" x="${cx}" y="${cy+26}" text-anchor="middle">${subTxt}</text></g>`;
+    ticks += ticksFor(r, n);
+  });
+  DOORS.forEach(([hx,hy,lx,ly,ax,ay,sw2]) => {
+    const len = 130;
+    doors += `<line class="fine${mini?'':' draw'}" style="--len:${len}" x1="${hx}" y1="${hy}" x2="${lx}" y2="${ly}"/>`;
+    doors += `<path class="fine${mini?'':' draw'}" style="--len:${len}" d="M${lx} ${ly} A50 50 0 0 ${sw2} ${ax} ${ay}"/>`;
+  });
+  let extra = '';
+  if(!mini){
+    extra += `<g class="fine"><line x1="180" y1="640" x2="180" y2="596"/><path d="M174 604 L180 594 L186 604"/></g>
+      <text class="rl-sub" x="180" y="662" text-anchor="middle" style="text-transform:uppercase">Entrance</text>`;
+    extra += `<g transform="translate(990 612)" class="fine"><circle r="14"/><path d="M0 -11 L5 6 L0 2 L-5 6 Z" fill="#141414" stroke="none"/></g><text class="rl-sub" x="990" y="580" text-anchor="middle">N</text>`;
+    if(opts.youAt){
+      const r = R(opts.youAt), [x0,y0,x1,y1] = r.rect;
+      extra += `<circle cx="${(x0+x1)/2}" cy="${y1-44}" r="5" fill="var(--accent)"/><text class="rl-sub" x="${(x0+x1)/2 + 12}" y="${y1-40}" style="fill:var(--accent)">You are here</text>`;
+    }
+  } else if(cur){
+    const r = R(cur), [x0,y0,x1,y1] = r.rect;
+    const x = x0 + 34 + (x1-x0-68)*roomProgress;
+    extra += `<circle id="here-dot" cx="${x}" cy="${(y0+y1)/2}" r="16" fill="var(--accent)"/>`;
+  }
+  const vb = mini ? '28 28 944 564' : '20 20 1000 660';
+  return `<svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" aria-hidden="${mini}">
+    ${fills}<g class="walls" stroke="#141414" stroke-width="${sw}" stroke-linecap="square">${walls}</g>
+    <g class="ticks">${ticks}</g><g class="doors">${doors}</g>${extra}</svg>`;
+}
+
+/* ---------- owner's pages (verbatim) ---------- */
+const PAGES = {
+ about:{room:'reception', title:'About', teaser:'Art and Illustrations to illuminate ways toward a Healed World.', html:`
+  <p class="lead">Cody Saxton, Illuminator Omnimedia</p>
+  <h2>Practice</h2>
+  <p>Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands. All works are sold unframed unless otherwise indicated, shipping is additional. 10% of sales donated to reforestation and degrowth efforts. No returns are possible at this time. Any items damaged in shipping must be claimed through insurance by the buyer. Transactions are conducted in Euros. Payment in full must be received prior to shipping. Payments can be made by Mollie or direct IBAN deposit: NL55SNSB8841074353 Illuminator Omnimedia. KVK #91859476 Registered business address: Bankwerkerij 159, Amsterdam NL 1021NT. Live contact through Instagram @codysaxtonart or invigorated@proton.me.</p>
+  <h2>Exhibitions &amp; Press</h2>
+  <div class="entry"><div class="d num">November 2026</div><div><h3>Things</h3><p>Upcoming: PopUp show of selected works at Things.</p></div></div>
+  <div class="entry"><div class="d num">June 2025</div><div><h3>Plum Village, France: Science, Zen and the Art of Health retreat</h3><p>Participant, Plum Village retreat : The Wonder of It All</p></div></div>
+  <div class="entry"><div class="d num">Nov 2023</div><div><h3>Open Gallery Exhibition 2023</h3><p>5 piece series, shown as part of group show of the Amsterdam International Artist Collective gallery.</p><figure><img src="img/aiac-install-photo.jpg" alt="Five framed works on a white gallery wall at the Amsterdam International Artist Collective, with two people standing beside them" loading="lazy"></figure></div></div>
+  <div class="entry"><div class="d num">July 2020</div><div><h3>Pandemic Testing Shelter, newspaper coverage in Albuquerque Journal.</h3><p>Newspaper article described and pictured my invention, development with engineers and deployment at Sandia National Laboratories to build and deploy an alternative PPE system as a shortage threatened early in the Covid-19 pandemic. Building plans were released open-source, so other institutions built their own versions to protect healthcare workers at testing sites around New Mexico.</p><a class="pdf" href="img/albuquerque-journal-2020.pdf" target="_blank" rel="noopener">Albuquerque Journal, July 2020 (PDF)</a></div></div>
+  <div class="entry"><div class="d num">designed 2005</div><div><h3>T-shirt design for Rojas, worn by Rosario Dawson in Quentin Tarantino's 2007 film Deathproof</h3><p>Film wardrobe piece for Deathproof (grossed 31.1 USD at box office). Unicorn t-shirt graphic designed for Freddy Rojas' Los Angeles clothing brand, Rojas.</p><figure><img src="img/deathproof-rojas-tshirt.jpg" alt="Unicorn t-shirt graphic designed for the Rojas clothing brand" loading="lazy"></figure></div></div>`},
+ contact:{room:'reception', title:'Contact', teaser:'invigorated@proton.me', html:`
+  <p class="lead">For purchases, exhibition enquiries, or workshop dates — use the form below or write to <a href="mailto:invigorated@proton.me" style="border-bottom:1px solid">invigorated@proton.me</a>.</p>
+  <form class="contact" id="contact-form" novalidate>
+    <label><span class="cap">Name</span><input name="name" autocomplete="name" required></label>
+    <label><span class="cap">Email</span><input name="email" type="email" autocomplete="email" required></label>
+    <label><span class="cap">Subject (optional)</span><input name="subject"></label>
+    <label><span class="cap">Message</span><textarea name="message" required></textarea></label>
+    <label class="hp" aria-hidden="true"><span>Leave this empty</span><input name="website" tabindex="-1" autocomplete="off"></label>
+    <button class="btn" type="submit">Send message</button>
+    <p class="sent" id="sent" hidden></p>
+  </form>`},
+ imprint:{room:'reception', title:'Imprint', teaser:'Illuminator Omnimedia', html:`
+  <p>Instagram @codysaxtonart</p>
+  <h2>Responsible for content</h2>
+  <p>[Illuminator Omnimedia]<br>[Bankwerkerij 159]<br>[1021 NT, Amsterdam]<br>[NL]</p>
+  <h2>Contact</h2>
+  <p>Email: invigorated@proton.me</p>
+  <h2>VAT / Chamber of Commerce</h2>
+  <p>KvK / HRB number: [91859476]<br>VAT ID: [upon request]</p>`},
+ privacy:{room:'reception', title:'Privacy notice', teaser:'Last reviewed: 2026-05-11', html:`
+  <p class="num">Last reviewed: 2026-05-11</p>
+  <p>This notice explains what personal data this site collects, why, who else sees it, and what you can do about it. The site is small and intentionally light: no analytics, no advertising, no tracking cookies.</p>
+  <h2>1. Who is responsible</h2>
+  <p>Controller: [LEGAL_NAME]<br>[STREET_ADDRESS]<br>[POSTAL_CODE_CITY]<br>[COUNTRY]<br>Email: [EMAIL]<br>KvK / Chamber of Commerce: [KVK_NUMBER]<br>VAT ID: [VAT_ID]</p>
+  <p>For any privacy question, email the address above. We will respond within 30 days.</p>
+  <h2>2. What we collect, and why</h2>
+  <h3>a) Just visiting the site</h3>
+  <p>When you load a page, our hosting provider (TransIP B.V., Netherlands) records standard server logs: your IP address, the URL you requested, the time of the request, your browser identifier (User-Agent), and the referring page.</p>
+  <p>Purpose: to keep the site running and detect abuse.<br>Legal basis: legitimate interest (GDPR Art. 6(1)(f)).<br>Retention: TransIP rotates server logs within roughly 30 days.</p>
+  <h3>b) Buying an artwork</h3>
+  <p>When you click "Purchase" on an artwork page, you are redirected to Mollie B.V. (Netherlands). Mollie collects what the payment method requires — typically your name, email address, billing address, and, where shipping collection is enabled, your shipping address. Payment details (card number, bank account) stay with Mollie; we never see or store them.</p>
+  <p>After a successful payment, Mollie sends us a confirmation email containing your name, email, and shipping address so we can ship the work.</p>
+  <p>Purpose: process the sale and ship the artwork.<br>Legal basis: performance of a contract (GDPR Art. 6(1)(b)).<br>Retention: order records are kept for 7 years as required by Dutch tax law (Algemene wet inzake rijksbelastingen, art. 52).</p>
+  <h3>c) Emailing us</h3>
+  <p>If you write to us at the contact address, we receive whatever you put in the email — typically your email address, your name, and the content of your message.</p>
+  <p>Purpose: to reply.<br>Legal basis: legitimate interest, or pre-contractual measures if the email concerns a possible purchase.<br>Retention: up to 3 years, unless the correspondence relates to a sale — in which case the 7-year tax-record retention above applies.</p>
+  <h3>d) Shipping</h3>
+  <p>To ship a purchased artwork we share your name and shipping address with our carrier ([SHIPPING_CARRIER]). The carrier acts as a separate controller for that data and you should consult their own privacy notice for how they handle it.</p>
+  <h2>3. Who else processes your data</h2>
+  <p>We rely on a small number of service providers. None of them sell or share your data for advertising:</p>
+  <ul><li>TransIP B.V. — hosting, server logs, daily backups. Netherlands (EU).</li><li>Mollie B.V. — payment processing. Netherlands (EU). See Mollie's privacy notice.</li><li>[EMAIL_PROVIDER] — email inbox. [EMAIL_PROVIDER_LOCATION].</li><li>[SHIPPING_CARRIER] — delivery. [COUNTRY].</li></ul>
+  <p>We do not sell or rent your data. We share it only with the parties above, and only as needed to operate the site, process your order, and deliver your purchase — or where we are required to by law.</p>
+  <h2>4. International transfers</h2>
+  <p>All processing happens within the EU/EEA. We do not transfer your personal data to countries outside the EU/EEA. (Should that ever change — for example if we add a service hosted elsewhere — this notice will be updated before the transfer starts.)</p>
+  <h2>5. Cookies and tracking</h2>
+  <p>This site sets no cookies of its own. We use no analytics (no Google Analytics, no Plausible, no Matomo), no tracking pixels, no advertising scripts, and no embedded social media widgets. Because of this, we do not show a cookie banner.</p>
+  <p>Note that Mollie's checkout pages — which you are redirected to when you press "Purchase" — set their own cookies. Those are governed by Mollie's privacy policy linked above.</p>
+  <h2>6. Your rights</h2>
+  <p>Under the GDPR you have the right to:</p>
+  <ul><li>access the personal data we hold about you;</li><li>rectify inaccurate or incomplete data;</li><li>erase your data ("right to be forgotten"), within the limits of our legal retention obligations (notably the 7-year tax records);</li><li>restrict processing of your data;</li><li>data portability — receive your data in a machine-readable format;</li><li>object to processing based on legitimate interest; and</li><li>withdraw consent, where consent was the legal basis.</li></ul>
+  <p>To exercise any of these, email [EMAIL]. We will respond within 30 days.</p>
+  <p>You also have the right to lodge a complaint with your national supervisory authority. In the Netherlands this is Autoriteit Persoonsgegevens.</p>
+  <h2>7. Children</h2>
+  <p>This site is not directed at children under 16. We do not knowingly collect data from children. If you believe a child has provided personal data to us, please contact us so we can remove it.</p>
+  <h2>8. Security</h2>
+  <p>The site is served exclusively over HTTPS (TLS) using a certificate issued by Let's Encrypt and auto-renewed by TransIP. Order data lives only in our email inbox and in Mollie's systems; we do not operate a customer database.</p>
+  <h2>9. Changes to this notice</h2>
+  <p>We may update this notice when our processing changes — for example, when we add a new shipping carrier or switch hosting provider. Material changes are reflected in the "last reviewed" date at the top of the page.</p>
+  <h2>10. Contact</h2>
+  <p>For any privacy question or rights request: [EMAIL].</p>`},
+ terms:{room:'reception', title:'Terms & Conditions', teaser:'Prices and VAT, payment, shipping, right of withdrawal.', html:`
+  <p>This is a placeholder for the legally required terms. Replace with vetted text — consider iubenda or a local accountant/lawyer before launch.</p>
+  <h2>Prices and VAT</h2><p>All prices in euro. VAT treatment depends on the small-business scheme — confirm with an accountant whether VAT must be added to listed prices.</p>
+  <h2>Payment</h2><p>Payments are processed by Mollie. Accepted methods depend on what is enabled per payment link (iDEAL, cards, etc.).</p>
+  <h2>Shipping</h2><p>Originals are packed and shipped within 5 working days of payment. Shipping cost and method are agreed by email after purchase.</p>
+  <h2>Right of withdrawal (EU)</h2><p>You have 14 days from receipt to withdraw from the purchase without giving a reason. Send an email to hello@example.com to start the return. Pieces must be returned in their original condition at your expense; the purchase price is refunded within 14 days of receipt of the returned work.</p>
+  <h2>Originals as "made to order"</h2><p>Some original works may be exempt from the right of withdrawal as personalised or made-to-order goods. If so, it will be stated on the artwork page. Otherwise the standard 14-day right above applies.</p>
+  <h2>Liability</h2><p>Damage in transit: notify within 7 days of delivery with photos so a claim can be filed with the carrier.</p>`},
+ thoughts:{room:'reading-room', title:'Thoughts', teaser:'Notes from the studio.', html:`
+  <p class="lead">Notes from the studio — fragments on everything: art, philosophy, process to influences and relevant tangents. Posts will appear here as they're written.</p>
+  <div class="note"><div class="d num">10 September 2026</div><p>“Let everything happen to you: beauty, terror. Just keep going. No feeling is final.” — Rainer Maria Rilke (exerpt from Go To The Limits of Your Longing)</p></div>
+  <div class="note"><div class="d num">28 August 2026</div><p>With every trip around the sun, I think of all the good to come. Planting trees and helping friends, building Gaia up again.</p></div>
+  <div class="note"><div class="d num">15 August 2026</div><p>Leaping from a bridge into the Aare River in Bern, Switzerland was transformational...it feels like a part of me from long ago woke up from hibernation. I hesitated, nervous, and then remembered: "You don't have to go alone." When two women stepped over the railing, I broke with my habit of hyperindependence and asked to jump with them. They said "Of Course!"" And off we went, into the beautiful, clear, racing water. The power of secure attachment...can't say how much I feel glad for all I have learned over these years.</p></div>
+  <div class="note"><div class="d num">15 July 2026</div><p>Overnight train to Zurich, onto Milan...then trekking in the Italian Alps with silly friends. The mountains hold some power that exists nowhere in The Netherlands---they charge my battery with something so necessary. The lowlands have convenient bicycling and interesting international culture, among other things...but the nature ain't nature-ing. The word soul, or maybe the sense of connectedness to our Earth, tends to feel watery and diffuse in the swamp.</p></div>
+  <div class="note"><div class="d num">22 June 2026</div><p>Art is to make and speak and act in alignment with your highest-held values—it is real freedom.</p></div>
+  <div class="note"><div class="d num">21 May 2026</div><p>“Everything is art. Everything is politics.” — Ai Weiwei</p></div>
+  <div class="note"><div class="d num">19 May 2026</div><p>Ideas should be shared, explored and examined with others. I see each of us as an entirely unique little sensor of the specifics our particular nook of the universe--the view from "in here". When we transmit our condition and collected data--our perspective--the collective can include it to gain an unbiased understanding of the world. When we are silent, our view of the universe is wasted.</p></div>`},
+ workshops:{room:'reading-room', title:'Workshops', teaser:'Small in-person sessions around meaning making and creativity.', html:`
+  <p class="lead">Small in-person sessions around meaning making and creativity. Dates and venues are announced here when scheduled.</p>
+  <h2>Upcoming</h2><p>More to come soon. Add yourself to the mailing list via the <a href="#/room/reception/contact" style="border-bottom:1px solid">contact form</a> to be notified.</p>
+  <h2>Past</h2>
+  <div class="entry"><div class="d num">May 2024</div><div><h3>Markmaking as Metaphor</h3><p>OBA Oosterdok. Exploring unusual mark-making techniques and visual vocabulary translation.</p></div></div>
+  <div class="entry"><div class="d num">June 2024</div><div><h3>Personal Rituals</h3><p>OBA Oosterdok.</p></div></div>
+  <div class="entry"><div class="d num">May 2024</div><div><h3>Design Your Life</h3><p>OBA Oosterdok.</p></div></div>`},
+ news:{room:'reading-room', title:'News', teaser:'Announcements, new series, and upcoming shows.', html:`
+  <p class="lead">Announcements, new series, and upcoming shows. Nothing fresh just yet — check back soon.</p>`}
+};
+const ROOM_PAGES = { 'reception':['about','contact','imprint','privacy','terms'], 'reading-room':['thoughts','workshops','news'] };
+
+/* ---------- helpers ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pad = n => String(n).padStart(2,'0');
+function roomOfWork(w){ return ROOMS.find(r => r.series === w.series); }
+function workNo(w){ const r = roomOfWork(w); const list = WORKS.filter(x => x.series === w.series); return `${r.no}.${pad(list.indexOf(w)+1)}`; }
+function medLine(w){ return w.placeholder ? w.medium : `${w.medium}, ${w.year}`; }
+
+function setChrome(k, crumb){
+  const inside = k !== 'welcome';
+  bar.classList.toggle('hide', !inside);
+  document.querySelectorAll('#links a').forEach(a => a.classList.toggle('on', a.dataset.k === k));
+  $('#crumb').innerHTML = crumb || '';
+  const showHere = inside && k !== 'plan';
+  here.classList.toggle('hide', !showHere);
+  if(showHere){ $('#here-svg').innerHTML = planSVG({mini:true, current:k}); $('#here-name').textContent = R(k) ? R(k).short : ''; }
+}
+
+/* ---------- welcome ---------- */
+function renderWelcome(){
+  setChrome('welcome');
+  document.title = 'Cody Saxton, Illuminator';
+  view.innerHTML = `<section class="entrance">
+    <div class="ceil"></div><div class="ceil2"></div>
+    <div class="e-mark"><img src="img/cs-infinity.jpg" alt=""><span class="cap">Illuminator Omnimedia</span></div>
+    <h1 class="e-name">Cody Saxton</h1>
+    <div class="e-sub"><span>Illuminator</span><span>Art &amp; Life</span></div>
+    <p class="e-text">Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.</p>
+    <div class="e-info">
+      <div><div class="cap">Amsterdam</div><p>Netherlands</p></div>
+      <div><div class="cap">Rooms</div><p class="num">1 &nbsp;ink-lings<br>2 &nbsp;color wonderings<br>3 &nbsp;terracotta subconscious</p></div>
+      <div><div class="cap">Also</div><p>Reception<br>Reading room</p></div>
+    </div>
+    <div class="door-wrap"><a class="door" href="#/plan" aria-label="Enter the gallery">
+      <div class="frame2"></div>
+      <div class="beyond"><div class="bside"></div><div class="bside r"></div><div class="bskirt"></div><div class="bfloor"></div><img class="bwork" src="img/wind-women-1.webp" alt=""></div>
+      <div class="frame"></div>
+      <span class="enter"><i></i>Enter</span>
+    </a></div>
+    <div class="skirt"></div><div class="floor"></div>
+    <div class="e-block cap"><span>Entrance elevation</span><span></span></div>
+  </section>`;
+}
+
+/* ---------- plan ---------- */
+function renderPlan(){
+  setChrome('plan', '<b>Ground floor plan</b>');
+  document.title = 'Plan · Cody Saxton';
+  const rows = ['reception','ink-lings','color-wonderings','terracotta-subconscious','reading-room'].map(id => {
+    const r = R(id), n = r.series ? WORKS.filter(w => w.series === r.series).length : 0;
+    const s = r.series ? DATA.series.find(x => x.key === r.series) : null;
+    return `<a class="row" href="#/room/${r.id}" data-room="${r.id}"><span class="num">${r.no || ''}</span><span>${r.label}</span><em class="num">${r.series ? (n ? n+' works' : 'empty') : ''}</em><small>${s ? esc(s.line) : r.sub}</small></a>`;
+  }).join('');
+  view.innerHTML = `<section class="plan-page">
+    <div class="plan-head"><h1>Ground floor</h1><p>Choose a room to walk in.</p></div>
+    <div class="plan">${planSVG({youAt:'reception'})}</div>
+    <aside class="legend"><h2>Room guide</h2>${rows}
+      <div class="foot"><a href="#/room/reception/imprint">Imprint</a><a href="#/room/reception/privacy">Privacy</a><a href="#/room/reception/terms">Terms</a><a href="#/">Entrance</a></div></aside>
+  </section>`;
+  view.querySelectorAll('.room-g').forEach(g => {
+    const go = () => location.hash = '#/room/' + g.dataset.room;
+    g.addEventListener('click', go);
+    g.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); } });
+  });
+  view.querySelectorAll('.legend .row').forEach(a => {
+    const g = view.querySelector(`.room-g[data-room="${a.dataset.room}"]`);
+    a.addEventListener('mouseenter', () => g && g.classList.add('hl'));
+    a.addEventListener('mouseleave', () => g && g.classList.remove('hl'));
+  });
+}
+
+/* ---------- rooms ---------- */
+function metrics(){
+  const vw = document.documentElement.clientWidth;
+  const mob = vw < 700;
+  const gut = mob ? 24 : vw < 1100 ? 40 : 80;
+  const W = Math.min(vw - 2*gut, 1440);
+  const L = mob ? Math.min(250, (W)*0.72) : vw < 1100 ? 230 : Math.round(Math.min(300, Math.max(240, vw*0.178)));
+  return { vw, mob, W, L, gap: mob ? 0 : Math.max(L*0.46, 116), H: mob ? Math.round(L*1.62) : Math.round(L*1.95), text: mob ? 0 : 330 };
+}
+function dims(it, L){ const r = it.w / it.h; return r >= 1 ? [L, L/r] : [L*r, L]; }
+function pack(items, m, firstReserve){
+  const walls = []; let cur = [], used = 0, avail = m.W - firstReserve;
+  items.forEach(it => {
+    const need = it.dw + (cur.length ? m.gap : 0);
+    const edge = m.mob ? 0 : m.gap*0.4;
+    if(cur.length && used + need + edge*2 > avail){ walls.push(cur); cur = []; used = 0; avail = m.W; }
+    used += it.dw + (cur.length ? m.gap : 0); cur.push(it);
+  });
+  if(cur.length || !walls.length) walls.push(cur);
+  return walls;
+}
+const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+function renderRoom(id){
+  const r = R(id); if(!r) return renderPlan();
+  setChrome(id, `Plan / <b>${roomName(r)}</b>`);
+  document.title = roomName(r) + ' · Cody Saxton';
+  const m = metrics();
+  const s = r.series ? DATA.series.find(x => x.key === r.series) : null;
+  let items = [];
+  if(r.series){
+    items = WORKS.filter(w => w.series === r.series).map(w => { const [dw,dh] = dims(w, m.L); return {type:'work', w, dw, dh}; });
+  } else {
+    const PL = m.mob ? m.L*0.86 : m.L*0.82;
+    items = ROOM_PAGES[id].map((k,i) => ({type:'panel', k, i, dw: PL/1.414, dh: PL}));
+  }
+  const intro = r.series
+    ? {cap: `Room ${r.no}`, h: r.label, p1: s.line, p2: items.length ? `Works ${r.no}.01 to ${r.no}.${pad(items.length)}` : 'No works hung yet'}
+    : {cap: r.id === 'reception' ? 'Reception desk' : 'Reading room', h: r.label, p1: r.id === 'reception' ? 'Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.' : 'Notes from the studio, workshops and news.', p2: r.sub};
+  const reserve = m.mob ? 0 : m.text;
+  const walls = pack(items, m, reserve);
+  const furn = r.kind ? (r.kind === 'reception' ? {w: Math.min(360, m.W*0.3), h: m.mob ? 70 : 104, t:'Reception desk'} : {w: Math.min(300, m.W*0.26), h: m.mob ? 34 : 44, t:'Bench'}) : null;
+
+  let html = `<section class="room-page"><div class="room-intro-m"><div class="cap">${intro.cap}</div><h1>${esc(intro.h)}</h1><p>${esc(intro.p1)}</p><p class="num">${esc(intro.p2)}</p></div><div class="walls-wrap">`;
+  walls.forEach((list, wi) => {
+    const first = wi === 0, last = wi === walls.length - 1;
+    const left0 = first ? reserve : 0;
+    const total = list.reduce((a,it) => a + it.dw, 0);
+    const span = m.W - left0;
+    let gap = list.length ? Math.min(Math.max((span - total)/(list.length + 1), m.gap), m.gap*1.3) : 0;
+    if(m.mob) gap = (span - total)/2;
+    let x = left0 + (span - total - gap*(list.length-1))/2 - (m.mob ? 0 : 44);
+    if(furn && last && !m.mob && list.length) x = Math.max(left0 + gap*0.6, x - furn.w*0.45);
+    const centre = m.H * 0.47;
+    html += `<div class="wall" style="width:${m.W}px;height:${m.H}px"><div class="w-ceil"></div><div class="w-edge l"></div><div class="w-edge r"></div><div class="w-skirt"></div><div class="w-floor"></div>`;
+    if(first && !m.mob){
+      html += `<div class="vinyl" style="top:${Math.round(centre - m.L/2)}px"><div class="cap">${intro.cap}</div><h1>${esc(intro.h)}</h1><p>${esc(intro.p1)}</p><p class="num">${esc(intro.p2)}</p></div>`;
+    }
+    list.forEach(it => {
+      const top = Math.round(centre - it.dh/2);
+      if(it.type === 'work'){
+        const w = it.w, no = workNo(w);
+        html += `<a class="work" href="#/work/${w.slug}" data-slug="${w.slug}" style="left:${Math.round(x)}px;top:${top}px;width:${Math.round(it.dw)}px;height:${Math.round(it.dh)}px" aria-label="${esc(no + ' ' + w.title)}"><img src="img/${w.image}" alt="${esc(w.alt)}" loading="lazy" decoding="async"><span class="lbl"><b class="num">${no}</b>${esc(w.title)}</span></a>`;
+      } else {
+        const p = PAGES[it.k], no = (r.id === 'reception' ? 'R' : 'L') + '.' + pad(it.i+1);
+        html += `<a class="panel" href="#/room/${r.id}/${it.k}" style="left:${Math.round(x)}px;top:${top}px;width:${Math.round(it.dw)}px;height:${Math.round(it.dh)}px"><h3>${esc(p.title)}</h3><p>${esc(p.teaser)}</p><span class="lbl"><b class="num">${no}</b>${esc(p.title)}</span></a>`;
+      }
+      x += it.dw + gap;
+    });
+    if(!list.length){
+      html += `<div class="empty-note" style="top:${Math.round(centre - 20)}px"><b>This room is empty.</b>No works from ${esc(r.label)} are hung yet.</div>`;
+    }
+    if(furn && last){
+      html += `<div class="furn" style="right:${m.mob ? 24 : 64}px;width:${furn.w}px;height:${furn.h}px"><span class="cap">${furn.t}</span></div>`;
+    }
+    const nos = list.filter(i => i.type === 'work').map(i => workNo(i.w));
+    const range = nos.length ? (nos.length > 1 ? `${nos[0]} to ${nos[nos.length-1]}` : nos[0]) : (list.length ? list.map(i => PAGES[i.k].title).join(', ') : 'Empty wall');
+    html += `</div><div class="tb num" style="width:${m.W}px"><span><b>Elevation ${LETTERS[wi % 26]}</b></span><span>${esc(roomName(r))}</span><span>${esc(range)}</span></div>`;
+  });
+  html += `</div>`;
+  if(r.series && items.length){
+    html += `<div class="guide" id="guide"><div class="guide-h"><h2>Room guide</h2><span class="cap num">${items.length} works</span></div><ol>` +
+      items.map(it => { const w = it.w; return `<li><a href="#/work/${w.slug}"><span class="num">${workNo(w)}</span><span>${esc(w.title)}</span><em>${esc(w.placeholder ? 'Placeholder' : medLine(w))}</em></a></li>`; }).join('') + `</ol></div>`;
+  }
+  html += `<div class="doors"><div class="cap">Doorways</div><div>` + r.doors.map(d => `<a href="#/room/${d}">${esc(roomName(R(d)))}</a>`).join('') + (r.id === 'reception' ? `<a href="#/">Entrance</a>` : '') + `<a href="#/plan">Plan</a></div></div></section>`;
+  view.innerHTML = html;
+  reveal();
+}
+
+function reveal(){
+  const els = view.querySelectorAll('.work,.panel');
+  if(reduce || !('IntersectionObserver' in window)){ els.forEach(e => e.classList.add('in')); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){ const el = e.target; const sib = [...el.parentNode.querySelectorAll('.work,.panel')].indexOf(el); el.style.transitionDelay = (sib*140) + 'ms'; el.classList.add('in'); io.unobserve(el); }
+  }), {rootMargin:'0px 0px -8% 0px'});
+  els.forEach(e => io.observe(e));
+}
+
+/* ---------- handout sheets ---------- */
+function renderSheet(roomId, k){
+  const p = PAGES[k]; if(!p || p.room !== roomId) return renderRoom(roomId);
+  const r = R(roomId);
+  setChrome(roomId, `Plan / ${r.label} / <b>${esc(p.title)}</b>`);
+  document.title = p.title + ' · Cody Saxton';
+  const nav = ROOM_PAGES[roomId].map(x => `<a href="#/room/${roomId}/${x}" class="${x===k?'on':''}">${esc(PAGES[x].title)}</a>`).join('');
+  view.innerHTML = `<section class="sheet"><aside><div class="cap">${esc(r.label)} · Handout</div><h1>${esc(p.title)}</h1><a class="back" href="#/room/${roomId}">Back to the ${esc(r.label.toLowerCase())}</a><nav>${nav}</nav></aside><article class="prose">${p.html}</article></section>`;
+  const f = $('#contact-form');
+  if(f) f.addEventListener('submit', e => {
+    e.preventDefault();
+    const d = new FormData(f), out = $('#sent');
+    if(d.get('website')) return;
+    if(!d.get('name') || !d.get('email') || !d.get('message')){ out.hidden = false; out.textContent = 'Please add your name, email and message.'; return; }
+    const subj = d.get('subject') || ('Message from ' + d.get('name'));
+    const body = d.get('message') + '\n\n' + d.get('name') + '\n' + d.get('email');
+    location.href = 'mailto:invigorated@proton.me?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+    out.hidden = false; out.textContent = 'Your email app should open with the message ready to send.';
+  });
+}
+
+/* ---------- detail ---------- */
+const detail = $('#detail'), zoom = $('#zoom');
+let detailSlug = null;
+function openDetail(slug){
+  const w = WORKS.find(x => x.slug === slug); if(!w) return;
+  const r = roomOfWork(w);
+  if(renderedKey !== 'room:' + r.id){ renderRoom(r.id); renderedKey = 'room:' + r.id; }
+  detailSlug = slug;
+  const img = $('#d-img');
+  img.style.opacity = 0;
+  img.onload = () => img.style.opacity = 1;
+  img.src = 'img/' + w.image; img.alt = w.alt;
+  $('#d-back').href = '#/room/' + r.id;
+  $('#d-back').textContent = 'Back to ' + roomName(r);
+  const idx = WORKS.indexOf(w);
+  let info = `<div class="no num">${workNo(w)} &nbsp;·&nbsp; ${esc(roomName(r))}</div><div class="cap series">${esc(w.series)}</div><h2>${esc(w.title)}</h2><div class="med">${esc(medLine(w))}</div>`;
+  if(!w.placeholder && w.price != null){
+    info += `<div class="price num">€${w.price}</div><p class="inc">Includes packaging. Shipping calculated at checkout.</p>
+      <a class="btn" href="https://codysaxton.eu/checkout.php?slug=${encodeURIComponent(w.slug)}" target="_blank" rel="noopener">Purchase — €${w.price}</a>
+      <p class="wd">Right of withdrawal within 14 days under EU consumer law — see <a href="#/room/reception/terms">terms</a>.</p>`;
+  } else {
+    info += `<p class="ph">Placeholder, image repeats an existing work</p>`;
+  }
+  info += `<p class="give">10% of sales donated to reforestation and degrowth efforts.</p>
+    <div class="d-nav"><button id="d-prev">Previous</button><span class="num" style="color:var(--muted)">${idx+1} / ${WORKS.length}</span><button id="d-next">Next</button></div>`;
+  $('#d-info').innerHTML = info;
+  $('#d-prev').onclick = () => step(-1);
+  $('#d-next').onclick = () => step(1);
+  detail.classList.add('open'); document.documentElement.style.overflow = 'hidden';
+  here.classList.add('hide'); bar.classList.add('hide');
+  document.title = w.title + ' · Cody Saxton';
+}
+function closeDetailUI(){ detail.classList.remove('open'); document.documentElement.style.overflow = ''; closeZoom(); detailSlug = null; }
+function step(d){ const i = WORKS.findIndex(x => x.slug === detailSlug); const n = WORKS[(i + d + WORKS.length) % WORKS.length]; location.replace('#/work/' + n.slug); }
+function leaveDetail(){ const w = WORKS.find(x => x.slug === detailSlug); location.hash = '#/room/' + (w ? roomOfWork(w).id : 'ink-lings'); }
+$('#d-close').onclick = leaveDetail;
+
+let zx = 0, zy = 0;
+function openZoom(){
+  const src = $('#d-img'), z = $('#z-img');
+  z.src = src.src; z.alt = src.alt;
+  const place = () => {
+    const vw = innerWidth, vh = innerHeight;
+    const nw = z.naturalWidth || 1080, nh = z.naturalHeight || 1350;
+    const s = Math.max(vw*1.35/nw, vh*1.6/nh, 1);
+    z.style.width = nw*s + 'px'; z.style.height = nh*s + 'px';
+    pan(vw/2, vh/2);
+  };
+  if(z.complete) place(); else z.onload = place;
+  zoom.classList.add('open'); zoom.setAttribute('aria-hidden','false');
+}
+function pan(px, py){
+  const z = $('#z-img'), vw = innerWidth, vh = innerHeight;
+  const iw = z.offsetWidth, ih = z.offsetHeight;
+  zx = iw > vw ? (vw - iw) * (px / vw) : (vw - iw)/2;
+  zy = ih > vh ? (vh - ih) * (py / vh) : (vh - ih)/2;
+  z.style.transform = `translate(${zx}px,${zy}px)`;
+}
+function closeZoom(){ zoom.classList.remove('open'); zoom.setAttribute('aria-hidden','true'); }
+$('#d-img').addEventListener('click', openZoom);
+zoom.addEventListener('pointermove', e => pan(e.clientX, e.clientY));
+let downAt = 0;
+zoom.addEventListener('pointerdown', e => { downAt = Date.now(); });
+zoom.addEventListener('pointerup', e => { if(e.pointerType === 'mouse' || Date.now() - downAt < 200) closeZoom(); });
+
+/* ---------- router ---------- */
+function parse(){
+  const h = location.hash.replace(/^#\/?/, '');
+  const p = h.split('/').filter(Boolean).map(decodeURIComponent);
+  if(!p.length) return {k:'welcome'};
+  if(p[0] === 'plan') return {k:'plan'};
+  if(p[0] === 'room' && p[1]) return p[2] ? {k:'sheet', room:p[1], page:p[2]} : {k:'room', room:p[1]};
+  if(p[0] === 'work' && p[1]) return {k:'work', slug:p[1]};
+  return {k:'welcome'};
+}
+function keyOf(rt){ return rt.k === 'room' ? 'room:' + rt.room : rt.k === 'sheet' ? 'sheet:' + rt.room + '/' + rt.page : rt.k; }
+let swapTimer = null;
+function route(){
+  const rt = parse();
+  if(rt.k === 'work'){ openDetail(rt.slug); return; }
+  const wasDetail = detail.classList.contains('open');
+  closeDetailUI();
+  const key = keyOf(rt);
+  if(key === renderedKey){
+    if(rt.k === 'room') setChrome(rt.room, `Plan / <b>${roomName(R(rt.room))}</b>`);
+    return;
+  }
+  const doRender = () => {
+    renderedKey = key; roomProgress = 0;
+    if(rt.k === 'welcome') renderWelcome();
+    else if(rt.k === 'plan') renderPlan();
+    else if(rt.k === 'room') renderRoom(rt.room);
+    else if(rt.k === 'sheet') renderSheet(rt.room, rt.page);
+    window.scrollTo(0,0);
+    requestAnimationFrame(() => view.classList.remove('out'));
+  };
+  clearTimeout(swapTimer);
+  if(reduce || !view.innerHTML || wasDetail){ doRender(); return; }
+  view.classList.add('out');
+  swapTimer = setTimeout(doRender, 440);
+}
+
+addEventListener('keydown', e => {
+  if(zoom.classList.contains('open')){ if(e.key === 'Escape') closeZoom(); return; }
+  if(detail.classList.contains('open')){
+    if(e.key === 'Escape') leaveDetail();
+    else if(e.key === 'ArrowRight') step(1);
+    else if(e.key === 'ArrowLeft') step(-1);
+    return;
+  }
+  if(e.key === 'Enter' && parse().k === 'welcome' && document.activeElement === document.body) location.hash = '#/plan';
+});
+
+let rs;
+addEventListener('resize', () => { clearTimeout(rs); rs = setTimeout(() => {
+  const rt = parse();
+  if(rt.k === 'room'){ const y = scrollY / Math.max(1, document.documentElement.scrollHeight); renderRoom(rt.room); scrollTo(0, y * document.documentElement.scrollHeight); }
+}, 200); });
+
+addEventListener('scroll', () => {
+  const rt = parse(); if(rt.k !== 'room' && rt.k !== 'sheet') return;
+  const max = document.documentElement.scrollHeight - innerHeight;
+  roomProgress = max > 0 ? Math.min(1, scrollY / max) : 0;
+  const dot = document.getElementById('here-dot'), r = R(rt.room);
+  if(dot && r){ const [x0,,x1] = r.rect; dot.setAttribute('cx', x0 + 34 + (x1 - x0 - 68) * roomProgress); }
+}, {passive:true});
+
+fetch('works.json').then(r => r.json()).then(d => {
+  DATA = d; WORKS = d.works.slice().sort((a,b) => a.no - b.no);
+  addEventListener('hashchange', route);
+  route();
+}).catch(() => { view.innerHTML = '<p style="padding:120px 24px">The gallery could not load its works list.</p>'; });
+})();
+</script>
+</body>
+</html>

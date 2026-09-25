@@ -1,0 +1,1007 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cody Saxton | Illuminator</title>
+<meta name="description" content="Cody Saxton, Illuminator Omnimedia. Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.">
+<link rel="icon" href="img/cs-infinity.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wall:#EDE8DF;
+  --wall-2:#E6E0D5;
+  --floor:#E2DBCE;
+  --paint:#857C6E;
+  --paint-soft:#A69D8F;
+  --ink:#1E1C19;
+  --ink-2:#4A453E;
+  --line:#2A2622;
+  --hair:rgba(42,38,34,.16);
+  --card:#FBF9F4;
+  --mat:#FBF9F4;
+  --oak:#A58763;
+  --accent:#B4533C;
+  --bar:56px;
+  --ease:cubic-bezier(.65,0,.25,1);
+  --ease-out:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--wall);color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;font-size:16px;line-height:1.55;font-weight:400;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+img{display:block}
+:focus-visible{outline:1.5px solid var(--accent);outline-offset:3px}
+.cap{font-size:11px;line-height:1.3;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* ============ FOYER ============ */
+.foyer{position:fixed;inset:0;z-index:30;background:var(--wall);overflow:hidden;transition:opacity 1.2s var(--ease),visibility 0s 1.2s}
+.foyer .stage{position:absolute;inset:0;transform-origin:var(--ox,75%) var(--oy,55%);transition:transform 1.6s var(--ease)}
+body:not([data-view="foyer"]) .foyer{opacity:0;visibility:hidden;pointer-events:none}
+body[data-view="foyer"] .foyer{transition:opacity 1.2s var(--ease),visibility 0s}
+.foyer.leaving .stage{transform:scale(1.9)}
+.foyer.leaving{opacity:0}
+.foyer .top{position:absolute;left:72px;right:72px;top:40px;display:flex;justify-content:space-between;color:var(--paint)}
+.foyer .left{position:absolute;left:72px;top:96px;width:min(640px,48vw)}
+.foyer .name{font-size:clamp(64px,10.2vw,148px);line-height:.86;letter-spacing:-.045em;font-weight:500;font-stretch:86%;color:var(--ink)}
+.foyer .name span{display:block}
+.foyer .sub{display:flex;align-items:center;gap:18px;margin-top:26px;font-size:22px;letter-spacing:-.01em;color:var(--ink-2);font-stretch:92%}
+.foyer .sub i{display:block;width:40px;height:1px;background:var(--paint-soft)}
+.invite{position:relative;margin-top:38px;width:440px;max-width:100%;background:var(--card);padding:26px 30px 28px;box-shadow:0 0 0 1px rgba(42,38,34,.07),8px 10px 0 rgba(58,48,36,.06)}
+.invite .cap{color:var(--paint);display:flex;justify-content:space-between}
+.invite p{margin-top:12px;font-size:18px;line-height:1.45;letter-spacing:-.008em;color:var(--ink);text-wrap:pretty}
+.invite .rule{height:1px;background:var(--hair);margin:18px 0 14px}
+.invite .series{display:grid;gap:4px;font-size:13.5px;color:var(--ink-2)}
+.invite .series div{display:flex;justify-content:space-between;gap:12px}
+.invite .series em{font-style:normal;color:var(--paint)}
+.enter{margin-top:20px;display:flex;align-items:center;justify-content:space-between;width:100%;background:var(--ink);color:var(--card);padding:16px 20px 16px 22px;font-size:15px;font-weight:500;letter-spacing:.005em;transition:background .5s var(--ease-out)}
+.enter:hover{background:#000}
+.enter svg{transition:transform .8s var(--ease-out)}
+.enter:hover svg{transform:translateX(4px)}
+
+.floor{position:absolute;left:0;right:0;bottom:0;height:var(--floor-h,112px);background:var(--floor);border-top:1px solid rgba(42,38,34,.22)}
+.floor nav{position:absolute;left:72px;right:72px;bottom:34px;display:flex;justify-content:space-between;align-items:center;gap:24px;color:var(--ink-2)}
+.floor nav div{display:flex;gap:26px;flex-wrap:wrap}
+.floor a,.floor button{text-decoration:none;font-size:13.5px;letter-spacing:.005em}
+.floor a:hover,.floor button:hover{color:var(--ink)}
+.floor .legal{color:var(--paint)}
+
+.hall{position:absolute;right:max(72px,calc(25vw - 200px));bottom:var(--floor-h,112px);width:360px;height:min(580px,calc(100vh - 112px - 150px))}
+.plaque{position:absolute;left:-120px;right:-120px;top:-78px;white-space:nowrap;text-align:center;color:var(--paint)}
+.plaque b{display:block;font-weight:500;font-size:13px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-2)}
+.plaque span{display:block;margin-top:6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.architrave{position:absolute;left:-22px;right:-22px;top:-22px;bottom:0;pointer-events:none;overflow:visible}
+.doorway{position:absolute;inset:0;perspective:1500px;perspective-origin:50% 45%}
+.glimpse{position:absolute;inset:0;overflow:hidden;background:var(--wall)}
+.glimpse .wall{pointer-events:none}
+.glimpse:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,28,25,.10),rgba(30,28,25,0) 30%)}
+.leaf{position:absolute;top:0;bottom:0;width:50%;transform-style:preserve-3d;transition:transform 2.4s var(--ease)}
+.leaf svg{width:100%;height:100%;display:block}
+.leaf.l{left:0;transform-origin:0 50%}
+.leaf.r{right:0;transform-origin:100% 50%}
+.hall.ajar .leaf.l{transform:rotateY(-14deg)}
+.hall.ajar .leaf.r{transform:rotateY(14deg)}
+.hall.open .leaf.l{transform:rotateY(-104deg)}
+.hall.open .leaf.r{transform:rotateY(104deg)}
+
+/* ============ SALON ============ */
+.bar{position:fixed;left:0;right:0;top:0;height:var(--bar);z-index:20;display:flex;align-items:center;gap:28px;padding:0 28px;background:var(--wall);border-bottom:1px solid var(--hair);transition:opacity 1s var(--ease)}
+body[data-view="foyer"] .bar{opacity:0;pointer-events:none}
+.bar .home{display:flex;align-items:baseline;gap:12px;white-space:nowrap}
+.bar .home b{font-weight:600;font-size:15px;letter-spacing:-.01em}
+.bar .home span{font-size:13px;color:var(--paint)}
+.bar .jumps{display:flex;gap:22px;margin-left:auto;margin-right:auto}
+.bar .jumps button{font-size:13px;color:var(--ink-2);display:flex;gap:7px;align-items:baseline}
+.bar .jumps button em{font-style:normal;font-size:11px;color:var(--paint)}
+.bar .jumps button:hover{color:var(--ink)}
+.bar .pages{display:flex;gap:22px}
+.bar .pages a{text-decoration:none;font-size:13px;color:var(--ink-2)}
+.bar .pages a:hover,.bar .pages a[aria-current]{color:var(--ink)}
+.bar .menu{display:none;font-size:13px;margin-left:auto}
+
+.view{position:fixed;left:0;right:0;top:var(--bar);bottom:0;overflow:hidden;touch-action:none;cursor:grab;background:var(--wall)}
+.view.grabbing{cursor:grabbing}
+.wall{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+.wall .skirt{position:absolute;left:0;right:0;bottom:0;height:70px;background:var(--wall-2);border-top:2px solid rgba(42,38,34,.12)}
+.work{position:absolute;display:block;padding:0;border-style:solid;border-color:var(--frame,var(--ink));background:var(--mat);box-shadow:7px 10px 0 rgba(58,48,36,.075);transition:opacity .7s var(--ease-out),filter .7s var(--ease-out);cursor:pointer}
+.work img{width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.work.bare{border-width:0!important;padding:0!important;box-shadow:0 0 0 1px rgba(42,38,34,.06),7px 10px 0 rgba(58,48,36,.075)}
+.work.white{--frame:#FAF8F2;box-shadow:0 0 0 1.5px rgba(42,38,34,.10),7px 10px 0 rgba(58,48,36,.075)}
+.work.oak{--frame:var(--oak)}
+.work.black{--frame:#1E1C19}
+.work.hid{visibility:hidden}
+.view.dim .work:not(.lit),.view.dim .walltext{opacity:.2}
+.view.dim .work.lit{filter:none}
+.walltext{position:absolute;color:var(--paint);transition:opacity .7s var(--ease-out);white-space:nowrap}
+.walltext h2{font-weight:500;font-size:74px;line-height:1;letter-spacing:-.035em;color:var(--ink-2);font-stretch:90%}
+.walltext .cap{font-size:20px;letter-spacing:.2em;margin-top:18px}
+.walltext .count{font-size:20px;margin-top:10px;letter-spacing:.02em}
+.walltext.intro{white-space:normal}
+.walltext.intro h1{font-weight:500;font-size:210px;line-height:.86;letter-spacing:-.05em;color:var(--ink);font-stretch:86%}
+.walltext.intro .sub{font-size:40px;margin-top:40px;color:var(--ink-2);letter-spacing:-.01em}
+.walltext.intro p{font-size:34px;line-height:1.38;margin-top:50px;color:var(--ink-2);max-width:760px;letter-spacing:-.01em}
+.walltext.intro .how{font-size:20px;letter-spacing:.2em;text-transform:uppercase;margin-top:64px;color:var(--paint)}
+.patch{position:absolute}
+.patch .x{position:absolute;width:22px;height:22px;margin:-11px 0 0 -11px}
+.patch .x:before,.patch .x:after{content:"";position:absolute;left:10px;top:0;width:2px;height:22px;background:rgba(42,38,34,.3)}
+.patch .x:after{transform:rotate(90deg)}
+.patch .none{position:absolute;font-size:22px;color:var(--paint);letter-spacing:.01em}
+
+.tip{position:fixed;z-index:15;pointer-events:none;background:var(--card);padding:10px 13px 11px;box-shadow:0 0 0 1px rgba(42,38,34,.08),5px 7px 0 rgba(58,48,36,.06);opacity:0;transform:translateY(4px);transition:opacity .45s var(--ease-out),transform .45s var(--ease-out);max-width:260px}
+.tip.on{opacity:1;transform:none}
+.tip b{display:block;font-weight:500;font-size:14px;letter-spacing:-.005em}
+.tip span{display:block;font-size:12px;color:var(--paint);margin-top:2px}
+
+.map{position:fixed;left:24px;bottom:24px;z-index:12;background:rgba(251,249,244,.94);box-shadow:0 0 0 1px rgba(42,38,34,.09);padding:12px 12px 10px}
+.map canvas{display:block;cursor:pointer;touch-action:none}
+.map .row{display:flex;align-items:center;justify-content:space-between;margin-top:9px;gap:10px}
+.map .row .cap{color:var(--paint);font-size:10px}
+.map .zoom{display:flex;gap:2px}
+.map .zoom button{width:28px;height:26px;display:grid;place-items:center;font-size:16px;line-height:1;color:var(--ink-2);background:var(--wall)}
+.map .zoom button.fit{width:auto;padding:0 9px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.map .zoom button:hover{color:var(--ink);background:var(--wall-2)}
+.hint{position:fixed;left:50%;bottom:28px;z-index:12;transform:translateX(-50%);background:var(--ink);color:var(--card);font-size:13px;padding:11px 16px;opacity:0;transition:opacity 1s var(--ease-out);pointer-events:none;white-space:nowrap}
+.hint.on{opacity:1}
+body:not([data-view="salon"]) .map,body:not([data-view="salon"]) .hint,body.lifted .hint,body.lifted .map{opacity:0;pointer-events:none}
+.map{transition:opacity .8s var(--ease-out)}
+
+/* ============ DETAIL ============ */
+.detail{position:fixed;inset:var(--bar) 0 0 0;z-index:18;visibility:hidden;overflow:auto}
+.detail .veil{position:fixed;inset:var(--bar) 0 0 0;background:rgba(237,232,223,.93);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .9s var(--ease)}
+.detail.on{visibility:visible}
+.detail.on .veil{opacity:1}
+.detail .inner{position:relative;min-height:100%;display:flex;align-items:center;justify-content:center;gap:72px;padding:56px 80px 104px}
+.slot{position:relative;flex:none;cursor:zoom-in}
+.slot .work{position:absolute;inset:0;width:100%;height:100%;cursor:zoom-in}
+.slot.wait .work{visibility:hidden}
+.label{width:320px;flex:none;align-self:flex-end;margin-bottom:6px;opacity:0;transform:translateY(8px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.detail.ready .label{opacity:1;transform:none}
+.label .no{color:var(--paint);display:flex;justify-content:space-between}
+.label h3{font-weight:500;font-size:34px;line-height:1.05;letter-spacing:-.03em;margin-top:14px;font-stretch:92%}
+.label .med{font-size:15px;color:var(--ink-2);margin-top:8px}
+.label .price{font-size:22px;margin-top:22px;letter-spacing:-.01em}
+.label .small{font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.45}
+.label .buy{display:flex;justify-content:center;margin-top:18px;background:var(--ink);color:var(--card);text-decoration:none;padding:15px 18px;font-size:14px;font-weight:500;letter-spacing:.01em}
+.label .buy:hover{background:#000}
+.label .wd{font-size:12px;color:var(--paint);margin-top:12px;line-height:1.45}
+.label .wd a{color:var(--ink-2)}
+.label .ph{margin-top:20px;padding-top:14px;border-top:1px solid var(--hair);font-size:13px;color:var(--paint)}
+.label .fullbtn{margin-top:18px;font-size:13px;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--paint-soft)}
+.dnav{position:fixed;left:0;right:0;bottom:0;z-index:19;display:flex;align-items:center;justify-content:space-between;padding:22px 32px;pointer-events:none;opacity:0;transition:opacity .8s var(--ease-out)}
+.detail.ready .dnav{opacity:1}
+.dnav>*{pointer-events:auto}
+.dnav button{font-size:13.5px;color:var(--ink-2);display:flex;align-items:center;gap:10px;padding:8px 0}
+.dnav button:hover{color:var(--ink)}
+.dnav .ct{font-size:12px;color:var(--paint);letter-spacing:.12em}
+.dclose{position:fixed;right:28px;top:calc(var(--bar) + 20px);z-index:19;font-size:13.5px;color:var(--ink-2);display:flex;gap:10px;align-items:center;opacity:0;transition:opacity .8s var(--ease-out)}
+.dclose kbd{font:inherit;font-size:10px;letter-spacing:.12em;border:1px solid var(--hair);padding:2px 6px;color:var(--paint)}
+.detail.ready .dclose{opacity:1}
+.flyer{position:fixed;z-index:25;transform-origin:0 0;pointer-events:none}
+.flyer .work{position:absolute;inset:0;width:100%;height:100%}
+
+/* ============ FULL VIEW ============ */
+.full{position:fixed;inset:0;z-index:40;background:var(--wall);display:none;touch-action:none;cursor:grab;overflow:hidden}
+.full.on{display:block}
+.full img{position:absolute;left:0;top:0;transform-origin:0 0;user-select:none;-webkit-user-drag:none;box-shadow:0 0 0 1px rgba(42,38,34,.08)}
+.full .fbar{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:center;padding:20px 28px;font-size:13.5px;color:var(--ink-2);pointer-events:none}
+.full .fbar>*{pointer-events:auto}
+.full .fbar .t{color:var(--ink)}
+.full .fbar .t em{font-style:normal;color:var(--paint);margin-left:10px}
+.full .fbar div{display:flex;gap:20px;align-items:center}
+.full .fbar button:hover{color:var(--ink)}
+
+/* ============ RECEPTION OVERLAYS ============ */
+.desk{position:fixed;inset:0;z-index:50;visibility:hidden;transition:visibility 0s .9s}
+.desk.on{visibility:visible;transition:none}
+.desk .veil{position:absolute;inset:0;background:rgba(70,58,44,.14);opacity:0;transition:opacity .9s var(--ease)}
+.desk.on .veil{opacity:1}
+.sheet{position:absolute;right:0;top:0;bottom:0;width:min(640px,100%);background:var(--card);overflow:auto;transform:translateX(40px);opacity:0;transition:transform .9s var(--ease),opacity .9s var(--ease);box-shadow:-1px 0 0 rgba(42,38,34,.08)}
+.desk.on .sheet{transform:none;opacity:1}
+.sheet:focus{outline:none}
+.sheet .shead{position:sticky;top:0;background:var(--card);display:flex;justify-content:space-between;align-items:center;padding:20px 48px 18px;border-bottom:1px solid var(--hair);z-index:2}
+.sheet .shead .cap{color:var(--paint)}
+.sheet .shead button{font-size:13.5px;color:var(--ink-2);display:flex;gap:10px;align-items:center}
+.sheet .shead kbd{font:inherit;font-size:10px;letter-spacing:.12em;border:1px solid var(--hair);padding:2px 6px;color:var(--paint)}
+.sheet .body{padding:44px 48px 40px}
+.sheet h1{font-weight:500;font-size:52px;line-height:1;letter-spacing:-.04em;font-stretch:88%}
+.sheet .lede{font-size:19px;line-height:1.5;margin-top:22px;color:var(--ink);letter-spacing:-.006em;text-wrap:pretty}
+.sheet h2{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--paint);margin:40px 0 14px}
+.sheet h4{font-weight:500;font-size:16px;margin-top:22px;letter-spacing:-.005em}
+.sheet p{font-size:15.5px;line-height:1.6;color:var(--ink-2);margin-top:10px;text-wrap:pretty}
+.sheet ul{margin:10px 0 0 18px;color:var(--ink-2);font-size:15.5px;line-height:1.6}
+.sheet .entry{padding:18px 0;border-top:1px solid var(--hair)}
+.sheet .entry:first-of-type{border-top:0}
+.sheet .entry .d{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--paint)}
+.sheet .entry p{margin-top:8px}
+.sheet .entry p.q{font-size:17px;color:var(--ink);line-height:1.5}
+.sheet figure{margin-top:14px}
+.sheet figure img{width:100%;height:auto;background:var(--wall)}
+.sheet figcaption{font-size:12px;color:var(--paint);margin-top:8px}
+.sheet .pdf{display:inline-flex;margin-top:12px;font-size:14px;color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--paint-soft)}
+.sheet form{margin-top:28px;display:grid;gap:18px}
+.sheet label{display:grid;gap:7px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--paint)}
+.sheet input,.sheet textarea{font:inherit;font-size:16px;letter-spacing:0;text-transform:none;color:var(--ink);background:var(--wall);border:0;border-bottom:1px solid rgba(42,38,34,.25);padding:12px 12px;border-radius:0}
+.sheet textarea{min-height:150px;resize:vertical}
+.sheet input:focus,.sheet textarea:focus{outline:none;border-bottom-color:var(--ink)}
+.sheet form button{justify-self:start;background:var(--ink);color:var(--card);padding:15px 22px;font-size:14px;font-weight:500}
+.sheet .sent{font-size:14px;color:var(--ink-2)}
+.sheet .sfoot{padding:22px 48px 30px;border-top:1px solid var(--hair);display:flex;gap:22px;flex-wrap:wrap;font-size:13px;color:var(--paint)}
+.sheet .sfoot a{text-decoration:none}
+.sheet .sfoot a:hover{color:var(--ink)}
+.sheet .sfoot a[aria-current]{color:var(--ink)}
+.menulist{display:grid;gap:4px;margin-top:10px}
+.menulist a,.menulist button{text-align:left;text-decoration:none;font-size:28px;letter-spacing:-.025em;font-weight:500;padding:6px 0;display:flex;justify-content:space-between;align-items:baseline}
+.menulist em{font-style:normal;font-size:13px;color:var(--paint);letter-spacing:0;font-weight:400}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1100px){
+  .bar .jumps{display:none}
+  .bar .pages{margin-left:auto}
+  .hall{right:56px;width:300px}
+  .foyer .left{left:56px}
+}
+@media (max-width:860px){
+  :root{--bar:52px}
+  .bar{padding:0 16px;gap:12px}
+  .bar .pages{display:none}
+  .bar .menu{display:block}
+  .bar .home span{display:none}
+  .foyer{position:fixed;overflow-y:auto;overflow-x:hidden}
+  .foyer .stage{position:relative;inset:auto;min-height:100%;display:flex;flex-direction:column;padding:0 16px}
+  .foyer .top{position:static;padding-top:22px}
+  .foyer .top .r{display:none}
+  .foyer .left{display:contents}
+  .foyer .top{order:0}.foyer .name{order:1;margin-top:34px}.foyer .sub{order:2}.hall{order:3}.foyer .inv-wrap{order:4}.floor{order:5}
+  .foyer .name{font-size:clamp(58px,19vw,92px)}
+  .foyer .sub{font-size:18px;margin-top:20px;gap:14px}
+  .foyer .sub i{width:28px}
+  .plaque{left:0;right:0;white-space:normal}.plaque span{display:none}.plaque{top:-44px}
+  .hall{position:relative;right:auto;bottom:auto;margin:118px auto 0;width:min(240px,64vw);height:min(390px,104vw)}
+  .invite{margin-top:0;width:100%;padding:24px 22px}
+  .invite p{font-size:16.5px}
+  .foyer .inv-wrap{margin-top:36px}
+  .floor{position:relative;margin:0 -16px;height:auto;padding:22px 16px 30px}
+  .floor nav{position:static;flex-direction:column;align-items:flex-start;gap:14px}
+  .floor nav div{gap:10px 18px}
+  .map{left:12px;bottom:12px;padding:8px}.map .row .cap{display:none}.map .row{margin-top:7px}.map .zoom button.fit{padding:0 7px;font-size:10px}
+  .hint{bottom:auto;top:calc(var(--bar) + 14px);white-space:normal;width:calc(100% - 32px);text-align:center}
+  .detail .inner{flex-direction:column;justify-content:flex-start;gap:26px;padding:56px 16px 110px}
+  .label{width:100%;align-self:stretch;margin:0}
+  .dnav{padding:12px 16px;background:var(--wall);border-top:1px solid var(--hair)}
+  .dclose{right:16px;top:calc(var(--bar) + 10px)}
+  .dclose kbd{display:none}
+  .sheet .shead{padding:16px 20px}
+  .sheet .shead kbd{display:none}
+  .sheet .body{padding:32px 20px 36px}
+  .sheet h1{font-size:42px}
+  .sheet .sfoot{padding:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+</style>
+</head>
+<body data-view="foyer">
+
+<!-- FOYER -->
+<section class="foyer" id="foyer" aria-label="Welcome">
+  <div class="stage" id="stage">
+    <div class="top cap"><span>Illuminator Omnimedia</span><span class="r">Based in Amsterdam, Netherlands</span></div>
+    <div class="left">
+      <h1 class="name"><span>Cody</span><span>Saxton</span></h1>
+      <div class="sub"><span>Illuminator</span><i></i><span>Art &amp; Life</span></div>
+      <div class="inv-wrap">
+        <div class="invite">
+          <div class="cap"><span>Invitation</span><span>The salon</span></div>
+          <p>Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.</p>
+          <div class="rule"></div>
+          <div class="series" id="inv-series"></div>
+          <button class="enter" id="enter" type="button"><span>Enter the salon</span>
+            <svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M0 6h20M15 1l5 5-5 5"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="hall" id="hall">
+      <div class="plaque"><b>Salon</b><span>ink-lings · color wonderings · terracotta subconscious</span></div>
+      <div class="doorway">
+        <div class="glimpse" id="glimpse" aria-hidden="true"></div>
+        <div class="leaf l"><svg viewBox="0 0 180 580" preserveAspectRatio="none" aria-hidden="true"><use href="#leaf"/></svg></div>
+        <div class="leaf r"><svg viewBox="0 0 180 580" preserveAspectRatio="none" aria-hidden="true" style="transform:scaleX(-1)"><use href="#leaf"/></svg></div>
+      </div>
+      <svg class="architrave" id="arch" aria-hidden="true"></svg>
+    </div>
+    <div class="floor">
+      <nav aria-label="Reception">
+        <div>
+          <a href="#/workshops">Workshops</a><a href="#/thoughts">Thoughts</a><a href="#/news">News</a><a href="#/about">About</a><a href="#/contact">Contact</a>
+        </div>
+        <div class="legal"><a href="#/imprint">Imprint</a><a href="#/privacy">Privacy</a><a href="#/terms">Terms</a><a href="https://instagram.com/codysaxtonart" rel="noopener">Instagram @codysaxtonart</a></div>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="leaf" fill="none" stroke="#2A2622" stroke-width="1.2" vector-effect="non-scaling-stroke">
+      <rect x="0.6" y="0.6" width="178.8" height="578.8" fill="#F6F2EA" vector-effect="non-scaling-stroke"/>
+      <rect x="24" y="28" width="132" height="236" vector-effect="non-scaling-stroke"/>
+      <rect x="34" y="38" width="112" height="216" vector-effect="non-scaling-stroke" stroke-opacity=".55"/>
+      <rect x="24" y="300" width="132" height="252" vector-effect="non-scaling-stroke"/>
+      <rect x="34" y="310" width="112" height="232" vector-effect="non-scaling-stroke" stroke-opacity=".55"/>
+      <path d="M166 268v22" vector-effect="non-scaling-stroke"/>
+      <circle cx="166" cy="296" r="4.5" vector-effect="non-scaling-stroke"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- SALON -->
+<header class="bar" id="bar">
+  <button class="home" id="home" type="button" aria-label="Back to the foyer"><b>Cody Saxton</b><span>Illuminator · Art &amp; Life</span></button>
+  <div class="jumps" id="jumps"></div>
+  <nav class="pages" id="pages" aria-label="Reception">
+    <a href="#/workshops">Workshops</a><a href="#/thoughts">Thoughts</a><a href="#/news">News</a><a href="#/about">About</a><a href="#/contact">Contact</a>
+  </nav>
+  <a class="menu" href="#/reception">Reception</a>
+</header>
+<main class="view" id="view" aria-label="The salon wall"><div class="wall" id="wall"></div></main>
+<div class="tip" id="tip"></div>
+<div class="map" id="map" aria-label="Overview of the wall">
+  <canvas id="mini"></canvas>
+  <div class="row"><span class="cap">Overview</span>
+    <div class="zoom"><button type="button" id="zout" aria-label="Zoom out">&minus;</button><button type="button" id="zin" aria-label="Zoom in">+</button><button type="button" class="fit" id="zfit">Whole wall</button></div>
+  </div>
+</div>
+<div class="hint" id="hint">Drag to walk the wall. Scroll or pinch to look closer. Click a work to bring it forward.</div>
+
+<!-- DETAIL -->
+<section class="detail" id="detail" aria-label="Work">
+  <div class="veil"></div>
+  <div class="inner"><div class="slot" id="slot"></div><div class="label" id="label"></div></div>
+  <button class="dclose" id="dclose" type="button">Back to the wall <kbd>ESC</kbd></button>
+  <div class="dnav">
+    <button type="button" id="prev"><svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 5H2M6 1L2 5l4 4"/></svg>Previous</button>
+    <span class="ct" id="count"></span>
+    <button type="button" id="next">Next<svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h16M12 1l4 4-4 4"/></svg></button>
+  </div>
+</section>
+
+<section class="full" id="full" aria-label="Full view">
+  <img id="fimg" alt="">
+  <div class="fbar"><span class="t" id="ftitle"></span><div><button type="button" id="fminus" aria-label="Zoom out">&minus;</button><button type="button" id="fplus" aria-label="Zoom in">+</button><button type="button" id="fclose">Close <span class="cap" style="font-size:10px;color:var(--paint)">Esc</span></button></div></div>
+</section>
+
+<!-- RECEPTION -->
+<section class="desk" id="desk" role="dialog" aria-modal="true" aria-label="Reception">
+  <div class="veil" id="deskveil"></div>
+  <div class="sheet" id="sheet" tabindex="-1"></div>
+</section>
+
+<script>
+(() => {
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pad2 = n => String(n).padStart(2,'0');
+let DATA, WORKS = [], BYSLUG = {}, LAYOUT, SERIES = [];
+const G = 30; // gap between works on the wall, in wall units
+
+/* ---------- seeded random ---------- */
+function rng(seed){ return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+/* ---------- frames ---------- */
+function frameFor(w, i, r){
+  if (!w.placeholder) return { cls:'black', fr:.026, mr:.085 };
+  if (w.series === 'terracotta subconscious') return [{cls:'black',fr:.024,mr:.07},{cls:'oak',fr:.03,mr:.08},{cls:'black',fr:.02,mr:0},{cls:'white',fr:.035,mr:.05}][Math.floor(r()*4)];
+  return [{cls:'black',fr:.024,mr:.08},{cls:'oak',fr:.03,mr:.075},{cls:'white',fr:.04,mr:.04},{cls:'bare',fr:0,mr:0},{cls:'black',fr:.018,mr:.12}][Math.floor(r()*5)];
+}
+
+/* ---------- salon packing: justified rows, some slots stacked two high ---------- */
+function packCluster(list, W, pattern, seed){
+  const r = rng(seed);
+  const slots = [];
+  for (let i = 0; i < list.length; i++){
+    const w = list[i], n = list[i+1];
+    if (w.placeholder && n && n.placeholder && slots.length > 3 && (w.w > w.h || n.w > n.h) && r() < .45){ slots.push({ stack:[w,n] }); i++; }
+    else slots.push({ one:w });
+  }
+  const A = s => s.one ? s.one.w / s.one.h : 0;
+  const K = s => s.stack ? 1 / (s.stack[0].h/s.stack[0].w + s.stack[1].h/s.stack[1].w) : 0;
+  const Hfor = row => { let a=0,k=0; row.forEach(s=>{a+=A(s);k+=K(s)}); return (W - G*(row.length-1) + G*k) / (a+k); };
+  const rows = []; let row = [], ri = 0;
+  for (const s of slots){
+    row.push(s);
+    const t = pattern[ri % pattern.length];
+    if (Hfor(row) <= t){
+      if (row.length > 1){
+        const without = row.slice(0,-1), hw = Hfor(without), hr = Hfor(row);
+        if (Math.abs(hw - t) < Math.abs(hr - t) && hw < t*1.35){ rows.push(without); row = [s]; ri++; continue; }
+      }
+      rows.push(row); row = []; ri++;
+    }
+  }
+  if (row.length) rows.push(row);
+  const items = []; let y = 0;
+  rows.forEach((row, idx) => {
+    let H = Hfor(row), last = idx === rows.length-1, t = pattern[idx % pattern.length];
+    let widthUsed = W, x = 0;
+    if (last && H > t*1.25){ H = t; widthUsed = 0; row.forEach(s => widthUsed += s.one ? A(s)*H : K(s)*(H-G)); widthUsed += G*(row.length-1); x = (W-widthUsed)/2; }
+    for (const s of row){
+      if (s.one){ const ww = A(s)*H; items.push({ work:s.one, x, y, w:ww, h:H }); x += ww + G; }
+      else { const ww = K(s)*(H-G); const h1 = ww*s.stack[0].h/s.stack[0].w; items.push({ work:s.stack[0], x, y, w:ww, h:h1 }); items.push({ work:s.stack[1], x, y:y+h1+G, w:ww, h:H-h1-G }); x += ww + G; }
+    }
+    y += H + G;
+  });
+  return { items, h: y - G };
+}
+
+function layoutWall(){
+  const bySeries = {};
+  SERIES.forEach(s => bySeries[s.key] = WORKS.filter(w => w.series === s.key));
+  const M = 380, gapC = 340;
+  const clusters = []; let x = M;
+  const intro = { x, w: 900 }; x += intro.w + gapC;
+  const spec = { 'ink-lings':{ W:1960, pattern:[600,300,430,250,520,330,280,460], seed:11 }, 'terracotta subconscious':{ W:1080, pattern:[470,280,380,260,420], seed:5 } };
+  SERIES.forEach(s => {
+    const list = bySeries[s.key];
+    if (!list.length){ clusters.push({ s, x, w:900, empty:true, items:[], h:0 }); x += 900 + gapC; return; }
+    const sp = spec[s.key] || { W: Math.max(1200, list.length*120), pattern:[460,320,380], seed:3 };
+    const p = packCluster(list, sp.W, sp.pattern, sp.seed);
+    clusters.push({ s, x, w:sp.W, items:p.items, h:p.h }); x += sp.W + gapC;
+  });
+  const maxH = Math.max(...clusters.map(c => c.h));
+  clusters.forEach(c => { if (c.empty) c.h = Math.round(maxH*.62); });
+  const top = 400, H = top + maxH + 300, eye = top + maxH/2;
+  clusters.forEach(c => { c.y = Math.round(eye - c.h/2); c.items.forEach(it => { it.x += c.x; it.y += c.y; }); });
+  intro.y = eye - 520;
+  return { W: x - gapC + M, H, clusters, intro, items: clusters.flatMap(c => c.items) };
+}
+
+/* ---------- build the wall ---------- */
+function pieceEl(work, w, fr, tag='button'){
+  const el = document.createElement(tag);
+  el.className = 'work ' + fr.cls;
+  const b = fr.fr*w, m = fr.mr*w;
+  el.style.borderWidth = b + 'px'; el.style.padding = m + 'px';
+  el.innerHTML = `<img src="img/${esc(work.image)}" alt="${esc(work.alt)}" draggable="false" decoding="async">`;
+  return el;
+}
+function buildWall(el, interactive){
+  el.innerHTML = '';
+  el.style.width = LAYOUT.W + 'px'; el.style.height = LAYOUT.H + 'px';
+  const sk = document.createElement('div'); sk.className = 'skirt'; el.appendChild(sk);
+  const it = LAYOUT.intro;
+  const intro = document.createElement('div'); intro.className = 'walltext intro';
+  intro.style.cssText = `left:${it.x}px;top:${it.y}px;width:${it.w}px`;
+  intro.innerHTML = `<h1>Cody<br>Saxton</h1><div class="sub">Illuminator · Art &amp; Life</div><p>Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.</p><div class="how">${WORKS.length} works on the wall</div>`;
+  el.appendChild(intro);
+  LAYOUT.clusters.forEach(c => {
+    const t = document.createElement('div'); t.className = 'walltext';
+    t.style.cssText = `left:${c.x}px;top:${c.y - 190}px`;
+    const n = c.items.length;
+    t.innerHTML = `<h2>${esc(c.s.key)}</h2><div class="cap">${esc(c.s.line)}</div>`;
+    el.appendChild(t);
+    if (c.empty){
+      const p = document.createElement('div'); p.className = 'patch';
+      p.style.cssText = `left:${c.x}px;top:${c.y}px;width:${c.w}px;height:${c.h}px`;
+      const cols = 3, rows = 3;
+      for (let i=0;i<cols;i++) for (let j=0;j<rows;j++){ const x = document.createElement('i'); x.className = 'x'; x.style.left = (c.w*(i+.5)/cols) + 'px'; x.style.top = (c.h*(j+.5)/rows) + 'px'; p.appendChild(x); }
+      const none = document.createElement('div'); none.className = 'none'; none.style.cssText = `left:0;top:${c.h + 40}px`; none.textContent = 'No works hung yet.';
+      p.appendChild(none); el.appendChild(p);
+    }
+  });
+  LAYOUT.items.forEach(item => {
+    const w = item.work;
+    const p = pieceEl(w, item.w, item.fr, interactive ? 'button' : 'div');
+    p.style.left = item.x + 'px'; p.style.top = item.y + 'px'; p.style.width = item.w + 'px'; p.style.height = item.h + 'px';
+    if (interactive){
+      p.type = 'button'; p.dataset.slug = w.slug;
+      p.setAttribute('aria-label', w.placeholder ? `Untitled, ${w.series}, ${w.medium}, placeholder` : `${w.title}, ${w.medium}, ${w.year}`);
+      item.el = p;
+    } else p.querySelector('img').loading = 'lazy';
+    el.appendChild(p);
+  });
+}
+
+/* ---------- camera ---------- */
+const view = $('#view'), wall = $('#wall');
+const cam = { x:0, y:0, s:.2 };
+let sMin = .05, sMax = 2.4, anim = null;
+function vw(){ return view.clientWidth } function vh(){ return view.clientHeight }
+function fitScale(){ const padX = innerWidth < 860 ? 16 : 80, padY = innerWidth < 860 ? 90 : 70; return Math.min((vw()-padX*2)/LAYOUT.W, (vh()-padY*2)/LAYOUT.H); }
+function fitCam(){ const s = fitScale(); return { s, x:(vw()-LAYOUT.W*s)/2, y:(vh()-LAYOUT.H*s)/2 + (innerWidth<860?-20:0) }; }
+function entryCam(){ if (innerWidth < 860){ const c = LAYOUT.clusters[0]; return camForRect(c.x - 30, c.y - 220, c.w + 60, c.h + 250, .96); } const s = Math.min(fitScale()*2.2, (vh()-30)/(LAYOUT.H-120)); return { s, x: -(LAYOUT.intro.x - 90)*s, y: (vh() - LAYOUT.H*s)/2 - 20*s }; }
+function clampCam(c){
+  const w = LAYOUT.W*c.s, h = LAYOUT.H*c.s, mx = vw()*.5, my = vh()*.5;
+  if (w < vw()) c.x = Math.min(Math.max(c.x, -w*.25), vw()-w*.75); else c.x = Math.min(mx, Math.max(vw()-w-mx, c.x));
+  if (h < vh()) c.y = Math.min(Math.max(c.y, -h*.25), vh()-h*.75); else c.y = Math.min(my, Math.max(vh()-h-my, c.y));
+  return c;
+}
+let drawQueued = false;
+function apply(){
+  wall.style.transform = `translate3d(${cam.x}px,${cam.y}px,0) scale(${cam.s})`;
+  if (!drawQueued){ drawQueued = true; requestAnimationFrame(() => { drawQueued = false; drawMini(); }); }
+}
+function setCam(c){ cam.x = c.x; cam.y = c.y; cam.s = c.s; clampCam(cam); apply(); }
+function flyTo(t, dur=1300, done){
+  cancelAnimationFrame(anim);
+  clampCam(t);
+  if (reduce || dur <= 0){ setCam(t); done && done(); return; }
+  const f = { ...cam }, t0 = performance.now();
+  // interpolate in log-scale for a calm zoom
+  const ls0 = Math.log(f.s), ls1 = Math.log(t.s);
+  const wx = (t.x - f.x), wy = (t.y - f.y);
+  const step = now => {
+    let k = Math.min(1, (now - t0)/dur); k = k<.5 ? 4*k*k*k : 1 - Math.pow(-2*k+2,3)/2;
+    cam.s = Math.exp(ls0 + (ls1-ls0)*k); cam.x = f.x + wx*k; cam.y = f.y + wy*k; apply();
+    if (k < 1) anim = requestAnimationFrame(step); else { done && done(); }
+  };
+  anim = requestAnimationFrame(step);
+}
+function camForRect(x,y,w,h, frac=.62){
+  const s = Math.min(sMax, Math.min(vw()*frac/w, vh()*frac/h));
+  return { s, x: vw()/2 - (x+w/2)*s, y: vh()/2 - (y+h/2)*s };
+}
+function zoomAt(px, py, f){
+  const ns = Math.min(sMax, Math.max(sMin, cam.s*f)); const k = ns/cam.s;
+  cam.x = px - (px - cam.x)*k; cam.y = py - (py - cam.y)*k; cam.s = ns; clampCam(cam); apply();
+}
+
+/* ---------- pointer: drag, pinch, inertia ---------- */
+const pts = new Map(); let dragged = false, last = null, pinch = null, vel = {x:0,y:0,t:0}, inert = null, downT = null;
+view.addEventListener('pointerdown', e => {
+  if (e.button !== 0 && e.pointerType === 'mouse') return;
+  cancelAnimationFrame(anim); cancelAnimationFrame(inert);
+  view.setPointerCapture(e.pointerId);
+  pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
+  if (pts.size === 1){ dragged = false; last = { x:e.clientX, y:e.clientY }; downT = e.target.closest('.work'); vel = {x:0,y:0,t:performance.now()}; }
+  if (pts.size === 2){ const [a,b] = [...pts.values()]; pinch = { d: Math.hypot(a.x-b.x,a.y-b.y), mx:(a.x+b.x)/2, my:(a.y+b.y)/2 }; dragged = true; }
+});
+view.addEventListener('pointermove', e => {
+  if (!pts.has(e.pointerId)){ return; }
+  pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
+  const r = view.getBoundingClientRect();
+  if (pts.size === 2 && pinch){
+    const [a,b] = [...pts.values()]; const d = Math.hypot(a.x-b.x,a.y-b.y), mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
+    cam.x += mx - pinch.mx; cam.y += my - pinch.my;
+    zoomAt(mx - r.left, my - r.top, d/pinch.d); pinch = { d, mx, my }; return;
+  }
+  if (pts.size === 1 && last){
+    const dx = e.clientX - last.x, dy = e.clientY - last.y;
+    if (!dragged && (Math.abs(dx) + Math.abs(dy) > 5)){ dragged = true; view.classList.add('grabbing'); hideTip(); undim(); }
+    if (dragged){
+      const now = performance.now(), dt = Math.max(1, now - vel.t);
+      vel = { x: dx/dt, y: dy/dt, t: now };
+      cam.x += dx; cam.y += dy; clampCam(cam); apply(); last = { x:e.clientX, y:e.clientY };
+    }
+  }
+});
+function endPointer(e){
+  if (!pts.has(e.pointerId)) return;
+  pts.delete(e.pointerId);
+  if (pts.size < 2) pinch = null;
+  if (pts.size === 1){ const p = [...pts.values()][0]; last = { x:p.x, y:p.y }; return; }
+  view.classList.remove('grabbing');
+  if (!dragged && downT && e.type === 'pointerup'){ go('#/work/' + downT.dataset.slug); }
+  else if (dragged && !reduce && performance.now() - vel.t < 60){
+    let vx = vel.x*16, vy = vel.y*16;
+    const step = () => { vx *= .93; vy *= .93; cam.x += vx; cam.y += vy; clampCam(cam); apply(); if (Math.abs(vx)+Math.abs(vy) > .3) inert = requestAnimationFrame(step); };
+    inert = requestAnimationFrame(step);
+  }
+  last = null; downT = null;
+}
+view.addEventListener('pointerup', endPointer);
+view.addEventListener('pointercancel', endPointer);
+view.addEventListener('click', e => { if (e.target.closest('.work')) e.preventDefault(); });
+view.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.work')){ e.preventDefault(); go('#/work/' + e.target.dataset.slug); } });
+view.addEventListener('wheel', e => {
+  e.preventDefault(); cancelAnimationFrame(anim); cancelAnimationFrame(inert); hideTip();
+  const r = view.getBoundingClientRect();
+  const mouseWheel = !e.ctrlKey && e.deltaX === 0 && Math.abs(e.deltaY) >= 50 && e.deltaMode === 0 || e.deltaMode === 1;
+  if (e.ctrlKey){ zoomAt(e.clientX - r.left, e.clientY - r.top, Math.exp(-e.deltaY*.012)); }
+  else if (mouseWheel){ const dy = e.deltaMode === 1 ? e.deltaY*33 : e.deltaY; zoomAt(e.clientX - r.left, e.clientY - r.top, Math.exp(-dy*.0016)); }
+  else { cam.x -= e.deltaX; cam.y -= e.deltaY; clampCam(cam); apply(); }
+}, { passive:false });
+view.addEventListener('focusin', e => {
+  const p = e.target.closest('.work'); if (!p) return;
+  const it = LAYOUT.items.find(i => i.el === p); const sx = it.x*cam.s + cam.x, sy = it.y*cam.s + cam.y;
+  if (sx < 0 || sy < 0 || sx + it.w*cam.s > vw() || sy + it.h*cam.s > vh()) flyTo(camForRect(it.x,it.y,it.w,it.h,.55), 900);
+});
+addEventListener('keydown', e => {
+  if (document.body.dataset.view !== 'salon' || state.detail || state.page) return;
+  if (e.target.matches('input,textarea')) return;
+  const k = e.key, cx = vw()/2, cy = vh()/2;
+  if (k === '+' || k === '=') zoomAt(cx, cy, 1.25);
+  else if (k === '-' || k === '_') zoomAt(cx, cy, .8);
+  else if (k === '0') flyTo(fitCam(), 1000);
+  else if (k.startsWith('Arrow')){ const d = 120; cam.x += k==='ArrowLeft'?d:k==='ArrowRight'?-d:0; cam.y += k==='ArrowUp'?d:k==='ArrowDown'?-d:0; clampCam(cam); apply(); }
+});
+
+/* ---------- hover: dim the rest, quiet label ---------- */
+const tip = $('#tip');
+function undim(){ view.classList.remove('dim'); view.querySelectorAll('.work.lit').forEach(n => n.classList.remove('lit')); }
+function hideTip(){ tip.classList.remove('on'); }
+view.addEventListener('pointerover', e => {
+  if (e.pointerType !== 'mouse' || pts.size) return;
+  const p = e.target.closest('.work'); if (!p) return;
+  undim(); p.classList.add('lit'); view.classList.add('dim');
+  const w = BYSLUG[p.dataset.slug], r = p.getBoundingClientRect();
+  tip.innerHTML = w.placeholder ? `<b>Untitled</b><span>${esc(w.series)} · ${esc(w.medium)}</span>` : `<b>${esc(w.title)}</b><span>${esc(w.medium)}, ${w.year} · €${w.price}</span>`;
+  const tw = 240; let left = Math.min(innerWidth - tw - 12, Math.max(12, r.left));
+  let top = r.bottom + 12; if (top > innerHeight - 70) top = r.top - 62;
+  tip.style.left = left + 'px'; tip.style.top = top + 'px'; tip.classList.add('on');
+});
+view.addEventListener('pointerout', e => {
+  const p = e.target.closest('.work'); if (!p) return;
+  if (e.relatedTarget && p.contains(e.relatedTarget)) return;
+  undim(); hideTip();
+});
+
+/* ---------- mini overview ---------- */
+const mini = $('#mini'), mctx = mini.getContext('2d');
+let mw = 220, mh = 90, ms = 1;
+function sizeMini(){
+  mw = innerWidth < 860 ? 128 : 230; ms = mw / LAYOUT.W; mh = Math.round(LAYOUT.H*ms);
+  const d = devicePixelRatio || 1; mini.width = mw*d; mini.height = mh*d; mini.style.width = mw+'px'; mini.style.height = mh+'px'; mctx.setTransform(d,0,0,d,0,0);
+}
+function drawMini(){
+  if (!LAYOUT) return;
+  mctx.clearRect(0,0,mw,mh); mctx.fillStyle = '#EDE8DF'; mctx.fillRect(0,0,mw,mh);
+  mctx.fillStyle = '#E6E0D5'; mctx.fillRect(0, mh - 70*ms, mw, 70*ms);
+  LAYOUT.items.forEach(it => { mctx.fillStyle = it.work.series === 'terracotta subconscious' ? '#A9644F' : '#6F685E'; mctx.fillRect(it.x*ms, it.y*ms, Math.max(1,it.w*ms), Math.max(1,it.h*ms)); });
+  LAYOUT.clusters.filter(c => c.empty).forEach(c => { mctx.strokeStyle = 'rgba(42,38,34,.25)'; mctx.setLineDash([2,2]); mctx.strokeRect(c.x*ms+.5, c.y*ms+.5, c.w*ms, c.h*ms); mctx.setLineDash([]); });
+  const x = -cam.x/cam.s*ms, y = -cam.y/cam.s*ms, w = vw()/cam.s*ms, h = vh()/cam.s*ms;
+  mctx.strokeStyle = '#B4533C'; mctx.lineWidth = 1.5; mctx.strokeRect(x+.75, y+.75, w-1.5, h-1.5);
+}
+function miniJump(e){
+  const r = mini.getBoundingClientRect(); const wx = (e.clientX - r.left)/ms, wy = (e.clientY - r.top)/ms;
+  cancelAnimationFrame(anim); setCam({ s:cam.s, x: vw()/2 - wx*cam.s, y: vh()/2 - wy*cam.s });
+}
+let miniDown = false;
+mini.addEventListener('pointerdown', e => { miniDown = true; mini.setPointerCapture(e.pointerId); miniJump(e); });
+mini.addEventListener('pointermove', e => { if (miniDown) miniJump(e); });
+mini.addEventListener('pointerup', () => miniDown = false);
+$('#zin').onclick = () => { const t = { ...cam }; const ns = Math.min(sMax, cam.s*1.6); t.x = vw()/2 - (vw()/2 - cam.x)*ns/cam.s; t.y = vh()/2 - (vh()/2 - cam.y)*ns/cam.s; t.s = ns; flyTo(t, 700); };
+$('#zout').onclick = () => { const t = { ...cam }; const ns = Math.max(sMin, cam.s/1.6); t.x = vw()/2 - (vw()/2 - cam.x)*ns/cam.s; t.y = vh()/2 - (vh()/2 - cam.y)*ns/cam.s; t.s = ns; flyTo(t, 700); };
+$('#zfit').onclick = () => flyTo(fitCam(), 1200);
+function jumpSeries(key){
+  const c = LAYOUT.clusters.find(c => c.s.key === key); if (!c) return;
+  if (location.hash !== '#/salon') go('#/salon');
+  flyTo(camForRect(c.x - 40, c.y - 220, c.w + 80, c.h + 260, .9), 1500);
+}
+
+/* ---------- detail: bring the work forward ---------- */
+const detail = $('#detail'), slot = $('#slot'), label = $('#label');
+function detailSize(w){
+  const mob = innerWidth < 860, a = w.w / w.h;
+  if (mob){ const W = innerWidth - 32, H = Math.min(innerHeight*.56, W/a); return { w: H*a, h: H }; }
+  const maxH = Math.min((innerHeight - 56)*.74, 860), maxW = innerWidth - 320 - 72 - 160;
+  const h = Math.min(maxH, maxW/a); return { w: h*a, h };
+}
+function labelHTML(w){
+  const i = WORKS.indexOf(w) + 1;
+  const head = `<div class="no cap"><span>${esc(w.series)}</span><span>No. ${pad2(w.no ?? i)}</span></div>`;
+  if (w.placeholder) return head + `<h3>Untitled</h3><div class="med">${esc(w.medium)}</div><button class="fullbtn" type="button" data-full>View full size</button><div class="ph">Placeholder, image repeats an existing work</div>`;
+  return head + `<h3>${esc(w.title)}</h3><div class="med">${esc(w.medium)}, ${w.year}</div>
+    <div class="price">€${w.price}</div>
+    <div class="small">Includes packaging. Shipping calculated at checkout.</div>
+    <a class="buy" href="https://codysaxton.eu/checkout.php?slug=${encodeURIComponent(w.slug)}" rel="noopener">Purchase — €${w.price}</a>
+    <div class="wd">Right of withdrawal within 14 days under EU consumer law — <a href="#/terms">see terms</a>.</div>
+    <button class="fullbtn" type="button" data-full>View full size</button>`;
+}
+function itemOf(w){ return LAYOUT.items.find(i => i.work === w); }
+function fillDetail(w){
+  const it = itemOf(w), sz = detailSize(w);
+  slot.style.width = sz.w + 'px'; slot.style.height = sz.h + 'px';
+  slot.innerHTML = ''; const p = pieceEl(w, sz.w, it.fr, 'div'); p.querySelector('img').decoding = 'sync'; slot.appendChild(p);
+  label.innerHTML = labelHTML(w);
+  $('#count').textContent = `${pad2(WORKS.indexOf(w)+1)} / ${WORKS.length}`;
+  return sz;
+}
+function flyPiece(w, from, to, done){
+  const it = itemOf(w);
+  const f = document.createElement('div'); f.className = 'flyer';
+  f.style.cssText = `left:${to.left}px;top:${to.top}px;width:${to.width}px;height:${to.height}px`;
+  f.appendChild(pieceEl(w, to.width, it.fr, 'div'));
+  const k = from.width / to.width;
+  f.style.transform = `translate(${from.left - to.left}px,${from.top - to.top}px) scale(${k})`;
+  document.body.appendChild(f);
+  f.getBoundingClientRect();
+  f.style.transition = 'transform 1.05s cubic-bezier(.65,0,.25,1)';
+  requestAnimationFrame(() => { f.style.transform = 'none'; });
+  let fin = false; const end = () => { if (fin) return; fin = true; done && done(f); };
+  f.addEventListener('transitionend', end); setTimeout(end, 1300);
+  return f;
+}
+function openDetail(w, animated){
+  state.detail = w; undim(); hideTip(); document.body.classList.add('lifted');
+  detail.classList.remove('ready');
+  const it = itemOf(w);
+  fillDetail(w);
+  detail.classList.add('on'); detail.scrollTop = 0;
+  LAYOUT.items.forEach(i => i.el.classList.toggle('hid', i === it));
+  if (animated && !reduce){
+    slot.classList.add('wait');
+    const from = it.el.getBoundingClientRect(), to = slot.getBoundingClientRect();
+    flyPiece(w, from, to, f => { slot.classList.remove('wait'); f.remove(); detail.classList.add('ready'); });
+  } else { slot.classList.remove('wait'); detail.classList.add('ready'); }
+}
+function closeDetail(animated){
+  const w = state.detail; if (!w) return; state.detail = null; document.body.classList.remove('lifted');
+  const it = itemOf(w);
+  detail.classList.remove('ready');
+  if (animated && !reduce){
+    const from = slot.getBoundingClientRect(), to = it.el.getBoundingClientRect();
+    slot.classList.add('wait');
+    // fly from the slot back to the wall: start at slot size, end at wall rect
+    const f = document.createElement('div'); f.className = 'flyer';
+    f.style.cssText = `left:${to.left}px;top:${to.top}px;width:${to.width}px;height:${to.height}px`;
+    f.appendChild(pieceEl(w, to.width, it.fr, 'div'));
+    f.style.transform = `translate(${from.left-to.left}px,${from.top-to.top}px) scale(${from.width/to.width})`;
+    document.body.appendChild(f); f.getBoundingClientRect();
+    f.style.transition = 'transform 1s cubic-bezier(.65,0,.25,1)';
+    detail.classList.remove('on');
+    requestAnimationFrame(() => f.style.transform = 'none');
+    let fin = false; const end = () => { if (fin) return; fin = true; it.el.classList.remove('hid'); f.remove(); slot.classList.remove('wait'); };
+    f.addEventListener('transitionend', end); setTimeout(end, 1250);
+  } else { detail.classList.remove('on'); it.el.classList.remove('hid'); }
+}
+function stepDetail(d){
+  if (!state.detail) return;
+  const i = (WORKS.indexOf(state.detail) + d + WORKS.length) % WORKS.length;
+  go('#/work/' + WORKS[i].slug, true);
+}
+function swapDetail(w){
+  const prev = itemOf(state.detail); prev && prev.el.classList.remove('hid');
+  state.detail = w; const it = itemOf(w); it.el.classList.add('hid');
+  detail.classList.remove('ready');
+  slot.style.transition = reduce ? '' : 'opacity .45s'; slot.style.opacity = 0;
+  setTimeout(() => { fillDetail(w); slot.style.opacity = 1; detail.classList.add('ready'); }, reduce ? 0 : 420);
+  flyTo(camForRect(it.x, it.y, it.w, it.h, .5), 1400);
+}
+$('#dclose').onclick = () => go('#/salon');
+$('#prev').onclick = () => stepDetail(-1);
+$('#next').onclick = () => stepDetail(1);
+detail.addEventListener('click', e => {
+  if (e.target.closest('[data-full]') || e.target.closest('.slot')) { go('#/work/' + state.detail.slug + '/full'); return; }
+  if (e.target.classList.contains('inner') || e.target.classList.contains('veil')) go('#/salon');
+});
+
+/* ---------- full view: zoomable ---------- */
+const full = $('#full'), fimg = $('#fimg'); const fc = { x:0, y:0, s:1, min:.5, max:4 };
+function fapply(){ fimg.style.transform = `translate3d(${fc.x}px,${fc.y}px,0) scale(${fc.s})`; }
+function openFull(w){
+  fimg.src = 'img/' + w.image; fimg.alt = w.alt; fimg.style.width = w.w + 'px'; fimg.style.height = w.h + 'px';
+  $('#ftitle').innerHTML = w.placeholder ? `Untitled<em>${esc(w.series)} · placeholder</em>` : `${esc(w.title)}<em>${esc(w.medium)}, ${w.year}</em>`;
+  const s = Math.min((innerWidth - 48)/w.w, (innerHeight - 120)/w.h);
+  fc.min = s*.8; fc.max = Math.max(3, s*6); fc.s = s; fc.x = (innerWidth - w.w*s)/2; fc.y = (innerHeight - w.h*s)/2 + 16; fapply();
+  full.classList.add('on');
+}
+function fzoom(px,py,f){ const ns = Math.min(fc.max, Math.max(fc.min, fc.s*f)), k = ns/fc.s; fc.x = px - (px-fc.x)*k; fc.y = py - (py-fc.y)*k; fc.s = ns; fapply(); }
+full.addEventListener('wheel', e => { e.preventDefault(); if (e.ctrlKey || (e.deltaX===0 && Math.abs(e.deltaY)>=50)) fzoom(e.clientX, e.clientY, Math.exp(-e.deltaY*(e.ctrlKey?.012:.0016))); else { fc.x -= e.deltaX; fc.y -= e.deltaY; fapply(); } }, { passive:false });
+const fpts = new Map(); let fp = null, flast = null;
+full.addEventListener('pointerdown', e => { if (e.target.closest('button')) return; full.setPointerCapture(e.pointerId); fpts.set(e.pointerId,{x:e.clientX,y:e.clientY}); if (fpts.size===1) flast={x:e.clientX,y:e.clientY}; if (fpts.size===2){ const [a,b]=[...fpts.values()]; fp={d:Math.hypot(a.x-b.x,a.y-b.y)}; } });
+full.addEventListener('pointermove', e => { if (!fpts.has(e.pointerId)) return; fpts.set(e.pointerId,{x:e.clientX,y:e.clientY}); if (fpts.size===2&&fp){ const [a,b]=[...fpts.values()]; const d=Math.hypot(a.x-b.x,a.y-b.y); fzoom((a.x+b.x)/2,(a.y+b.y)/2,d/fp.d); fp={d}; } else if (flast){ fc.x+=e.clientX-flast.x; fc.y+=e.clientY-flast.y; flast={x:e.clientX,y:e.clientY}; fapply(); } });
+const fend = e => { fpts.delete(e.pointerId); if (fpts.size<2) fp=null; if (fpts.size===1){ const p=[...fpts.values()][0]; flast={x:p.x,y:p.y}; } else flast=null; };
+full.addEventListener('pointerup', fend); full.addEventListener('pointercancel', fend);
+full.addEventListener('dblclick', e => fzoom(e.clientX, e.clientY, 2));
+$('#fplus').onclick = () => fzoom(innerWidth/2, innerHeight/2, 1.5);
+$('#fminus').onclick = () => fzoom(innerWidth/2, innerHeight/2, 1/1.5);
+$('#fclose').onclick = () => go('#/work/' + state.detail.slug);
+
+/* ---------- reception pages (the owner's words, verbatim) ---------- */
+const PAGES = {
+workshops: { t:'Workshops', h:`<h1>Workshops</h1><p class="lede">Small in-person sessions around meaning making and creativity. Dates and venues are announced here when scheduled.</p>
+<h2>Upcoming</h2><p>More to come soon. Add yourself to the mailing list via the contact form to be notified.</p>
+<h2>Past</h2>
+<div class="entry"><h4>Markmaking as Metaphor. OBA Oosterdok. May 2024.</h4><p>Exploring unusual mark-making techniques and visual vocabulary translation.</p></div>
+<div class="entry"><h4>Personal Rituals. OBA Oosterdok. June 2024.</h4></div>
+<div class="entry"><h4>Design Your Life. OBA Oosterdok. May 2024.</h4></div>` },
+thoughts: { t:'Thoughts', h:`<h1>Thoughts</h1><p class="lede">Notes from the studio — fragments on everything: art, philosophy, process to influences and relevant tangents. Posts will appear here as they're written.</p><h2>Notes</h2>
+<div class="entry"><div class="d">10 September 2026</div><p class="q">“Let everything happen to you: beauty, terror. Just keep going. No feeling is final.” — Rainer Maria Rilke (exerpt from Go To The Limits of Your Longing)</p></div>
+<div class="entry"><div class="d">28 August 2026</div><p class="q">With every trip around the sun, I think of all the good to come. Planting trees and helping friends, building Gaia up again.</p></div>
+<div class="entry"><div class="d">15 August 2026</div><p class="q">Leaping from a bridge into the Aare River in Bern, Switzerland was transformational...it feels like a part of me from long ago woke up from hibernation. I hesitated, nervous, and then remembered: "You don't have to go alone." When two women stepped over the railing, I broke with my habit of hyperindependence and asked to jump with them. They said "Of Course!"" And off we went, into the beautiful, clear, racing water. The power of secure attachment...can't say how much I feel glad for all I have learned over these years.</p></div>
+<div class="entry"><div class="d">15 July 2026</div><p class="q">Overnight train to Zurich, onto Milan...then trekking in the Italian Alps with silly friends. The mountains hold some power that exists nowhere in The Netherlands---they charge my battery with something so necessary. The lowlands have convenient bicycling and interesting international culture, among other things...but the nature ain't nature-ing. The word soul, or maybe the sense of connectedness to our Earth, tends to feel watery and diffuse in the swamp.</p></div>
+<div class="entry"><div class="d">22 June 2026</div><p class="q">Art is to make and speak and act in alignment with your highest-held values—it is real freedom.</p></div>
+<div class="entry"><div class="d">21 May 2026</div><p class="q">“Everything is art. Everything is politics.” — Ai Weiwei</p></div>
+<div class="entry"><div class="d">19 May 2026</div><p class="q">Ideas should be shared, explored and examined with others. I see each of us as an entirely unique little sensor of the specifics our particular nook of the universe--the view from "in here". When we transmit our condition and collected data--our perspective--the collective can include it to gain an unbiased understanding of the world. When we are silent, our view of the universe is wasted.</p></div>` },
+news: { t:'News', h:`<h1>News</h1><p class="lede">Announcements, new series, and upcoming shows. Nothing fresh just yet — check back soon.</p>` },
+about: { t:'About', h:`<h1>About</h1><p class="lede">Cody Saxton, Illuminator Omnimedia</p>
+<h2>Practice</h2><p>Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands. All works are sold unframed unless otherwise indicated, shipping is additional. 10% of sales donated to reforestation and degrowth efforts. No returns are possible at this time. Any items damaged in shipping must be claimed through insurance by the buyer. Transactions are conducted in Euros. Payment in full must be received prior to shipping. Payments can be made by Mollie or direct IBAN deposit: NL55SNSB8841074353 Illuminator Omnimedia. KVK #91859476 Registered business address: Bankwerkerij 159, Amsterdam NL 1021NT. Live contact through Instagram @codysaxtonart or invigorated@proton.me.</p>
+<h2>Exhibitions &amp; Press</h2>
+<div class="entry"><div class="d">November 2026</div><h4>Things</h4><p>Upcoming: PopUp show of selected works at Things.</p></div>
+<div class="entry"><div class="d">June 2025</div><h4>Plum Village, France: Science, Zen and the Art of Health retreat</h4><p>Participant, Plum Village retreat : The Wonder of It All</p></div>
+<div class="entry"><div class="d">Nov 2023</div><h4>Open Gallery Exhibition 2023</h4><p>5 piece series, shown as part of group show of the Amsterdam International Artist Collective gallery.</p><figure><img src="img/aiac-install-photo.jpg" alt="Five framed works on a white wall at the Amsterdam International Artist Collective group show" loading="lazy" width="1500" height="2000"></figure></div>
+<div class="entry"><div class="d">July 2020</div><h4>Pandemic Testing Shelter, newspaper coverage in Albuquerque Journal.</h4><p>Newspaper article described and pictured my invention, development with engineers and deployment at Sandia National Laboratories to build and deploy an alternative PPE system as a shortage threatened early in the Covid-19 pandemic. Building plans were released open-source, so other institutions built their own versions to protect healthcare workers at testing sites around New Mexico.</p><a class="pdf" href="img/albuquerque-journal-2020.pdf" target="_blank" rel="noopener">Albuquerque Journal, 2020 (PDF)</a></div>
+<div class="entry"><div class="d">designed 2005</div><h4>T-shirt design for Rojas, worn by Rosario Dawson in Quentin Tarantino's 2007 film Deathproof</h4><p>Film wardrobe piece for Deathproof (grossed 31.1 USD at box office). Unicorn t-shirt graphic designed for Freddy Rojas' Los Angeles clothing brand, Rojas.</p><figure><img src="img/deathproof-rojas-tshirt.jpg" alt="Film still showing the unicorn t-shirt designed for Rojas" loading="lazy" width="1600" height="1073"></figure></div>` },
+contact: { t:'Contact', h:`<h1>Contact</h1><p class="lede">For purchases, exhibition enquiries, or workshop dates — use the form below or write to <a href="mailto:invigorated@proton.me">invigorated@proton.me</a>.</p>
+<form id="cform" novalidate>
+<label>Name<input name="name" autocomplete="name" required></label>
+<label>Email<input name="email" type="email" autocomplete="email" required></label>
+<label>Subject (optional)<input name="subject"></label>
+<label>Message<textarea name="message" required></textarea></label>
+<label class="hp" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label>
+<button type="submit">Send message</button><p class="sent" id="csent" hidden></p>
+</form>` },
+imprint: { t:'Imprint', h:`<h1>Imprint</h1><p class="lede">Instagram @codysaxtonart</p>
+<h2>Responsible for content</h2><p>[Illuminator Omnimedia]<br>[Bankwerkerij 159]<br>[1021 NT, Amsterdam]<br>[NL]</p>
+<h2>Contact</h2><p>Email: <a href="mailto:invigorated@proton.me">invigorated@proton.me</a></p>
+<h2>VAT / Chamber of Commerce</h2><p>KvK / HRB number: [91859476]<br>VAT ID: [upon request]</p>` },
+privacy: { t:'Privacy', h:`<h1>Privacy notice</h1><p class="lede">Last reviewed: 2026-05-11</p>
+<p>This notice explains what personal data this site collects, why, who else sees it, and what you can do about it. The site is small and intentionally light: no analytics, no advertising, no tracking cookies.</p>
+<h2>1. Who is responsible</h2><p>Controller: [LEGAL_NAME]<br>[STREET_ADDRESS]<br>[POSTAL_CODE_CITY]<br>[COUNTRY]<br>Email: [EMAIL]<br>KvK / Chamber of Commerce: [KVK_NUMBER]<br>VAT ID: [VAT_ID]</p><p>For any privacy question, email the address above. We will respond within 30 days.</p>
+<h2>2. What we collect, and why</h2>
+<h4>a) Just visiting the site</h4><p>When you load a page, our hosting provider (TransIP B.V., Netherlands) records standard server logs: your IP address, the URL you requested, the time of the request, your browser identifier (User-Agent), and the referring page.</p><p>Purpose: to keep the site running and detect abuse.<br>Legal basis: legitimate interest (GDPR Art. 6(1)(f)).<br>Retention: TransIP rotates server logs within roughly 30 days.</p>
+<h4>b) Buying an artwork</h4><p>When you click "Purchase" on an artwork page, you are redirected to Mollie B.V. (Netherlands). Mollie collects what the payment method requires — typically your name, email address, billing address, and, where shipping collection is enabled, your shipping address. Payment details (card number, bank account) stay with Mollie; we never see or store them.</p><p>After a successful payment, Mollie sends us a confirmation email containing your name, email, and shipping address so we can ship the work.</p><p>Purpose: process the sale and ship the artwork.<br>Legal basis: performance of a contract (GDPR Art. 6(1)(b)).<br>Retention: order records are kept for 7 years as required by Dutch tax law (Algemene wet inzake rijksbelastingen, art. 52).</p>
+<h4>c) Emailing us</h4><p>If you write to us at the contact address, we receive whatever you put in the email — typically your email address, your name, and the content of your message.</p><p>Purpose: to reply.<br>Legal basis: legitimate interest, or pre-contractual measures if the email concerns a possible purchase.<br>Retention: up to 3 years, unless the correspondence relates to a sale — in which case the 7-year tax-record retention above applies.</p>
+<h4>d) Shipping</h4><p>To ship a purchased artwork we share your name and shipping address with our carrier ([SHIPPING_CARRIER]). The carrier acts as a separate controller for that data and you should consult their own privacy notice for how they handle it.</p>
+<h2>3. Who else processes your data</h2><p>We rely on a small number of service providers. None of them sell or share your data for advertising:</p><ul><li>TransIP B.V. — hosting, server logs, daily backups. Netherlands (EU).</li><li>Mollie B.V. — payment processing. Netherlands (EU). See Mollie's privacy notice.</li><li>[EMAIL_PROVIDER] — email inbox. [EMAIL_PROVIDER_LOCATION].</li><li>[SHIPPING_CARRIER] — delivery. [COUNTRY].</li></ul><p>We do not sell or rent your data. We share it only with the parties above, and only as needed to operate the site, process your order, and deliver your purchase — or where we are required to by law.</p>
+<h2>4. International transfers</h2><p>All processing happens within the EU/EEA. We do not transfer your personal data to countries outside the EU/EEA. (Should that ever change — for example if we add a service hosted elsewhere — this notice will be updated before the transfer starts.)</p>
+<h2>5. Cookies and tracking</h2><p>This site sets no cookies of its own. We use no analytics (no Google Analytics, no Plausible, no Matomo), no tracking pixels, no advertising scripts, and no embedded social media widgets. Because of this, we do not show a cookie banner.</p><p>Note that Mollie's checkout pages — which you are redirected to when you press "Purchase" — set their own cookies. Those are governed by Mollie's privacy policy linked above.</p>
+<h2>6. Your rights</h2><p>Under the GDPR you have the right to:</p><ul><li>access the personal data we hold about you;</li><li>rectify inaccurate or incomplete data;</li><li>erase your data ("right to be forgotten"), within the limits of our legal retention obligations (notably the 7-year tax records);</li><li>restrict processing of your data;</li><li>data portability — receive your data in a machine-readable format;</li><li>object to processing based on legitimate interest; and</li><li>withdraw consent, where consent was the legal basis.</li></ul><p>To exercise any of these, email [EMAIL]. We will respond within 30 days.</p><p>You also have the right to lodge a complaint with your national supervisory authority. In the Netherlands this is Autoriteit Persoonsgegevens.</p>
+<h2>7. Children</h2><p>This site is not directed at children under 16. We do not knowingly collect data from children. If you believe a child has provided personal data to us, please contact us so we can remove it.</p>
+<h2>8. Security</h2><p>The site is served exclusively over HTTPS (TLS) using a certificate issued by Let's Encrypt and auto-renewed by TransIP. Order data lives only in our email inbox and in Mollie's systems; we do not operate a customer database.</p>
+<h2>9. Changes to this notice</h2><p>We may update this notice when our processing changes — for example, when we add a new shipping carrier or switch hosting provider. Material changes are reflected in the "last reviewed" date at the top of the page.</p>
+<h2>10. Contact</h2><p>For any privacy question or rights request: [EMAIL].</p>` },
+terms: { t:'Terms', h:`<h1>Terms &amp; Conditions</h1><p class="lede">This is a placeholder for the legally required terms. Replace with vetted text — consider iubenda or a local accountant/lawyer before launch.</p>
+<h2>Prices and VAT</h2><p>All prices in euro. VAT treatment depends on the small-business scheme — confirm with an accountant whether VAT must be added to listed prices.</p>
+<h2>Payment</h2><p>Payments are processed by Mollie. Accepted methods depend on what is enabled per payment link (iDEAL, cards, etc.).</p>
+<h2>Shipping</h2><p>Originals are packed and shipped within 5 working days of payment. Shipping cost and method are agreed by email after purchase.</p>
+<h2>Right of withdrawal (EU)</h2><p>You have 14 days from receipt to withdraw from the purchase without giving a reason. Send an email to hello@example.com to start the return. Pieces must be returned in their original condition at your expense; the purchase price is refunded within 14 days of receipt of the returned work.</p>
+<h2>Originals as "made to order"</h2><p>Some original works may be exempt from the right of withdrawal as personalised or made-to-order goods. If so, it will be stated on the artwork page. Otherwise the standard 14-day right above applies.</p>
+<h2>Liability</h2><p>Damage in transit: notify within 7 days of delivery with photos so a claim can be filed with the carrier.</p>` }
+};
+const ORDER = ['workshops','thoughts','news','about','contact'];
+const LEGAL = ['imprint','privacy','terms'];
+const desk = $('#desk'), sheet = $('#sheet');
+function receptionHTML(){
+  const s = SERIES.map(s => { const n = WORKS.filter(w => w.series === s.key).length; return `<button type="button" data-jump="${esc(s.key)}">${esc(s.key)}<em>${n}</em></button>`; }).join('');
+  return `<h1>Reception</h1><h2>On the wall</h2><div class="menulist"><a href="#/salon">The whole wall<em>${WORKS.length}</em></a>${s}</div><h2>Pages</h2><div class="menulist">${ORDER.map(k => `<a href="#/${k}">${PAGES[k].t}</a>`).join('')}</div>`;
+}
+function openPage(key){
+  const pg = key === 'reception' ? { t:'Reception', h: receptionHTML() } : PAGES[key];
+  sheet.innerHTML = `<div class="shead"><span class="cap">${key === 'reception' ? 'Reception' : 'Reception · ' + esc(pg.t)}</span><button type="button" data-close>Close <kbd>ESC</kbd></button></div><div class="body">${pg.h}</div>
+  <div class="sfoot">${[...ORDER, ...LEGAL].map(k => `<a href="#/${k}"${k===key?' aria-current="page"':''}>${PAGES[k].t}</a>`).join('')}</div>`;
+  sheet.scrollTop = 0;
+  desk.classList.add('on');
+  document.querySelectorAll('.bar .pages a').forEach(a => a.toggleAttribute('aria-current', a.getAttribute('href') === '#/' + key));
+  const form = sheet.querySelector('#cform');
+  if (form) form.addEventListener('submit', e => {
+    e.preventDefault(); const f = new FormData(form);
+    const sent = sheet.querySelector('#csent');
+    if (f.get('website')) { sent.hidden = false; sent.textContent = 'Thank you.'; return; }
+    if (!f.get('email') || !f.get('message')) { sent.hidden = false; sent.textContent = 'Please add your email and a message.'; return; }
+    const subj = f.get('subject') || 'Message from codysaxton.eu';
+    const body = `${f.get('message')}\n\n${f.get('name')}\n${f.get('email')}`;
+    location.href = `mailto:invigorated@proton.me?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+    sent.hidden = false; sent.textContent = 'Your email app should open with the message ready to send.';
+  });
+  setTimeout(() => sheet.focus({ preventScroll:true }), 50);
+}
+function closePage(){ desk.classList.remove('on'); document.querySelectorAll('.bar .pages a').forEach(a => a.removeAttribute('aria-current')); }
+desk.addEventListener('click', e => {
+  if (e.target.id === 'deskveil' || e.target.closest('[data-close]')) go(state.base === 'foyer' ? '#/' : (state.lastWall || '#/salon'));
+  const j = e.target.closest('[data-jump]'); if (j){ state.pendingJump = j.dataset.jump; go('#/salon'); }
+});
+
+/* ---------- foyer: doors ---------- */
+const hall = $('#hall'), foyer = $('#foyer');
+function drawArch(){
+  const svg = $('#arch'), w = hall.clientWidth + 44, h = hall.clientHeight + 22;
+  svg.setAttribute('viewBox', `0 0 ${w} ${h}`); svg.setAttribute('width', w); svg.setAttribute('height', h);
+  svg.innerHTML = `<g fill="none" stroke="#2A2622" stroke-width="1.2"><path d="M.6 ${h} V.6 H${w-.6} V${h}"/><path d="M12 ${h} V12 H${w-12} V${h}" stroke-opacity=".5"/><path d="M22 ${h} V22 H${w-22} V${h}"/></g>`;
+}
+$('#enter').addEventListener('mouseenter', () => hall.classList.add('ajar'));
+$('#enter').addEventListener('mouseleave', () => hall.classList.remove('ajar'));
+$('#enter').addEventListener('focus', () => hall.classList.add('ajar'));
+$('#enter').addEventListener('blur', () => hall.classList.remove('ajar'));
+$('#enter').addEventListener('click', () => go('#/salon'));
+$('#home').addEventListener('click', () => go('#/'));
+function buildGlimpse(){
+  const g = $('#glimpse'); const inner = document.createElement('div'); inner.className = 'wall'; g.innerHTML = ''; g.appendChild(inner);
+  buildWall(inner, false);
+  const c = LAYOUT.clusters[0]; const gw = hall.clientWidth, gh = hall.clientHeight;
+  const s = gh / (c.h * .62);
+  inner.style.transform = `translate(${gw/2 - (c.x + c.w*.42)*s}px, ${gh*.52 - (c.y + c.h/2)*s}px) scale(${s})`;
+}
+
+/* ---------- router ---------- */
+const state = { view:null, detail:null, page:null, base:null, lastWall:'#/salon', pendingJump:null };
+function go(h, replace){ if (location.hash === h) { route(); return; } if (replace) history.replaceState(null, '', h), route(); else location.hash = h; }
+let hintShown = false;
+function showHint(){ if (hintShown) return; hintShown = true; const h = $('#hint'); if (matchMedia('(pointer: coarse)').matches) h.textContent = 'Drag to walk the wall. Pinch to look closer. Tap a work to bring it forward.'; setTimeout(() => h.classList.add('on'), 600); setTimeout(() => h.classList.remove('on'), 6200); }
+function enterSalon(fromFoyer){
+  const wasFoyer = document.body.dataset.view === 'foyer';
+  if (fromFoyer && wasFoyer && !reduce){
+    hall.classList.remove('ajar'); hall.classList.add('open');
+    const r = hall.getBoundingClientRect();
+    foyer.style.setProperty('--ox', (r.left + r.width/2) + 'px'); foyer.style.setProperty('--oy', (r.top + r.height*.5) + 'px');
+    setTimeout(() => {
+      foyer.classList.add('leaving');
+      const f = entryCam(); const c = LAYOUT.clusters[0];
+      setCam(camForRect(c.x, c.y, c.w*.5, c.h*.5, .9));
+      document.body.dataset.view = 'salon';
+      flyTo(f, 2600, showHint);
+    }, 1500);
+    setTimeout(() => { foyer.classList.remove('leaving'); }, 3200);
+  } else {
+    if (wasFoyer || !state.view) setCam(entryCam());
+    document.body.dataset.view = 'salon';
+    showHint();
+  }
+  state.view = 'salon';
+}
+function showFoyer(){
+  closeDetail(false); full.classList.remove('on');
+  document.body.dataset.view = 'foyer'; state.view = 'foyer';
+  hall.classList.remove('open', 'ajar');
+}
+function route(){
+  const h = location.hash.replace(/^#\/?/, '');
+  const parts = h.split('/').filter(Boolean);
+  const head = parts[0] || '';
+  if (PAGES[head] || head === 'reception'){
+    if (!state.view){ state.base = 'foyer'; showFoyer(); }
+    state.page = head; openPage(head); return;
+  }
+  if (state.page){ state.page = null; closePage(); }
+  if (head === 'work' && BYSLUG[parts[1]]){
+    const w = BYSLUG[parts[1]];
+    state.base = 'salon'; state.lastWall = '#/work/' + w.slug;
+    const fresh = state.view !== 'salon';
+    if (fresh){ enterSalon(false); const it = itemOf(w); setCam(camForRect(it.x, it.y, it.w, it.h, .5)); }
+    if (parts[2] === 'full'){ if (state.detail !== w){ if (state.detail) swapDetail(w); else openDetail(w, false); } openFull(w); return; }
+    full.classList.remove('on');
+    if (state.detail === w) return;
+    if (state.detail) swapDetail(w); else openDetail(w, !fresh);
+    return;
+  }
+  full.classList.remove('on');
+  if (head === 'salon'){
+    state.base = 'salon'; state.lastWall = '#/salon';
+    const fromFoyer = state.view === 'foyer';
+    if (state.detail) closeDetail(true);
+    if (state.view !== 'salon') enterSalon(fromFoyer);
+    if (state.pendingJump){ const k = state.pendingJump; state.pendingJump = null; setTimeout(() => jumpSeries(k), 300); }
+    return;
+  }
+  state.base = 'foyer'; showFoyer();
+}
+addEventListener('hashchange', route);
+addEventListener('keydown', e => {
+  if (e.key === 'Escape'){
+    if (state.page) { go(state.base === 'foyer' ? '#/' : state.lastWall); return; }
+    if (full.classList.contains('on')) { go('#/work/' + state.detail.slug); return; }
+    if (state.detail) { go('#/salon'); return; }
+  }
+  if (state.detail && !state.page && !full.classList.contains('on')){
+    if (e.key === 'ArrowRight') stepDetail(1);
+    if (e.key === 'ArrowLeft') stepDetail(-1);
+  }
+});
+let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { sizeMini(); drawArch(); buildGlimpse(); clampCam(cam); apply(); if (state.detail) fillDetail(state.detail); }, 120); });
+
+/* ---------- boot ---------- */
+fetch('works.json').then(r => r.json()).then(d => {
+  DATA = d; SERIES = d.series; WORKS = d.works.slice().sort((a,b) => (a.no ?? 0) - (b.no ?? 0));
+  WORKS.forEach(w => BYSLUG[w.slug] = w);
+  LAYOUT = layoutWall();
+  const r = rng(42); LAYOUT.items.forEach((it, i) => it.fr = frameFor(it.work, i, r));
+  buildWall(wall, true);
+  sMin = fitScale()*.7;
+  $('#inv-series').innerHTML = SERIES.map(s => { const n = WORKS.filter(w => w.series === s.key).length; return `<div><span>${esc(s.key)}</span><em>${n ? n + ' on the wall' : 'no works yet'}</em></div>`; }).join('');
+  $('#jumps').innerHTML = SERIES.map(s => { const n = WORKS.filter(w => w.series === s.key).length; return `<button type="button" data-k="${esc(s.key)}">${esc(s.key)}<em>${n}</em></button>`; }).join('');
+  $('#jumps').addEventListener('click', e => { const b = e.target.closest('button'); if (b) jumpSeries(b.dataset.k); });
+  sizeMini(); drawArch(); buildGlimpse();
+  route();
+});
+})();
+</script>
+</body>
+</html>

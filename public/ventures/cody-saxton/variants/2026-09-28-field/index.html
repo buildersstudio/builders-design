@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cody Saxton</title>
+<meta name="description" content="Cody Saxton, Illuminator Omnimedia. Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141413;
+  --mute:#9b9a95;
+  --line:#e9e8e4;
+  --paper:#ffffff;
+  --gut:56px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scrollbar-gutter:stable;-webkit-text-size-adjust:100%}
+html.lock{overflow:hidden}
+body{background:var(--paper);color:var(--ink);font-family:Manrope,system-ui,sans-serif;font-size:13px;line-height:1.5;font-weight:500;letter-spacing:.005em;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;letter-spacing:inherit}
+.mute{color:var(--mute)}
+.num{font-variant-numeric:tabular-nums}
+::selection{background:#141413;color:#fff}
+
+/* corners */
+.corner{position:fixed;z-index:30;font-size:12px;line-height:1.55;padding:22px var(--gut);pointer-events:none;mix-blend-mode:difference;--ink:#fff;--mute:#64655f;color:var(--ink)}
+.corner.open{mix-blend-mode:normal;--ink:#141413;--mute:#9b9a95}
+.corner > *{pointer-events:auto}
+.c-tl{top:0;left:0;padding-right:0}
+.c-tr{top:0;right:0;padding-left:0;text-align:right}
+.c-bl{bottom:0;left:0;padding-right:0}
+.c-br{bottom:0;right:0;padding-left:0;text-align:right}
+.brand{font-weight:600;transition:opacity .5s var(--ease)}
+.nav{display:flex;gap:22px}
+.nav a{color:var(--mute);transition:color .2s}
+.nav a:hover,.nav a[aria-current="page"]{color:var(--ink)}
+.menu-btn{display:none}
+.series{display:grid;gap:1px;text-align:left}
+.series button{display:flex;gap:14px;justify-content:space-between;min-width:210px;color:var(--mute);text-align:left;padding:0;transition:color .25s}
+.series button:hover,.series button.on{color:var(--ink)}
+.series button .n{font-variant-numeric:tabular-nums}
+.series-toggle{display:none}
+.count{font-variant-numeric:tabular-nums;font-weight:500}
+.count .mute{margin:0 .3em}
+body.page-mode .c-bl,body.page-mode .c-br{opacity:0;pointer-events:none}
+.c-bl,.c-br{transition:opacity .4s var(--ease)}
+
+/* opening */
+.opening{height:100vh;height:100svh;display:grid;place-items:center;position:relative}
+.opening h1{font-size:15px;font-weight:500;letter-spacing:.01em}
+
+/* field */
+.field{position:relative;margin-top:-27vh}
+.w{position:absolute;outline:none;cursor:zoom-in;will-change:opacity}
+.sheet{position:absolute;inset:0;background:#f4f3f0;box-shadow:0 .5px 1px rgba(20,20,19,.05),0 3px 8px -2px rgba(20,20,19,.07),0 18px 36px -18px rgba(20,20,19,.16);transition:box-shadow .5s var(--ease),transform .6s var(--ease)}
+.art{position:absolute;inset:0;background-size:100% 100%;background-repeat:no-repeat;opacity:0;transition:opacity .7s var(--ease)}
+.art.ld{opacity:1}
+.shield{position:absolute;inset:0;z-index:2}
+.art,.shield,.v-art,.ph{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
+.w:hover .sheet,.w:focus-visible .sheet{box-shadow:0 .5px 1px rgba(20,20,19,.05),0 6px 14px -4px rgba(20,20,19,.09),0 28px 50px -22px rgba(20,20,19,.22)}
+.w:focus-visible .sheet{outline:1px solid var(--ink);outline-offset:6px}
+.cap{position:absolute;left:0;top:calc(100% + 10px);white-space:nowrap;font-size:11px;line-height:1.4;opacity:0;transform:translateY(-3px);transition:opacity .3s var(--ease),transform .3s var(--ease);pointer-events:none}
+.cap b{font-weight:600}
+.w:hover .cap,.w:focus-visible .cap{opacity:1;transform:none}
+.w.hidden-v{visibility:hidden}
+.empty{position:absolute;left:0;right:0;top:12vh;text-align:center;font-size:13px}
+.empty p{margin-top:4px}
+
+.foot{display:flex;justify-content:space-between;gap:24px;padding:40px var(--gut) 96px;font-size:12px;color:var(--mute)}
+.foot nav{display:flex;gap:22px}
+.foot a:hover{color:var(--ink)}
+
+/* pages */
+.page{display:none;padding:180px var(--gut) 120px;min-height:100vh}
+body.page-mode .opening,body.page-mode .field,body.page-mode .home-foot{display:none}
+body.page-mode .page.on{display:block}
+.pg{display:grid;grid-template-columns:calc(25% - 0px) minmax(0,560px);column-gap:0}
+.pg > h2{grid-column:2;font-size:12px;font-weight:600;margin-bottom:64px}
+.row{display:contents}
+.row > .k{grid-column:1;color:var(--mute);font-size:12px;padding:3px 32px 0 0}
+.row > .v{grid-column:2;margin-bottom:44px}
+.v p{font-size:14px;line-height:1.62;font-weight:400;max-width:34em}
+.v p + p{margin-top:.9em}
+.v h3{font-size:14px;font-weight:600;line-height:1.5}
+.v h4{font-size:12px;font-weight:600;margin:1.6em 0 .3em}
+.v ul{list-style:none;font-size:14px;line-height:1.62;font-weight:400;max-width:34em}
+.v li{padding-left:1em;position:relative}
+.v li::before{content:"";position:absolute;left:0;top:.8em;width:5px;height:1px;background:var(--mute)}
+.v a.u{border-bottom:1px solid var(--line);transition:border-color .2s}
+.v a.u:hover{border-color:var(--ink)}
+.ph{position:relative;margin-top:20px;background:#f4f3f0 center/cover no-repeat;box-shadow:0 .5px 1px rgba(20,20,19,.05),0 3px 8px -2px rgba(20,20,19,.07),0 18px 36px -18px rgba(20,20,19,.16)}
+.ph .shield{position:absolute;inset:0}
+.ph-a{width:260px;aspect-ratio:3/4}
+.ph-b{width:340px;aspect-ratio:1600/1073}
+form{display:grid;gap:22px;max-width:420px}
+label{display:grid;gap:6px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em}
+input,textarea{font:inherit;font-size:14px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--ink);border:0;border-bottom:1px solid #d9d8d3;padding:6px 0 8px;background:transparent;border-radius:0;outline:none;transition:border-color .2s}
+input:focus,textarea:focus{border-color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+.hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.btn{justify-self:start;display:inline-flex;align-items:center;height:40px;padding:0 20px;background:var(--ink);color:#fff;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:background .2s}
+.btn:hover{background:#000}
+.sent{font-size:12px;color:var(--mute)}
+
+/* viewer */
+.viewer{position:fixed;inset:0;z-index:60;background:rgba(255,255,255,0);visibility:hidden;touch-action:none;transition:background .45s var(--ease),visibility 0s linear .5s}
+.viewer.open{background:rgba(255,255,255,1);visibility:visible;transition:background .45s var(--ease)}
+.v-art{position:absolute;left:0;top:0;background:#f4f3f0 no-repeat;background-size:100% 100%;transform-origin:0 0;box-shadow:0 1px 2px rgba(20,20,19,.05),0 30px 60px -30px rgba(20,20,19,.25);cursor:zoom-in}
+.v-art.anim{transition:transform .55s var(--ease),width .55s var(--ease),height .55s var(--ease)}
+.v-art.zoomed{cursor:grab}
+.v-art.grab{cursor:grabbing}
+.v-art .shield{position:absolute;inset:0}
+.v-ui{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s var(--ease)}
+.viewer.open .v-ui{opacity:1;transition-delay:.18s}
+.viewer.zoom .v-ui .fadez{opacity:0}
+.v-ui > *{pointer-events:auto}
+.fadez{transition:opacity .3s var(--ease)}
+.pill{transition:background .3s var(--ease),box-shadow .3s var(--ease)}
+.viewer.zoom .pill{background:rgba(255,255,255,.94);box-shadow:0 0 0 8px rgba(255,255,255,.94)}
+button:focus:not(:focus-visible),a:focus:not(:focus-visible){outline:none}
+.viewer:focus{outline:none}
+.v-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:22px var(--gut);font-size:12px}
+.v-top .brand{font-weight:600}
+.v-nav{position:absolute;right:var(--gut);bottom:22px;display:flex;gap:22px;font-size:12px;align-items:baseline}
+.v-nav button{color:var(--mute);padding:0}
+.v-nav button:hover{color:var(--ink)}
+.v-info{position:absolute;right:var(--gut);bottom:84px;width:250px;font-size:12px}
+.v-info .lab{font-size:10.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.v-info h2{font-size:17px;font-weight:600;letter-spacing:-.005em;line-height:1.3}
+.v-info .md{color:var(--mute);margin-top:2px}
+.v-info .pr{margin-top:18px;font-size:14px;font-weight:600}
+.v-info .sm{color:var(--mute);margin-top:4px;line-height:1.5}
+.v-info .btn{margin-top:18px}
+.v-info .wd{margin-top:14px;font-size:11px;color:var(--mute);line-height:1.5}
+.v-info .wd a{border-bottom:1px solid var(--line)}
+.v-info .phn{margin-top:18px;font-size:11px;color:var(--mute);line-height:1.5}
+.v-hint{position:absolute;left:var(--gut);bottom:22px;font-size:11px;color:var(--mute)}
+
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:16px;top:16px;z-index:99;background:#fff;padding:6px 10px}
+
+@media (max-width:1099px){
+  :root{--gut:32px}
+  .pg{grid-template-columns:160px minmax(0,1fr)}
+}
+@media (max-width:719px){
+  :root{--gut:16px}
+  body{font-size:13px}
+  .corner{padding-top:16px;padding-bottom:calc(14px + env(safe-area-inset-bottom))}
+  .nav{display:none}
+  .menu-btn{display:inline-block}
+  .c-tr.open .nav{display:grid;align-content:start;gap:10px;position:fixed;inset:0;background:#fff;padding:96px 16px;font-size:22px;font-weight:500;text-align:left;z-index:-1}
+  .c-tr.open .nav a{color:var(--ink)}
+  .c-tr.open .nav a[aria-current="page"]{color:var(--mute)}
+  .series{display:none}
+  .c-bl.open .series{display:grid;background:#fff;padding:10px 0 12px;margin-bottom:6px}
+  .series-toggle{display:inline-block;padding:0}
+  .series button{min-width:0;width:calc(100vw - 150px);padding:3px 0}
+  .opening h1{font-size:14px}
+  .field{margin-top:-22vh}
+  .cap{display:none}
+  .foot{flex-direction:column;padding:32px 16px 88px}
+  .page{padding:110px 16px 90px}
+  .pg{display:block}
+  .pg > h2{margin-bottom:44px}
+  .row > .k{display:block;padding:0 0 6px}
+  .row > .v{display:block;margin-bottom:34px}
+  .ph-a{width:62%}
+  .ph-b{width:100%}
+  .v-top{padding:16px}
+  .v-info{left:16px;right:16px;bottom:52px;width:auto;display:grid;grid-template-columns:1fr auto;column-gap:16px;align-items:end}
+  .v-info > *{grid-column:1}
+  .v-info .lab{margin-bottom:6px}
+  .v-info .pr{margin-top:8px}
+  .v-info .btn{grid-column:2;grid-row:2 / span 3;margin-top:0;height:38px;padding:0 14px}
+  .v-info .sm,.v-info .wd{font-size:11px}
+  .v-info .wd{margin-top:8px}
+  .v-info .phn{margin-top:8px}
+  .v-nav{right:16px;bottom:calc(16px + env(safe-area-inset-bottom))}
+  .v-hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms !important;transition-delay:0s !important}
+}
+@media print{
+  .art,.v-art,.ph,.viewer,.field{visibility:hidden !important}
+  body::after{content:"Artworks © Cody Saxton, Illuminator Omnimedia. See codysaxton.eu";display:block;padding:40px;font-size:12px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#field">Skip to works</a>
+
+<header class="corner c-tl"><a class="brand" id="brand" href="#/">Cody Saxton</a></header>
+<div class="corner c-tr" id="ctr">
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Index</button>
+  <nav class="nav" id="nav" aria-label="Pages">
+    <a href="#/" data-r="home">Works</a>
+    <a href="#/workshops" data-r="workshops">Workshops</a>
+    <a href="#/thoughts" data-r="thoughts">Thoughts</a>
+    <a href="#/news" data-r="news">News</a>
+    <a href="#/about" data-r="about">About</a>
+    <a href="#/contact" data-r="contact">Contact</a>
+  </nav>
+</div>
+<div class="corner c-bl" id="cbl">
+  <div class="series" id="series" aria-label="Series"></div>
+  <button class="series-toggle" id="seriesToggle" aria-expanded="false"></button>
+</div>
+<div class="corner c-br"><span class="count" id="count" aria-live="off">01<span class="mute">/</span>50</span></div>
+
+<main>
+  <section class="opening" aria-label="Cody Saxton">
+    <h1 id="hero">Cody Saxton</h1>
+  </section>
+  <section class="field" id="field" aria-label="Works"></section>
+  <footer class="foot home-foot">
+    <span>Illuminator Omnimedia, Amsterdam</span>
+    <nav aria-label="Legal"><a href="https://instagram.com/codysaxtonart" rel="noopener">Instagram @codysaxtonart</a><a href="#/imprint">Imprint</a><a href="#/privacy">Privacy</a><a href="#/terms">Terms</a></nav>
+  </footer>
+
+  <!-- workshops -->
+  <section class="page" data-page="workshops"><div class="pg">
+    <h2>Workshops</h2>
+    <div class="row"><div class="k"></div><div class="v"><p>Small in-person sessions around meaning making and creativity. Dates and venues are announced here when scheduled.</p></div></div>
+    <div class="row"><div class="k">Upcoming</div><div class="v"><p>More to come soon. Add yourself to the mailing list via the contact form to be notified.</p></div></div>
+    <div class="row"><div class="k">Past</div><div class="v">
+      <h3>Markmaking as Metaphor</h3><p class="mute">OBA Oosterdok. May 2024.</p><p>Exploring unusual mark-making techniques and visual vocabulary translation.</p>
+      <h3 style="margin-top:22px">Personal Rituals</h3><p class="mute">OBA Oosterdok. June 2024.</p>
+      <h3 style="margin-top:22px">Design Your Life</h3><p class="mute">OBA Oosterdok. May 2024.</p>
+    </div></div>
+  </div></section>
+
+  <!-- thoughts -->
+  <section class="page" data-page="thoughts"><div class="pg">
+    <h2>Thoughts</h2>
+    <div class="row"><div class="k"></div><div class="v"><p>Notes from the studio — fragments on everything: art, philosophy, process to influences and relevant tangents. Posts will appear here as they're written.</p></div></div>
+    <div class="row"><div class="k">10 September 2026</div><div class="v"><p>“Let everything happen to you: beauty, terror. Just keep going. No feeling is final.” — Rainer Maria Rilke (exerpt from Go To The Limits of Your Longing)</p></div></div>
+    <div class="row"><div class="k">28 August 2026</div><div class="v"><p>With every trip around the sun, I think of all the good to come. Planting trees and helping friends, building Gaia up again.</p></div></div>
+    <div class="row"><div class="k">15 August 2026</div><div class="v"><p>Leaping from a bridge into the Aare River in Bern, Switzerland was transformational...it feels like a part of me from long ago woke up from hibernation. I hesitated, nervous, and then remembered: "You don't have to go alone." When two women stepped over the railing, I broke with my habit of hyperindependence and asked to jump with them. They said "Of Course!"" And off we went, into the beautiful, clear, racing water. The power of secure attachment...can't say how much I feel glad for all I have learned over these years.</p></div></div>
+    <div class="row"><div class="k">15 July 2026</div><div class="v"><p>Overnight train to Zurich, onto Milan...then trekking in the Italian Alps with silly friends. The mountains hold some power that exists nowhere in The Netherlands---they charge my battery with something so necessary. The lowlands have convenient bicycling and interesting international culture, among other things...but the nature ain't nature-ing. The word soul, or maybe the sense of connectedness to our Earth, tends to feel watery and diffuse in the swamp.</p></div></div>
+    <div class="row"><div class="k">22 June 2026</div><div class="v"><p>Art is to make and speak and act in alignment with your highest-held values—it is real freedom.</p></div></div>
+    <div class="row"><div class="k">21 May 2026</div><div class="v"><p>“Everything is art. Everything is politics.” — Ai Weiwei</p></div></div>
+    <div class="row"><div class="k">19 May 2026</div><div class="v"><p>Ideas should be shared, explored and examined with others. I see each of us as an entirely unique little sensor of the specifics our particular nook of the universe--the view from "in here". When we transmit our condition and collected data--our perspective--the collective can include it to gain an unbiased understanding of the world. When we are silent, our view of the universe is wasted.</p></div></div>
+  </div></section>
+
+  <!-- news -->
+  <section class="page" data-page="news"><div class="pg">
+    <h2>News</h2>
+    <div class="row"><div class="k"></div><div class="v"><p>Announcements, new series, and upcoming shows. Nothing fresh just yet — check back soon.</p></div></div>
+  </div></section>
+
+  <!-- about -->
+  <section class="page" data-page="about"><div class="pg">
+    <h2>About</h2>
+    <div class="row"><div class="k"></div><div class="v"><h3>Cody Saxton, Illuminator Omnimedia</h3></div></div>
+    <div class="row"><div class="k">Practice</div><div class="v"><p>Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands. All works are sold unframed unless otherwise indicated, shipping is additional. 10% of sales donated to reforestation and degrowth efforts. No returns are possible at this time. Any items damaged in shipping must be claimed through insurance by the buyer. Transactions are conducted in Euros. Payment in full must be received prior to shipping. Payments can be made by Mollie or direct IBAN deposit: NL55SNSB8841074353 Illuminator Omnimedia. KVK #91859476 Registered business address: Bankwerkerij 159, Amsterdam NL 1021NT. Live contact through Instagram @codysaxtonart or invigorated@proton.me.</p></div></div>
+    <div class="row"><div class="k" style="color:var(--ink);font-weight:600">Exhibitions &amp; Press</div><div class="v"></div></div>
+    <div class="row"><div class="k">November 2026</div><div class="v"><h3>Things</h3><p>Upcoming: PopUp show of selected works at Things.</p></div></div>
+    <div class="row"><div class="k">June 2025</div><div class="v"><h3>Plum Village, France: Science, Zen and the Art of Health retreat</h3><p>Participant, Plum Village retreat : The Wonder of It All</p></div></div>
+    <div class="row"><div class="k">Nov 2023</div><div class="v"><h3>Open Gallery Exhibition 2023</h3><p>5 piece series, shown as part of group show of the Amsterdam International Artist Collective gallery.</p><div class="ph ph-a" style="background-image:url(img/aiac-install-photo.jpg)" role="img" aria-label="Installation photo, Open Gallery Exhibition 2023"><div class="shield"></div></div></div></div>
+    <div class="row"><div class="k">July 2020</div><div class="v"><h3>Pandemic Testing Shelter, newspaper coverage in Albuquerque Journal.</h3><p>Newspaper article described and pictured my invention, development with engineers and deployment at Sandia National Laboratories to build and deploy an alternative PPE system as a shortage threatened early in the Covid-19 pandemic. Building plans were released open-source, so other institutions built their own versions to protect healthcare workers at testing sites around New Mexico.</p><p><a class="u" href="img/albuquerque-journal-2020.pdf" target="_blank" rel="noopener">Albuquerque Journal, 2020 (PDF)</a></p></div></div>
+    <div class="row"><div class="k">designed 2005</div><div class="v"><h3>T-shirt design for Rojas, worn by Rosario Dawson in Quentin Tarantino's 2007 film Deathproof</h3><p>Film wardrobe piece for Deathproof (grossed 31.1 USD at box office). Unicorn t-shirt graphic designed for Freddy Rojas' Los Angeles clothing brand, Rojas.</p><div class="ph ph-b" style="background-image:url(img/deathproof-rojas-tshirt.jpg)" role="img" aria-label="The Rojas unicorn t-shirt in Deathproof"><div class="shield"></div></div></div></div>
+  </div></section>
+
+  <!-- contact -->
+  <section class="page" data-page="contact"><div class="pg">
+    <h2>Contact</h2>
+    <div class="row"><div class="k"></div><div class="v"><p>For purchases, exhibition enquiries, or workshop dates — use the form below or write to <a class="u" href="mailto:invigorated@proton.me">invigorated@proton.me</a>.</p></div></div>
+    <div class="row"><div class="k"></div><div class="v">
+      <form id="cform" novalidate>
+        <label>Name<input name="name" autocomplete="name" required></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>Subject (optional)<input name="subject"></label>
+        <label>Message<textarea name="message" required></textarea></label>
+        <div class="hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn" type="submit">Send message</button>
+        <p class="sent" id="sent" hidden>Your mail app should open with the message ready to send.</p>
+      </form>
+    </div></div>
+  </div></section>
+
+  <!-- imprint -->
+  <section class="page" data-page="imprint"><div class="pg">
+    <h2>Imprint</h2>
+    <div class="row"><div class="k"></div><div class="v"><p>Instagram @codysaxtonart</p></div></div>
+    <div class="row"><div class="k">Responsible for content</div><div class="v"><p>[Illuminator Omnimedia]<br>[Bankwerkerij 159]<br>[1021 NT, Amsterdam]<br>[NL]</p></div></div>
+    <div class="row"><div class="k">Contact</div><div class="v"><p>Email: invigorated@proton.me</p></div></div>
+    <div class="row"><div class="k">VAT / Chamber of Commerce</div><div class="v"><p>KvK / HRB number: [91859476]<br>VAT ID: [upon request]</p></div></div>
+  </div></section>
+
+  <!-- privacy -->
+  <section class="page" data-page="privacy"><div class="pg">
+    <h2>Privacy notice</h2>
+    <div class="row"><div class="k">Last reviewed: 2026-05-11</div><div class="v"><p>This notice explains what personal data this site collects, why, who else sees it, and what you can do about it. The site is small and intentionally light: no analytics, no advertising, no tracking cookies.</p></div></div>
+    <div class="row"><div class="k">1. Who is responsible</div><div class="v"><p>Controller: [LEGAL_NAME]<br>[STREET_ADDRESS]<br>[POSTAL_CODE_CITY]<br>[COUNTRY]<br>Email: [EMAIL]<br>KvK / Chamber of Commerce: [KVK_NUMBER]<br>VAT ID: [VAT_ID]</p><p>For any privacy question, email the address above. We will respond within 30 days.</p></div></div>
+    <div class="row"><div class="k">2. What we collect, and why</div><div class="v">
+      <h4 style="margin-top:0">a) Just visiting the site</h4>
+      <p>When you load a page, our hosting provider (TransIP B.V., Netherlands) records standard server logs: your IP address, the URL you requested, the time of the request, your browser identifier (User-Agent), and the referring page.</p>
+      <p>Purpose: to keep the site running and detect abuse.<br>Legal basis: legitimate interest (GDPR Art. 6(1)(f)).<br>Retention: TransIP rotates server logs within roughly 30 days.</p>
+      <h4>b) Buying an artwork</h4>
+      <p>When you click "Purchase" on an artwork page, you are redirected to Mollie B.V. (Netherlands). Mollie collects what the payment method requires — typically your name, email address, billing address, and, where shipping collection is enabled, your shipping address. Payment details (card number, bank account) stay with Mollie; we never see or store them.</p>
+      <p>After a successful payment, Mollie sends us a confirmation email containing your name, email, and shipping address so we can ship the work.</p>
+      <p>Purpose: process the sale and ship the artwork.<br>Legal basis: performance of a contract (GDPR Art. 6(1)(b)).<br>Retention: order records are kept for 7 years as required by Dutch tax law (Algemene wet inzake rijksbelastingen, art. 52).</p>
+      <h4>c) Emailing us</h4>
+      <p>If you write to us at the contact address, we receive whatever you put in the email — typically your email address, your name, and the content of your message.</p>
+      <p>Purpose: to reply.<br>Legal basis: legitimate interest, or pre-contractual measures if the email concerns a possible purchase.<br>Retention: up to 3 years, unless the correspondence relates to a sale — in which case the 7-year tax-record retention above applies.</p>
+      <h4>d) Shipping</h4>
+      <p>To ship a purchased artwork we share your name and shipping address with our carrier ([SHIPPING_CARRIER]). The carrier acts as a separate controller for that data and you should consult their own privacy notice for how they handle it.</p>
+    </div></div>
+    <div class="row"><div class="k">3. Who else processes your data</div><div class="v">
+      <p>We rely on a small number of service providers. None of them sell or share your data for advertising:</p>
+      <ul><li>TransIP B.V. — hosting, server logs, daily backups. Netherlands (EU).</li><li>Mollie B.V. — payment processing. Netherlands (EU). See Mollie's privacy notice.</li><li>[EMAIL_PROVIDER] — email inbox. [EMAIL_PROVIDER_LOCATION].</li><li>[SHIPPING_CARRIER] — delivery. [COUNTRY].</li></ul>
+      <p style="margin-top:.9em">We do not sell or rent your data. We share it only with the parties above, and only as needed to operate the site, process your order, and deliver your purchase — or where we are required to by law.</p>
+    </div></div>
+    <div class="row"><div class="k">4. International transfers</div><div class="v"><p>All processing happens within the EU/EEA. We do not transfer your personal data to countries outside the EU/EEA. (Should that ever change — for example if we add a service hosted elsewhere — this notice will be updated before the transfer starts.)</p></div></div>
+    <div class="row"><div class="k">5. Cookies and tracking</div><div class="v"><p>This site sets no cookies of its own. We use no analytics (no Google Analytics, no Plausible, no Matomo), no tracking pixels, no advertising scripts, and no embedded social media widgets. Because of this, we do not show a cookie banner.</p><p>Note that Mollie's checkout pages — which you are redirected to when you press "Purchase" — set their own cookies. Those are governed by Mollie's privacy policy linked above.</p></div></div>
+    <div class="row"><div class="k">6. Your rights</div><div class="v"><p>Under the GDPR you have the right to:</p>
+      <ul><li>access the personal data we hold about you;</li><li>rectify inaccurate or incomplete data;</li><li>erase your data ("right to be forgotten"), within the limits of our legal retention obligations (notably the 7-year tax records);</li><li>restrict processing of your data;</li><li>data portability — receive your data in a machine-readable format;</li><li>object to processing based on legitimate interest; and</li><li>withdraw consent, where consent was the legal basis.</li></ul>
+      <p style="margin-top:.9em">To exercise any of these, email [EMAIL]. We will respond within 30 days.</p><p>You also have the right to lodge a complaint with your national supervisory authority. In the Netherlands this is Autoriteit Persoonsgegevens.</p></div></div>
+    <div class="row"><div class="k">7. Children</div><div class="v"><p>This site is not directed at children under 16. We do not knowingly collect data from children. If you believe a child has provided personal data to us, please contact us so we can remove it.</p></div></div>
+    <div class="row"><div class="k">8. Security</div><div class="v"><p>The site is served exclusively over HTTPS (TLS) using a certificate issued by Let's Encrypt and auto-renewed by TransIP. Order data lives only in our email inbox and in Mollie's systems; we do not operate a customer database.</p></div></div>
+    <div class="row"><div class="k">9. Changes to this notice</div><div class="v"><p>We may update this notice when our processing changes — for example, when we add a new shipping carrier or switch hosting provider. Material changes are reflected in the "last reviewed" date at the top of the page.</p></div></div>
+    <div class="row"><div class="k">10. Contact</div><div class="v"><p>For any privacy question or rights request: [EMAIL].</p></div></div>
+  </div></section>
+
+  <!-- terms -->
+  <section class="page" data-page="terms"><div class="pg">
+    <h2>Terms &amp; Conditions</h2>
+    <div class="row"><div class="k"></div><div class="v"><p>This is a placeholder for the legally required terms. Replace with vetted text — consider iubenda or a local accountant/lawyer before launch.</p></div></div>
+    <div class="row"><div class="k">Prices and VAT</div><div class="v"><p>All prices in euro. VAT treatment depends on the small-business scheme — confirm with an accountant whether VAT must be added to listed prices.</p></div></div>
+    <div class="row"><div class="k">Payment</div><div class="v"><p>Payments are processed by Mollie. Accepted methods depend on what is enabled per payment link (iDEAL, cards, etc.).</p></div></div>
+    <div class="row"><div class="k">Shipping</div><div class="v"><p>Originals are packed and shipped within 5 working days of payment. Shipping cost and method are agreed by email after purchase.</p></div></div>
+    <div class="row"><div class="k">Right of withdrawal (EU)</div><div class="v"><p>You have 14 days from receipt to withdraw from the purchase without giving a reason. Send an email to hello@example.com to start the return. Pieces must be returned in their original condition at your expense; the purchase price is refunded within 14 days of receipt of the returned work.</p></div></div>
+    <div class="row"><div class="k">Originals as "made to order"</div><div class="v"><p>Some original works may be exempt from the right of withdrawal as personalised or made-to-order goods. If so, it will be stated on the artwork page. Otherwise the standard 14-day right above applies.</p></div></div>
+    <div class="row"><div class="k">Liability</div><div class="v"><p>Damage in transit: notify within 7 days of delivery with photos so a claim can be filed with the carrier.</p></div></div>
+  </div></section>
+
+  <footer class="foot page-foot" style="display:none">
+    <span>Illuminator Omnimedia, Amsterdam</span>
+    <nav aria-label="Legal"><a href="https://instagram.com/codysaxtonart" rel="noopener">Instagram @codysaxtonart</a><a href="#/imprint">Imprint</a><a href="#/privacy">Privacy</a><a href="#/terms">Terms</a></nav>
+  </footer>
+</main>
+
+<!-- viewer -->
+<div class="viewer" id="viewer" tabindex="-1" role="dialog" aria-modal="true" aria-label="Artwork" aria-hidden="true">
+  <div class="v-art" id="vart"><div class="shield"></div></div>
+  <div class="v-ui">
+    <div class="v-top"><a class="brand fadez" href="#/" id="vbrand">Cody Saxton</a><button id="vclose" class="pill">Close</button></div>
+    <div class="v-info fadez" id="vinfo"></div>
+    <div class="v-hint fadez" id="vhint">Double-click or pinch to look closer</div>
+    <div class="v-nav pill"><button id="vprev">Previous</button><button id="vnext">Next</button><span class="count" id="vcount"></span></div>
+  </div>
+</div>
+
+<script>
+(() => {
+const $ = s => document.querySelector(s);
+const RM = matchMedia('(prefers-reduced-motion: reduce)');
+const field = $('#field'), countEl = $('#count'), seriesEl = $('#series');
+const pad2 = n => String(n).padStart(2, '0');
+const slugKey = k => k.replace(/\s+/g, '-');
+let DATA = null, ALL = [], LIST = [], ITEMS = [], filter = null, fieldTop = 0, cur = 0;
+
+/* ---------- protection ---------- */
+const isArt = el => el && el.closest && el.closest('.w, .viewer, .ph, .art, .shield');
+document.addEventListener('contextmenu', e => { if (isArt(e.target)) e.preventDefault(); });
+document.addEventListener('dragstart', e => { if (isArt(e.target)) e.preventDefault(); });
+document.addEventListener('keydown', e => {
+  const k = e.key.toLowerCase();
+  if ((e.metaKey || e.ctrlKey) && k === 's') { e.preventDefault(); return; }
+  if ((e.metaKey || e.ctrlKey) && k === 'c') {
+    const a = document.activeElement;
+    if (viewerOpen || (a && a.classList && a.classList.contains('w'))) e.preventDefault();
+  }
+});
+document.addEventListener('copy', e => { if (viewerOpen || (document.activeElement && document.activeElement.classList.contains('w'))) e.preventDefault(); });
+
+/* ---------- seeded random ---------- */
+function rng(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+/* ---------- layout ---------- */
+function build(){
+  if (!DATA) return;
+  field.innerHTML = '';
+  ITEMS = [];
+  const vw = document.documentElement.clientWidth;
+  const cols = vw >= 1100 ? 4 : vw >= 720 ? 3 : 2;
+  const gut = vw >= 1100 ? 56 : vw >= 720 ? 32 : 16;
+  const inner = vw - gut * 2;
+  const cw = inner / cols, ch = cw * (cols === 2 ? 1.34 : 1.3);
+  const R = rng(4127 + cols * 31 + (filter ? filter.length * 7 : 0));
+  const occ = [];
+  const free = (r, c) => !(occ[r] && occ[r][c]);
+  const take = (r, c) => { (occ[r] = occ[r] || [])[c] = 1; };
+  let cursor = 0, maxRow = 0;
+  const P = [];
+
+  if (!LIST.length) {
+    const s = DATA.series.find(x => x.key === filter);
+    field.style.height = '62vh';
+    field.innerHTML = `<div class="empty"><p>${s ? s.key : ''}</p><p class="mute">${s ? s.line : ''}</p><p class="mute" style="margin-top:18px">No works from this series are shown yet.</p></div>`;
+    return;
+  }
+
+  LIST.forEach((w, i) => {
+    // decide span
+    let big = i > 0 && R() < (cols === 2 ? 0.13 : 0.15);
+    if (i === 1 && cols > 2) big = true;
+    // air: sometimes leave the next free cell empty
+    for (;;) {
+      const r = Math.floor(cursor / cols), c = cursor % cols;
+      if (!free(r, c)) { cursor++; continue; }
+      if (i > 0 && !big && R() < 0.1) { take(r, c); cursor++; continue; }
+      break;
+    }
+    let pos = cursor, span = 1;
+    if (big) {
+      let p = cursor;
+      for (;;) {
+        const r = Math.floor(p / cols), c = p % cols;
+        if (c + 1 < cols && free(r, c) && free(r, c + 1) && free(r + 1, c) && free(r + 1, c + 1)) break;
+        p++;
+      }
+      pos = p; span = 2;
+    }
+    const r = Math.floor(pos / cols), c = pos % cols;
+    for (let a = 0; a < span; a++) for (let b = 0; b < span; b++) take(r + a, c + b);
+    maxRow = Math.max(maxRow, r + span);
+
+    const bw = cw * span, bh = ch * span;
+    const px = cw * (cols === 2 ? 0.07 : 0.1), py = ch * (cols === 2 ? 0.08 : 0.1);
+    const aw = bw - px * 2, ah = bh - py * 2;
+    const s = span === 2 ? 0.78 + R() * 0.2 : (cols === 2 ? 0.62 + R() * 0.34 : 0.46 + R() * 0.46);
+    const ar = w.w / w.h;
+    let W = aw * s, H = W / ar;
+    if (H > ah * s) { H = ah * s; W = H * ar; }
+    const x = gut + c * cw + px + R() * (aw - W);
+    const y = r * ch + py + R() * (ah - H);
+    const rot = R() < 0.55 ? (R() - 0.5) * 1.2 : 0;
+    P.push({ w, i, x, y, W, H, rot });
+  });
+  // loosen the grid: nudge each sheet within its neighbourhood, never touching another
+  const gap = cols === 2 ? 18 : 40, maxX = vw - gut;
+  const hit = (a, x, y) => P.some(b => b !== a && x < b.x + b.W + gap && x + a.W + gap > b.x && y < b.y + b.H + gap && y + a.H + gap > b.y);
+  for (let pass = 0; pass < 2; pass++) P.forEach(a => {
+    for (let t = 0; t < 4; t++) {
+      const nx = a.x + (R() - 0.5) * cw * 0.22, ny = a.y + (R() - 0.5) * ch * 0.36;
+      if (nx < gut || nx + a.W > maxX || ny < 0) continue;
+      if (!hit(a, nx, ny)) { a.x = nx; a.y = ny; break; }
+    }
+  });
+  P.forEach(({ w, i, x, y, W, H, rot }) => {
+    const el = document.createElement('div');
+    el.className = 'w';
+    el.tabIndex = 0;
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', `${w.title}, ${w.series}. Open`);
+    el.dataset.i = i;
+    Object.assign(el.style, { left: x + 'px', top: y + 'px', width: W + 'px', height: H + 'px', transform: rot ? `rotate(${rot.toFixed(2)}deg)` : '' });
+    el.innerHTML = `<div class="sheet"><div class="art" role="img" aria-label="${w.alt.replace(/"/g, '&quot;')}"></div></div><div class="shield"></div><div class="cap"><b>${w.title}</b> <span class="mute">${w.placeholder ? w.series : (w.price ? '€' + w.price : '')}</span></div>`;
+    el.addEventListener('click', () => go('#/work/' + w.slug, { from: i }));
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } });
+    field.appendChild(el);
+    ITEMS.push({ el, art: el.querySelector('.art'), w, x, y, W, H, rot });
+  });
+  field.style.height = (Math.max(maxRow * ch * 0.9, ...P.map(a => a.y + a.H)) + ch * 0.3) + 'px';
+  observe();
+  measure();
+  onScroll();
+}
+
+/* lazy loading */
+let io;
+function observe(){
+  if (io) io.disconnect();
+  io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const it = ITEMS[+e.target.dataset.i];
+    if (!it || it.loaded) return;
+    it.loaded = true;
+    const im = new Image();
+    im.onload = () => { it.art.style.backgroundImage = `url("img/${it.w.image}")`; it.art.classList.add('ld'); };
+    im.src = 'img/' + it.w.image;
+    io.unobserve(e.target);
+  }), { rootMargin: '900px 0px' });
+  ITEMS.forEach(it => io.observe(it.el));
+}
+
+function measure(){ fieldTop = field.getBoundingClientRect().top + scrollY; }
+
+/* scroll: fade in, counter, series, name */
+let ticking = false;
+function onScroll(){
+  if (ticking) return; ticking = true;
+  requestAnimationFrame(() => {
+    ticking = false;
+    if (document.body.classList.contains('page-mode')) return;
+    const vh = innerHeight, sy = scrollY, reduce = RM.matches;
+    let best = 0, bd = Infinity;
+    const mid = sy + vh * 0.55;
+    for (let k = 0; k < ITEMS.length; k++) {
+      const it = ITEMS[k];
+      const top = fieldTop + it.y - sy;
+      if (!reduce) {
+        const o = Math.max(0, Math.min(1, (vh - top) / (vh * 0.36)));
+        it.el.style.opacity = (0.04 + o * 0.96).toFixed(3);
+      } else it.el.style.opacity = 1;
+      const d = Math.abs(fieldTop + it.y + it.H / 2 - mid);
+      if (d < bd) { bd = d; best = k; }
+    }
+    const pastHero = sy > vh * 0.32;
+    if (!pastHero) best = 0;
+    if (ITEMS.length) setCount(best);
+    $('#brand').style.opacity = pastHero ? 1 : Math.min(1, sy / (vh * 0.32));
+    $('#hero').style.opacity = reduce ? 1 : Math.max(0, 1 - sy / (vh * 0.3));
+  });
+}
+function setCount(k){
+  cur = k;
+  countEl.innerHTML = `${pad2(k + 1)}<span class="mute">/</span>${pad2(LIST.length)}`;
+  renderSeries(filter || (LIST[k] && LIST[k].series));
+}
+function renderSeries(active){
+  const n = key => ALL.filter(w => w.series === key).length;
+  const rows = [{ key: null, label: 'All works', n: ALL.length }].concat(DATA.series.map(s => ({ key: s.key, label: s.key, n: n(s.key) })));
+  const html = rows.map(r => `<button data-k="${r.key || ''}" class="${(r.key === null ? filter === null : r.key === active) ? 'on' : ''}"><span>${r.label}</span><span class="n">${pad2(r.n)}</span></button>`).join('');
+  if (seriesEl.dataset.h !== html) { seriesEl.innerHTML = html; seriesEl.dataset.h = html; }
+  $('#seriesToggle').textContent = (filter || active || 'Series');
+}
+seriesEl.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const k = b.dataset.k;
+  $('#cbl').classList.remove('open');
+  go(k && k !== filter ? '#/series/' + slugKey(k) : '#/');
+});
+$('#seriesToggle').addEventListener('click', () => { const o = $('#cbl').classList.toggle('open'); $('#seriesToggle').setAttribute('aria-expanded', o); });
+$('#menuBtn').addEventListener('click', () => { const o = $('#ctr').classList.toggle('open'); $('#menuBtn').setAttribute('aria-expanded', o); $('#menuBtn').textContent = o ? 'Close' : 'Index'; });
+$('#nav').addEventListener('click', () => { $('#ctr').classList.remove('open'); $('#menuBtn').textContent = 'Index'; });
+addEventListener('scroll', onScroll, { passive: true });
+let rw = 0;
+addEventListener('resize', () => {
+  const w = document.documentElement.clientWidth;
+  if (viewerOpen) fitViewer(false);
+  if (w !== rw) { rw = w; build(); } else { measure(); onScroll(); }
+});
+
+/* ---------- viewer ---------- */
+const viewer = $('#viewer'), vart = $('#vart');
+let viewerOpen = false, vi = 0, fit = null, z = 1, tx = 0, ty = 0, pushed = false;
+
+function stage(){
+  const vw = innerWidth, vh = innerHeight, mobile = vw < 720;
+  if (mobile) return [{ x: 16, y: 58, w: vw - 32, h: vh - 58 - 200 }];
+  const side = 56 + 290 + 40, h = vh - 76 - 76;
+  return [{ x: side, y: 76, w: vw - side * 2, h }, { x: 56 + 24, y: 76, w: vw - 56 * 2 - 24 - 290 - 40, h }];
+}
+function computeFit(w){
+  const ar = w.w / w.h, st = stage();
+  const f = s => { let W = s.w, H = W / ar; if (H > s.h) { H = s.h; W = H * ar; } return { x: s.x + (s.w - W) / 2, y: s.y + (s.h - H) / 2, w: W, h: H }; };
+  const a = f(st[0]);
+  if (st.length === 1) return a;
+  const b = f(st[1]);
+  return a.h >= b.h * 0.9 ? a : b;
+}
+function apply(anim){
+  vart.classList.toggle('anim', !!anim && !RM.matches);
+  const W = fit.w * z, H = fit.h * z;
+  const cx = fit.x + fit.w / 2 + tx, cy = fit.y + fit.h / 2 + ty;
+  vart.style.width = W + 'px'; vart.style.height = H + 'px';
+  vart.style.transform = `translate(${cx - W / 2}px, ${cy - H / 2}px)`;
+  viewer.classList.toggle('zoom', z > 1.02);
+  vart.classList.toggle('zoomed', z > 1.02);
+}
+function clampPan(){
+  const vw = innerWidth, vh = innerHeight, W = fit.w * z, H = fit.h * z;
+  const baseX = fit.x + fit.w / 2, baseY = fit.y + fit.h / 2;
+  // keep image covering the viewport when larger than it, else keep it at its fitted centre
+  if (W <= vw) tx = (vw / 2 - baseX) * Math.min(1, (z - 1) / 1.5);
+  else { const minC = vw - W / 2, maxC = W / 2; tx = Math.min(maxC - baseX, Math.max(minC - baseX, tx)); }
+  if (H <= vh) ty = (vh / 2 - baseY) * Math.min(1, (z - 1) / 1.5);
+  else { const minC = vh - H / 2, maxC = H / 2; ty = Math.min(maxC - baseY, Math.max(minC - baseY, ty)); }
+}
+function zoomAt(nz, px, py, anim){
+  nz = Math.max(1, Math.min(6, nz));
+  const cx = fit.x + fit.w / 2 + tx, cy = fit.y + fit.h / 2 + ty;
+  const k = nz / z;
+  tx += (px - cx) - (px - cx) * k;
+  ty += (py - cy) - (py - cy) * k;
+  z = nz;
+  if (z === 1) { tx = 0; ty = 0; }
+  clampPan();
+  apply(anim);
+}
+function setWork(i){
+  vi = (i + LIST.length) % LIST.length;
+  const w = LIST[vi];
+  vart.style.backgroundImage = `url("img/${w.image}")`;
+  vart.setAttribute('aria-label', w.alt);
+  const s = DATA.series.find(x => x.key === w.series);
+  let h = `<div class="lab">${w.series}</div><h2>${w.title}</h2><div class="md">${w.medium}${w.year ? ', ' + w.year : ''}</div>`;
+  if (!w.placeholder && w.price) {
+    h += `<div class="pr">€${w.price}</div><div class="sm">Includes packaging. Shipping calculated at checkout.</div>`;
+    h += `<a class="btn" href="https://codysaxton.eu/checkout.php?slug=${w.slug}" rel="noopener">Purchase — €${w.price}</a>`;
+    h += `<div class="wd">Right of withdrawal within 14 days under EU consumer law — see <a href="#/terms">terms</a>.</div>`;
+  } else {
+    h += `<div class="phn">Placeholder. This sheet repeats an existing work until the real scan is added.</div>`;
+  }
+  $('#vinfo').innerHTML = h;
+  $('#vcount').innerHTML = `${pad2(vi + 1)}<span class="mute" style="margin:0 .3em">/</span>${pad2(LIST.length)}`;
+  document.title = w.title + ' · Cody Saxton';
+}
+function openViewer(i, fromGrid){
+  const first = !viewerOpen;
+  viewerOpen = true;
+  document.documentElement.classList.add('lock');
+  viewer.setAttribute('aria-hidden', 'false');
+  z = 1; tx = 0; ty = 0;
+  setWork(i);
+  const w = LIST[vi];
+  fit = computeFit(w);
+  const it = ITEMS[vi];
+  if (first && fromGrid && it && !RM.matches) {
+    const r = it.el.getBoundingClientRect();
+    // start from the sheet's grid rect (unrotated centre and size)
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    vart.classList.remove('anim');
+    vart.style.width = it.W + 'px'; vart.style.height = it.H + 'px';
+    vart.style.transform = `translate(${cx - it.W / 2}px, ${cy - it.H / 2}px)`;
+    it.el.classList.add('hidden-v');
+    vart.getBoundingClientRect();
+    viewer.classList.add('open');
+    requestAnimationFrame(() => apply(true));
+  } else {
+    if (first) { vart.style.opacity = 0; apply(false); viewer.classList.add('open'); requestAnimationFrame(() => { vart.style.transition = 'opacity .4s'; vart.style.opacity = 1; setTimeout(() => vart.style.transition = '', 450); }); }
+    else apply(false);
+  }
+  viewer.focus({ preventScroll: true });
+}
+function closeViewer(){
+  if (!viewerOpen) return;
+  viewerOpen = false;
+  viewer.setAttribute('aria-hidden', 'true');
+  const it = ITEMS[vi];
+  document.title = 'Cody Saxton';
+  const done = () => {
+    ITEMS.forEach(x => x.el.classList.remove('hidden-v'));
+    document.documentElement.classList.remove('lock');
+  };
+  ITEMS.forEach(x => x.el.classList.remove('hidden-v'));
+  if (it && !RM.matches) {
+    const r = it.el.getBoundingClientRect();
+    const onScreen = r.bottom > 0 && r.top < innerHeight;
+    if (onScreen) {
+      it.el.classList.add('hidden-v');
+      vart.classList.add('anim');
+      const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      vart.style.width = it.W + 'px'; vart.style.height = it.H + 'px';
+      vart.style.transform = `translate(${cx - it.W / 2}px, ${cy - it.H / 2}px)`;
+      viewer.classList.remove('open');
+      setTimeout(() => { done(); vart.classList.remove('anim'); }, 560);
+      it.el.focus({ preventScroll: true });
+      return;
+    }
+  }
+  viewer.classList.remove('open');
+  done();
+}
+function fitViewer(anim){ if (!viewerOpen) return; fit = computeFit(LIST[vi]); z = 1; tx = ty = 0; apply(anim); }
+function step(d){
+  if (!LIST.length) return;
+  const n = (vi + d + LIST.length) % LIST.length;
+  const nw = LIST[n];
+  // scroll the grid behind so the closing transition lands on the right sheet
+  const it = ITEMS[n];
+  if (it) scrollTo({ top: Math.max(0, fieldTop + it.y + it.H / 2 - innerHeight / 2), behavior: 'instant' });
+  history.replaceState(null, '', '#/work/' + nw.slug + (filter ? '?s=' + slugKey(filter) : ''));
+  if (!RM.matches) {
+    vart.style.transition = 'opacity .18s';
+    vart.style.opacity = 0;
+    setTimeout(() => { z = 1; tx = ty = 0; setWork(n); fit = computeFit(nw); apply(false); vart.style.opacity = 1; setTimeout(() => vart.style.transition = '', 200); }, 170);
+  } else { z = 1; tx = ty = 0; setWork(n); fit = computeFit(nw); apply(false); }
+}
+function requestClose(){
+  if (pushed) history.back(); else go(filter ? '#/series/' + slugKey(filter) : '#/', { replace: true });
+}
+$('#vclose').addEventListener('click', requestClose);
+$('#vprev').addEventListener('click', () => step(-1));
+$('#vnext').addEventListener('click', () => step(1));
+$('#vbrand').addEventListener('click', e => { e.preventDefault(); requestClose(); });
+document.addEventListener('keydown', e => {
+  if (!viewerOpen) { if (e.key === 'Escape') { $('#ctr').classList.remove('open'); $('#cbl').classList.remove('open'); } return; }
+  if (e.key === 'Escape') { e.preventDefault(); requestClose(); }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+  else if (e.key === '+' || e.key === '=') zoomAt(z * 1.6, innerWidth / 2, innerHeight / 2, true);
+  else if (e.key === '-') zoomAt(z / 1.6, innerWidth / 2, innerHeight / 2, true);
+});
+
+/* wheel and trackpad pinch */
+viewer.addEventListener('wheel', e => {
+  if (!viewerOpen) return;
+  e.preventDefault();
+  const f = Math.exp(-e.deltaY * (e.ctrlKey ? 0.012 : 0.0022));
+  zoomAt(z * f, e.clientX, e.clientY, false);
+}, { passive: false });
+
+/* pointers: drag pan, pinch, swipe, double tap */
+const pts = new Map();
+let startPan = null, pinch0 = null, swipe = null, lastTap = 0, moved = false;
+viewer.addEventListener('pointerdown', e => {
+  if (e.target.closest('button, a')) return;
+  viewer.setPointerCapture(e.pointerId);
+  pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  moved = false;
+  if (pts.size === 1) {
+    startPan = { x: e.clientX, y: e.clientY, tx, ty };
+    swipe = z <= 1.02 ? { x: e.clientX, y: e.clientY, t: performance.now() } : null;
+    if (z > 1.02) vart.classList.add('grab');
+  } else if (pts.size === 2) {
+    const [a, b] = [...pts.values()];
+    pinch0 = { d: Math.hypot(a.x - b.x, a.y - b.y), z, mx: (a.x + b.x) / 2, my: (a.y + b.y) / 2 };
+    swipe = null;
+  }
+});
+viewer.addEventListener('pointermove', e => {
+  if (!pts.has(e.pointerId)) return;
+  pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (pts.size === 2 && pinch0) {
+    const [a, b] = [...pts.values()];
+    const d = Math.hypot(a.x - b.x, a.y - b.y);
+    const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+    // pan with the midpoint, zoom around it
+    tx += mx - pinch0.mx; ty += my - pinch0.my; pinch0.mx = mx; pinch0.my = my;
+    zoomAt(pinch0.z * d / pinch0.d, mx, my, false);
+    moved = true;
+  } else if (pts.size === 1 && startPan) {
+    const dx = e.clientX - startPan.x, dy = e.clientY - startPan.y;
+    if (Math.abs(dx) + Math.abs(dy) > 4) moved = true;
+    if (z > 1.02) { tx = startPan.tx + dx; ty = startPan.ty + dy; clampPan(); apply(false); }
+    else if (swipe) { vart.style.transform = `translate(${fit.x + dx * 0.35}px, ${fit.y}px)`; }
+  }
+});
+function endPointer(e){
+  if (!pts.has(e.pointerId)) return;
+  pts.delete(e.pointerId);
+  vart.classList.remove('grab');
+  if (pts.size < 2) pinch0 = null;
+  if (pts.size === 1) { const p = [...pts.values()][0]; startPan = { x: p.x, y: p.y, tx, ty }; return; }
+  if (pts.size) return;
+  if (swipe && z <= 1.02) {
+    const dx = e.clientX - swipe.x, dy = e.clientY - swipe.y;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.3) { step(dx < 0 ? 1 : -1); swipe = null; startPan = null; return; }
+    apply(true);
+  }
+  if (!moved && e.type === 'pointerup') {
+    const now = performance.now();
+    if (now - lastTap < 300) { lastTap = 0; z > 1.02 ? zoomAt(1, e.clientX, e.clientY, true) : zoomAt(2.6, e.clientX, e.clientY, true); }
+    else lastTap = now;
+  }
+  swipe = null; startPan = null;
+}
+viewer.addEventListener('pointerup', endPointer);
+viewer.addEventListener('pointercancel', endPointer);
+viewer.addEventListener('dblclick', e => e.preventDefault());
+
+/* ---------- routing ---------- */
+const PAGES = ['workshops', 'thoughts', 'news', 'about', 'contact', 'imprint', 'privacy', 'terms'];
+let homeScroll = 0, lastRoute = null, nextFrom = null;
+function go(h, o = {}){
+  if (o.from != null) nextFrom = o.from;
+  if (o.replace) { history.replaceState(null, '', h); route(); }
+  else if (location.hash === h) route();
+  else { if (h.startsWith('#/work/')) pushed = true; location.hash = h; }
+}
+function setFilter(k){
+  if (k === filter && LIST.length && ITEMS.length) return false;
+  filter = k;
+  LIST = k ? ALL.filter(w => w.series === k) : ALL.slice();
+  build();
+  return true;
+}
+function route(){
+  const h = location.hash.replace(/^#/, '') || '/';
+  const [path, q] = h.split('?');
+  const parts = path.split('/').filter(Boolean);
+  const r = parts[0] || 'home';
+  document.querySelectorAll('#nav a').forEach(a => a.toggleAttribute('aria-current', false));
+
+  if (r === 'work') {
+    const sq = q && q.startsWith('s=') ? q.slice(2).replace(/-/g, ' ') : null;
+    if (document.body.classList.contains('page-mode')) leavePage();
+    const inF = filter && (ALL.find(w => w.slug === parts[1]) || {}).series === filter;
+    const k = sq && DATA.series.some(s => s.key === sq) ? sq : (inF ? filter : null);
+    setFilter(k);
+    let i = LIST.findIndex(w => w.slug === parts[1]);
+    if (i < 0) { setFilter(null); i = LIST.findIndex(w => w.slug === parts[1]); }
+    if (i < 0) { go('#/', { replace: true }); return; }
+    const fromGrid = nextFrom != null;
+    nextFrom = null;
+    if (!fromGrid && !viewerOpen) { const it = ITEMS[i]; if (it) scrollTo({ top: Math.max(0, fieldTop + it.y + it.H / 2 - innerHeight / 2), behavior: 'instant' }); }
+    openViewer(i, fromGrid);
+    document.querySelector('#nav a[data-r="home"]').setAttribute('aria-current', 'page');
+    lastRoute = 'work';
+    return;
+  }
+  if (viewerOpen) { closeViewer(); pushed = false; }
+  if (PAGES.includes(r)) {
+    if (!document.body.classList.contains('page-mode')) homeScroll = scrollY;
+    document.body.classList.add('page-mode');
+    document.querySelectorAll('.page').forEach(p => p.classList.toggle('on', p.dataset.page === r));
+    document.querySelector('.page-foot').style.display = '';
+    const a = document.querySelector(`#nav a[data-r="${r}"]`); if (a) a.setAttribute('aria-current', 'page');
+    $('#brand').style.opacity = 1;
+    scrollTo({ top: 0, behavior: 'instant' });
+    document.title = (document.querySelector(`.page[data-page="${r}"] h2`).textContent) + ' · Cody Saxton';
+    lastRoute = r;
+    return;
+  }
+  // home or series
+  let k = null;
+  if (r === 'series' && parts[1]) { const n = parts[1].replace(/-/g, ' '); if (DATA.series.some(s => s.key === n)) k = n; }
+  const wasPage = document.body.classList.contains('page-mode');
+  if (wasPage) leavePage();
+  const changed = setFilter(k);
+  document.querySelector('#nav a[data-r="home"]').setAttribute('aria-current', 'page');
+  document.title = 'Cody Saxton';
+  if (changed && lastRoute !== null && lastRoute !== 'work') scrollTo({ top: k ? Math.max(0, fieldTop - 90) : 0, behavior: RM.matches ? 'instant' : 'smooth' });
+  else if (wasPage) scrollTo({ top: homeScroll, behavior: 'instant' });
+  lastRoute = 'home';
+  onScroll();
+}
+function leavePage(){
+  document.body.classList.remove('page-mode');
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+  document.querySelector('.page-foot').style.display = 'none';
+  measure();
+}
+addEventListener('hashchange', () => { if (!location.hash.startsWith('#/work/')) pushed = false; route(); });
+
+/* contact form: opens the mail app, honeypot drops bots */
+$('#cform').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  if (f.website.value) return;
+  if (!f.name.value.trim() || !f.email.value.trim() || !f.message.value.trim()) { (f.name.value.trim() ? (f.email.value.trim() ? f.message : f.email) : f.name).focus(); return; }
+  const subj = f.subject.value.trim() || 'Message from codysaxton.eu';
+  const body = `${f.message.value}\n\n${f.name.value}\n${f.email.value}`;
+  location.href = `mailto:invigorated@proton.me?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+  $('#sent').hidden = false;
+});
+
+/* ---------- boot ---------- */
+fetch('works.json').then(r => r.json()).then(j => {
+  DATA = j; ALL = j.works.slice(); LIST = ALL.slice();
+  rw = document.documentElement.clientWidth;
+  build();
+  route();
+  document.fonts && document.fonts.ready.then(() => { measure(); onScroll(); });
+});
+})();
+</script>
+</body>
+</html>

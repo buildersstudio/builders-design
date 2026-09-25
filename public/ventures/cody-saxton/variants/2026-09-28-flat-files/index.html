@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cody Saxton · The print room</title>
+<meta name="description" content="Cody Saxton, Illuminator. Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --room:#ECEBE7; --room-2:#E3E2DD; --table:#FBFAF8; --paper:#FFFFFF; --lining:#E6E5E0;
+  --steel:#F4F3EF; --steel-2:#E4E2DC; --steel-3:#CAC8C1; --steel-4:#A9A7A0;
+  --ink:#1A1A18; --ink-2:#4F4E4A; --ink-3:#8A8983; --rule:#D5D3CD; --rule-2:#E5E3DE;
+  --display:"Familjen Grotesk", "Hanken Grotesk", system-ui, sans-serif;
+  --text:"Hanken Grotesk", system-ui, sans-serif;
+  --ease:cubic-bezier(.22,.7,.12,1);
+  --slow:1100ms;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--room);color:var(--ink);font-family:var(--text);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden;font-feature-settings:"tnum" 1,"lnum" 1}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block}
+.cap{font-family:var(--text);font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.tn{font-variant-numeric:tabular-nums}
+:focus-visible{outline:1.5px solid var(--ink);outline-offset:3px}
+
+/* views */
+.view{position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;opacity:0;visibility:hidden;transition:opacity 700ms var(--ease),visibility 0s 700ms}
+.view.active{opacity:1;visibility:visible;transition:opacity 700ms var(--ease),visibility 0s}
+
+/* top bar */
+.bar{position:fixed;top:0;left:0;right:0;height:64px;display:flex;align-items:center;gap:28px;padding:0 40px;z-index:40;opacity:0;pointer-events:none;transition:opacity 700ms var(--ease)}
+.bar.on{opacity:1;pointer-events:auto}
+.bar .brand{font-family:var(--display);font-weight:500;font-size:17px;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+.bar .brand span{color:var(--ink-3);font-weight:400}
+.crumbs{display:flex;gap:10px;align-items:center;min-width:0;overflow:hidden;white-space:nowrap}
+.crumbs a{text-decoration:none}
+.crumbs a:hover{color:var(--ink)}
+.crumbs i{font-style:normal;color:var(--rule)}
+.bar nav{margin-left:auto;display:flex;gap:22px;align-items:center}
+.bar nav a,.bar nav button{text-decoration:none}
+.bar nav a:hover,.bar nav button:hover{color:var(--ink)}
+.reader{color:var(--ink-2)}
+.menu-btn{display:none}
+.menu{position:fixed;top:64px;right:16px;left:16px;background:var(--paper);border:1px solid var(--rule);z-index:41;padding:10px 0;display:none;box-shadow:0 24px 40px -24px rgba(0,0,0,.25)}
+.menu.on{display:block}
+.menu a{display:flex;justify-content:space-between;padding:11px 20px;text-decoration:none;font-size:15px}
+.menu a span{color:var(--ink-3)}
+.menu hr{border:0;border-top:1px solid var(--rule-2);margin:8px 20px}
+
+/* ---------- welcome ---------- */
+#welcome{background:radial-gradient(ellipse 60% 70% at 74% 50%,#FAFAF8 0%,#F1F0EC 55%,var(--room) 100%);transition:opacity 700ms var(--ease),visibility 0s 1200ms,transform 1200ms var(--ease)}
+#welcome.leaving{transform:translateY(-100%);opacity:1}
+.w-top{position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 64px;border-bottom:1px solid var(--rule-2)}
+.w-grid{min-height:100%;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:center;gap:72px;padding:112px 96px 80px}
+.w-left .cap{margin-bottom:34px}
+.w-name{font-family:var(--display);font-weight:500;font-size:clamp(64px,9.6vw,152px);line-height:.88;letter-spacing:-.045em;margin-left:-.05em}
+.w-roles{display:flex;gap:0;margin-top:30px;border-top:1px solid var(--ink);max-width:560px}
+.w-roles div{flex:1;padding-top:12px}
+.w-roles div+div{border-left:1px solid var(--rule);padding-left:18px}
+.w-roles .cap{margin:0 0 4px}
+.w-roles b{font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:-.015em}
+.w-words{margin-top:34px;font-size:17px;line-height:1.55;color:var(--ink-2);max-width:470px}
+.w-index{margin-top:44px;max-width:560px;border-top:1px solid var(--rule)}
+.w-index div{display:grid;grid-template-columns:36px 1fr auto;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule-2);font-size:13.5px;align-items:baseline}
+.w-index div span:first-child{color:var(--ink-3)}
+.w-index div em{font-style:normal;color:var(--ink-3);font-size:12.5px;margin-left:10px}
+.w-index div span:last-child{color:var(--ink-3)}
+
+.register{position:relative;background:var(--paper);padding:40px 42px 36px;box-shadow:0 1px 1px rgba(0,0,0,.05),0 2px 6px rgba(0,0,0,.03),0 40px 70px -40px rgba(40,38,30,.35);transform:rotate(-.6deg);max-width:560px;justify-self:end;width:100%}
+.register::before{content:"";position:absolute;inset:10px;border:1px solid var(--rule-2);pointer-events:none}
+.reg-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.reg-head h2{font-family:var(--display);font-weight:500;font-size:26px;letter-spacing:-.02em;line-height:1.1}
+.reg-head p{margin-top:6px}
+.reg-table{margin-top:30px;width:100%;border-collapse:collapse}
+.reg-table th{text-align:left;font-weight:500;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);padding:0 0 8px;border-bottom:1px solid var(--ink)}
+.reg-table td{height:46px;border-bottom:1px solid var(--rule);font-size:15px;vertical-align:bottom;padding-bottom:9px}
+.reg-table td:first-child{width:118px;color:var(--ink-2)}
+.reg-table td:last-child{width:84px;color:var(--ink-2)}
+.reg-table input{width:100%;border:0;background:transparent;font:inherit;font-size:17px;color:var(--ink);outline:none;padding:0}
+.reg-table input::placeholder{color:#B9B7B0}
+.reg-table tr.fresh td{border-bottom-color:var(--ink)}
+.reg-note{margin-top:22px;font-size:13.5px;color:var(--ink-2);max-width:380px}
+.reg-actions{margin-top:26px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;padding:15px 22px 15px 24px;font-size:14px;font-weight:500;letter-spacing:.01em;text-decoration:none;transition:background 400ms}
+.btn:hover{background:#000}
+.btn .ar{transition:transform 500ms var(--ease)}
+.btn:hover .ar{transform:translateX(4px)}
+.link{font-size:14px;color:var(--ink-2);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--rule)}
+.link:hover{color:var(--ink);text-decoration-color:var(--ink)}
+.stamp{position:absolute;right:38px;bottom:30px;border:1.5px solid rgba(60,60,58,.55);color:rgba(60,60,58,.7);padding:8px 14px 7px;text-align:center;transform:rotate(-7deg) scale(1.6);opacity:0;transition:opacity 260ms,transform 380ms cubic-bezier(.3,1.6,.5,1);border-radius:3px}
+.stamp b{display:block;font-weight:600;font-size:12px;letter-spacing:.24em;text-transform:uppercase}
+.stamp span{font-size:10.5px;letter-spacing:.08em}
+.stamp.on{opacity:1;transform:rotate(-7deg) scale(1)}
+.w-foot{position:absolute;left:0;right:0;bottom:0;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 64px}
+.w-foot nav{display:flex;gap:22px}
+.w-foot a{text-decoration:none}
+.w-foot a:hover{color:var(--ink)}
+
+/* ---------- chest ---------- */
+#chestView{background:radial-gradient(ellipse 70% 60% at 50% 38%,#F6F5F2 0%,var(--room) 70%,var(--room-2) 100%)}
+.c-wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:96px 24px 40px}
+.c-head{width:var(--W);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:calc(var(--TOPH) * 1.3 + 36px)}
+.c-head h1{font-family:var(--display);font-weight:500;font-size:34px;letter-spacing:-.025em;line-height:1}
+.c-head p{margin-top:10px;color:var(--ink-2);font-size:14px}
+.c-head .right{text-align:right;font-size:14px;color:var(--ink-2);max-width:520px}
+.c-head .right b{color:var(--ink);font-weight:500}
+.frame{transition:transform 1000ms var(--ease)}
+.stage{position:relative;width:var(--W);height:var(--CH);perspective:var(--P);perspective-origin:50% 20%}
+.chest{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--TILT));transform-origin:50% 0}
+.c-top{position:absolute;left:0;width:var(--W);height:var(--D);top:calc(var(--D) * -1);transform-origin:50% 100%;transform:rotateX(90deg);background:linear-gradient(to bottom,#E2E0DA,#EEEDE8 60%,#F7F6F3);box-shadow:inset 0 -2px 0 #fff}
+.c-top .card-on{position:absolute;left:9%;top:34%;width:250px;background:#fff;padding:18px 20px 16px;box-shadow:0 1px 2px rgba(0,0,0,.14);transform:rotate(-3deg)}
+.c-top .card-on b{display:block;font-family:var(--display);font-weight:500;font-size:22px;letter-spacing:-.02em;line-height:1.05}
+.c-top .card-on span{display:block;margin-top:8px}
+.c-top .pencil{position:absolute;left:34%;top:62%;width:230px;height:9px;border-radius:1px;transform:rotate(8deg);background:linear-gradient(90deg,#3A3935 0 3%,#D9D6CE 3% 6%,#8E8C86 6% 86%,#E9D9BF 86% 97%,#2A2A28 97%);box-shadow:0 2px 2px rgba(0,0,0,.18)}
+.carcass{position:absolute;inset:0;background:linear-gradient(#E9E7E2,#DDDBD5);border-radius:2px;box-shadow:inset 0 1px 0 #fff}
+.slot{position:absolute;left:14px;right:14px;height:calc(var(--H) - 4px);background:linear-gradient(#77756F,#A8A69F 30%,#C8C6BF);}
+.plinth{position:absolute;left:12px;right:12px;top:100%;height:20px;background:linear-gradient(#BDBBB4,#CFCDC6);}
+.floorshadow{position:absolute;left:-4%;right:-4%;top:calc(100% + 8px);height:40px;background:radial-gradient(ellipse at 50% 30%,rgba(40,38,32,.28),transparent 70%);filter:blur(6px);transform:translateZ(-1px)}
+.dr{position:absolute;left:14px;width:calc(var(--W) - 28px);height:calc(var(--H) - 4px);transform-style:preserve-3d;transform:translateZ(0);transition:transform 1000ms var(--ease);cursor:pointer;outline:none}
+.dr .face{position:absolute;inset:0;transform:translateZ(1px);background:linear-gradient(#F8F7F4,#EFEEE9 70%,#E9E8E3);box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #CFCDC6,inset 1px 0 0 #fff,inset -1px 0 0 #D8D6D0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 22px;gap:18px}
+.holder{justify-self:start;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #BCBAB3;box-shadow:inset 0 0 0 2px #EEECE7,0 1px 0 #fff;padding:6px 12px 5px;min-width:230px;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.holder b{font-weight:500;color:var(--ink-3)}
+.handle{width:180px;height:13px;border-radius:7px;background:linear-gradient(#CFCDC6,#EDECE8 70%,#FAFAF8);box-shadow:inset 0 2px 3px rgba(0,0,0,.2),0 1px 0 #fff}
+.count{justify-self:end;font-size:11.5px;color:var(--ink-3);letter-spacing:.04em;white-space:nowrap}
+.dr:hover,.dr:focus-visible{transform:translateZ(16px)}
+.dr:focus-visible .holder{box-shadow:inset 0 0 0 2px #EEECE7,0 0 0 2px var(--ink)}
+.dr.open{transform:translateZ(var(--PULL))}
+.floor{position:absolute;left:8px;right:8px;height:var(--D);bottom:4px;transform-origin:50% 100%;transform:rotateX(90deg);background:linear-gradient(to top,#E8E7E2,#DEDCD6);box-shadow:inset 0 0 30px rgba(0,0,0,.08);overflow:hidden}
+.wall{position:absolute;bottom:4px;height:calc(var(--H) - 14px);background:linear-gradient(#DAD8D2,#E6E4DF)}
+.wall.l{left:calc(8px - var(--D));width:var(--D);transform-origin:100% 50%;transform:rotateY(-90deg)}
+.wall.r{right:calc(8px - var(--D));width:var(--D);transform-origin:0 50%;transform:rotateY(90deg)}
+.wall.b{left:8px;right:8px;transform:translateZ(calc(var(--D) * -1))}
+.pile{position:absolute;left:50%;bottom:var(--PB);width:0;height:0}
+.pile .ps{position:absolute;bottom:0;background:#fff;padding:9px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
+.pile .ps img{width:100%;height:auto}
+.pile .ps.doc{padding:14px 16px;font-size:8px;line-height:1.5;color:var(--ink-2);overflow:hidden}
+.pile .ps.doc b{display:block;font-family:var(--display);font-weight:500;font-size:13px;color:var(--ink);margin-bottom:6px}
+.pile .edge{position:absolute;bottom:0;background:#fff;box-shadow:0 1px 0 #D8D6D0}
+.empty-mark{position:absolute;left:0;right:0;bottom:calc(var(--PB) + 30px);text-align:center}
+.empty-mark b{display:block;font-family:var(--display);font-weight:500;font-size:34px;letter-spacing:-.02em;color:#B3B1AA}
+.c-hint{width:var(--W);margin-top:64px;display:flex;justify-content:space-between;gap:20px;color:var(--ink-3);font-size:13px;min-height:22px}
+.c-hint b{color:var(--ink);font-weight:500}
+
+/* ---------- drawer view ---------- */
+#drawerView{background:var(--lining)}
+#drawerView::before{content:"";position:fixed;inset:0;pointer-events:none;box-shadow:inset 0 30px 60px -30px rgba(0,0,0,.18),inset 30px 0 50px -40px rgba(0,0,0,.14),inset -30px 0 50px -40px rgba(0,0,0,.14);z-index:1}
+.d-wrap{padding:120px 64px 190px;max-width:1520px;margin:0 auto}
+.d-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;margin-bottom:56px;border-bottom:1px solid var(--rule);padding-bottom:26px}
+.d-head h1{font-family:var(--display);font-weight:500;font-size:clamp(44px,5.6vw,84px);letter-spacing:-.04em;line-height:.92;margin-top:14px}
+.d-head p{margin-top:14px;color:var(--ink-2);font-size:15px}
+.d-head .right{text-align:right;color:var(--ink-2);font-size:14px}
+.d-head .right b{display:block;font-family:var(--display);font-weight:500;font-size:44px;letter-spacing:-.03em;color:var(--ink);line-height:1}
+.sheets{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px 0;align-items:center;padding:0 2%}
+.sh{position:relative;display:block;text-decoration:none;width:118%;margin-left:-9%;z-index:var(--z);transform:translate(var(--x),var(--y)) rotate(var(--r));transition:transform 700ms var(--ease)}
+.sh .pp{background:#fff;padding:9%;box-shadow:0 1px 1px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);transition:box-shadow 700ms var(--ease)}
+.sh img{width:100%;height:auto}
+.sh .acc{position:absolute;left:9%;bottom:3%;font-size:9px;letter-spacing:.1em;color:var(--ink-3)}
+.sh:hover,.sh:focus-visible{transform:translate(var(--x),calc(var(--y) - 14px)) rotate(0deg) scale(1.04);z-index:200}
+.sh:hover .pp,.sh:focus-visible .pp{box-shadow:0 2px 3px rgba(0,0,0,.06),0 26px 40px -22px rgba(0,0,0,.4)}
+.deal .sh,.deal .doc{animation:deal 1000ms var(--ease) both;animation-delay:calc(var(--i) * 26ms)}
+@keyframes deal{from{opacity:0;transform:translate(var(--x),38vh) rotate(calc(var(--r) * 6))}to{opacity:1;transform:translate(var(--x),var(--y)) rotate(var(--r))}}
+.doc{--x:0px;--y:0px}
+.docs{columns:3 320px;column-gap:40px}
+.doc{break-inside:avoid;display:block;background:#fff;padding:34px 34px 30px;margin:0 0 40px;box-shadow:0 1px 1px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);transform:rotate(var(--r))}
+.doc .cap{margin-bottom:14px;display:flex;justify-content:space-between;gap:12px}
+.doc p.cap{font-size:10.5px;color:var(--ink-3);line-height:1.4}
+.doc h3{font-family:var(--display);font-weight:500;font-size:23px;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.doc p{color:var(--ink-2);font-size:15px;line-height:1.6}
+.doc p+p{margin-top:10px}
+.doc figure{margin:20px -12px 0}
+.doc figure img{width:100%;height:auto;cursor:zoom-in}
+.doc figcaption{margin-top:8px;font-size:12px;color:var(--ink-3)}
+.doc a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--rule)}
+.doc.big{column-span:all;max-width:760px}
+.d-empty{padding:120px 0 80px;text-align:center}
+.d-empty b{display:block;font-family:var(--display);font-weight:500;font-size:clamp(64px,10vw,150px);letter-spacing:-.05em;color:#C4C2BB;line-height:1}
+.d-empty p{margin-top:18px;color:var(--ink-2)}
+.dfront{position:fixed;left:0;right:0;bottom:0;height:88px;z-index:30;background:linear-gradient(#F8F7F4,#EFEEE9 70%,#E7E6E1);box-shadow:0 -1px 0 #fff,0 -20px 40px -20px rgba(0,0,0,.18),inset 0 -1px 0 #CFCDC6;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 40px;gap:24px;transform:translateY(100%);transition:transform 900ms var(--ease)}
+#drawerView.active .dfront{transform:none}
+.dfront .rec{justify-self:start;display:flex;gap:18px;align-items:baseline;font-size:13.5px;min-width:0;white-space:nowrap;overflow:hidden}
+.dfront .rec b{font-weight:500}
+.dfront .rec span{color:var(--ink-3)}
+.dfront .close{justify-self:end;display:flex;align-items:center;gap:14px;font-size:13.5px;color:var(--ink-2)}
+.dfront .close:hover{color:var(--ink)}
+.dfront .handle{width:240px}
+
+/* ---------- viewing table ---------- */
+#tableView{background:radial-gradient(ellipse 52% 58% at 40% 46%,#FFFFFF 0%,#FAFAF8 45%,#EFEEEA 85%,#E8E7E2 100%)}
+.t-grid{min-height:100%;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:56px;padding:92px 72px 104px}
+.t-sheet-area{position:relative;display:flex;align-items:center;justify-content:center;min-height:0}
+.t-sheet{position:relative;background:#fff;padding:4.2%;box-shadow:0 1px 1px rgba(0,0,0,.06),0 3px 6px rgba(0,0,0,.03),0 40px 60px -34px rgba(40,38,30,.42)}
+.t-sheet img{max-height:calc(100vh - 290px);max-width:100%;width:auto;height:auto;cursor:zoom-in}
+.t-sheet.loupe img{cursor:none}
+.t-sheet .acc{position:absolute;left:4.2%;bottom:1.4%;font-size:10px;letter-spacing:.1em;color:var(--ink-3)}
+.loupe-lens{position:fixed;width:230px;height:230px;border-radius:50%;pointer-events:none;background-repeat:no-repeat;background-color:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.25),0 0 0 6px rgba(255,255,255,.9),0 0 0 7px rgba(0,0,0,.12),0 24px 40px -10px rgba(0,0,0,.35);opacity:0;transform:translate(-50%,-50%) scale(.85);transition:opacity 300ms,transform 400ms var(--ease);z-index:50}
+.loupe-lens.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.card{align-self:center;background:#fff;border:1px solid var(--rule-2);padding:32px 30px 28px;box-shadow:0 1px 1px rgba(0,0,0,.04),0 20px 40px -30px rgba(0,0,0,.3)}
+.card .cap.top{display:flex;justify-content:space-between;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--ink)}
+.card h1{font-family:var(--display);font-weight:500;font-size:34px;letter-spacing:-.03em;line-height:1.02;margin-bottom:22px}
+.card dl{display:grid;grid-template-columns:92px 1fr;row-gap:0;font-size:14px}
+.card dt,.card dd{padding:9px 0;border-bottom:1px solid var(--rule-2)}
+.card dt{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);padding-top:11px}
+.card dd.price{font-family:var(--display);font-size:22px;font-weight:500;letter-spacing:-.01em;padding:5px 0 6px}
+.card .note{margin-top:18px;font-size:13px;color:var(--ink-2)}
+.card .btn{margin-top:18px;width:100%;justify-content:space-between}
+.card .fine{margin-top:14px;font-size:12px;color:var(--ink-3);line-height:1.5}
+.card .fine a{color:var(--ink-2)}
+.card .ph{margin-top:16px;font-size:12.5px;color:var(--ink-3)}
+.t-tools{position:fixed;left:0;right:0;bottom:0;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;gap:20px;z-index:20}
+.t-tools .group{display:flex;gap:6px;align-items:center}
+.tb{height:38px;padding:0 15px;border:1px solid var(--rule);background:rgba(255,255,255,.6);font-size:13px;color:var(--ink-2);display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:border-color 300ms,color 300ms,background 300ms}
+.tb:hover{border-color:var(--ink);color:var(--ink)}
+.tb[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tb:disabled{opacity:.35;pointer-events:none}
+.pos{font-size:13px;color:var(--ink-3);min-width:74px;text-align:center}
+
+/* full view */
+.full{position:fixed;inset:0;background:#FBFAF8;z-index:60;display:none;overflow:hidden;cursor:zoom-in;touch-action:none}
+.full.on{display:block}
+.full.zoomed{cursor:grab}
+.full.dragging{cursor:grabbing}
+.full img{position:absolute;left:50%;top:50%;max-width:92vw;max-height:88vh;transform-origin:0 0;user-select:none;-webkit-user-drag:none;box-shadow:0 30px 60px -30px rgba(0,0,0,.3)}
+.full .fclose{position:fixed;top:20px;right:24px;z-index:2}
+.full .fnote{position:fixed;left:24px;bottom:20px;font-size:12.5px;color:var(--ink-3);z-index:2}
+
+/* ---------- documents / desk ---------- */
+#docView{background:radial-gradient(ellipse 60% 60% at 50% 35%,#FFFFFF 0%,#F6F5F2 60%,var(--room) 100%)}
+.p-wrap{padding:110px 24px 110px;display:flex;justify-content:center}
+.page{width:100%;max-width:760px;background:#fff;padding:64px 72px 60px;box-shadow:0 1px 1px rgba(0,0,0,.06),0 40px 60px -40px rgba(40,38,30,.35);animation:rise 1000ms var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(60px) rotate(.8deg)}to{opacity:1;transform:none}}
+.page .cap.top{display:flex;justify-content:space-between;border-bottom:1px solid var(--ink);padding-bottom:12px;margin-bottom:36px}
+.page h1{font-family:var(--display);font-weight:500;font-size:48px;letter-spacing:-.035em;line-height:1;margin-bottom:24px}
+.page h2{font-family:var(--display);font-weight:500;font-size:20px;letter-spacing:-.01em;margin:34px 0 10px}
+.page h3{font-size:14px;font-weight:600;margin:20px 0 6px}
+.page p,.page li{color:var(--ink-2);font-size:15px;line-height:1.65}
+.page p+p{margin-top:10px}
+.page ul{padding-left:18px;margin:8px 0}
+.page a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--rule)}
+.form{margin-top:30px;display:grid;gap:0}
+.form label{display:block;border-bottom:1px solid var(--rule);padding:14px 0 10px}
+.form label span{display:block;font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+.form input,.form textarea{width:100%;border:0;background:transparent;font:inherit;font-size:16px;color:var(--ink);outline:none;resize:vertical}
+.form textarea{min-height:130px}
+.form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form .btn{margin-top:28px;justify-self:start}
+.form-msg{margin-top:14px;font-size:13px;color:var(--ink-2);min-height:20px}
+
+.fallback{position:fixed;inset:auto 0 0 0;padding:14px 24px;background:#fff;border-top:1px solid var(--rule);font-size:13px;z-index:90;display:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .w-grid{grid-template-columns:1fr;gap:56px;padding:104px 48px 96px}
+  .register{justify-self:start}
+  .t-grid{grid-template-columns:1fr;padding:84px 32px 110px;gap:36px}
+  .card{max-width:520px;width:100%;justify-self:center}
+  .t-sheet img{max-height:70vh}
+}
+@media (max-width:760px){
+  body{font-size:14.5px}
+  .bar{padding:0 16px;gap:12px;background:linear-gradient(var(--room) 70%,transparent)}
+  #tableView ~ .bar{background:none}
+  .crumbs,.bar nav .hide-s{display:none}
+  .menu-btn{display:inline-flex}
+  .w-top,.w-foot{padding:0 16px}
+  .w-top .cap:last-child{display:none}
+  .w-grid{padding:92px 16px 88px;gap:44px}
+  .w-name{font-size:64px}
+  .w-roles b{font-size:21px}
+  .w-words{font-size:16px}
+  .w-index div{grid-template-columns:28px 1fr auto;font-size:13px}
+  .w-index div em{display:block;margin:2px 0 0}
+  .register{padding:30px 22px 28px;transform:none}
+  .reg-head h2{font-size:22px}
+  .reg-table td:first-child{width:92px;font-size:13px}
+  .reg-table td:last-child{width:40px;font-size:13px}
+  .stamp{right:20px;bottom:20px}
+  .w-foot{position:static;height:auto;padding:0 16px 24px;flex-direction:column;align-items:flex-start;gap:10px}
+  .c-wrap{padding:84px 16px 40px}
+  .c-head{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:24px}
+  .c-head .right{text-align:left}
+  .c-head h1{font-size:28px}
+  .c-head{margin-bottom:calc(var(--TOPH) * 1.45 + 30px)}
+  .c-top .card-on{width:130px;padding:9px 10px 8px;left:6%}
+  .c-top .card-on b{font-size:13px}
+  .c-top .card-on span{font-size:7px;margin-top:4px;letter-spacing:.1em}
+  .c-top .pencil{width:120px;height:5px;left:48%}
+  .empty-mark b{font-size:24px}
+  .empty-mark .cap{font-size:8px}
+  .page .cap.top span:last-child{display:none}
+  .tb{white-space:nowrap;padding:0 11px}
+  .t-tools .group{gap:4px}
+  .pos{min-width:52px}
+  .dr .face{padding:0 12px;gap:10px;grid-template-columns:auto 1fr auto}
+  .holder{min-width:0;font-size:9.5px;letter-spacing:.1em;padding:5px 8px 4px;gap:8px}
+  .handle{width:56px;justify-self:center}
+  .count{font-size:10.5px}
+  .c-hint{margin-top:44px;flex-direction:column;gap:4px}
+  .d-wrap{padding:88px 16px 150px}
+  .d-head{grid-template-columns:1fr;gap:16px;margin-bottom:36px}
+  .d-head .right{text-align:left}
+  .d-head .right b{font-size:32px;display:inline;margin-right:8px}
+  .sheets{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 20px}
+  .docs{columns:1}
+  .doc{padding:26px 22px 24px;margin-bottom:26px}
+  .dfront{height:72px;padding:0 16px;grid-template-columns:1fr auto}
+  .dfront .handle{display:none}
+  .dfront .rec{font-size:12.5px;gap:10px}
+  .dfront .rec span{display:none}
+  .sheets{padding:0 4%}
+  .t-grid{padding:76px 16px 100px;gap:28px}
+  .t-sheet img{max-height:none;width:100%}
+  .card{padding:26px 22px 24px}
+  .card h1{font-size:28px}
+  .t-tools{padding:0 16px;height:68px;background:linear-gradient(transparent,var(--room) 40%)}
+  .t-tools .tb.loupe-btn{display:none}
+  #tPrev .lbl,#tNext .lbl{display:none}
+  .page{padding:40px 22px 36px}
+  .page h1{font-size:36px}
+  .p-wrap{padding:84px 16px 80px}
+}
+@media (pointer:coarse){.t-tools .tb.loupe-btn{display:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:1ms !important;animation-delay:0ms !important;transition-duration:1ms !important;transition-delay:0ms !important}
+}
+</style>
+</head>
+<body>
+
+<!-- top bar -->
+<header class="bar" id="bar">
+  <a class="brand" href="#/chest">Cody Saxton <span>Print room</span></a>
+  <div class="crumbs cap" id="crumbs"></div>
+  <nav class="cap">
+    <a href="#/desk" class="hide-s">Desk</a>
+    <a href="#/doc/imprint" class="hide-s">Imprint</a>
+    <a href="#/doc/privacy" class="hide-s">Privacy</a>
+    <a href="#/doc/terms" class="hide-s">Terms</a>
+    <span class="reader hide-s" id="readerTag"></span>
+    <button class="menu-btn cap" id="menuBtn" aria-expanded="false" aria-controls="menu">Index</button>
+  </nav>
+</header>
+<div class="menu" id="menu"></div>
+
+<!-- welcome -->
+<section class="view" id="welcome" aria-label="Welcome">
+  <div class="w-top"><span class="cap">The print room · Works on paper</span><span class="cap">Amsterdam, Netherlands</span></div>
+  <div class="w-grid">
+    <div class="w-left">
+      <p class="cap">Reading room</p>
+      <h1 class="w-name">Cody<br>Saxton</h1>
+      <div class="w-roles">
+        <div><p class="cap">Practice</p><b>Illuminator</b></div>
+        <div><p class="cap">Collection</p><b>Art &amp; Life</b></div>
+      </div>
+      <p class="w-words">Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.</p>
+      <div class="w-index tn" id="wIndex"></div>
+    </div>
+    <form class="register" id="register" autocomplete="off">
+      <div class="reg-head">
+        <div><h2>Reading room register</h2><p class="cap">Cody Saxton · Print room</p></div>
+        <span class="cap tn" id="regNo"></span>
+      </div>
+      <table class="reg-table tn">
+        <thead><tr><th>Date</th><th>Name</th><th>Drawers</th></tr></thead>
+        <tbody>
+          <tr class="fresh"><td id="regDate"></td><td><input id="regName" name="reader" maxlength="40" placeholder="Write your name" aria-label="Your name"></td><td>All</td></tr>
+          <tr><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <p class="reg-note">Sign in to open the plan chest. Works are shown one sheet at a time, on the viewing table.</p>
+      <div class="reg-actions">
+        <button class="btn" type="submit">Sign in and enter <span class="ar">→</span></button>
+        <button class="link" type="button" id="guestBtn">Enter as a guest</button>
+      </div>
+      <div class="stamp" id="stamp" aria-hidden="true"><b>Admitted</b><span class="tn" id="stampDate"></span></div>
+    </form>
+  </div>
+  <div class="w-foot cap"><span>Illuminator Omnimedia</span><nav><a href="#/doc/imprint">Imprint</a><a href="#/doc/privacy">Privacy</a><a href="#/doc/terms">Terms</a></nav></div>
+</section>
+
+<!-- chest -->
+<section class="view" id="chestView" aria-label="Plan chest">
+  <div class="c-wrap">
+    <div class="c-head">
+      <div><h1>Plan chest</h1><p>Eight drawers: three series of works on paper, five of papers.</p></div>
+      <div class="right tn" id="cHint"><span>Pull a drawer to slide out its sheets.</span></div>
+    </div>
+    <div class="frame" id="frame">
+      <div class="stage" id="stage"><div class="chest" id="chest"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- drawer -->
+<section class="view" id="drawerView" aria-label="Open drawer">
+  <div class="d-wrap" id="dWrap"></div>
+  <div class="dfront" id="dfront">
+    <div class="rec tn" id="dRec"></div>
+    <div class="handle" aria-hidden="true"></div>
+    <a class="close cap" href="#/chest" id="dClose">Close drawer <span aria-hidden="true">↑</span></a>
+  </div>
+</section>
+
+<!-- viewing table -->
+<section class="view" id="tableView" aria-label="Viewing table">
+  <div class="t-grid">
+    <div class="t-sheet-area"><div class="t-sheet" id="tSheet"></div></div>
+    <aside class="card" id="tCard"></aside>
+  </div>
+  <div class="t-tools">
+    <div class="group"><a class="tb" id="tBack" href="#/chest">← <span class="lbl" id="tBackLbl">Drawer</span></a></div>
+    <div class="group">
+      <button class="tb" id="tPrev" aria-label="Previous sheet">← <span class="lbl">Previous</span></button>
+      <span class="pos tn" id="tPos"></span>
+      <button class="tb" id="tNext" aria-label="Next sheet"><span class="lbl">Next</span> →</button>
+    </div>
+    <div class="group">
+      <button class="tb loupe-btn" id="tLoupe" aria-pressed="true">Loupe</button>
+      <button class="tb" id="tFull">Full view</button>
+    </div>
+  </div>
+</section>
+<div class="loupe-lens" id="lens" aria-hidden="true"></div>
+
+<!-- docs -->
+<section class="view" id="docView" aria-label="Document">
+  <div class="p-wrap"><article class="page" id="page"></article></div>
+</section>
+
+<div class="full" id="full" role="dialog" aria-label="Full view" aria-modal="true">
+  <button class="tb fclose" id="fClose">Close · Esc</button>
+  <img id="fImg" alt="">
+  <p class="fnote">Click to zoom, drag to move, scroll to zoom further.</p>
+</div>
+<div class="fallback" id="fallback">The collection index (works.json) could not be loaded. Open this page through a web server.</div>
+
+<script>
+(() => {
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const wait = ms => new Promise(r => setTimeout(r, RM ? 0 : ms));
+const pad = n => String(n).padStart(3, '0');
+const acc = w => 'CS.' + pad(w.no);
+const today = new Date();
+const dstr = `${String(today.getDate()).padStart(2,'0')}.${String(today.getMonth()+1).padStart(2,'0')}.${today.getFullYear()}`;
+const tstr = `${String(today.getHours()).padStart(2,'0')}:${String(today.getMinutes()).padStart(2,'0')}`;
+const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const rot = (i, k = 1) => { const x = Math.sin(i * 12.9898 + k * 78.233) * 43758.5453; return ((x - Math.floor(x)) - .5) * 2; };
+const store = {
+  get(){ try { return sessionStorage.getItem('cs-reader') || ''; } catch(e){ return ''; } },
+  set(v){ try { sessionStorage.setItem('cs-reader', v); } catch(e){} }
+};
+let reader = store.get();
+
+/* ---------- archive papers, owner's words verbatim ---------- */
+const ARCHIVE = {
+  about: { no: 4, name: 'About', count: '1 paper', papers: [
+    { big: true, cap: ['About', 'Practice'], title: 'Cody Saxton, Illuminator Omnimedia', html: `<p>Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands. All works are sold unframed unless otherwise indicated, shipping is additional. 10% of sales donated to reforestation and degrowth efforts. No returns are possible at this time. Any items damaged in shipping must be claimed through insurance by the buyer. Transactions are conducted in Euros. Payment in full must be received prior to shipping. Payments can be made by Mollie or direct IBAN deposit: NL55SNSB8841074353 Illuminator Omnimedia. KVK #91859476 Registered business address: Bankwerkerij 159, Amsterdam NL 1021NT. Live contact through Instagram <a href="https://www.instagram.com/codysaxtonart/" target="_blank" rel="noopener">@codysaxtonart</a> or <a href="mailto:invigorated@proton.me">invigorated@proton.me</a>.</p>` }
+  ]},
+  press: { no: 5, name: 'Exhibitions & Press', count: '5 papers', papers: [
+    { cap: ['Things', 'November 2026'], title: 'Things', html: `<p>Upcoming: PopUp show of selected works at Things.</p>` },
+    { cap: ['Plum Village', 'June 2025'], title: 'Plum Village, France: Science, Zen and the Art of Health retreat', html: `<p>Participant, Plum Village retreat : The Wonder of It All</p>` },
+    { cap: ['Open Gallery', 'Nov 2023'], title: 'Open Gallery Exhibition 2023', html: `<p>5 piece series, shown as part of group show of the Amsterdam International Artist Collective gallery.</p>`, fig: { src: 'img/aiac-install-photo.jpg', w: 1500, h: 2000, alt: 'Installation of works on a white wall at the Amsterdam International Artist Collective gallery', cap: 'Open Gallery Exhibition 2023' } },
+    { cap: ['Albuquerque Journal', 'July 2020'], title: 'Pandemic Testing Shelter, newspaper coverage in Albuquerque Journal.', html: `<p>Newspaper article described and pictured my invention, development with engineers and deployment at Sandia National Laboratories to build and deploy an alternative PPE system as a shortage threatened early in the Covid-19 pandemic. Building plans were released open-source, so other institutions built their own versions to protect healthcare workers at testing sites around New Mexico.</p>`, fig: { src: 'img/albuquerque-journal-2020.jpg', w: 1400, h: 1335, alt: 'Albuquerque Journal clipping: Sandia shares design for testing shelters', cap: '<a href="img/albuquerque-journal-2020.pdf" target="_blank" rel="noopener">Albuquerque Journal, July 2020 (PDF)</a>' } },
+    { cap: ['Rojas', 'Designed 2005'], title: "T-shirt design for Rojas, worn by Rosario Dawson in Quentin Tarantino's 2007 film Deathproof", html: `<p>Film wardrobe piece for Deathproof (grossed 31.1 USD at box office). Unicorn t-shirt graphic designed for Freddy Rojas' Los Angeles clothing brand, Rojas.</p>`, fig: { src: 'img/deathproof-rojas-tshirt.jpg', w: 1600, h: 1073, alt: 'Film still with the Rojas unicorn t-shirt', cap: 'Deathproof, 2007' } }
+  ]},
+  workshops: { no: 6, name: 'Workshops', count: '5 papers', papers: [
+    { cap: ['Workshops', ''], title: 'Workshops', html: `<p>Small in-person sessions around meaning making and creativity. Dates and venues are announced here when scheduled.</p>` },
+    { cap: ['Upcoming', ''], title: 'Upcoming', html: `<p>More to come soon. Add yourself to the mailing list via the <a href="#/desk">contact form</a> to be notified.</p>` },
+    { cap: ['Past', 'May 2024'], title: 'Markmaking as Metaphor', html: `<p>OBA Oosterdok. May 2024. Exploring unusual mark-making techniques and visual vocabulary translation.</p>` },
+    { cap: ['Past', 'June 2024'], title: 'Personal Rituals', html: `<p>OBA Oosterdok. June 2024.</p>` },
+    { cap: ['Past', 'May 2024'], title: 'Design Your Life', html: `<p>OBA Oosterdok. May 2024.</p>` }
+  ]},
+  thoughts: { no: 7, name: 'Thoughts', count: '8 papers', papers: [
+    { cap: ['Thoughts', ''], title: 'Thoughts', html: `<p>Notes from the studio — fragments on everything: art, philosophy, process to influences and relevant tangents. Posts will appear here as they're written.</p>` },
+    { cap: ['Note', '10 September 2026'], html: `<p>“Let everything happen to you: beauty, terror. Just keep going. No feeling is final.” — Rainer Maria Rilke (exerpt from Go To The Limits of Your Longing)</p>` },
+    { cap: ['Note', '28 August 2026'], html: `<p>With every trip around the sun, I think of all the good to come. Planting trees and helping friends, building Gaia up again.</p>` },
+    { cap: ['Note', '15 August 2026'], html: `<p>Leaping from a bridge into the Aare River in Bern, Switzerland was transformational...it feels like a part of me from long ago woke up from hibernation. I hesitated, nervous, and then remembered: "You don't have to go alone." When two women stepped over the railing, I broke with my habit of hyperindependence and asked to jump with them. They said "Of Course!"" And off we went, into the beautiful, clear, racing water. The power of secure attachment...can't say how much I feel glad for all I have learned over these years.</p>` },
+    { cap: ['Note', '15 July 2026'], html: `<p>Overnight train to Zurich, onto Milan...then trekking in the Italian Alps with silly friends. The mountains hold some power that exists nowhere in The Netherlands---they charge my battery with something so necessary. The lowlands have convenient bicycling and interesting international culture, among other things...but the nature ain't nature-ing. The word soul, or maybe the sense of connectedness to our Earth, tends to feel watery and diffuse in the swamp.</p>` },
+    { cap: ['Note', '22 June 2026'], html: `<p>Art is to make and speak and act in alignment with your highest-held values—it is real freedom.</p>` },
+    { cap: ['Note', '21 May 2026'], html: `<p>“Everything is art. Everything is politics.” — Ai Weiwei</p>` },
+    { cap: ['Note', '19 May 2026'], html: `<p>Ideas should be shared, explored and examined with others. I see each of us as an entirely unique little sensor of the specifics our particular nook of the universe--the view from "in here". When we transmit our condition and collected data--our perspective--the collective can include it to gain an unbiased understanding of the world. When we are silent, our view of the universe is wasted.</p>` }
+  ]},
+  news: { no: 8, name: 'News', count: '1 paper', papers: [
+    { big: true, cap: ['News', ''], title: 'News', html: `<p>Announcements, new series, and upcoming shows. Nothing fresh just yet — check back soon.</p>` }
+  ]}
+};
+
+const DOCS = {
+  imprint: { cap: 'Handout · Imprint', html: `<h1>Imprint</h1>
+<p>Instagram <a href="https://www.instagram.com/codysaxtonart/" target="_blank" rel="noopener">@codysaxtonart</a></p>
+<h2>Responsible for content</h2><p>[Illuminator Omnimedia]<br>[Bankwerkerij 159]<br>[1021 NT, Amsterdam]<br>[NL]</p>
+<h2>Contact</h2><p>Email: <a href="mailto:invigorated@proton.me">invigorated@proton.me</a></p>
+<h2>VAT / Chamber of Commerce</h2><p>KvK / HRB number: [91859476]<br>VAT ID: [upon request]</p>` },
+  privacy: { cap: 'Handout · Privacy', html: `<h1>Privacy notice</h1>
+<p>Last reviewed: 2026-05-11</p>
+<p>This notice explains what personal data this site collects, why, who else sees it, and what you can do about it. The site is small and intentionally light: no analytics, no advertising, no tracking cookies.</p>
+<h2>1. Who is responsible</h2>
+<p>Controller: [LEGAL_NAME]<br>[STREET_ADDRESS]<br>[POSTAL_CODE_CITY]<br>[COUNTRY]<br>Email: [EMAIL]<br>KvK / Chamber of Commerce: [KVK_NUMBER]<br>VAT ID: [VAT_ID]</p>
+<p>For any privacy question, email the address above. We will respond within 30 days.</p>
+<h2>2. What we collect, and why</h2>
+<h3>a) Just visiting the site</h3>
+<p>When you load a page, our hosting provider (TransIP B.V., Netherlands) records standard server logs: your IP address, the URL you requested, the time of the request, your browser identifier (User-Agent), and the referring page.</p>
+<p>Purpose: to keep the site running and detect abuse.<br>Legal basis: legitimate interest (GDPR Art. 6(1)(f)).<br>Retention: TransIP rotates server logs within roughly 30 days.</p>
+<h3>b) Buying an artwork</h3>
+<p>When you click "Purchase" on an artwork page, you are redirected to Mollie B.V. (Netherlands). Mollie collects what the payment method requires — typically your name, email address, billing address, and, where shipping collection is enabled, your shipping address. Payment details (card number, bank account) stay with Mollie; we never see or store them.</p>
+<p>After a successful payment, Mollie sends us a confirmation email containing your name, email, and shipping address so we can ship the work.</p>
+<p>Purpose: process the sale and ship the artwork.<br>Legal basis: performance of a contract (GDPR Art. 6(1)(b)).<br>Retention: order records are kept for 7 years as required by Dutch tax law (Algemene wet inzake rijksbelastingen, art. 52).</p>
+<h3>c) Emailing us</h3>
+<p>If you write to us at the contact address, we receive whatever you put in the email — typically your email address, your name, and the content of your message.</p>
+<p>Purpose: to reply.<br>Legal basis: legitimate interest, or pre-contractual measures if the email concerns a possible purchase.<br>Retention: up to 3 years, unless the correspondence relates to a sale — in which case the 7-year tax-record retention above applies.</p>
+<h3>d) Shipping</h3>
+<p>To ship a purchased artwork we share your name and shipping address with our carrier ([SHIPPING_CARRIER]). The carrier acts as a separate controller for that data and you should consult their own privacy notice for how they handle it.</p>
+<h2>3. Who else processes your data</h2>
+<p>We rely on a small number of service providers. None of them sell or share your data for advertising:</p>
+<ul><li>TransIP B.V. — hosting, server logs, daily backups. Netherlands (EU).</li><li>Mollie B.V. — payment processing. Netherlands (EU). See Mollie's privacy notice.</li><li>[EMAIL_PROVIDER] — email inbox. [EMAIL_PROVIDER_LOCATION].</li><li>[SHIPPING_CARRIER] — delivery. [COUNTRY].</li></ul>
+<p>We do not sell or rent your data. We share it only with the parties above, and only as needed to operate the site, process your order, and deliver your purchase — or where we are required to by law.</p>
+<h2>4. International transfers</h2>
+<p>All processing happens within the EU/EEA. We do not transfer your personal data to countries outside the EU/EEA. (Should that ever change — for example if we add a service hosted elsewhere — this notice will be updated before the transfer starts.)</p>
+<h2>5. Cookies and tracking</h2>
+<p>This site sets no cookies of its own. We use no analytics (no Google Analytics, no Plausible, no Matomo), no tracking pixels, no advertising scripts, and no embedded social media widgets. Because of this, we do not show a cookie banner.</p>
+<p>Note that Mollie's checkout pages — which you are redirected to when you press "Purchase" — set their own cookies. Those are governed by Mollie's privacy policy linked above.</p>
+<h2>6. Your rights</h2>
+<p>Under the GDPR you have the right to:</p>
+<ul><li>access the personal data we hold about you;</li><li>rectify inaccurate or incomplete data;</li><li>erase your data ("right to be forgotten"), within the limits of our legal retention obligations (notably the 7-year tax records);</li><li>restrict processing of your data;</li><li>data portability — receive your data in a machine-readable format;</li><li>object to processing based on legitimate interest; and</li><li>withdraw consent, where consent was the legal basis.</li></ul>
+<p>To exercise any of these, email [EMAIL]. We will respond within 30 days.</p>
+<p>You also have the right to lodge a complaint with your national supervisory authority. In the Netherlands this is Autoriteit Persoonsgegevens.</p>
+<h2>7. Children</h2>
+<p>This site is not directed at children under 16. We do not knowingly collect data from children. If you believe a child has provided personal data to us, please contact us so we can remove it.</p>
+<h2>8. Security</h2>
+<p>The site is served exclusively over HTTPS (TLS) using a certificate issued by Let's Encrypt and auto-renewed by TransIP. Order data lives only in our email inbox and in Mollie's systems; we do not operate a customer database.</p>
+<h2>9. Changes to this notice</h2>
+<p>We may update this notice when our processing changes — for example, when we add a new shipping carrier or switch hosting provider. Material changes are reflected in the "last reviewed" date at the top of the page.</p>
+<h2>10. Contact</h2>
+<p>For any privacy question or rights request: [EMAIL].</p>` },
+  terms: { cap: 'Handout · Terms', html: `<h1>Terms &amp; Conditions</h1>
+<p>This is a placeholder for the legally required terms. Replace with vetted text — consider iubenda or a local accountant/lawyer before launch.</p>
+<h2>Prices and VAT</h2><p>All prices in euro. VAT treatment depends on the small-business scheme — confirm with an accountant whether VAT must be added to listed prices.</p>
+<h2>Payment</h2><p>Payments are processed by Mollie. Accepted methods depend on what is enabled per payment link (iDEAL, cards, etc.).</p>
+<h2>Shipping</h2><p>Originals are packed and shipped within 5 working days of payment. Shipping cost and method are agreed by email after purchase.</p>
+<h2>Right of withdrawal (EU)</h2><p>You have 14 days from receipt to withdraw from the purchase without giving a reason. Send an email to hello@example.com to start the return. Pieces must be returned in their original condition at your expense; the purchase price is refunded within 14 days of receipt of the returned work.</p>
+<h2>Originals as "made to order"</h2><p>Some original works may be exempt from the right of withdrawal as personalised or made-to-order goods. If so, it will be stated on the artwork page. Otherwise the standard 14-day right above applies.</p>
+<h2>Liability</h2><p>Damage in transit: notify within 7 days of delivery with photos so a claim can be filed with the carrier.</p>` },
+  desk: { cap: 'The desk · Contact', html: `<h1>Contact</h1>
+<p>For purchases, exhibition enquiries, or workshop dates — use the form below or write to <a href="mailto:invigorated@proton.me">invigorated@proton.me</a>.</p>
+<form class="form" id="contactForm" novalidate>
+  <label><span>Name</span><input name="name" required autocomplete="name"></label>
+  <label><span>Email</span><input name="email" type="email" required autocomplete="email"></label>
+  <label><span>Subject (optional)</span><input name="subject"></label>
+  <label><span>Message</span><textarea name="message" required></textarea></label>
+  <div class="hp" aria-hidden="true"><label><span>Leave this empty</span><input name="website" tabindex="-1" autocomplete="off"></label></div>
+  <button class="btn" type="submit">Send message <span class="ar">→</span></button>
+  <p class="form-msg" id="formMsg" role="status"></p>
+</form>` }
+};
+
+/* ---------- data ---------- */
+let WORKS = [], SERIES = [], DRAWERS = [], BY = {};
+
+async function load(){
+  try {
+    const r = await fetch('works.json', { cache: 'no-cache' });
+    const j = await r.json();
+    WORKS = j.works.slice().sort((a, b) => a.no - b.no);
+    SERIES = j.series;
+  } catch(e){ $('#fallback').style.display = 'block'; }
+  SERIES.forEach((s, i) => {
+    const id = slugify(s.key);
+    BY[id] = WORKS.filter(w => w.series === s.key);
+    DRAWERS.push({ id, no: i + 1, name: s.key, line: s.line, kind: 'series', works: BY[id], count: BY[id].length ? `${BY[id].length} sheets` : 'Empty' });
+  });
+  Object.entries(ARCHIVE).forEach(([id, a]) => DRAWERS.push({ id, no: a.no, name: a.name, kind: 'archive', papers: a.papers, count: a.count }));
+  DRAWERS.sort((a, b) => a.no - b.no);
+}
+const drawer = id => DRAWERS.find(d => d.id === id);
+const drawerOf = w => drawer(slugify(w.series));
+const nn = n => String(n).padStart(2, '0');
+
+/* ---------- welcome ---------- */
+function initWelcome(){
+  $('#regDate').textContent = dstr;
+  $('#regNo').textContent = dstr;
+  $('#stampDate').textContent = `${dstr} · ${tstr}`;
+  $('#wIndex').innerHTML = DRAWERS.filter(d => d.kind === 'series').map(d =>
+    `<div><span>${nn(d.no)}</span><span>${esc(d.name)}<em>${esc(d.line)}</em></span><span>${d.works.length ? d.works.length + ' sheets' : 'Empty'}</span></div>`).join('');
+  if (reader && reader !== 'Guest') $('#regName').value = reader;
+  const enter = async (name) => {
+    reader = name; store.set(name);
+    const inp = $('#regName');
+    if (!inp.value.trim()) {
+      inp.value = '';
+      for (const ch of name) { inp.value += ch; await wait(55); }
+    }
+    inp.blur();
+    $('#stamp').classList.add('on');
+    await wait(900);
+    const w = $('#welcome');
+    w.classList.add('leaving');
+    go('#/chest');
+    await wait(1250);
+    w.classList.remove('leaving');
+  };
+  $('#register').addEventListener('submit', e => { e.preventDefault(); const v = $('#regName').value.trim(); enter(v || 'Guest'); });
+  $('#guestBtn').addEventListener('click', () => { $('#regName').value = ''; enter('Guest'); });
+}
+
+/* ---------- chest ---------- */
+let CH = {};
+function dims(){
+  const vw = innerWidth, s = vw < 760;
+  const W = Math.min(1040, vw - (s ? 32 : 96));
+  const H = s ? 54 : 64;
+  const D = s ? 220 : 340;
+  const TILT = s ? 26 : 28;
+  CH = { W, H, D, CH: 32 + H * DRAWERS.length, P: s ? 1400 : 2400, PULL: s ? 200 : 320, s, TILT };
+  const st = document.documentElement.style;
+  st.setProperty('--W', W + 'px'); st.setProperty('--H', H + 'px'); st.setProperty('--D', D + 'px');
+  st.setProperty('--CH', CH.CH + 'px'); st.setProperty('--TILT', -TILT + 'deg'); st.setProperty('--TOPH', Math.round(D * Math.sin(TILT*Math.PI/180)) + 'px'); st.setProperty('--P', CH.P + 'px'); st.setProperty('--PULL', CH.PULL + 'px'); st.setProperty('--PB', (s ? 70 : 130) + 'px');
+}
+function pileHTML(d){
+  const sw = CH.s ? 88 : 150;
+  if (d.kind === 'series' && !d.works.length)
+    return `<div class="empty-mark"><b>Empty</b><span class="cap">${esc(d.name)} · no sheets in this drawer</span></div>`;
+  if (d.kind === 'series') {
+    const top = d.works.slice(0, 3);
+    let edges = '';
+    for (let k = 0; k < 6; k++) edges += `<div class="edge" style="width:${sw}px;height:${sw*1.25}px;left:${-sw/2 + k*.6 - 30}px;bottom:${k*1.2}px;transform:rotate(${(rot(k,3)*1.4).toFixed(2)}deg)"></div>`;
+    return `<div class="pile">${edges}${top.map((w, k) => {
+      const x = [-sw*1.25, -sw*.5 - 4, sw*.35][k], r = [-7, 1.5, 6][k];
+      return `<div class="ps" style="width:${sw}px;left:${x}px;bottom:${[6,14,2][k]}px;transform:rotate(${r}deg)"><img src="img/${esc(w.image)}" alt="" width="${w.w}" height="${w.h}"></div>`;
+    }).join('')}</div>`;
+  }
+  const ps = d.papers.slice(0, 3);
+  return `<div class="pile">${ps.map((p, k) => {
+    const x = [-sw*1.3, -sw*.5, sw*.3][k] ?? 0, r = [-5, 2, 7][k];
+    const txt = p.html.replace(/<[^>]+>/g, '').slice(0, 220);
+    return `<div class="ps doc" style="width:${sw}px;height:${sw*1.3}px;left:${x}px;bottom:${[4,12,0][k]}px;transform:rotate(${r}deg)"><b>${esc(p.title || p.cap[1] || d.name)}</b>${esc(txt)}</div>`;
+  }).join('')}</div>`;
+}
+function buildChest(){
+  dims();
+  const c = $('#chest');
+  let h = `<div class="c-top"><div class="card-on"><b>Cody Saxton</b><span class="cap">Illuminator · Art &amp; Life</span></div><div class="pencil"></div></div><div class="carcass">`;
+  DRAWERS.forEach((d, i) => h += `<div class="slot" style="top:${16 + i*CH.H}px"></div>`);
+  h += `</div><div class="plinth"></div><div class="floorshadow"></div>`;
+  DRAWERS.forEach((d, i) => {
+    h += `<div class="dr" role="button" tabindex="0" data-id="${d.id}" style="top:${16 + i*CH.H + 2}px" aria-label="Drawer ${nn(d.no)}, ${esc(d.name)}, ${esc(d.count)}">
+      <div class="wall b"></div><div class="wall l"></div><div class="wall r"></div>
+      <div class="floor">${pileHTML(d)}</div>
+      <div class="face"><span class="holder"><b class="tn">${nn(d.no)}</b>${esc(d.name)}</span><span class="handle"></span><span class="count tn">${esc(d.count)}</span></div>
+    </div>`;
+  });
+  c.innerHTML = h;
+  c.querySelectorAll('.dr').forEach(el => {
+    el.addEventListener('click', () => pull(el.dataset.id));
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pull(el.dataset.id); } });
+  });
+}
+let openId = null, pulling = false;
+function frameFor(id){
+  if (!id) return 'none';
+  const i = DRAWERS.findIndex(d => d.id === id);
+  const y = -Math.max(0, (i - 1)) * CH.H * .55 - (CH.s ? 10 : 30);
+  return `translateY(${y}px)`;
+}
+function setOpen(id){
+  document.querySelectorAll('.dr').forEach(el => el.classList.toggle('open', el.dataset.id === id));
+  $('#frame').style.transform = frameFor(id);
+  openId = id;
+  const d = id && drawer(id);
+  $('#cHint').firstElementChild.innerHTML = d
+    ? (d.kind === 'series' && !d.works.length
+        ? `<b>${nn(d.no)} ${esc(d.name)}</b> · ${esc(d.line)} · This drawer is empty. Select it again to close.`
+        : `<b>${nn(d.no)} ${esc(d.name)}</b> · ${esc(d.count)}`)
+    : 'Pull a drawer to slide out its sheets.';
+}
+async function pull(id){
+  if (pulling) return;
+  const d = drawer(id);
+  if (openId === id) { setOpen(null); return; }
+  if (openId) { setOpen(null); await wait(500); }
+  setOpen(id);
+  if (d.kind === 'series' && !d.works.length) return;
+  pulling = true;
+  await wait(1150);
+  pulling = false;
+  if (openId === id) go('#/drawer/' + id);
+}
+
+/* ---------- drawer view ---------- */
+let curDrawer = null;
+function recHTML(w){
+  return `<b>${acc(w)}</b><b>${esc(w.title)}</b><span>${esc(w.medium)}${w.year ? ', ' + w.year : ''}</span>${w.placeholder ? '<span>Placeholder</span>' : (w.price ? `<span>€${w.price}</span>` : '')}`;
+}
+function renderDrawer(id){
+  const d = drawer(id);
+  if (!d) return go('#/chest', true);
+  curDrawer = id;
+  const wrap = $('#dWrap');
+  let h = `<div class="d-head"><div><p class="cap tn">Drawer ${nn(d.no)} · ${d.kind === 'series' ? 'Works on paper' : 'Papers'}</p><h1>${esc(d.name)}</h1>${d.line ? `<p>${esc(d.line)}</p>` : ''}</div>
+    <div class="right tn">${d.kind === 'series' ? `<b>${d.works.length}</b>${d.works.length === 1 ? 'sheet' : 'sheets'}` : `<b>${d.papers.length}</b>${d.papers.length === 1 ? 'paper' : 'papers'}`}</div></div>`;
+  if (d.kind === 'series') {
+    if (!d.works.length) h += `<div class="d-empty"><b>Empty</b><p>No sheets are stored in this drawer yet.</p></div>`;
+    else h += `<div class="sheets">${d.works.map((w, i) =>
+      `<a class="sh" href="#/sheet/${esc(w.slug)}" data-slug="${esc(w.slug)}" style="--r:${(rot(w.no)*2.4).toFixed(2)}deg;--x:${(rot(w.no,5)*14).toFixed(1)}px;--y:${(rot(w.no,9)*16).toFixed(1)}px;--z:${i+1};--i:${i}" aria-label="${acc(w)}, ${esc(w.title)}${w.placeholder ? ', placeholder' : ''}">
+        <div class="pp"><img loading="${i < 18 ? 'eager' : 'lazy'}" src="img/${esc(w.image)}" width="${w.w}" height="${w.h}" alt="${esc(w.alt)}"></div><span class="acc tn">${acc(w)}</span></a>`).join('')}</div>`;
+  } else {
+    h += `<div class="docs">${d.papers.map((p, i) => `<div class="doc${p.big ? ' big' : ''}" style="--r:${(rot(i+3)*.3).toFixed(2)}deg;--i:${i*2}">
+      <p class="cap tn"><span>${esc(p.cap[0])}</span><span>${esc(p.cap[1])}</span></p>
+      ${p.title ? `<h3>${esc(p.title)}</h3>` : ''}${p.html}
+      ${p.fig ? `<figure><img src="${p.fig.src}" width="${p.fig.w}" height="${p.fig.h}" alt="${esc(p.fig.alt)}" data-full="${p.fig.src}" loading="lazy"><figcaption>${p.fig.cap}</figcaption></figure>` : ''}
+    </div>`).join('')}</div>`;
+  }
+  wrap.innerHTML = h;
+  wrap.classList.remove('deal'); void wrap.offsetWidth; wrap.classList.add('deal');
+  $('#drawerView').scrollTop = 0;
+  const idle = `<b>${nn(d.no)}</b><b>${esc(d.name)}</b><span>${d.kind === 'series' ? (d.works.length ? 'Select a sheet to lay it on the viewing table' : 'Empty') : esc(d.count)}</span>`;
+  $('#dRec').innerHTML = idle;
+  wrap.querySelectorAll('.sh').forEach(a => {
+    const w = WORKS.find(x => x.slug === a.dataset.slug);
+    const on = () => $('#dRec').innerHTML = recHTML(w);
+    a.addEventListener('mouseenter', on); a.addEventListener('focus', on);
+    a.addEventListener('mouseleave', () => $('#dRec').innerHTML = idle);
+  });
+  wrap.querySelectorAll('[data-full]').forEach(img => img.addEventListener('click', () => openFull(img.dataset.full, img.alt)));
+  crumbs([[`#/chest`, 'Plan chest'], [null, `Drawer ${nn(d.no)} ${d.name}`]]);
+}
+
+/* ---------- viewing table ---------- */
+let curWork = null, loupeOn = !matchMedia('(pointer:coarse)').matches;
+function renderSheet(slug, dir){
+  const w = WORKS.find(x => x.slug === slug);
+  if (!w) return go('#/chest', true);
+  const d = drawerOf(w), list = d.works, i = list.indexOf(w);
+  const prevW = curWork; curWork = w; curDrawer = d.id;
+  const sheet = $('#tSheet');
+  const paint = () => {
+    sheet.innerHTML = `<img src="img/${esc(w.image)}" width="${w.w}" height="${w.h}" alt="${esc(w.alt)}"><span class="acc tn">${acc(w)}</span>`;
+    sheet.classList.toggle('loupe', loupeOn);
+    bindLoupe();
+    sheet.querySelector('img').addEventListener('click', () => openFull('img/' + w.image, w.alt));
+  };
+  const outK = dir ? [{ transform: 'none', opacity: 1 }, { transform: `translateX(${dir * -90}px) rotate(${dir * -2.5}deg)`, opacity: 0 }] : null;
+  const inK = dir ? [{ transform: `translateX(${dir * 110}px) rotate(${dir * 2.5}deg)`, opacity: 0 }, { transform: 'none', opacity: 1 }]
+                  : [{ transform: 'translateY(42vh) rotate(3deg)', opacity: 0 }, { transform: 'none', opacity: 1 }];
+  if (RM) paint();
+  else if (dir && prevW) {
+    sheet.animate(outK, { duration: 380, easing: 'cubic-bezier(.5,0,.8,.4)', fill: 'forwards' }).onfinish = () => {
+      paint(); sheet.animate(inK, { duration: 820, easing: 'cubic-bezier(.22,.7,.12,1)', fill: 'forwards' });
+    };
+  } else { paint(); sheet.animate(inK, { duration: 1100, easing: 'cubic-bezier(.22,.7,.12,1)', fill: 'both' }); }
+
+  const rows = [['Series', esc(w.series)], ['Medium', esc(w.medium)]];
+  if (w.year) rows.push(['Date', w.year]);
+  let card = `<p class="cap top tn"><span>Acc. no. ${acc(w)}</span><span>Drawer ${nn(d.no)}</span></p><h1>${esc(w.title)}</h1>
+    <dl class="tn">${rows.map(r => `<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join('')}${!w.placeholder && w.price ? `<dt>Price</dt><dd class="price">€${w.price}</dd>` : ''}</dl>`;
+  if (!w.placeholder && w.price) {
+    card += `<p class="note">Includes packaging. Shipping calculated at checkout.</p>
+      <a class="btn" href="https://codysaxton.eu/checkout.php?slug=${encodeURIComponent(w.slug)}" target="_blank" rel="noopener"><span>Purchase — €${w.price}</span><span class="ar">→</span></a>
+      <p class="fine">Right of withdrawal within 14 days under EU consumer law — see <a href="#/doc/terms">terms</a>.</p>`;
+  } else if (w.placeholder) card += `<p class="ph">Placeholder, image repeats an existing work</p>`;
+  $('#tCard').innerHTML = card;
+  $('#tPos').textContent = `${i + 1} of ${list.length}`;
+  $('#tPrev').disabled = i === 0; $('#tNext').disabled = i === list.length - 1;
+  $('#tPrev').onclick = () => i > 0 && go('#/sheet/' + list[i - 1].slug, false, -1);
+  $('#tNext').onclick = () => i < list.length - 1 && go('#/sheet/' + list[i + 1].slug, false, 1);
+  $('#tBack').href = '#/drawer/' + d.id;
+  $('#tBackLbl').textContent = `Drawer ${nn(d.no)}`;
+  $('#tLoupe').setAttribute('aria-pressed', String(loupeOn));
+  crumbs([[`#/chest`, 'Plan chest'], [`#/drawer/${d.id}`, `Drawer ${nn(d.no)} ${d.name}`], [null, `${acc(w)} ${w.title}`]]);
+}
+let navDir = 0;
+function bindLoupe(){
+  const lens = $('#lens'), img = $('#tSheet img'); if (!img) return;
+  const Z = 2.6;
+  img.addEventListener('pointermove', e => {
+    if (!loupeOn || e.pointerType === 'touch') return;
+    const r = img.getBoundingClientRect();
+    const fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+    lens.style.left = e.clientX + 'px'; lens.style.top = e.clientY + 'px';
+    lens.style.backgroundImage = `url("${img.src}")`;
+    lens.style.backgroundSize = `${r.width * Z}px ${r.height * Z}px`;
+    lens.style.backgroundPosition = `${-(fx * r.width * Z - 115)}px ${-(fy * r.height * Z - 115)}px`;
+    lens.classList.add('on');
+  });
+  img.addEventListener('pointerleave', () => lens.classList.remove('on'));
+}
+$('#tLoupe').addEventListener('click', () => {
+  loupeOn = !loupeOn;
+  $('#tLoupe').setAttribute('aria-pressed', String(loupeOn));
+  $('#tSheet').classList.toggle('loupe', loupeOn);
+  if (!loupeOn) $('#lens').classList.remove('on');
+});
+$('#tFull').addEventListener('click', () => curWork && openFull('img/' + curWork.image, curWork.alt));
+
+/* ---------- full view ---------- */
+const F = { s: 1, x: 0, y: 0, bw: 0, bh: 0 };
+function fApply(){ const img = $('#fImg'); img.style.transform = `translate(${F.x}px,${F.y}px) scale(${F.s})`; $('#full').classList.toggle('zoomed', F.s > 1.01); }
+function fReset(){
+  const img = $('#fImg');
+  img.style.transform = 'none';
+  const r = img.getBoundingClientRect();
+  F.bw = r.width; F.bh = r.height; F.s = 1; F.x = -F.bw / 2; F.y = -F.bh / 2; fApply();
+}
+function openFull(src, alt){
+  const img = $('#fImg');
+  img.onload = fReset; img.src = src; img.alt = alt || '';
+  $('#full').classList.add('on'); $('#lens').classList.remove('on');
+  if (img.complete) requestAnimationFrame(fReset);
+  $('#fClose').focus();
+}
+function closeFull(){ $('#full').classList.remove('on'); }
+function zoomAt(cx, cy, ns){
+  ns = Math.max(1, Math.min(5, ns));
+  const ox = cx - innerWidth / 2, oy = cy - innerHeight / 2;
+  F.x = ox - (ox - F.x) * ns / F.s; F.y = oy - (oy - F.y) * ns / F.s; F.s = ns;
+  if (ns === 1) { F.x = -F.bw / 2; F.y = -F.bh / 2; }
+  fApply();
+}
+(() => {
+  const full = $('#full'); let drag = null, moved = false;
+  full.addEventListener('pointerdown', e => { if (e.target.closest('.fclose')) return; drag = { x: e.clientX, y: e.clientY, fx: F.x, fy: F.y }; moved = false; full.setPointerCapture(e.pointerId); });
+  full.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag.x, dy = e.clientY - drag.y; if (Math.abs(dx) + Math.abs(dy) > 4) moved = true; if (F.s > 1 && moved) { full.classList.add('dragging'); F.x = drag.fx + dx; F.y = drag.fy + dy; fApply(); } });
+  full.addEventListener('pointerup', e => { full.classList.remove('dragging'); if (drag && !moved && !e.target.closest('.fclose')) zoomAt(e.clientX, e.clientY, F.s > 1.01 ? 1 : 2.6); drag = null; });
+  full.addEventListener('wheel', e => { e.preventDefault(); zoomAt(e.clientX, e.clientY, F.s * (e.deltaY < 0 ? 1.15 : 1 / 1.15)); }, { passive: false });
+  $('#fClose').addEventListener('click', closeFull);
+})();
+
+/* ---------- documents ---------- */
+function renderDoc(key){
+  const d = DOCS[key]; if (!d) return go('#/chest', true);
+  const page = $('#page');
+  page.innerHTML = `<p class="cap top tn"><span>${esc(d.cap)}</span><span>Cody Saxton · Print room</span></p>${d.html}`;
+  page.style.animation = 'none'; void page.offsetWidth; page.style.animation = '';
+  $('#docView').scrollTop = 0;
+  crumbs([[`#/chest`, 'Plan chest'], [null, d.cap]]);
+  const f = $('#contactForm');
+  if (f) f.addEventListener('submit', e => {
+    e.preventDefault();
+    const v = Object.fromEntries(new FormData(f));
+    const msg = $('#formMsg');
+    if (v.website) { msg.textContent = 'Thank you.'; return; }
+    if (!v.name || !v.email || !v.message) { msg.textContent = 'Please fill in name, email and message.'; return; }
+    const body = `${v.message}\n\n${v.name}\n${v.email}`;
+    location.href = `mailto:invigorated@proton.me?subject=${encodeURIComponent(v.subject || 'Enquiry')}&body=${encodeURIComponent(body)}`;
+    msg.textContent = 'Your email app should open with the message ready to send.';
+  });
+}
+
+/* ---------- shell ---------- */
+function crumbs(list){
+  $('#crumbs').innerHTML = list.map(([h, t]) => h ? `<a href="${h}">${esc(t)}</a>` : `<span>${esc(t)}</span>`).join('<i>/</i>');
+}
+function readerLine(){ return `Reader · ${reader || 'Guest'} · ${dstr}`; }
+function buildMenu(){
+  $('#menu').innerHTML = `<a href="#/chest">Plan chest <span>All drawers</span></a><hr>` +
+    DRAWERS.map(d => `<a href="#/drawer/${d.id}">${nn(d.no)} ${esc(d.name)} <span>${esc(d.count)}</span></a>`).join('') +
+    `<hr><a href="#/desk">Desk <span>Contact</span></a><a href="#/doc/imprint">Imprint</a><a href="#/doc/privacy">Privacy</a><a href="#/doc/terms">Terms</a><hr><a href="#/">Leave the print room</a>`;
+}
+$('#menuBtn').addEventListener('click', () => { const m = $('#menu'); m.classList.toggle('on'); $('#menuBtn').setAttribute('aria-expanded', m.classList.contains('on')); });
+function go(h, replace, dir){ navDir = dir || 0; if (replace) history.replaceState(null, '', h), route(); else location.hash = h; }
+
+let lastView = null;
+function show(id){
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === id));
+  $('#bar').classList.toggle('on', id !== 'welcome');
+  $('#menu').classList.remove('on');
+  lastView = id;
+}
+function route(){
+  const h = location.hash.replace(/^#\/?/, '');
+  const [a, b] = h.split('/');
+  $('#readerTag').textContent = readerLine();
+  closeFull(); $('#lens').classList.remove('on');
+  const from = lastView, fromDrawer = curDrawer;
+  if (!a) { show('welcome'); return; }
+  if (a === 'chest') {
+    crumbs([[null, 'Plan chest']]);
+    if (from === 'drawerView' && fromDrawer && !RM) {
+      setOpen(fromDrawer);
+      show('chestView');
+      setTimeout(() => setOpen(null), 520);
+    } else { setOpen(null); show('chestView'); }
+    curDrawer = null;
+    return;
+  }
+  if (a === 'drawer') { if (from !== 'tableView' || curDrawer !== b || !$('#dWrap').children.length) renderDrawer(b); else crumbs([[`#/chest`, 'Plan chest'], [null, `Drawer ${nn(drawer(b).no)} ${drawer(b).name}`]]); show('drawerView'); return; }
+  if (a === 'sheet') { renderSheet(b, from === 'tableView' ? (navDir || 0) : 0); navDir = 0; show('tableView'); return; }
+  if (a === 'doc') { renderDoc(b); show('docView'); return; }
+  if (a === 'desk') { renderDoc('desk'); show('docView'); return; }
+  go('#/', true);
+}
+addEventListener('hashchange', route);
+addEventListener('keydown', e => {
+  if ($('#full').classList.contains('on')) { if (e.key === 'Escape') closeFull(); return; }
+  if (e.target.matches('input,textarea')) return;
+  if (lastView === 'tableView') {
+    if (e.key === 'ArrowLeft') $('#tPrev').click();
+    if (e.key === 'ArrowRight') $('#tNext').click();
+    if (e.key === 'Escape') go('#/drawer/' + curDrawer);
+    if (e.key.toLowerCase() === 'l' && !matchMedia('(pointer:coarse)').matches) $('#tLoupe').click();
+    if (e.key.toLowerCase() === 'f') $('#tFull').click();
+  } else if (lastView === 'drawerView' && e.key === 'Escape') go('#/chest');
+  else if (lastView === 'chestView' && e.key === 'Escape' && openId) setOpen(null);
+  else if (lastView === 'docView' && e.key === 'Escape') go('#/chest');
+});
+let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { const o = openId; buildChest(); setOpen(o); }, 200); });
+
+load().then(() => { initWelcome(); buildChest(); buildMenu(); route(); });
+})();
+</script>
+</body>
+</html>

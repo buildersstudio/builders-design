@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cody Saxton · Works</title>
+<meta name="description" content="Cody Saxton, Illuminator Omnimedia. Art and illustrations to illuminate ways toward a healed world, based in Amsterdam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#151515; --mid:#6f6f6b; --soft:#a3a39e; --rule:#ebebe8; --paper:#ffffff; --tint:#f6f6f4;
+  --m:40px; --gap:24px;
+  --shadow:0 1px 1px rgba(20,20,15,.03),0 2px 6px rgba(20,20,15,.04),0 14px 34px -14px rgba(20,20,15,.16);
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:"Geist",system-ui,sans-serif;font-size:13px;line-height:1.5;font-weight:400;
+  font-feature-settings:"tnum" 1,"ss01" 1;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.cols{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);padding:0 var(--m)}
+
+/* header */
+header{position:relative;z-index:20;background:var(--paper)}
+header .cols{height:64px;align-items:center}
+.name{grid-column:1/5;font-weight:500;font-size:13px;letter-spacing:-.005em}
+.name small{font-weight:400;color:var(--soft);margin-left:10px;font-size:13px}
+nav{grid-column:7/13;display:flex;gap:26px;justify-content:flex-end}
+nav a{color:var(--mid);transition:color .2s}
+nav a:hover,nav a[aria-current]{color:var(--ink)}
+
+/* opening */
+.intro{padding-top:21vh}
+.intro .cols{align-items:end}
+.line{grid-column:1/7;font-size:23px;line-height:1.3;letter-spacing:-.018em;font-weight:400;max-width:620px}
+.line span{color:var(--soft)}
+.filter{grid-column:8/13;display:flex;gap:22px;justify-content:flex-end;flex-wrap:wrap;padding-bottom:4px}
+.filter button{color:var(--soft);font-size:12px;transition:color .2s;white-space:nowrap}
+.filter button sup{font-size:9px;margin-left:3px;vertical-align:4px}
+.filter button[aria-pressed=true],.filter button:hover{color:var(--ink)}
+.seriesnote{grid-column:1/13;color:var(--mid);font-size:12px;margin-top:10px;min-height:18px}
+
+/* the drift */
+#grid{padding-top:13vh;padding-bottom:160px}
+.row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);padding:0 var(--m);align-items:start;margin-bottom:150px}
+.work{position:relative;cursor:zoom-in;outline:none}
+.sheet{position:relative;background:var(--paper);box-shadow:var(--shadow);transition:box-shadow .5s var(--ease),transform .5s var(--ease)}
+.art{position:absolute;inset:0;background:var(--paper) center/contain no-repeat;opacity:0;transition:opacity .8s var(--ease)}
+.art.on{opacity:1}
+.shield{position:absolute;inset:0;z-index:2}
+.work:hover .sheet,.work:focus-visible .sheet{transform:translateY(-2px);box-shadow:0 1px 1px rgba(20,20,15,.03),0 4px 10px rgba(20,20,15,.05),0 22px 44px -16px rgba(20,20,15,.2)}
+.work:focus-visible .cap b{text-decoration:underline;text-underline-offset:3px}
+.cap{display:flex;gap:10px;margin-top:14px;font-size:11px;line-height:1.45;color:var(--mid)}
+.cap .no{color:var(--soft);min-width:18px}
+.cap b{font-weight:500;color:var(--ink)}
+.cap .m{display:block}
+.empty{padding:0 var(--m);color:var(--mid);font-size:13px;min-height:40vh}
+.empty .cols{padding:0}
+.empty p{grid-column:1/6}
+
+.art,.sheet,.vimg,.photo{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
+
+/* pages */
+.page{display:none;padding:18vh 0 140px}
+body[data-view=page] .page{display:block}
+body[data-view=page] .intro,body[data-view=page] #grid{display:none}
+.page h1{grid-column:1/4;font-size:13px;font-weight:500;letter-spacing:0}
+.page .body{grid-column:4/10;font-size:15px;line-height:1.6;letter-spacing:-.003em}
+.page .body.wide{grid-column:4/11}
+.page .body p{margin-bottom:1em;max-width:62ch}
+.page .lede{font-size:23px;line-height:1.3;letter-spacing:-.018em;margin-bottom:56px;max-width:none}
+.label{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--soft);font-weight:500;margin:56px 0 18px}
+.label:first-child{margin-top:0}
+.entry{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:18px 0;border-top:1px solid var(--rule)}
+.entry .d{color:var(--soft);font-size:13px}
+.entry h3{font-size:15px;font-weight:500;margin-bottom:4px;letter-spacing:-.005em}
+.entry p{margin:0;color:#3a3a37}
+.photos{display:grid;grid-template-columns:5fr 7fr;gap:var(--gap);align-items:start;margin:40px 0 8px}
+.photo{position:relative;background:center/contain no-repeat var(--tint);box-shadow:var(--shadow)}
+.photo+.pcap,.pcap{font-size:11px;color:var(--mid);margin-top:10px}
+.small{font-size:13px;color:var(--mid)}
+.legal h2{font-size:13px;font-weight:500;margin:36px 0 10px}
+.legal h3{font-size:13px;font-weight:500;margin:20px 0 6px}
+.legal ul{margin:0 0 1em 1.1em}
+.legal li{margin-bottom:.35em}
+.inline-link{border-bottom:1px solid var(--rule);transition:border-color .2s}
+.inline-link:hover{border-color:var(--ink)}
+
+form{margin-top:40px;display:grid;gap:18px;max-width:520px}
+form label{display:grid;gap:6px;font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--soft);font-weight:500}
+form input,form textarea{font:inherit;font-size:15px;color:var(--ink);border:0;border-bottom:1px solid #dcdcd8;padding:8px 0;background:transparent;outline:none;border-radius:0;letter-spacing:0;text-transform:none}
+form input:focus,form textarea:focus{border-color:var(--ink)}
+form textarea{min-height:120px;resize:vertical}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 20px;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;border-radius:0;transition:background .2s;justify-self:start}
+.btn:hover{background:#000}
+.sent{font-size:13px;color:var(--mid);min-height:20px}
+
+footer{border-top:1px solid var(--rule);padding:28px 0 36px;font-size:11.5px;color:var(--mid)}
+footer .a{grid-column:1/6}
+footer .b{grid-column:6/10}
+footer .c{grid-column:10/13;display:flex;gap:20px;justify-content:flex-end}
+footer a:hover{color:var(--ink)}
+
+/* viewer */
+#viewer{position:fixed;inset:0;z-index:50;visibility:hidden;touch-action:none;-webkit-user-select:none;user-select:none}
+#viewer.open{visibility:visible}
+.vbg{position:absolute;inset:0;background:#fbfbfa;opacity:0;transition:opacity .45s var(--ease)}
+#viewer.open .vbg{opacity:1}
+.vstage{position:absolute;inset:0;overflow:hidden;cursor:zoom-in}
+.vstage.zoomed{cursor:grab}
+.vstage.dragging{cursor:grabbing}
+.vimg{position:absolute;background:#fff center/100% 100% no-repeat;box-shadow:var(--shadow);transform-origin:0 0}
+.vimg.anim{transition:left .32s var(--ease),top .32s var(--ease),width .32s var(--ease),height .32s var(--ease)}
+.vimg .shield{z-index:2}
+.vui{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s var(--ease) .1s}
+#viewer.open .vui{opacity:1}
+.vui>*{pointer-events:auto}
+.vtop{position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--m);font-size:12px;color:var(--mid)}
+.vtop .ctr{min-width:120px}
+.vtop .zoom{color:var(--mid);background:rgba(251,251,250,.88);padding:3px 10px;border-radius:20px}
+.vtop .zoom:empty{display:none}
+.vtop button:hover{color:var(--ink)}
+.vbar{position:absolute;left:0;right:0;bottom:0;padding:18px var(--m) 26px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;font-size:12px;color:var(--mid)}
+.vbar .t{font-size:15px;color:var(--ink);font-weight:500;letter-spacing:-.005em;display:block;margin:4px 0 2px}
+.vbar .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--soft);font-weight:500}
+.vbar .ph{display:inline-block;margin-left:10px;font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--soft);font-weight:500}
+.buy{display:grid;grid-template-columns:auto auto;column-gap:22px;row-gap:4px;align-items:center;text-align:right}
+.buy .btn{grid-column:2;grid-row:1/4}
+.buy>*:not(.btn){grid-column:1}
+.vui .vbar,.vui .vnav{transition:opacity .25s}
+#viewer.z .vbar,#viewer.z .vnav{opacity:0;pointer-events:none}
+.buy .p{font-size:14px;color:var(--ink);font-weight:500}
+.buy small{font-size:11px;color:var(--soft);line-height:1.4}
+.buy small a{border-bottom:1px solid var(--rule)}
+.vnav{position:absolute;top:50%;transform:translateY(-50%);height:120px;width:90px;display:flex;align-items:center;font-size:12px;color:var(--soft);padding:0 var(--m)}
+.vnav:hover{color:var(--ink)}
+.vnav.prev{left:0}.vnav.next{right:0;justify-content:flex-end}
+
+@media print{.art,.photo,#viewer,.vimg{visibility:hidden !important;background:none !important}}
+
+@media (max-width:1100px){:root{--m:28px;--gap:18px} nav{gap:18px} .line{grid-column:1/8;font-size:21px} .filter{grid-column:8/13}}
+@media (max-width:760px){
+  :root{--m:16px;--gap:12px}
+  .cols,.row{grid-template-columns:repeat(6,minmax(0,1fr))}
+  header .cols{height:auto;padding-top:14px;padding-bottom:12px;row-gap:8px}
+  .name{grid-column:1/7}
+  .name small{display:none}
+  nav{grid-column:1/7;justify-content:flex-start;gap:16px;font-size:12.5px;flex-wrap:wrap}
+  .intro{padding-top:11vh}
+  .line{grid-column:1/7;font-size:19px}
+  .filter{grid-column:1/7;justify-content:flex-start;margin-top:30px;gap:6px 14px}
+  .filter button{font-size:11.5px}
+  .seriesnote{grid-column:1/7}
+  #grid{padding-top:6vh}
+  .row{margin-bottom:72px}
+  .cap{font-size:10.5px;gap:8px;margin-top:10px}
+  .page{padding:10vh 0 100px}
+  .page h1{grid-column:1/7;margin-bottom:24px}
+  .page .body,.page .body.wide{grid-column:1/7;font-size:14.5px}
+  .page .lede{font-size:19px;margin-bottom:40px}
+  .entry{grid-template-columns:1fr;gap:4px}
+  .photos{grid-template-columns:1fr}
+  footer .a,footer .b,footer .c{grid-column:1/7;justify-content:flex-start}
+  footer .b{margin:10px 0}
+  .empty p{grid-column:1/7}
+  .vtop{height:52px}
+  .vbar{flex-direction:column;align-items:flex-start;gap:14px;padding-bottom:22px}
+  .buy{text-align:left;grid-template-columns:1fr;justify-items:start}
+  .buy .btn,.buy>*:not(.btn){grid-column:1;grid-row:auto}
+  .buy .btn{margin:6px 0}
+  .vnav{display:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}}
+</style>
+</head>
+<body data-view="works">
+
+<header>
+  <div class="cols">
+    <a class="name" href="#/">Cody Saxton<small>Illuminator Omnimedia</small></a>
+    <nav id="nav">
+      <a href="#/" data-r="works">Works</a>
+      <a href="#/workshops" data-r="workshops">Workshops</a>
+      <a href="#/thoughts" data-r="thoughts">Thoughts</a>
+      <a href="#/news" data-r="news">News</a>
+      <a href="#/about" data-r="about">About</a>
+      <a href="#/contact" data-r="contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <div class="cols">
+      <p class="line">Art and Illustrations to illuminate ways toward a Healed World. <span>Based in Amsterdam, Netherlands.</span></p>
+      <div class="filter" id="filter" role="group" aria-label="Series"></div>
+      <p class="seriesnote" id="seriesnote"></p>
+    </div>
+  </section>
+  <section id="grid" aria-label="Works"></section>
+  <section class="page" id="page"></section>
+</main>
+
+<footer>
+  <div class="cols">
+    <div class="a">Cody Saxton, Illuminator Omnimedia · Amsterdam</div>
+    <div class="b">10% of sales donated to reforestation and degrowth efforts.</div>
+    <div class="c"><a href="#/imprint">Imprint</a><a href="#/privacy">Privacy</a><a href="#/terms">Terms</a></div>
+  </div>
+</footer>
+
+<div id="viewer" aria-hidden="true" role="dialog" aria-label="Artwork">
+  <div class="vbg"></div>
+  <div class="vstage" id="vstage"><div class="vimg" id="vimg"><div class="shield"></div></div></div>
+  <div class="vui">
+    <div class="vtop"><span class="ctr" id="vctr"></span><span class="zoom" id="vzoom"></span><button id="vclose" aria-label="Close">Close</button></div>
+    <button class="vnav prev" id="vprev" aria-label="Previous work">Previous</button>
+    <button class="vnav next" id="vnext" aria-label="Next work">Next</button>
+    <div class="vbar" id="vbar"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var DATA=null, WORKS=[], LIST=[], FILTER="all", MOBILE=null;
+var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+var $=function(s,r){return (r||document).querySelector(s)};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+var pad=function(n){return (n<10?"0":"")+n};
+
+/* ---------- layout: row templates on the 12 column base ---------- */
+/* c = start column, s = span, y = drift in px (scaled on smaller screens) */
+var DESK=[
+  [{c:1,s:3,y:90},{c:5,s:4,y:0},{c:10,s:3,y:230}],
+  [{c:2,s:2,y:260},{c:5,s:5,y:0},{c:11,s:2,y:120}],
+  [{c:3,s:7,y:0},{c:11,s:2,y:320}],
+  [{c:1,s:3,y:140},{c:5,s:5,y:0}],
+  [{c:2,s:4,y:0},{c:8,s:4,y:170}],
+  [{c:1,s:2,y:0},{c:4,s:3,y:260},{c:8,s:5,y:40}],
+  [{c:6,s:4,y:0}],
+  [{c:1,s:5,y:180},{c:7,s:3,y:0},{c:10,s:3,y:330}]
+];
+var MOB=[
+  [{c:1,s:4,y:0}],
+  [{c:1,s:3,y:70},{c:4,s:3,y:0}],
+  [{c:2,s:5,y:0}],
+  [{c:3,s:4,y:0}],
+  [{c:1,s:3,y:0},{c:4,s:3,y:110}],
+  [{c:1,s:6,y:0}]
+];
+
+function capHTML(w){
+  var n='<span class="no">'+pad(w.no)+'</span>';
+  if(w.placeholder) return n+'<span><b>Untitled</b><span class="m">'+esc(w.series)+' · '+esc(w.medium)+'</span></span>';
+  return n+'<span><b>'+esc(w.title)+'</b><span class="m">'+esc(w.medium)+', '+w.year+' · €'+w.price+'</span></span>';
+}
+
+var io=null;
+function build(){
+  MOBILE=matchMedia("(max-width:760px)").matches;
+  var T=MOBILE?MOB:DESK, cols=MOBILE?6:12;
+  var vw=Math.min(window.innerWidth,1600), k=MOBILE?1:Math.max(.55,Math.min(1,vw/1440));
+  var g=$("#grid"); g.innerHTML="";
+  if(io) io.disconnect();
+  io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){load(e.target);io.unobserve(e.target)}})},{rootMargin:"900px 0px"});
+  if(!LIST.length){
+    var s=DATA.series.filter(function(x){return x.key===FILTER})[0];
+    g.innerHTML='<div class="empty"><div class="cols"><p>No works from '+esc(FILTER)+' are online yet.</p></div></div>';
+    return;
+  }
+  var i=0,t=0;
+  while(i<LIST.length){
+    var tpl=T[t%T.length]; t++;
+    var row=document.createElement("div"); row.className="row";
+    tpl.forEach(function(slot){
+      if(i>=LIST.length) return;
+      var w=LIST[i++], land=w.w>w.h, s=slot.s;
+      if(!MOBILE && !land && s>5) s=5;           /* portrait sheets never take the widest span */
+      if(!MOBILE && land && s<3) s=3;            /* keep landscape drawings legible */
+      var c=Math.min(slot.c,cols-s+1);
+      var el=document.createElement("a");
+      el.className="work"; el.href="#/work/"+w.slug; el.dataset.slug=w.slug; el.draggable=false;
+      el.style.gridColumn=c+" / span "+s; el.style.marginTop=Math.round(slot.y*k)+"px";
+      el.setAttribute("aria-label",(w.placeholder?"Untitled, placeholder":w.title)+", open full screen");
+      el.innerHTML='<div class="sheet" style="aspect-ratio:'+w.w+' / '+w.h+'"><div class="art" data-src="img/'+esc(w.image)+'" role="img" aria-label="'+esc(w.alt)+'"></div><div class="shield"></div></div><p class="cap">'+capHTML(w)+'</p>';
+      row.appendChild(el); io.observe(el);
+    });
+    g.appendChild(row);
+  }
+}
+function load(el){
+  var a=el.querySelector(".art"); if(!a||a.dataset.done) return; a.dataset.done=1;
+  var im=new Image(); im.decoding="async";
+  im.onload=function(){a.style.backgroundImage='url("'+a.dataset.src+'")';requestAnimationFrame(function(){a.classList.add("on")})};
+  im.src=a.dataset.src;
+}
+
+function renderFilter(){
+  var f=$("#filter"), counts={all:WORKS.length};
+  DATA.series.forEach(function(s){counts[s.key]=WORKS.filter(function(w){return w.series===s.key}).length});
+  var opts=[{key:"all",label:"All"}].concat(DATA.series.map(function(s){return {key:s.key,label:s.key}}));
+  f.innerHTML=opts.map(function(o){return '<button data-k="'+esc(o.key)+'" aria-pressed="'+(o.key===FILTER)+'">'+esc(o.label)+'<sup>'+counts[o.key]+'</sup></button>'}).join("");
+  var s=DATA.series.filter(function(x){return x.key===FILTER})[0];
+  $("#seriesnote").textContent=s?s.line:"";
+}
+$("#filter").addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b) return;
+  FILTER=b.dataset.k;
+  LIST=FILTER==="all"?WORKS.slice():WORKS.filter(function(w){return w.series===FILTER});
+  renderFilter(); build();
+});
+
+/* ---------- pages (owner text verbatim) ---------- */
+var P={};
+P.workshops=function(){return '<div class="cols"><h1>Workshops</h1><div class="body">'+
+ '<p class="lede">Small in-person sessions around meaning making and creativity. Dates and venues are announced here when scheduled.</p>'+
+ '<span class="label">Upcoming</span><p>More to come soon. Add yourself to the mailing list via the <a class="inline-link" href="#/contact">contact form</a> to be notified.</p>'+
+ '<span class="label">Past</span>'+
+ entry("May 2024","Markmaking as Metaphor","OBA Oosterdok. Exploring unusual mark-making techniques and visual vocabulary translation.")+
+ entry("June 2024","Personal Rituals","OBA Oosterdok.")+
+ entry("May 2024","Design Your Life","OBA Oosterdok.")+
+ '</div></div>'};
+P.thoughts=function(){
+ var T=[["10 September 2026","“Let everything happen to you: beauty, terror. Just keep going. No feeling is final.” — Rainer Maria Rilke (exerpt from Go To The Limits of Your Longing)"],
+ ["28 August 2026","With every trip around the sun, I think of all the good to come. Planting trees and helping friends, building Gaia up again."],
+ ["15 August 2026","Leaping from a bridge into the Aare River in Bern, Switzerland was transformational...it feels like a part of me from long ago woke up from hibernation. I hesitated, nervous, and then remembered: \"You don't have to go alone.\" When two women stepped over the railing, I broke with my habit of hyperindependence and asked to jump with them. They said \"Of Course!\"\" And off we went, into the beautiful, clear, racing water. The power of secure attachment...can't say how much I feel glad for all I have learned over these years."],
+ ["15 July 2026","Overnight train to Zurich, onto Milan...then trekking in the Italian Alps with silly friends. The mountains hold some power that exists nowhere in The Netherlands---they charge my battery with something so necessary. The lowlands have convenient bicycling and interesting international culture, among other things...but the nature ain't nature-ing. The word soul, or maybe the sense of connectedness to our Earth, tends to feel watery and diffuse in the swamp."],
+ ["22 June 2026","Art is to make and speak and act in alignment with your highest-held values—it is real freedom."],
+ ["21 May 2026","“Everything is art. Everything is politics.” — Ai Weiwei"],
+ ["19 May 2026","Ideas should be shared, explored and examined with others. I see each of us as an entirely unique little sensor of the specifics our particular nook of the universe--the view from \"in here\". When we transmit our condition and collected data--our perspective--the collective can include it to gain an unbiased understanding of the world. When we are silent, our view of the universe is wasted."]];
+ return '<div class="cols"><h1>Thoughts</h1><div class="body"><p class="lede">Notes from the studio — fragments on everything: art, philosophy, process to influences and relevant tangents. Posts will appear here as they\'re written.</p>'+
+ T.map(function(x){return '<div class="entry"><span class="d">'+x[0]+'</span><div><p>'+esc(x[1])+'</p></div></div>'}).join("")+'</div></div>'};
+P.news=function(){return '<div class="cols"><h1>News</h1><div class="body"><p class="lede">Announcements, new series, and upcoming shows. Nothing fresh just yet — check back soon.</p></div></div>'};
+P.about=function(){return '<div class="cols"><h1>About</h1><div class="body">'+
+ '<p class="lede">Cody Saxton, Illuminator Omnimedia</p>'+
+ '<span class="label">Practice</span>'+
+ '<p>Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands. All works are sold unframed unless otherwise indicated, shipping is additional. 10% of sales donated to reforestation and degrowth efforts. No returns are possible at this time. Any items damaged in shipping must be claimed through insurance by the buyer. Transactions are conducted in Euros. Payment in full must be received prior to shipping. Payments can be made by Mollie or direct IBAN deposit: NL55SNSB8841074353 Illuminator Omnimedia. KVK #91859476 Registered business address: Bankwerkerij 159, Amsterdam NL 1021NT. Live contact through Instagram @codysaxtonart or <a class="inline-link" href="mailto:invigorated@proton.me">invigorated@proton.me</a>.</p>'+
+ '<span class="label">Exhibitions &amp; Press</span>'+
+ entry("November 2026","Things","Upcoming: PopUp show of selected works at Things.")+
+ entry("June 2025","Plum Village, France: Science, Zen and the Art of Health retreat","Participant, Plum Village retreat : The Wonder of It All")+
+ entry("Nov 2023","Open Gallery Exhibition 2023","5 piece series, shown as part of group show of the Amsterdam International Artist Collective gallery.")+
+ entry("July 2020","Pandemic Testing Shelter, newspaper coverage in Albuquerque Journal.","Newspaper article described and pictured my invention, development with engineers and deployment at Sandia National Laboratories to build and deploy an alternative PPE system as a shortage threatened early in the Covid-19 pandemic. Building plans were released open-source, so other institutions built their own versions to protect healthcare workers at testing sites around New Mexico. <a class=\"inline-link\" href=\"img/albuquerque-journal-2020.pdf\" target=\"_blank\" rel=\"noopener\">Albuquerque Journal, PDF</a>")+
+ entry("designed 2005","T-shirt design for Rojas, worn by Rosario Dawson in Quentin Tarantino\'s 2007 film Deathproof","Film wardrobe piece for Deathproof (grossed 31.1 USD at box office). Unicorn t-shirt graphic designed for Freddy Rojas\' Los Angeles clothing brand, Rojas.")+
+ '<div class="photos"><div><div class="photo" style="aspect-ratio:1500/2000;background-image:url(img/aiac-install-photo.jpg)" role="img" aria-label="Installation view at the Amsterdam International Artist Collective group show"><div class="shield"></div></div><p class="pcap">Open Gallery Exhibition 2023, Amsterdam International Artist Collective</p></div>'+
+ '<div><div class="photo" style="aspect-ratio:1600/1073;background-image:url(img/deathproof-rojas-tshirt.jpg)" role="img" aria-label="Film still with the Rojas unicorn t-shirt in Deathproof"><div class="shield"></div></div><p class="pcap">Rojas t-shirt in Deathproof, 2007</p></div></div>'+
+ '</div></div>'};
+P.contact=function(){return '<div class="cols"><h1>Contact</h1><div class="body">'+
+ '<p class="lede">For purchases, exhibition enquiries, or workshop dates — use the form below or write to <a class="inline-link" href="mailto:invigorated@proton.me">invigorated@proton.me</a>.</p>'+
+ '<form id="cform" novalidate><label>Name<input name="name" autocomplete="name" required></label><label>Email<input name="email" type="email" autocomplete="email" required></label><label>Subject (optional)<input name="subject"></label><label>Message<textarea name="message" required></textarea></label>'+
+ '<div class="hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>'+
+ '<button class="btn" type="submit">Send message</button><p class="sent" id="sent"></p></form></div></div>'};
+P.imprint=function(){return '<div class="cols"><h1>Imprint</h1><div class="body legal"><p>Instagram @codysaxtonart</p><h2>Responsible for content</h2><p>[Illuminator Omnimedia]<br>[Bankwerkerij 159]<br>[1021 NT, Amsterdam]<br>[NL]</p><h2>Contact</h2><p>Email: <a class="inline-link" href="mailto:invigorated@proton.me">invigorated@proton.me</a></p><h2>VAT / Chamber of Commerce</h2><p>KvK / HRB number: [91859476]<br>VAT ID: [upon request]</p></div></div>'};
+P.terms=function(){return '<div class="cols"><h1>Terms &amp; Conditions</h1><div class="body legal">'+
+ '<p>This is a placeholder for the legally required terms. Replace with vetted text — consider iubenda or a local accountant/lawyer before launch.</p>'+
+ '<h2>Prices and VAT</h2><p>All prices in euro. VAT treatment depends on the small-business scheme — confirm with an accountant whether VAT must be added to listed prices.</p>'+
+ '<h2>Payment</h2><p>Payments are processed by Mollie. Accepted methods depend on what is enabled per payment link (iDEAL, cards, etc.).</p>'+
+ '<h2>Shipping</h2><p>Originals are packed and shipped within 5 working days of payment. Shipping cost and method are agreed by email after purchase.</p>'+
+ '<h2>Right of withdrawal (EU)</h2><p>You have 14 days from receipt to withdraw from the purchase without giving a reason. Send an email to hello@example.com to start the return. Pieces must be returned in their original condition at your expense; the purchase price is refunded within 14 days of receipt of the returned work.</p>'+
+ '<h2>Originals as "made to order"</h2><p>Some original works may be exempt from the right of withdrawal as personalised or made-to-order goods. If so, it will be stated on the artwork page. Otherwise the standard 14-day right above applies.</p>'+
+ '<h2>Liability</h2><p>Damage in transit: notify within 7 days of delivery with photos so a claim can be filed with the carrier.</p></div></div>'};
+P.privacy=function(){return '<div class="cols"><h1>Privacy notice</h1><div class="body legal">'+
+ '<p class="small">Last reviewed: 2026-05-11</p>'+
+ '<p>This notice explains what personal data this site collects, why, who else sees it, and what you can do about it. The site is small and intentionally light: no analytics, no advertising, no tracking cookies.</p>'+
+ '<h2>1. Who is responsible</h2><p>Controller: [LEGAL_NAME]<br>[STREET_ADDRESS]<br>[POSTAL_CODE_CITY]<br>[COUNTRY]<br>Email: [EMAIL]<br>KvK / Chamber of Commerce: [KVK_NUMBER]<br>VAT ID: [VAT_ID]</p><p>For any privacy question, email the address above. We will respond within 30 days.</p>'+
+ '<h2>2. What we collect, and why</h2><h3>a) Just visiting the site</h3><p>When you load a page, our hosting provider (TransIP B.V., Netherlands) records standard server logs: your IP address, the URL you requested, the time of the request, your browser identifier (User-Agent), and the referring page.</p><p>Purpose: to keep the site running and detect abuse.<br>Legal basis: legitimate interest (GDPR Art. 6(1)(f)).<br>Retention: TransIP rotates server logs within roughly 30 days.</p>'+
+ '<h3>b) Buying an artwork</h3><p>When you click "Purchase" on an artwork page, you are redirected to Mollie B.V. (Netherlands). Mollie collects what the payment method requires — typically your name, email address, billing address, and, where shipping collection is enabled, your shipping address. Payment details (card number, bank account) stay with Mollie; we never see or store them.</p><p>After a successful payment, Mollie sends us a confirmation email containing your name, email, and shipping address so we can ship the work.</p><p>Purpose: process the sale and ship the artwork.<br>Legal basis: performance of a contract (GDPR Art. 6(1)(b)).<br>Retention: order records are kept for 7 years as required by Dutch tax law (Algemene wet inzake rijksbelastingen, art. 52).</p>'+
+ '<h3>c) Emailing us</h3><p>If you write to us at the contact address, we receive whatever you put in the email — typically your email address, your name, and the content of your message.</p><p>Purpose: to reply.<br>Legal basis: legitimate interest, or pre-contractual measures if the email concerns a possible purchase.<br>Retention: up to 3 years, unless the correspondence relates to a sale — in which case the 7-year tax-record retention above applies.</p>'+
+ '<h3>d) Shipping</h3><p>To ship a purchased artwork we share your name and shipping address with our carrier ([SHIPPING_CARRIER]). The carrier acts as a separate controller for that data and you should consult their own privacy notice for how they handle it.</p>'+
+ '<h2>3. Who else processes your data</h2><p>We rely on a small number of service providers. None of them sell or share your data for advertising:</p><ul><li>TransIP B.V. — hosting, server logs, daily backups. Netherlands (EU).</li><li>Mollie B.V. — payment processing. Netherlands (EU). See Mollie\'s privacy notice.</li><li>[EMAIL_PROVIDER] — email inbox. [EMAIL_PROVIDER_LOCATION].</li><li>[SHIPPING_CARRIER] — delivery. [COUNTRY].</li></ul><p>We do not sell or rent your data. We share it only with the parties above, and only as needed to operate the site, process your order, and deliver your purchase — or where we are required to by law.</p>'+
+ '<h2>4. International transfers</h2><p>All processing happens within the EU/EEA. We do not transfer your personal data to countries outside the EU/EEA. (Should that ever change — for example if we add a service hosted elsewhere — this notice will be updated before the transfer starts.)</p>'+
+ '<h2>5. Cookies and tracking</h2><p>This site sets no cookies of its own. We use no analytics (no Google Analytics, no Plausible, no Matomo), no tracking pixels, no advertising scripts, and no embedded social media widgets. Because of this, we do not show a cookie banner.</p><p>Note that Mollie\'s checkout pages — which you are redirected to when you press "Purchase" — set their own cookies. Those are governed by Mollie\'s privacy policy linked above.</p>'+
+ '<h2>6. Your rights</h2><p>Under the GDPR you have the right to:</p><ul><li>access the personal data we hold about you;</li><li>rectify inaccurate or incomplete data;</li><li>erase your data ("right to be forgotten"), within the limits of our legal retention obligations (notably the 7-year tax records);</li><li>restrict processing of your data;</li><li>data portability — receive your data in a machine-readable format;</li><li>object to processing based on legitimate interest; and</li><li>withdraw consent, where consent was the legal basis.</li></ul><p>To exercise any of these, email [EMAIL]. We will respond within 30 days.</p><p>You also have the right to lodge a complaint with your national supervisory authority. In the Netherlands this is Autoriteit Persoonsgegevens.</p>'+
+ '<h2>7. Children</h2><p>This site is not directed at children under 16. We do not knowingly collect data from children. If you believe a child has provided personal data to us, please contact us so we can remove it.</p>'+
+ '<h2>8. Security</h2><p>The site is served exclusively over HTTPS (TLS) using a certificate issued by Let\'s Encrypt and auto-renewed by TransIP. Order data lives only in our email inbox and in Mollie\'s systems; we do not operate a customer database.</p>'+
+ '<h2>9. Changes to this notice</h2><p>We may update this notice when our processing changes — for example, when we add a new shipping carrier or switch hosting provider. Material changes are reflected in the "last reviewed" date at the top of the page.</p>'+
+ '<h2>10. Contact</h2><p>For any privacy question or rights request: [EMAIL].</p></div></div>'};
+function entry(d,t,p){return '<div class="entry"><span class="d">'+d+'</span><div><h3>'+t+'</h3><p>'+p+'</p></div></div>'}
+
+document.addEventListener("submit",function(e){
+  if(e.target.id!=="cform") return; e.preventDefault();
+  var f=e.target, out=$("#sent");
+  if(f.website.value){out.textContent="Thank you.";f.reset();return}
+  if(!f.name.value||!f.email.value||!f.message.value){out.textContent="Please add your name, email and a message.";return}
+  var sub=f.subject.value||("Message from "+f.name.value);
+  var body=f.message.value+"\n\n"+f.name.value+"\n"+f.email.value;
+  location.href="mailto:invigorated@proton.me?subject="+encodeURIComponent(sub)+"&body="+encodeURIComponent(body);
+  out.textContent="Your mail app should open with the message addressed to invigorated@proton.me.";
+});
+
+/* ---------- viewer ---------- */
+var V=$("#viewer"), VS=$("#vstage"), VI=$("#vimg"), cur=-1, base=null, z={s:1,x:0,y:0}, isOpen=false, closing=false;
+function fitRect(w){
+  var W=innerWidth,H=innerHeight, top=MOBILE?56:72, bar=$("#vbar").offsetHeight||90, side=MOBILE?16:140;
+  var aw=W-side*2, ah=H-top-bar-12, r=Math.min(aw/w.w,ah/w.h), iw=w.w*r, ih=w.h*r;
+  return {l:(W-iw)/2,t:top+(ah-ih)/2,w:iw,h:ih};
+}
+function place(r){VI.style.left=r.l+"px";VI.style.top=r.t+"px";VI.style.width=r.w+"px";VI.style.height=r.h+"px"}
+function applyZoom(){
+  var W=innerWidth,H=innerHeight, w=base.w*z.s, h=base.h*z.s;
+  if(w<=W) z.x=(W-w)/2-base.l; else z.x=Math.min(-base.l+40,Math.max(W-40-base.l-w,z.x));
+  if(h<=H) z.y=(H-h)/2-base.t; else z.y=Math.min(-base.t+40,Math.max(H-40-base.t-h,z.y));
+  if(z.s===1){z.x=0;z.y=0}
+  place({l:base.l+z.x,t:base.t+z.y,w:w,h:h});
+  VS.classList.toggle("zoomed",z.s>1.01); V.classList.toggle("z",z.s>1.01);
+  $("#vzoom").textContent=z.s>1.01?Math.round(z.s*100)+"%":(MOBILE?"":"Scroll or double-click to zoom");
+}
+function zoomAt(ns,cx,cy,anim){
+  ns=Math.max(1,Math.min(6,ns));
+  var ox=base.l+z.x, oy=base.t+z.y, r=ns/z.s;
+  z.x=cx-(cx-ox)*r-base.l; z.y=cy-(cy-oy)*r-base.t; z.s=ns;
+  VI.classList.toggle("anim",!!anim&&!reduce); applyZoom();
+}
+function bar(w){
+  var s=esc(w.series);
+  if(w.placeholder) return '<div><span class="k">'+s+'</span><span class="t">Untitled<span class="ph">Placeholder</span></span><span>'+esc(w.medium)+'</span></div>';
+  return '<div><span class="k">'+s+'</span><span class="t">'+esc(w.title)+'</span><span>'+esc(w.medium)+', '+w.year+'</span></div>'+
+   '<div class="buy"><span class="p">€'+w.price+'</span><small>Includes packaging. Shipping calculated at checkout.</small>'+
+   '<a class="btn" href="https://codysaxton.eu/checkout.php?slug='+encodeURIComponent(w.slug)+'" rel="noopener">Purchase — €'+w.price+'</a>'+
+   '<small>Right of withdrawal within 14 days under EU consumer law — see <a href="#/terms">terms</a>.</small></div>';
+}
+function setWork(i){
+  cur=i; var w=LIST[i];
+  VI.style.backgroundImage='url("img/'+w.image+'")';
+  VI.setAttribute("role","img"); VI.setAttribute("aria-label",w.alt);
+  $("#vbar").innerHTML=bar(w);
+  $("#vctr").textContent=pad(i+1)+" / "+pad(LIST.length);
+  z={s:1,x:0,y:0}; base=fitRect(w);
+}
+function tileOf(slug){return document.querySelector('.work[data-slug="'+slug+'"] .sheet')}
+function openAt(i,fromTile){
+  var w=LIST[i]; isOpen=true; closing=false;
+  V.classList.add("open"); V.setAttribute("aria-hidden","false"); document.documentElement.style.overflow="hidden";
+  setWork(i);
+  var t=fromTile&&tileOf(w.slug);
+  if(t&&!reduce){
+    var r=t.getBoundingClientRect(); VI.classList.remove("anim"); place({l:r.left,t:r.top,w:r.width,h:r.height});
+    VI.offsetWidth; VI.classList.add("anim"); place(base);
+  } else {VI.classList.remove("anim"); applyZoom()}
+  $("#vzoom").textContent=MOBILE?"":"Scroll or double-click to zoom";
+}
+function go(d){
+  if(!isOpen||!LIST.length) return;
+  var i=(cur+d+LIST.length)%LIST.length;
+  history.replaceState(null,"","#/work/"+LIST[i].slug);
+  VI.classList.remove("anim"); VI.style.opacity=0;
+  setWork(i); applyZoom();
+  requestAnimationFrame(function(){VI.style.transition="opacity .35s";VI.style.opacity=1;setTimeout(function(){VI.style.transition=""},360)});
+}
+function closeViewer(){
+  if(!isOpen||closing) return; closing=true;
+  var w=LIST[cur], t=tileOf(w.slug);
+  document.documentElement.style.overflow="";
+  if(t){ var tr=t.getBoundingClientRect(); if(tr.bottom<0||tr.top>innerHeight){ t.scrollIntoView({block:"center"}); } }
+  var done=function(){V.classList.remove("open");V.setAttribute("aria-hidden","true");VI.classList.remove("anim");isOpen=false;closing=false;var a=document.querySelector('.work[data-slug="'+w.slug+'"]'); if(a) a.focus({preventScroll:true})};
+  if(t&&!reduce){ var r=t.getBoundingClientRect(); VI.classList.add("anim"); place({l:r.left,t:r.top,w:r.width,h:r.height}); V.querySelector(".vbg").style.opacity=0; V.querySelector(".vui").style.opacity=0;
+    setTimeout(function(){done();V.querySelector(".vbg").style.opacity="";V.querySelector(".vui").style.opacity=""},330);
+  } else done();
+}
+var hops=0; addEventListener("hashchange",function(){hops++});
+function back(){ if(hops>0) history.back(); else location.hash="#/"; }
+$("#vclose").onclick=back;
+$("#vprev").onclick=function(){go(-1)};
+$("#vnext").onclick=function(){go(1)};
+
+VS.addEventListener("wheel",function(e){
+  if(!isOpen) return; e.preventDefault();
+  var f=e.ctrlKey?Math.exp(-e.deltaY*0.01):Math.exp(-e.deltaY*0.0012);
+  zoomAt(z.s*f,e.clientX,e.clientY,false);
+},{passive:false});
+VS.addEventListener("dblclick",function(e){
+  if(z.s>1.01) zoomAt(1,e.clientX,e.clientY,true); else zoomAt(3,e.clientX,e.clientY,true);
+});
+/* pointer: pan, pinch, swipe */
+var pts=new Map(), start=null, pinch=null, lastTap=0;
+VS.addEventListener("pointerdown",function(e){
+  VS.setPointerCapture(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  VI.classList.remove("anim");
+  if(pts.size===1){start={x:e.clientX,y:e.clientY,zx:z.x,zy:z.y,t:Date.now(),moved:false}}
+  if(pts.size===2){var a=[...pts.values()];pinch={d:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),s:z.s}}
+});
+VS.addEventListener("pointermove",function(e){
+  if(!pts.has(e.pointerId)) return; pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===2&&pinch){var a=[...pts.values()],d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);zoomAt(pinch.s*d/pinch.d,(a[0].x+a[1].x)/2,(a[0].y+a[1].y)/2,false);start=null;return}
+  if(start){var dx=e.clientX-start.x,dy=e.clientY-start.y; if(Math.abs(dx)+Math.abs(dy)>6) start.moved=true;
+    if(z.s>1.01){VS.classList.add("dragging");z.x=start.zx+dx;z.y=start.zy+dy;applyZoom()}
+    else if(start.moved){VI.style.transform="translateX("+dx*0.4+"px)"}}
+});
+function endPtr(e){
+  if(!pts.has(e.pointerId)) return; pts.delete(e.pointerId); VS.classList.remove("dragging");
+  if(pts.size<2) pinch=null;
+  if(start&&pts.size===0){
+    var dx=e.clientX-start.x,dy=e.clientY-start.y; VI.style.transform="";
+    if(z.s<=1.01&&Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.3){go(dx<0?1:-1)}
+    else if(e.pointerType==="touch"&&!start.moved){var now=Date.now(); if(now-lastTap<300){zoomAt(z.s>1.01?1:3,e.clientX,e.clientY,true);lastTap=0}else lastTap=now}
+    start=null;
+  }
+}
+VS.addEventListener("pointerup",endPtr);VS.addEventListener("pointercancel",endPtr);
+addEventListener("resize",function(){
+  var m=matchMedia("(max-width:760px)").matches; if(m!==MOBILE && DATA) build();
+  if(isOpen){base=fitRect(LIST[cur]);z={s:1,x:0,y:0};VI.classList.remove("anim");applyZoom()}
+});
+
+/* ---------- protection ---------- */
+document.addEventListener("contextmenu",function(e){if(e.target.closest(".work,.sheet,.photo,#viewer"))e.preventDefault()});
+document.addEventListener("dragstart",function(e){if(e.target.closest&&e.target.closest(".work,.sheet,.photo,#viewer,img"))e.preventDefault()});
+document.addEventListener("selectstart",function(e){if(e.target.closest&&e.target.closest(".work,.photo,#vstage"))e.preventDefault()});
+document.addEventListener("keydown",function(e){
+  var k=e.key.toLowerCase(), mod=e.metaKey||e.ctrlKey;
+  if(mod&&k==="s"){e.preventDefault();return}
+  if(mod&&(k==="c"||k==="x")){var a=document.activeElement; if(isOpen||(a&&a.closest&&a.closest(".work,.photo"))){e.preventDefault();return}}
+  if(!isOpen) return;
+  if(k==="escape"){e.preventDefault();back()}
+  else if(k==="arrowright"){e.preventDefault();go(1)}
+  else if(k==="arrowleft"){e.preventDefault();go(-1)}
+  else if(k==="+"||k==="="){zoomAt(z.s*1.5,innerWidth/2,innerHeight/2,true)}
+  else if(k==="-"){zoomAt(z.s/1.5,innerWidth/2,innerHeight/2,true)}
+  else if(k==="0"){zoomAt(1,innerWidth/2,innerHeight/2,true)}
+});
+document.addEventListener("copy",function(e){if(isOpen)e.preventDefault()});
+
+/* ---------- routing ---------- */
+var worksScroll=0, lastView="works", fromClick=false;
+document.addEventListener("click",function(e){var a=e.target.closest(".work"); if(a) fromClick=true});
+function route(){
+  var h=location.hash.replace(/^#\/?/,""), parts=h.split("/");
+  document.querySelectorAll("#nav a").forEach(function(a){a.toggleAttribute("aria-current",a.dataset.r===(parts[0]||"works")||(parts[0]==="work"&&a.dataset.r==="works"))});
+  if(parts[0]==="work"&&parts[1]){
+    if(lastView==="page"){showWorks()}
+    var i=LIST.findIndex(function(w){return w.slug===parts[1]});
+    if(i<0){FILTER="all";LIST=WORKS.slice();renderFilter();build();i=LIST.findIndex(function(w){return w.slug===parts[1]})}
+    if(i<0){location.replace("#/");return}
+    if(isOpen){ if(i!==cur){setWork(i);applyZoom()} } else openAt(i,fromClick);
+    fromClick=false; document.title=(LIST[i].placeholder?"Untitled":LIST[i].title)+" · Cody Saxton"; return;
+  }
+  fromClick=false;
+  if(isOpen) closeViewer();
+  if(P[parts[0]]){
+    if(lastView==="works") worksScroll=scrollY;
+    document.body.dataset.view="page"; lastView="page";
+    $("#page").innerHTML=P[parts[0]](); scrollTo(0,0);
+    document.title=$("#page h1").textContent+" · Cody Saxton";
+  } else showWorks(true);
+}
+function showWorks(restore){
+  if(lastView==="page"){document.body.dataset.view="works";$("#page").innerHTML="";lastView="works";if(restore)scrollTo(0,worksScroll)}
+  document.title="Cody Saxton · Works";
+}
+addEventListener("hashchange",route);
+
+fetch("works.json").then(function(r){return r.json()}).then(function(d){
+  DATA=d; WORKS=d.works; LIST=WORKS.slice(); renderFilter(); build(); route();
+});
+})();
+</script>
+</body>
+</html>

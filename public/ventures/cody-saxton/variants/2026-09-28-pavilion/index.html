@@ -1,0 +1,1486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cody Saxton | Illuminator</title>
+<meta name="description" content="Cody Saxton, Illuminator Omnimedia. Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+<style>
+:root{
+  --paper:#f6f5f1; --sheet:#fbfaf7; --ink:#161615; --ink2:#3b3a37; --soft:#76736c; --line:#dedad2; --oak:#cbb898;
+  --f:"Geist", "Helvetica Neue", Arial, sans-serif;
+  --ease:cubic-bezier(.22,.61,.24,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--f);font-size:15px;line-height:1.55;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden;font-feature-settings:"tnum" 0}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block;max-width:100%}
+.num,.tn{font-variant-numeric:tabular-nums}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--soft)}
+[hidden]{display:none !important}
+body.m3d{overflow:hidden}
+
+/* ---------- scene ---------- */
+#scene{position:fixed;inset:0;width:100vw;height:100vh;display:block;opacity:0;transition:opacity 1.6s var(--ease);touch-action:none;outline:none}
+#scene.ready{opacity:1}
+body.walk #scene{cursor:grab}
+body.walk #scene.dragging{cursor:grabbing}
+body.walk #scene.over-work{cursor:zoom-in}
+#veil{position:fixed;inset:0;background:var(--paper);opacity:0;pointer-events:none;transition:opacity .5s var(--ease);z-index:5}
+#veil.on{opacity:1}
+
+/* ---------- top bar ---------- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:22px 32px;pointer-events:none}
+.bar > *{pointer-events:auto}
+.mark{font-weight:500;font-size:15px;letter-spacing:-.01em;text-decoration:none;display:flex;gap:14px;align-items:baseline}
+.mark small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);font-weight:500}
+.bar nav{display:flex;gap:6px;align-items:center}
+.chip{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;text-decoration:none;padding:10px 14px;border-radius:999px;background:rgba(251,250,247,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(22,22,21,.08);transition:background .3s}
+.chip:hover{background:#fff}
+body.at-welcome .mark{opacity:0;pointer-events:none}
+body.flat .mark small{display:none}
+body.flat.inside .bar{background:rgba(246,245,241,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(22,22,21,.06);padding-top:14px;padding-bottom:14px}
+.mark{transition:opacity .8s var(--ease)}
+
+/* ---------- welcome ---------- */
+.welcome{position:fixed;inset:0;z-index:10;pointer-events:none;display:grid;grid-template-rows:1fr auto}
+.welcome > *{pointer-events:auto}
+.w-block{align-self:start;padding:120px 56px 0;max-width:760px}
+.w-block .eyebrow{color:var(--ink2);display:flex;gap:18px;align-items:center}
+.w-block .eyebrow i{display:block;width:40px;height:1px;background:currentColor;opacity:.5}
+.welcome h1{font-weight:500;font-size:clamp(64px,9.4vw,146px);line-height:.9;letter-spacing:-.055em;margin:26px 0 0 -6px}
+.w-roles{display:flex;gap:0;margin-top:26px;font-size:clamp(18px,1.6vw,23px);font-weight:400;letter-spacing:-.015em}
+.w-roles span+span::before{content:"";display:inline-block;width:1px;height:.9em;background:var(--ink);opacity:.35;margin:0 18px;vertical-align:-.08em}
+.w-text{margin-top:22px;max-width:420px;color:var(--ink2);font-size:16px;line-height:1.55}
+.w-actions{display:flex;gap:26px;align-items:center;margin-top:34px;flex-wrap:wrap}
+.enter{display:inline-flex;align-items:center;gap:18px;background:var(--ink);color:#fbfaf7;text-decoration:none;padding:17px 22px 17px 28px;border-radius:999px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;transition:gap .5s var(--ease),background .3s}
+.enter:hover{gap:26px;background:#000}
+.enter svg{width:18px;height:18px}
+.alt{font-size:14px;color:var(--ink2);text-decoration:none;border-bottom:1px solid rgba(22,22,21,.25);padding-bottom:2px}
+.alt:hover{border-color:var(--ink)}
+.w-foot{display:flex;justify-content:space-between;gap:24px;padding:0 56px 30px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--ink2)}
+.w-foot ol{list-style:none;display:flex;gap:28px;flex-wrap:wrap}
+.w-foot ol span{color:var(--soft);margin-right:8px}
+.w-draw{position:fixed;left:46%;right:56px;bottom:120px;z-index:1;pointer-events:none;display:none}
+body.flat.at-welcome .w-draw{display:block}
+.w-draw svg{width:100%;height:auto;display:block}
+.welcome .w-block, .welcome .w-foot{transition:opacity 1s var(--ease), transform 1.2s var(--ease)}
+body:not(.at-welcome) .welcome{visibility:hidden;transition:visibility 0s 1s}
+body:not(.at-welcome) .welcome .w-block{opacity:0;transform:translateY(-14px)}
+body:not(.at-welcome) .welcome .w-foot{opacity:0}
+body.m3d.at-welcome .w-block{text-shadow:0 0 40px rgba(240,239,234,.6)}
+
+/* ---------- plan and hint ---------- */
+.plan{position:fixed;left:32px;bottom:28px;z-index:15;background:rgba(251,250,247,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(22,22,21,.08);border-radius:14px;padding:14px 16px 12px;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+body.at-welcome .plan, body.flat .plan{opacity:0;transform:translateY(10px);pointer-events:none}
+.plan-name{display:flex;gap:10px;align-items:baseline;font-size:13px;font-weight:500;margin-bottom:10px;letter-spacing:-.005em}
+.plan-name span{font-size:11px;color:var(--soft);letter-spacing:.12em}
+.plan svg{display:block;overflow:visible}
+.plan .rm{fill:transparent;stroke:var(--ink);stroke-width:1;cursor:pointer;transition:fill .3s}
+.plan .rm:hover{fill:rgba(22,22,21,.07)}
+.plan .rm.on{fill:rgba(22,22,21,.1)}
+.plan .gap{stroke:#fbfaf7;stroke-width:2.2}
+.plan-keys{margin-top:10px;font-size:11px;color:var(--soft);letter-spacing:.02em}
+.hint{position:fixed;left:50%;bottom:30px;transform:translate(-50%,8px);z-index:15;background:rgba(22,22,21,.86);color:#f6f5f1;font-size:13px;padding:11px 18px;border-radius:999px;opacity:0;transition:opacity .8s var(--ease),transform .8s var(--ease);pointer-events:none;white-space:nowrap}
+.hint.on{opacity:1;transform:translate(-50%,0)}
+.tip{position:fixed;z-index:16;pointer-events:none;background:rgba(251,250,247,.95);border:1px solid rgba(22,22,21,.08);padding:7px 11px;border-radius:8px;font-size:12px;line-height:1.35;opacity:0;transition:opacity .2s;white-space:nowrap}
+.tip.on{opacity:1}
+.tip b{font-weight:500;display:block}
+.tip span{color:var(--soft)}
+
+/* ---------- side panel (work detail) ---------- */
+.detail{position:fixed;top:0;right:0;bottom:0;width:420px;z-index:30;background:var(--sheet);border-left:1px solid var(--line);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .8s var(--ease);overflow:auto}
+.detail.on{transform:none}
+.d-figure{display:none}
+.d-body{padding:96px 44px 40px;display:flex;flex-direction:column;flex:1}
+.d-head{display:flex;justify-content:space-between;gap:12px}
+.d-body h2{font-size:40px;line-height:1.02;letter-spacing:-.035em;font-weight:500;margin-top:20px}
+.d-med{margin-top:12px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);font-weight:500}
+.d-price{margin-top:34px;font-size:30px;letter-spacing:-.02em;font-weight:400}
+.d-ship{margin-top:6px;color:var(--soft);font-size:14px}
+.buy{display:flex;justify-content:center;margin-top:24px;background:var(--ink);color:#fbfaf7;text-decoration:none;padding:17px 20px;border-radius:999px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;transition:background .3s}
+.buy:hover{background:#000}
+.d-law{margin-top:14px;font-size:13px;color:var(--soft)}
+.d-law a{color:var(--ink2)}
+.d-ph{margin-top:28px;font-size:13px;color:var(--soft);border-top:1px solid var(--line);padding-top:14px}
+.d-text{margin-top:22px;color:var(--ink2)}
+.d-text a{display:inline-block;margin-top:14px}
+.d-tools{margin-top:auto;padding-top:36px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:11px 15px;border-radius:999px;border:1px solid rgba(22,22,21,.16);background:transparent;text-decoration:none;transition:background .3s,border-color .3s}
+.btn:hover{border-color:var(--ink);background:#fff}
+.x{position:absolute;top:22px;right:24px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(22,22,21,.14);display:grid;place-items:center;background:var(--sheet)}
+.x:hover{border-color:var(--ink)}
+.x svg{width:14px;height:14px}
+
+/* ---------- guide and pages: the printed visitor guide ---------- */
+.leaf{position:fixed;inset:0;z-index:40;display:flex;justify-content:flex-end;background:rgba(230,228,222,.45);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .6s var(--ease)}
+.leaf.on{opacity:1;pointer-events:auto}
+.leaf-sheet{position:relative;width:min(700px,100%);height:100%;overflow:auto;background:var(--sheet);box-shadow:-30px 0 80px rgba(40,36,28,.08);transform:translateX(40px);transition:transform .8s var(--ease)}
+.leaf.on .leaf-sheet{transform:none}
+.run{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:26px 56px 18px;background:var(--sheet);border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--soft)}
+.run .x{position:static;width:36px;height:36px}
+.leaf-in{padding:56px 56px 90px}
+.folio{display:flex;justify-content:space-between;padding:26px 56px 34px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);font-weight:500}
+.page{display:none}
+.page.on{display:block}
+.doc h1{font-size:56px;line-height:1;letter-spacing:-.045em;font-weight:500}
+.doc .lede{font-size:20px;line-height:1.45;letter-spacing:-.01em;margin-top:22px;color:var(--ink2);max-width:540px}
+.doc h2{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--soft);margin:52px 0 14px;padding-top:14px;border-top:1px solid var(--line)}
+.doc h3{font-size:17px;font-weight:500;letter-spacing:-.01em;line-height:1.35}
+.doc p{max-width:560px}
+.doc p+p{margin-top:12px}
+.doc .u{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(22,22,21,.35)}
+.doc .entry{padding:18px 0;border-bottom:1px solid var(--line)}
+.doc .entry p{margin-top:6px;color:var(--ink2)}
+.doc .when{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;font-variant-numeric:tabular-nums;font-weight:500}
+.doc figure{margin-top:18px}
+.doc figure.mid img{width:min(360px,100%)}
+.doc figure.small img{width:min(300px,100%)}
+.doc .pdf{display:inline-block;margin-top:12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+.doc .note{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--line)}
+.doc .note time{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);font-variant-numeric:tabular-nums;font-weight:500;padding-top:3px}
+.doc .note p{font-size:16px}
+.doc.legal p,.doc.legal li{font-size:14px;color:var(--ink2)}
+.doc.legal h3{font-size:15px;margin-top:20px}
+.doc.legal ul{padding-left:18px;margin-top:10px;max-width:560px}
+.doc .kv{margin-top:10px;padding-left:14px;border-left:1px solid var(--line)}
+.doc .kv p{margin-top:2px}
+.doc .soft{color:var(--soft)}
+.form{margin-top:40px;display:grid;gap:22px;max-width:520px}
+.field label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--soft);margin-bottom:8px}
+.field input,.field textarea{width:100%;font:inherit;font-size:16px;padding:12px 0;border:0;border-bottom:1px solid rgba(22,22,21,.25);background:transparent;outline:none;border-radius:0}
+.field input:focus,.field textarea:focus{border-color:var(--ink)}
+.field textarea{min-height:120px;resize:vertical}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.send{justify-self:start;background:var(--ink);color:#fbfaf7;padding:16px 26px;border-radius:999px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+/* guide index */
+.gi h1{font-size:56px;line-height:1;letter-spacing:-.045em;font-weight:500}
+.gi .lede{margin-top:18px;color:var(--ink2);font-size:18px;max-width:480px}
+.gi ol,.gi ul{list-style:none}
+.gi .rooms{margin-top:44px;border-top:1px solid var(--ink)}
+.gi .rooms a{display:grid;grid-template-columns:54px 1fr auto;gap:14px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .4s var(--ease)}
+.gi .rooms a:hover{padding-left:8px}
+.gi .rooms .n{font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.gi .rooms b{font-size:24px;font-weight:500;letter-spacing:-.025em}
+.gi .rooms em{font-style:normal;font-size:13px;color:var(--soft);font-variant-numeric:tabular-nums}
+.gi .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:52px}
+.gi .cols h2{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);font-weight:500;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.gi .cols a{display:block;padding:10px 0;font-size:18px;text-decoration:none;letter-spacing:-.01em}
+.gi .cols a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.gi .how{margin-top:52px;padding:22px 24px;background:var(--paper);border-radius:12px;font-size:14px;color:var(--ink2)}
+.gi .how b{font-weight:500;color:var(--ink)}
+
+/* ---------- zoom ---------- */
+.zoom{position:fixed;inset:0;z-index:60;background:#f3f2ee;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.zoom.on{opacity:1;pointer-events:auto}
+.z-stage{position:absolute;inset:70px 90px 80px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in;touch-action:none}
+.z-stage.zoomed{cursor:grab}
+.z-stage img{max-width:100%;max-height:100%;width:auto;height:auto;flex:none;object-fit:contain;transform-origin:0 0;will-change:transform;user-select:none;-webkit-user-drag:none;box-shadow:0 18px 40px -22px rgba(40,34,24,.35)}
+.z-cap{position:absolute;left:32px;right:32px;bottom:26px;display:flex;justify-content:space-between;gap:20px;font-size:13px;color:var(--ink2)}
+.z-cap b{font-weight:500;color:var(--ink)}
+.z-cap span:last-child{color:var(--soft)}
+.zoom .x{top:20px;right:24px}
+.z-nav{position:absolute;top:50%;width:46px;height:46px;border-radius:50%;border:1px solid rgba(22,22,21,.14);display:grid;place-items:center;transform:translateY(-50%);background:rgba(251,250,247,.8)}
+.z-nav:hover{border-color:var(--ink)}
+.z-nav svg{width:16px;height:16px}
+.z-prev{left:24px}.z-next{right:24px}
+
+/* ---------- flat gallery ---------- */
+#flat{display:none;padding:120px 56px 80px}
+body.flat.inside #flat{display:block}
+.f-intro{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;padding-bottom:40px;border-bottom:1px solid var(--ink)}
+.f-intro h1{font-size:clamp(44px,6vw,88px);line-height:.92;letter-spacing:-.05em;font-weight:500}
+.f-intro p{color:var(--ink2);max-width:420px;justify-self:end}
+.f-room{display:grid;grid-template-columns:260px 1fr;gap:48px;padding:56px 0 72px;border-bottom:1px solid var(--line)}
+.f-head{position:sticky;top:96px;align-self:start}
+.f-head .n{font-size:12px;color:var(--soft);letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.f-head h2{font-size:32px;font-weight:500;letter-spacing:-.03em;line-height:1.05;margin-top:10px}
+.f-head p{margin-top:10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);font-weight:500}
+.f-hang{display:flex;flex-wrap:wrap;gap:56px 48px;align-items:flex-end}
+.f-work{text-decoration:none;display:block}
+.f-work .pic{height:260px;background:#fff;box-shadow:0 14px 26px -18px rgba(40,34,24,.4);transition:transform .6s var(--ease)}
+.f-work .pic img{height:100%;width:auto}
+.f-work:hover .pic{transform:translateY(-4px)}
+.f-work.framed .pic{padding:12px;background:#fff;outline:6px solid var(--oak);outline-offset:-6px}
+.f-cap{margin-top:14px;font-size:13px;line-height:1.4}
+.f-cap b{font-weight:500;display:block}
+.f-cap span{color:var(--soft);display:block}
+.f-cap .no{font-size:11px;color:var(--soft);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.f-empty{height:260px;width:min(520px,100%);border:1px dashed rgba(22,22,21,.25);display:grid;place-items:center;color:var(--soft);font-size:14px}
+.f-press{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:44px}
+.f-press .item{text-decoration:none}
+.f-press .item img{width:100%;height:240px;object-fit:cover}
+.f-press .item .ph{height:240px;background:var(--sheet);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;padding:18px;font-weight:500;font-size:18px;letter-spacing:-.01em;line-height:1.2}
+.f-press .item .ph small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:8px}
+.f-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;padding-top:36px;font-size:12px;color:var(--soft)}
+.f-foot nav{display:flex;gap:20px;flex-wrap:wrap}
+.f-foot a{text-decoration:none}
+.f-foot a:hover{color:var(--ink)}
+/* flat detail: image beside the label */
+body.flat .detail{left:0;width:auto;border:0;flex-direction:row;transform:translateY(12px);opacity:0;pointer-events:none;transition:opacity .6s var(--ease),transform .8s var(--ease)}
+body.flat .detail.on{transform:none;opacity:1;pointer-events:auto}
+body.flat .d-figure{display:grid;place-items:center;flex:1;padding:90px 60px 60px;background:#f1f0ec}
+body.flat .d-figure img{max-height:calc(100vh - 170px);max-width:100%;width:auto;object-fit:contain;box-shadow:0 22px 44px -26px rgba(40,34,24,.45);cursor:zoom-in}
+body.flat .d-body{width:440px;flex:none}
+
+@media (max-width:900px){
+  .detail{width:100%;top:auto;height:58vh;border-left:0;border-top:1px solid var(--line);transform:translateY(100%)}
+  .d-body{padding:34px 24px 28px}
+  .d-body h2{font-size:32px}
+  body.flat .detail{flex-direction:column;height:100%;top:0}
+  body.flat .d-figure{flex:none;padding:84px 24px 24px}
+  body.flat .d-figure img{max-height:52vh}
+  body.flat .d-body{width:auto}
+}
+@media (max-width:760px){
+  .bar{padding:16px 16px}
+  .mark small{display:none}
+  .w-block{padding:96px 20px 0}
+  .welcome h1{font-size:clamp(52px,16vw,76px);margin-left:-3px}
+  .w-roles{font-size:17px}
+  .w-text{font-size:15px}
+  .w-foot{padding:0 20px 20px;flex-direction:column;gap:10px}
+  .w-foot ol{gap:8px 16px}
+  .w-draw{bottom:150px;left:16px;right:16px}
+  .w-foot ol{display:none}
+  #flat{padding:92px 16px 48px}
+  .f-intro{grid-template-columns:1fr;gap:18px}
+  .f-intro p{justify-self:start}
+  .f-room{grid-template-columns:1fr;gap:24px;padding:40px 0 48px}
+  .f-head{position:static}
+  .f-hang{display:grid;grid-template-columns:1fr 1fr;gap:34px 16px}
+  .f-work .pic{height:auto}
+  .f-work .pic img{width:100%;height:auto}
+  .leaf-sheet{width:100%}
+  .run{padding:18px 20px 14px}
+  .leaf-in{padding:36px 20px 64px}
+  .folio{padding:20px}
+  .doc h1,.gi h1{font-size:40px}
+  .doc .note{grid-template-columns:1fr;gap:6px}
+  .gi .cols{grid-template-columns:1fr 1fr;gap:24px}
+  .z-stage{inset:64px 12px 90px}
+  .z-nav{top:auto;bottom:22px;transform:none}
+  .z-cap{bottom:80px;flex-direction:column;gap:4px;left:16px}
+  .z-cap span:last-child{display:none}
+  .z-prev{left:16px}.z-next{right:16px}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
+</style>
+</head>
+<body class="at-welcome">
+
+<canvas id="scene" aria-label="A walkable 3D gallery pavilion holding the works" tabindex="0"></canvas>
+<div id="veil"></div>
+
+<header class="bar">
+  <a class="mark" href="#gallery">Cody Saxton <small id="where">Foyer</small></a>
+  <nav>
+    <button class="chip" id="modebtn" type="button">List view</button>
+    <a class="chip" href="#guide">Guide</a>
+  </nav>
+</header>
+
+<!-- welcome: the pavilion from outside -->
+<section class="welcome" aria-label="Welcome">
+  <div class="w-block">
+    <p class="eyebrow"><span>Welcome</span><i></i><span>Amsterdam, Netherlands</span></p>
+    <h1>Cody Saxton</h1>
+    <p class="w-roles"><span>Illuminator</span><span>Art &amp; Life</span></p>
+    <p class="w-text">Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.</p>
+    <div class="w-actions">
+      <a class="enter" href="#gallery">Enter <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 9h13M10 4l5 5-5 5"/></svg></a>
+      <a class="alt" id="altlink" href="#gallery" data-mode="flat">View the works as a list</a>
+    </div>
+  </div>
+  <div class="w-foot">
+    <ol>
+      <li><span class="tn">01</span>Foyer</li>
+      <li><span class="tn">02</span>ink-lings</li>
+      <li><span class="tn">03</span>color wonderings</li>
+      <li><span class="tn">04</span>terracotta subconscious</li>
+      <li><span class="tn">05</span>Exhibitions &amp; Press</li>
+    </ol>
+    <span>Illuminator Omnimedia</span>
+  </div>
+</section>
+<div class="w-draw" aria-hidden="true">
+  <svg viewBox="120 90 1240 184" preserveAspectRatio="xMidYMax meet">
+    <line x1="0" y1="262" x2="1440" y2="262" stroke="#161615" stroke-opacity=".25"/>
+    <rect x="200" y="250" width="1080" height="12" fill="#ebe8e1" stroke="#161615" stroke-opacity=".35"/>
+    <rect x="236" y="120" width="1008" height="130" fill="#faf9f6" stroke="#161615" stroke-opacity=".55"/>
+    <rect x="236" y="120" width="1008" height="30" fill="#161615" fill-opacity=".045"/>
+    <rect x="186" y="106" width="1108" height="14" fill="#faf9f6" stroke="#161615" stroke-opacity=".7"/>
+    <rect x="300" y="182" width="44" height="68" fill="#d8cdb9" stroke="#161615" stroke-opacity=".5"/>
+    <text x="372" y="176" font-family="Geist, sans-serif" font-size="11" letter-spacing="3.6" fill="#161615" fill-opacity=".75">CODY SAXTON</text>
+  </svg>
+</div>
+
+<!-- flat gallery (no WebGL, reduced motion, small screens, or by choice) -->
+<main id="flat" aria-label="The works"></main>
+
+<!-- floor plan -->
+<div class="plan" id="plan" aria-label="Floor plan">
+  <div class="plan-name" id="plan-name"><span class="tn">01</span>Foyer</div>
+  <svg id="plan-svg" width="244" height="44" viewBox="-1 -1 246 46"></svg>
+  <div class="plan-keys">Click the floor to walk. Drag to look. Keys W A S D.</div>
+</div>
+<div class="hint" id="hint">Click the floor to walk, drag to look, click a work to see it closely.</div>
+<div class="tip" id="tip"></div>
+
+<!-- work detail -->
+<aside class="detail" id="detail" aria-label="Work details">
+  <div class="d-figure"><img id="d-img" alt=""></div>
+  <div class="d-body">
+    <button class="x" id="d-close" aria-label="Close"><svg viewBox="0 0 14 14" stroke="currentColor" stroke-width="1.3"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
+    <div class="d-head"><span class="eyebrow" id="d-series"></span><span class="eyebrow tn" id="d-no"></span></div>
+    <h2 id="d-title"></h2>
+    <p class="d-med" id="d-med"></p>
+    <div id="d-sale">
+      <p class="d-price tn" id="d-price"></p>
+      <p class="d-ship">Includes packaging. Shipping calculated at checkout.</p>
+      <a class="buy" id="d-buy" href="#" rel="noopener">Purchase</a>
+      <p class="d-law">Right of withdrawal within 14 days under EU consumer law — see <a href="#terms">terms</a>.</p>
+    </div>
+    <p class="d-ph" id="d-ph">Placeholder, image repeats an existing work</p>
+    <div class="d-text" id="d-text"></div>
+    <div class="d-tools">
+      <button class="btn" id="d-zoom" type="button">Full view</button>
+      <button class="btn" id="d-prev" type="button">Previous</button>
+      <button class="btn" id="d-next" type="button">Next</button>
+    </div>
+  </div>
+</aside>
+
+<!-- zoomable full view -->
+<div class="zoom" id="zoom" aria-label="Full view" role="dialog">
+  <div class="z-stage" id="z-stage"><img id="z-img" alt=""></div>
+  <div class="z-cap"><span id="z-cap"></span><span>Click or scroll to zoom. Drag to move. Esc to close.</span></div>
+  <button class="x" id="z-close" aria-label="Close"><svg viewBox="0 0 14 14" stroke="currentColor" stroke-width="1.3"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
+  <button class="z-nav z-prev" id="z-prev" aria-label="Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M10 3L5 8l5 5"/></svg></button>
+  <button class="z-nav z-next" id="z-next" aria-label="Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 3l5 5-5 5"/></svg></button>
+</div>
+
+<!-- the visitor guide: index and pages -->
+<div class="leaf" id="leaf" aria-label="Visitor guide">
+  <div class="leaf-sheet" id="leaf-sheet">
+    <div class="run"><span>Cody Saxton &middot; Visitor guide</span><button class="x" id="leaf-close" aria-label="Close"><svg viewBox="0 0 14 14" stroke="currentColor" stroke-width="1.3"><path d="M1 1l12 12M13 1L1 13"/></svg></button></div>
+    <div class="leaf-in">
+      <section class="page gi" data-page="guide">
+        <h1>Guide</h1>
+        <p class="lede">Cody Saxton, Illuminator Omnimedia. Art and Illustrations to illuminate ways toward a Healed World.</p>
+        <ol class="rooms" id="gi-rooms"></ol>
+        <div class="cols">
+          <div><h2>The practice</h2><a href="#about">About</a><a href="#thoughts">Thoughts</a><a href="#workshops">Workshops</a><a href="#news">News</a><a href="#contact">Contact</a></div>
+          <div><h2>Information</h2><a href="#imprint">Imprint</a><a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="https://www.instagram.com/codysaxtonart/" rel="noopener">Instagram @codysaxtonart</a><a href="mailto:invigorated@proton.me">invigorated@proton.me</a></div>
+        </div>
+        <p class="how" id="gi-how"><b>Walking the pavilion.</b> Click the floor to walk there, drag to look around, click a work to walk up to it. W A S D or the arrow keys also work. The floor plan in the corner jumps between rooms.</p>
+      </section>
+<section class="page" data-page="workshops">
+  <article class="doc">
+    <h1>Workshops</h1>
+    <p class="lede">Small in-person sessions around meaning making and creativity. Dates and venues are announced here when scheduled.</p>
+    <h2>Upcoming</h2>
+    <p>More to come soon. Add yourself to the mailing list via the <a class="u" href="#contact">contact form</a> to be notified.</p>
+    <h2>Past</h2>
+    <div class="entry">
+      <h3>Markmaking as Metaphor. OBA Oosterdok. May 2024.</h3>
+      <p>Exploring unusual mark-making techniques and visual vocabulary translation.</p>
+    </div>
+    <div class="entry"><h3>Personal Rituals. OBA Oosterdok. June 2024.</h3></div>
+    <div class="entry"><h3>Design Your Life. OBA Oosterdok. May 2024.</h3></div>
+  </article>
+</section>
+
+<section class="page" data-page="thoughts">
+  <article class="doc">
+    <h1>Thoughts</h1>
+    <p class="lede">Notes from the studio — fragments on everything: art, philosophy, process to influences and relevant tangents. Posts will appear here as they're written.</p>
+    <div style="margin-top:64px">
+      <div class="note"><time datetime="2026-09-10">10 September 2026</time><p>“Let everything happen to you: beauty, terror. Just keep going. No feeling is final.” — Rainer Maria Rilke (exerpt from Go To The Limits of Your Longing)</p></div>
+      <div class="note"><time datetime="2026-08-28">28 August 2026</time><p>With every trip around the sun, I think of all the good to come. Planting trees and helping friends, building Gaia up again.</p></div>
+      <div class="note"><time datetime="2026-08-15">15 August 2026</time><p>Leaping from a bridge into the Aare River in Bern, Switzerland was transformational...it feels like a part of me from long ago woke up from hibernation. I hesitated, nervous, and then remembered: "You don't have to go alone." When two women stepped over the railing, I broke with my habit of hyperindependence and asked to jump with them. They said "Of Course!"" And off we went, into the beautiful, clear, racing water. The power of secure attachment...can't say how much I feel glad for all I have learned over these years.</p></div>
+      <div class="note"><time datetime="2026-07-15">15 July 2026</time><p>Overnight train to Zurich, onto Milan...then trekking in the Italian Alps with silly friends. The mountains hold some power that exists nowhere in The Netherlands---they charge my battery with something so necessary. The lowlands have convenient bicycling and interesting international culture, among other things...but the nature ain't nature-ing. The word soul, or maybe the sense of connectedness to our Earth, tends to feel watery and diffuse in the swamp.</p></div>
+      <div class="note"><time datetime="2026-06-22">22 June 2026</time><p>Art is to make and speak and act in alignment with your highest-held values—it is real freedom.</p></div>
+      <div class="note"><time datetime="2026-05-21">21 May 2026</time><p>“Everything is art. Everything is politics.” — Ai Weiwei</p></div>
+      <div class="note"><time datetime="2026-05-19">19 May 2026</time><p>Ideas should be shared, explored and examined with others. I see each of us as an entirely unique little sensor of the specifics our particular nook of the universe--the view from "in here". When we transmit our condition and collected data--our perspective--the collective can include it to gain an unbiased understanding of the world. When we are silent, our view of the universe is wasted.</p></div>
+    </div>
+  </article>
+</section>
+
+<section class="page" data-page="news">
+  <article class="doc">
+    <h1>News</h1>
+    <p class="lede">Announcements, new series, and upcoming shows. Nothing fresh just yet — check back soon.</p>
+  </article>
+</section>
+
+<section class="page" data-page="about">
+  <article class="doc">
+    <h1>About</h1>
+    <p class="lede">Cody Saxton, Illuminator Omnimedia</p>
+    <h2>Practice</h2>
+    <p>Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands. All works are sold unframed unless otherwise indicated, shipping is additional. 10% of sales donated to reforestation and degrowth efforts. No returns are possible at this time. Any items damaged in shipping must be claimed through insurance by the buyer. Transactions are conducted in Euros. Payment in full must be received prior to shipping. Payments can be made by Mollie or direct IBAN deposit: NL55SNSB8841074353 Illuminator Omnimedia. KVK #91859476 Registered business address: Bankwerkerij 159, Amsterdam NL 1021NT. Live contact through Instagram <a class="u" href="https://www.instagram.com/codysaxtonart/" rel="noopener">@codysaxtonart</a> or <a class="u" href="mailto:invigorated@proton.me">invigorated@proton.me</a>.</p>
+
+    <h2>Exhibitions &amp; Press</h2>
+    <div class="entry">
+      <span class="when">November 2026</span>
+      <h3>Things</h3>
+      <p>Upcoming: PopUp show of selected works at Things.</p>
+    </div>
+    <div class="entry">
+      <span class="when">June 2025</span>
+      <h3>Plum Village, France: Science, Zen and the Art of Health retreat</h3>
+      <p>Participant, Plum Village retreat : The Wonder of It All</p>
+    </div>
+    <div class="entry">
+      <span class="when">Nov 2023</span>
+      <h3>Open Gallery Exhibition 2023</h3>
+      <p>5 piece series, shown as part of group show of the Amsterdam International Artist Collective gallery.</p>
+      <figure class="mid"><img src="img/aiac-install-photo.jpg" width="1500" height="2000" alt="Five framed works hung on a white gallery wall, with two people standing beside them" loading="lazy"></figure>
+    </div>
+    <div class="entry">
+      <span class="when">July 2020</span>
+      <h3>Pandemic Testing Shelter, newspaper coverage in Albuquerque Journal.</h3>
+      <p>Newspaper article described and pictured my invention, development with engineers and deployment at Sandia National Laboratories to build and deploy an alternative PPE system as a shortage threatened early in the Covid-19 pandemic. Building plans were released open-source, so other institutions built their own versions to protect healthcare workers at testing sites around New Mexico.</p>
+      <a class="pdf" href="img/albuquerque-journal-2020.pdf" target="_blank" rel="noopener">Read the article (PDF)</a>
+    </div>
+    <div class="entry">
+      <span class="when">designed 2005</span>
+      <h3>T-shirt design for Rojas, worn by Rosario Dawson in Quentin Tarantino's 2007 film Deathproof</h3>
+      <p>Film wardrobe piece for Deathproof (grossed 31.1 USD at box office). Unicorn t-shirt graphic designed for Freddy Rojas' Los Angeles clothing brand, Rojas.</p>
+      <figure class="small"><img src="img/deathproof-rojas-tshirt.jpg" width="1600" height="1073" alt="Film still from Deathproof showing the Rojas unicorn t-shirt" loading="lazy"></figure>
+    </div>
+  </article>
+</section>
+
+<section class="page" data-page="contact">
+  <article class="doc">
+    <h1>Contact</h1>
+    <p class="lede">For purchases, exhibition enquiries, or workshop dates — use the form below or write to <a class="u" href="mailto:invigorated@proton.me">invigorated@proton.me</a>.</p>
+    <form class="form" id="contact-form" action="mailto:invigorated@proton.me" method="post" enctype="text/plain">
+      <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="f-subject">Subject (optional)</label><input id="f-subject" name="subject"></div>
+      <div class="field"><label for="f-message">Message</label><textarea id="f-message" name="message" required></textarea></div>
+      <div class="hp" aria-hidden="true"><label for="f-website">Leave this empty</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
+      <button class="send" type="submit">Send message</button>
+    </form>
+  </article>
+</section>
+
+<section class="page" data-page="imprint">
+  <article class="doc legal">
+    <h1>Imprint</h1>
+    <p>Instagram <a class="u" href="https://www.instagram.com/codysaxtonart/" rel="noopener">@codysaxtonart</a></p>
+    <h2>Responsible for content</h2>
+    <p class="addr">[Illuminator Omnimedia]<br>[Bankwerkerij 159]<br>[1021 NT, Amsterdam]<br>[NL]</p>
+    <h2>Contact</h2>
+    <p>Email: <a class="u" href="mailto:invigorated@proton.me">invigorated@proton.me</a></p>
+    <h2>VAT / Chamber of Commerce</h2>
+    <p>KvK / HRB number: [91859476]<br>VAT ID: [upon request]</p>
+  </article>
+</section>
+
+<section class="page" data-page="privacy">
+  <article class="doc legal">
+    <h1>Privacy notice</h1>
+    <p class="soft">Last reviewed: 2026-05-11</p>
+    <p>This notice explains what personal data this site collects, why, who else sees it, and what you can do about it. The site is small and intentionally light: no analytics, no advertising, no tracking cookies.</p>
+
+    <h2>1. Who is responsible</h2>
+    <p class="addr">Controller: [LEGAL_NAME]<br>[STREET_ADDRESS]<br>[POSTAL_CODE_CITY]<br>[COUNTRY]<br>Email: [EMAIL]<br>KvK / Chamber of Commerce: [KVK_NUMBER]<br>VAT ID: [VAT_ID]</p>
+    <p>For any privacy question, email the address above. We will respond within 30 days.</p>
+
+    <h2>2. What we collect, and why</h2>
+    <h3>a) Just visiting the site</h3>
+    <p>When you load a page, our hosting provider (TransIP B.V., Netherlands) records standard server logs: your IP address, the URL you requested, the time of the request, your browser identifier (User-Agent), and the referring page.</p>
+    <div class="kv"><p>Purpose: to keep the site running and detect abuse.</p><p>Legal basis: legitimate interest (GDPR Art. 6(1)(f)).</p><p>Retention: TransIP rotates server logs within roughly 30 days.</p></div>
+    <h3>b) Buying an artwork</h3>
+    <p>When you click "Purchase" on an artwork page, you are redirected to Mollie B.V. (Netherlands). Mollie collects what the payment method requires — typically your name, email address, billing address, and, where shipping collection is enabled, your shipping address. Payment details (card number, bank account) stay with Mollie; we never see or store them.</p>
+    <p>After a successful payment, Mollie sends us a confirmation email containing your name, email, and shipping address so we can ship the work.</p>
+    <div class="kv"><p>Purpose: process the sale and ship the artwork.</p><p>Legal basis: performance of a contract (GDPR Art. 6(1)(b)).</p><p>Retention: order records are kept for 7 years as required by Dutch tax law (Algemene wet inzake rijksbelastingen, art. 52).</p></div>
+    <h3>c) Emailing us</h3>
+    <p>If you write to us at the contact address, we receive whatever you put in the email — typically your email address, your name, and the content of your message.</p>
+    <div class="kv"><p>Purpose: to reply.</p><p>Legal basis: legitimate interest, or pre-contractual measures if the email concerns a possible purchase.</p><p>Retention: up to 3 years, unless the correspondence relates to a sale — in which case the 7-year tax-record retention above applies.</p></div>
+    <h3>d) Shipping</h3>
+    <p>To ship a purchased artwork we share your name and shipping address with our carrier ([SHIPPING_CARRIER]). The carrier acts as a separate controller for that data and you should consult their own privacy notice for how they handle it.</p>
+
+    <h2>3. Who else processes your data</h2>
+    <p>We rely on a small number of service providers. None of them sell or share your data for advertising:</p>
+    <ul>
+      <li>TransIP B.V. — hosting, server logs, daily backups. Netherlands (EU).</li>
+      <li>Mollie B.V. — payment processing. Netherlands (EU). See <a class="u" href="https://www.mollie.com/privacy" rel="noopener">Mollie's privacy notice</a>.</li>
+      <li>[EMAIL_PROVIDER] — email inbox. [EMAIL_PROVIDER_LOCATION].</li>
+      <li>[SHIPPING_CARRIER] — delivery. [COUNTRY].</li>
+    </ul>
+    <p>We do not sell or rent your data. We share it only with the parties above, and only as needed to operate the site, process your order, and deliver your purchase — or where we are required to by law.</p>
+
+    <h2>4. International transfers</h2>
+    <p>All processing happens within the EU/EEA. We do not transfer your personal data to countries outside the EU/EEA. (Should that ever change — for example if we add a service hosted elsewhere — this notice will be updated before the transfer starts.)</p>
+
+    <h2>5. Cookies and tracking</h2>
+    <p>This site sets no cookies of its own. We use no analytics (no Google Analytics, no Plausible, no Matomo), no tracking pixels, no advertising scripts, and no embedded social media widgets. Because of this, we do not show a cookie banner.</p>
+    <p>Note that Mollie's checkout pages — which you are redirected to when you press "Purchase" — set their own cookies. Those are governed by Mollie's privacy policy linked above.</p>
+
+    <h2>6. Your rights</h2>
+    <p>Under the GDPR you have the right to:</p>
+    <ul>
+      <li>access the personal data we hold about you;</li>
+      <li>rectify inaccurate or incomplete data;</li>
+      <li>erase your data ("right to be forgotten"), within the limits of our legal retention obligations (notably the 7-year tax records);</li>
+      <li>restrict processing of your data;</li>
+      <li>data portability — receive your data in a machine-readable format;</li>
+      <li>object to processing based on legitimate interest; and</li>
+      <li>withdraw consent, where consent was the legal basis.</li>
+    </ul>
+    <p>To exercise any of these, email [EMAIL]. We will respond within 30 days.</p>
+    <p>You also have the right to lodge a complaint with your national supervisory authority. In the Netherlands this is <a class="u" href="https://autoriteitpersoonsgegevens.nl" rel="noopener">Autoriteit Persoonsgegevens</a>.</p>
+
+    <h2>7. Children</h2>
+    <p>This site is not directed at children under 16. We do not knowingly collect data from children. If you believe a child has provided personal data to us, please contact us so we can remove it.</p>
+
+    <h2>8. Security</h2>
+    <p>The site is served exclusively over HTTPS (TLS) using a certificate issued by Let's Encrypt and auto-renewed by TransIP. Order data lives only in our email inbox and in Mollie's systems; we do not operate a customer database.</p>
+
+    <h2>9. Changes to this notice</h2>
+    <p>We may update this notice when our processing changes — for example, when we add a new shipping carrier or switch hosting provider. Material changes are reflected in the "last reviewed" date at the top of the page.</p>
+
+    <h2>10. Contact</h2>
+    <p>For any privacy question or rights request: [EMAIL].</p>
+  </article>
+</section>
+
+<section class="page" data-page="terms">
+  <article class="doc legal">
+    <h1>Terms &amp; Conditions</h1>
+    <p class="soft">This is a placeholder for the legally required terms. Replace with vetted text — consider iubenda or a local accountant/lawyer before launch.</p>
+    <h2>Prices and VAT</h2>
+    <p>All prices in euro. VAT treatment depends on the small-business scheme — confirm with an accountant whether VAT must be added to listed prices.</p>
+    <h2>Payment</h2>
+    <p>Payments are processed by Mollie. Accepted methods depend on what is enabled per payment link (iDEAL, cards, etc.).</p>
+    <h2>Shipping</h2>
+    <p>Originals are packed and shipped within 5 working days of payment. Shipping cost and method are agreed by email after purchase.</p>
+    <h2>Right of withdrawal (EU)</h2>
+    <p>You have 14 days from receipt to withdraw from the purchase without giving a reason. Send an email to hello@example.com to start the return. Pieces must be returned in their original condition at your expense; the purchase price is refunded within 14 days of receipt of the returned work.</p>
+    <h2>Originals as "made to order"</h2>
+    <p>Some original works may be exempt from the right of withdrawal as personalised or made-to-order goods. If so, it will be stated on the artwork page. Otherwise the standard 14-day right above applies.</p>
+    <h2>Liability</h2>
+    <p>Damage in transit: notify within 7 days of delivery with photos so a claim can be filed with the carrier.</p>
+  </article>
+</section>
+
+
+    </div>
+    <div class="folio"><span id="folio-l">Cody Saxton</span><span class="tn" id="folio-r"></span></div>
+  </div>
+</div>
+
+<script type="module">
+const $ = s => document.querySelector(s);
+const body = document.body;
+const PAGES = ['guide','about','thoughts','workshops','news','contact','imprint','privacy','terms'];
+const PAGE_NAMES = {guide:'Guide',about:'About',thoughts:'Thoughts',workshops:'Workshops',news:'News',contact:'Contact',imprint:'Imprint',privacy:'Privacy notice',terms:'Terms & Conditions'};
+
+/* rooms of the pavilion, laid out west to east (metres) */
+const ROOMS = [
+  {key:'foyer', slug:'foyer', name:'Foyer', no:'01', x0:0, x1:6},
+  {key:'ink-lings', slug:'ink-lings', name:'ink-lings', no:'02', x0:6, x1:30, series:true},
+  {key:'color wonderings', slug:'color-wonderings', name:'color wonderings', no:'03', x0:30, x1:38, series:true},
+  {key:'terracotta subconscious', slug:'terracotta-subconscious', name:'terracotta subconscious', no:'04', x0:38, x1:50, series:true},
+  {key:'archive', slug:'exhibitions-and-press', name:'Exhibitions & Press', no:'05', x0:50, x1:58}
+];
+const PRESS = [
+  {id:'open-gallery-2023', when:'Nov 2023', title:'Open Gallery Exhibition 2023', text:'5 piece series, shown as part of group show of the Amsterdam International Artist Collective gallery.', img:'img/aiac-install-photo.jpg', w:1500, h:2000, alt:'Five framed works hung on a white gallery wall, with two people standing beside them'},
+  {id:'albuquerque-journal-2020', when:'July 2020', title:'Pandemic Testing Shelter, newspaper coverage in Albuquerque Journal.', text:'Newspaper article described and pictured my invention, development with engineers and deployment at Sandia National Laboratories to build and deploy an alternative PPE system as a shortage threatened early in the Covid-19 pandemic. Building plans were released open-source, so other institutions built their own versions to protect healthcare workers at testing sites around New Mexico.', pdf:'img/albuquerque-journal-2020.pdf'},
+  {id:'deathproof-2005', when:'designed 2005', title:"T-shirt design for Rojas, worn by Rosario Dawson in Quentin Tarantino's 2007 film Deathproof", text:"Film wardrobe piece for Deathproof (grossed 31.1 USD at box office). Unicorn t-shirt graphic designed for Freddy Rojas' Los Angeles clothing brand, Rojas.", img:'img/deathproof-rojas-tshirt.jpg', w:1600, h:1073, alt:'Film still showing the Rojas unicorn t-shirt'}
+];
+const TIMELINE = [
+  ['November 2026','Things','Upcoming: PopUp show of selected works at Things.'],
+  ['June 2025','Plum Village, France: Science, Zen and the Art of Health retreat','Participant, Plum Village retreat : The Wonder of It All'],
+  ['Nov 2023','Open Gallery Exhibition 2023','Amsterdam International Artist Collective gallery'],
+  ['July 2020','Pandemic Testing Shelter','Albuquerque Journal'],
+  ['designed 2005','T-shirt design for Rojas','Deathproof']
+];
+
+let DATA, WORKS = [], SERIES = {};
+const qs = new URLSearchParams(location.search);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const canGL = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch(e){ return false; } })();
+const narrow = () => innerWidth < 760;
+let pref = null; try { pref = sessionStorage.getItem('pavilion-mode'); } catch(e){}
+let mode = qs.get('mode') || pref || ((canGL && !reduce && !narrow()) ? '3d' : 'flat');
+if (!canGL) mode = 'flat';
+
+const S = { place:null, three:null, current:null, page:null };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const priceTxt = w => w.price != null ? '€' + w.price : '';
+const medTxt = w => w.placeholder ? w.medium : (w.medium + (w.year ? ', ' + w.year : ''));
+const pad = n => String(n).padStart(2,'0');
+
+/* ---------------- data ---------------- */
+async function load(){
+  DATA = await fetch('works.json').then(r => r.json());
+  WORKS = DATA.works.slice().sort((a,b) => a.no - b.no);
+  DATA.series.forEach(s => SERIES[s.key] = s);
+}
+
+/* ---------------- flat gallery ---------------- */
+function buildFlat(){
+  const el = $('#flat');
+  let h = `<div class="f-intro"><h1>Cody Saxton</h1><p>Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.</p></div>`;
+  for (const r of ROOMS){
+    if (r.key === 'foyer') continue;
+    const ws = WORKS.filter(w => w.series === r.key);
+    const s = SERIES[r.key];
+    h += `<section class="f-room" id="f-${r.slug}"><div class="f-head"><span class="n">Room ${r.no}</span><h2>${esc(r.name)}</h2>`;
+    if (s) h += `<p>${esc(s.line)}</p>`;
+    if (r.series) h += `<p>${ws.length ? ws.length + ' works' : 'No works on view yet'}</p>`;
+    h += `</div>`;
+    if (r.key === 'archive'){
+      h += `<div class="f-press">` + PRESS.map(p => `<a class="item" href="#press/${p.id}">${p.img ? `<img src="${p.img}" alt="${esc(p.alt)}" loading="lazy">` : `<div class="ph"><small>${esc(p.when)}</small>Albuquerque Journal</div>`}<div class="f-cap"><span class="no">${esc(p.when)}</span><b>${esc(p.title)}</b></div></a>`).join('') + `</div>`;
+    } else if (!ws.length){
+      h += `<div class="f-hang"><div class="f-empty">This room is empty. No works from the series are on view yet.</div></div>`;
+    } else {
+      h += `<div class="f-hang">` + ws.map(w => `<a class="f-work${w.series==='terracotta subconscious'?' framed':''}" href="#work/${w.slug}"><div class="pic" style="aspect-ratio:${w.w}/${w.h}"><img src="img/${w.image}" alt="${esc(w.alt)}" width="${w.w}" height="${w.h}" loading="lazy"></div><div class="f-cap"><span class="no">${pad(w.no)}</span><b>${esc(w.title)}</b><span>${esc(w.placeholder ? w.series + ', ' + w.medium : medTxt(w))}</span>${w.price!=null?`<span>${priceTxt(w)}</span>`:''}</div></a>`).join('') + `</div>`;
+    }
+    h += `</section>`;
+  }
+  h += `<div class="f-foot"><span>Cody Saxton &middot; Illuminator Omnimedia &middot; Amsterdam</span><nav><a href="#about">About</a><a href="#thoughts">Thoughts</a><a href="#workshops">Workshops</a><a href="#news">News</a><a href="#contact">Contact</a><a href="#imprint">Imprint</a><a href="#privacy">Privacy</a><a href="#terms">Terms</a></nav></div>`;
+  el.innerHTML = h;
+}
+function buildGuide(){
+  $('#gi-rooms').innerHTML = ROOMS.map(r => {
+    const n = r.series ? WORKS.filter(w => w.series === r.key).length : null;
+    const note = r.key==='foyer' ? 'Entrance' : r.key==='archive' ? 'Photographs and press' : (n ? n + ' works' : 'No works yet');
+    return `<li><a href="#room/${r.slug}"><span class="n">${r.no}</span><b>${esc(r.name)}</b><em>${note}</em></a></li>`;
+  }).join('');
+}
+
+/* ---------------- mode ---------------- */
+function applyMode(){
+  body.classList.toggle('flat', mode === 'flat');
+  body.classList.toggle('m3d', mode === '3d');
+  $('#modebtn').textContent = mode === '3d' ? 'List view' : (narrow() ? 'Walk in 3D' : 'Walk the pavilion');
+  $('#modebtn').hidden = !canGL && mode === 'flat';
+  $('#altlink').hidden = mode === 'flat';
+  $('#gi-how').hidden = mode === 'flat';
+  $('#scene').style.display = mode === '3d' ? '' : 'none';
+}
+async function setMode(m){
+  if (m === mode) return;
+  mode = m; try { sessionStorage.setItem('pavilion-mode', m); } catch(e){}
+  applyMode();
+  if (mode === '3d' && !S.three){ S.three = await init3D(); if (!S.three){ mode='flat'; applyMode(); } }
+  if (S.three) S.three.active(mode === '3d');
+  S.place = null; route();
+}
+$('#modebtn').addEventListener('click', () => setMode(mode === '3d' ? 'flat' : '3d'));
+$('#altlink').addEventListener('click', e => { e.preventDefault(); mode = '3d'; setMode('flat').then(() => { location.hash = '#gallery'; }); });
+
+/* ---------------- detail panel ---------------- */
+function seqFor(item){ return item.kind === 'press' ? PRESS.filter(p => p.img || p.pdf).map(p => ({kind:'press', p})) : WORKS.map(w => ({kind:'work', w})); }
+function openWorkPanel(w){
+  S.current = {kind:'work', w};
+  $('#d-series').textContent = w.series;
+  $('#d-no').textContent = 'No. ' + pad(w.no);
+  $('#d-title').textContent = w.title;
+  $('#d-med').textContent = medTxt(w);
+  const sale = !w.placeholder && w.price != null;
+  $('#d-sale').hidden = !sale;
+  if (sale){
+    $('#d-price').textContent = priceTxt(w);
+    $('#d-buy').textContent = 'Purchase — ' + priceTxt(w);
+    $('#d-buy').href = 'https://codysaxton.eu/checkout.php?slug=' + encodeURIComponent(w.slug);
+  }
+  $('#d-ph').hidden = !w.placeholder;
+  $('#d-text').innerHTML = '';
+  $('#d-zoom').hidden = false;
+  const img = $('#d-img'); img.src = 'img/' + w.image; img.alt = w.alt;
+  showPanel();
+}
+function openPressPanel(p){
+  S.current = {kind:'press', p};
+  $('#d-series').textContent = 'Exhibitions & Press';
+  $('#d-no').textContent = p.when;
+  $('#d-title').textContent = p.title;
+  $('#d-med').textContent = '';
+  $('#d-sale').hidden = true; $('#d-ph').hidden = true;
+  $('#d-text').innerHTML = `<p>${esc(p.text)}</p>` + (p.pdf ? `<a class="btn" href="${p.pdf}" target="_blank" rel="noopener">Read the article (PDF)</a>` : '');
+  $('#d-zoom').hidden = !p.img;
+  const img = $('#d-img');
+  if (p.img){ img.src = p.img; img.alt = p.alt; } else { img.removeAttribute('src'); }
+  showPanel();
+}
+function showPanel(){
+  $('#detail').classList.add('on');
+  $('#d-title').style.fontSize = $('#d-title').textContent.length > 40 ? '26px' : '';
+  if (S.three && mode === '3d') S.three.panel(true);
+}
+function hidePanel(){
+  $('#detail').classList.remove('on'); S.current = null;
+  if (S.three) S.three.panel(false);
+}
+function stepItem(dir){
+  const c = S.current; if (!c) return;
+  const seq = seqFor(c);
+  const i = seq.findIndex(s => c.kind === 'work' ? s.w === c.w : s.p === c.p);
+  const n = seq[(i + dir + seq.length) % seq.length];
+  const h = n.kind === 'work' ? '#work/' + n.w.slug : '#press/' + n.p.id;
+  history.replaceState(null, '', h); route();
+  if ($('#zoom').classList.contains('on')) openZoom();
+}
+$('#d-close').addEventListener('click', () => closeTo());
+$('#d-prev').addEventListener('click', () => stepItem(-1));
+$('#d-next').addEventListener('click', () => stepItem(1));
+$('#d-zoom').addEventListener('click', () => openZoom());
+$('#d-img').addEventListener('click', () => openZoom());
+
+/* ---------------- zoom ---------------- */
+const Z = {s:1, x:0, y:0, drag:null};
+function zApply(){ $('#z-img').style.transform = `translate(${Z.x}px,${Z.y}px) scale(${Z.s})`; $('#z-stage').classList.toggle('zoomed', Z.s > 1.01); }
+function zReset(){ Z.s = 1; Z.x = 0; Z.y = 0; zApply(); }
+function openZoom(){
+  const c = S.current; if (!c) return;
+  const src = c.kind === 'work' ? 'img/' + c.w.image : c.p.img; if (!src) return;
+  const img = $('#z-img'); img.src = src; img.alt = c.kind === 'work' ? c.w.alt : c.p.alt;
+  $('#z-cap').innerHTML = c.kind === 'work' ? `<b>${esc(c.w.title)}</b> &middot; ${esc(c.w.series)} &middot; ${esc(medTxt(c.w))}${c.w.placeholder ? ' &middot; Placeholder, image repeats an existing work' : ''}` : `<b>${esc(c.p.title)}</b> &middot; ${esc(c.p.when)}`;
+  zReset(); $('#zoom').classList.add('on');
+}
+function closeZoom(){ $('#zoom').classList.remove('on'); }
+function zoomAt(cx, cy, factor){
+  const img = $('#z-img'); const r = img.getBoundingClientRect();
+  const ns = Math.min(5, Math.max(1, Z.s * factor));
+  const px = (cx - r.left) / Z.s, py = (cy - r.top) / Z.s; // point in image space
+  const base = {left: r.left - Z.x, top: r.top - Z.y};
+  Z.x = cx - base.left - px * ns; Z.y = cy - base.top - py * ns; Z.s = ns;
+  if (ns === 1){ Z.x = 0; Z.y = 0; }
+  zApply();
+}
+const zs = $('#z-stage');
+zs.addEventListener('wheel', e => { e.preventDefault(); zoomAt(e.clientX, e.clientY, e.deltaY < 0 ? 1.15 : 1/1.15); }, {passive:false});
+zs.addEventListener('pointerdown', e => { Z.drag = {x:e.clientX, y:e.clientY, ox:Z.x, oy:Z.y, moved:false}; zs.setPointerCapture(e.pointerId); });
+zs.addEventListener('pointermove', e => { if (!Z.drag) return; const dx = e.clientX - Z.drag.x, dy = e.clientY - Z.drag.y; if (Math.abs(dx)+Math.abs(dy) > 4) Z.drag.moved = true; if (Z.s > 1 && Z.drag.moved){ Z.x = Z.drag.ox + dx; Z.y = Z.drag.oy + dy; zApply(); } });
+zs.addEventListener('pointerup', e => { const d = Z.drag; Z.drag = null; if (d && !d.moved){ if (Z.s > 1.01) zReset(); else zoomAt(e.clientX, e.clientY, 2.6); } });
+$('#z-close').addEventListener('click', closeZoom);
+$('#z-prev').addEventListener('click', () => stepItem(-1));
+$('#z-next').addEventListener('click', () => stepItem(1));
+
+/* ---------------- guide leaf ---------------- */
+function openLeaf(name){
+  document.querySelectorAll('.page').forEach(p => p.classList.toggle('on', p.dataset.page === name));
+  $('#leaf').classList.add('on'); $('#leaf-sheet').scrollTop = 0;
+  $('#folio-l').textContent = PAGE_NAMES[name];
+  $('#folio-r').textContent = 'p. ' + pad(PAGES.indexOf(name) + 1);
+  document.title = name === 'guide' ? 'Guide | Cody Saxton' : PAGE_NAMES[name] + ' | Cody Saxton';
+  S.page = name;
+}
+function closeLeaf(){ $('#leaf').classList.remove('on'); S.page = null; document.title = 'Cody Saxton | Illuminator'; }
+$('#leaf-close').addEventListener('click', () => closeTo());
+$('#leaf').addEventListener('click', e => { if (e.target.id === 'leaf') closeTo(); });
+document.getElementById('contact-form')?.addEventListener('submit', e => { const hp = document.getElementById('f-website'); if (hp && hp.value) e.preventDefault(); });
+
+function closeTo(){
+  const h = S.place === 'inside' ? '#gallery' : '';
+  history.replaceState(null, '', h || location.pathname + location.search); route();
+}
+
+/* ---------------- routing ---------------- */
+function roomBySlug(s){ return ROOMS.find(r => r.slug === s); }
+async function route(){
+  const h = decodeURIComponent(location.hash.slice(1));
+  const [a, b] = h.split('/');
+  const isPage = PAGES.includes(a);
+  if (!isPage) closeLeaf();
+  if (a !== 'work' && a !== 'press') hidePanel();
+  if (!(a === 'work' || a === 'press')) closeZoom();
+  if (isPage){ openLeaf(a); if (!S.place) setPlace('welcome', true); return; }
+  if (!a || a === 'welcome'){ setPlace('welcome'); return; }
+  const first = !S.place;
+  if (a === 'gallery'){ setPlace('inside', first); return; }
+  if (a === 'room'){
+    const r = roomBySlug(b) || ROOMS[0];
+    setPlace('inside', true, true);
+    if (mode === '3d' && S.three) S.three.goRoom(r, first);
+    else document.getElementById('f-' + r.slug)?.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+    return;
+  }
+  if (a === 'work'){
+    const w = WORKS.find(x => x.slug === b); if (!w){ setPlace('inside', first); return; }
+    setPlace('inside', true, true);
+    openWorkPanel(w);
+    if (mode === '3d' && S.three) S.three.goTarget('w:' + w.slug, first);
+    return;
+  }
+  if (a === 'press'){
+    const p = PRESS.find(x => x.id === b); if (!p){ setPlace('inside', first); return; }
+    setPlace('inside', true, true);
+    openPressPanel(p);
+    if (mode === '3d' && S.three) S.three.goTarget('p:' + p.id, first);
+    return;
+  }
+  setPlace('welcome');
+}
+function setPlace(p, instant, keepCamera){
+  const prev = S.place; S.place = p;
+  body.classList.toggle('at-welcome', p === 'welcome');
+  body.classList.toggle('inside', p === 'inside');
+  body.classList.toggle('walk', p === 'inside' && mode === '3d');
+  if (p === 'welcome') document.title = 'Cody Saxton | Illuminator';
+  if (mode === '3d' && S.three){
+    if (p === 'inside' && prev !== 'inside' && !keepCamera) S.three.enter(instant || prev === null);
+    else if (p === 'inside' && prev !== 'inside' && keepCamera) S.three.enter(true, true);
+    else if (p === 'welcome' && prev !== 'welcome') S.three.leave(prev === null);
+  } else if (p === 'inside' && prev !== 'inside' && !keepCamera){ scrollTo(0,0); }
+  if (p === 'welcome' && mode === 'flat') scrollTo(0,0);
+}
+addEventListener('hashchange', route);
+
+addEventListener('keydown', e => {
+  if (e.target.closest && e.target.closest('input,textarea')) return;
+  if (e.key === 'Escape'){
+    if ($('#zoom').classList.contains('on')) closeZoom();
+    else if (S.page || S.current) closeTo();
+    return;
+  }
+  if (S.current && (e.key === 'ArrowRight' || e.key === 'ArrowLeft') && !S.page){ e.preventDefault(); stepItem(e.key === 'ArrowRight' ? 1 : -1); }
+});
+
+/* =====================================================================
+   3D pavilion
+   ===================================================================== */
+async function init3D(){
+  let THREE;
+  try { THREE = await import('three'); } catch(e){ console.warn('three failed', e); return null; }
+  try { await Promise.all(['300','400','500'].map(w => document.fonts.load(w + ' 80px Geist'))); } catch(e){}
+
+  const canvas = $('#scene');
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, powerPreference:'high-performance'});
+  const DPR = Math.min(devicePixelRatio || 1, 1.75);
+  renderer.setPixelRatio(DPR);
+  renderer.setSize(innerWidth, innerHeight, false);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.autoUpdate = false;
+  const ANISO = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+
+  const scene = new THREE.Scene();
+  const SKY = new THREE.Color('#ecebe6');
+  scene.fog = new THREE.Fog(SKY, 70, 230);
+  { // sky: soft daylight gradient
+    const c = document.createElement('canvas'); c.width = 4; c.height = 512; const g = c.getContext('2d');
+    const gr = g.createLinearGradient(0,0,0,512);
+    gr.addColorStop(0,'#d9dfe1'); gr.addColorStop(.52,'#e9e9e5'); gr.addColorStop(.62,'#eeede8'); gr.addColorStop(1,'#e4e1da');
+    g.fillStyle = gr; g.fillRect(0,0,4,512);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; scene.background = t;
+  }
+  const camera = new THREE.PerspectiveCamera(50, innerWidth/innerHeight, 0.05, 400);
+  camera.rotation.order = 'YXZ';
+
+  const hemi = new THREE.HemisphereLight(0xfdfeff, 0xe5e3de, 1.0); scene.add(hemi);
+  const amb = new THREE.AmbientLight(0xffffff, 0.2); scene.add(amb);
+  const sun = new THREE.DirectionalLight(0xfffbf4, 1.6);
+  sun.position.set(16 - 22, 35, 2 + 44); sun.target.position.set(16, 0, 2);
+  sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+  Object.assign(sun.shadow.camera, {left:-44, right:44, top:34, bottom:-34, near:1, far:140});
+  sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.02; sun.shadow.radius = 4;
+  scene.add(sun, sun.target);
+
+  const H = 4.2, T = 0.2, EYE = 1.6, ZW = 5; // wall height, thickness, eye, half depth
+
+  /* textures */
+  function canvasTex(w, h, draw, opts = {}){
+    const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d'); draw(g, w, h);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = ANISO;
+    if (opts.repeat){ t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(...opts.repeat); }
+    return t;
+  }
+  const wallGrad = canvasTex(2, 256, (g, w, h) => {
+    const gr = g.createLinearGradient(0,0,0,h);
+    gr.addColorStop(0,'#ffffff'); gr.addColorStop(.3,'#fbfaf8'); gr.addColorStop(.8,'#f2f0ec'); gr.addColorStop(.965,'#e7e3dc'); gr.addColorStop(1,'#d9d4cb');
+    g.fillStyle = gr; g.fillRect(0,0,w,h);
+  });
+  // pale oak planks, running east to west
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const oak = canvasTex(1024, 1024, (g, w, h) => {
+    g.fillStyle = '#d6c7ad'; g.fillRect(0,0,w,h);
+    const rows = 12, rh = h / rows;
+    for (let r = 0; r < rows; r++){
+      let x = -rnd() * w * 0.8; const end = x + w;
+      while (x < end){
+        const len = Math.min(w * (0.5 + rnd() * 0.55), end - x);
+        const tone = 0.965 + rnd() * 0.05, warm = rnd() * 6;
+        g.fillStyle = `rgb(${(214 + warm) * tone | 0},${(198 + warm * .6) * tone | 0},${171 * tone | 0})`;
+        for (const o of [0, w]) g.fillRect(x + o, r * rh, len, rh);
+        for (let i = 0; i < 22; i++){
+          const y = r*rh + rnd() * rh; g.strokeStyle = `rgba(120,92,58,${0.025 + rnd()*0.04})`; g.lineWidth = 0.6 + rnd();
+          const y1 = y + (rnd()-.5)*5, y2 = y + (rnd()-.5)*5;
+          for (const o of [0, w]){ g.beginPath(); g.moveTo(x + o, y); g.bezierCurveTo(x + o + len*.3, y1, x + o + len*.7, y2, x + o + len, y + (rnd()-.5)*3); g.stroke(); }
+        }
+        g.fillStyle = 'rgba(90,66,40,.14)'; for (const o of [0, w]) g.fillRect(x + o, r*rh, 1.5, rh);
+        x += len;
+      }
+      g.fillStyle = 'rgba(90,66,40,.16)'; g.fillRect(0, r*rh, w, 1.2);
+    }
+  }, {repeat:[58/3.2, 10/3.2]});
+  const stone = canvasTex(512, 512, (g, w, h) => {
+    g.fillStyle = '#dedad2'; g.fillRect(0,0,w,h);
+    for (let i = 0; i < 9000; i++){ g.fillStyle = `rgba(${rnd()>.5?255:90},${rnd()>.5?250:84},${rnd()>.5?240:70},${rnd()*0.05})`; g.fillRect(rnd()*w, rnd()*h, 1.5, 1.5); }
+    g.strokeStyle = 'rgba(80,70,55,.10)'; g.lineWidth = 1.2;
+    for (let i = 0; i <= 4; i++){ g.beginPath(); g.moveTo(0, i*h/4); g.lineTo(w, i*h/4); g.stroke(); g.beginPath(); g.moveTo(i*w/2, 0); g.lineTo(i*w/2, h); g.stroke(); }
+  }, {repeat:[60/4, 16/4]});
+  const aoTex = canvasTex(4, 128, (g, w, h) => { const gr = g.createLinearGradient(0,0,0,h); gr.addColorStop(0,'rgba(60,45,25,.22)'); gr.addColorStop(.35,'rgba(60,45,25,.08)'); gr.addColorStop(1,'rgba(60,45,25,0)'); g.fillStyle = gr; g.fillRect(0,0,w,h); });
+  const shadowTex = canvasTex(256, 256, (g, w, h) => { g.shadowColor = 'rgba(40,30,15,.55)'; g.shadowBlur = 26; g.fillStyle = 'rgba(40,30,15,.55)'; g.fillRect(40, 40, w - 80, h - 80); });
+
+  /* materials */
+  const M = {
+    wall: new THREE.MeshLambertMaterial({color:0xf7f7f5, map:wallGrad}),
+    roof: new THREE.MeshLambertMaterial({color:0xf0efeb}),
+    ceil: new THREE.MeshLambertMaterial({color:0xf7f6f3}),
+    sky: new THREE.MeshBasicMaterial({color:0xffffff}),
+    floor: new THREE.MeshLambertMaterial({map:oak}),
+    stone: new THREE.MeshLambertMaterial({map:stone}),
+    ground: new THREE.MeshLambertMaterial({color:0xd6d4ce}),
+    ao: new THREE.MeshBasicMaterial({map:aoTex, transparent:true, depthWrite:false, polygonOffset:true, polygonOffsetFactor:-2}),
+    shadow: new THREE.MeshBasicMaterial({map:shadowTex, transparent:true, depthWrite:false, opacity:.55}),
+    paper: new THREE.MeshLambertMaterial({color:0xfbfaf6}),
+    frame: new THREE.MeshLambertMaterial({color:0xcbb898}),
+    mat: new THREE.MeshLambertMaterial({color:0xfaf9f5})
+  };
+  const pickables = [];
+
+  /* architecture */
+  function box(w, h, d, x, y, z, mat, {cast = true, receive = true, gradient = false} = {}){
+    const geo = new THREE.BoxGeometry(w, h, d);
+    if (gradient){ const pos = geo.attributes.position, uv = geo.attributes.uv; for (let i = 0; i < pos.count; i++) uv.setY(i, (pos.getY(i) + y) / H); }
+    const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = cast; m.receiveShadow = receive; scene.add(m); return m;
+  }
+  function aoStrip(x0, x1, z, side, alongX = true){
+    const len = Math.abs(x1 - x0), m = new THREE.Mesh(new THREE.PlaneGeometry(len, 0.42), M.ao);
+    m.rotation.x = -Math.PI/2;
+    if (alongX){ m.position.set((x0+x1)/2, 0.004, z + side * 0.21); if (side < 0) m.rotation.z = Math.PI; }
+    else { m.rotation.z = side > 0 ? Math.PI/2 : -Math.PI/2; m.position.set(z + side * 0.21, 0.004, (x0+x1)/2); }
+    scene.add(m);
+  }
+  // wall along x at z, holes [a, b, height]
+  function wallX(z, x0, x1, holes = [], ao = [1,-1]){
+    let cur = x0;
+    const segs = [];
+    for (const [a, b, hh] of holes){ segs.push([cur, a]); const lw = b - a; const w = box(lw, H - hh, T, (a+b)/2, hh + (H-hh)/2, z, M.wall, {gradient:true}); pickables.push(w); cur = b; }
+    segs.push([cur, x1]);
+    for (const [a, b] of segs){ if (b - a < 0.01) continue; pickables.push(box(b - a, H, T, (a+b)/2, H/2, z, M.wall, {gradient:true})); ao.forEach(s => aoStrip(a, b, z + s*T/2, s, true)); }
+  }
+  function wallZ(x, z0, z1, holes = [], ao = [1,-1]){
+    let cur = z0; const segs = [];
+    for (const [a, b, hh] of holes){ segs.push([cur, a]); pickables.push(box(T, H - hh, b - a, x, hh + (H-hh)/2, (a+b)/2, M.wall, {gradient:true})); cur = b; }
+    segs.push([cur, z1]);
+    for (const [a, b] of segs){ if (b - a < 0.01) continue; pickables.push(box(T, H, b - a, x, H/2, (a+b)/2, M.wall, {gradient:true})); ao.forEach(s => aoStrip(a, b, x + s*T/2, s, false)); }
+  }
+  const DOOR = [2.1, 3.9, 2.75];
+  wallX(ZW, -T/2, 58 + T/2, [DOOR], [-1]);
+  wallX(-ZW, -T/2, 58 + T/2, [], [1]);
+  wallZ(0, -ZW, ZW, [], [1]);
+  wallZ(58, -ZW, ZW, [], [-1]);
+  for (const r of ROOMS.slice(1)) wallZ(r.x0, -ZW + T/2, ZW - T/2, [[-1.25, 1.25, 3.05]]);
+  // roof slab with a deep canopy to the south, and a thin fascia line
+  box(59.6, 0.34, 12.4, 29, H + 0.17, 0.7, M.roof, {cast:true, receive:true});
+  // ceiling inside with long skylights
+  const ceil = new THREE.Mesh(new THREE.PlaneGeometry(58, 10), new THREE.MeshBasicMaterial({color:0xe9e8e3}));
+  ceil.rotation.x = Math.PI/2; ceil.position.set(29, H - 0.002, 0); scene.add(ceil);
+  for (const r of ROOMS){
+    const len = r.x1 - r.x0 - 1.6;
+    const sk = new THREE.Mesh(new THREE.PlaneGeometry(len, r.key === 'foyer' ? 2.2 : 3.0), M.sky);
+    sk.rotation.x = Math.PI/2; sk.position.set((r.x0 + r.x1)/2, H - 0.004, 0); scene.add(sk);
+    const rim = new THREE.Mesh(new THREE.PlaneGeometry(len + 0.16, (r.key === 'foyer' ? 2.2 : 3.0) + 0.16), new THREE.MeshBasicMaterial({color:0xd9d7d0}));
+    rim.rotation.x = Math.PI/2; rim.position.set((r.x0 + r.x1)/2, H - 0.003, 0); scene.add(rim);
+  }
+  // floors: oak inside, stone plinth and ground outside
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(58, 10), M.floor);
+  floor.rotation.x = -Math.PI/2; floor.position.set(29, 0.002, 0); floor.receiveShadow = true; floor.userData.floor = true; scene.add(floor); pickables.push(floor);
+  const plinth = box(61, 0.14, 13.6, 29, -0.07, 0.9, M.stone, {cast:false}); plinth.material = M.stone;
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(700, 700), M.ground);
+  ground.rotation.x = -Math.PI/2; ground.position.y = -0.14; ground.receiveShadow = true; scene.add(ground);
+  box(2.4, 0.06, 30, 3, -0.11, 22.6, M.stone, {cast:false});
+  // a long reflecting pool in front of the facade, with a stone coping
+  let pool = null;
+  try {
+    const { Reflector } = await import('three/addons/objects/Reflector.js');
+    pool = new Reflector(new THREE.PlaneGeometry(40, 7), {clipBias:0.003, textureWidth:Math.round(innerWidth*DPR*0.6), textureHeight:Math.round(innerHeight*DPR*0.6), color:0x7d8789});
+    pool.rotation.x = -Math.PI/2; pool.position.set(26, -0.1, 13.2); scene.add(pool);
+  } catch(e){
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(40, 7), new THREE.MeshBasicMaterial({color:0xb9c0c1})); m.rotation.x = -Math.PI/2; m.position.set(26, -0.1, 13.2); scene.add(m);
+  }
+  box(40.8, 0.1, 0.4, 26, -0.09, 9.5, M.stone, {cast:false}); box(40.8, 0.1, 0.4, 26, -0.09, 16.9, M.stone, {cast:false});
+  box(0.4, 0.1, 7, 5.8, -0.09, 13.2, M.stone, {cast:false}); box(0.4, 0.1, 7, 46.2, -0.09, 13.2, M.stone, {cast:false});
+
+  /* text on walls, set in Geist */
+  function textPlane(wm, hm, draw, pxPerM = 700){
+    const t = canvasTex(Math.round(wm * pxPerM), Math.round(hm * pxPerM), draw);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(wm, hm), new THREE.MeshLambertMaterial({map:t, transparent:true}));
+    return m;
+  }
+  function onWall(mesh, x, y, z, nx, nz){ mesh.position.set(x + nx * 0.003, y, z + nz * 0.003); mesh.rotation.y = Math.atan2(nx, nz); scene.add(mesh); return mesh; }
+  function wrap(g, text, maxW){ const words = text.split(' '), lines = []; let l = ''; for (const w of words){ const t = l ? l + ' ' + w : w; if (g.measureText(t).width > maxW && l){ lines.push(l); l = w; } else l = t; } if (l) lines.push(l); return lines; }
+  const INK = '#1b1a18', GREY = '#6f6b64';
+
+  // facade signage beside the door
+  onWall(textPlane(7.2, 0.9, (g, w, h) => {
+    g.fillStyle = '#2a2926'; g.font = `400 ${h*0.36}px Geist`; g.letterSpacing = (h*0.36*0.34) + 'px'; g.textBaseline = 'alphabetic';
+    g.fillText('CODY SAXTON', 0, h*0.44);
+    g.fillStyle = '#6f6b64'; g.font = `400 ${h*0.15}px Geist`; g.letterSpacing = (h*0.15*0.3) + 'px';
+    g.fillText('ILLUMINATOR  ·  ART & LIFE', 4, h*0.84);
+  }, 400), 8.2, 3.35, ZW + T/2, 0, 1);
+
+  // foyer wall text (north wall)
+  const infinity = await new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = 'img/cs-infinity.jpg'; });
+  onWall(textPlane(4.6, 2.4, (g, w, h) => {
+    const u = w / 4.6;
+    if (infinity){ g.globalCompositeOperation = 'multiply'; g.drawImage(infinity, 0, 0.1*u, 0.42*u, 0.42*u*infinity.height/infinity.width); g.globalCompositeOperation = 'source-over'; }
+    g.fillStyle = INK; g.font = `500 ${0.52*u}px Geist`; g.letterSpacing = (-0.035*0.52*u) + 'px';
+    g.fillText('Cody Saxton', -4, 1.02*u);
+    g.font = `400 ${0.13*u}px Geist`; g.letterSpacing = '0px'; g.fillStyle = INK;
+    g.fillText('Illuminator Omnimedia', 0, 1.28*u);
+    g.fillStyle = GREY; g.fillText('Art & Life', 0, 1.46*u);
+    g.fillStyle = '#34322e'; g.font = `400 ${0.085*u}px Geist`;
+    wrap(g, 'Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.', 2.6*u).forEach((l, i) => g.fillText(l, 0, 1.78*u + i * 0.125*u));
+  }, 520), 2.95, 2.05, -ZW + T/2, 0, 1);
+  // foyer sign beside the opening to room 02
+  onWall(textPlane(1.2, 0.5, (g, w, h) => { const u = w/1.2; g.fillStyle = GREY; g.font = `500 ${0.05*u}px Geist`; g.letterSpacing = (0.05*u*0.16)+'px'; g.fillText('ROOM 02', 0, 0.1*u); g.fillStyle = INK; g.font = `500 ${0.1*u}px Geist`; g.letterSpacing = '0px'; g.fillText('ink-lings  →', 0, 0.25*u); }, 600), 6 - T/2, 2.1, -2.1, -1, 0);
+
+  function roomTitle(r, x, z, nx, nz, count){
+    const s = SERIES[r.key];
+    return onWall(textPlane(3.0, 1.3, (g, w, h) => {
+      const u = w / 3.0;
+      g.fillStyle = GREY; g.font = `500 ${0.055*u}px Geist`; g.letterSpacing = (0.055*u*0.18)+'px'; g.fillText('ROOM ' + r.no, 0, 0.12*u);
+      g.fillStyle = INK; g.font = `500 ${0.26*u}px Geist`; g.letterSpacing = (-0.03*0.26*u)+'px';
+      const lines = wrap(g, r.name, 2.9*u); lines.forEach((l, i) => g.fillText(l, -3, 0.44*u + i*0.27*u));
+      const y = 0.44*u + (lines.length - 1)*0.27*u;
+      g.letterSpacing = '0px'; g.font = `400 ${0.075*u}px Geist`; g.fillStyle = '#34322e';
+      if (s) g.fillText(s.line, 0, y + 0.19*u);
+      g.fillStyle = GREY; g.fillText(count, 0, y + 0.31*u);
+    }, 600), x, 2.05, z, nx, nz);
+  }
+
+  /* textures for the works: four images serve all fifty */
+  const loader = new THREE.TextureLoader();
+  const texCache = {};
+  const texFor = src => texCache[src] || (texCache[src] = loader.load(src, t => { invalidate(); }, undefined, () => {}));
+  function artTex(src){ const t = texFor(src); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = ANISO; return t; }
+
+  const labelCache = {};
+  function labelTex(lines){
+    const key = lines.join('|'); if (labelCache[key]) return labelCache[key];
+    return labelCache[key] = canvasTex(620, 300, (g, w, h) => {
+      let y = 44;
+      lines.forEach((l, i) => {
+        if (i === 0){ g.fillStyle = GREY; g.font = '500 26px Geist'; g.letterSpacing = '3px'; g.fillText(l, 0, y); y += 60; }
+        else if (i === 1){ g.fillStyle = INK; g.font = '500 44px Geist'; g.letterSpacing = '-0.5px'; wrap(g, l, 600).slice(0,2).forEach(t => { g.fillText(t, 0, y); y += 50; }); y += 2; }
+        else { g.fillStyle = '#4a4843'; g.font = '400 30px Geist'; g.letterSpacing = '0px'; g.fillText(l, 0, y); y += 40; }
+      });
+    });
+  }
+  const LBL_W = 0.2, LBL_H = 0.2 * 300/620;
+
+  const TARGETS = {}; // 'w:slug' / 'p:id' → {pos, normal, w, h}
+  function hang({x, y = 1.55, z, nx, nz, w, h, src, framed, key, label, userData}){
+    const g = new THREE.Group(); g.position.set(x, y, z); g.rotation.y = Math.atan2(nx, nz); scene.add(g);
+    const depth = framed ? 0.035 : 0.006;
+    const sh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), M.shadow);
+    const pad = framed ? 0.1 : 0.0;
+    sh.scale.set((w + pad*2) * 1.32 + 0.05, (h + pad*2) * 1.26 + 0.06, 1); sh.position.set(0.012, -0.03, 0.002); g.add(sh);
+    if (framed){
+      const fr = new THREE.Mesh(new THREE.BoxGeometry(w + pad*2, h + pad*2, depth), M.frame); fr.position.z = depth/2 + 0.004; g.add(fr);
+      const mt = new THREE.Mesh(new THREE.PlaneGeometry(w + pad*2 - 0.05, h + pad*2 - 0.05), M.mat); mt.position.z = depth + 0.0045; g.add(mt);
+    } else {
+      const bk = new THREE.Mesh(new THREE.BoxGeometry(w, h, depth), M.paper); bk.position.z = depth/2 + 0.006; g.add(bk);
+    }
+    const art = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshLambertMaterial({map:artTex(src)}));
+    art.position.z = depth + (framed ? 0.006 : 0.0065); g.add(art);
+    art.userData = userData; pickables.push(art);
+    if (label){
+      const lb = new THREE.Mesh(new THREE.PlaneGeometry(LBL_W, LBL_H), new THREE.MeshLambertMaterial({map:labelTex(label), transparent:true}));
+      lb.position.set(w/2 + pad + 0.12 + LBL_W/2, -h/2 - pad + LBL_H/2 + 0.02, 0.003); g.add(lb);
+    }
+    TARGETS[key] = {pos:new THREE.Vector3(x, y, z), n:new THREE.Vector3(nx, 0, nz), w: w + pad*2, h: h + pad*2};
+    return g;
+  }
+  const sizeOf = w => { const ar = w.w / w.h; const base = w.series === 'terracotta subconscious' ? 0.74 : 0.8; return ar < 1 ? [base * ar, base] : [0.84, 0.84 / ar]; };
+
+  // hanging runs per room, in walking order: north wall west to east, far wall, south wall east to west
+  function runsFor(r, titleSpan){
+    const inN = -ZW + T/2, inS = ZW - T/2, xe = r.x1 - T/2;
+    return [
+      {a:[r.x0 + titleSpan, inN], b:[r.x1 - 0.55, inN], n:[0, 1]},
+      {a:[xe, -ZW + 0.7], b:[xe, -1.25 - 0.35], n:[-1, 0]},
+      {a:[xe, 1.25 + 0.35], b:[xe, ZW - 0.7], n:[-1, 0]},
+      {a:[r.x1 - 0.55, inS], b:[r.x0 + 0.55, inS], n:[0, -1]}
+    ];
+  }
+  function hangSeries(r, titleSpan){
+    const ws = WORKS.filter(w => w.series === r.key);
+    const runs = runsFor(r, titleSpan).map(u => ({...u, len: Math.hypot(u.b[0]-u.a[0], u.b[1]-u.a[1])}));
+    const total = runs.reduce((s, u) => s + u.len, 0);
+    let counts = runs.map(u => Math.round(ws.length * u.len / total));
+    let diff = ws.length - counts.reduce((s, c) => s + c, 0);
+    for (let i = 0; diff !== 0; i = (i + 1) % runs.length){ if (diff > 0){ counts[i]++; diff--; } else if (counts[i] > 0){ counts[i]--; diff++; } }
+    let k = 0;
+    runs.forEach((u, ri) => {
+      const n = counts[ri];
+      for (let i = 0; i < n; i++, k++){
+        const w = ws[k]; const t = (i + 0.5) / n;
+        const x = u.a[0] + (u.b[0]-u.a[0]) * t, z = u.a[1] + (u.b[1]-u.a[1]) * t;
+        const [sw, shh] = sizeOf(w);
+        const label = w.placeholder ? [pad(w.no), 'Untitled', w.series, w.medium] : [pad(w.no), w.title, medTxt(w), priceTxt(w)];
+        hang({x, z, nx:u.n[0], nz:u.n[1], w:sw, h:shh, src:'img/' + w.image, framed: w.series === 'terracotta subconscious', key:'w:' + w.slug, label, userData:{work:w}});
+      }
+    });
+  }
+  const inN = -ZW + T/2, inS = ZW - T/2;
+  const R = Object.fromEntries(ROOMS.map(r => [r.key, r]));
+  roomTitle(R['ink-lings'], R['ink-lings'].x0 + 2.0, inN, 0, 1, WORKS.filter(w => w.series === 'ink-lings').length + ' works');
+  hangSeries(R['ink-lings'], 3.9);
+  roomTitle(R['color wonderings'], 34.2, inN, 0, 1, 'No works on view yet');
+  // the empty room: a faint pencil line where the works will hang
+  onWall(textPlane(6.2, 0.02, (g, w, h) => { g.fillStyle = 'rgba(40,36,30,.07)'; g.fillRect(0, 0, w, h); }, 300), 34, 1.55, inS, 0, -1);
+  roomTitle(R['terracotta subconscious'], R['terracotta subconscious'].x0 + 2.0, inN, 0, 1, WORKS.filter(w => w.series === 'terracotta subconscious').length + ' works');
+  hangSeries(R['terracotta subconscious'], 3.9);
+  // counts per series drawn from data
+  // archive room
+  const AR = R['archive'];
+  onWall(textPlane(3.0, 1.3, (g, w, h) => {
+    const u = w/3.0; g.fillStyle = GREY; g.font = `500 ${0.055*u}px Geist`; g.letterSpacing = (0.055*u*0.18)+'px'; g.fillText('ROOM 05', 0, 0.12*u);
+    g.fillStyle = INK; g.font = `500 ${0.26*u}px Geist`; g.letterSpacing = (-0.03*0.26*u)+'px'; g.fillText('Exhibitions', -3, 0.44*u); g.fillText('& Press', -3, 0.71*u);
+  }, 600), AR.x0 + 1.9, 2.05, inN, 0, 1);
+  const P = Object.fromEntries(PRESS.map(p => [p.id, p]));
+  hang({x:55.2, y:1.72, z:inN, nx:0, nz:1, w:1.05, h:1.4, src:P['open-gallery-2023'].img, framed:false, key:'p:open-gallery-2023', label:['NOV 2023','Open Gallery Exhibition 2023','Amsterdam International','Artist Collective gallery'], userData:{press:P['open-gallery-2023']}});
+  hang({x:58 - T/2, y:1.6, z:1.9, nx:-1, nz:0, w:1.2, h:1.2*1073/1600, src:P['deathproof-2005'].img, framed:false, key:'p:deathproof-2005', label:['DESIGNED 2005','T-shirt design for Rojas','Deathproof, 2007'], userData:{press:P['deathproof-2005']}});
+  // the newspaper clipping: a framed sheet that names the article
+  const clip = canvasTex(700, 900, (g, w, h) => {
+    g.fillStyle = '#f4efe3'; g.fillRect(0,0,w,h);
+    g.fillStyle = '#6f6b64'; g.font = '500 24px Geist'; g.letterSpacing = '4px'; g.fillText('JULY 2020', 56, 96);
+    g.fillStyle = INK; g.font = '500 58px Geist'; g.letterSpacing = '-1px';
+    ['Albuquerque','Journal'].forEach((l, i) => g.fillText(l, 52, 190 + i*64));
+    g.fillStyle = 'rgba(22,22,21,.8)'; g.fillRect(56, 300, w - 112, 2);
+    g.font = '400 34px Geist'; g.letterSpacing = '0px'; g.fillStyle = '#2f2d29';
+    wrap(g, 'Pandemic Testing Shelter, newspaper coverage in Albuquerque Journal.', w - 112).forEach((l, i) => g.fillText(l, 56, 370 + i*46));
+    g.fillStyle = '#6f6b64'; g.font = '500 22px Geist'; g.letterSpacing = '3px'; g.fillText('READ THE ARTICLE (PDF)', 56, h - 70);
+  });
+  texCache['clip'] = clip;
+  hang({x:58 - T/2, y:1.6, z:-1.9, nx:-1, nz:0, w:0.56, h:0.72, src:'clip', framed:true, key:'p:albuquerque-journal-2020', label:null, userData:{press:P['albuquerque-journal-2020']}});
+  // chronology on the south wall, verbatim from About
+  const chrono = onWall(textPlane(5.6, 1.5, (g, w, h) => {
+    const u = w/5.6; g.fillStyle = GREY; g.font = `500 ${0.05*u}px Geist`; g.letterSpacing = (0.05*u*0.18)+'px'; g.fillText('EXHIBITIONS & PRESS', 0, 0.1*u);
+    TIMELINE.forEach(([when, title, sub], i) => {
+      const y = 0.3*u + i*0.25*u;
+      g.fillStyle = 'rgba(22,22,21,.25)'; g.fillRect(0, y - 0.085*u, w, 2);
+      g.fillStyle = GREY; g.font = `500 ${0.048*u}px Geist`; g.letterSpacing = (0.048*u*0.12)+'px'; g.fillText(when.toUpperCase(), 0, y);
+      g.fillStyle = INK; g.font = `500 ${0.075*u}px Geist`; g.letterSpacing = '0px'; g.fillText(wrap(g, title, 3.7*u)[0], 1.25*u, y + 0.01*u);
+      g.fillStyle = '#4a4843'; g.font = `400 ${0.052*u}px Geist`; g.fillText(sub, 1.25*u, y + 0.1*u);
+    });
+  }, 520), 54, 1.75, inS, 0, -1);
+  chrono.userData = {page:'about'}; pickables.push(chrono);
+
+  /* floor cursor */
+  const ring = new THREE.Mesh(new THREE.RingGeometry(0.2, 0.235, 48), new THREE.MeshBasicMaterial({color:0x1b1a18, transparent:true, opacity:.45, depthWrite:false}));
+  ring.rotation.x = -Math.PI/2; ring.visible = false; scene.add(ring);
+  const dot = new THREE.Mesh(new THREE.CircleGeometry(0.2, 48), new THREE.MeshBasicMaterial({color:0x1b1a18, transparent:true, opacity:.08, depthWrite:false}));
+  dot.rotation.x = -Math.PI/2; ring.add(dot); dot.rotation.x = 0;
+
+  /* ---------- camera and movement ---------- */
+  const cam = {pos:new THREE.Vector3(), yaw:0, pitch:0};
+  const lookYaw = (from, to) => Math.atan2(-(to.x - from.x), -(to.z - from.z));
+  const lookPitch = (from, to) => Math.atan2(to.y - from.y, Math.hypot(to.x - from.x, to.z - from.z));
+  function setLook(p, t){ cam.pos.copy(p); cam.yaw = lookYaw(p, t); cam.pitch = lookPitch(p, t); }
+  function applyCam(){ camera.position.copy(cam.pos); camera.rotation.set(cam.pitch, cam.yaw, 0); }
+  const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2;
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  const angLerp = (a, b, t) => { let d = ((b - a + Math.PI) % (Math.PI*2) + Math.PI*2) % (Math.PI*2) - Math.PI; return a + d * t; };
+
+  const WELCOME_A = {p:new THREE.Vector3(-9.6, 1.6, 22.6), t:new THREE.Vector3(10, 1.6, 3)};
+  const WELCOME_B = {p:new THREE.Vector3(-6.6, 1.6, 18.6), t:new THREE.Vector3(9, 1.6, 3)};
+  const FOYER = {p:new THREE.Vector3(2.5, EYE, 4.3), t:new THREE.Vector3(3.9, 1.72, -4.9)};
+
+  let snapLight = false, hold = false, motion = null, dirty = true, welcomeT0 = performance.now(), atWelcome = true, active = true;
+  const invalidate = () => { dirty = true; };
+  const teleport = () => { snapLight = true; invalidate(); };
+  function startMotion(m){ m.t0 = performance.now(); motion = m; invalidate(); $('#tip').classList.remove('on'); }
+
+  function roomAt(x){ return ROOMS.findIndex(r => x >= r.x0 && x < r.x1); }
+  function allowed(x, z){
+    const i = roomAt(x); if (i < 0) return false;
+    const r = ROOMS[i];
+    if (x > r.x0 + 0.4 && x < r.x1 - 0.4 && Math.abs(z) < ZW - 0.55) return true;
+    for (const b of ROOMS.slice(1)) if (Math.abs(x - b.x0) < 0.8 && Math.abs(z) < 0.95) return true;
+    return false;
+  }
+  function clampIn(x, z){ const i = Math.max(0, roomAt(x)); const r = ROOMS[i]; return [Math.min(r.x1 - 0.5, Math.max(r.x0 + 0.5, x)), Math.min(ZW - 0.6, Math.max(-ZW + 0.6, z))]; }
+  function path(a, b){
+    const pts = [new THREE.Vector2(a.x, a.z)];
+    let ia = Math.max(0, roomAt(a.x)), ib = Math.max(0, roomAt(b.x));
+    while (ia !== ib){
+      const bx = ia < ib ? ROOMS[ia].x1 : ROOMS[ia].x0; const dir = ia < ib ? 1 : -1;
+      pts.push(new THREE.Vector2(bx - dir*1.0, 0), new THREE.Vector2(bx + dir*1.0, 0));
+      ia += dir;
+    }
+    pts.push(new THREE.Vector2(b.x, b.z));
+    return pts.filter((p, i) => i === 0 || p.distanceTo(pts[i-1]) > 0.05);
+  }
+  function along(pts, d){
+    for (let i = 1; i < pts.length; i++){ const L = pts[i].distanceTo(pts[i-1]); if (d <= L || i === pts.length - 1) return pts[i-1].clone().lerp(pts[i], L ? Math.min(1, d / L) : 1); d -= L; }
+    return pts[pts.length-1].clone();
+  }
+  function veilJump(apply){
+    const v = $('#veil'); v.classList.add('on');
+    setTimeout(() => { motion = null; apply(); invalidate(); requestAnimationFrame(() => v.classList.remove('on')); }, reduce ? 10 : 520);
+  }
+  // walk to (x, z) and turn to yaw/pitch
+  function walkTo(x, z, yaw1 = null, pitch1 = 0, y1 = EYE){
+    const from = cam.pos.clone(), to = new THREE.Vector3(x, y1, z);
+    const pts = path(from, to); let L = 0; for (let i = 1; i < pts.length; i++) L += pts[i].distanceTo(pts[i-1]);
+    if (yaw1 === null){
+      const last = pts[pts.length-1], prev = pts[pts.length-2] || pts[0];
+      const travel = Math.atan2(-(last.x - prev.x), -(last.y - prev.y));
+      const d = Math.abs(angLerp(0, travel - cam.yaw, 1));
+      yaw1 = (pts.length > 2 || d > 0.9) && L > 0.3 ? travel : cam.yaw;
+    }
+    if (reduce || L > 28){ veilJump(() => { cam.pos.copy(to); cam.yaw = yaw1; cam.pitch = pitch1; }); return; }
+    const y0 = cam.yaw, p0 = cam.pitch, h0 = cam.pos.y;
+    startMotion({dur: Math.max(700, Math.min(4200, L / 2.3 * 1000)), apply: t => {
+      const e = ease(t); const q = along(pts, e * L);
+      cam.pos.set(q.x, h0 + (y1 - h0) * e, q.y);
+      const k = ease(Math.min(1, t * 1.15));
+      cam.yaw = angLerp(y0, yaw1, k); cam.pitch = p0 + (pitch1 - p0) * k;
+    }});
+  }
+  function poseFor(key){
+    const T0 = TARGETS[key]; if (!T0) return null;
+    const vf = THREE.MathUtils.degToRad(camera.fov) / 2;
+    const size = Math.max(T0.h, T0.w / Math.max(0.6, camera.aspect * (panelOpen && innerWidth > 900 ? (innerWidth - 420) / innerWidth : 1)));
+    const dist = Math.max(1.05, size * 1.75 / (2 * Math.tan(vf)));
+    let x = T0.pos.x + T0.n.x * dist, z = T0.pos.z + T0.n.z * dist;
+    [x, z] = clampIn(x, z);
+    const eye = new THREE.Vector3(x, EYE, z);
+    return {x, z, yaw: lookYaw(eye, T0.pos), pitch: lookPitch(eye, T0.pos)};
+  }
+  function goTarget(key, instant){
+    const p = poseFor(key); if (!p) return;
+    if (instant){ motion = null; cam.pos.set(p.x, EYE, p.z); cam.yaw = p.yaw; cam.pitch = p.pitch; teleport(); return; }
+    walkTo(p.x, p.z, p.yaw, p.pitch);
+  }
+  function roomPose(r){
+    if (r.key === 'foyer') return {p:FOYER.p, t:FOYER.t};
+    const p = new THREE.Vector3(r.x0 + 1.4, EYE, r.key === 'archive' ? 3.4 : 2.9);
+    const t = new THREE.Vector3(r.x0 + (r.key === 'archive' ? 4.4 : 5.2), 1.66, -ZW);
+    return {p, t};
+  }
+  function goRoom(r, instant){
+    const {p, t} = roomPose(r);
+    if (instant){ motion = null; setLook(p, t); teleport(); return; }
+    walkTo(p.x, p.z, lookYaw(p, t), lookPitch(p, t));
+  }
+
+  function enter(instant, keep){
+    atWelcome = false; hideHint(false);
+    if (keep){ if (cam.pos.z > ZW - 0.3 || cam.pos.x < 0){ setLook(FOYER.p, FOYER.t); } teleport(); return; }
+    if (instant || reduce){ motion = null; setLook(FOYER.p, FOYER.t); teleport(); showHint(); return; }
+    // fly from the drift pose through the door into the foyer
+    const p0 = cam.pos.clone(); const f0 = new THREE.Vector3(-Math.sin(cam.yaw), Math.sin(cam.pitch), -Math.cos(cam.yaw)).multiplyScalar(8).add(p0);
+    const P = new THREE.CatmullRomCurve3([p0, new THREE.Vector3(0.6, 1.66, 12.5), new THREE.Vector3(3.0, 1.62, 7.6), new THREE.Vector3(3.0, 1.6, 5.0), new THREE.Vector3(2.4, 1.6, 4.0), FOYER.p.clone()], false, 'centripetal');
+    const Lk = new THREE.CatmullRomCurve3([f0, new THREE.Vector3(3, 1.8, 5), new THREE.Vector3(3, 1.7, 0), new THREE.Vector3(3.4, 1.7, -3), FOYER.t.clone(), FOYER.t.clone()], false, 'centripetal');
+    startMotion({dur: 4600, apply: t => { const e = ease(t); const p = P.getPoint(e), l = Lk.getPoint(e); setLook(p, l); }, done: showHint});
+  }
+  function leave(instant){
+    atWelcome = true; hideHint(true);
+    const go = () => { motion = null; welcomeT0 = performance.now(); setLook(WELCOME_A.p, WELCOME_A.t); teleport(); };
+    if (instant || cam.pos.z > ZW + 1) go(); else veilJump(go);
+  }
+
+  /* hint */
+  let hintShown = false, hintTimer;
+  function showHint(){ if (hintShown) return; hintShown = true; const h = $('#hint'); h.classList.add('on'); hintTimer = setTimeout(() => h.classList.remove('on'), 7000); }
+  function hideHint(){ clearTimeout(hintTimer); $('#hint').classList.remove('on'); }
+
+  /* view offset while the panel is open, so the work sits in the free area */
+  let panelOpen = false, off = 0, offY = 0;
+  function panel(on){ panelOpen = on; invalidate(); }
+
+  /* ---------- floor plan ---------- */
+  const svg = $('#plan-svg'), SC = 4.2;
+  svg.innerHTML = ROOMS.map((r, i) => `<rect class="rm" data-i="${i}" x="${r.x0*SC}" y="0" width="${(r.x1-r.x0)*SC}" height="${10*SC}"><title>${r.no} ${r.name}</title></rect>`).join('')
+    + ROOMS.slice(1).map(r => `<line class="gap" x1="${r.x0*SC}" y1="${(ZW-1.2)*SC}" x2="${r.x0*SC}" y2="${(ZW+1.2)*SC}"/>`).join('')
+    + `<line class="gap" x1="${2.1*SC}" y1="${10*SC}" x2="${3.9*SC}" y2="${10*SC}"/>`
+    + `<g id="me"><path d="M0 0 L-7 -14 A15 15 0 0 1 7 -14 Z" fill="#161615" fill-opacity=".16"/><circle r="3.2" fill="#161615"/></g>`;
+  svg.addEventListener('click', e => { const r = e.target.closest('.rm'); if (!r) return; location.hash = '#room/' + ROOMS[+r.dataset.i].slug; });
+  let lastRoom = -1;
+  function updatePlan(){
+    const me = svg.querySelector('#me');
+    me.setAttribute('transform', `translate(${cam.pos.x*SC} ${(cam.pos.z+ZW)*SC}) rotate(${-cam.yaw*180/Math.PI})`);
+    const i = roomAt(cam.pos.x);
+    if (i !== lastRoom && i >= 0){
+      lastRoom = i; svg.querySelectorAll('.rm').forEach((el, k) => el.classList.toggle('on', k === i));
+      $('#plan-name').innerHTML = `<span class="tn">${ROOMS[i].no}</span>${esc(ROOMS[i].name)}`;
+      $('#where').textContent = ROOMS[i].name;
+    }
+  }
+
+  /* ---------- input ---------- */
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+  function pick(cx, cy){
+    const r = canvas.getBoundingClientRect();
+    ndc.set(((cx - r.left) / r.width) * 2 - 1, -((cy - r.top) / r.height) * 2 + 1);
+    ray.setFromCamera(ndc, camera);
+    const hit = ray.intersectObjects(pickables, false)[0];
+    return hit || null;
+  }
+  let down = null;
+  const tip = $('#tip');
+  canvas.addEventListener('pointerdown', e => {
+    if (atWelcome) return;
+    down = {x:e.clientX, y:e.clientY, yaw:cam.yaw, pitch:cam.pitch, drag:false, id:e.pointerId};
+    canvas.setPointerCapture(e.pointerId);
+  });
+  canvas.addEventListener('pointermove', e => {
+    if (atWelcome) return;
+    if (down){
+      const dx = e.clientX - down.x, dy = e.clientY - down.y;
+      if (!down.drag && Math.hypot(dx, dy) > 5){ down.drag = true; canvas.classList.add('dragging'); motion = null; hideHint(); }
+      if (down.drag){
+        const k = (e.pointerType === 'touch' ? 0.006 : 0.0042);
+        cam.yaw = down.yaw + dx * k; cam.pitch = Math.max(-0.7, Math.min(0.6, down.pitch + dy * k * 0.8)); invalidate();
+      }
+      return;
+    }
+    hover(e.clientX, e.clientY);
+  });
+  let hoverQ = null;
+  function hover(cx, cy){ hoverQ = [cx, cy]; invalidate(); }
+  function doHover(){
+    if (!hoverQ) return; const [cx, cy] = hoverQ; hoverQ = null;
+    const h = pick(cx, cy);
+    const ud = h && h.object.userData;
+    const isItem = ud && (ud.work || ud.press || ud.page);
+    canvas.classList.toggle('over-work', !!isItem);
+    if (isItem){
+      ring.visible = false;
+      tip.innerHTML = ud.work ? `<b>${esc(ud.work.title)}</b><span>${esc(ud.work.series)}</span>` : ud.press ? `<b>${esc(ud.press.when)}</b><span>Exhibitions &amp; Press</span>` : `<b>About</b><span>Exhibitions &amp; Press</span>`;
+      tip.style.left = (cx + 16) + 'px'; tip.style.top = (cy + 18) + 'px'; tip.classList.add('on');
+    } else {
+      tip.classList.remove('on');
+      if (h && ud && ud.floor){ const [x, z] = clampIn(h.point.x, h.point.z); ring.position.set(x, 0.01, z); ring.visible = true; }
+      else ring.visible = false;
+    }
+  }
+  canvas.addEventListener('pointerleave', () => { ring.visible = false; tip.classList.remove('on'); invalidate(); });
+  canvas.addEventListener('pointerup', e => {
+    const d = down; down = null; canvas.classList.remove('dragging');
+    if (!d || d.drag || atWelcome) return;
+    const h = pick(e.clientX, e.clientY); if (!h) return;
+    const ud = h.object.userData; hideHint(); tip.classList.remove('on'); canvas.classList.remove('over-work');
+    if (ud.work){ location.hash = '#work/' + ud.work.slug; return; }
+    if (ud.press){ location.hash = '#press/' + ud.press.id; return; }
+    if (ud.page){ location.hash = '#' + ud.page; return; }
+    if (ud.floor){
+      if (S.current){ history.replaceState(null, '', '#gallery'); route(); }
+      const [x, z] = clampIn(h.point.x, h.point.z); walkTo(x, z, null, 0);
+    }
+  });
+  canvas.addEventListener('wheel', e => {
+    if (atWelcome) return; e.preventDefault();
+    const s = Math.max(-0.6, Math.min(0.6, -e.deltaY * 0.004));
+    tryMove(-Math.sin(cam.yaw) * s, -Math.cos(cam.yaw) * s); motion = null; invalidate();
+  }, {passive:false});
+  function tryMove(dx, dz){
+    const x = cam.pos.x + dx, z = cam.pos.z + dz;
+    if (allowed(x, z)){ cam.pos.x = x; cam.pos.z = z; }
+    else if (allowed(x, cam.pos.z)) cam.pos.x = x;
+    else if (allowed(cam.pos.x, z)) cam.pos.z = z;
+  }
+  const keys = new Set();
+  addEventListener('keydown', e => {
+    if (atWelcome || !active || S.page || S.current || (e.target.closest && e.target.closest('input,textarea'))) return;
+    const k = e.key.toLowerCase();
+    if (['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(k)){ keys.add(k); motion = null; hideHint(); e.preventDefault(); invalidate(); }
+  });
+  addEventListener('keyup', e => keys.delete(e.key.toLowerCase()));
+  addEventListener('blur', () => keys.clear());
+
+  /* ---------- loop ---------- */
+  let inside = 0, last = performance.now();
+  function frame(now){
+    requestAnimationFrame(frame);
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (!active) return;
+    if (motion){ const t = Math.min(1, (now - motion.t0) / motion.dur); const m = motion; m.apply(t); if (t >= 1){ motion = null; m.done && m.done(); } dirty = true; }
+    else if (atWelcome && !reduce && !hold){
+      const t = Math.min(1, (now - welcomeT0) / 48000), e = ease(t);
+      const p = WELCOME_A.p.clone().lerp(WELCOME_B.p, e), l = WELCOME_A.t.clone().lerp(WELCOME_B.t, e);
+      p.y += Math.sin(now / 5200) * 0.03; setLook(p, l); dirty = true;
+    }
+    if (keys.size){
+      const sp = 2.6 * dt, tr = 1.6 * dt;
+      const f = (keys.has('w') || keys.has('arrowup') ? 1 : 0) - (keys.has('s') || keys.has('arrowdown') ? 1 : 0);
+      const st = (keys.has('d') ? 1 : 0) - (keys.has('a') ? 1 : 0);
+      const turn = (keys.has('arrowleft') ? 1 : 0) - (keys.has('arrowright') ? 1 : 0);
+      cam.yaw += turn * tr;
+      const sy = Math.sin(cam.yaw), cy = Math.cos(cam.yaw);
+      tryMove((-sy * f + cy * st) * sp, (-cy * f - sy * st) * sp);
+      cam.pitch *= 0.96; dirty = true;
+    }
+    // interior light: softer sun and fuller sky once inside
+    const inNow = (cam.pos.z < ZW - 0.2 && cam.pos.x > 0) ? 1 : 0;
+    if (snapLight){ inside = inNow; snapLight = false; dirty = true; }
+    const ni = inside + (inNow - inside) * Math.min(1, dt * 1.6);
+    if (Math.abs(ni - inside) > 0.0005){ inside = ni; dirty = true; }
+    hemi.intensity = Math.PI * (0.62 + 0.44 * inside); sun.intensity = Math.PI * (0.78 - 0.1 * inside); amb.intensity = Math.PI * (0.04 + 0.08 * inside);
+    const tx = atWelcome ? (innerWidth > 900 ? -Math.round(innerWidth * 0.17) : 0) : (panelOpen && innerWidth > 900 ? 210 : 0);
+    const ty = atWelcome ? -Math.round(innerHeight * 0.13) : 0;
+    const k5 = Math.min(1, dt * 4);
+    if (Math.abs(off - tx) > 0.5){ off += (tx - off) * k5; dirty = true; } else if (off !== tx){ off = tx; dirty = true; }
+    if (Math.abs(offY - ty) > 0.5){ offY += (ty - offY) * k5; dirty = true; } else if (offY !== ty){ offY = ty; dirty = true; }
+    if (pool) pool.visible = inside < 0.98;
+    doHover();
+    if (!dirty) return;
+    dirty = false;
+    if (off || offY) camera.setViewOffset(innerWidth, innerHeight, off, offY, innerWidth, innerHeight); else camera.clearViewOffset();
+    applyCam(); updatePlan();
+    renderer.render(scene, camera);
+  }
+  addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight, false); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); invalidate(); });
+
+  setLook(WELCOME_A.p, WELCOME_A.t);
+  renderer.shadowMap.needsUpdate = true;
+  applyCam(); renderer.render(scene, camera);
+  requestAnimationFrame(frame);
+  // reveal once the four textures have arrived
+  Promise.all(Object.values(texCache).map(t => new Promise(res => { if (t.image && (t.image.complete || t.image.width)) res(); else { const i = setInterval(() => { if (t.image && (t.image.complete || t.image.width)){ clearInterval(i); res(); } }, 60); setTimeout(res, 4000); } })))
+    .then(() => { invalidate(); setTimeout(() => canvas.classList.add('ready'), 60); window.__pavilionReady = true; });
+
+  return {
+    enter, leave, goRoom, goTarget, panel,
+    active(on){ active = on; if (on) invalidate(); }
+  };
+}
+
+/* ---------------- boot ---------------- */
+(async function(){
+  await load();
+  buildFlat(); buildGuide(); applyMode();
+  if (mode === '3d'){ S.three = await init3D(); if (!S.three){ mode = 'flat'; applyMode(); } }
+  route();
+})();
+</script>
+</body>
+</html>
