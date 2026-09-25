@@ -22,6 +22,8 @@ public/ventures/<slug>/
   landing/<id>/meta.json
   social/posts.json           LinkedIn posts: visual + three captions each
   journeys/journeys.json      ICPs and customer journeys, as a post-it wall
+  vision/board.json           product vision: research and a kanban of recommended initiatives
+  vision/prototypes/<id>/     vision prototypes (self-contained HTML) linked from initiatives
 templates/deck.json           the presentation template, always start from it
 ```
 
@@ -149,6 +151,16 @@ The Social page of every venture is a gallery of finished LinkedIn posts, each a
 - Each post: `{ "id", "angle", "format": "portrait" | "square" | "landscape", "layout": "type" | "photo" | "split" | "product" | "stat", "label", "title", "body"?, "stat"?, "photo"?, "dark"?, "shade"?, "color"?, "captions": ["", "", ""] }`. `id` is unique (`"01"`, `"02"` and so on). `photo` is a gallery path (a product cut-out for `product`, a photo for `photo` and `split`); `color` is a key of the brand's deck `palette` (Krans: orange, purple, blue; omit for cream); `stat` is the big number of a stat post; `*words*` in `title` get the brand's emphasis. Never put styling in a post.
 - Day Zero (brand deck style `boot`) has its own layouts: `window` (the Luma cover: wordmark in a window, `title` and `body` as the left and right lines, `stat` the edition), `headline` (a README window, `body` becomes a `> prompt` line), `code` (`title` is the code, one line per row; `dark: true` makes it a terminal) and `guest` (`photo` is an arcade avatar from `gallery/avatars/`, `title` the guest name, `body` the theme). `color` picks the wallpaper. Luma covers are `square` + `window`, and their captions are event descriptions. New guest avatars: cut the portrait out (background removed), then `AVATARS=cutout.png AVATAR_NAME=first-last node scripts/day-zero-pixels.mjs`.
 - `captions` holds three variants of the LinkedIn text for that visual, in the venture's voice, each with a different opening and emphasis: two to four short paragraphs separated by blank lines, the site at the end, real facts only (from `venture.md`, the live site, the brand book), no em dashes, no exclamation marks, no hashtags unless asked.
+
+## Vision
+
+The Vision section is where a venture's product direction is decided: a research strip (competitors' winning patterns, the problem, trends, and where the venture stands from the VSI MCP) above a kanban of recommended product initiatives. People drag cards between Recommended, Shortlist, Validating, Building and Parked, and add notes in the platform; both save back to `vision/board.json`.
+
+- Research first: the VSI MCP (venture-next-step, decision-log, commitments, metrics-scorecard, tension-summary, risk-register, hypothesis-state, open-questions, pain-themes, objection-pattern, product-feedback, signals and the conversation intelligence of calls), the venture's `journeys/journeys.json` if it exists, its `competitors.json`, and web research on winning patterns and trends. List every web source.
+- 8 to 12 initiatives, each a distinct product move, all starting in `recommended` (or `parked` with the reason in `risks`). Each carries a bet, the problem, impact and effort (1 to 3), a confidence tier that reflects the weakest link in its evidence, a horizon, what would prove it wrong, the first two-week move, and 3 to 7 evidence items mixing calls (with `conv` and `ms`), signals, competitors, trends and journeys.
+- Visualisations (`viz`): `bars`, `compare` (the venture versus competitors, venture first), `flow` (before and after steps with times), `matrix` (positioning, 0 to 1 on both axes) and `quote`. Numbers only from the evidence, and the title says what they are.
+- The two or three strongest initiatives get a vision prototype: a self-contained page in `vision/prototypes/<id>/index.html` that looks like the future product, with a caption saying it is a vision prototype, linked from the initiative's `prototype`.
+- Same privacy rule as Journeys: no names of people or customer companies, speakers by role and segment. Schema in `lib/vision.ts`.
 
 ## Journeys
 

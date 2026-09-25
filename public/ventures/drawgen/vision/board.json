@@ -1,0 +1,1631 @@
+{
+  "updated": "2026-09-25",
+  "vision": "drawgen becomes the engineer's one run from a finished SOLIDWORKS assembly to everything the shop and the estimator need: native, checked drawings for every part, the parts list with lengths, areas and mass, and a list of exactly which sheets a model change touches, all measured from the solid and traced to the datum or rule that placed it. The designer decides views, datums and tolerances; drawgen does the rest and flags what it will not guess.",
+  "research": {
+    "patterns": [
+      {
+        "title": "Show the result on the buyer's own model in the first meeting",
+        "text": "The drawing and CPQ tools that sell into engineering let the buyer see output on their own files before any commitment: DraftAid runs 15-minute demos on models the prospect brings, and DriveWorks Solo offers a 30-day full trial with no credit card. Engineers in drawgen's calls say the same thing in reverse: they reserve judgement on price until they see it work.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "DraftAid offers personalised 15-minute demos where prospects bring their own models and see drawings generated in seconds; no pricing is published.",
+            "source": "DraftAid",
+            "url": "https://draftaid.io",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "DriveWorks Solo is sold with a free 30-day full-feature trial, instant access and no credit card, above the free DriveWorksXpress inside SOLIDWORKS.",
+            "source": "DriveWorks",
+            "url": "https://www.driveworks.co.uk",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "signal",
+            "text": "Customers value automated, accurate dimensioning that meets ISO standards on complex parts, but reserve judgement on price and adoption until they see it work.",
+            "tier": "E2",
+            "source": "VSI pricing-strategy"
+          }
+        ]
+      },
+      {
+        "title": "Automate the first pass, keep the engineer as the decision-maker",
+        "text": "The AI features gaining ground in manufacturing software stop short of deciding. Paperless Parts' Wingman surfaces GD&T and critical callouts for an estimator to resolve, CoLab's AutoReview runs a first-pass check against the company's own standards, and Tacton's modelling assistant hands over a model 70 to 80 percent complete for human review. This is the same shape as drawgen's abstention: fill what can be measured, flag what needs judgement.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Paperless Parts Requirements Review extracts GD&T and critical callouts from prints, flags high-risk conditions with custom rules and routes them to estimators, who stay the decision-makers.",
+            "source": "Paperless Parts",
+            "url": "https://www.paperlessparts.com/press/paperless-parts-new-ai-features-surface-critical-requirements-helping-shops-quote-faster-with-confidence/",
+            "date": "2025-09-08"
+          },
+          {
+            "kind": "competitor",
+            "text": "CoLab AutoReview runs first-pass checks on drawings and 3D models, trained on the organisation's standards and past review lessons, inside SOLIDWORKS, Creo, NX and PLM integrations.",
+            "source": "CoLab",
+            "url": "https://www.colabsoftware.com",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Tacton's AI Product Modeling Assistant turns spreadsheets and PDFs into CPQ models typically 70 to 80 percent complete before human review.",
+            "source": "IT Brief",
+            "url": "https://itbrief.co.uk/story/tacton-launches-ai-assistant-to-cut-cpq-modelling-work",
+            "date": "2026-05-06"
+          }
+        ]
+      },
+      {
+        "title": "Name the job and the department, then prove it in their numbers",
+        "text": "Tacto sells one thing to one buyer, the AI for industrial procurement, and leads with spend managed and savings; CADDi leads with hours saved and procurement cost cut. Neither sells an abstract platform first, and VSI notes CADDi's valuation re-rated only after workflow products sat on its data layer.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Tacto positions as the AI for industrial procurement, sold to procurement teams and CPOs, and leads with EUR 1 billion of spend managed and 75 percent time saved.",
+            "source": "Tacto",
+            "url": "https://www.tacto.ai/en",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "CADDi leads with customer outcomes such as 100,000 hours saved at an automotive OEM and 30 percent annual procurement cost reduction at a machinery maker.",
+            "source": "CADDi",
+            "url": "https://caddi.com",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "signal",
+            "text": "CADDi's valuation was flat for three and a half years as a searchable drawing archive and re-rated only after the platform and agent layer existed.",
+            "tier": "E2",
+            "source": "VSI metrics-scorecard"
+          }
+        ]
+      },
+      {
+        "title": "Put data trust on the front page",
+        "text": "Leo AI, which integrates with SOLIDWORKS and SOLIDWORKS PDM, leads with SOC 2, GDPR and zero training on customer data, and REV1 is flagged in VSI for pairing GD&T with SOC 2. drawgen already runs in-process with geometry staying on the machine, and a design manager asked about the vault before anything else.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Leo AI claims SOC 2, GDPR and zero training on customer data, with integrations into SOLIDWORKS, SOLIDWORKS PDM, Inventor, NX, Teamcenter and SAP PLM.",
+            "source": "Leo AI",
+            "url": "https://www.getleo.ai",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "signal",
+            "text": "REV1 pairs GD&T and design intent first (ASME Y14.5-2018) with a reviewable rationale per annotation and SOC 2, which may appeal more to enterprise buyers.",
+            "tier": "E2",
+            "source": "VSI risk-register"
+          },
+          {
+            "kind": "call",
+            "text": "Another thing that he also said was, how does it work with document management systems? Because we keep all of our files in a vault.",
+            "tier": "E3",
+            "who": "Territory manager, UK handling-equipment builder, relaying the design manager",
+            "conv": "e0ab7275-9aeb-4a4a-a2d0-ba66d0ebd12e",
+            "ms": 2840110
+          }
+        ]
+      },
+      {
+        "title": "Quotes built on rules and geometry, not on a guessed total",
+        "text": "The quoting tools that win in manufacturing price from measured geometry and explicit rules: Paperless Parts runs a configurable geometric pricing engine, and DriveWorks and Tacton generate BOMs, drawings and quotes from rules for configurable families. A manufacturing investor told drawgen that generalist LLM tools failed on BOM work for two years because the job needs deterministic answers.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Paperless Parts combines a configurable geometric pricing engine with part file analysis across processes and ERP and CRM integrations.",
+            "source": "PitchBook profile of Paperless Parts",
+            "url": "https://pitchbook.com/profiles/company/181087-30",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Tacton Design Automation runs rule-based engineer-to-order automation inside SOLIDWORKS, generating complete 2D drawings, 3D models and quote documents.",
+            "source": "SOLIDWORKS partner listing",
+            "url": "https://www.solidworks.com/partner-product/tacton-design-automation",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "call",
+            "text": "And at this point you need something which is deterministic and not probabilistic.",
+            "tier": "E3",
+            "who": "Venture partner, manufacturing-focused startup studio",
+            "conv": "3c860ccf-6fe6-4b7b-b651-a0643a72577f",
+            "ms": 1037509
+          }
+        ]
+      }
+    ],
+    "problem": [
+      {
+        "title": "Assemblies, views and datums are where drawing tools fail",
+        "text": "The strongest signal in VSI, decision-grade across seven conversations and three firms, is that existing tools do not handle large assemblies and that any automation must infer the process to set zero points and datums. SOLIDWORKS auto-dimensioning was tried and dropped for exactly that reason, and senior engineers name wrong datums and views as the first thing they send back.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "Customers want to automate drawing creation, but existing tools do not handle large assemblies, and a solution must infer manufacturing processes to set correct zero points and datums. Decision-grade, 7 conversations, 3 companies.",
+            "tier": "E3",
+            "source": "VSI signal"
+          },
+          {
+            "kind": "call",
+            "text": "It just throws, it throws the dimensions on and there's loads of lines. It looks really confusing.",
+            "tier": "E4",
+            "who": "Territory manager, UK handling-equipment builder",
+            "conv": "e0ab7275-9aeb-4a4a-a2d0-ba66d0ebd12e",
+            "ms": 1661125
+          },
+          {
+            "kind": "call",
+            "text": "The biggest issue I have when somebody else creates a drawing is they pick the wrong dimension, the wrong datums.",
+            "tier": "E3",
+            "who": "Freelance chief design engineer, powertrain",
+            "conv": "4ece3dc9-db64-414b-84a3-8a7a7db3675b",
+            "ms": 766000
+          },
+          {
+            "kind": "journey",
+            "text": "Set up sheets and views: a project can need about 200 fabrication drawings at one to two hours each.",
+            "tier": "E3",
+            "source": "Journey: From finished model to released drawing"
+          }
+        ]
+      },
+      {
+        "title": "Checking and revisions eat the time that first drafts save",
+        "text": "Drafting is only half the cost. A heavy-fabrication checker sends back at least five of every twenty drawings, aerospace needs three signatures, and late 3D changes stall fabrication because nobody can tell which drawings a change touches. Redoing drawings after comments is called the most annoying part of the job.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "like let's say if I receive 20, like at least 5 I send back.",
+            "tier": "E4",
+            "who": "Drawing checker, offshore heavy-fabrication department",
+            "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+            "ms": 895984
+          },
+          {
+            "kind": "call",
+            "text": "we are kind of stuck in middle because the engineering department has to make 3D changes And then we don't know when they're gonna finish.",
+            "tier": "E4",
+            "who": "Drawing checker, offshore heavy-fabrication department",
+            "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+            "ms": 959986
+          },
+          {
+            "kind": "call",
+            "text": "someone has some comments, so you have to modify some things, and then in that moment you have to redo the 2D drawings.",
+            "tier": "E4",
+            "who": "Design engineer, aerospace rotor-blade team",
+            "conv": "877cab45-7329-4223-87bd-4133dc90d424",
+            "ms": 465351
+          },
+          {
+            "kind": "signal",
+            "text": "Designers make tolerance and dimensioning errors and over-dimension, costing senior engineers significant review time on datums and views. Decision-grade, 5 conversations, 3 companies.",
+            "tier": "E3",
+            "source": "VSI signal"
+          }
+        ]
+      },
+      {
+        "title": "The quote side re-extracts by hand what the model already knows",
+        "text": "Engineers copy part data from the 3D model into Excel for every quote, because badly named components make the BOM unusable. It is decision-grade in VSI with three E4 learnings: 2 to 3 hours for a 33-part platform, 3 to 4 hours for one assembly at a large manufacturer.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "Engineers manually extract part data from 3D models into Excel for quoting, 2 to 4 hours per assembly, because BOMs are unusable due to improper component naming. Decision-grade, 4 conversations.",
+            "tier": "E4",
+            "source": "VSI signal"
+          },
+          {
+            "kind": "call",
+            "text": "Usually it should be easy using bill of materials, but apparently engineers didn't properly name them, so I have to do it customly and then name it everything.",
+            "tier": "E4",
+            "who": "Drawing checker, offshore heavy-fabrication department",
+            "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+            "ms": 1405954
+          },
+          {
+            "kind": "journey",
+            "text": "Break the assembly into cost: parts are copied from the 3D model into Excel by hand, with lengths and coating areas measured.",
+            "tier": "E4",
+            "source": "Journey: From RFQ to a quote that makes money"
+          }
+        ]
+      },
+      {
+        "title": "Engineers trust what they can audit, not what an AI priced",
+        "text": "AI-generated quotes meet a validated objection from conservative management and from engineers, and the blocker-level objection on scope is that a tool which covers only half the job makes the buyer the integrator. Output has to be measured, explainable and fit into the systems already in place.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "AI-based quoting faces resistance from conservative management and high-volume manufacturers due to perceived unreliability. Validated, 2 conversations, 2 companies.",
+            "tier": "E2",
+            "source": "VSI signal"
+          },
+          {
+            "kind": "call",
+            "text": "So to be relying on the LLM to guess things might not be so great.",
+            "tier": "E2",
+            "who": "Automation lead, mining-machinery OEM",
+            "conv": "06a4d185-28fd-4fa2-8a91-f0930191741c",
+            "ms": 799410
+          },
+          {
+            "kind": "signal",
+            "text": "Selling only the geometry-derived half of a technical file makes the buyer the integrator. Objection pattern, severity blocker.",
+            "tier": "E3",
+            "source": "VSI objection-pattern"
+          }
+        ]
+      }
+    ],
+    "trends": [
+      {
+        "title": "CAD vendors now ship drawing automation in the box",
+        "text": "SOLIDWORKS 2026 adds generative Drawing Creation that builds views, dimensions, hole callouts and the sheet format, reported generally available from July 2026, and Autodesk Fusion has automated drawings since January 2024, which Autodesk puts at about 60 percent of the drawing work. Neither is reported to handle datums or tolerances, which is where drawgen's calls say the time goes, but the default expectation that SOLIDWORKS will ship this natively is now a fact to design around.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "SOLIDWORKS 2026 announces generative AI that speeds up drawing creation and detailing, plus fastener recognition in assemblies.",
+            "source": "Dassault Systemes newsroom",
+            "url": "https://www.3ds.com/newsroom/media-alerts/dassault-systemes-announces-solidworks-2026-ai-powered-design-and-collaboration-generative-economy",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "trend",
+            "text": "Generative Drawing Creation builds views, dimensions, hole callouts and sheet format from a part or assembly, general availability July 2026; the article does not address GD&T or datums.",
+            "source": "Morphos3D",
+            "url": "https://morphos3d.com/blog/solidworks-ai-for-machine-shops",
+            "date": "2026-06-22"
+          },
+          {
+            "kind": "trend",
+            "text": "Autodesk Fusion automated drawings create part and assembly drawings in minutes but need manual refinement; Autodesk estimates about 60 percent of the drawing work.",
+            "source": "Engineering.com",
+            "url": "https://www.engineering.com/ai-takes-on-sketching-and-drawings-in-autodesk-fusion/",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "signal",
+            "text": "Engineers' default expectation is that SOLIDWORKS will eventually ship automated drawings natively. Risk register: high severity, high likelihood.",
+            "tier": "E2",
+            "source": "VSI risk-register"
+          }
+        ]
+      },
+      {
+        "title": "The EU Machinery Regulation makes the technical file digital from 20 January 2027",
+        "text": "Regulation (EU) 2023/1230 replaces the Machinery Directive on 20 January 2027, allows digital instructions by default and keeps documentation accessible for at least ten years. A UK machine builder's contact believes machines built now for delivery after January already need it, which turns traceable, model-derived documentation into a dated buying trigger.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "Regulation (EU) 2023/1230 applies from 20 January 2027 and expands documentation duties: technical files, risk assessments, instructions and declarations kept accurate, traceable and retained.",
+            "source": "Nemko Digital",
+            "url": "https://digital.nemko.com/regulations/eu-machinery-regulation",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "market",
+            "text": "Digital instructions become the permitted default, with paper on request and online access for at least ten years.",
+            "source": "SpecMake",
+            "url": "https://www.specmake.com/blog/machinery-regulation-digital-instructions",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "call",
+            "text": "because the things getting built now that will be delivered after January, they think that the changes have to take effect now",
+            "tier": "E3",
+            "who": "Territory manager, UK handling-equipment builder",
+            "conv": "e0ab7275-9aeb-4a4a-a2d0-ba66d0ebd12e",
+            "ms": 1109333
+          }
+        ]
+      },
+      {
+        "title": "AI quoting and CPQ move to human-reviewed, rule-backed output",
+        "text": "In 2025 and 2026 the quoting and CPQ leaders shipped AI that prepares and the human approves: Tacton's modelling assistant (May 2026) and Paperless Parts' Requirements Review (general availability October 2025). A CAM reseller reports AI quoting becoming table stakes in the CAM channel while conservative customers still distrust it.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Tacton launched an AI Product Modeling Assistant on 6 May 2026 that halves product modelling effort, with models 70 to 80 percent complete before human review.",
+            "source": "IT Brief",
+            "url": "https://itbrief.co.uk/story/tacton-launches-ai-assistant-to-cut-cpq-modelling-work",
+            "date": "2026-05-06"
+          },
+          {
+            "kind": "trend",
+            "text": "Paperless Parts Requirements Review, announced September 2025 with general availability in October 2025, surfaces requirements for estimators to resolve.",
+            "source": "Paperless Parts",
+            "url": "https://www.paperlessparts.com/press/paperless-parts-new-ai-features-surface-critical-requirements-helping-shops-quote-faster-with-confidence/",
+            "date": "2025-09-08"
+          },
+          {
+            "kind": "call",
+            "text": "quotation is not an easy topic, but more and more companies asking for it.",
+            "tier": "E3",
+            "who": "CAM product manager, Hungarian CAD/CAM reseller",
+            "conv": "bdfeaeda-a0b4-4ac5-8b1d-4af04c60f628",
+            "ms": 402576
+          }
+        ]
+      },
+      {
+        "title": "Model-based definition grows, but the 2D drawing stays the contract",
+        "text": "Manufacturers adopting model-based definition mostly run a hybrid, keeping drawings next to annotated models and sharing PMI through STEP AP242. In drawgen's calls the drawing is still the contract with the supplier, so the near-term job is better drawings derived from the model, with PMI as a later output.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Organisations often combine model-based definition with traditional drawings in a phased, hybrid adoption, and STEP AP242 carries geometry and PMI outside native CAD.",
+            "source": "Autodesk Design and Manufacturing blog",
+            "url": "https://www.autodesk.com/blogs/design-and-manufacturing/model-based-definition-mbd-and-the-role-it-plays-in-modern-manufacturing/",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "call",
+            "text": "the 2D is like the contract with your supplier or your manufacturing company.",
+            "tier": "E4",
+            "who": "Design engineer, DACH crane retrofit",
+            "conv": "041afff6-550d-4759-84e8-b814dcc9700c",
+            "ms": 167723
+          }
+        ]
+      }
+    ],
+    "status": [
+      {
+        "title": "Next step on record: one-click manufacturing package, and a procurement GTM",
+        "text": "VSI's compiled next step (23 September) ranks two actions: execute a go-to-market aimed at German procurement departments through co-hosted industry meetups (now), and define and build the one-click manufacturing package with assemblies and BOMs (next). The first rests on E2 desk research, the second on what users asked for.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "Next step 1: execute the GTM strategy targeting German procurement departments via co-hosted industry meetups; horizon now, effort L.",
+            "tier": "E2",
+            "source": "VSI venture-next-step"
+          },
+          {
+            "kind": "signal",
+            "text": "Next step 2: define and build the one-click manufacturing package, incorporating assemblies and BOMs; horizon next, effort L. Assemblies were the first ask.",
+            "tier": "E3",
+            "source": "VSI venture-next-step"
+          }
+        ]
+      },
+      {
+        "title": "Positioning moved to the evidence layer, with a traceability manifest",
+        "text": "In the last month the founders pivoted positioning to be the evidence layer between the 3D assembly and the technical file, committed to own the technical file as a structured object rather than become a standards authority, and decided to ship a traceability manifest with every drawing. Two blocking open questions remain: whether a standards house is viable for two people, and whether going wide turns safety consultancies from channel into competitor.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "Decision log, 24 August to 23 September: one pivot and three commits, including the evidence-layer positioning and a traceability manifest with every drawing.",
+            "tier": "E3",
+            "source": "VSI decision-log"
+          },
+          {
+            "kind": "signal",
+            "text": "Hypotheses open: evidence-layer framing (confidence 0.7) and abstention as a strength rather than a weakness (confidence 0.6).",
+            "tier": "E3",
+            "source": "VSI hypothesis-state"
+          },
+          {
+            "kind": "signal",
+            "text": "Blocking open question: building a standards house (risk assessment, standards library) is not viable for a two-person team.",
+            "tier": "E3",
+            "source": "VSI open-questions"
+          }
+        ]
+      },
+      {
+        "title": "Design partners yes, revenue not yet",
+        "text": "Twenty-three conversations are recorded in VSI, eighteen of them with engineers, buyers and advisors. The journey map counts four E5 trial or design-partner commitments on the drawing side; the VSI commitments tracker shows two open and none met. The founders describe themselves as pre-revenue.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "I will be open to test it and see how it works.",
+            "tier": "E5",
+            "who": "Drawing checker, offshore heavy-fabrication department",
+            "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+            "ms": 1615657
+          },
+          {
+            "kind": "journey",
+            "text": "Design and drawing office: four E5 trial or design-partner commitments; two of the E5 trial partners draw in Inventor, not SOLIDWORKS.",
+            "tier": "E5",
+            "source": "Journey map ICPs"
+          },
+          {
+            "kind": "signal",
+            "text": "Commitments tracker: 2 total, 2 open, 0 met.",
+            "tier": "E3",
+            "source": "VSI commitments"
+          }
+        ]
+      },
+      {
+        "title": "Two high risks: SOLIDWORKS going native, and the buyer as integrator",
+        "text": "Of six open risks, two are high severity and high likelihood: SOLIDWORKS shipping automated drawings natively, and a scope so narrow that the buyer has to integrate the rest. Price pressure (CAD is already expensive) and REV1's GD&T and SOC 2 story sit at medium.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "Risk register, 25 September: 6 open risks, 2 high, 4 medium, none mitigated.",
+            "tier": "E3",
+            "source": "VSI risk-register"
+          },
+          {
+            "kind": "trend",
+            "text": "SOLIDWORKS 2026 generative Drawing Creation reported generally available from July 2026.",
+            "source": "Morphos3D",
+            "url": "https://morphos3d.com/blog/solidworks-ai-for-machine-shops",
+            "date": "2026-06-22"
+          }
+        ]
+      },
+      {
+        "title": "Pricing is a subscription hypothesis with one anchor",
+        "text": "The intended model is a manufacturer-paid subscription. The only anchor is $1,000 to $2,000 a month for a 25-person firm, reasoned from saving a fifth of the 30 to 40 percent of engineer time spent on 2D dimensioning, and a coach pushed for a paid pilot rather than one or two free weeks.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "Anchor of $1,000 to $2,000 per month for a 25-employee firm, based on saving 20 percent of the 30 to 40 percent of engineer time spent on 2D dimensioning.",
+            "tier": "E2",
+            "source": "VSI pricing-strategy"
+          },
+          {
+            "kind": "signal",
+            "text": "Founders proposed one or two weeks of free use; the coach advised a paid pilot at a fraction of the eventual price.",
+            "tier": "E2",
+            "source": "VSI pricing-strategy"
+          }
+        ]
+      }
+    ]
+  },
+  "initiatives": [
+    {
+      "id": "revision-diff",
+      "title": "Revision diff: every drawing a model change touches",
+      "summary": "When the assembly changes, drawgen compares revisions and lists every affected sheet, the dimensions that moved and the mating parts that follow, then updates them for the designer to accept.",
+      "column": "recommended",
+      "bet": "We believe that showing checkers and designers exactly which drawings and dimensions a model change affects, with proposed updates, will cut the stall and redraw after late changes in ETO and heavy fabrication. We will know when a design partner uses it on a live change and their checker reviews only the flagged items.",
+      "problem": "Late 3D changes stall fabrication because nobody knows which drawings are affected, and redoing drawings after comments is the most annoying part of the job.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "PDM already shows where-used and revision history well enough, so the diff adds little.",
+        "Changes arrive as whole remodels rather than edits, so geometry matching between revisions fails.",
+        "The pain is concentrated in two firms; the others may not revise often enough to pay for it."
+      ],
+      "firstMove": "Ask the heavy-fabrication design partner for one real before-and-after model pair from the change that is stalling their project, run both through drawgen, and hand them a list of affected sheets and changed dimensions to check against their own marked-up list.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "we are kind of stuck in middle because the engineering department has to make 3D changes And then we don't know when they're gonna finish.",
+          "tier": "E4",
+          "who": "Drawing checker, offshore heavy-fabrication department",
+          "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+          "ms": 959986
+        },
+        {
+          "kind": "call",
+          "text": "someone has some comments, so you have to modify some things, and then in that moment you have to redo the 2D drawings.",
+          "tier": "E4",
+          "who": "Design engineer, aerospace rotor-blade team",
+          "conv": "877cab45-7329-4223-87bd-4133dc90d424",
+          "ms": 465351
+        },
+        {
+          "kind": "call",
+          "text": "you then have like 2 versions of like a drawing. It's always like a really mess.",
+          "tier": "E3",
+          "who": "Design engineer, DACH crane retrofit",
+          "conv": "041afff6-550d-4759-84e8-b814dcc9700c",
+          "ms": 1113739
+        },
+        {
+          "kind": "signal",
+          "text": "Late 3D design changes by engineering stall fabrication mid-project due to a lack of visibility into affected drawings and timelines.",
+          "tier": "E4",
+          "source": "VSI pain-frequency-trend"
+        },
+        {
+          "kind": "signal",
+          "text": "The engine that derives a dimension from geometry also derives a revision diff (capability planned).",
+          "tier": "E3",
+          "source": "VSI capability-inventory"
+        },
+        {
+          "kind": "journey",
+          "text": "Revise after changes: revision diff and change propagation rated impact 3, with no incumbent telling which drawings a change affects.",
+          "tier": "E4",
+          "source": "Journey: From finished model to released drawing"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "flow",
+          "title": "A late model change, as the heavy-fabrication checker describes it today, and with a revision diff",
+          "before": [
+            {
+              "step": "Wait for engineering to finish 3D changes",
+              "time": "no date known"
+            },
+            {
+              "step": "Receive official confirmation in documents and drawings"
+            },
+            {
+              "step": "Compare visually and underline the changes"
+            },
+            {
+              "step": "Send to designers to modify each affected drawing"
+            }
+          ],
+          "after": [
+            {
+              "step": "Engineering saves the new revision"
+            },
+            {
+              "step": "drawgen lists affected sheets and moved dimensions"
+            },
+            {
+              "step": "Designer accepts or edits the proposed updates"
+            },
+            {
+              "step": "Checker reviews only the changed items"
+            }
+          ]
+        },
+        {
+          "kind": "quote",
+          "text": "we are kind of stuck in middle because the engineering department has to make 3D changes And then we don't know when they're gonna finish.",
+          "who": "Drawing checker, offshore heavy-fabrication department",
+          "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+          "ms": 959986
+        }
+      ],
+      "prototype": "vision/prototypes/revision-diff/index.html",
+      "notes": []
+    },
+    {
+      "id": "native-pdm",
+      "title": "Native drawings with live dimensions, checked into PDM",
+      "summary": "Write every sheet as a native SOLIDWORKS drawing with live model dimensions, save it next to the part and check it into SOLIDWORKS PDM as a normal revision, alongside the PDF and DXF.",
+      "column": "recommended",
+      "bet": "We believe that native, editable drawings that land in the vault as ordinary revisions will remove the objection that generated drawings are dead files, for design offices already on PDM. We will know when a design partner edits a drawgen sheet in SOLIDWORKS and releases it through their normal workflow.",
+      "problem": "Drawings made outside the CAD system, or exported as DXF and edited, were called worthless because drawings live as controlled revisions in PDM.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "Most target firms do not run PDM, so the vault check-in is a nice-to-have and the native file is what matters.",
+        "SOLIDWORKS' own generative drawings are native by default, which removes this as a differentiator.",
+        "Live dimensions break drawgen's layout guarantees once the designer edits the model."
+      ],
+      "firstMove": "Ship a build that writes the SLDDRW with driven dimensions next to the PDF and DXF, and ask the two design partners on SOLIDWORKS whether they use PDM, which workflow state a new drawing should enter, and whether a native file alone is enough.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "I don't think any company will want done drawings from step files.",
+          "tier": "E4",
+          "who": "Freelance chief design engineer, powertrain",
+          "conv": "4ece3dc9-db64-414b-84a3-8a7a7db3675b",
+          "ms": 1896000
+        },
+        {
+          "kind": "call",
+          "text": "So like, it should be not like just lines. It should be really like the measurement tool from SolidWorks.",
+          "tier": "E3",
+          "who": "Design engineer, DACH crane retrofit",
+          "conv": "041afff6-550d-4759-84e8-b814dcc9700c",
+          "ms": 1173529
+        },
+        {
+          "kind": "call",
+          "text": "Another thing that he also said was, how does it work with document management systems? Because we keep all of our files in a vault.",
+          "tier": "E3",
+          "who": "Territory manager, UK handling-equipment builder, relaying the design manager",
+          "conv": "e0ab7275-9aeb-4a4a-a2d0-ba66d0ebd12e",
+          "ms": 2840110
+        },
+        {
+          "kind": "competitor",
+          "text": "DraftAid exports to native drawing formats as well as PDF, DWG and DXF, and names SolidWorks and Inventor integrations.",
+          "source": "DraftAid",
+          "url": "https://draftaid.io/integrations/",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "journey",
+          "text": "Decision: ship native drawings into PDM, then revision diffs, before anything else.",
+          "tier": "E4",
+          "source": "Journey map decisions"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "quote",
+          "title": "The bar for output",
+          "text": "I don't think any company will want done drawings from step files.",
+          "who": "Freelance chief design engineer, powertrain",
+          "conv": "4ece3dc9-db64-414b-84a3-8a7a7db3675b",
+          "ms": 1896000
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "pre-check",
+      "title": "Pre-check report before the checker opens a sheet",
+      "summary": "A report on any drawing, drawgen's or a person's, that lists missing edge-to-hole and thread dimensions, over-dimensioning, standard violations and dimensions that disagree with the model, so the checker reviews flags instead of a blank sheet.",
+      "column": "recommended",
+      "bet": "We believe that a pre-check that catches the errors checkers return most often will save senior engineers review time, and will sell even to offices that keep drawing by hand. We will know when a checker runs it on a week of incoming drawings and it catches most of what they would have sent back.",
+      "problem": "A checker returns at least five of every twenty drawings, mostly for missing critical dimensions and tolerance errors, and senior engineers wait days for each corrected round.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "next",
+      "risks": [
+        "CoLab AutoReview already covers first-pass checks for the larger firms that have formal checkers.",
+        "Company drawing standards vary so much that rules need per-customer setup the team cannot afford.",
+        "Checkers value their own judgement and read a flag list as noise."
+      ],
+      "firstMove": "Collect twenty returned drawings with the checker's comments from the heavy-fabrication design partner, code the five most common return reasons as rules, and measure how many of the returns the rules would have caught.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "like let's say if I receive 20, like at least 5 I send back.",
+          "tier": "E4",
+          "who": "Drawing checker, offshore heavy-fabrication department",
+          "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+          "ms": 895984
+        },
+        {
+          "kind": "call",
+          "text": "when fabricator is fabricating certain part he doesn't have to come to me again says we are missing this dimension",
+          "tier": "E3",
+          "who": "Drawing checker, offshore heavy-fabrication department",
+          "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+          "ms": 1017255
+        },
+        {
+          "kind": "signal",
+          "text": "Designers make tolerance and dimensioning errors, over-dimension and add redundant annotations, costing senior engineers significant review time. Decision-grade, 5 conversations.",
+          "tier": "E3",
+          "source": "VSI signal"
+        },
+        {
+          "kind": "competitor",
+          "text": "CoLab AutoReview runs first-pass checks on drawings and models trained on company standards.",
+          "source": "CoLab",
+          "url": "https://www.colabsoftware.com",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Paperless Parts Requirements Review flags high-risk callouts with custom rules before quoting.",
+          "source": "Paperless Parts",
+          "url": "https://www.paperlessparts.com/press/paperless-parts-new-ai-features-surface-critical-requirements-helping-shops-quote-faster-with-confidence/",
+          "date": "2025-09-08"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "One heavy-fabrication checker's day, as reported in the call",
+          "unit": "drawings",
+          "items": [
+            {
+              "label": "Received to check, per day on average",
+              "value": 20
+            },
+            {
+              "label": "Sent back of every 20, at least",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "kind": "compare",
+          "title": "First-pass drawing checks, from each vendor's own site",
+          "columns": [
+            "drawgen pre-check (vision)",
+            "CoLab AutoReview",
+            "Paperless Parts Wingman"
+          ],
+          "rows": [
+            {
+              "label": "Checks before a human reviews",
+              "values": [
+                "yes",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "Compares the drawing with the solid model",
+              "values": [
+                "yes",
+                "not stated",
+                "not stated"
+              ]
+            },
+            {
+              "label": "Learns the company's own standards",
+              "values": [
+                "planned",
+                "yes",
+                "custom rules"
+              ]
+            },
+            {
+              "label": "Built for",
+              "values": [
+                "drawing checkers",
+                "design review teams",
+                "job-shop estimators"
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "process-rules",
+      "title": "Fabrication first: plate, profile and weldment rules",
+      "summary": "Ship drawing rules per process family, starting with the simplest high-volume ones (laser-cut plates, standard steel profiles, weldments), so each sheet carries the dimensions its process needs, such as edge-to-hole, cut length and bevel.",
+      "column": "recommended",
+      "bet": "We believe that nailing plates, profiles and weldments first will make drawgen release-ready for the fabrication-heavy half of the design partners before tackling machined parts with tight tolerances. We will know when a fabrication design partner releases plate and profile sheets without adding dimensions.",
+      "problem": "A milling drawing differs completely from a laser-cut one, and the tool must know the process to set datums; fabrication parts are the bulk of the sheets.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "The paying buyers turn out to be machined-part heavy, where tolerances and not layouts are the pain.",
+        "Process can not be inferred reliably from the model, so users must tag parts, which adds friction."
+      ],
+      "firstMove": "Sort the design partners' assemblies by part type and count plates, profiles, weldments and machined parts; write the rule set for the biggest family and run it on one partner's assembly.",
+      "evidence": [
+        {
+          "kind": "signal",
+          "text": "Engineers produce 2D drawings right after the 3D model, 5 to 45 minutes per part with complexity driving time, suggesting simple parts as the automation starting point. Validated, 3 conversations.",
+          "tier": "E3",
+          "source": "VSI signal"
+        },
+        {
+          "kind": "signal",
+          "text": "A milling drawing differs completely from a drilling or grinding drawing; the tool must infer the process, set zero points by fixturing, and should start with one process.",
+          "tier": "E3",
+          "source": "VSI signal learning, DACH crane retrofit"
+        },
+        {
+          "kind": "call",
+          "text": "We try to use as less many sheets as possible and fit as many parts as possible in one sheet so that we don't have to create like 100 drawings for one assembly.",
+          "tier": "E4",
+          "who": "Drawing checker, offshore heavy-fabrication department",
+          "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+          "ms": 275163
+        },
+        {
+          "kind": "call",
+          "text": "Like engineers send us the drawing and then we have to make new drawings for fabrication.",
+          "tier": "E4",
+          "who": "Drawing checker, offshore heavy-fabrication department",
+          "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+          "ms": 809748
+        },
+        {
+          "kind": "journey",
+          "text": "Shop floor builds from it: drawing types per process, laser-cut, weldment, machined, starting with the simple families.",
+          "tier": "E3",
+          "source": "Journey: From finished model to released drawing"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "quote",
+          "text": "Like engineers send us the drawing and then we have to make new drawings for fabrication.",
+          "who": "Drawing checker, offshore heavy-fabrication department",
+          "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+          "ms": 809748
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "evidence-manifest",
+      "title": "Dimension manifest that feeds the technical file",
+      "summary": "Every run writes a manifest: each dimension with the face, datum or rule that placed it, each item drawgen abstained on, material and mass per part, and the model revision, exported as a structured record for the machine's technical file.",
+      "column": "recommended",
+      "bet": "We believe that a traceable, model-derived record of every drawing will give EU machine builders a dated reason to buy before 20 January 2027, and will give checkers something to audit instead of redo. We will know when a design partner's engineering manager says the manifest belongs in their technical file and asks for it in a pilot.",
+      "problem": "Machine builders must keep a complete, traceable technical file under the EU Machinery Regulation, and checkers cannot see why a dimension is where it is.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "next",
+      "risks": [
+        "Notified bodies and safety consultancies do not value geometry-level traceability, so the regulation is not a trigger for drawings.",
+        "Going wide into the technical file turns safety consultancies from channel into competitor, which VSI lists as a blocking open question.",
+        "Buyers read the manifest as internal plumbing rather than something to pay for."
+      ],
+      "firstMove": "Generate a manifest for one design-partner assembly and put it in front of the UK builder's engineering manager, who the contact named as the authority on the new regulation. Ask which parts of the technical file it replaces and what it is missing.",
+      "evidence": [
+        {
+          "kind": "market",
+          "text": "Regulation (EU) 2023/1230 applies from 20 January 2027 with traceable documentation and long retention.",
+          "source": "Nemko Digital",
+          "url": "https://digital.nemko.com/regulations/eu-machinery-regulation",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "call",
+          "text": "because the things getting built now that will be delivered after January, they think that the changes have to take effect now",
+          "tier": "E3",
+          "who": "Territory manager, UK handling-equipment builder",
+          "conv": "e0ab7275-9aeb-4a4a-a2d0-ba66d0ebd12e",
+          "ms": 1109333
+        },
+        {
+          "kind": "signal",
+          "text": "Decided to ship a traceability manifest with every drawing; positioning moved to the evidence layer between the 3D assembly and the technical file.",
+          "tier": "E3",
+          "source": "VSI decision-log"
+        },
+        {
+          "kind": "signal",
+          "text": "Hypothesis: abstention architecture is a market-expected strength for a trustworthy engineering tool.",
+          "tier": "E4",
+          "source": "VSI hypothesis-state"
+        },
+        {
+          "kind": "competitor",
+          "text": "REV1 leads with a reviewable rationale per annotation and SOC 2.",
+          "tier": "E2",
+          "source": "VSI risk-register"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "matrix",
+          "title": "Where tools sit: what they start from, and how wide they reach (positions judged from each vendor's own site)",
+          "x": [
+            "Reads drawings already made",
+            "Derives from the 3D model"
+          ],
+          "y": [
+            "One workflow",
+            "Across design, quote and file"
+          ],
+          "points": [
+            {
+              "label": "CADDi",
+              "x": 0.15,
+              "y": 0.85
+            },
+            {
+              "label": "CoLab",
+              "x": 0.35,
+              "y": 0.55
+            },
+            {
+              "label": "Paperless Parts",
+              "x": 0.3,
+              "y": 0.35
+            },
+            {
+              "label": "DraftAid",
+              "x": 0.8,
+              "y": 0.2
+            },
+            {
+              "label": "SOLIDWORKS 2026",
+              "x": 0.9,
+              "y": 0.35
+            },
+            {
+              "label": "drawgen, this vision",
+              "x": 0.88,
+              "y": 0.78,
+              "us": true
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "pilot-ledger",
+      "title": "Paid pilot on the buyer's own assembly, with an hours report",
+      "summary": "A packaged three-week paid pilot: the buyer brings one assembly, drawgen runs inside their SOLIDWORKS, and the add-in keeps a ledger of sheets produced, dimensions placed, items flagged and edits made, set against the buyer's own minutes-per-drawing baseline.",
+      "column": "recommended",
+      "bet": "We believe that a paid pilot on the buyer's own assembly, with a measured hours report the champion can forward, will convert design partners into paying customers faster than free use. We will know when two of the four design partners pay for a pilot and one converts to a subscription.",
+      "problem": "Champions want to measure time saved and decision-makers buy on ROI, but drawgen has no revenue and customers reserve judgement on price until they see it work.",
+      "impact": 2,
+      "effort": 1,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Partners who get the tool free will not pay for a pilot of the same thing.",
+        "The minutes-per-drawing baseline is disputed, so the report persuades nobody above the champion.",
+        "Pilots stall in IT approval, which a manufacturing investor says blocks one in five proofs of concept."
+      ],
+      "firstMove": "Write a one-page pilot offer at a fraction of the $1,000 to $2,000 monthly anchor, add a local run log to the add-in (sheets, dimensions, flags, edits), and offer it to the two design partners with the most drawings in flight.",
+      "evidence": [
+        {
+          "kind": "signal",
+          "text": "Champions feel the pain of drawing hours and want to measure time savings, while senior decision-makers buy on ROI calculations.",
+          "tier": "E2",
+          "source": "VSI pain-frequency-trend"
+        },
+        {
+          "kind": "signal",
+          "text": "Coach advice: free pilots weaken validation; charge a fraction of the eventual price or ask the customer what they would value it at.",
+          "tier": "E2",
+          "source": "VSI pricing-strategy"
+        },
+        {
+          "kind": "competitor",
+          "text": "DriveWorks Solo sells on a 30-day full trial with no credit card; DraftAid on a demo with the prospect's own models.",
+          "source": "DriveWorks",
+          "url": "https://www.driveworks.co.uk",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "call",
+          "text": "But these guys were willing to pay because they said it was not to replace the sales guys, but to actually accelerate the time to market.",
+          "tier": "E4",
+          "who": "Venture partner, manufacturing-focused startup studio",
+          "conv": "3c860ccf-6fe6-4b7b-b651-a0643a72577f",
+          "ms": 1229124
+        },
+        {
+          "kind": "signal",
+          "text": "At a 900-person manufacturer, a drawing that takes 30 minutes by hand is produced in 1 minute by the tool (founder report).",
+          "tier": "E3",
+          "source": "VSI signal learning"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "Minutes per drawing reported in VSI, the baseline a pilot report measures against (upper bounds where a range was given)",
+          "unit": "min",
+          "items": [
+            {
+              "label": "Manual, per fabrication drawing",
+              "value": 120,
+              "note": "1 to 2 hours, E2"
+            },
+            {
+              "label": "Manual, per part drawing",
+              "value": 45,
+              "note": "5 to 45 minutes, validated"
+            },
+            {
+              "label": "Manual, one drawing at a 900-person manufacturer",
+              "value": 30,
+              "note": "E3, founder report"
+            },
+            {
+              "label": "Same drawing with drawgen",
+              "value": 1,
+              "note": "E3, founder report"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "past-jobs",
+      "title": "Missed-cost flags from similar past machines",
+      "summary": "Match a new concept assembly against the builder's past assemblies and modules, and flag cost items the nearest past jobs needed but this parts list lacks, with each flag traced to the past job it came from.",
+      "column": "recommended",
+      "bet": "We believe that deterministic flags drawn from the builder's own past assemblies will catch the forgotten items that make bespoke machine quotes lose money, without asking engineers to trust an AI price. We will know when replaying ten past quotes surfaces items that were really missed.",
+      "problem": "Machine builders forget cost items that similar jobs needed, and one botched project can cost the margin of the next three or four.",
+      "impact": 3,
+      "effort": 3,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Past job actuals sit in Sage, MYOB or Excel and are too incomplete to match against.",
+        "The evidence comes mostly from one UK builder whose contact asked for equity, so enthusiasm may be inflated.",
+        "Modular builders already know module costs, so the flags only help firms without modules, who have the least data."
+      ],
+      "firstMove": "Ask the UK handling-equipment builder and the NZ packaging builder for ten past quotes with their actual costs and the matching assemblies, and replay them by hand to see whether a parts-list diff against the nearest past job would have caught the misses.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "we've been quoting our projects 10% under what we should be, so we'll add 10% onto everything. It's a fix, not necessarily the right one",
+          "tier": "E2",
+          "who": "Territory manager, UK handling-equipment builder",
+          "conv": "ea93ab89-b15c-41ed-9738-580177e3b641",
+          "ms": 976736
+        },
+        {
+          "kind": "call",
+          "text": "trolley wheels are typically really expensive. So this was, you know, we needed to spend an extra £200 on the previous one.",
+          "tier": "E2",
+          "who": "Territory manager, UK handling-equipment builder",
+          "conv": "ea93ab89-b15c-41ed-9738-580177e3b641",
+          "ms": 1031329
+        },
+        {
+          "kind": "call",
+          "text": "we can go and quote a concept to a client about something reasonably serious and be relatively bulletproof on our costing",
+          "tier": "E3",
+          "who": "Executive chairman, NZ packaging-machinery builder",
+          "conv": "e52a98f8-9a5a-476b-b146-c0c055395c1d",
+          "ms": 684552
+        },
+        {
+          "kind": "signal",
+          "text": "In bespoke machinery a single botched project costs the margin of the next three or four jobs; a module of about 100 components built ten times before has known cost.",
+          "tier": "E3",
+          "source": "VSI signals"
+        },
+        {
+          "kind": "competitor",
+          "text": "CADDi Cost Review and design reuse mine past drawings and data for procurement and cost analysis.",
+          "source": "CADDi",
+          "url": "https://caddi.com",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "journey",
+          "text": "Decision: prove quote value on past jobs before building any pricing logic.",
+          "tier": "E2",
+          "source": "Journey map decisions"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "quote",
+          "text": "we've been quoting our projects 10% under what we should be, so we'll add 10% onto everything. It's a fix, not necessarily the right one",
+          "who": "Territory manager, UK handling-equipment builder",
+          "conv": "ea93ab89-b15c-41ed-9738-580177e3b641",
+          "ms": 976736
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "inventor",
+      "title": "Inventor as the second CAD system",
+      "summary": "Port the add-in to Autodesk Inventor once the SOLIDWORKS run is release-ready, because two of the four E5 trial partners draw in Inventor.",
+      "column": "recommended",
+      "bet": "We believe that supporting Inventor will unlock half of the current trial partners and the Dutch fabrication market. We will know when an Inventor partner releases a drawgen sheet from Inventor.",
+      "problem": "Two of the E5 trial partners draw in Inventor, and a Dutch checker calls it the most common CAD system in the Netherlands.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E3",
+      "horizon": "later",
+      "risks": [
+        "Splitting a two-person team across two CAD APIs slows the SOLIDWORKS product before it is release-ready.",
+        "Autodesk ships its own drawing automation, as it already does in Fusion.",
+        "The Inventor partners stay happy testing without paying."
+      ],
+      "firstMove": "Do not build yet. Ask the two Inventor partners whether a SOLIDWORKS-only pilot on a STEP-imported assembly is useful at all, and size the Inventor API work in one spike day.",
+      "evidence": [
+        {
+          "kind": "journey",
+          "text": "Two of the E5 trial partners draw in Inventor, not SOLIDWORKS.",
+          "tier": "E5",
+          "source": "Journey map ICPs"
+        },
+        {
+          "kind": "call",
+          "text": "But I think in Netherlands the most common one is Inventor.",
+          "tier": "E3",
+          "who": "Drawing checker, offshore heavy-fabrication department",
+          "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+          "ms": 75338
+        },
+        {
+          "kind": "competitor",
+          "text": "DraftAid integrates with Autodesk Inventor and SolidWorks.",
+          "source": "DraftAid",
+          "url": "https://draftaid.io/integrations/",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "trend",
+          "text": "Autodesk Fusion has automated drawings for parts and assemblies since January 2024.",
+          "source": "Engineering.com",
+          "url": "https://www.engineering.com/ai-takes-on-sketching-and-drawings-in-autodesk-fusion/",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "compare",
+          "title": "CAD coverage, from the vendors' own sites and venture.md",
+          "columns": [
+            "drawgen",
+            "DraftAid",
+            "SOLIDWORKS 2026 Drawing Creation"
+          ],
+          "rows": [
+            {
+              "label": "Runs in SOLIDWORKS",
+              "values": [
+                "yes",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "Runs in Inventor",
+              "values": [
+                "not yet",
+                "yes",
+                "no"
+              ]
+            },
+            {
+              "label": "Geometry stays on the engineer's machine",
+              "values": [
+                "yes",
+                "not stated",
+                "not stated"
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "subcontract-quotes",
+      "title": "Subcontractor quote placeholders for make-to-print suppliers",
+      "summary": "Estimate subcontracted process costs from past invoices so a make-to-print supplier can send a quote before subcontractors reply.",
+      "column": "parked",
+      "bet": "We believe that data-driven placeholder costs would let part suppliers quote in hours instead of waiting days on subcontractors. We will know when a supplier sends quotes on placeholders and keeps its margin.",
+      "problem": "Waiting one to three days per subcontractor quote is the named top pain for a bespoke friction-component supplier.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Parked: the only firm with this pain declined drawing automation, so it is a different buyer and a different product from drawgen's geometry engine.",
+        "Parked: the supplier's commercial lead is already building his own Claude tool on the CRM, and Tacto and Paperless Parts serve procurement and job-shop quoting.",
+        "Parked: it depends on clean ERP invoice history nobody has shown."
+      ],
+      "firstMove": "None for now. Revisit only if a design-office customer asks for subcontract costs on their own parts list.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "that seems to be the biggest pain point for us, waiting for them to provide their quotation.",
+          "tier": "E4",
+          "who": "Business development lead, UK friction-component supplier",
+          "conv": "ed23dd11-8f86-4387-a567-835f39807eeb",
+          "ms": 105420
+        },
+        {
+          "kind": "call",
+          "text": "I think we don't really need it because our drawings are quite simple. It's normally just 2 different parts.",
+          "tier": "E3",
+          "who": "Business development lead, UK friction-component supplier",
+          "conv": "ed23dd11-8f86-4387-a567-835f39807eeb",
+          "ms": 924472
+        },
+        {
+          "kind": "call",
+          "text": "have something where it just formulates something data-driven so we can just do it in a matter of seconds.",
+          "tier": "E2",
+          "who": "Business development lead, UK friction-component supplier",
+          "conv": "ed23dd11-8f86-4387-a567-835f39807eeb",
+          "ms": 624220
+        },
+        {
+          "kind": "journey",
+          "text": "Decision: say no to subcontractor-quote and CRM admin automation.",
+          "tier": "E4",
+          "source": "Journey map decisions"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "quote",
+          "title": "Why it is parked",
+          "text": "I think we don't really need it because our drawings are quite simple. It's normally just 2 different parts.",
+          "who": "Business development lead, UK friction-component supplier",
+          "conv": "ed23dd11-8f86-4387-a567-835f39807eeb",
+          "ms": 924472
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "procurement-agent",
+      "title": "Sourcing agent sold to German procurement",
+      "summary": "A procurement-facing agent that routes drawgen's parts list to preferred suppliers and collects quotes, sold to purchasing departments through co-hosted regional meetups.",
+      "column": "parked",
+      "bet": "We believe that procurement holds a bigger budget than the drawing office and would buy a sourcing agent fed by the model. We will know when a purchasing head at a German machine builder commits to a pilot.",
+      "problem": "Supplier choice follows designer habit, and wrong deliveries cost weeks; VSI's next step proposes selling to procurement in Germany.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Parked: the procurement case rests on E2 desk research, while no purchasing buyer has been interviewed; the drawing office has the E4 and E5 evidence.",
+        "Parked: Tacto already sells exactly this to industrial procurement with EUR 1 billion of spend managed.",
+        "Parked: a design engineer called supplier routing too wide, since each firm links suppliers in PDM or ERP already."
+      ],
+      "firstMove": "None for now. Keep the parts list exportable so a procurement tool can consume it, and interview two purchasing heads before reconsidering.",
+      "evidence": [
+        {
+          "kind": "signal",
+          "text": "Next step: target German procurement departments via co-hosted meetups; procurement holds a bigger budget than the drawing office (desk research).",
+          "tier": "E2",
+          "source": "VSI venture-next-step"
+        },
+        {
+          "kind": "competitor",
+          "text": "Tacto: the AI for industrial procurement, EUR 1 billion of spend managed, 75 percent time saved.",
+          "source": "Tacto",
+          "url": "https://www.tacto.ai/en",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "call",
+          "text": "the amount of stuff we've had arrive and it's wrong and we have to send it back and wait another 4 weeks.",
+          "tier": "E4",
+          "who": "Territory manager, UK handling-equipment builder",
+          "conv": "ea93ab89-b15c-41ed-9738-580177e3b641",
+          "ms": 696327
+        },
+        {
+          "kind": "journey",
+          "text": "Leave supplier routing and auto-buying to PDM and ERP for now.",
+          "tier": "E3",
+          "source": "Journey: From RFQ to a quote that makes money"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "assembly-run",
+      "title": "One run per assembly, views and datums set once",
+      "summary": "drawgen reads the whole assembly, proposes a sheet and views for every unique part, and asks the designer to confirm views and click datums and a tolerance class once before it dimensions everything.",
+      "column": "validating",
+      "bet": "We believe that letting the designer confirm views and datums for a whole assembly in one pass, then dimensioning every part from those choices, will get design offices at ETO machine builders to release drawgen sheets without redrawing. We will know when a design partner releases a full assembly's part drawings with fewer returns than their own baseline.",
+      "problem": "Existing tools handle single parts, not assemblies, and fail on views and datums, which is exactly what checkers send back; SOLIDWORKS auto-dimensioning was dropped for being unreadable.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "SOLIDWORKS generative Drawing Creation handles assemblies well enough that a separate add-in is not worth paying for.",
+        "Designers skip the confirmation step, which would mean the datum choice is not the value but a chore.",
+        "Datum choices vary so much by fixturing that one click per part is not enough to dimension correctly."
+      ],
+      "firstMove": "Take one design partner's real assembly, run it with a view-and-datum confirmation screen built as a clickable mock over real drawgen output, and have their checker mark each sheet as release, fix or redraw. Compare against the same assembly run through SOLIDWORKS 2026 Drawing Creation.",
+      "evidence": [
+        {
+          "kind": "signal",
+          "text": "Existing tools do not handle large assemblies, and any new solution must infer manufacturing processes to set correct zero points and datums. Decision-grade, 7 conversations, 3 companies.",
+          "tier": "E3",
+          "source": "VSI signal"
+        },
+        {
+          "kind": "call",
+          "text": "Well, what happens if I've got a whole assembly that I need to draw?",
+          "tier": "E2",
+          "who": "Territory manager, UK handling-equipment builder",
+          "conv": "a831e573-4a04-4352-b206-001b69b9a9f2",
+          "ms": 363875
+        },
+        {
+          "kind": "call",
+          "text": "If you get that wrong, the whole drawing is crap, right?",
+          "tier": "E3",
+          "who": "Automation lead, mining-machinery OEM",
+          "conv": "06a4d185-28fd-4fa2-8a91-f0930191741c",
+          "ms": 547400
+        },
+        {
+          "kind": "call",
+          "text": "The biggest issue I have when somebody else creates a drawing is they pick the wrong dimension, the wrong datums.",
+          "tier": "E3",
+          "who": "Freelance chief design engineer, powertrain",
+          "conv": "4ece3dc9-db64-414b-84a3-8a7a7db3675b",
+          "ms": 766000
+        },
+        {
+          "kind": "competitor",
+          "text": "SOLIDWORKS DimXpert needs the user to specify datums before it can dimension.",
+          "source": "GoEngineer",
+          "url": "https://www.goengineer.com/blog/introduction-dimxpert-solidworks",
+          "date": "2026-09-24"
+        },
+        {
+          "kind": "trend",
+          "text": "SOLIDWORKS 2026 generative Drawing Creation builds views, dimensions and hole callouts from a part or assembly; GD&T and datums are not addressed.",
+          "source": "Morphos3D",
+          "url": "https://morphos3d.com/blog/solidworks-ai-for-machine-shops",
+          "date": "2026-06-22"
+        },
+        {
+          "kind": "journey",
+          "text": "Decision: the designer picks views, datums and tolerance class; drawgen does the rest.",
+          "tier": "E3",
+          "source": "Journey map decisions"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "Conversations behind each drawing signal in VSI (decision-grade and validated)",
+          "unit": "calls",
+          "items": [
+            {
+              "label": "Assemblies unsupported, datums must be inferred",
+              "value": 7,
+              "note": "decision-grade, 3 companies"
+            },
+            {
+              "label": "Tolerance, datum and view errors cost review time",
+              "value": 5,
+              "note": "decision-grade, 3 companies"
+            },
+            {
+              "label": "Tolerancing is the hardest part",
+              "value": 3,
+              "note": "validated, 2 companies"
+            },
+            {
+              "label": "5 to 45 minutes per part drawing",
+              "value": 3,
+              "note": "validated, 1 company"
+            }
+          ]
+        },
+        {
+          "kind": "quote",
+          "title": "Why views and datums are the gate",
+          "text": "If you get that wrong, the whole drawing is crap, right?",
+          "who": "Automation lead, mining-machinery OEM",
+          "conv": "06a4d185-28fd-4fa2-8a91-f0930191741c",
+          "ms": 547400
+        }
+      ],
+      "prototype": "vision/prototypes/assembly-run/index.html",
+      "notes": []
+    },
+    {
+      "id": "parts-list",
+      "title": "Costed parts list from the same assembly",
+      "summary": "One click turns the assembly into a classified, measured parts list (profiles with cut lengths, plates with area and thickness, machined parts, bought-in items, coating areas and mass), renamed where names are unusable, which the estimator prices with their own rates and exports to Excel.",
+      "column": "validating",
+      "bet": "We believe that a parts list measured from the solid, with the estimator's own rates applied line by line, will replace the hand extraction into Excel for sales engineers at ETO machine builders and fabricators. We will know when two design partners send a real quote built from it and say which lines they had to correct.",
+      "problem": "Engineers extract part data from the 3D model into Excel by hand for every quote because badly named components make the BOM unusable, taking 2 to 4 hours per assembly.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "next",
+      "risks": [
+        "Estimators need rates and routings that do not exist in the model, so the list saves the easy part and leaves the hard one.",
+        "Small builders do not pay for it: a manufacturing investor says quoting tools for sub-100-person firms fail on missing data.",
+        "PDM or ERP BOM exports are good enough once parts are named properly, which is a process fix, not a product."
+      ],
+      "firstMove": "Rebuild the heavy-fabrication checker's 33-part platform extraction with drawgen's geometry read (lengths, coating areas, mass, grouping by profile) and time it against their 2 to 3 hours. Show the Excel export to the UK handling-equipment builder and ask which columns their estimator fills next.",
+      "evidence": [
+        {
+          "kind": "signal",
+          "text": "Engineers manually extract part data from 3D models into Excel for quoting, 2 to 4 hours per assembly, because BOMs are unusable due to improper naming. Decision-grade, 4 conversations, 3 of 4 learnings E4.",
+          "tier": "E4",
+          "source": "VSI signal"
+        },
+        {
+          "kind": "call",
+          "text": "there were like 33 parts to extract from a model. I had to verify everything, so it took roughly 2 to 3 hours for me to wrap it up and put it on Excel sheet",
+          "tier": "E4",
+          "who": "Drawing checker, offshore heavy-fabrication department",
+          "conv": "2f01f30a-07cd-4594-84d6-15f87787a806",
+          "ms": 1482023
+        },
+        {
+          "kind": "call",
+          "text": "Because almost 70% of the data that you need to create the asset does not exist.",
+          "tier": "E3",
+          "who": "Venture partner, manufacturing-focused startup studio",
+          "conv": "3c860ccf-6fe6-4b7b-b651-a0643a72577f",
+          "ms": 1037509
+        },
+        {
+          "kind": "call",
+          "text": "Whereas you can't really do that with bespoke products. We've tried, we've tried.",
+          "tier": "E3",
+          "who": "Territory manager, UK handling-equipment builder",
+          "conv": "ea93ab89-b15c-41ed-9738-580177e3b641",
+          "ms": 1158553
+        },
+        {
+          "kind": "competitor",
+          "text": "Paperless Parts prices from a configurable geometric pricing engine with part file analysis, for job shops and contract manufacturers.",
+          "source": "PitchBook profile of Paperless Parts",
+          "url": "https://pitchbook.com/profiles/company/181087-30",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "DriveWorks generates order-specific parts, drawings, BOMs and quotes, but for rule-defined configurable product families.",
+          "source": "DriveWorks",
+          "url": "https://www.driveworks.co.uk",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "journey",
+          "text": "Decision: make the costed parts list the second product, not an AI price.",
+          "tier": "E4",
+          "source": "Journey map decisions"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "flow",
+          "title": "Turning one assembly into a quote spreadsheet, today (heavy-fabrication checker) and with the parts list (after-time is the founders' estimate)",
+          "before": [
+            {
+              "step": "Open the model part by part"
+            },
+            {
+              "step": "Rename parts the engineers left unnamed"
+            },
+            {
+              "step": "Measure lengths and coating areas in 3D"
+            },
+            {
+              "step": "Type into Excel and verify",
+              "time": "2 to 3 h for 33 parts"
+            }
+          ],
+          "after": [
+            {
+              "step": "Run drawgen on the assembly"
+            },
+            {
+              "step": "Parts grouped: profiles, plates, machined, bought-in"
+            },
+            {
+              "step": "Lengths, areas and mass measured from the solid"
+            },
+            {
+              "step": "Estimator adds rates and exports",
+              "time": "founders' estimate 5 to 10 min"
+            }
+          ]
+        },
+        {
+          "kind": "bars",
+          "title": "Hours to extract one assembly into Excel for a quote, upper bound of the range reported in calls",
+          "unit": "h",
+          "items": [
+            {
+              "label": "Heavy-fabrication checker, 33-part platform",
+              "value": 3,
+              "note": "2 to 3 hours, E4"
+            },
+            {
+              "label": "Design engineer at a large manufacturer, one assembly",
+              "value": 4,
+              "note": "3 to 4 hours, E4"
+            }
+          ]
+        }
+      ],
+      "prototype": "vision/prototypes/parts-list/index.html",
+      "notes": []
+    }
+  ],
+  "sources": {
+    "vsi": {
+      "venture": "niklas-amir-bda663c5",
+      "conversations": 23,
+      "compiled": "2026-09-25"
+    },
+    "web": [
+      {
+        "title": "DraftAid: AI CAD drawing automation",
+        "url": "https://draftaid.io",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "DraftAid integrations",
+        "url": "https://draftaid.io/integrations/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Dassault Systemes announces SOLIDWORKS 2026",
+        "url": "https://www.3ds.com/newsroom/media-alerts/dassault-systemes-announces-solidworks-2026-ai-powered-design-and-collaboration-generative-economy",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "3DEXPERIENCE World 2026: SOLIDWORKS goes all-in on AI (Hawk Ridge Systems)",
+        "url": "https://hawkridgesys.com/blog/3dx-world-solidworks-ai",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "SOLIDWORKS AI in 2026: what it actually does on the shop floor (Morphos3D)",
+        "url": "https://morphos3d.com/blog/solidworks-ai-for-machine-shops",
+        "date": "2026-06-22"
+      },
+      {
+        "title": "AI takes on sketching and drawings in Autodesk Fusion (Engineering.com)",
+        "url": "https://www.engineering.com/ai-takes-on-sketching-and-drawings-in-autodesk-fusion/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Introduction to DimXpert in SOLIDWORKS (GoEngineer)",
+        "url": "https://www.goengineer.com/blog/introduction-dimxpert-solidworks",
+        "date": "2026-09-24"
+      },
+      {
+        "title": "DriveWorks",
+        "url": "https://www.driveworks.co.uk",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Tacton Design Automation (SOLIDWORKS partner listing)",
+        "url": "https://www.solidworks.com/partner-product/tacton-design-automation",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Tacton launches AI assistant to cut CPQ modelling work (IT Brief)",
+        "url": "https://itbrief.co.uk/story/tacton-launches-ai-assistant-to-cut-cpq-modelling-work",
+        "date": "2026-05-06"
+      },
+      {
+        "title": "Paperless Parts new AI features surface critical requirements",
+        "url": "https://www.paperlessparts.com/press/paperless-parts-new-ai-features-surface-critical-requirements-helping-shops-quote-faster-with-confidence/",
+        "date": "2025-09-08"
+      },
+      {
+        "title": "Paperless Parts company profile (PitchBook)",
+        "url": "https://pitchbook.com/profiles/company/181087-30",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "CoLab: AI design review",
+        "url": "https://www.colabsoftware.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Leo AI",
+        "url": "https://www.getleo.ai",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Tacto: the AI for industrial procurement",
+        "url": "https://www.tacto.ai/en",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "CADDi",
+        "url": "https://caddi.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Guide to the 2027 EU Machinery Regulation (Nemko Digital)",
+        "url": "https://digital.nemko.com/regulations/eu-machinery-regulation",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "EU Machinery Regulation 2023/1230: digital instructions (SpecMake)",
+        "url": "https://www.specmake.com/blog/machinery-regulation-digital-instructions",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Model-based definition and its role in modern manufacturing (Autodesk)",
+        "url": "https://www.autodesk.com/blogs/design-and-manufacturing/model-based-definition-mbd-and-the-role-it-plays-in-modern-manufacturing/",
+        "date": "2026-09-25"
+      }
+    ]
+  }
+}

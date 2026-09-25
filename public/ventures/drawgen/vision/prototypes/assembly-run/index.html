@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assembly run</title>
+<style>
+:root{
+  --ink:#141414;--paper:#FAFAF8;--accent:#245364;--accent-soft:#E4ECEF;--graphite:#555550;--stone:#686860;--rule:#E3E1DC;
+  --host:#EDEDEB;--host-2:#E2E2DF;--host-line:#C9C9C4;--flag:#9A5B12;--flag-soft:#F6ECDD;--ok:#2F6B4F;--ok-soft:#EAF1EC;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;color:var(--ink);background:var(--host);font-size:13px;line-height:1.35;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button,select{font:inherit;color:inherit}
+.cap{height:36px;display:flex;align-items:center;gap:14px;padding:0 16px;background:var(--ink);color:#F2F2EE;font-size:12px}
+.cap b{font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#9CC3D1}
+.cap span{opacity:.85}.cap .r{margin-left:auto;opacity:.6}
+.win{display:flex;flex-direction:column;height:calc(100vh - 36px);min-height:760px}
+.title{height:30px;display:flex;align-items:center;justify-content:center;background:#F7F7F5;border-bottom:1px solid var(--host-line);font-size:12px;color:var(--graphite);position:relative}
+.title .dots{position:absolute;left:12px;display:flex;gap:6px}.title .dots i{width:10px;height:10px;border-radius:50%;background:#D5D5D0;display:block}
+.tabs{height:28px;display:flex;align-items:flex-end;gap:2px;padding:0 10px;background:var(--host-2);border-bottom:1px solid var(--host-line)}
+.tabs span{padding:6px 12px;font-size:12px;color:var(--graphite);border:1px solid transparent;border-bottom:0}
+.tabs span.on{background:var(--paper);border-color:var(--host-line);color:var(--ink);font-weight:700;position:relative;top:1px}
+.ribbon{height:64px;display:flex;align-items:stretch;gap:2px;padding:6px 10px;background:var(--paper);border-bottom:1px solid var(--host-line)}
+.cmd{width:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid transparent;border-radius:4px;font-size:11px;color:var(--graphite);background:none;cursor:pointer}
+.cmd svg{width:22px;height:22px}.cmd.on{background:var(--accent-soft);border-color:#BFD2D9;color:var(--accent);font-weight:700}
+.ribbon .sep{width:1px;background:var(--rule);margin:4px 8px}
+.ribbon .brand{display:flex;align-items:center;gap:8px;padding:0 10px 0 4px;font-weight:700;font-size:15px;letter-spacing:-.01em}
+.ribbon .brand small{font-weight:400;font-size:11px;color:var(--stone)}
+
+.body{flex:1;display:grid;grid-template-columns:360px 1fr 350px;min-height:0}
+/* left: run list */
+.run{background:var(--paper);border-right:1px solid var(--host-line);display:flex;flex-direction:column;min-height:0}
+.rh{padding:14px 16px 12px;border-bottom:1px solid var(--rule)}
+.rh h1{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.rh .src{font-size:12px;color:var(--stone);margin-top:3px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:12px}
+.step{font-size:11px;color:var(--stone);border-top:3px solid var(--rule);padding-top:5px}
+.step b{display:block;color:var(--ink);font-size:12px}
+.step.done{border-color:var(--accent)}.step.cur{border-color:var(--ink)}
+.prog{display:flex;gap:14px;padding:10px 16px;border-bottom:1px solid var(--rule);font-size:12px;color:var(--stone)}
+.prog b{color:var(--ink);font-size:15px;margin-right:3px}
+.prog .fl b{color:var(--flag)}
+.list{flex:1;overflow:auto;padding:6px 0}
+.grp{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:700;padding:10px 16px 6px}
+.it{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:7px 16px;cursor:pointer;border-left:3px solid transparent}
+.it:hover{background:#F2F4F4}
+.it.on{background:var(--accent-soft);border-left-color:var(--accent)}
+.it .th{width:44px;height:34px;border:1px solid var(--rule);background:#fff;border-radius:3px;display:flex;align-items:center;justify-content:center}
+.it .th svg{width:36px;height:26px}
+.it b{font-weight:700;display:block;font-size:13px}
+.it .m{font-size:11px;color:var(--stone)}
+.st{font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:2px 6px;border-radius:3px;white-space:nowrap}
+.st.ok{background:var(--ok-soft);color:var(--ok)}
+.st.need{background:#EFEFEB;color:var(--graphite)}
+.st.fl{background:var(--flag-soft);color:var(--flag)}
+.rf{border-top:1px solid var(--rule);padding:12px 16px;display:flex;gap:8px;align-items:center;background:#fff}
+.rf .n{font-size:12px;color:var(--stone)}
+.btn{border:1px solid var(--rule);background:#fff;border-radius:4px;padding:8px 12px;font-size:12px;cursor:pointer}
+.btn:hover{border-color:var(--stone)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.btn.pri:hover{background:#1B4353}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.rf .sp{margin-left:auto}
+
+/* center: sheet */
+.stage{display:flex;flex-direction:column;min-height:0;background:#E7E7E4}
+.sbar{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#F3F3F0;border-bottom:1px solid var(--host-line)}
+.sbar h2{font-size:14px;font-weight:700}
+.sbar .sub{font-size:12px;color:var(--stone)}
+.hint{margin-left:auto;font-size:12px;color:var(--accent);background:var(--accent-soft);padding:5px 10px;border-radius:4px}
+.cv{flex:1;min-height:0;padding:16px 22px;display:flex}
+.sheet{flex:1;background:#fff;border:1px solid #CFCFCA;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;min-height:0}
+.sheet svg{width:100%;height:100%}
+.face{cursor:pointer}
+.face:hover .hl{stroke:#245364;stroke-width:2.2;opacity:.55}
+.legend{display:flex;gap:18px;padding:0 22px 12px;font-size:11px;color:var(--stone)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+/* right: decisions */
+.dec{background:var(--paper);border-left:1px solid var(--host-line);display:flex;flex-direction:column;min-height:0}
+.dec .scroll{flex:1;overflow:auto}
+.sec{padding:12px 16px;border-bottom:1px solid var(--rule)}
+.sec h3{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--stone);font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.sec h3 em{font-style:normal;text-transform:none;letter-spacing:0;font-weight:400;color:var(--stone)}
+.vw{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px}
+.vw input{accent-color:#245364}
+.vw span{margin-left:auto;font-size:11px;color:var(--stone)}
+.dat{display:grid;grid-template-columns:26px 1fr auto;gap:8px;align-items:center;padding:5px 0;font-size:12px}
+.dat .l{width:22px;height:22px;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;background:#fff}
+.dat .l.set{border-color:var(--accent);color:#fff;background:var(--accent)}
+.dat .f{color:var(--graphite)}
+.dat .f.empty{color:#9a9a93}
+.dat button{border:0;background:none;color:var(--accent);font-size:11px;cursor:pointer}
+select{width:100%;border:1px solid var(--rule);border-radius:4px;padding:7px 8px;background:#fff;font-size:12px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.row2 label{font-size:11px;color:var(--stone);display:block;margin-bottom:4px}
+.prop{border:1px dashed #D9B98C;background:var(--flag-soft);border-radius:5px;padding:9px 10px;font-size:12px;margin-top:8px}
+.prop b{color:var(--flag)}
+.prop.acc{border:1px solid #CFE0D5;background:var(--ok-soft)}.prop.acc b{color:var(--ok)}
+.prop .acts{margin-top:7px;display:flex;gap:6px}
+.mini{border:1px solid var(--rule);background:#fff;border-radius:4px;padding:4px 9px;font-size:11px;cursor:pointer}
+.mini.pri{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.mini.done{background:var(--ok-soft);border-color:#CFE0D5;color:var(--ok);font-weight:700}
+.flag{background:#fff;border:1px solid #EAD4B4;border-left:3px solid var(--flag);border-radius:4px;padding:9px 10px;font-size:12px;color:#4d3510;margin-top:6px}
+.flag b{display:block;color:var(--flag);margin-bottom:2px}
+.sim{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--graphite)}
+.sim input{margin-top:2px;accent-color:#245364}
+.df{border-top:1px solid var(--rule);padding:12px 16px;background:#fff;display:flex;gap:8px}
+.df .btn{flex:1}
+.status{height:24px;display:flex;align-items:center;gap:22px;padding:0 12px;background:var(--host-2);border-top:1px solid var(--host-line);font-size:11px;color:var(--graphite)}
+.status .r{margin-left:auto}
+.toast{position:fixed;left:50%;bottom:46px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:4px;font-size:12px;opacity:0;transition:.25s;pointer-events:none;max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (max-width:1240px){
+  .body{grid-template-columns:1fr 340px}.run{grid-column:1 / -1;grid-row:2;border-right:0;border-top:1px solid var(--host-line)}
+  .win{height:auto}.stage{min-height:520px}.list{max-height:420px}
+}
+@media (max-width:760px){
+  .body{grid-template-columns:1fr}.dec{border-left:0;border-top:1px solid var(--host-line)}.run{grid-row:auto}
+  .cap .r,.ribbon .brand small,.hint{display:none}.cmd{width:64px}.stage{min-height:380px}
+}
+.body>*{min-width:0}
+.ribbon{overflow-x:auto}
+.cap span:not(.r){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:640px){.filters{flex-wrap:wrap}.filters .note{margin-left:0;width:100%}.cap{height:auto;min-height:36px;padding:8px 16px}.cap span:not(.r){white-space:normal}.title{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype</b><span>Assembly run inside the CAD add-in: the designer confirms views and datums once, drawgen dimensions every part. Sample assembly, not a shipped feature.</span><span class="r">drawgen product vision</span></div>
+<div class="win">
+  <div class="title"><div class="dots"><i></i><i></i><i></i></div>Drive end assembly (sample).SLDASM</div>
+  <div class="tabs"><span>Assembly</span><span>Layout</span><span>Sketch</span><span>Evaluate</span><span class="on">drawgen</span></div>
+  <div class="ribbon">
+    <div class="brand">drawgen.<small>add-in</small></div><div class="sep"></div>
+    <button class="cmd on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 8h8M8 12h5M8 16h8"/></svg>Drawings</button>
+    <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16M9 3v18"/></svg>Parts list</button>
+    <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5h8l6 6v8H5z"/><path d="M13 5v6h6"/><path d="M9 15l2 2 4-4"/></svg>Revisions</button>
+    <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg>Pre-check</button>
+  </div>
+  <div class="body">
+    <aside class="run">
+      <div class="rh"><h1>Assembly run</h1><div class="src">Drive end assembly (sample) · 11 unique parts · bought-in items skipped</div>
+        <div class="steps"><div class="step done"><b>Views</b>proposed</div><div class="step cur"><b>Datums</b>your call</div><div class="step"><b>Dimension</b>drawgen</div><div class="step"><b>Release</b>to PDM</div></div></div>
+      <div class="prog"><span><b id="p-ok">0</b>confirmed</span><span><b id="p-need">0</b>need datums</span><span class="fl"><b id="p-fl">0</b>flagged</span></div>
+      <div class="list" id="list"></div>
+      <div class="rf"><span class="n" id="rf-n"></span><span class="sp"></span><button class="btn pri" id="runall">Dimension confirmed</button></div>
+    </aside>
+    <section class="stage">
+      <div class="sbar"><h2 id="s-title"></h2><span class="sub" id="s-sub"></span><span class="hint" id="hint">Click a face on the sheet to set the next datum</span></div>
+      <div class="cv"><div class="sheet" id="sheet"></div></div>
+      <div class="legend"><span><i style="background:#245364"></i>Datum you set</span><span><i style="background:#9A5B12"></i>Proposed, not confirmed</span><span><i style="border:1px solid #1d1d1b"></i>Measured from the solid</span></div>
+    </section>
+    <aside class="dec">
+      <div class="scroll">
+        <div class="sec"><h3>Views <em>proposed from the part's shape</em></h3><div id="views"></div></div>
+        <div class="sec"><h3>Datums <em>in order</em></h3><div id="dats"></div></div>
+        <div class="sec"><h3>Process and tolerance</h3>
+          <div class="row2"><div><label>Process</label><select id="proc"><option>Machined</option><option>Laser-cut plate</option><option>Laser-cut and bent</option><option>Profile, cut to length</option><option>Weldment</option></select></div>
+          <div><label>General tolerance</label><select id="tol"><option>ISO 2768-f</option><option selected>ISO 2768-m</option><option>ISO 2768-c</option></select></div></div>
+          <div id="props"></div>
+        </div>
+        <div class="sec"><h3>Flags <em>drawgen will not guess these</em></h3><div id="flags"></div></div>
+        <div class="sec"><label class="sim"><input type="checkbox" id="sim" checked><span id="simtxt"></span></label></div>
+      </div>
+      <div class="df"><button class="btn" id="skip">Skip for now</button><button class="btn pri" id="confirm">Confirm part</button></div>
+    </aside>
+  </div>
+  <div class="status"><span>drawgen 0.9 vision</span><span>Runs in-process, nothing leaves the machine</span><span>Every dimension will record the datum or rule that placed it</span><span class="r">Units: mm</span></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+/* Sample assembly, illustrative only. */
+const parts=[
+ {id:"MP",name:"Motor plate",grp:"Machined",type:"plate",w:240,h:180,t:15,holes:[[40,40,11],[200,40,11],[40,140,11],[200,140,11]],bore:[120,90,62],views:["Front","Right","Section A-A"],similar:0,
+   proposals:[{k:"fit",text:"Ø62 bore for the motor spigot. Proposed fit H7 from the mating spigot.",state:"open"}],
+   flags:[{t:"Thread depth not modelled",d:"4× M10 tapped holes on the back face have no modelled depth. Add it in the model, or accept a callout without depth."}],status:"need"},
+ {id:"BA",name:"Bearing adapter",grp:"Machined",type:"plate",w:160,h:160,t:20,holes:[[25,25,13],[135,25,13],[25,135,13],[135,135,13]],bore:[80,80,52],views:["Front","Section A-A"],similar:1,
+   proposals:[{k:"fit",text:"Ø52 seat for a 6205 bearing. Proposed fit J7.",state:"open"}],flags:[],status:"need"},
+ {id:"DS",name:"Drive shaft",grp:"Machined",type:"shaft",segs:[[0,60,30],[60,120,40],[180,40,45],[220,160,40],[380,60,30]],views:["Front","Section B-B at keyway"],similar:0,
+   proposals:[{k:"fit",text:"Ø40 bearing seats. Proposed k6 from the bearing bore.",state:"open"}],flags:[{t:"Keyway length is a sketch dimension",d:"The keyway length is driven by a construction line, not a feature. Confirm 50 or edit the model."}],status:"need"},
+ {id:"SF",name:"Side frame plate",grp:"Laser-cut and bent",type:"plate",w:420,h:220,t:8,holes:[[40,40,13],[380,40,13],[40,180,13],[380,180,13],[210,110,13]],views:["Front","Top"],similar:1,proposals:[],flags:[],status:"ok",dat:["Bottom edge","Left edge"]},
+ {id:"GU",name:"Gusset",grp:"Laser-cut and bent",type:"plate",w:120,h:120,t:8,holes:[],views:["Front"],similar:3,proposals:[],flags:[],status:"ok",dat:["Bottom edge","Left edge"]},
+ {id:"TB",name:"Tension bracket",grp:"Laser-cut and bent",type:"plate",w:180,h:90,t:6,holes:[[30,45,11],[150,45,11]],views:["Front","Flat pattern","Right"],similar:0,proposals:[],flags:[],status:"ok",dat:["Bottom edge","Left edge"]},
+ {id:"CV",name:"Guard cover",grp:"Laser-cut and bent",type:"plate",w:360,h:200,t:2,holes:[[20,20,7],[340,20,7],[20,180,7],[340,180,7]],views:["Front","Flat pattern"],similar:0,proposals:[],flags:[{t:"Bend relief missing on one corner",d:"The flat pattern shows an open corner without relief. drawgen marks it; it does not add one."}],status:"fl"},
+ {id:"ST",name:"Spacer tube",grp:"Profile, cut to length",type:"shaft",segs:[[0,85,48]],views:["Front"],similar:1,proposals:[],flags:[],status:"ok",dat:["Left end","Axis"]},
+ {id:"CB",name:"Cross bar",grp:"Profile, cut to length",type:"plate",w:640,h:60,t:60,holes:[[40,30,13],[600,30,13]],views:["Front","Section"],similar:0,proposals:[],flags:[],status:"ok",dat:["Bottom edge","Left edge"]},
+ {id:"MB",name:"Mounting bar",grp:"Profile, cut to length",type:"plate",w:500,h:50,t:10,holes:[[30,25,11],[250,25,11],[470,25,11]],views:["Front"],similar:0,proposals:[],flags:[],status:"ok",dat:["Bottom edge","Left edge"]},
+ {id:"KP",name:"Key plate",grp:"Machined",type:"plate",w:90,h:60,t:12,holes:[[20,30,9],[70,30,9]],views:["Front","Right"],similar:0,proposals:[],flags:[],status:"need"}
+];
+parts.forEach(p=>{p.dat=p.dat||[];p.viewsOn=new Set(p.views)});
+const FACES={plate:["Bottom edge","Left edge","Bore axis","Back face"],shaft:["Axis","Left end","Shoulder face"]};
+let cur="MP";const P=()=>parts.find(p=>p.id===cur);
+
+function thumb(p){
+  if(p.type==="shaft"){const L=p.segs.reduce((a,s)=>Math.max(a,s[0]+s[1]),0),D=Math.max(...p.segs.map(s=>s[2]));const k=30/L,kd=Math.min(18/D,k*2.5);
+    return `<svg viewBox="0 0 36 26">${p.segs.map(s=>`<rect x="${3+s[0]*k}" y="${13-s[2]*kd/2}" width="${s[1]*k}" height="${s[2]*kd}" fill="#F1F1EE" stroke="#555" stroke-width=".6"/>`).join("")}</svg>`}
+  const k=Math.min(30/p.w,20/p.h);const x=(36-p.w*k)/2,y=(26-p.h*k)/2;
+  return `<svg viewBox="0 0 36 26"><rect x="${x}" y="${y}" width="${p.w*k}" height="${p.h*k}" fill="#F1F1EE" stroke="#555" stroke-width=".6"/>${p.holes.map(h=>`<circle cx="${x+h[0]*k}" cy="${y+(p.h-h[1])*k}" r="${Math.max(.6,h[2]*k/2)}" fill="#fff" stroke="#555" stroke-width=".4"/>`).join("")}${p.bore?`<circle cx="${x+p.bore[0]*k}" cy="${y+(p.h-p.bore[1])*k}" r="${p.bore[2]*k/2}" fill="#fff" stroke="#555" stroke-width=".5"/>`:""}</svg>`;
+}
+function renderList(){
+  const groups=[...new Set(parts.map(p=>p.grp))];
+  document.getElementById("list").innerHTML=groups.map(g=>`<div class="grp">${g}</div>`+parts.filter(p=>p.grp===g).map(p=>{
+    const st=p.status==="ok"?'<span class="st ok">Confirmed</span>':p.status==="fl"?'<span class="st fl">Flagged</span>':'<span class="st need">Needs datums</span>';
+    return `<div class="it${p.id===cur?" on":""}" data-id="${p.id}"><div class="th">${thumb(p)}</div><div><b>${p.name}${p.similar?` <span class="m">× ${p.similar+1} similar</span>`:""}</b><span class="m">${p.views.join(" · ")}</span></div>${st}</div>`}).join("")).join("");
+  const ok=parts.filter(p=>p.status==="ok").length,need=parts.filter(p=>p.status==="need").length,fl=parts.filter(p=>p.status==="fl").length;
+  document.getElementById("p-ok").textContent=ok;document.getElementById("p-need").textContent=need;document.getElementById("p-fl").textContent=fl;
+  document.getElementById("rf-n").textContent=`${ok} of ${parts.length} ready`;
+}
+/* sheet */
+const INK="#1d1d1b",TEAL="#245364",AMB="#9A5B12";
+function dH(x1,x2,y,ref,t,c=INK){return `<g stroke="${c}" fill="${c}" stroke-width=".35"><line x1="${x1}" y1="${ref}" x2="${x1}" y2="${y-2}" stroke-width=".22"/><line x1="${x2}" y1="${ref}" x2="${x2}" y2="${y-2}" stroke-width=".22"/><line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}"/><path d="M${x1} ${y}l3 -1.1v2.2zM${x2} ${y}l-3 -1.1v2.2z" stroke="none"/><text x="${(x1+x2)/2}" y="${y-1.7}" font-size="6" text-anchor="middle" stroke="none">${t}</text></g>`}
+function dV(y1,y2,x,ref,t,c=INK){const m=(y1+y2)/2;return `<g stroke="${c}" fill="${c}" stroke-width=".35"><line x1="${ref}" y1="${y1}" x2="${x-2}" y2="${y1}" stroke-width=".22"/><line x1="${ref}" y1="${y2}" x2="${x-2}" y2="${y2}" stroke-width=".22"/><line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}"/><path d="M${x} ${y1}l-1.1 3h2.2zM${x} ${y2}l-1.1 -3h2.2z" stroke="none"/><text x="${x-1.8}" y="${m}" font-size="6" text-anchor="middle" transform="rotate(-90 ${x-1.8} ${m})" stroke="none">${t}</text></g>`}
+function flagTri(x,y,letter){return `<g><rect x="${x-5}" y="${y-5}" width="10" height="10" fill="${TEAL}"/><text x="${x}" y="${y+2.3}" font-size="7" font-weight="700" text-anchor="middle" fill="#fff">${letter}</text></g>`}
+function sheet(p){
+  const letters=["A","B","C"];const dmap={};p.dat.forEach((f,i)=>dmap[f]=letters[i]);const has=f=>dmap[f];
+  let g=`<rect x="6" y="6" width="408" height="285" fill="#fff" stroke="${INK}" stroke-width=".8"/><rect x="10" y="10" width="400" height="277" fill="none" stroke="${INK}" stroke-width=".4"/>
+  <rect x="270" y="252" width="140" height="35" fill="#fff" stroke="${INK}" stroke-width=".4"/><line x1="270" y1="264" x2="410" y2="264" stroke="${INK}" stroke-width=".3"/>
+  <text x="274" y="261" font-size="6" font-weight="700">${p.name.toUpperCase()}</text><text x="274" y="273" font-size="4.2">Drive end assembly (sample) · ${p.grp}</text><text x="274" y="282" font-size="4.2">${document.getElementById("tol").value} unless stated · mm</text>`;
+  const dimOn=p.dat.length>=2;
+  if(p.type==="plate"){
+    const k=Math.min(180/p.w,135/p.h),X=50,Y=70+(135-p.h*k)/2,W=p.w*k,H=p.h*k;const yy=v=>Y+(p.h-v)*k;
+    g+=`<rect x="${X}" y="${Y}" width="${W}" height="${H}" fill="#FBFBF9" stroke="${INK}" stroke-width=".7"/>`;
+    p.holes.forEach(h=>g+=`<circle cx="${X+h[0]*k}" cy="${yy(h[1])}" r="${h[2]*k/2}" fill="#fff" stroke="${INK}" stroke-width=".55"/><path d="M${X+h[0]*k-5} ${yy(h[1])}h10M${X+h[0]*k} ${yy(h[1])-5}v10" stroke="${INK}" stroke-width=".2" stroke-dasharray="3 1 1 1"/>`);
+    if(p.bore)g+=`<circle cx="${X+p.bore[0]*k}" cy="${yy(p.bore[1])}" r="${p.bore[2]*k/2}" fill="#fff" stroke="${INK}" stroke-width=".65"/>`;
+    // clickable faces
+    g+=`<g class="face" data-face="Bottom edge"><line class="hl" x1="${X}" y1="${Y+H}" x2="${X+W}" y2="${Y+H}" stroke="${has("Bottom edge")?TEAL:"transparent"}" stroke-width="${has("Bottom edge")?2.2:6}"/><line x1="${X}" y1="${Y+H}" x2="${X+W}" y2="${Y+H}" stroke="transparent" stroke-width="8"/></g>
+        <g class="face" data-face="Left edge"><line class="hl" x1="${X}" y1="${Y}" x2="${X}" y2="${Y+H}" stroke="${has("Left edge")?TEAL:"transparent"}" stroke-width="${has("Left edge")?2.2:6}"/><line x1="${X}" y1="${Y}" x2="${X}" y2="${Y+H}" stroke="transparent" stroke-width="8"/></g>`;
+    if(p.bore)g+=`<g class="face" data-face="Bore axis"><circle class="hl" cx="${X+p.bore[0]*k}" cy="${yy(p.bore[1])}" r="${p.bore[2]*k/2}" fill="transparent" stroke="${has("Bore axis")?TEAL:"transparent"}" stroke-width="${has("Bore axis")?2.2:5}"/></g>`;
+    // side view
+    const SX=X+W+62,T=Math.max(p.t*k,4);
+    g+=`<rect x="${SX}" y="${Y}" width="${T}" height="${H}" fill="#FBFBF9" stroke="${INK}" stroke-width=".7"/>
+        <g class="face" data-face="Back face"><line class="hl" x1="${SX+T}" y1="${Y}" x2="${SX+T}" y2="${Y+H}" stroke="${has("Back face")?TEAL:"transparent"}" stroke-width="${has("Back face")?2.2:6}"/><line x1="${SX+T}" y1="${Y}" x2="${SX+T}" y2="${Y+H}" stroke="transparent" stroke-width="8"/></g>
+        <text x="${X+W/2}" y="${Y+H+30}" font-size="5.6" text-anchor="middle">FRONT</text><text x="${SX+T/2}" y="${Y+H+30}" font-size="5.6" text-anchor="middle">RIGHT</text>`;
+    if(has("Bottom edge"))g+=flagTri(X+W*0.5,Y+H+10,has("Bottom edge"));
+    if(has("Left edge"))g+=flagTri(X-10,Y+H*0.5,has("Left edge"));
+    if(has("Bore axis"))g+=flagTri(X+p.bore[0]*k+p.bore[2]*k/2+8,yy(p.bore[1])-8,has("Bore axis"));
+    if(has("Back face"))g+=flagTri(SX+T+10,Y+H*0.5,has("Back face"));
+    if(dimOn){
+      const xs=[...new Set(p.holes.map(h=>h[0]).concat(p.bore?[p.bore[0]]:[]))].sort((a,b)=>a-b);
+      const ys=[...new Set(p.holes.map(h=>h[1]).concat(p.bore?[p.bore[1]]:[]))].sort((a,b)=>a-b);
+      xs.forEach((v,i)=>g+=dH(X,X+v*k,Y-8-i*8,Y,v,TEAL));g+=dH(X,X+W,Y-8-xs.length*8,Y,p.w);
+      ys.forEach((v,i)=>g+=dV(yy(v),Y+H,X+W+8+i*7,X+W,v,TEAL));g+=dV(Y,Y+H,X+W+8+ys.length*7,X+W,p.h);
+      g+=dH(SX,SX+T,Y+H+14,Y+H,p.t);
+      const holeSizes=[...new Set(p.holes.map(h=>h[2]))];holeSizes.forEach((d,i)=>{const n=p.holes.filter(h=>h[2]===d).length,h=p.holes.find(h=>h[2]===d);g+=`<text x="${X}" y="${Y+H+44+i*8}" font-size="5.4">${n}× Ø${d} THRU</text>`});
+      if(p.bore){const pr=p.proposals[0];const ok=pr&&pr.state==="acc";const c=ok?TEAL:AMB;const bx=X+p.bore[0]*k,by=yy(p.bore[1]);
+        g+=`<g><line x1="${bx+p.bore[2]*k*0.36}" y1="${by-p.bore[2]*k*0.36}" x2="${bx+34}" y2="${by-30}" stroke="${c}" stroke-width=".4"/><rect x="${bx+32}" y="${by-40}" width="${ok?44:70}" height="10" rx="2" fill="${ok?"#fff":"#F6ECDD"}" stroke="${c}" stroke-width=".5" ${ok?"":'stroke-dasharray="1.6 1"'}/><text x="${bx+35}" y="${by-32.8}" font-size="5.8" font-weight="700" fill="${c}">Ø${p.bore[2]} ${pr?(pr.text.match(/fit (\w+)/)||[])[1]||"":""}${ok?"":" proposed"}</text></g>`}
+    } else g+=`<text x="${X}" y="${Y-14}" font-size="5.8" fill="#686860">Set two datums to preview dimensions</text>`;
+  } else {
+    const L=p.segs.reduce((a,s)=>Math.max(a,s[0]+s[1]),0),D=Math.max(...p.segs.map(s=>s[2]));const k=Math.min(300/L,110/D),X=50,CY=130;
+    p.segs.forEach(s=>g+=`<rect x="${X+s[0]*k}" y="${CY-s[2]*k/2}" width="${s[1]*k}" height="${s[2]*k}" fill="#FBFBF9" stroke="${INK}" stroke-width=".7"/>`);
+    g+=`<line x1="${X-8}" y1="${CY}" x2="${X+L*k+8}" y2="${CY}" stroke="${INK}" stroke-width=".25" stroke-dasharray="6 1.5 1 1.5"/>`;
+    g+=`<g class="face" data-face="Axis"><line class="hl" x1="${X-8}" y1="${CY}" x2="${X+L*k+8}" y2="${CY}" stroke="${has("Axis")?TEAL:"transparent"}" stroke-width="${has("Axis")?1.6:6}"/></g>
+        <g class="face" data-face="Left end"><line class="hl" x1="${X}" y1="${CY-p.segs[0][2]*k/2}" x2="${X}" y2="${CY+p.segs[0][2]*k/2}" stroke="${has("Left end")?TEAL:"transparent"}" stroke-width="${has("Left end")?2.2:7}"/></g>`;
+    if(p.segs.length>2){const s=p.segs[2];g+=`<g class="face" data-face="Shoulder face"><line class="hl" x1="${X+s[0]*k}" y1="${CY-s[2]*k/2}" x2="${X+s[0]*k}" y2="${CY+s[2]*k/2}" stroke="${has("Shoulder face")?TEAL:"transparent"}" stroke-width="${has("Shoulder face")?2.2:7}"/></g>`;
+      g+=`<rect x="${X+(p.segs[3][0]+40)*k}" y="${CY-p.segs[3][2]*k/2}" width="${50*k}" height="${3}" fill="#E6E6E1" stroke="${INK}" stroke-width=".4"/>`}
+    if(has("Axis"))g+=flagTri(X+L*k+18,CY,has("Axis"));
+    if(has("Left end"))g+=flagTri(X-14,CY-p.segs[0][2]*k/2-8,has("Left end"));
+    if(has("Shoulder face"))g+=flagTri(X+p.segs[2][0]*k,CY-p.segs[2][2]*k/2-12,has("Shoulder face"));
+    if(dimOn){let lvl=0;const o=has("Shoulder face")?p.segs[2][0]:0;const bs=[...new Set(p.segs.map(s=>s[0]).concat([L]))].filter(b=>b!==o).sort((a,b)=>Math.abs(a-o)-Math.abs(b-o));bs.forEach(b=>{const a1=Math.min(o,b),a2=Math.max(o,b);g+=dH(X+a1*k,X+a2*k,CY+D*k/2+12+lvl*8,CY+D*k/2,Math.abs(b-o),b===L&&o===0?INK:TEAL);lvl++});if(o)g+=dH(X,X+L*k,CY+D*k/2+12+lvl*8,CY+D*k/2,L);
+      p.segs.forEach((s,i)=>{const pr=p.proposals[0];const seat=s[2]===40&&pr;const ok=seat&&pr.state==="acc";const c=seat?(ok?TEAL:AMB):INK;g+=`<text x="${X+(s[0]+s[1]/2)*k}" y="${CY-s[2]*k/2-4}" font-size="5.8" text-anchor="middle" fill="${c}" ${seat?'font-weight="700"':''}>Ø${s[2]}${seat?(ok?" k6":" k6 proposed"):""}</text>`})}
+    else g+=`<text x="${X}" y="${CY-D*k/2-18}" font-size="5.8" fill="#686860">Set two datums to preview dimensions</text>`;
+    g+=`<text x="${X+L*k/2}" y="${CY+D*k/2+72}" font-size="5.6" text-anchor="middle">FRONT</text>`;
+  }
+  return `<svg viewBox="0 0 420 297" font-family="Arial,Helvetica,sans-serif">${g}</svg>`;
+}
+function renderDecisions(){
+  const p=P();
+  document.getElementById("s-title").textContent=p.name;
+  document.getElementById("s-sub").textContent=`${p.grp}${p.similar?` · ${p.similar+1} similar parts`:""} · ${p.status==="ok"?"confirmed":"waiting for you"}`;
+  const faces=FACES[p.type].filter(f=>!(f==="Bore axis"&&!p.bore)&&!(f==="Shoulder face"&&p.segs&&p.segs.length<3));
+  const next=faces.find(f=>!p.dat.includes(f));
+  document.getElementById("hint").textContent=p.dat.length<3&&next?`Click a face on the sheet to set datum ${"ABC"[p.dat.length]}`:"Datums set. Confirm the part to dimension it";
+  document.getElementById("views").innerHTML=p.views.map((v,i)=>`<label class="vw"><input type="checkbox" data-v="${v}" ${p.viewsOn.has(v)?"checked":""}>${v}<span>${i===0?"main view, longest edge horizontal":v.startsWith("Section")?(p.bore?"through the bore":"at the keyway"):v==="Flat pattern"?"for the laser":"shows thickness"}</span></label>`).join("");
+  document.getElementById("dats").innerHTML=["A","B","C"].map((l,i)=>{const f=p.dat[i];return `<div class="dat"><div class="l${f?" set":""}">${l}</div><div class="f${f?"":" empty"}">${f||(i===2?"optional":"click a face on the sheet")}</div>${f?`<button data-clr="${i}">clear</button>`:"<span></span>"}</div>`}).join("");
+  const proc=document.getElementById("proc");[...proc.options].forEach(o=>o.selected=o.text===p.grp);
+  document.getElementById("props").innerHTML=p.proposals.map((pr,i)=>`<div class="prop${pr.state==="acc"?" acc":""}"><b>${pr.state==="acc"?"Accepted by you":"Proposed, not applied"}</b><br>${pr.text}<div class="acts">${pr.state==="acc"?'<button class="mini done">Fit accepted</button>':`<button class="mini pri" data-pr="${i}">Accept fit</button><button class="mini" data-prx="${i}">Leave to general tolerance</button>`}</div></div>`).join("")||`<div style="font-size:12px;color:#686860;margin-top:8px">No fits proposed. General tolerance applies to every dimension.</div>`;
+  document.getElementById("flags").innerHTML=p.flags.map(f=>`<div class="flag"><b>${f.t}</b>${f.d}</div>`).join("")||`<div style="font-size:12px;color:#686860">Nothing flagged on this part.</div>`;
+  document.getElementById("simtxt").textContent=p.similar?`Apply these datums and views to the ${p.similar} similar part${p.similar>1?"s":""} in this assembly`:"No similar parts found in this assembly";
+  const sim=document.getElementById("sim");sim.disabled=!p.similar;sim.checked=!!p.similar;
+  const c=document.getElementById("confirm");c.disabled=p.dat.length<2;c.textContent=p.status==="ok"?"Confirmed":"Confirm part";
+  document.getElementById("sheet").innerHTML=sheet(p);
+}
+function renderAll(){renderList();renderDecisions()}
+document.addEventListener("click",e=>{
+  const it=e.target.closest(".it");if(it){cur=it.dataset.id;renderAll();return}
+  const f=e.target.closest(".face");if(f){const p=P();const n=f.dataset.face;if(!p.dat.includes(n)&&p.dat.length<3){p.dat.push(n);if(p.status==="ok")p.status="need";renderAll();toast(`Datum ${"ABC"[p.dat.length-1]} set on ${n.toLowerCase()}. drawgen will dimension from it.`)}return}
+  const clr=e.target.closest("[data-clr]");if(clr){P().dat.splice(+clr.dataset.clr);renderAll();return}
+  const pr=e.target.closest("[data-pr]");if(pr){P().proposals[+pr.dataset.pr].state="acc";renderAll();return}
+  const px=e.target.closest("[data-prx]");if(px){P().proposals.splice(+px.dataset.prx,1);renderAll();return}
+});
+document.addEventListener("change",e=>{
+  if(e.target.dataset.v){const p=P();e.target.checked?p.viewsOn.add(e.target.dataset.v):p.viewsOn.delete(e.target.dataset.v)}
+  if(e.target.id==="tol")renderDecisions();
+});
+document.getElementById("confirm").onclick=()=>{const p=P();if(p.dat.length<2)return;p.status=p.flags.length?"fl":"ok";
+  const open=p.proposals.filter(x=>x.state!=="acc").length;
+  toast(`${p.name} confirmed${p.similar&&document.getElementById("sim").checked?` with ${p.similar} similar part${p.similar>1?"s":""}`:""}.${open?" The open fit stays marked as proposed on the sheet.":""}${p.flags.length?" Flags stay on the sheet for the checker.":""}`);
+  const nx=parts.find(x=>x.status==="need");if(nx)cur=nx.id;renderAll()};
+document.getElementById("skip").onclick=()=>{const i=parts.findIndex(x=>x.id===cur);cur=parts[(i+1)%parts.length].id;renderAll()};
+document.getElementById("runall").onclick=()=>{const n=parts.filter(p=>p.status!=="need").length;toast(`Dimensioning ${n} parts from your datums. Native drawings, PDF and DXF will sit next to each part, ready for PDM check-in.`)};
+function toast(t){const el=document.getElementById("toast");el.textContent=t;el.classList.add("show");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("show"),3000)}
+renderAll();
+</script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import type { JourneyFile } from "./journeys";
+import type { VisionBoard } from "./vision";
 import path from "node:path";
 import matter from "gray-matter";
 import type { Brand, Deck } from "./types";
@@ -13,6 +14,7 @@ export const SECTIONS = [
   { key: "gallery", label: "Gallery" },
   { key: "presentations", label: "Presentations" },
   { key: "social", label: "Social" },
+  { key: "vision", label: "Vision" },
   { key: "journeys", label: "Journeys" },
   { key: "variants", label: "Brand variants" },
   { key: "competitors", label: "Competitors" },
@@ -141,6 +143,11 @@ export function getSocialPosts(slug: string): Record<string, unknown>[] {
   return readJSON<Record<string, unknown>[]>(path.join(ROOT, slug, "social", "posts.json"), []);
 }
 
+/** Product vision: research and the initiative board (vision/board.json), see the "Vision" section of AGENTS.md. */
+export function getVision(slug: string): VisionBoard | null {
+  return readJSON<VisionBoard | null>(path.join(ROOT, slug, "vision", "board.json"), null);
+}
+
 /** Customer journeys and ICPs (journeys/journeys.json), see the "Journeys" section of AGENTS.md. */
 export function getJourneys(slug: string): JourneyFile | null {
   return readJSON<JourneyFile | null>(path.join(ROOT, slug, "journeys", "journeys.json"), null);
@@ -184,5 +191,6 @@ export function counts(slug: string): Record<SectionKey, number> {
     presentations: getDecks(slug).length,
     social: getSocialPosts(slug).length,
     journeys: getJourneys(slug)?.journeys?.length ?? 0,
+    vision: getVision(slug)?.initiatives?.length ?? 0,
   };
 }

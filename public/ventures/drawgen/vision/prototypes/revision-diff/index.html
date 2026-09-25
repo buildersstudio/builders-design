@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revision diff</title>
+<style>
+:root{
+  --ink:#141414;--paper:#FAFAF8;--accent:#245364;--accent-soft:#E4ECEF;--graphite:#555550;--stone:#686860;--rule:#E3E1DC;
+  --host:#EDEDEB;--host-2:#E2E2DF;--host-line:#C9C9C4;--flag:#9A5B12;--flag-soft:#F6ECDD;--old:#B0472F;--old-soft:#F7E6E1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;color:var(--ink);background:var(--host);font-size:13px;line-height:1.35;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit}
+.cap{height:36px;display:flex;align-items:center;gap:14px;padding:0 16px;background:var(--ink);color:#F2F2EE;font-size:12px}
+.cap b{font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#9CC3D1}
+.cap span{opacity:.85}.cap .r{margin-left:auto;opacity:.6}
+.win{display:flex;flex-direction:column;height:calc(100vh - 36px);min-height:760px}
+.title{height:30px;display:flex;align-items:center;justify-content:center;background:#F7F7F5;border-bottom:1px solid var(--host-line);font-size:12px;color:var(--graphite);position:relative}
+.title .dots{position:absolute;left:12px;display:flex;gap:6px}.title .dots i{width:10px;height:10px;border-radius:50%;background:#D5D5D0;display:block}
+.tabs{height:28px;display:flex;align-items:flex-end;gap:2px;padding:0 10px;background:var(--host-2);border-bottom:1px solid var(--host-line)}
+.tabs span{padding:6px 12px;font-size:12px;color:var(--graphite);border:1px solid transparent;border-bottom:0}
+.tabs span.on{background:var(--paper);border-color:var(--host-line);color:var(--ink);font-weight:700;position:relative;top:1px}
+.ribbon{height:64px;display:flex;align-items:stretch;gap:2px;padding:6px 10px;background:var(--paper);border-bottom:1px solid var(--host-line)}
+.cmd{width:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid transparent;border-radius:4px;font-size:11px;color:var(--graphite);background:none;cursor:pointer}
+.cmd svg{width:22px;height:22px}.cmd.on{background:var(--accent-soft);border-color:#BFD2D9;color:var(--accent);font-weight:700}
+.ribbon .sep{width:1px;background:var(--rule);margin:4px 8px}
+.ribbon .brand{display:flex;align-items:center;gap:8px;padding:0 10px 0 4px;font-weight:700;font-size:15px;letter-spacing:-.01em}
+.ribbon .brand small{font-weight:400;font-size:11px;color:var(--stone)}
+
+.body{flex:1;display:grid;grid-template-columns:1fr 480px;min-height:0}
+.stage{display:flex;flex-direction:column;min-height:0;background:#E7E7E4}
+.sbar{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#F3F3F0;border-bottom:1px solid var(--host-line)}
+.sbar h2{font-size:14px;font-weight:700}
+.sbar .sub{font-size:12px;color:var(--stone)}
+.seg{margin-left:auto;display:flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:#fff}
+.seg button{border:0;background:none;padding:6px 12px;font-size:12px;cursor:pointer;color:var(--graphite)}
+.seg button.on{background:var(--ink);color:#fff}
+.sheets{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px;min-height:0}
+.sheets.overlay{grid-template-columns:1fr;padding:16px 28px}
+.sheet{background:#fff;border:1px solid #CFCFCA;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;flex-direction:column;min-height:0}
+.sheet header{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--rule);font-size:12px}
+.sheet header b{font-weight:700}
+.sheet header .badge{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:2px 6px;border-radius:3px}
+.badge.old{background:#EFEFEB;color:var(--stone)}
+.badge.new{background:var(--accent-soft);color:var(--accent)}
+.sheet header .r{margin-left:auto;color:var(--stone)}
+.sheet .cv{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:8px}
+.sheet svg{width:100%;height:100%;max-height:100%}
+.legend{display:flex;gap:18px;padding:0 16px 12px;font-size:11px;color:var(--stone)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+.pane{background:var(--paper);border-left:1px solid var(--host-line);display:flex;flex-direction:column;min-height:0}
+.ph{padding:14px 18px 12px;border-bottom:1px solid var(--rule)}
+.ph .row{display:flex;align-items:center;gap:10px}
+.ph h1{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.ph .src{font-size:12px;color:var(--stone);margin-top:4px}
+.pill{font-size:11px;padding:3px 8px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-weight:700}
+.scroll{flex:1;overflow:auto}
+.sec{padding:12px 18px;border-bottom:1px solid var(--rule)}
+.sec h3{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--stone);font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between}
+.chg{display:flex;gap:10px;padding:5px 0;font-size:12px}
+.chg .k{width:18px;height:18px;border-radius:3px;background:var(--ink);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.chg span{color:var(--stone)}
+.sh{border:1px solid var(--rule);border-radius:5px;background:#fff;padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:border-color .15s}
+.sh:hover{border-color:#B9C9CF}
+.sh.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.sh .t{display:flex;align-items:center;gap:8px}
+.sh .t b{font-weight:700}
+.sh .t .no{color:var(--stone);font-size:12px}
+.sh .t .st{margin-left:auto;font-size:10px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--accent-soft);color:var(--accent)}
+.sh .t .st.ok{background:#EAF1EC;color:#2F6B4F}
+.sh .t .st.fl{background:var(--flag-soft);color:var(--flag)}
+.sh ul{list-style:none;margin-top:7px}
+.sh li{display:flex;gap:8px;font-size:12px;padding:2px 0;color:var(--graphite)}
+.sh li .v{margin-left:auto;white-space:nowrap}
+.sh li .v s{color:var(--old);text-decoration-thickness:1px}
+.sh li .v b{color:var(--accent)}
+.sh .why{font-size:11px;color:var(--stone);margin-top:6px}
+.sh .acc{margin-top:8px;display:flex;gap:6px}
+.mini{border:1px solid var(--rule);background:#fff;border-radius:4px;padding:4px 9px;font-size:11px;cursor:pointer}
+.mini.pri{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.mini.done{background:#EAF1EC;border-color:#CFE0D5;color:#2F6B4F;font-weight:700}
+.flagbox{background:var(--flag-soft);border:1px solid #EAD4B4;border-radius:5px;padding:10px 12px;font-size:12px;color:#5E3A0C}
+.flagbox b{display:block;margin-bottom:3px;color:var(--flag)}
+.unaff{font-size:12px;color:var(--stone);line-height:1.6}
+.foot{border-top:1px solid var(--rule);padding:12px 18px;display:flex;align-items:center;gap:10px;background:#fff}
+.foot .n{font-size:12px;color:var(--stone)}
+.foot .n b{color:var(--ink);font-size:14px}
+.btn{border:1px solid var(--rule);background:#fff;border-radius:4px;padding:8px 12px;font-size:12px;cursor:pointer}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.foot .sp{margin-left:auto;display:flex;gap:8px}
+.status{height:24px;display:flex;align-items:center;gap:22px;padding:0 12px;background:var(--host-2);border-top:1px solid var(--host-line);font-size:11px;color:var(--graphite)}
+.status .r{margin-left:auto}
+.toast{position:fixed;left:50%;bottom:46px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:4px;font-size:12px;opacity:0;transition:.25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (max-width:1180px){
+  .body{grid-template-columns:1fr}.win{height:auto}
+  .sheets{grid-template-columns:1fr;min-height:0}.sheet .cv{height:340px;flex:none}
+  .pane{border-left:0;border-top:1px solid var(--host-line)}
+}
+@media (max-width:640px){.cap .r,.ribbon .brand small{display:none}.cmd{width:64px}.sbar{flex-wrap:wrap}.seg{margin-left:0}.sheet .cv{height:240px}}
+.body>*{min-width:0}
+.ribbon{overflow-x:auto}
+.cap span:not(.r){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:640px){.filters{flex-wrap:wrap}.filters .note{margin-left:0;width:100%}.cap{height:auto;min-height:36px;padding:8px 16px}.cap span:not(.r){white-space:normal}.title{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype</b><span>Revision diff inside the CAD add-in. Sample assembly and sample changes, not customer data and not a shipped feature.</span><span class="r">drawgen product vision</span></div>
+<div class="win">
+  <div class="title"><div class="dots"><i></i><i></i><i></i></div>Conveyor support frame (sample).SLDASM · revision C</div>
+  <div class="tabs"><span>Assembly</span><span>Layout</span><span>Sketch</span><span>Evaluate</span><span class="on">drawgen</span></div>
+  <div class="ribbon">
+    <div class="brand">drawgen.<small>add-in</small></div><div class="sep"></div>
+    <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 8h8M8 12h5M8 16h8"/></svg>Drawings</button>
+    <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16M9 3v18"/></svg>Parts list</button>
+    <button class="cmd on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5h8l6 6v8H5z"/><path d="M13 5v6h6"/><path d="M9 15l2 2 4-4"/></svg>Revisions</button>
+    <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg>Pre-check</button>
+  </div>
+  <div class="body">
+    <section class="stage">
+      <div class="sbar"><h2 id="st-title">DG-P01 Upright</h2><span class="sub" id="st-sub"></span>
+        <div class="seg"><button class="on" data-m="overlay">Changes on revision C</button><button data-m="side">B and C side by side</button></div></div>
+      <div class="sheets" id="sheets"></div>
+      <div class="legend"><span><i style="background:var(--old)"></i>Value in revision B</span><span><i style="background:var(--accent)"></i>Proposed for revision C</span><span><i style="border:1px dashed #9a9a93"></i>Revision B geometry, dashed</span><span style="margin-left:auto">Click a sheet on the right to review it</span></div>
+    </section>
+    <aside class="pane">
+      <div class="ph">
+        <div class="row"><h1>Revision C against B</h1><span class="pill">4 of 13 sheets</span></div>
+        <div class="src">Model saved today by the designer. drawgen compared every body and mate with revision B, released 12 September.</div>
+      </div>
+      <div class="scroll">
+        <div class="sec"><h3>What changed in the model</h3>
+          <div class="chg"><div class="k">1</div><div>Uprights extended<br><span>P01 length 1,450 to 1,520 mm</span></div></div>
+          <div class="chg"><div class="k">2</div><div>Roller shaft moved along the rail<br><span>M01 position 600 to 650 mm, bearings follow by mate</span></div></div>
+          <div class="chg"><div class="k">3</div><div>Base plate bolt pitch widened<br><span>PL01 pitch 180 to 190 mm</span></div></div>
+        </div>
+        <div class="sec"><h3><span>Sheets that change</span><span id="acc-count">0 of 4 accepted</span></h3><div id="list"></div></div>
+        <div class="sec"><h3>Flagged, not changed</h3>
+          <div class="flagbox"><b>Anchor bolt pattern outside this assembly</b>The foundation drawing that uses the base plate pitch is not in this model. drawgen will not guess it; check it by hand before release.</div>
+        </div>
+        <div class="sec"><h3>Checked, no change</h3>
+          <div class="unaff">DG-P02 Cross beam · DG-P04 Lower rail · DG-PL02 End plate · DG-PL03 Gusset · DG-M01 Roller shaft (length unchanged, position is an assembly fact) · DG-M02 Bearing spacer · 3 bought-in lines · DG-A01 Rail sub-assembly</div>
+        </div>
+      </div>
+      <div class="foot"><div class="n"><b id="dims">0</b> dimensions to review</div>
+        <div class="sp"><button class="btn" id="accall">Accept all</button><button class="btn pri" id="send">Send to checker</button></div></div>
+    </aside>
+  </div>
+  <div class="status"><span>drawgen 0.9 vision</span><span>38 bodies compared, 3 changed</span><span>Revision C clouds added to changed dimensions</span><span class="r">Units: mm</span></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+/* Sample sheets. Values are illustrative, not customer data. */
+const sheets=[
+ {id:"P01",no:"DG-P01",name:"Upright",qty:"4 off, HEB 160, S355",why:"Driven by change 1.",
+  changes:[["Overall length","1,450","1,520"],["Bolt holes from base","1,390","1,460"],["Cut length in title block","1,450","1,520"]]},
+ {id:"P03",no:"DG-P03",name:"Side rail",qty:"2 off, UPN 120, S355",why:"Follows change 2: bearing bolt holes move with the shaft mate.",
+  changes:[["Bearing holes, first pair","560 / 680","610 / 730"],["Hole pair centre","620","670"]]},
+ {id:"PL01",no:"DG-PL01",name:"Base plate",qty:"4 off, t 20, S355",why:"Driven by change 3.",
+  changes:[["Bolt pitch, horizontal","180","190"],["Bolt pitch, vertical","180","190"],["Hole edge distance","35","30"]]},
+ {id:"A00",no:"DG-A00",name:"General arrangement",qty:"Assembly, sheet 1 of 2",why:"Follows changes 1 and 2.",
+  changes:[["Overall height","1,590","1,660"],["Shaft position from end","600","650"]]}
+];
+let cur="P01",mode="overlay";const accepted=new Set();
+
+/* drawing helpers, units in sheet space (420 × 297) */
+const INK="#1d1d1b",THIN=0.35;
+function frame(title,rev){
+  return `<rect x="6" y="6" width="408" height="285" fill="#fff" stroke="${INK}" stroke-width="0.8"/>
+  <rect x="10" y="10" width="400" height="277" fill="none" stroke="${INK}" stroke-width="0.4"/>
+  <g font-family="Arial,Helvetica,sans-serif" fill="${INK}">
+   <rect x="270" y="252" width="140" height="35" fill="#fff" stroke="${INK}" stroke-width="0.4"/>
+   <line x1="270" y1="264" x2="410" y2="264" stroke="${INK}" stroke-width="0.3"/><line x1="370" y1="252" x2="370" y2="287" stroke="${INK}" stroke-width="0.3"/>
+   <text x="274" y="261" font-size="6" font-weight="700">${title}</text>
+   <text x="274" y="273" font-size="4.2">Conveyor support frame (sample)</text>
+   <text x="274" y="282" font-size="4.2">drawgen · ISO 2768-m · mm</text>
+   <text x="374" y="259" font-size="3.6">REV</text><text x="390" y="282" font-size="16" font-weight="700" text-anchor="middle">${rev}</text>
+  </g>`;
+}
+function dimH(x1,x2,y,ref,label,st){const c=st==="new"?"#245364":st==="old"?"#B0472F":INK,w=st?0.55:THIN;
+  return `<g stroke="${c}" stroke-width="${w}" fill="${c}"><line x1="${x1}" y1="${ref}" x2="${x1}" y2="${y+2*(y>ref?1:-1)}" stroke-width="0.25"/><line x1="${x2}" y1="${ref}" x2="${x2}" y2="${y+2*(y>ref?1:-1)}" stroke-width="0.25"/>
+  <line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}"/><path d="M${x1} ${y}l3 -1.1v2.2zM${x2} ${y}l-3 -1.1v2.2z" stroke="none"/>
+  <text x="${(x1+x2)/2}" y="${y-1.6}" font-size="6.4" text-anchor="middle" stroke="none" font-family="Arial,Helvetica,sans-serif" ${st?'font-weight="700"':''}>${label}</text>${st==="new"?cloud((x1+x2)/2,y-3.5,label):""}</g>`}
+function dimV(y1,y2,x,ref,label,st){const c=st==="new"?"#245364":st==="old"?"#B0472F":INK,w=st?0.55:THIN;const my=(y1+y2)/2;
+  return `<g stroke="${c}" stroke-width="${w}" fill="${c}"><line x1="${ref}" y1="${y1}" x2="${x+2*(x>ref?1:-1)}" y2="${y1}" stroke-width="0.25"/><line x1="${ref}" y1="${y2}" x2="${x+2*(x>ref?1:-1)}" y2="${y2}" stroke-width="0.25"/>
+  <line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}"/><path d="M${x} ${y1}l-1.1 3h2.2zM${x} ${y2}l-1.1 -3h2.2z" stroke="none"/>
+  <text x="${x-1.8}" y="${my}" font-size="6.4" text-anchor="middle" transform="rotate(-90 ${x-1.8} ${my})" stroke="none" font-family="Arial,Helvetica,sans-serif" ${st?'font-weight="700"':''}>${label}</text>${st==="new"?cloudV(x-3.2,my,label):""}</g>`}
+function cloud(cx,cy,label){const w=label.length*2.9+8;return `<rect x="${cx-w/2}" y="${cy-4.6}" width="${w}" height="7.4" rx="3.7" fill="none" stroke="#245364" stroke-width="0.4" stroke-dasharray="1.4 1"/><path d="M${cx+w/2+1} ${cy+1.5}l3 -5.2l3 5.2z" fill="#fff" stroke="#245364" stroke-width="0.4"/><text x="${cx+w/2+4}" y="${cy+0.8}" font-size="3.2" text-anchor="middle" font-weight="700" stroke="none" fill="#245364">C</text>`}
+function cloudV(cx,cy,label){const h=label.length*2.9+8;return `<rect x="${cx-3.7}" y="${cy-h/2}" width="7.4" height="${h}" rx="3.7" fill="none" stroke="#245364" stroke-width="0.4" stroke-dasharray="1.4 1"/>`}
+const pen=`stroke="${INK}" stroke-width="0.6" fill="none"`, hid=`stroke="${INK}" stroke-width="0.3" fill="none" stroke-dasharray="2 1.2"`, ctr=`stroke="${INK}" stroke-width="0.25" fill="none" stroke-dasharray="6 1.5 1 1.5"`;
+
+function sheetSVG(id,rev,ghost){
+  const B=rev==="B";const st=B?"old":"new";let g="";
+  if(id==="P01"){ // front view + section
+    const L=B?1450:1520,s=0.13,x=120,base=238,top=base-L*s,hy=base-(L-60)*s;
+    const gh=ghost?`<rect x="${x}" y="${base-1450*s}" width="${160*s}" height="${1450*s}" stroke="#8a8a84" stroke-width="0.5" fill="none" stroke-dasharray="2 1.5"/>`:"";
+    g+=gh+`<rect x="${x}" y="${top}" width="${160*s}" height="${L*s}" ${pen}/><line x1="${x+6.5*s}" y1="${top}" x2="${x+6.5*s}" y2="${base}" ${hid}/><line x1="${x+153.5*s}" y1="${top}" x2="${x+153.5*s}" y2="${base}" ${hid}/>
+    <circle cx="${x+40*s}" cy="${hy}" r="1.3" ${pen}/><circle cx="${x+120*s}" cy="${hy}" r="1.3" ${pen}/><line x1="${x+11.6}" y1="${top-4}" x2="${x+11.6}" y2="${base+4}" ${ctr}/>
+    ${dimV(top,base,x-16,x-1,B?"1450":"1520",st)}${dimV(hy,base,x-7,x-1,B?"1390":"1460",st)}${dimH(x,x+160*s,top-8,top-1,"160")}${dimH(x+40*s,x+120*s,hy-6,hy-1.5,"80")}
+    <text x="${x+11.6}" y="${base+12}" font-size="5.8" text-anchor="middle" font-family="Arial,Helvetica,sans-serif">FRONT</text>`;
+    const sx=230,sy=70,k=0.42;g+=`<g transform="translate(${sx},${sy})"><path d="M0 0h${160*k}v${13*k}h${-(80-4)*k}v${(160-26)*k}h${(80-4)*k}v${13*k}h${-160*k}v${-13*k}h${(80-4)*k}v${-(160-26)*k}h${-(80-4)*k}z" ${pen} fill="#F1F1EE"/></g>
+    ${dimH(sx,sx+160*k,sy-8,sy-1,"160")}${dimV(sy,sy+160*k,sx+160*k+10,sx+160*k+1,"160")}<text x="${sx+33}" y="${sy+84}" font-size="5.8" text-anchor="middle" font-family="Arial,Helvetica,sans-serif">SECTION A-A, HEB 160</text>
+    <text x="230" y="180" font-size="5.6" font-family="Arial,Helvetica,sans-serif">CUT LENGTH <tspan font-weight="700" fill="${B?"#B0472F":"#245364"}">${B?"1450":"1520"}</tspan>, 4 OFF</text>
+    <text x="230" y="188" font-size="5.6" font-family="Arial,Helvetica,sans-serif">HOLES 2× Ø18 THRU, DEBURR</text>`;
+  }
+  if(id==="P03"){
+    const s=0.11,x=38,y=110,Lw=3000*s,h=22;const holes=B?[560,680,2380,2500]:[610,730,2380,2500];
+    if(ghost)[560,680].forEach(hx=>g+=`<circle cx="${x+hx*s}" cy="${y+h/2}" r="1.6" stroke="#8a8a84" stroke-width="0.4" fill="none" stroke-dasharray="1 0.8"/>`);
+    g+=`<rect x="${x}" y="${y}" width="${Lw}" height="${h}" ${pen}/><line x1="${x}" y1="${y+3}" x2="${x+Lw}" y2="${y+3}" ${hid}/><line x1="${x}" y1="${y+h-3}" x2="${x+Lw}" y2="${y+h-3}" ${hid}/>
+    <line x1="${x-4}" y1="${y+h/2}" x2="${x+Lw+4}" y2="${y+h/2}" ${ctr}/>`;
+    holes.forEach(hx=>g+=`<circle cx="${x+hx*s}" cy="${y+h/2}" r="1.6" ${pen}/>`);
+    const lab=B?["560","680"]:["610","730"];
+    g+=dimH(x,x+holes[0]*s,y-10,y,lab[0],st)+dimH(x,x+holes[1]*s,y-19,y,lab[1],st)+dimH(x,x+holes[2]*s,y-28,y,"2380")+dimH(x,x+holes[3]*s,y-37,y,"2500")+dimH(x,x+Lw,y+h+14,y+h,"3000");
+    g+=`<text x="${x}" y="${y+h+30}" font-size="5.6" font-family="Arial,Helvetica,sans-serif">UPN 120, S355, 2 OFF · 4× Ø14 THRU FOR UCP 208</text><text x="${x}" y="${y+h+38}" font-size="5.6" font-family="Arial,Helvetica,sans-serif">SECTION HEIGHT EXAGGERATED FOR CLARITY</text>`;
+  }
+  if(id==="PL01"){
+    const s=0.62,x=90,y=60,W=250*s,p=B?180:190,e=(250-p)/2;
+    if(ghost)[[35,35],[215,35],[35,215],[215,215]].forEach(([a,b])=>g+=`<circle cx="${x+a*s}" cy="${y+b*s}" r="${9*s}" stroke="#8a8a84" stroke-width="0.4" fill="none" stroke-dasharray="1 0.8"/>`);
+    g+=`<rect x="${x}" y="${y}" width="${W}" height="${W}" ${pen}/>`;
+    [[e,e],[e+p,e],[e,e+p],[e+p,e+p]].forEach(([a,b])=>g+=`<circle cx="${x+a*s}" cy="${y+b*s}" r="${9*s}" ${pen}/><line x1="${x+a*s-8}" y1="${y+b*s}" x2="${x+a*s+8}" y2="${y+b*s}" ${ctr}/><line x1="${x+a*s}" y1="${y+b*s-8}" x2="${x+a*s}" y2="${y+b*s+8}" ${ctr}/>`);
+    g+=dimH(x,x+W,y-16,y,"250")+dimH(x+e*s,x+(e+p)*s,y-7,y+e*s,String(p),st)+dimV(y,y+W,x+W+18,x+W,"250")+dimV(y+e*s,y+(e+p)*s,x+W+9,x+(e+p)*s,String(p),st)+dimH(x,x+e*s,y+W+10,y+W,String(e),st);
+    g+=`<text x="${x+W/2}" y="${y+W+28}" font-size="5.6" text-anchor="middle" font-family="Arial,Helvetica,sans-serif">4× Ø18 THRU · t 20 · S355 · 4 OFF</text>
+    <rect x="290" y="80" width="20" height="${W}" ${pen}/>${dimH(290,310,72,80,"20")}<text x="300" y="${80+W+10}" font-size="5.8" text-anchor="middle" font-family="Arial,Helvetica,sans-serif">SIDE</text>`;
+  }
+  if(id==="A00"){
+    const s=0.1,x=50,base=230,H=(B?1590:1660),sh=B?600:650;
+    const up=(ux)=>`<rect x="${x+ux*s}" y="${base-(H-20)*s}" width="${16}" height="${(H-140)*s}" ${pen}/>`;
+    if(ghost)g+=`<rect x="${x}" y="${base-1590*s}" width="${3000*s}" height="${12}" stroke="#8a8a84" stroke-width="0.5" fill="none" stroke-dasharray="2 1.5"/>`;
+    g+=`<line x1="${x-10}" y1="${base}" x2="${x+3000*s+10}" y2="${base}" stroke="${INK}" stroke-width="0.3"/>`+up(0)+up(2840)+
+    `<rect x="${x}" y="${base-H*s}" width="${3000*s}" height="12" ${pen}/><rect x="${x+16}" y="${base-(360)*s}" width="${2680*s}" height="6" ${pen}/>
+    <rect x="${x-3}" y="${base-2}" width="${25}" height="2" fill="${INK}"/><rect x="${x+2795*s}" y="${base-2}" width="${25}" height="2" fill="${INK}"/>
+    <circle cx="${x+sh*s}" cy="${base-H*s-6}" r="4" ${pen}/><circle cx="${x+2420*s}" cy="${base-H*s-6}" r="4" ${pen}/>`;
+    g+=dimV(base-H*s,base,x-14,x,String(H),st)+dimH(x,x+3000*s,base+12,base,"3000")+dimH(x,x+sh*s,base-H*s-22,base-H*s-10,String(sh),st);
+    g+=`<text x="${x+150}" y="${base+26}" font-size="5.8" text-anchor="middle" font-family="Arial,Helvetica,sans-serif">FRONT ELEVATION · SCALE 1:10</text>`;
+  }
+  return `<svg viewBox="0 0 420 297" xmlns="http://www.w3.org/2000/svg">${frame(sheets.find(s=>s.id===id).no+" "+(id==="A00"?"GA":sheets.find(s=>s.id===id).name.toUpperCase()),rev)}${g}</svg>`;
+}
+function renderStage(){
+  const s=sheets.find(x=>x.id===cur);
+  document.getElementById("st-title").textContent=`${s.no} ${s.name}`;
+  document.getElementById("st-sub").textContent=`${s.qty} · ${s.changes.length} dimensions change`;
+  const el=document.getElementById("sheets");el.className="sheets"+(mode==="overlay"?" overlay":"");
+  el.innerHTML=mode==="side"
+   ? `<div class="sheet"><header><span class="badge old">Rev B</span><b>Released 12 Sep</b><span class="r">in PDM</span></header><div class="cv">${sheetSVG(cur,"B")}</div></div>
+      <div class="sheet"><header><span class="badge new">Rev C</span><b>Proposed by drawgen</b><span class="r">${accepted.has(cur)?"Accepted":"Awaiting you"}</span></header><div class="cv">${sheetSVG(cur,"C")}</div></div>`
+   : `<div class="sheet"><header><span class="badge new">Rev C</span><b>Proposed, revision B dashed underneath</b><span class="r">${accepted.has(cur)?"Accepted":"Awaiting you"}</span></header><div class="cv">${sheetSVG(cur,"C",true)}</div></div>`;
+}
+function renderList(){
+  document.getElementById("list").innerHTML=sheets.map(s=>`<div class="sh${s.id===cur?" on":""}" data-id="${s.id}">
+   <div class="t"><b>${s.name}</b><span class="no">${s.no}</span><span class="st${accepted.has(s.id)?" ok":""}">${accepted.has(s.id)?"Accepted":s.changes.length+" changes"}</span></div>
+   <ul>${s.changes.map(c=>`<li>${c[0]}<span class="v"><s>${c[1]}</s> → <b>${c[2]}</b></span></li>`).join("")}</ul>
+   <div class="why">${s.why}</div>
+   <div class="acc"><button class="mini${accepted.has(s.id)?" done":" pri"}" data-acc="${s.id}">${accepted.has(s.id)?"Accepted":"Accept update"}</button><button class="mini" data-open="${s.id}">Open in drawing</button></div></div>`).join("");
+  document.getElementById("acc-count").textContent=`${accepted.size} of ${sheets.length} accepted`;
+  document.getElementById("dims").textContent=sheets.filter(s=>!accepted.has(s.id)).reduce((a,s)=>a+s.changes.length,0);
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-acc]");if(a){accepted.add(a.dataset.acc);renderList();renderStage();toast(`${a.dataset.acc==="A00"?"DG-A00":"DG-"+a.dataset.acc} updated in the native drawing with a revision C cloud`);return}
+  const o=e.target.closest("[data-open]");if(o){toast("Opens the native drawing with the changed dimensions selected");return}
+  const s=e.target.closest(".sh");if(s){cur=s.dataset.id;renderList();renderStage();return}
+  const m=e.target.closest("[data-m]");if(m){mode=m.dataset.m;document.querySelectorAll("[data-m]").forEach(b=>b.classList.toggle("on",b===m));renderStage()}
+});
+document.getElementById("accall").onclick=()=>{sheets.forEach(s=>accepted.add(s.id));renderList();renderStage();toast("4 sheets updated. Nothing released: they wait for the checker.")};
+document.getElementById("send").onclick=()=>toast(`Sent to the checker: 4 sheets, ${sheets.reduce((a,s)=>a+s.changes.length,0)} clouded dimensions, plus 1 flagged item. Unchanged sheets are not re-sent.`);
+function toast(t){const el=document.getElementById("toast");el.textContent=t;el.classList.add("show");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("show"),2800)}
+renderList();renderStage();
+</script>
+</body>
+</html>

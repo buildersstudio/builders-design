@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Costed parts list</title>
+<style>
+:root{
+  --ink:#141414;--paper:#FAFAF8;--accent:#245364;--accent-soft:#E4ECEF;--graphite:#555550;--stone:#686860;--rule:#E3E1DC;
+  --host:#EDEDEB;--host-2:#E2E2DF;--host-line:#C9C9C4;--view:#F3F3F1;--flag:#9A5B12;--flag-soft:#F6ECDD;--ok:#2F6B4F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;color:var(--ink);background:var(--host);font-size:13px;line-height:1.35;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button,input,select{font:inherit;color:inherit}
+.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+
+/* caption */
+.cap{height:36px;display:flex;align-items:center;gap:14px;padding:0 16px;background:var(--ink);color:#F2F2EE;font-size:12px}
+.cap b{font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#9CC3D1}
+.cap span{opacity:.85}
+.cap .r{margin-left:auto;opacity:.6}
+
+/* host window */
+.win{display:flex;flex-direction:column;height:calc(100vh - 36px);min-height:760px}
+.title{height:30px;display:flex;align-items:center;justify-content:center;background:#F7F7F5;border-bottom:1px solid var(--host-line);font-size:12px;color:var(--graphite);position:relative}
+.title .dots{position:absolute;left:12px;display:flex;gap:6px}
+.title .dots i{width:10px;height:10px;border-radius:50%;background:#D5D5D0;display:block}
+.tabs{height:28px;display:flex;align-items:flex-end;gap:2px;padding:0 10px;background:var(--host-2);border-bottom:1px solid var(--host-line)}
+.tabs span{padding:6px 12px 6px;font-size:12px;color:var(--graphite);border:1px solid transparent;border-bottom:0}
+.tabs span.on{background:var(--paper);border-color:var(--host-line);color:var(--ink);font-weight:700;position:relative;top:1px}
+.ribbon{height:64px;display:flex;align-items:stretch;gap:2px;padding:6px 10px;background:var(--paper);border-bottom:1px solid var(--host-line)}
+.cmd{width:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid transparent;border-radius:4px;font-size:11px;color:var(--graphite);background:none;cursor:pointer}
+.cmd svg{width:22px;height:22px}
+.cmd.on{background:var(--accent-soft);border-color:#BFD2D9;color:var(--accent);font-weight:700}
+.cmd:hover{border-color:var(--rule)}
+.ribbon .sep{width:1px;background:var(--rule);margin:4px 8px}
+.ribbon .brand{display:flex;align-items:center;gap:8px;padding:0 10px 0 4px;font-weight:700;font-size:15px;letter-spacing:-.01em}
+.ribbon .brand small{font-weight:400;font-size:11px;color:var(--stone)}
+
+.body{flex:1;display:grid;grid-template-columns:190px 1fr 820px;min-height:0}
+.tree{background:#F6F6F4;border-right:1px solid var(--host-line);padding:10px 0;overflow:auto;font-size:12px}
+.tree div{padding:3px 12px;white-space:nowrap;color:var(--graphite);cursor:default}
+.tree div.i1{padding-left:26px}.tree div.i2{padding-left:40px}
+.tree div.sel{background:var(--accent-soft);color:var(--accent)}
+.tree .ic{display:inline-block;width:10px;height:10px;border:1px solid var(--stone);margin-right:6px;vertical-align:-1px;border-radius:2px}
+.view{position:relative;background:radial-gradient(ellipse at 50% 40%,#FFFFFF 0%,var(--view) 70%);overflow:hidden}
+.view svg{position:absolute;inset:0;width:100%;height:100%}
+.view .hud{position:absolute;left:14px;bottom:12px;font-size:11px;color:var(--stone)}
+.view .sel-tag{position:absolute;left:14px;top:12px;background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:8px 10px;font-size:12px;box-shadow:0 1px 2px rgba(0,0,0,.05);max-width:300px}
+.view .sel-tag b{display:block;font-size:13px;margin-bottom:2px}
+.view .sel-tag span{color:var(--stone)}
+
+/* task pane */
+.pane{background:var(--paper);border-left:1px solid var(--host-line);display:flex;flex-direction:column;min-height:0}
+.ph{padding:14px 18px 12px;border-bottom:1px solid var(--rule)}
+.ph .row{display:flex;align-items:center;gap:10px}
+.ph h1{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.ph .src{font-size:12px;color:var(--stone);margin-top:3px}
+.pill{font-size:11px;padding:3px 8px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-weight:700}
+.btn{border:1px solid var(--rule);background:#fff;border-radius:4px;padding:7px 12px;font-size:12px;cursor:pointer}
+.btn:hover{border-color:var(--stone)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.btn.pri:hover{background:#1B4353}
+.ph .row .sp{margin-left:auto;display:flex;gap:8px}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--rule)}
+.kpi{padding:10px 18px;border-right:1px solid var(--rule)}
+.kpi:last-child{border-right:0}
+.kpi label{display:block;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--stone);margin-bottom:4px}
+.kpi strong{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.kpi em{font-style:normal;font-size:11px;color:var(--stone);margin-left:4px}
+.kpi.flag strong{color:var(--flag)}
+
+.filters{display:flex;gap:4px;padding:10px 18px;border-bottom:1px solid var(--rule);align-items:center}
+.chip{border:1px solid var(--rule);background:#fff;border-radius:20px;padding:5px 11px;font-size:12px;cursor:pointer;color:var(--graphite)}
+.chip b{font-weight:700;color:var(--ink);margin-left:4px}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.on b{color:#fff}
+.filters .note{margin-left:auto;font-size:11px;color:var(--stone)}
+
+.tablewrap{flex:1;overflow:auto}
+table{width:100%;border-collapse:collapse}
+thead th{position:sticky;top:0;z-index:1;background:#F3F2EE;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);font-weight:700;text-align:left;padding:8px 6px;border-bottom:1px solid var(--rule);white-space:nowrap}
+thead th.num{text-align:right}
+tbody td{padding:7px 6px;border-bottom:1px solid #EEECE7;vertical-align:middle;white-space:nowrap}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:#F4F6F6}
+tbody tr.sel td{background:var(--accent-soft)}
+tbody tr.grp td{background:var(--paper);cursor:default;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:700;padding-top:12px;border-bottom:1px solid var(--rule)}
+td.id{color:var(--stone);font-size:12px;padding-left:18px}
+td.name b{font-weight:700;display:block}
+td.name span{font-size:11px;color:var(--stone)}
+td.name .ren{color:var(--accent)}
+.rate{width:58px;border:1px solid var(--rule);border-radius:3px;padding:4px 6px;text-align:right;background:#fff;font-variant-numeric:tabular-nums}
+.rate:focus{outline:2px solid #BFD2D9;border-color:var(--accent)}
+.rate.miss{border-color:#D9B98C;background:var(--flag-soft)}
+td .unit{font-size:11px;color:var(--stone);margin-left:3px}
+.tag{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:3px;background:var(--flag-soft);color:var(--flag)}
+.tag.m{background:#EDF3EF;color:var(--ok)}
+td.cost{font-weight:700}
+td.cost.missing{color:var(--flag);font-weight:400;font-size:12px}
+
+.foot{border-top:1px solid var(--rule);padding:12px 18px;display:flex;align-items:center;gap:14px;background:#fff}
+.foot .tot{font-size:12px;color:var(--stone)}
+.foot .tot strong{font-size:18px;color:var(--ink);margin-left:6px}
+.foot .trace{font-size:11px;color:var(--stone);max-width:330px}
+.foot .sp{margin-left:auto;display:flex;gap:8px}
+
+.status{height:24px;display:flex;align-items:center;gap:22px;padding:0 12px;background:var(--host-2);border-top:1px solid var(--host-line);font-size:11px;color:var(--graphite)}
+.status .r{margin-left:auto}
+.toast{position:fixed;left:50%;bottom:46px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:4px;font-size:12px;opacity:0;transition:.25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:1180px){
+  .body{grid-template-columns:1fr;grid-template-rows:300px auto}
+  .tree{display:none}
+  .pane{border-left:0;border-top:1px solid var(--host-line)}
+  .win{height:auto}
+  .tablewrap{overflow:auto;max-height:none}
+}
+@media (max-width:640px){
+  .cap .r,.ribbon .brand small,.cmd span.l2{display:none}
+  .cmd{width:64px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .kpi:nth-child(2){border-right:0}
+  .kpi:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .foot{flex-wrap:wrap}
+  .foot .trace{max-width:none}
+  .ph .row{flex-wrap:wrap}
+  .ph .row .sp{margin-left:0}
+}
+.body>*{min-width:0}
+.ribbon{overflow-x:auto}
+.cap span:not(.r){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:640px){.filters{flex-wrap:wrap}.filters .note{margin-left:0;width:100%}.cap{height:auto;min-height:36px;padding:8px 16px}.cap span:not(.r){white-space:normal}.title{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype</b><span>Costed parts list inside the CAD add-in. Sample assembly and sample rates, not customer data and not a shipped feature.</span><span class="r">drawgen product vision</span></div>
+<div class="win">
+  <div class="title"><div class="dots"><i></i><i></i><i></i></div>Conveyor support frame (sample).SLDASM</div>
+  <div class="tabs"><span>Assembly</span><span>Layout</span><span>Sketch</span><span>Evaluate</span><span class="on">drawgen</span></div>
+  <div class="ribbon">
+    <div class="brand">drawgen.<small>add-in</small></div>
+    <div class="sep"></div>
+    <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 8h8M8 12h5M8 16h8"/></svg>Drawings</button>
+    <button class="cmd on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16M9 3v18"/></svg>Parts list</button>
+    <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5h8l6 6v8H5z"/><path d="M13 5v6h6"/><path d="M9 15l2 2 4-4"/></svg>Revisions</button>
+    <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg>Pre-check</button>
+    <div class="sep"></div>
+    <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>Rates</button>
+  </div>
+  <div class="body">
+    <nav class="tree" id="tree"></nav>
+    <div class="view">
+      <svg id="model" viewBox="0 0 900 640" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="sel-tag" id="seltag"><b>Select a line</b><span>The part is highlighted in the model.</span></div>
+      <div class="hud">Isometric · measured from the solid bodies</div>
+    </div>
+    <aside class="pane">
+      <div class="ph">
+        <div class="row"><h1>Parts list</h1><span class="pill">Measured</span>
+          <div class="sp"><button class="btn" id="recalc">Re-read model</button><button class="btn pri" id="export">Export to Excel</button></div></div>
+        <div class="src">From Conveyor support frame (sample), revision C, read in-process. Nothing left the machine.</div>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><label>Lines · items</label><strong id="k-lines">0</strong><em id="k-items"></em></div>
+        <div class="kpi"><label>Steel mass</label><strong id="k-mass">0</strong><em>kg</em></div>
+        <div class="kpi"><label>Coating area</label><strong id="k-area">0</strong><em>m²</em></div>
+        <div class="kpi flag"><label>Need your input</label><strong id="k-flag">0</strong><em>lines</em></div>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="padding-left:18px">Line</th><th>Part</th><th class="num">Qty</th><th class="num">Size</th><th class="num">Mass each</th><th class="num">Coat</th><th class="num">Rate</th><th class="num" style="padding-right:18px">Line cost</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="foot">
+        <div class="tot">Priced so far<strong id="total">0</strong></div>
+        <div class="trace" id="trace">Every size, mass and area is measured from the solid. Rates are yours; drawgen never guesses a price.</div>
+        <div class="sp"><button class="btn" id="sendq">Copy to quote</button></div>
+      </div>
+    </aside>
+  </div>
+  <div class="status"><span>drawgen 0.9 vision</span><span>14 lines from 38 bodies</span><span>3 parts renamed from unusable names</span><span class="r">Units: mm, kg, m², EUR</span></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* Sample data only. Profiles use catalogue mass and surface per metre for standard sections. */
+const G={pro:"Profiles",pl:"Plates",m:"Machined",b:"Bought-in"};
+const parts=[
+ {id:"P01",g:"pro",name:"Upright",spec:"HEB 160, S355",qty:4,size:"L 1,450",mass:61.8,coat:1.33,rate:1.45,ru:"/kg",basis:"kg",boxes:["u1","u2","u3","u4"],from:"Upright^frame"},
+ {id:"P02",g:"pro",name:"Cross beam",spec:"HEA 140, S355",qty:2,size:"L 580",mass:14.3,coat:0.46,rate:1.45,ru:"/kg",basis:"kg",boxes:["c1","c2"]},
+ {id:"P03",g:"pro",name:"Side rail",spec:"UPN 120, S355",qty:2,size:"L 3,000",mass:40.2,coat:1.30,rate:1.45,ru:"/kg",basis:"kg",boxes:["r1","r2"],renamed:"Part14^Frame"},
+ {id:"P04",g:"pro",name:"Lower rail",spec:"L 60×60×6, S355",qty:2,size:"L 2,680",mass:14.5,coat:0.63,rate:1.45,ru:"/kg",basis:"kg",boxes:["l1","l2"]},
+ {id:"PL01",g:"pl",name:"Base plate",spec:"t 20, S355, 4 holes Ø18",qty:4,size:"250 × 250",mass:9.6,coat:0.145,rate:1.90,ru:"/kg",basis:"kg",boxes:["b1","b2","b3","b4"]},
+ {id:"PL02",g:"pl",name:"End plate",spec:"t 12, S355",qty:4,size:"200 × 160",mass:3.0,coat:0.073,rate:1.90,ru:"/kg",basis:"kg",boxes:["e1","e2","e3","e4"],renamed:"Part7^Frame"},
+ {id:"PL03",g:"pl",name:"Gusset",spec:"t 10, S355, triangular",qty:8,size:"120 × 120",mass:0.57,coat:0.019,rate:1.90,ru:"/kg",basis:"kg",boxes:["g1","g2","g3","g4"],renamed:"Cut-Extrude3^Frame"},
+ {id:"M01",g:"m",name:"Roller shaft",spec:"Ø40, C45, 2 bearing seats",qty:2,size:"L 940",mass:9.27,coat:0,rate:null,ru:"/h",basis:"h",hoursNeeded:true,boxes:["s1","s2"],flag:"Machining hours are not in the model. Add hours or a rate per part."},
+ {id:"M02",g:"m",name:"Bearing spacer",spec:"Ø60/Ø40, C45",qty:4,size:"L 25",mass:0.31,coat:0,rate:null,ru:"/h",basis:"h",hoursNeeded:true,boxes:["k1","k2","k3","k4"],flag:"Machining hours are not in the model."},
+ {id:"B01",g:"b",name:"Pillow block bearing",spec:"UCP 208, bore 40",qty:4,size:"",mass:1.7,coat:0,rate:38.50,ru:"/pc",basis:"pc",boxes:["k1","k2","k3","k4"],bought:true},
+ {id:"B02",g:"b",name:"Hex bolt",spec:"M16×60, 8.8, zinc",qty:32,size:"",mass:0.13,coat:0,rate:0.62,ru:"/pc",basis:"pc",boxes:["b1","b2","b3","b4"],bought:true},
+ {id:"B03",g:"b",name:"Hex nut",spec:"M16, 8, zinc",qty:32,size:"",mass:0.03,coat:0,rate:0.18,ru:"/pc",basis:"pc",boxes:["b1","b2","b3","b4"],bought:true},
+ {id:"B04",g:"b",name:"Levelling foot",spec:"M20, Ø80 pad",qty:4,size:"",mass:0.9,coat:0,rate:14.90,ru:"/pc",basis:"pc",boxes:["b1","b2","b3","b4"],bought:true},
+ {id:"B05",g:"b",name:"Belt",spec:"Named in model only",qty:1,size:"",mass:0,coat:0,rate:null,ru:"/pc",basis:"pc",boxes:[],bought:true,flag:"Modelled as a placeholder body. drawgen lists it but will not size or price it."}
+];
+const COAT_RATE=18; // sample EUR per m²
+let filter="all",sel=null;
+const fmt=(n,d=0)=>n.toLocaleString("en-GB",{minimumFractionDigits:d,maximumFractionDigits:d});
+const eur=n=>"€ "+fmt(n,2);
+
+function lineCost(p){
+  if(p.rate==null||p.rate==="") return null;
+  if(p.basis==="kg") return p.qty*p.mass*p.rate + p.qty*p.coat*COAT_RATE;
+  if(p.basis==="h") return p.qty*(p.hours||0)*p.rate;
+  return p.qty*p.rate;
+}
+function render(){
+  const rows=document.getElementById("rows");rows.innerHTML="";
+  const groups=filter==="all"?Object.keys(G):[filter];
+  groups.forEach(g=>{
+    const ps=parts.filter(p=>p.g===g);
+    const tr=document.createElement("tr");tr.className="grp";tr.innerHTML=`<td colspan="8" style="padding-left:18px">${G[g]} · ${ps.length} lines</td>`;rows.appendChild(tr);
+    ps.forEach(p=>{
+      const c=lineCost(p);
+      const r=document.createElement("tr");if(sel===p.id)r.className="sel";r.dataset.id=p.id;
+      const needs=p.flag&&c==null;
+      r.innerHTML=`<td class="id">${p.id}</td>
+       <td class="name"><b>${p.name}</b><span>${p.spec}${p.renamed?` · <span class="ren">renamed from ${p.renamed}</span>`:""}</span></td>
+       <td class="num">${p.qty}</td>
+       <td class="num">${p.size||"<span style='color:#9a9a93'>n/a</span>"}</td>
+       <td class="num">${p.mass?fmt(p.mass,p.mass<1?2:1)+"<span class='unit'>kg</span>":"<span style='color:#9a9a93'>n/a</span>"}</td>
+       <td class="num">${p.coat?fmt(p.coat,p.coat<0.1?3:2)+"<span class='unit'>m²</span>":"<span style='color:#9a9a93'>none</span>"}</td>
+       <td class="num"><input class="rate${p.rate==null?" miss":""}" data-id="${p.id}" value="${p.rate==null?"":p.rate.toFixed(2)}" placeholder="rate" inputmode="decimal"><span class="unit">${p.ru}</span></td>
+       <td class="num cost${c==null?" missing":""}" style="padding-right:18px">${c==null?(p.flag?'<span class="tag">Needs input</span>':""):eur(c)}</td>`;
+      rows.appendChild(r);
+    });
+  });
+  // kpis
+  const items=parts.reduce((a,p)=>a+p.qty,0);
+  const mass=parts.filter(p=>!p.bought).reduce((a,p)=>a+p.qty*p.mass,0);
+  const area=parts.reduce((a,p)=>a+p.qty*p.coat,0);
+  const flags=parts.filter(p=>lineCost(p)==null).length;
+  document.getElementById("k-lines").textContent=parts.length;
+  document.getElementById("k-items").textContent="· "+items+" items";
+  document.getElementById("k-mass").textContent=fmt(mass,0);
+  document.getElementById("k-area").textContent=fmt(area,1);
+  document.getElementById("k-flag").textContent=flags;
+  const tot=parts.reduce((a,p)=>a+(lineCost(p)||0),0);
+  document.getElementById("total").textContent=eur(tot);
+  // filters
+  const f=document.getElementById("filters");
+  f.innerHTML=[["all","All",parts.length],...Object.keys(G).map(k=>[k,G[k],parts.filter(p=>p.g===k).length])].map(([k,l,n])=>`<button class="chip${filter===k?" on":""}" data-f="${k}">${l}<b>${n}</b></button>`).join("")+`<span class="note">Coating at sample € ${COAT_RATE}/m² on profiles and plates</span>`;
+  highlight();
+}
+document.addEventListener("click",e=>{
+  const c=e.target.closest(".chip");if(c){filter=c.dataset.f;render();return}
+  const r=e.target.closest("tbody tr[data-id]");if(r&&!e.target.classList.contains("rate")){sel=sel===r.dataset.id?null:r.dataset.id;render();return}
+  const b=e.target.closest("[data-part]");if(b){const p=parts.find(p=>p.boxes.includes(b.dataset.part)&&!p.bought)||parts.find(p=>p.boxes.includes(b.dataset.part));if(p){sel=p.id;filter="all";render();const row=document.querySelector(`tr[data-id="${p.id}"]`);row&&row.scrollIntoView({block:"nearest"})}}
+});
+document.addEventListener("change",e=>{
+  if(!e.target.classList.contains("rate"))return;
+  const p=parts.find(x=>x.id===e.target.dataset.id);const v=parseFloat(String(e.target.value).replace(",","."));
+  if(p.hoursNeeded&&!isNaN(v)){p.rate=v;p.hours=p.hours||(p.id==="M01"?1.5:0.4);toast(`${p.id}: rate set. Hours per part (${p.hours} h, sample) go in the line detail.`)}
+  else p.rate=isNaN(v)?null:v;
+  render();
+});
+document.getElementById("export").onclick=()=>toast("Exported Conveyor support frame (sample) parts list.xlsx with sizes, masses, areas and your rates");
+document.getElementById("recalc").onclick=()=>toast("Re-read 38 bodies from revision C. No changes since the last read.");
+document.getElementById("sendq").onclick=()=>toast("Copied 14 lines to the clipboard, ready to paste into your quote template");
+function toast(t){const el=document.getElementById("toast");el.textContent=t;el.classList.add("show");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("show"),2600)}
+
+/* feature tree */
+document.getElementById("tree").innerHTML=`<div><span class="ic"></span>Conveyor support frame</div>
+<div class="i1">Front Plane</div><div class="i1">Top Plane</div><div class="i1">Right Plane</div>
+${parts.filter(p=>!p.bought).map(p=>`<div class="i1" data-tree="${p.id}"><span class="ic"></span>${p.id} ${p.name} &lt;${p.qty}&gt;</div>`).join("")}
+<div class="i1"><span class="ic"></span>Bought-in &lt;5&gt;</div><div class="i1">Mates</div>`;
+
+/* isometric model: boxes in mm, x along length, y up, z across */
+const boxes=[
+ ["b1",-45,-20,-45,250,20,250],["b2",2795,-20,-45,250,20,250],["b3",-45,-20,695,250,20,250],["b4",2795,-20,695,250,20,250],
+ ["u1",0,0,0,160,1450,160],["u2",2840,0,0,160,1450,160],["u3",0,0,740,160,1450,160],["u4",2840,0,740,160,1450,160],
+ ["l1",160,300,0,2680,60,60],["l2",160,300,840,2680,60,60],
+ ["c1",40,700,160,80,140,580],["c2",2880,700,160,80,140,580],
+ ["g1",160,1330,50,120,120,10],["g2",2720,1330,50,120,120,10],["g3",160,1330,840,120,120,10],["g4",2720,1330,840,120,120,10],
+ ["r1",0,1450,0,3000,120,60],["r2",0,1450,840,3000,120,60],
+ ["e1",-12,1450,-20,12,160,100],["e2",3000,1450,-20,12,160,100],["e3",-12,1450,820,12,160,100],["e4",3000,1450,820,12,160,100],
+ ["k1",560,1570,-10,120,70,80],["k2",2380,1570,-10,120,70,80],["k3",560,1570,830,120,70,80],["k4",2380,1570,830,120,70,80],
+ ["s1",600,1585,-30,40,40,960],["s2",2420,1585,-30,40,40,960]
+];
+const S=0.2,C=Math.cos(Math.PI/6),N=Math.sin(Math.PI/6),OX=0,OY=0;
+const P=(x,y,z)=>[OX+(x-z)*C*S*0.9, OY-(y*S)+(x+z)*N*S*0.62];
+function drawModel(){
+  const svg=document.getElementById("model");
+  const order=[...boxes].sort((a,b)=>((a[1]+a[4]/2)+(a[3]+a[6]/2))-((b[1]+b[4]/2)+(b[3]+b[6]/2)) || (a[2]-b[2]));
+  let h=`<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#E6E6E2" stroke-width="1"/></pattern></defs>`;
+  let xs=[],ys=[];boxes.forEach(([id,x,y,z,w,hh,d])=>{[[0,0,0],[w,0,0],[0,hh,0],[0,0,d],[w,hh,d],[w,0,d],[0,hh,d],[w,hh,0]].forEach(([a,b,c])=>{const q=P(x+a,y+b,z+c);xs.push(q[0]);ys.push(q[1])})});
+  const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys),m=60;
+  svg.setAttribute('viewBox',`${x0-m} ${y0-m-30} ${x1-x0+2*m} ${y1-y0+2*m+40}`);
+  const fp=[P(-200,-20,-200),P(3200,-20,-200),P(3200,-20,1100),P(-200,-20,1100)].map(q=>q.map(v=>v.toFixed(1)).join(',')).join(' ');
+  h+=`<polygon points="${fp}" fill="#E6E6E1" opacity=".7"/>`;
+  order.forEach(([id,x,y,z,w,hh,d])=>{
+    const p=(a,b,c)=>P(x+a,y+b,z+c).map(v=>v.toFixed(1)).join(",");
+    const top=[p(0,hh,0),p(w,hh,0),p(w,hh,d),p(0,hh,d)].join(" ");
+    const front=[p(0,0,d),p(w,0,d),p(w,hh,d),p(0,hh,d)].join(" ");
+    const right=[p(w,0,0),p(w,0,d),p(w,hh,d),p(w,hh,0)].join(" ");
+    h+=`<g class="bx" data-part="${id}" style="cursor:pointer"><polygon points="${top}" data-f="t"/><polygon points="${front}" data-f="f"/><polygon points="${right}" data-f="r"/></g>`;
+  });
+  svg.innerHTML=h;highlight();
+}
+function highlight(){
+  const p=parts.find(x=>x.id===sel);const on=new Set(p?p.boxes:[]);
+  document.querySelectorAll(".bx").forEach(g=>{
+    const a=on.has(g.dataset.part);const dim=p&&!a;
+    g.querySelectorAll("polygon").forEach(poly=>{
+      const f=poly.dataset.f;
+      const base=a?{t:"#6E9BAB",f:"#245364",r:"#3B6E80"}:{t:"#E4E4DF",f:"#B9B9B2",r:"#CBCBC4"};
+      poly.setAttribute("fill",base[f]);poly.setAttribute("stroke",a?"#173B48":"#7C7C76");poly.setAttribute("stroke-width",a?"0.9":"0.6");poly.setAttribute("stroke-linejoin","round");
+      poly.setAttribute("opacity",dim?".45":"1");
+    });
+  });
+  document.querySelectorAll("[data-tree]").forEach(t=>t.classList.toggle("sel",!!p&&t.dataset.tree===p.id));
+  const tag=document.getElementById("seltag");
+  if(!p){tag.innerHTML="<b>Select a line</b><span>The part is highlighted in the model. Click the model to find its line.</span>";document.getElementById("trace").textContent="Every size, mass and area is measured from the solid. Rates are yours; drawgen never guesses a price.";return}
+  tag.innerHTML=`<b>${p.id} ${p.name} × ${p.qty}</b><span>${p.spec}${p.size?" · "+p.size+" mm":""}</span>`;
+  document.getElementById("trace").innerHTML=p.flag?`<span class="tag">Flagged</span> ${p.flag}`:`${p.id}: ${p.size?"size from bounding faces, ":""}mass from volume × material density${p.coat?", coat area from exposed faces":""}.`;
+}
+drawModel();render();
+</script>
+</body>
+</html>
