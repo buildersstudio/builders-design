@@ -1,0 +1,34 @@
+# drawgen
+
+> drawgen is software for manufacturers who build to order: machine builders and engineer-to-order shops that make machines in ones and tens. drawgen connects the systems your data already lives in, so every quote is faster to send and priced on what similar jobs actually cost. One record per part, joined on the part's shape rather than its number, so it works even when part numbers are a mess.
+
+Key facts:
+- Two ways in: The add-in, inside SOLIDWORKS, used by the engineer. Produces the BOM and the drawings, and quietly writes the part record. The platform, in the browser, used by the MD, sales and purchasing. Holds every job side by side, joined to purchase history.
+- What crosses: The measurements, not the models. Your CAD files stay on your machine, and the whole thing can run on your own server.
+- Four products built on the drawgen record: BOM (Every part, measured, with what to make and what to buy); Drawings (Editable sheets in your format, unclear values flagged); Costing (Data-driven quotes that match what the job actually costs); Sourcing (Buy on what you have actually paid, not on habit).
+- Your CAD files never leave your machine. Nothing estimated, anything unclear flagged. Everything editable, nothing sent unchecked. Built for manufacturers who build to order.
+- Manufacturing has evolved. The systems behind it haven't. Your data already exists. It sits in the CAD model, the ERP, past quotes and one or two people's heads. drawgen connects it, so every quote is faster to send and priced on what similar jobs actually cost.
+- Contact: drawgenhelp@gmail.com, https://www.linkedin.com/company/drawgen
+- Product examples on the site are illustrative, with made-up generic data.
+
+## Product
+- [Product: four products on one record](https://drawgen.co/product/): BOM, Drawings, Costing and Sourcing, all built on the drawgen record: one record per part, joined on its shape across every system you run.
+- [The drawgen record: one record per part](https://drawgen.co/product/record/): One record per part, joined on the part's shape rather than its number, so it works even when part numbers are a mess. Your CAD files stay on your machine.
+- [BOM: every part measured, in one BOM](https://drawgen.co/product/bom/): Material, size, mass, surface area and quantity for every part, plus what to make and what to buy. Your engineer reviews it before it goes anywhere.
+- [Drawings: derived from the solid](https://drawgen.co/product/drawings/): One dimensioned sheet per part, editable, in your own drawing format. Anything it cannot determine is flagged, and your engineer finishes it.
+- [Costing: quotes that match actual cost](https://drawgen.co/product/costing/): Every price built on something that actually happened: a price you paid, a job you finished, a part you already built.
+- [Sourcing: buy on what you have paid](https://drawgen.co/product/sourcing/): See which supplier has been cheapest and fastest for each kind of part, and send every RFQ as one complete package.
+
+## Industries
+- [Special-purpose machinery](https://drawgen.co/industry/special-machinery/): Every machine is a one-off. The quote should not be a guess. Weeks to get a quote out, and the knowledge sits with one or two people close to retirement.
+- [Material handling and conveyors](https://drawgen.co/industry/material-handling/): Frames, supports and guarding redrawn and re-measured on every job, even when half of it matches the last one.
+- [Packaging machinery](https://drawgen.co/industry/packaging/): Machined parts and pneumatics bought from whoever was used last time, with no view of who is actually cheaper.
+- [Heavy fabrication and steel](https://drawgen.co/industry/heavy-fabrication/): Big steel, measured off the model, not with a tape. Cut lengths and coating areas measured by hand off the model, and critical edge-to-hole dimensions missed.
+- [Lifting equipment](https://drawgen.co/industry/lifting/): Quoted with the engineering in it, not discovered after. Load ratings, certified welding and proof testing costed after the quote went out.
+
+## Company
+- [drawgen: quotes built on data, not memory](https://drawgen.co/): drawgen connects the systems your data already lives in, so every quote is faster to send and priced on what similar jobs actually cost.
+- [Talk to us: show us one of your jobs](https://drawgen.co/contact/): Show us one of your jobs. The fastest way to see whether drawgen works for you is to try it on something real.
+
+## Optional
+- [Full text of every page](https://drawgen.co/llms-full.txt)

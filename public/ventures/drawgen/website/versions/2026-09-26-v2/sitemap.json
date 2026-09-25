@@ -1,0 +1,196 @@
+{
+  "pages": [
+    {
+      "id": "home",
+      "path": "/",
+      "title": "drawgen: quotes built on data, not memory",
+      "description": "drawgen connects the systems your data already lives in, so every quote is faster to send and priced on what similar jobs actually cost.",
+      "type": "page",
+      "nav": true,
+      "langs": {
+        "en": "en/index.html"
+      }
+    },
+    {
+      "id": "product",
+      "path": "/product/",
+      "title": "Product: four products on one record | drawgen",
+      "description": "BOM, Drawings, Costing and Sourcing, all built on the drawgen record: one record per part, joined on its shape across every system you run.",
+      "type": "page",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/product/index.html"
+      }
+    },
+    {
+      "id": "record",
+      "path": "/product/record/",
+      "title": "The drawgen record: one record per part",
+      "description": "One record per part, joined on the part's shape rather than its number, so it works even when part numbers are a mess. Your CAD files stay on your machine.",
+      "type": "cms",
+      "collection": "products",
+      "parent": "product",
+      "nav": true,
+      "langs": {
+        "en": "en/product/record/index.html"
+      }
+    },
+    {
+      "id": "bom",
+      "path": "/product/bom/",
+      "title": "BOM: every part measured, in one BOM | drawgen",
+      "description": "Material, size, mass, surface area and quantity for every part, plus what to make and what to buy. Your engineer reviews it before it goes anywhere.",
+      "type": "cms",
+      "collection": "products",
+      "parent": "product",
+      "nav": true,
+      "langs": {
+        "en": "en/product/bom/index.html"
+      }
+    },
+    {
+      "id": "drawings",
+      "path": "/product/drawings/",
+      "title": "Drawings: derived from the solid | drawgen",
+      "description": "One dimensioned sheet per part, editable, in your own drawing format. Anything it cannot determine is flagged, and your engineer finishes it.",
+      "type": "cms",
+      "collection": "products",
+      "parent": "product",
+      "nav": true,
+      "langs": {
+        "en": "en/product/drawings/index.html"
+      }
+    },
+    {
+      "id": "costing",
+      "path": "/product/costing/",
+      "title": "Costing: quotes that match actual cost | drawgen",
+      "description": "Every price built on something that actually happened: a price you paid, a job you finished, a part you already built.",
+      "type": "cms",
+      "collection": "products",
+      "parent": "product",
+      "nav": true,
+      "langs": {
+        "en": "en/product/costing/index.html"
+      }
+    },
+    {
+      "id": "sourcing",
+      "path": "/product/sourcing/",
+      "title": "Sourcing: buy on what you have paid | drawgen",
+      "description": "See which supplier has been cheapest and fastest for each kind of part, and send every RFQ as one complete package.",
+      "type": "cms",
+      "collection": "products",
+      "parent": "product",
+      "nav": true,
+      "langs": {
+        "en": "en/product/sourcing/index.html"
+      }
+    },
+    {
+      "id": "special-machinery",
+      "path": "/industry/special-machinery/",
+      "title": "Special-purpose machinery | drawgen",
+      "description": "Every machine is a one-off. The quote should not be a guess. Weeks to get a quote out, and the knowledge sits with one or two people close to retirement.",
+      "type": "cms",
+      "collection": "industries",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/special-machinery/index.html"
+      }
+    },
+    {
+      "id": "material-handling",
+      "path": "/industry/material-handling/",
+      "title": "Material handling and conveyors | drawgen",
+      "description": "Frames, supports and guarding redrawn and re-measured on every job, even when half of it matches the last one.",
+      "type": "cms",
+      "collection": "industries",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/material-handling/index.html"
+      }
+    },
+    {
+      "id": "packaging",
+      "path": "/industry/packaging/",
+      "title": "Packaging machinery | drawgen",
+      "description": "Machined parts and pneumatics bought from whoever was used last time, with no view of who is actually cheaper.",
+      "type": "cms",
+      "collection": "industries",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/packaging/index.html"
+      }
+    },
+    {
+      "id": "automation",
+      "path": "/industry/automation/",
+      "title": "Automation and robotic cells | drawgen",
+      "description": "Robots, pneumatics and sensors bought in, fixtures and frames made to drawing, all in one BOM that has to be split by hand.",
+      "type": "cms",
+      "collection": "industries",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/automation/index.html"
+      }
+    },
+    {
+      "id": "heavy-fabrication",
+      "path": "/industry/heavy-fabrication/",
+      "title": "Heavy fabrication and steel | drawgen",
+      "description": "Big steel, measured off the model, not with a tape. Cut lengths and coating areas measured by hand off the model, and critical edge-to-hole dimensions missed.",
+      "type": "cms",
+      "collection": "industries",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/heavy-fabrication/index.html"
+      }
+    },
+    {
+      "id": "lifting",
+      "path": "/industry/lifting/",
+      "title": "Lifting equipment | drawgen",
+      "description": "Quoted with the engineering in it, not discovered after. Load ratings, certified welding and proof testing costed after the quote went out.",
+      "type": "cms",
+      "collection": "industries",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/lifting/index.html"
+      }
+    },
+    {
+      "id": "contact",
+      "path": "/contact/",
+      "title": "Talk to us: show us one of your jobs | drawgen",
+      "description": "Show us one of your jobs. The fastest way to see whether drawgen works for you is to try it on something real.",
+      "type": "page",
+      "parent": "home",
+      "nav": false,
+      "langs": {
+        "en": "en/contact/index.html"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "key": "products",
+      "label": "Products",
+      "path": "/product/",
+      "description": "The drawgen record and the four products built on it: BOM, Drawings, Costing and Sourcing."
+    },
+    {
+      "key": "industries",
+      "label": "Industries",
+      "path": "/industry/",
+      "description": "The six kinds of manufacturer who build to order that drawgen is built for."
+    }
+  ]
+}

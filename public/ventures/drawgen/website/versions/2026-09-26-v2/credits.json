@@ -1,0 +1,89 @@
+{
+  "note": "The six industry photographs were generated for this version with the Higgsfield MCP; every other picture is drawgen's own, from the drawgen.co repository. Product examples are illustrative and drawn in code, with made-up generic data.",
+  "credits": [
+    {
+      "file": "photos/special-machinery-480.webp, photos/special-machinery-960.webp, photos/special-machinery-1600.webp, og/special-machinery.jpg",
+      "source": "Higgsfield",
+      "author": "Generated for drawgen with GPT Image 2.5 (gpt_image_2_5, high quality, 2k), special-purpose machine assembly hall, no people, logos or text",
+      "url": "https://higgsfield.ai"
+    },
+    {
+      "file": "photos/material-handling-480.webp, photos/material-handling-960.webp, photos/material-handling-1600.webp, og/material-handling.jpg",
+      "source": "Higgsfield",
+      "author": "Generated for drawgen with GPT Image 2.5 (gpt_image_2_5, high quality, 2k), roller conveyor in a fabrication hall, no people, logos or text",
+      "url": "https://higgsfield.ai"
+    },
+    {
+      "file": "photos/packaging-480.webp, photos/packaging-960.webp, photos/packaging-1600.webp, og/packaging.jpg",
+      "source": "Higgsfield",
+      "author": "Generated for drawgen with GPT Image 2.5 (gpt_image_2_5, high quality, 2k), case-packing machine under assembly, no people, logos or text",
+      "url": "https://higgsfield.ai"
+    },
+    {
+      "file": "photos/automation-480.webp, photos/automation-960.webp, photos/automation-1600.webp, og/automation.jpg",
+      "source": "Higgsfield",
+      "author": "Generated for drawgen with GPT Image 2.5 (gpt_image_2_5, high quality, 2k), robotic cell being commissioned, no people, logos or text",
+      "url": "https://higgsfield.ai"
+    },
+    {
+      "file": "photos/heavy-fabrication-480.webp, photos/heavy-fabrication-960.webp, photos/heavy-fabrication-1600.webp, og/heavy-fabrication.jpg",
+      "source": "Higgsfield",
+      "author": "Generated for drawgen with GPT Image 2.5 (gpt_image_2_5, high quality, 2k), welded steel platform and HEB beams, no people, logos or text",
+      "url": "https://higgsfield.ai"
+    },
+    {
+      "file": "photos/lifting-480.webp, photos/lifting-960.webp, photos/lifting-1600.webp, og/lifting.jpg",
+      "source": "Higgsfield",
+      "author": "Generated for drawgen with GPT Image 2.5 (gpt_image_2_5, high quality, 2k), lifting beam on a pillar jib crane, no people, logos or text",
+      "url": "https://higgsfield.ai"
+    },
+    {
+      "file": "industries/special-machinery-480.webp, industries/special-machinery-800.webp, industries/special-machinery-1254.webp",
+      "source": "drawgen",
+      "author": "The founders' machine images, from the drawgen.co repository (public/industries)",
+      "url": "https://drawgen.co"
+    },
+    {
+      "file": "industries/material-handling-480.webp, industries/material-handling-800.webp, industries/material-handling-1254.webp",
+      "source": "drawgen",
+      "author": "The founders' machine images, from the drawgen.co repository (public/industries)",
+      "url": "https://drawgen.co"
+    },
+    {
+      "file": "industries/packaging-480.webp, industries/packaging-800.webp, industries/packaging-1254.webp",
+      "source": "drawgen",
+      "author": "The founders' machine images, from the drawgen.co repository (public/industries)",
+      "url": "https://drawgen.co"
+    },
+    {
+      "file": "industries/automation-480.webp, industries/automation-800.webp, industries/automation-1254.webp",
+      "source": "drawgen",
+      "author": "The founders' machine images, from the drawgen.co repository (public/industries)",
+      "url": "https://drawgen.co"
+    },
+    {
+      "file": "industries/heavy-fabrication-480.webp, industries/heavy-fabrication-800.webp, industries/heavy-fabrication-1254.webp",
+      "source": "drawgen",
+      "author": "The founders' machine images, from the drawgen.co repository (public/industries)",
+      "url": "https://drawgen.co"
+    },
+    {
+      "file": "industries/lifting-480.webp, industries/lifting-800.webp, industries/lifting-1254.webp",
+      "source": "drawgen",
+      "author": "The founders' machine images, from the drawgen.co repository (public/industries)",
+      "url": "https://drawgen.co"
+    },
+    {
+      "file": "media/vision-*.mp4, media/vision-poster-*",
+      "source": "drawgen",
+      "author": "The drawgen vision video, from the drawgen.co repository (public/media)",
+      "url": "https://drawgen.co"
+    },
+    {
+      "file": "og/drawgen.jpg",
+      "source": "drawgen",
+      "author": "Rendered for this version from the drawgen symbol and type",
+      "url": "https://drawgen.co"
+    }
+  ]
+}

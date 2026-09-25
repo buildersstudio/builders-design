@@ -1,0 +1,30 @@
+{
+  "name": "drawgen",
+  "domain": "drawgen.co",
+  "languages": [
+    {
+      "code": "en",
+      "label": "English"
+    }
+  ],
+  "defaultLang": "en",
+  "current": "2026-09-26-v2",
+  "versions": [
+    {
+      "id": "2026-09-25-v1",
+      "title": "drawgen.co as it was",
+      "created": "2026-09-25",
+      "note": "Archive of the live drawgen.co on 25 September 2026: the home page, the product page and the six industry pages, kept as full-page screenshots. Quoting for manufacturers who build to order, on a forest green and signal cyan palette, with a hero and industry headers close to tacto.ai.",
+      "status": "archive",
+      "source": "imported"
+    },
+    {
+      "id": "2026-09-26-v2",
+      "title": "The symbol at work",
+      "created": "2026-09-26",
+      "note": "Same copy and positioning, rebuilt from the founders' Astro source. The accent moves from cyan to a signal mint in the family of the forest green; the home hero draws the logo's two planes with a quote assembling on them; the industry headers become drawing sheets with a today and with drawgen switch; every Product menu item has its own page with a live, illustrative product moment; the Industries menu carries generated industry photographs, credited in credits.json.",
+      "status": "draft",
+      "source": "built"
+    }
+  ]
+}

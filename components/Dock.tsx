@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { copy } from "./ui";
 import { BadgeArt, badgeStyle } from "./Badge";
 
-type Item = { slug: string; name: string; badge?: string; badgeBg?: string };
+type Item = { slug: string; name: string; badge?: string; badgeBg?: string; locked?: boolean };
 
 /** macOS-style vertical dock of venture badges. */
 export function Dock({ ventures, addPrompt }: { ventures: Item[]; addPrompt: string }) {
@@ -16,6 +16,8 @@ export function Dock({ ventures, addPrompt }: { ventures: Item[]; addPrompt: str
   const rail = useRef<HTMLDivElement>(null);
   const [tip, setTip] = useState<{ name: string; y: number; x: number } | null>(null);
   const [edges, setEdges] = useState({ top: false, bottom: false });
+  const [unlocked, setUnlocked] = useState(false);
+  useEffect(() => { setUnlocked(document.cookie.split("; ").includes("bd_unlocked=1")); }, []);
 
   // the rail scrolls when there are more ventures than fit; fades show there is more
   const edge = () => {
@@ -56,6 +58,7 @@ export function Dock({ ventures, addPrompt }: { ventures: Item[]; addPrompt: str
           <Link key={v.slug} href={`/${v.slug}/${section}`} className="dock-item" aria-current={v.slug === current} style={badgeStyle(v.badgeBg)}
             aria-label={v.name} onMouseEnter={(e) => show(e, v.name)} onMouseLeave={() => setTip(null)} onFocus={(e) => show(e as unknown as React.MouseEvent<HTMLElement>, v.name)} onBlur={() => setTip(null)}>
             <BadgeArt name={v.name} badge={v.badge} badgeBg={v.badgeBg} />
+            {v.locked && !unlocked && <i className="lock-mark in"><svg width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" aria-hidden><path d="M2.5 4.5h5v4h-5z" /><path d="M3.5 4.5V3a1.5 1.5 0 0 1 3 0v1.5" /></svg></i>}
           </Link>
         ))}
         <button className="dock-add" title="Add a venture: copies a prompt" onClick={() => copy(addPrompt, "Prompt copied. Paste it into your model")}>+</button>

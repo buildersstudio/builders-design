@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
 import { BadgeArt, badgeStyle } from "./Badge";
 
-type Item = { slug: string; name: string; badge?: string; badgeBg?: string };
+type Item = { slug: string; name: string; badge?: string; badgeBg?: string; locked?: boolean };
 
 /**
  * The home screen: every venture as an app badge. Badges fly in from the edges like an
@@ -22,10 +22,13 @@ export function Home({ ventures }: { ventures: Item[] }) {
     return { ["--fx" as string]: `${(dx / dist) * 280 + dx}px`, ["--fy" as string]: `${(dy / dist) * 280 + dy}px`, ["--delay" as string]: `${60 + dist * 0.14}ms` };
   };
   const [opening, setOpening] = useState<{ item: Item; from: DOMRect; open: boolean } | null>(null);
+  const [unlocked, setUnlocked] = useState(false);
+  useEffect(() => { setUnlocked(document.cookie.split("; ").includes("bd_unlocked=1")); }, []);
 
-  useEffect(() => { ventures.forEach((v) => router.prefetch(`/${v.slug}/brand`)); }, [router, ventures]);
+  useEffect(() => { ventures.forEach((v) => { if (!v.locked || unlocked) router.prefetch(`/${v.slug}/brand`); }); }, [router, ventures, unlocked]);
 
   const open = (item: Item, el: HTMLElement) => {
+    if (item.locked && !unlocked) { router.push(`/unlock?next=${encodeURIComponent(`/${item.slug}/brand`)}`); return; }
     const from = el.getBoundingClientRect();
     setOpening({ item, from, open: false });
     requestAnimationFrame(() => requestAnimationFrame(() => setOpening({ item, from, open: true })));
@@ -49,7 +52,7 @@ export function Home({ ventures }: { ventures: Item[] }) {
       <div className="home-grid" style={{ ["--cols" as string]: COLS }}>
         {ventures.map((v, i) => (
           <button key={v.slug} className="home-app" style={from(i)} onClick={(e) => open(v, e.currentTarget.querySelector(".home-icon") as HTMLElement)} aria-label={v.name}>
-            <span className="home-icon" style={badgeStyle(v.badgeBg)}><BadgeArt name={v.name} badge={v.badge} badgeBg={v.badgeBg} /></span>
+            <span className="home-icon" style={badgeStyle(v.badgeBg)}><BadgeArt name={v.name} badge={v.badge} badgeBg={v.badgeBg} />{v.locked && !unlocked && <i className="lock-mark in"><svg width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" aria-hidden><path d="M2.5 4.5h5v4h-5z" /><path d="M3.5 4.5V3a1.5 1.5 0 0 1 3 0v1.5" /></svg></i>}</span>
             <span className="home-name">{v.name}</span>
           </button>
         ))}

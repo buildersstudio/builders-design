@@ -1,0 +1,112 @@
+{
+  "pages": [
+    {
+      "id": "home",
+      "path": "/",
+      "title": "drawgen",
+      "description": "Archive of the drawgen.co home page on 25 September 2026: quotes built on data, not memory, for manufacturers who build to order.",
+      "type": "page",
+      "nav": true,
+      "langs": {
+        "en": "en/index.html"
+      }
+    },
+    {
+      "id": "product",
+      "path": "/product/",
+      "title": "Product | drawgen",
+      "description": "Archive of the drawgen.co product page on 25 September 2026: the drawgen record and the four products, BOM, Drawings, Costing and Sourcing.",
+      "type": "page",
+      "nav": true,
+      "langs": {
+        "en": "en/product/index.html"
+      },
+      "parent": "home"
+    },
+    {
+      "id": "special-machinery",
+      "path": "/industry/special-machinery/",
+      "title": "Special-purpose machinery | drawgen",
+      "description": "Archive of the drawgen.co industry page for special-purpose machinery on 25 September 2026, kept as full-page screenshots.",
+      "type": "cms",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/special-machinery/index.html"
+      },
+      "collection": "industries",
+      "parent": "home"
+    },
+    {
+      "id": "material-handling",
+      "path": "/industry/material-handling/",
+      "title": "Material handling and conveyors | drawgen",
+      "description": "Archive of the drawgen.co industry page for material handling and conveyors on 25 September 2026, kept as full-page screenshots.",
+      "type": "cms",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/material-handling/index.html"
+      },
+      "collection": "industries",
+      "parent": "home"
+    },
+    {
+      "id": "packaging",
+      "path": "/industry/packaging/",
+      "title": "Packaging machinery | drawgen",
+      "description": "Archive of the drawgen.co industry page for packaging machinery on 25 September 2026, kept as full-page screenshots.",
+      "type": "cms",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/packaging/index.html"
+      },
+      "collection": "industries",
+      "parent": "home"
+    },
+    {
+      "id": "automation",
+      "path": "/industry/automation/",
+      "title": "Automation and robotic cells | drawgen",
+      "description": "Archive of the drawgen.co industry page for automation and robotic cells on 25 September 2026, kept as full-page screenshots.",
+      "type": "cms",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/automation/index.html"
+      },
+      "collection": "industries",
+      "parent": "home"
+    },
+    {
+      "id": "heavy-fabrication",
+      "path": "/industry/heavy-fabrication/",
+      "title": "Heavy fabrication and steel | drawgen",
+      "description": "Archive of the drawgen.co industry page for heavy fabrication and steel on 25 September 2026, kept as full-page screenshots.",
+      "type": "cms",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/heavy-fabrication/index.html"
+      },
+      "collection": "industries",
+      "parent": "home"
+    },
+    {
+      "id": "lifting",
+      "path": "/industry/lifting/",
+      "title": "Lifting equipment | drawgen",
+      "description": "Archive of the drawgen.co industry page for lifting equipment on 25 September 2026, kept as full-page screenshots.",
+      "type": "cms",
+      "nav": true,
+      "langs": {
+        "en": "en/industry/lifting/index.html"
+      },
+      "collection": "industries",
+      "parent": "home"
+    }
+  ],
+  "collections": [
+    {
+      "key": "industries",
+      "label": "Industries",
+      "path": "/industry/"
+    }
+  ]
+}

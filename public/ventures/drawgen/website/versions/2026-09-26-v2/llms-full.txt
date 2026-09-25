@@ -1,0 +1,784 @@
+# drawgen: the full text of drawgen.co
+
+Every page, in order. Product examples on the site are illustrative, with made-up generic data.
+
+---
+
+URL: https://drawgen.co/
+Title: drawgen: quotes built on data, not memory
+Description: drawgen connects the systems your data already lives in, so every quote is faster to send and priced on what similar jobs actually cost.
+
+For manufacturers who build to order
+
+# Quotes built on data, not memory.
+drawgen connects the systems your data already lives in, so every quote is faster to send and priced on what similar jobs actually cost.
+Talk to us The drawgen vision, 0:23
+Illustrative example: a starting price of €19,800 built from the 3D model, purchase history and three similar past jobs, waiting for your estimator's approval. Made-up data, not real output.
+Vision
+
+## Manufacturing has evolved. The systems behind it haven't.
+Your data already exists. It sits in the CAD model, the ERP, past quotes and one or two people's heads. drawgen connects it, so every quote is faster to send and priced on what similar jobs actually cost.
+The drawgen vision, 0:23 On screen in the video
+- Manufacturing has evolved.
+- The systems behind it should too.
+- Less friction.
+- More flow.
+- drawgen.
+- Manufacturing // reimagined
+Play with sound
+The drawgen record
+
+## One record per part, across every system you run.
+What you paid is in your ERP. What you quoted is in your CRM. What the part actually is sits in the CAD model. The drawgen record joins them, so a price you paid last year attaches to the same part in the job you are quoting now. Nobody types anything in. The drawgen record
+Illustrative example: one part as the CAD model, the ERP and the CRM each name it, joined into one drawgen record. Made-up data.
+McKinsey names a lack of spending transparency as the first of five things holding back procurement at mid-size firms.
+Source:
+- McKinsey, How medium-size enterprises can better manage sourcing, 2023 (opens in a new tab)
+
+## Four products
+Built on the drawgen record
+Product
+BOM
+Every part, measured, with what to make and what to buy.
+Built on the drawgen record
+Drawings
+Editable sheets in your format, unclear values flagged.
+Built on the drawgen record
+Costing
+Data-driven quotes that match what the job actually costs.
+Built on the drawgen record
+Sourcing
+Buy on what you have actually paid, not on habit.
+Built on the drawgen record
+
+## What it costs you, and why now
+Time
+2 weeks
+of real work, in a three-and-a-half-month order at a German machine builder. The rest was questions, clarification and waiting.
+Source:
+- Staufen AG, lean order fulfilment in machinery and plant engineering, 2018 (opens in a new tab)
+In 2023, Fraunhofer studied the quote process at a German special machine builder. Prices in Excel, quotes rebuilt from old ones in Word, and colleagues asked for every cost and delivery date.
+Source: Fraunhofer IEM, Systems Engineering for the offer phase in special purpose machinery, DfX-Symposium 2023 (opens in a new tab)
+Margin
+−40% to +70%
+In a study of tool and die making, quoted cost against actual cost ran from minus 40% to plus 70%. Different trade, same one-off, engineering-led work.
+Source:
+- WZL RWTH Aachen and Werkzeugbau-Akademie, Erfolgreich kalkulieren im Werkzeugbau, 2015 (opens in a new tab)
+Knowledge
+The same in every market
+The person who knows what a job really costs is retiring faster than they are replaced.
+Source:
+- UK: 55,000 manufacturing vacancies unfilled. Make UK, 2025 (opens in a new tab)
+- US: up to 1.9 million manufacturing jobs unfilled by 2033. Deloitte and The Manufacturing Institute, 2024 (opens in a new tab)
+- Australia: about 70,000 engineers retiring this decade. Engineers Australia, 2026 (opens in a new tab)
+- Germany: 178,000 short by 2034. IW Köln for the Impuls-Stiftung, 2024 (opens in a new tab)
+Speed
+Years to months
+Chinese manufacturers have compressed development cycles from years to months while staying 20 to 30% cheaper.
+Source:
+- Roland Berger, China's cost and speed advantage, 2026 (opens in a new tab)
+- Your CAD files never leave your machine
+- Nothing estimated, anything unclear flagged
+- Everything editable, nothing sent unchecked
+- Built for manufacturers who build to order
+
+## Built for your industry
+What McKinsey calls low-volume, high-complexity manufacturing: machines built in ones and tens, not thousands.
+Source:
+- McKinsey, low-volume high-complexity manufacturing series (opens in a new tab)
+- A one-off automated assembly machine in an aluminium profile frame, half built on the floor of a machine builder, with machined parts laid out on the bench beside it. Special-purpose machinery Every machine is a one-off. The quote should not be a guess.
+- A long roller conveyor with steel box-section side frames and a gear motor, with cut profiles and bearing units stacked behind it. Material handling and conveyors Frames and profiles, measured off the model, not re-measured.
+- A stainless case-packing machine under final assembly, guard doors open, pneumatic cylinders and an infeed conveyor with cardboard cases. Packaging machinery Packaging lines priced on your history, not your memory.
+- A robotic cell being commissioned: a six-axis robot with a parallel gripper over a welded fixture table, inside mesh safety fencing. Automation and robotic cells A BOM that is right the first time, bought-out and custom.
+- Primed wide-flange steel beams and a large welded platform frame with thick base plates, resting on timber blocks in a fabrication shop. Heavy fabrication and steel Big steel, measured off the model, not with a tape.
+- A steel lifting beam hanging from a chain hoist on a pillar jib crane, with test weights on the floor below. Lifting equipment Quoted with the engineering in it, not discovered after.
+
+## Built to give your team time back, not to replace anyone.
+It takes the repetitive work off your engineers and estimators: the measuring, the retyping, the chasing. The judgement stays with them: tolerances, datums, what to quote and who to buy from. Everything it produces is editable, and nothing goes out until your people have checked it.
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/product/
+Title: Product: four products on one record | drawgen
+Description: BOM, Drawings, Costing and Sourcing, all built on the drawgen record: one record per part, joined on its shape across every system you run.
+
+drawgen Product
+
+# Four products
+Built on the drawgen record
+One record per part, joined on the part's shape rather than its number, so it works even when part numbers are a mess. Talk to us
+The drawgen record One record per part, across every system you run.
+BOM
+Every part, measured, with what to make and what to buy.
+Built on the drawgen record
+Drawings
+Editable sheets in your format, unclear values flagged.
+Built on the drawgen record
+Costing
+Data-driven quotes that match what the job actually costs.
+Built on the drawgen record
+Sourcing
+Buy on what you have actually paid, not on habit.
+Built on the drawgen record
+- The drawgen record
+- BOM
+- Drawings
+- Costing
+- Sourcing
+- drawgen does the groundwork.
+- Your team makes the call.
+- drawgen handles what follows.
+Illustrative example Pause animation
+From the model
+
+## Every part in the assembly, measured, in one BOM.
+Material, size, mass, surface area and quantity for every part, plus what to make and what to buy. Your engineer reviews it before it goes anywhere.
+Connects to Connects to the 3D model, through the add-in. See BOM
+Illustrative example : a BOM table for a generic assembly, with one part flagged for the engineer. Made-up data, not real output.
+From the model
+
+## Manufacturing drawings, derived from the solid.
+One dimensioned sheet per part, editable, in your own drawing format. Anything it cannot determine is flagged, and your engineer finishes it.
+Connects to Connects to the 3D model. See Drawings
+Illustrative example : a dimensioned drawing sheet of a generic plate, with one value flagged. Made-up data, not real output.
+From connected systems
+
+## Data-driven quotes that match what the job actually costs.
+Every price built on something that actually happened: a price you paid, a job you finished, a part you already built.
+Connects to Connects to your ERP and purchase history, your past quotes, your cost sheets, and the model. See Costing
+Illustrative example : a starting price built from three similar past jobs, quoted against actual. Made-up data, not real output.
+From connected systems
+
+## Buy on what you have actually paid, not on habit.
+See which supplier has been cheapest and fastest for each kind of part, and send every RFQ as one complete package.
+Connects to Connects to your ERP purchase history and supplier records, and the quotes that come back by email. See Sourcing
+Illustrative example : a supplier comparison from purchase history, with an RFQ package not yet sent. Made-up data, not real output.
+- Your CAD files never leave your machine
+- Nothing estimated, anything unclear flagged
+- Everything editable, nothing sent unchecked
+- Built for manufacturers who build to order
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/product/record/
+Title: The drawgen record: one record per part
+Description: One record per part, joined on the part's shape rather than its number, so it works even when part numbers are a mess. Your CAD files stay on your machine.
+
+drawgen Product The drawgen record
+The drawgen record
+
+# One record per part, across every system you run.
+What you paid is in your ERP. What you quoted is in your CRM. What the part actually is sits in the CAD model. The drawgen record joins them, so a price you paid last year attaches to the same part in the job you are quoting now. Nobody types anything in. Talk to us
+Illustrative example: one part as the CAD model, the ERP and the CRM each name it, joined into one drawgen record. Made-up data.
+
+## What it is
+One record per part, joined on the part's shape rather than its number, so it works even when part numbers are a mess.
+
+## Two ways in
+
+### The add-in
+inside SOLIDWORKS, used by the engineer. Produces the BOM and the drawings, and quietly writes the part record.
+
+### The platform
+in the browser, used by the MD, sales and purchasing. Holds every job side by side, joined to purchase history.
+
+## What crosses
+The measurements, not the models. Your CAD files stay on your machine, and the whole thing can run on your own server.
+McKinsey names a lack of spending transparency as the first of five things holding back procurement at mid-size firms.
+Source:
+- McKinsey, How medium-size enterprises can better manage sourcing, 2023 (opens in a new tab)
+
+## Four products
+Built on the drawgen record
+BOM
+Every part, measured, with what to make and what to buy.
+Built on the drawgen record
+Drawings
+Editable sheets in your format, unclear values flagged.
+Built on the drawgen record
+Costing
+Data-driven quotes that match what the job actually costs.
+Built on the drawgen record
+Sourcing
+Buy on what you have actually paid, not on habit.
+Built on the drawgen record
+
+## All products
+Next: BOM
+- The drawgen record One record per part, joined on the part's shape rather than its number, so it works even when part numbers are a mess.
+- BOM Every part, measured, with what to make and what to buy.
+- Drawings Editable sheets in your format, unclear values flagged.
+- Costing Data-driven quotes that match what the job actually costs.
+- Sourcing Buy on what you have actually paid, not on habit.
+Product
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/product/bom/
+Title: BOM: every part measured, in one BOM | drawgen
+Description: Material, size, mass, surface area and quantity for every part, plus what to make and what to buy. Your engineer reviews it before it goes anywhere.
+
+drawgen Product BOM
+
+# Every part in the assembly, measured, in one BOM.
+BOM From the model
+Material, size, mass, surface area and quantity for every part, plus what to make and what to buy. Your engineer reviews it before it goes anywhere.
+Connects to Connects to the 3D model, through the add-in. Talk to us
+Illustrative example
+Illustrative example: a BOM for a generic assembly, every part measured off the model with material, size, mass and quantity, tagged make or buy, with one part flagged for the engineer. Made-up data.
+
+## You get
+- Every part with material, profile, length, mass, surface area and quantity
+- Every part tagged as bought-out or made to your drawing, and what kind of supplier makes it
+- Which parts repeat inside the job and across jobs
+- An export in your format
+Built on the drawgen record
+
+### Problem
+Problem
+Designers spend 19% of their time, about a day a week, finding, recreating and translating data.
+Source:
+- Tech-Clarity, Saving time in CAD design (opens in a new tab)
+Problem
+One engineer extracted 33 parts from a model by hand. Two to three hours for one assembly.
+Source:
+- From our conversations with manufacturers
+
+## How it works
+- Open the assembly.
+- One click.
+- Every part measured off the solid and classified.
+- The BOM comes back ready to check.
+BOM
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab) Talk to us
+
+## In your industry
+- Special-purpose machinery Every machined and bought-out part measured off the model and tagged make or buy.
+- Material handling and conveyors Every profile with its length and mass, with plate and bearings in the same BOM.
+- Packaging machinery Machined parts and pneumatics split into make and buy, straight off the model.
+- Automation and robotic cells Robots, pneumatics and sensors tagged bought-out, fixtures and frames tagged made to drawing.
+- Heavy fabrication and steel Every beam and plate with its profile, cut length, mass and surface area.
+- Lifting equipment Every beam and plate measured off the model, with material, size and mass.
+
+## All products
+Next: Drawings
+- The drawgen record One record per part, joined on the part's shape rather than its number, so it works even when part numbers are a mess.
+- BOM Every part, measured, with what to make and what to buy.
+- Drawings Editable sheets in your format, unclear values flagged.
+- Costing Data-driven quotes that match what the job actually costs.
+- Sourcing Buy on what you have actually paid, not on habit.
+Product
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/product/drawings/
+Title: Drawings: derived from the solid | drawgen
+Description: One dimensioned sheet per part, editable, in your own drawing format. Anything it cannot determine is flagged, and your engineer finishes it.
+
+drawgen Product Drawings
+
+# Manufacturing drawings, derived from the solid.
+Drawings From the model
+One dimensioned sheet per part, editable, in your own drawing format. Anything it cannot determine is flagged, and your engineer finishes it.
+Connects to Connects to the 3D model. Talk to us
+Illustrative example
+Illustrative example: a dimensioned drawing sheet of a generic plate, 600 by 400, with four holes and a pocket whose depth is flagged for the engineer, and a change record for revision B. Made-up data.
+
+## You get
+- One sheet per part, editable, in your format
+- Anything unclear flagged, never filled in
+- A change record showing which sheets a new revision affects
+Built on the drawgen record
+
+### Problem
+Problem
+Five to 45 minutes a part, and one drawing in four comes back.
+Source:
+- From our conversations with manufacturers
+Problem
+Quality-related costs are often put at 15 to 20% of sales, a long-standing rule of thumb in quality management.
+Source:
+- ASQ, cost of quality (opens in a new tab)
+
+## How it works
+- Open the assembly.
+- One click.
+- Every part drawn without collisions.
+- Your engineer reviews, edits and signs off.
+Drawings
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab) Talk to us
+
+## In your industry
+- Special-purpose machinery An editable sheet for every machined part, in your format, for your engineer to finish.
+- Material handling and conveyors Editable sheets for side frames, supports and guarding, in your own format.
+- Packaging machinery An editable sheet for every machined part, with anything unclear flagged, not guessed.
+- Automation and robotic cells Editable sheets for fixtures, frames and gripper plates, in your own format.
+- Heavy fabrication and steel Editable sheets for beams, plate and weldments, with unclear dimensions flagged for your engineer.
+- Lifting equipment Editable sheets for beams and plate, in your format, for your engineer to finish and sign off.
+
+## All products
+Next: Costing
+- The drawgen record One record per part, joined on the part's shape rather than its number, so it works even when part numbers are a mess.
+- BOM Every part, measured, with what to make and what to buy.
+- Drawings Editable sheets in your format, unclear values flagged.
+- Costing Data-driven quotes that match what the job actually costs.
+- Sourcing Buy on what you have actually paid, not on habit.
+Product
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/product/costing/
+Title: Costing: quotes that match actual cost | drawgen
+Description: Every price built on something that actually happened: a price you paid, a job you finished, a part you already built.
+
+drawgen Product Costing
+
+# Data-driven quotes that match what the job actually costs.
+Costing From connected systems
+Every price built on something that actually happened: a price you paid, a job you finished, a part you already built.
+Connects to Connects to your ERP and purchase history, your past quotes, your cost sheets, and the model. Talk to us
+Illustrative example
+Illustrative example: a starting price of €19,800 split into parts measured off the model, bought-out parts at last prices paid, and assembly from three similar past jobs, with each past job's quoted and actual cost. Made-up data.
+
+## You get
+- Similar past jobs, what you quoted and what they actually cost
+- Where the margin went on the ones that went wrong
+- A defensible starting price for the next one
+- Duplicate parts, to merge
+- Over-specified parts, to re-spec
+- Overpriced parts, to take to RFQ
+Built on the drawgen record
+
+### Problem
+Problem
+In a study of tool and die making, quoted cost against actual cost ran from minus 40% to plus 70%.
+Source:
+- WZL RWTH Aachen and Werkzeugbau-Akademie, Erfolgreich kalkulieren im Werkzeugbau, 2015 (opens in a new tab)
+Problem
+SMEs often fail to identify basic price variances.
+Source:
+- McKinsey, How medium-size enterprises can better manage sourcing, 2023 (opens in a new tab)
+Why it matters
+A carefully worked-out quote costs real money, and the effort spent on quotes that do not win has to be carried by the orders that do.
+Source:
+- Fraunhofer IEM, DfX-Symposium 2023 (opens in a new tab)
+Why it matters
+In Fraunhofer's assessment, the improvements a 2007 survey of 281 machine and plant builders asked for, better calculation bases, transparency and a continuous flow of information, have still not been properly put in place.
+Source:
+- Fraunhofer IEM, 2023, on the VDI survey of 2007 (opens in a new tab)
+
+## How it works
+- Connect your ERP and past quotes.
+- Every past job is joined to its parts.
+- A new job is compared against the ones like it.
+- Your estimator gets a starting price with the reasons behind it.
+Costing
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab) Talk to us
+
+## In your industry
+- Special-purpose machinery A starting price built on the past machines that look most like this one.
+- Material handling and conveyors A price for the next conveyor built on what similar conveyors actually cost you.
+- Packaging machinery A starting price for the next line, built on what similar machines actually cost.
+- Automation and robotic cells A starting price for the next cell, built on the cells you have already built.
+- Heavy fabrication and steel A price for the next structure, built on what similar steelwork actually cost you.
+- Lifting equipment Similar past lifting jobs, what you quoted and what they actually cost.
+
+## All products
+Next: Sourcing
+- The drawgen record One record per part, joined on the part's shape rather than its number, so it works even when part numbers are a mess.
+- BOM Every part, measured, with what to make and what to buy.
+- Drawings Editable sheets in your format, unclear values flagged.
+- Costing Data-driven quotes that match what the job actually costs.
+- Sourcing Buy on what you have actually paid, not on habit.
+Product
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/product/sourcing/
+Title: Sourcing: buy on what you have paid | drawgen
+Description: See which supplier has been cheapest and fastest for each kind of part, and send every RFQ as one complete package.
+
+drawgen Product Sourcing
+
+# Buy on what you have actually paid, not on habit.
+Sourcing From connected systems
+See which supplier has been cheapest and fastest for each kind of part, and send every RFQ as one complete package.
+Connects to Connects to your ERP purchase history and supplier records, and the quotes that come back by email. Talk to us
+Illustrative example
+Illustrative example: suppliers compared on your own purchase history for three kinds of part, and RFQ packages waiting for your buyer to check and send. Made-up data.
+
+## You get
+- Which supplier has been cheapest and fastest for this kind of part
+- One RFQ package per supplier, right drawings attached, quantities correct
+- Returned quotes lined up against the BOM
+- Where you buy the same thing from four places, and where you depend on one
+Built on the drawgen record
+
+### Problem
+Problem
+External spend is typically 50 to 80% of a company's cost base.
+Source:
+- McKinsey, A new era for procurement (opens in a new tab)
+Problem
+If material is around half your costs and your margin is around 6%, taking 1% off what you pay for material is close to an 8% rise in profit. The thinner your margin, the more that 1% is worth.
+Source:
+- Arithmetic.
+Why it matters
+McKinsey's experience is that digital procurement can deliver as much as an additional 3 to 10 percent in annual cost savings.
+Source:
+- McKinsey, Shifting the dial in procurement, 2019 (opens in a new tab)
+Why it matters
+At mid-size firms, category managers spend their days on transactional work, while large-company peers spend theirs on negotiation.
+Source:
+- McKinsey, How medium-size enterprises can better manage sourcing, 2023 (opens in a new tab)
+
+## How it works
+- The BOM tags every part by who makes it.
+- Parts are grouped into one package per supplier.
+- Your team checks and sends.
+- Quotes come back and line up against the BOM.
+Sourcing
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab) Talk to us
+
+## In your industry
+- Special-purpose machinery Bought-out parts grouped into one package per supplier, checked by your team before anything is sent.
+- Material handling and conveyors Profiles and bearings bought from the supplier that has actually been cheapest and fastest.
+- Packaging machinery Pneumatics and machined parts priced against what each supplier has actually charged you.
+- Automation and robotic cells Bought-out parts grouped into one RFQ package per supplier, with quantities from the BOM.
+- Heavy fabrication and steel Steel and plate bought from the supplier your record shows has been cheapest and fastest.
+- Lifting equipment Plate and beams bought on what each supplier has actually charged, not on who you used last.
+
+## All products
+Next: The drawgen record
+- The drawgen record One record per part, joined on the part's shape rather than its number, so it works even when part numbers are a mess.
+- BOM Every part, measured, with what to make and what to buy.
+- Drawings Editable sheets in your format, unclear values flagged.
+- Costing Data-driven quotes that match what the job actually costs.
+- Sourcing Buy on what you have actually paid, not on habit.
+Product
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/industry/special-machinery/
+Title: Special-purpose machinery | drawgen
+Description: Every machine is a one-off. The quote should not be a guess. Weeks to get a quote out, and the knowledge sits with one or two people close to retirement.
+
+drawgen Industries Special-purpose machinery
+For special-purpose machinery
+
+# Every machine is a one-off. The quote should not be a guess.
+Weeks to get a quote out, and the knowledge sits with one or two people close to retirement. Talk to us
+Today With drawgen
+1 Priced from memory
+2 3 similar past jobs found
+Bought and made
+Machined and bought-out parts.
+Worked example
+A machine frame with a mounting plate.
+Checked
+Your engineer
+What you get
+
+## Every one-off machine starts from what you have already built.
+drawgen measures every part off the model and finds the past machines that look like this one. Your team spends its time on the new engineering, not on rebuilding the numbers.
+- BOM Every machined and bought-out part measured off the model and tagged make or buy.
+- Drawings An editable sheet for every machined part, in your format, for your engineer to finish.
+- Costing A starting price built on the past machines that look most like this one.
+- Sourcing Bought-out parts grouped into one package per supplier, checked by your team before anything is sent.
+Illustrative example : a BOM table for a generic assembly, with one part flagged for the engineer. Made-up data, not real output. See BOM
+Illustrative example : a dimensioned drawing sheet of a generic plate, with one value flagged. Made-up data, not real output. See Drawings
+Illustrative example : a starting price built from three similar past jobs, quoted against actual. Made-up data, not real output. See Costing
+Illustrative example : a supplier comparison from purchase history, with an RFQ package not yet sent. Made-up data, not real output. See Sourcing
+
+## Other industries
+- A long roller conveyor with steel box-section side frames and a gear motor, with cut profiles and bearing units stacked behind it. Material handling and conveyors Frames and profiles, measured off the model, not re-measured.
+- A stainless case-packing machine under final assembly, guard doors open, pneumatic cylinders and an infeed conveyor with cardboard cases. Packaging machinery Packaging lines priced on your history, not your memory.
+- A robotic cell being commissioned: a six-axis robot with a parallel gripper over a welded fixture table, inside mesh safety fencing. Automation and robotic cells A BOM that is right the first time, bought-out and custom.
+- Primed wide-flange steel beams and a large welded platform frame with thick base plates, resting on timber blocks in a fabrication shop. Heavy fabrication and steel Big steel, measured off the model, not with a tape.
+- A steel lifting beam hanging from a chain hoist on a pillar jib crane, with test weights on the floor below. Lifting equipment Quoted with the engineering in it, not discovered after.
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/industry/material-handling/
+Title: Material handling and conveyors | drawgen
+Description: Frames, supports and guarding redrawn and re-measured on every job, even when half of it matches the last one.
+
+drawgen Industries Material handling and conveyors
+For material handling and conveyors
+
+# Frames and profiles, measured off the model, not re-measured.
+Frames, supports and guarding redrawn and re-measured on every job, even when half of it matches the last one. Talk to us
+Today With drawgen
+1 Profiles re-measured by hand
+2 Measured off the model
+Bought and made
+Profiles, plate, bearings.
+Worked example
+A conveyor side frame in box section.
+Checked
+Your engineer
+What you get
+
+## Frames and profiles measured once, off the model.
+drawgen reads every profile, plate and bearing straight from the assembly. The parts that match the last job show up as repeats, so nobody measures them twice.
+- BOM Every profile with its length and mass, with plate and bearings in the same BOM.
+- Drawings Editable sheets for side frames, supports and guarding, in your own format.
+- Costing A price for the next conveyor built on what similar conveyors actually cost you.
+- Sourcing Profiles and bearings bought from the supplier that has actually been cheapest and fastest.
+Illustrative example : a BOM table for a generic assembly, with one part flagged for the engineer. Made-up data, not real output. See BOM
+Illustrative example : a dimensioned drawing sheet of a generic plate, with one value flagged. Made-up data, not real output. See Drawings
+Illustrative example : a starting price built from three similar past jobs, quoted against actual. Made-up data, not real output. See Costing
+Illustrative example : a supplier comparison from purchase history, with an RFQ package not yet sent. Made-up data, not real output. See Sourcing
+
+## Other industries
+- A one-off automated assembly machine in an aluminium profile frame, half built on the floor of a machine builder, with machined parts laid out on the bench beside it. Special-purpose machinery Every machine is a one-off. The quote should not be a guess.
+- A stainless case-packing machine under final assembly, guard doors open, pneumatic cylinders and an infeed conveyor with cardboard cases. Packaging machinery Packaging lines priced on your history, not your memory.
+- A robotic cell being commissioned: a six-axis robot with a parallel gripper over a welded fixture table, inside mesh safety fencing. Automation and robotic cells A BOM that is right the first time, bought-out and custom.
+- Primed wide-flange steel beams and a large welded platform frame with thick base plates, resting on timber blocks in a fabrication shop. Heavy fabrication and steel Big steel, measured off the model, not with a tape.
+- A steel lifting beam hanging from a chain hoist on a pillar jib crane, with test weights on the floor below. Lifting equipment Quoted with the engineering in it, not discovered after.
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/industry/packaging/
+Title: Packaging machinery | drawgen
+Description: Machined parts and pneumatics bought from whoever was used last time, with no view of who is actually cheaper.
+
+drawgen Industries Packaging machinery
+For packaging machinery
+
+# Packaging lines priced on your history, not your memory.
+Machined parts and pneumatics bought from whoever was used last time, with no view of who is actually cheaper. Talk to us
+Today With drawgen
+1 Flat percentage on top
+2 Priced on your own history
+Bought and made
+Machined parts, pneumatics.
+Worked example
+A machined guard mount.
+Checked
+Your engineer
+What you get
+
+## Machined parts and pneumatics bought on your own record.
+drawgen joins every part in the machine to what you have paid for it before. Your buyer sees who has been cheapest and fastest, and your estimator prices from past lines, not memory.
+- BOM Machined parts and pneumatics split into make and buy, straight off the model.
+- Drawings An editable sheet for every machined part, with anything unclear flagged, not guessed.
+- Costing A starting price for the next line, built on what similar machines actually cost.
+- Sourcing Pneumatics and machined parts priced against what each supplier has actually charged you.
+Illustrative example : a BOM table for a generic assembly, with one part flagged for the engineer. Made-up data, not real output. See BOM
+Illustrative example : a dimensioned drawing sheet of a generic plate, with one value flagged. Made-up data, not real output. See Drawings
+Illustrative example : a starting price built from three similar past jobs, quoted against actual. Made-up data, not real output. See Costing
+Illustrative example : a supplier comparison from purchase history, with an RFQ package not yet sent. Made-up data, not real output. See Sourcing
+
+## Other industries
+- A one-off automated assembly machine in an aluminium profile frame, half built on the floor of a machine builder, with machined parts laid out on the bench beside it. Special-purpose machinery Every machine is a one-off. The quote should not be a guess.
+- A long roller conveyor with steel box-section side frames and a gear motor, with cut profiles and bearing units stacked behind it. Material handling and conveyors Frames and profiles, measured off the model, not re-measured.
+- A robotic cell being commissioned: a six-axis robot with a parallel gripper over a welded fixture table, inside mesh safety fencing. Automation and robotic cells A BOM that is right the first time, bought-out and custom.
+- Primed wide-flange steel beams and a large welded platform frame with thick base plates, resting on timber blocks in a fabrication shop. Heavy fabrication and steel Big steel, measured off the model, not with a tape.
+- A steel lifting beam hanging from a chain hoist on a pillar jib crane, with test weights on the floor below. Lifting equipment Quoted with the engineering in it, not discovered after.
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/industry/automation/
+Title: Automation and robotic cells | drawgen
+Description: Robots, pneumatics and sensors bought in, fixtures and frames made to drawing, all in one BOM that has to be split by hand.
+
+drawgen Industries Automation and robotic cells
+For automation and robotic cells
+
+# A BOM that is right the first time, bought-out and custom.
+Robots, pneumatics and sensors bought in, fixtures and frames made to drawing, all in one BOM that has to be split by hand. Talk to us
+Today With drawgen
+1 Bought and made parts mixed
+2 Every part tagged make or buy
+Bought and made
+Fixtures, frames, robots.
+Worked example
+A gripper plate.
+Checked
+Your engineer
+What you get
+
+## One BOM, already split into bought-out and made to drawing.
+drawgen tags every part in the cell as bought-out or made, straight from the model. Your engineers stop splitting lists by hand and get back to designing the next cell.
+- BOM Robots, pneumatics and sensors tagged bought-out, fixtures and frames tagged made to drawing.
+- Drawings Editable sheets for fixtures, frames and gripper plates, in your own format.
+- Costing A starting price for the next cell, built on the cells you have already built.
+- Sourcing Bought-out parts grouped into one RFQ package per supplier, with quantities from the BOM.
+Illustrative example : a BOM table for a generic assembly, with one part flagged for the engineer. Made-up data, not real output. See BOM
+Illustrative example : a dimensioned drawing sheet of a generic plate, with one value flagged. Made-up data, not real output. See Drawings
+Illustrative example : a starting price built from three similar past jobs, quoted against actual. Made-up data, not real output. See Costing
+Illustrative example : a supplier comparison from purchase history, with an RFQ package not yet sent. Made-up data, not real output. See Sourcing
+
+## Other industries
+- A one-off automated assembly machine in an aluminium profile frame, half built on the floor of a machine builder, with machined parts laid out on the bench beside it. Special-purpose machinery Every machine is a one-off. The quote should not be a guess.
+- A long roller conveyor with steel box-section side frames and a gear motor, with cut profiles and bearing units stacked behind it. Material handling and conveyors Frames and profiles, measured off the model, not re-measured.
+- A stainless case-packing machine under final assembly, guard doors open, pneumatic cylinders and an infeed conveyor with cardboard cases. Packaging machinery Packaging lines priced on your history, not your memory.
+- Primed wide-flange steel beams and a large welded platform frame with thick base plates, resting on timber blocks in a fabrication shop. Heavy fabrication and steel Big steel, measured off the model, not with a tape.
+- A steel lifting beam hanging from a chain hoist on a pillar jib crane, with test weights on the floor below. Lifting equipment Quoted with the engineering in it, not discovered after.
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/industry/heavy-fabrication/
+Title: Heavy fabrication and steel | drawgen
+Description: Big steel, measured off the model, not with a tape. Cut lengths and coating areas measured by hand off the model, and critical edge-to-hole dimensions missed.
+
+drawgen Industries Heavy fabrication and steel
+For heavy fabrication and steel
+
+# Big steel, measured off the model, not with a tape.
+Cut lengths and coating areas measured by hand off the model, and critical edge-to-hole dimensions missed. Talk to us
+Today With drawgen
+1 Steel measured by tape
+2 Cut list from the model
+Bought and made
+Beams, plate, weldments.
+Worked example
+A steel platform in HEB beams.
+Checked
+Your engineer
+What you get
+
+## Cut lengths and coating areas, straight from the model.
+drawgen measures every beam, plate and weldment off the solid, including the surface area you coat. Nobody takes a tape to the model, and the steel list is ready to check.
+- BOM Every beam and plate with its profile, cut length, mass and surface area.
+- Drawings Editable sheets for beams, plate and weldments, with unclear dimensions flagged for your engineer.
+- Costing A price for the next structure, built on what similar steelwork actually cost you.
+- Sourcing Steel and plate bought from the supplier your record shows has been cheapest and fastest.
+Illustrative example : a BOM table for a generic assembly, with one part flagged for the engineer. Made-up data, not real output. See BOM
+Illustrative example : a dimensioned drawing sheet of a generic plate, with one value flagged. Made-up data, not real output. See Drawings
+Illustrative example : a starting price built from three similar past jobs, quoted against actual. Made-up data, not real output. See Costing
+Illustrative example : a supplier comparison from purchase history, with an RFQ package not yet sent. Made-up data, not real output. See Sourcing
+
+## Other industries
+- A one-off automated assembly machine in an aluminium profile frame, half built on the floor of a machine builder, with machined parts laid out on the bench beside it. Special-purpose machinery Every machine is a one-off. The quote should not be a guess.
+- A long roller conveyor with steel box-section side frames and a gear motor, with cut profiles and bearing units stacked behind it. Material handling and conveyors Frames and profiles, measured off the model, not re-measured.
+- A stainless case-packing machine under final assembly, guard doors open, pneumatic cylinders and an infeed conveyor with cardboard cases. Packaging machinery Packaging lines priced on your history, not your memory.
+- A robotic cell being commissioned: a six-axis robot with a parallel gripper over a welded fixture table, inside mesh safety fencing. Automation and robotic cells A BOM that is right the first time, bought-out and custom.
+- A steel lifting beam hanging from a chain hoist on a pillar jib crane, with test weights on the floor below. Lifting equipment Quoted with the engineering in it, not discovered after.
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/industry/lifting/
+Title: Lifting equipment | drawgen
+Description: Quoted with the engineering in it, not discovered after. Load ratings, certified welding and proof testing costed after the quote went out.
+
+drawgen Industries Lifting equipment
+For lifting equipment
+
+# Quoted with the engineering in it, not discovered after.
+Load ratings, certified welding and proof testing costed after the quote went out. Talk to us
+Today With drawgen
+1 Single supplier
+2 Cheaper supplier on record
+Bought and made
+Beams, plate, welds.
+Worked example
+A lifting beam.
+Checked
+Your engineer
+What you get
+
+## Quotes built on what past lifting jobs actually cost.
+drawgen puts past jobs that look like this one next to what they actually cost. Your estimator sees where the margin went last time, before the next quote goes out.
+- BOM Every beam and plate measured off the model, with material, size and mass.
+- Drawings Editable sheets for beams and plate, in your format, for your engineer to finish and sign off.
+- Costing Similar past lifting jobs, what you quoted and what they actually cost.
+- Sourcing Plate and beams bought on what each supplier has actually charged, not on who you used last.
+Illustrative example : a BOM table for a generic assembly, with one part flagged for the engineer. Made-up data, not real output. See BOM
+Illustrative example : a dimensioned drawing sheet of a generic plate, with one value flagged. Made-up data, not real output. See Drawings
+Illustrative example : a starting price built from three similar past jobs, quoted against actual. Made-up data, not real output. See Costing
+Illustrative example : a supplier comparison from purchase history, with an RFQ package not yet sent. Made-up data, not real output. See Sourcing
+
+## Other industries
+- A one-off automated assembly machine in an aluminium profile frame, half built on the floor of a machine builder, with machined parts laid out on the bench beside it. Special-purpose machinery Every machine is a one-off. The quote should not be a guess.
+- A long roller conveyor with steel box-section side frames and a gear motor, with cut profiles and bearing units stacked behind it. Material handling and conveyors Frames and profiles, measured off the model, not re-measured.
+- A stainless case-packing machine under final assembly, guard doors open, pneumatic cylinders and an infeed conveyor with cardboard cases. Packaging machinery Packaging lines priced on your history, not your memory.
+- A robotic cell being commissioned: a six-axis robot with a parallel gripper over a welded fixture table, inside mesh safety fencing. Automation and robotic cells A BOM that is right the first time, bought-out and custom.
+- Primed wide-flange steel beams and a large welded platform frame with thick base plates, resting on timber blocks in a fabrication shop. Heavy fabrication and steel Big steel, measured off the model, not with a tape.
+
+## Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+
+---
+
+URL: https://drawgen.co/contact/
+Title: Talk to us: show us one of your jobs | drawgen
+Description: Show us one of your jobs. The fastest way to see whether drawgen works for you is to try it on something real.
+
+drawgen Talk to us
+
+# Show us one of your jobs.
+The fastest way to see whether this works for you is to try it on something real. Talk to us
+- drawgenhelp@gmail.com
+- LinkedIn (opens in a new tab)
+- Your CAD files never leave your machine
+- Nothing estimated, anything unclear flagged
+- Everything editable, nothing sent unchecked
+- Built for manufacturers who build to order
