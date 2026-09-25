@@ -44,12 +44,18 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .dock-home { width: 22px; height: 22px; opacity: 0.9; transition: opacity 0.2s; }
 .dock-home:hover { opacity: 1; }
 .dock-rail {
-  margin: auto 0; display: flex; flex-direction: column; align-items: center;
-  padding: 8px; border-radius: 22px; background: rgba(0, 0, 0, 0.035);
+  margin: auto 0; display: flex; flex-direction: column; align-items: center; min-height: 0; max-height: calc(100vh - 150px);
+  padding: 8px 8px; border-radius: 22px; background: rgba(0, 0, 0, 0.035);
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+  overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none;
 }
+.dock-rail::-webkit-scrollbar { display: none; }
+.dock-rail.fade-top { -webkit-mask-image: linear-gradient(transparent, #000 34px); mask-image: linear-gradient(transparent, #000 34px); }
+.dock-rail.fade-bottom { -webkit-mask-image: linear-gradient(#000 calc(100% - 34px), transparent); mask-image: linear-gradient(#000 calc(100% - 34px), transparent); }
+.dock-rail.fade-top.fade-bottom { -webkit-mask-image: linear-gradient(transparent, #000 34px, #000 calc(100% - 34px), transparent); mask-image: linear-gradient(transparent, #000 34px, #000 calc(100% - 34px), transparent); }
+.dock-tip.dock-tip-float { position: fixed; opacity: 1; transform: translate(0, -50%); z-index: 200; }
 .dock-item {
-  position: relative; display: grid; place-items: center; width: 42px; height: 42px; margin: 5px 0; border-radius: 26%;
+  position: relative; flex: none; display: grid; place-items: center; width: 40px; height: 40px; margin: 4px 0; border-radius: 26%;
   background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 0.5px rgba(0, 0, 0, 0.09);
 }
 .dock-item { overflow: hidden; }
@@ -65,7 +71,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   transition: opacity 0.15s, transform 0.15s var(--ease); z-index: 10;
 }
 .dock-item:hover .dock-tip { opacity: 1; transform: translate(0, -50%); }
-.dock-add { margin-top: 6px; width: 44px; height: 44px; border-radius: 24%; display: grid; place-items: center; color: var(--faint); font-size: 20px; transition: color 0.2s; }
+.dock-add { flex: none; margin-top: 4px; width: 40px; height: 40px; border-radius: 24%; display: grid; place-items: center; color: var(--faint); font-size: 20px; transition: color 0.2s; }
 .dock-add:hover { color: var(--ink); }
 
 .menu {
@@ -585,3 +591,13 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .vz-pt.us em { color: var(--ink); }
 .vz-quote blockquote { margin: 0 0 10px; font-size: 18px; line-height: 1.4; letter-spacing: -.01em; color: var(--ink); }
 .vz-quote > span { font-size: 12px; color: var(--muted); }
+.vb-research.with-call { grid-template-columns: 1.5fr repeat(4, 1fr) auto; }
+.vb-call { background: #1b1b1a; }
+.vb-call .vb-rk { color: rgba(244,242,236,.55); }
+.vb-call b { color: #f4f2ec; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.vb-call:hover:not(:disabled) { background: #000; }
+.vb-seq { margin: 0; padding-left: 20px; }
+.vb-seq li { margin-bottom: 10px; }
+.vb-seq b { font-weight: 400; display: block; }
+.vb-seq span { font-size: 12.5px; color: var(--muted); }
+.dock-item[aria-current="true"] { box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px var(--ink); }

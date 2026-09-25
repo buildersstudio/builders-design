@@ -62,10 +62,26 @@ export type Initiative = {
 
 export type Finding = { title: string; text: string; evidence?: Evidence[] };
 
+/** The recommended direction: the call, and what it rests on. */
+export type Strategy = {
+  /** the direction in one or two sentences */
+  direction: string;
+  why?: string[];
+  /** what not to do now, and why */
+  notNow?: string[];
+  /** the order of moves, with timing */
+  sequence?: { step: string; when?: string }[];
+  /** what would make us drop or change the direction */
+  killCriteria?: string[];
+  /** what we do not know yet and how to find out */
+  evidenceGaps?: string[];
+};
+
 export type VisionBoard = {
   updated?: string;
   /** the product vision in one or two sentences */
   vision?: string;
+  strategy?: Strategy;
   research: {
     patterns?: Finding[];
     problem?: Finding[];

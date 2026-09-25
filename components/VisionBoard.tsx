@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { clock, vsiLink } from "@/lib/journeys";
-import { COLUMNS, type Column, type Evidence, type Finding, type Initiative, type VisionBoard, type Viz } from "@/lib/vision";
+import { COLUMNS, type Column, type Evidence, type Finding, type Initiative, type Strategy, type VisionBoard, type Viz } from "@/lib/vision";
 import { toast } from "./ui";
 
 /**
@@ -33,6 +33,7 @@ export function VisionBoardView({ slug, initial }: { slug: string; initial: Visi
   const [board, setBoard] = useState<VisionBoard>(initial);
   const [open, setOpen] = useState<string | null>(null);
   const [research, setResearch] = useState<keyof VisionBoard["research"] | null>(null);
+  const [call, setCall] = useState(false);
   const [drag, setDrag] = useState<Drag | null>(null);
   const [wide, setWide] = useState(false);
   const cols = useRef<Partial<Record<Column, HTMLDivElement | null>>>({});
@@ -108,7 +109,7 @@ export function VisionBoardView({ slug, initial }: { slug: string; initial: Visi
   };
 
   useEffect(() => {
-    const key = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpen(null); setResearch(null); } };
+    const key = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpen(null); setResearch(null); setCall(false); } };
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
   }, []);
@@ -126,7 +127,13 @@ export function VisionBoardView({ slug, initial }: { slug: string; initial: Visi
         </div>
       )}
 
-      <div className="vb-research">
+      <div className={`vb-research${board.strategy ? " with-call" : ""}`}>
+        {board.strategy && (
+          <button className="vb-rtile vb-call" onClick={() => setCall(true)}>
+            <span className="vb-rk">Recommended direction</span>
+            <b>{board.strategy.direction}</b>
+          </button>
+        )}
         {RESEARCH.map((r) => {
           const items = board.research[r.key] ?? [];
           return (
@@ -167,6 +174,7 @@ export function VisionBoardView({ slug, initial }: { slug: string; initial: Visi
       )}
 
       {card && <Detail slug={slug} i={card} onClose={() => setOpen(null)} onUpdate={update} />}
+      {call && board.strategy && <StrategyPanel s={board.strategy} onClose={() => setCall(false)} />}
       {research && <ResearchPanel title={RESEARCH.find((r) => r.key === research)!.label} items={board.research[research] ?? []} onClose={() => setResearch(null)} />}
     </div>
   );
@@ -324,6 +332,25 @@ function Detail({ slug, i, onClose, onUpdate }: { slug: string; i: Initiative; o
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return <section className="vb-sec"><h4>{title}</h4>{children}</section>;
+}
+
+function StrategyPanel({ s, onClose }: { s: Strategy; onClose: () => void }) {
+  const list = (title: string, items?: string[]) => !!items?.length && <Section title={title}><ul>{items.map((x, k) => <li key={k}>{x}</li>)}</ul></Section>;
+  return (
+    <aside className="vb-detail">
+      <div className="vb-d-bar"><span className="vb-rk">Recommended direction</span><button className="vb-d-x" onClick={onClose} aria-label="Close">×</button></div>
+      <h2>{s.direction}</h2>
+      {list("Why", s.why)}
+      {!!s.sequence?.length && (
+        <Section title="Sequence">
+          <ol className="vb-seq">{s.sequence.map((x, k) => <li key={k}><b>{x.step}</b>{x.when && <span>{x.when}</span>}</li>)}</ol>
+        </Section>
+      )}
+      {list("Not now", s.notNow)}
+      {list("What would change our mind", s.killCriteria)}
+      {list("What we do not know yet", s.evidenceGaps)}
+    </aside>
+  );
 }
 
 function ResearchPanel({ title, items, onClose }: { title: string; items: Finding[]; onClose: () => void }) {
