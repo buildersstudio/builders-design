@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cody Saxton | Illuminator</title>
+<meta name="description" content="Cody Saxton, Illuminator Omnimedia. Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.">
+<link rel="icon" href="img/cs-infinity.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff;
+  --ink:#141414;
+  --ink-2:#5c5c5c;
+  --ink-3:#9a9a9a;
+  --hair:#e6e6e6;
+  --red:#b5443e;      /* the terracotta paper of Inner */
+  --gut:clamp(20px,3.9vw,56px);
+  --slow:2400ms;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper);-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:"Mulish",system-ui,sans-serif;font-weight:300;font-size:15px;line-height:1.72;font-feature-settings:"tnum" 1,"lnum" 1;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+button,input,textarea{font:inherit;color:inherit}
+::selection{background:var(--ink);color:var(--paper)}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+
+.label{font-size:10.5px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);line-height:1.6}
+.muted{color:var(--ink-3)}
+
+/* header */
+.top{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:flex-start;padding:34px var(--gut) 0;pointer-events:none}
+.top > *{pointer-events:auto}
+.id{display:flex;align-items:center;gap:14px}
+.id svg{width:40px;height:auto;flex:none}
+.id .nm{font-size:13px;font-weight:400;letter-spacing:.06em;line-height:1.3}
+.id .nm span{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);font-weight:400;margin-top:2px}
+.nav{display:flex;gap:26px;list-style:none;padding-top:4px}
+.nav a{font-size:10.5px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);transition:color .6s}
+.nav a:hover,.nav a[aria-current="page"]{color:var(--ink)}
+.menu-btn{display:none;background:none;border:0;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:400;cursor:pointer;padding:4px 0}
+
+/* views */
+.view{display:none;min-height:100vh}
+.view.on{display:block}
+
+/* ink settling */
+.js .ink{opacity:0;filter:blur(2.5px);transition:opacity var(--slow) cubic-bezier(.2,.6,.2,1),filter 3000ms cubic-bezier(.2,.6,.2,1)}
+.js .ink.in{opacity:1;filter:blur(0)}
+@media (prefers-reduced-motion:reduce){.js .ink{opacity:1;filter:none;transition:none}}
+
+/* grid */
+.g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding:0 var(--gut)}
+
+/* gallery */
+.series-h{font-size:22px;font-weight:200;letter-spacing:.01em;line-height:1.2;margin-bottom:10px}
+.work a.fig{display:block;cursor:zoom-in}
+.work img{width:100%;height:auto;background:#fafafa}
+.cap{font-size:13px;line-height:1.55}
+.cap .t{font-weight:400;font-size:14px;letter-spacing:.01em;margin-bottom:3px;display:block}
+.cap .m{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);display:block}
+.cap .p{display:block;margin-top:8px;font-size:13px}
+.cap a.v{display:inline-block;margin-top:14px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid transparent;transition:color .6s,border-color .6s}
+.work:hover a.v,.cap a.v:hover{color:var(--ink);border-color:var(--ink)}
+
+.s1{padding-top:140px;align-items:end}
+.s1 .intro{grid-column:2 / span 3;align-self:start;padding-top:18vh}
+.s1 .w1{grid-column:7 / span 4;grid-row:1}
+.s1 .w1 img{height:min(68vh,660px);width:auto;max-width:100%}
+.s1 .c1{grid-column:5 / span 2;justify-self:end;grid-row:1;text-align:right;align-self:end}
+.s1b{margin-top:34vh;align-items:end}
+.s1b .w2{grid-column:3 / span 3}
+.s1b .c2{grid-column:6 / span 2;align-self:end}
+
+.s2{min-height:100vh;align-items:center;margin-top:18vh}
+.s2 .intro{grid-column:8 / span 4}
+.s2 .intro .quiet{margin-top:28px}
+
+.s3{margin-top:6vh;align-items:end;padding-bottom:22vh}
+.s3 .intro{grid-column:2 / span 3;align-self:start}
+.s3 .w3{grid-column:5 / span 4}
+.s3 .c3{grid-column:9 / span 3;align-self:end}
+
+/* detail */
+.detail{padding-top:120px;padding-bottom:12vh;align-items:end;min-height:100vh}
+.detail .back{grid-column:1 / -1;margin-bottom:34px}
+.detail .back a{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.detail .back a:hover{color:var(--ink)}
+.detail .im{grid-column:2 / span 6}
+.detail .im button{display:block;border:0;background:none;cursor:zoom-in;padding:0}
+.detail .im img{max-height:calc(100vh - 220px);width:auto;max-width:100%}
+.detail .info{grid-column:9 / span 3;padding-bottom:4px}
+.detail h1{font-size:26px;font-weight:200;letter-spacing:.01em;line-height:1.2;margin:10px 0 6px}
+.detail .price{font-size:15px;margin-top:22px}
+.detail .ship{font-size:13px;color:var(--ink-2);margin-top:4px}
+.buy{display:inline-block;margin-top:30px;padding:14px 22px 13px;border:1px solid var(--ink);font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;transition:background .7s,color .7s,border-color .7s}
+.buy:hover{background:var(--red);border-color:var(--red);color:#fff}
+.detail .legal{font-size:12px;color:var(--ink-3);margin-top:18px;max-width:30ch;line-height:1.6}
+.detail .legal a{border-bottom:1px solid var(--hair)}
+.detail .legal a:hover{color:var(--ink);border-color:var(--ink)}
+.detail .pn{margin-top:48px;display:flex;gap:28px}
+.detail .pn a{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.detail .pn a:hover{color:var(--ink)}
+
+/* viewer */
+.viewer{position:fixed;inset:0;z-index:50;background:var(--paper);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity 900ms ease,visibility 0s 900ms;overflow:hidden}
+.viewer.open{opacity:1;visibility:visible;transition:opacity 900ms ease}
+.viewer .stage{width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:zoom-in;touch-action:pinch-zoom}
+.viewer img{max-width:88vw;max-height:84vh;width:auto;height:auto;transition:transform 900ms cubic-bezier(.2,.6,.2,1);transform-origin:50% 50%;user-select:none;-webkit-user-drag:none}
+.viewer.zoom .stage{cursor:zoom-out}
+.viewer.zoom img{transition:transform 900ms cubic-bezier(.2,.6,.2,1),transform-origin 0s}
+.viewer .vbar{position:absolute;left:var(--gut);right:var(--gut);bottom:28px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.viewer .vbar,.viewer .vtop{transition:opacity .7s;z-index:2}
+.viewer.zoom .vbar,.viewer.zoom .vtop{opacity:0;pointer-events:none}
+.viewer .vtop{position:absolute;left:var(--gut);right:var(--gut);top:30px;display:flex;justify-content:space-between;align-items:center}
+.viewer button.x,.viewer .vnav button{background:none;border:0;cursor:pointer;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);font-weight:400;padding:6px 0}
+.viewer button:hover{color:var(--ink)}
+.viewer .vnav{display:flex;gap:28px}
+
+/* text pages */
+.page{padding-top:190px;padding-bottom:20vh}
+.page .ph{grid-column:2 / span 3}
+.page .ph h1{font-size:22px;font-weight:200;letter-spacing:.01em;line-height:1.25;position:sticky;top:140px}
+.page .pb{grid-column:6 / span 4;max-width:34em}
+.pb p{margin-bottom:1.1em}
+.pb h2{font-size:10.5px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin:3.6em 0 1.2em}
+.pb h2:first-child{margin-top:0}
+.pb h3{font-size:15px;font-weight:400;margin:2.4em 0 .7em}
+.pb ul{list-style:none;margin:0 0 1.2em}
+.pb ul li{padding-left:1.1em;position:relative;margin-bottom:.35em}
+.pb ul li::before{content:"";position:absolute;left:0;top:.8em;width:5px;height:1px;background:var(--ink-3)}
+.pb a.u{border-bottom:1px solid var(--hair);transition:border-color .6s}
+.pb a.u:hover{border-color:var(--ink)}
+.pb .lede{font-size:17px;line-height:1.65;font-weight:300}
+.pb .addr{line-height:1.8}
+
+/* workshops */
+.past{list-style:none}
+.past li{display:block;padding:22px 0;border-top:1px solid var(--hair)}
+.past li:last-child{border-bottom:1px solid var(--hair)}
+
+/* thoughts */
+.t-intro{padding-top:190px;min-height:70vh}
+.t-intro .ph{grid-column:2 / span 3}
+.t-intro .ph h1{font-size:22px;font-weight:200;line-height:1.25}
+.t-intro .pb{grid-column:6 / span 4;max-width:32em}
+.frag{min-height:100vh;display:flex;align-items:center;padding:0 var(--gut)}
+.frag .f{max-width:30em}
+.frag .d{margin-bottom:18px}
+.frag p{font-size:17px;line-height:1.75;font-weight:300}
+.frag:last-of-type{min-height:85vh}
+
+/* news */
+.news-empty{min-height:34vh}
+
+/* about */
+.ex{list-style:none;margin-top:6px}
+.pb .ex li,.pb .past li{padding-left:0}
+.pb .ex li::before,.pb .past li::before{display:none}
+.ex li{padding:34px 0 36px;border-top:1px solid var(--hair)}
+.ex li:last-child{border-bottom:1px solid var(--hair)}
+.ex .when{margin-bottom:10px}
+.ex .what{font-weight:400;margin-bottom:6px;line-height:1.55}
+.ex figure{margin-top:22px}
+.ex figure img{background:#fafafa}
+.ex .creature img{width:260px}
+.ex .install img{width:300px}
+.ex .shirt img{width:280px}
+.ex .pdf{display:inline-block;margin-top:14px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid var(--ink-3);padding-bottom:2px}
+.ex .pdf:hover{border-color:var(--ink)}
+
+/* contact */
+form.c{margin-top:44px;max-width:30em}
+.fld{margin-bottom:30px}
+.fld label{display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);font-weight:400;margin-bottom:6px}
+.fld input,.fld textarea{width:100%;border:0;border-bottom:1px solid var(--hair);background:transparent;padding:8px 0 10px;font-size:15px;font-weight:300;border-radius:0;transition:border-color .6s}
+.fld textarea{min-height:140px;resize:vertical;line-height:1.6}
+.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--ink)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.send{background:none;border:1px solid var(--ink);padding:14px 22px 13px;font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:background .7s,color .7s}
+.send:hover{background:var(--ink);color:var(--paper)}
+
+/* footer */
+.foot{padding:60px var(--gut) 40px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-end}
+.foot .r{display:flex;gap:26px;flex-wrap:wrap}
+.foot a:hover{color:var(--ink)}
+
+@media (max-width:1100px){
+  .nav{gap:18px}
+  .detail .info{grid-column:9 / span 4}
+}
+@media (max-width:820px){
+  body{font-size:15px}
+  .top{padding-top:22px;background:linear-gradient(var(--paper) 70%,rgba(255,255,255,0));padding-bottom:18px}
+  .menu-btn{display:block}
+  .nav{display:none;position:fixed;inset:0;background:var(--paper);flex-direction:column;justify-content:center;padding:0 var(--gut);gap:22px;z-index:-1}
+  .nav a{font-size:12px}
+  body.menu .nav{display:flex}
+  .g{grid-template-columns:repeat(6,minmax(0,1fr));column-gap:14px}
+  .s1{padding-top:128px}
+  .s1 .intro{grid-column:1 / span 5;grid-row:1;margin-bottom:56px;padding-top:0}
+  .s1 .w1{grid-column:2 / span 5;grid-row:2}
+  .s1 .w1 img{height:auto;width:100%}
+  .s1 .c1{grid-column:2 / span 5;grid-row:3;text-align:left;margin-top:16px}
+  .s1b{margin-top:22vh}
+  .s1b .w2{grid-column:1 / span 5}
+  .s1b .c2{grid-column:1 / span 5;margin-top:16px}
+  .s2{min-height:80vh;margin-top:10vh}
+  .s2 .intro{grid-column:2 / span 5}
+  .s3{margin-top:0}
+  .s3 .intro{grid-column:1 / span 5;margin-bottom:56px}
+  .s3 .w3{grid-column:2 / span 5}
+  .s3 .c3{grid-column:2 / span 5;margin-top:16px}
+  .detail{padding-top:100px}
+  .detail .back{margin-bottom:24px}
+  .detail .im{grid-column:1 / -1}
+  .detail .im img{max-height:none;width:100%}
+  .detail .info{grid-column:1 / span 6;margin-top:30px}
+  .page,.t-intro{padding-top:128px}
+  .page .ph,.t-intro .ph{grid-column:1 / -1;margin-bottom:40px}
+  .page .ph h1{position:static}
+  .page .pb,.t-intro .pb{grid-column:1 / -1}
+  .frag{min-height:80vh}
+  .frag .f{margin-left:0 !important;max-width:none}
+  .frag:nth-of-type(even) .f{padding-left:16%}
+  .ex .creature img,.ex .install img,.ex .shirt img{width:72%}
+  .viewer img{max-width:100vw;max-height:78vh}
+  .foot{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<a href="#main" class="hp">Skip to content</a>
+
+<header class="top">
+  <a class="id" href="#gallery" aria-label="Cody Saxton, gallery">
+    <svg viewBox="0 0 100 50" aria-hidden="true"><path fill="#141414" d="M92.08 30.03L91.57 31.35L90.90 32.56L90.20 33.70L89.46 34.77L88.67 35.76L87.84 36.67L86.97 37.50L86.08 38.23L85.16 38.88L84.23 39.45L83.28 39.93L82.33 40.33L81.38 40.66L80.43 40.91L79.48 41.09L78.55 41.20L77.62 41.26L76.70 41.25L75.79 41.19L74.89 41.08L74.01 40.92L73.14 40.72L72.28 40.47L71.44 40.19L70.61 39.86L69.80 39.51L69.00 39.12L68.21 38.70L67.44 38.25L66.68 37.78L65.94 37.28L65.21 36.76L64.49 36.22L63.78 35.66L63.09 35.08L62.40 34.49L61.73 33.88L61.07 33.26L60.41 32.62L59.77 31.97L59.13 31.32L58.50 30.65L57.88 29.97L57.26 29.29L56.65 28.59L56.05 27.89L55.44 27.19L54.84 26.48L54.24 25.76L53.65 25.04L53.05 24.31L52.46 23.58L51.86 22.85L51.26 22.11L50.66 21.38L50.05 20.64L49.44 19.90L48.82 19.16L48.20 18.42L47.57 17.68L46.93 16.94L46.27 16.20L45.61 15.47L44.93 14.74L44.25 14.02L43.54 13.30L42.82 12.59L42.08 11.88L41.32 11.19L40.55 10.51L39.75 9.84L38.92 9.18L38.08 8.55L37.20 7.93L36.30 7.33L35.38 6.76L34.42 6.21L33.43 5.70L32.41 5.22L31.36 4.78L30.28 4.39L29.17 4.04L28.03 3.75L26.85 3.51L25.65 3.34L24.42 3.24L23.16 3.21L21.89 3.27L20.61 3.41L19.31 3.65L18.01 3.98L16.72 4.41L15.44 4.94L14.18 5.59L12.95 6.33L11.76 7.19L10.62 8.15L9.54 9.21L8.52 10.37L7.58 11.62L6.73 12.96L5.96 14.38L5.29 15.87L4.72 17.42L4.26 19.02L3.92 20.67L3.69 22.34L3.58 24.03L3.59 25.72L3.72 27.41L3.97 29.08L4.33 30.71L4.80 32.30L5.38 33.84L6.06 35.31L6.84 36.71L7.70 38.03L8.64 39.25L9.65 40.39L10.73 41.42L11.86 42.36L13.03 43.18L14.24 43.91L15.47 44.53L16.73 45.04L17.99 45.45L19.25 45.77L20.52 45.99L21.77 46.13L23.00 46.18L24.22 46.15L25.42 46.05L26.59 45.88L27.73 45.65L28.84 45.37L29.93 45.03L30.98 44.65L32.01 44.22L33.01 43.76L33.98 43.27L34.92 42.74L35.83 42.18L36.72 41.60L37.58 41.00L38.42 40.38L39.23 39.75L40.03 39.09L40.80 38.43L41.56 37.75L42.29 37.06L43.02 36.36L43.72 35.66L44.41 34.95L45.09 34.23L45.75 33.51L46.41 32.78L47.05 32.05L47.69 31.32L48.31 30.59L48.93 29.85L49.55 29.12L50.15 28.38L50.76 27.65L51.36 26.91L51.95 26.18L52.55 25.45L53.14 24.72L53.74 23.99L54.33 23.27L54.93 22.55L55.53 21.84L56.13 21.13L56.74 20.42L57.35 19.73L57.97 19.04L58.60 18.35L59.23 17.68L59.87 17.01L60.52 16.36L61.18 15.71L61.86 15.08L62.54 14.46L63.24 13.86L63.95 13.27L64.67 12.70L65.41 12.15L66.16 11.63L66.93 11.12L67.72 10.64L68.53 10.19L69.35 9.77L70.19 9.38L71.05 9.03L71.93 8.71L72.82 8.44L73.74 8.21L74.67 8.03L75.62 7.90L76.58 7.83L77.56 7.82L78.55 7.87L79.55 7.99L80.55 8.18L81.56 8.45L82.57 8.79L83.58 9.23L84.57 9.74L85.55 10.35L86.50 11.04L87.43 11.83L88.32 12.70L89.16 13.66L89.90 14.74L90.55 15.91L91.12 17.14L91.62 18.43L92.02 19.76L92.34 21.14L92.55 22.55L92.68 23.99L93.27 23.94L93.15 22.48L92.92 21.03L92.60 19.61L92.18 18.23L91.67 16.90L91.08 15.63L90.41 14.43L89.68 13.29L88.94 12.19L88.12 11.16L87.25 10.21L86.32 9.35L85.34 8.57L84.32 7.88L83.27 7.27L82.19 6.76L81.10 6.32L79.99 5.98L78.87 5.71L77.74 5.52L76.62 5.41L75.50 5.37L74.39 5.39L73.30 5.48L72.21 5.64L71.15 5.84L70.10 6.10L69.07 6.41L68.07 6.77L67.09 7.16L66.12 7.59L65.19 8.06L64.27 8.56L63.38 9.08L62.51 9.63L61.66 10.21L60.83 10.81L60.02 11.42L59.23 12.05L58.46 12.70L57.71 13.36L56.97 14.03L56.25 14.71L55.55 15.40L54.85 16.10L54.18 16.81L53.51 17.52L52.85 18.23L52.21 18.95L51.57 19.67L50.94 20.40L50.32 21.12L49.70 21.85L49.09 22.58L48.48 23.30L47.87 24.02L47.26 24.75L46.66 25.47L46.05 26.18L45.44 26.89L44.83 27.60L44.22 28.30L43.60 28.99L42.98 29.68L42.35 30.36L41.71 31.03L41.07 31.69L40.41 32.34L39.75 32.98L39.08 33.60L38.39 34.21L37.70 34.80L36.99 35.37L36.27 35.93L35.53 36.47L34.79 36.98L34.03 37.47L33.26 37.93L32.47 38.36L31.68 38.76L30.87 39.13L30.05 39.46L29.21 39.76L28.37 40.01L27.52 40.23L26.67 40.39L25.80 40.51L24.94 40.59L24.07 40.61L23.20 40.57L22.33 40.48L21.47 40.34L20.61 40.13L19.76 39.86L18.92 39.53L18.09 39.13L17.28 38.66L16.49 38.13L15.73 37.52L15.00 36.84L14.30 36.10L13.64 35.28L13.02 34.40L12.46 33.45L11.96 32.45L11.52 31.38L11.15 30.27L10.85 29.12L10.63 27.94L10.49 26.74L10.43 25.52L10.45 24.30L10.56 23.09L10.75 21.90L11.01 20.74L11.35 19.62L11.76 18.54L12.24 17.51L12.77 16.54L13.36 15.64L13.99 14.81L14.66 14.04L15.37 13.34L16.10 12.72L16.86 12.17L17.63 11.68L18.42 11.26L19.22 10.91L20.04 10.62L20.86 10.38L21.68 10.21L22.51 10.09L23.34 10.03L24.17 10.01L25.00 10.05L25.83 10.14L26.66 10.27L27.48 10.44L28.30 10.65L29.10 10.91L29.91 11.20L30.70 11.53L31.49 11.89L32.26 12.28L33.02 12.71L33.78 13.16L34.52 13.63L35.25 14.13L35.97 14.66L36.68 15.20L37.38 15.76L38.07 16.34L38.75 16.94L39.42 17.55L40.08 18.18L40.73 18.82L41.38 19.47L42.01 20.13L42.64 20.80L43.27 21.48L43.89 22.17L44.50 22.86L45.11 23.57L45.72 24.27L46.33 24.99L46.93 25.70L47.54 26.42L48.15 27.15L48.76 27.87L49.37 28.60L49.99 29.33L50.61 30.06L51.24 30.79L51.87 31.52L52.52 32.25L53.17 32.98L53.84 33.70L54.51 34.41L55.20 35.13L55.91 35.83L56.63 36.53L57.36 37.22L58.12 37.90L58.89 38.56L59.69 39.21L60.50 39.85L61.34 40.47L62.20 41.07L63.08 41.64L63.99 42.19L64.92 42.71L65.89 43.20L66.87 43.66L67.88 44.07L68.92 44.45L69.99 44.77L71.07 45.05L72.18 45.27L73.32 45.43L74.46 45.53L75.63 45.55L76.81 45.51L77.99 45.38L79.17 45.17L80.35 44.88L81.52 44.50L82.68 44.03L83.81 43.46L84.91 42.80L85.97 42.05L86.98 41.21L87.94 40.27L88.83 39.25L89.65 38.15L90.40 36.97L91.05 35.72L91.61 34.40L92.05 33.03L92.36 31.61L92.65 30.20Z"/></svg>
+    <span class="nm">Cody Saxton<span>Art &amp; Life</span></span>
+  </a>
+  <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+  <ul class="nav" id="nav">
+    <li><a href="#gallery" data-r="gallery">Gallery</a></li>
+    <li><a href="#workshops" data-r="workshops">Workshops</a></li>
+    <li><a href="#thoughts" data-r="thoughts">Thoughts</a></li>
+    <li><a href="#news" data-r="news">News</a></li>
+    <li><a href="#about" data-r="about">About</a></li>
+    <li><a href="#contact" data-r="contact">Contact</a></li>
+  </ul>
+</header>
+
+<main id="main">
+
+<!-- GALLERY -->
+<section class="view" id="v-gallery" aria-label="Gallery">
+  <div class="g s1">
+    <div class="intro ink">
+      <h2 class="series-h">ink-lings</h2>
+      <p class="label">brush and sumi ink on rice paper · 2024–</p>
+    </div>
+    <p class="cap c1 ink">
+      <span class="t">Wind Women 1</span>
+      <span class="m">Ink on paper, 2025</span>
+      <span class="p">€50</span>
+      <a class="v" href="#work/wind-women-1">View</a>
+    </p>
+    <figure class="work w1 ink"><a class="fig" href="#work/wind-women-1" aria-label="Wind Women 1"><img src="img/wind-women-1.webp" width="1080" height="1350" alt="Ink painting on paper of masked and winged woman"></a></figure>
+  </div>
+  <div class="g s1b">
+    <figure class="work w2 ink"><a class="fig" href="#work/seaweed-soul" aria-label="Seaweed Soul"><img src="img/seaweed-soul.webp" width="1080" height="1350" loading="lazy" alt="Ink painting on paper of woman with organic hands and head"></a></figure>
+    <p class="cap c2 ink">
+      <span class="t">Seaweed Soul</span>
+      <span class="m">Ink on Paper, 2026</span>
+      <span class="p">€75</span>
+      <a class="v" href="#work/seaweed-soul">View</a>
+    </p>
+  </div>
+
+  <div class="g s2">
+    <div class="intro ink">
+      <h2 class="series-h">color wonderings</h2>
+      <p class="label">watercolor and gouache · 2023–</p>
+    </div>
+  </div>
+
+  <div class="g s3">
+    <div class="intro ink">
+      <h2 class="series-h">terracotta subconscious</h2>
+      <p class="label">earth pigments and oil pastel · 2025–</p>
+    </div>
+    <figure class="work w3 ink"><a class="fig" href="#work/inner" aria-label="Inner"><img src="img/inner.webp" width="1106" height="1549" loading="lazy" alt="Ink painting on paper of woman with organs and animal"></a></figure>
+    <p class="cap c3 ink">
+      <span class="t">Inner</span>
+      <span class="m">Ink on terracotta paper, 2025</span>
+      <span class="p">€35</span>
+      <a class="v" href="#work/inner">View</a>
+    </p>
+  </div>
+</section>
+
+<!-- WORK DETAIL -->
+<section class="view" id="v-work" aria-label="Artwork">
+  <div class="g detail">
+    <p class="back"><a href="#gallery" data-back>Back to gallery</a></p>
+    <div class="im ink" id="d-im"><button type="button" id="d-open" aria-label="Open full view"><img id="d-img" src="img/wind-women-1.webp" alt=""></button></div>
+    <div class="info ink">
+      <p class="label" id="d-series"></p>
+      <h1 id="d-title"></h1>
+      <p class="label" id="d-medium"></p>
+      <p class="price" id="d-price"></p>
+      <p class="ship">Includes packaging. Shipping calculated at checkout.</p>
+      <a class="buy" id="d-buy" href="#">Purchase</a>
+      <p class="legal">Right of withdrawal within 14 days under EU consumer law — see <a href="#terms">terms</a>.</p>
+      <p class="pn"><a href="#" id="d-prev">Previous work</a><a href="#" id="d-next">Next work</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSHOPS -->
+<section class="view" id="v-workshops" aria-label="Workshops">
+  <div class="g page">
+    <div class="ph"><h1>Workshops</h1></div>
+    <div class="pb">
+      <p class="lede">Small in-person sessions around meaning making and creativity. Dates and venues are announced here when scheduled.</p>
+      <h2>Upcoming</h2>
+      <p>More to come soon. Add yourself to the mailing list via the <a class="u" href="#contact">contact form</a> to be notified.</p>
+      <h2>Past</h2>
+      <ul class="past">
+        <li>Markmaking as Metaphor. OBA Oosterdok. May 2024. Exploring unusual mark-making techniques and visual vocabulary translation.</li>
+        <li>Personal Rituals. OBA Oosterdok. June 2024.</li>
+        <li>Design Your Life. OBA Oosterdok. May 2024.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- THOUGHTS -->
+<section class="view" id="v-thoughts" aria-label="Thoughts">
+  <div class="g t-intro">
+    <div class="ph"><h1>Thoughts</h1></div>
+    <div class="pb"><p class="lede">Notes from the studio — fragments on everything: art, philosophy, process to influences and relevant tangents. Posts will appear here as they're written.</p></div>
+  </div>
+  <article class="frag"><div class="f ink" style="margin-left:52%"><p class="label d"><time datetime="2026-09-10">10 September 2026</time></p><p>“Let everything happen to you: beauty, terror. Just keep going. No feeling is final.” — Rainer Maria Rilke (exerpt from Go To The Limits of Your Longing)</p></div></article>
+  <article class="frag"><div class="f ink" style="margin-left:14%"><p class="label d"><time datetime="2026-08-28">28 August 2026</time></p><p>With every trip around the sun, I think of all the good to come. Planting trees and helping friends, building Gaia up again.</p></div></article>
+  <article class="frag"><div class="f ink" style="margin-left:44%"><p class="label d"><time datetime="2026-08-15">15 August 2026</time></p><p>Leaping from a bridge into the Aare River in Bern, Switzerland was transformational...it feels like a part of me from long ago woke up from hibernation. I hesitated, nervous, and then remembered: "You don't have to go alone." When two women stepped over the railing, I broke with my habit of hyperindependence and asked to jump with them. They said "Of Course!"" And off we went, into the beautiful, clear, racing water. The power of secure attachment...can't say how much I feel glad for all I have learned over these years.</p></div></article>
+  <article class="frag"><div class="f ink" style="margin-left:8%"><p class="label d"><time datetime="2026-07-15">15 July 2026</time></p><p>Overnight train to Zurich, onto Milan...then trekking in the Italian Alps with silly friends. The mountains hold some power that exists nowhere in The Netherlands---they charge my battery with something so necessary. The lowlands have convenient bicycling and interesting international culture, among other things...but the nature ain't nature-ing. The word soul, or maybe the sense of connectedness to our Earth, tends to feel watery and diffuse in the swamp.</p></div></article>
+  <article class="frag"><div class="f ink" style="margin-left:58%"><p class="label d"><time datetime="2026-06-22">22 June 2026</time></p><p>Art is to make and speak and act in alignment with your highest-held values—it is real freedom.</p></div></article>
+  <article class="frag"><div class="f ink" style="margin-left:26%"><p class="label d"><time datetime="2026-05-21">21 May 2026</time></p><p>“Everything is art. Everything is politics.” — Ai Weiwei</p></div></article>
+  <article class="frag"><div class="f ink" style="margin-left:40%"><p class="label d"><time datetime="2026-05-19">19 May 2026</time></p><p>Ideas should be shared, explored and examined with others. I see each of us as an entirely unique little sensor of the specifics our particular nook of the universe--the view from "in here". When we transmit our condition and collected data--our perspective--the collective can include it to gain an unbiased understanding of the world. When we are silent, our view of the universe is wasted.</p></div></article>
+</section>
+
+<!-- NEWS -->
+<section class="view" id="v-news" aria-label="News">
+  <div class="g page">
+    <div class="ph"><h1>News</h1></div>
+    <div class="pb"><p class="lede">Announcements, new series, and upcoming shows. Nothing fresh just yet — check back soon.</p><div class="news-empty"></div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="view" id="v-about" aria-label="About">
+  <div class="g page">
+    <div class="ph"><h1>About</h1></div>
+    <div class="pb">
+      <p class="lede">Cody Saxton, Illuminator Omnimedia</p>
+      <h2 style="margin-top:3em">Practice</h2>
+      <p>Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands. All works are sold unframed unless otherwise indicated, shipping is additional. 10% of sales donated to reforestation and degrowth efforts. No returns are possible at this time. Any items damaged in shipping must be claimed through insurance by the buyer. Transactions are conducted in Euros. Payment in full must be received prior to shipping. Payments can be made by Mollie or direct IBAN deposit: NL55SNSB8841074353 Illuminator Omnimedia. KVK #91859476 Registered business address: Bankwerkerij 159, Amsterdam NL 1021NT. Live contact through Instagram <a class="u" href="https://www.instagram.com/codysaxtonart/" rel="noopener">@codysaxtonart</a> or <a class="u" href="mailto:invigorated@proton.me">invigorated@proton.me</a>.</p>
+
+      <h2>Exhibitions &amp; Press</h2>
+      <ul class="ex">
+        <li>
+          <p class="label when">November 2026</p>
+          <p class="what">Things</p>
+          <p>Upcoming: PopUp show of selected works at Things.</p>
+          <figure class="creature ink"><img src="img/creature1.jpg" width="1280" height="1076" loading="lazy" alt="Ink line drawing of a masked creature with a beak, antler-like hands and feathered ears"></figure>
+        </li>
+        <li>
+          <p class="label when">June 2025</p>
+          <p class="what">Plum Village, France: Science, Zen and the Art of Health retreat</p>
+          <p>Participant, Plum Village retreat : The Wonder of It All</p>
+        </li>
+        <li>
+          <p class="label when">Nov 2023</p>
+          <p class="what">Open Gallery Exhibition 2023</p>
+          <p>5 piece series, shown as part of group show of the Amsterdam International Artist Collective gallery.</p>
+          <figure class="install ink"><img src="img/aiac-install-photo.jpg" width="1500" height="2000" loading="lazy" alt="Two people standing beside five framed watercolor portraits on a white gallery wall"></figure>
+        </li>
+        <li>
+          <p class="label when">July 2020</p>
+          <p class="what">Pandemic Testing Shelter, newspaper coverage in Albuquerque Journal.</p>
+          <p>Newspaper article described and pictured my invention, development with engineers and deployment at Sandia National Laboratories to build and deploy an alternative PPE system as a shortage threatened early in the Covid-19 pandemic. Building plans were released open-source, so other institutions built their own versions to protect healthcare workers at testing sites around New Mexico.</p>
+          <a class="pdf" href="img/albuquerque-journal-2020.pdf" target="_blank" rel="noopener">Read the article (PDF)</a>
+        </li>
+        <li>
+          <p class="label when">designed 2005</p>
+          <p class="what">T-shirt design for Rojas, worn by Rosario Dawson in Quentin Tarantino's 2007 film Deathproof</p>
+          <p>Film wardrobe piece for Deathproof (grossed 31.1 USD at box office). Unicorn t-shirt graphic designed for Freddy Rojas' Los Angeles clothing brand, Rojas.</p>
+          <figure class="shirt ink"><img src="img/deathproof-rojas-tshirt.jpg" width="1600" height="1073" loading="lazy" alt="Film still from Deathproof of a woman wearing the pink Rojas unicorn t-shirt"></figure>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="view" id="v-contact" aria-label="Contact">
+  <div class="g page">
+    <div class="ph"><h1>Contact</h1></div>
+    <div class="pb">
+      <p class="lede">For purchases, exhibition enquiries, or workshop dates — use the form below or write to <a class="u" href="mailto:invigorated@proton.me">invigorated@proton.me</a>.</p>
+      <form class="c" id="cform" action="https://codysaxton.eu/contact.php" method="post">
+        <div class="fld"><label for="f-name">Name</label><input id="f-name" name="name" required autocomplete="name"></div>
+        <div class="fld"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+        <div class="fld"><label for="f-subject">Subject (optional)</label><input id="f-subject" name="subject"></div>
+        <div class="fld"><label for="f-message">Message</label><textarea id="f-message" name="message" required></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="f-web">Leave this empty</label><input id="f-web" name="website" tabindex="-1" autocomplete="off"></div>
+        <button class="send" type="submit">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- IMPRINT -->
+<section class="view" id="v-imprint" aria-label="Imprint">
+  <div class="g page">
+    <div class="ph"><h1>Imprint</h1></div>
+    <div class="pb">
+      <p>Instagram <a class="u" href="https://www.instagram.com/codysaxtonart/" rel="noopener">@codysaxtonart</a></p>
+      <h2 style="margin-top:3em">Responsible for content</h2>
+      <p class="addr">[Illuminator Omnimedia]<br>[Bankwerkerij 159]<br>[1021 NT, Amsterdam]<br>[NL]</p>
+      <h2>Contact</h2>
+      <p>Email: <a class="u" href="mailto:invigorated@proton.me">invigorated@proton.me</a></p>
+      <h2>VAT / Chamber of Commerce</h2>
+      <p>KvK / HRB number: [91859476]<br>VAT ID: [upon request]</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="view" id="v-privacy" aria-label="Privacy notice">
+  <div class="g page">
+    <div class="ph"><h1>Privacy notice</h1></div>
+    <div class="pb">
+      <p class="label" style="margin-bottom:2em">Last reviewed: 2026-05-11</p>
+      <p class="lede">This notice explains what personal data this site collects, why, who else sees it, and what you can do about it. The site is small and intentionally light: no analytics, no advertising, no tracking cookies.</p>
+
+      <h2>1. Who is responsible</h2>
+      <p class="addr">Controller: [LEGAL_NAME]<br>[STREET_ADDRESS]<br>[POSTAL_CODE_CITY]<br>[COUNTRY]<br>Email: [EMAIL]<br>KvK / Chamber of Commerce: [KVK_NUMBER]<br>VAT ID: [VAT_ID]</p>
+      <p>For any privacy question, email the address above. We will respond within 30 days.</p>
+
+      <h2>2. What we collect, and why</h2>
+      <h3>a) Just visiting the site</h3>
+      <p>When you load a page, our hosting provider (TransIP B.V., Netherlands) records standard server logs: your IP address, the URL you requested, the time of the request, your browser identifier (User-Agent), and the referring page.</p>
+      <ul><li>Purpose: to keep the site running and detect abuse.</li><li>Legal basis: legitimate interest (GDPR Art. 6(1)(f)).</li><li>Retention: TransIP rotates server logs within roughly 30 days.</li></ul>
+      <h3>b) Buying an artwork</h3>
+      <p>When you click "Purchase" on an artwork page, you are redirected to Mollie B.V. (Netherlands). Mollie collects what the payment method requires — typically your name, email address, billing address, and, where shipping collection is enabled, your shipping address. Payment details (card number, bank account) stay with Mollie; we never see or store them.</p>
+      <p>After a successful payment, Mollie sends us a confirmation email containing your name, email, and shipping address so we can ship the work.</p>
+      <ul><li>Purpose: process the sale and ship the artwork.</li><li>Legal basis: performance of a contract (GDPR Art. 6(1)(b)).</li><li>Retention: order records are kept for 7 years as required by Dutch tax law (Algemene wet inzake rijksbelastingen, art. 52).</li></ul>
+      <h3>c) Emailing us</h3>
+      <p>If you write to us at the contact address, we receive whatever you put in the email — typically your email address, your name, and the content of your message.</p>
+      <ul><li>Purpose: to reply.</li><li>Legal basis: legitimate interest, or pre-contractual measures if the email concerns a possible purchase.</li><li>Retention: up to 3 years, unless the correspondence relates to a sale — in which case the 7-year tax-record retention above applies.</li></ul>
+      <h3>d) Shipping</h3>
+      <p>To ship a purchased artwork we share your name and shipping address with our carrier ([SHIPPING_CARRIER]). The carrier acts as a separate controller for that data and you should consult their own privacy notice for how they handle it.</p>
+
+      <h2>3. Who else processes your data</h2>
+      <p>We rely on a small number of service providers. None of them sell or share your data for advertising:</p>
+      <ul>
+        <li>TransIP B.V. — hosting, server logs, daily backups. Netherlands (EU).</li>
+        <li>Mollie B.V. — payment processing. Netherlands (EU). See <a class="u" href="https://www.mollie.com/privacy" rel="noopener">Mollie's privacy notice</a>.</li>
+        <li>[EMAIL_PROVIDER] — email inbox. [EMAIL_PROVIDER_LOCATION].</li>
+        <li>[SHIPPING_CARRIER] — delivery. [COUNTRY].</li>
+      </ul>
+      <p>We do not sell or rent your data. We share it only with the parties above, and only as needed to operate the site, process your order, and deliver your purchase — or where we are required to by law.</p>
+
+      <h2>4. International transfers</h2>
+      <p>All processing happens within the EU/EEA. We do not transfer your personal data to countries outside the EU/EEA. (Should that ever change — for example if we add a service hosted elsewhere — this notice will be updated before the transfer starts.)</p>
+
+      <h2>5. Cookies and tracking</h2>
+      <p>This site sets no cookies of its own. We use no analytics (no Google Analytics, no Plausible, no Matomo), no tracking pixels, no advertising scripts, and no embedded social media widgets. Because of this, we do not show a cookie banner.</p>
+      <p>Note that Mollie's checkout pages — which you are redirected to when you press "Purchase" — set their own cookies. Those are governed by Mollie's privacy policy linked above.</p>
+
+      <h2>6. Your rights</h2>
+      <p>Under the GDPR you have the right to:</p>
+      <ul>
+        <li>access the personal data we hold about you;</li>
+        <li>rectify inaccurate or incomplete data;</li>
+        <li>erase your data ("right to be forgotten"), within the limits of our legal retention obligations (notably the 7-year tax records);</li>
+        <li>restrict processing of your data;</li>
+        <li>data portability — receive your data in a machine-readable format;</li>
+        <li>object to processing based on legitimate interest; and</li>
+        <li>withdraw consent, where consent was the legal basis.</li>
+      </ul>
+      <p>To exercise any of these, email [EMAIL]. We will respond within 30 days.</p>
+      <p>You also have the right to lodge a complaint with your national supervisory authority. In the Netherlands this is Autoriteit Persoonsgegevens.</p>
+
+      <h2>7. Children</h2>
+      <p>This site is not directed at children under 16. We do not knowingly collect data from children. If you believe a child has provided personal data to us, please contact us so we can remove it.</p>
+
+      <h2>8. Security</h2>
+      <p>The site is served exclusively over HTTPS (TLS) using a certificate issued by Let's Encrypt and auto-renewed by TransIP. Order data lives only in our email inbox and in Mollie's systems; we do not operate a customer database.</p>
+
+      <h2>9. Changes to this notice</h2>
+      <p>We may update this notice when our processing changes — for example, when we add a new shipping carrier or switch hosting provider. Material changes are reflected in the "last reviewed" date at the top of the page.</p>
+
+      <h2>10. Contact</h2>
+      <p>For any privacy question or rights request: [EMAIL].</p>
+    </div>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section class="view" id="v-terms" aria-label="Terms and Conditions">
+  <div class="g page">
+    <div class="ph"><h1>Terms &amp; Conditions</h1></div>
+    <div class="pb">
+      <p class="lede">This is a placeholder for the legally required terms. Replace with vetted text — consider iubenda or a local accountant/lawyer before launch.</p>
+      <h2>Prices and VAT</h2>
+      <p>All prices in euro. VAT treatment depends on the small-business scheme — confirm with an accountant whether VAT must be added to listed prices.</p>
+      <h2>Payment</h2>
+      <p>Payments are processed by Mollie. Accepted methods depend on what is enabled per payment link (iDEAL, cards, etc.).</p>
+      <h2>Shipping</h2>
+      <p>Originals are packed and shipped within 5 working days of payment. Shipping cost and method are agreed by email after purchase.</p>
+      <h2>Right of withdrawal (EU)</h2>
+      <p>You have 14 days from receipt to withdraw from the purchase without giving a reason. Send an email to hello@example.com to start the return. Pieces must be returned in their original condition at your expense; the purchase price is refunded within 14 days of receipt of the returned work.</p>
+      <h2>Originals as "made to order"</h2>
+      <p>Some original works may be exempt from the right of withdrawal as personalised or made-to-order goods. If so, it will be stated on the artwork page. Otherwise the standard 14-day right above applies.</p>
+      <h2>Liability</h2>
+      <p>Damage in transit: notify within 7 days of delivery with photos so a claim can be filed with the carrier.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot label">
+  <span>© 2026 Cody Saxton · Art &amp; Utopianism</span>
+  <span class="r">
+    <a href="https://www.instagram.com/codysaxtonart/" rel="noopener">Instagram</a>
+    <a href="mailto:invigorated@proton.me">invigorated@proton.me</a>
+    <a href="#imprint">Imprint</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#terms">Terms</a>
+  </span>
+</footer>
+
+<!-- VIEWER -->
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Full view" aria-hidden="true">
+  <div class="vtop"><span class="label" id="v-title"></span><button class="x" type="button" id="v-close">Close</button></div>
+  <div class="stage" id="v-stage"><img id="v-img" src="img/wind-women-1.webp" alt=""></div>
+  <div class="vbar"><span class="label muted">pinch or click to zoom · esc to close</span><span class="vnav"><button type="button" id="v-prev">Previous</button><button type="button" id="v-next">Next</button></span></div>
+</div>
+
+<script>
+(function(){
+  var works=[
+    {slug:'wind-women-1',series:'ink-lings',title:'Wind Women 1',medium:'Ink on paper, 2025',price:'€50',img:'img/wind-women-1.webp',w:1080,h:1350,alt:'Ink painting on paper of masked and winged woman'},
+    {slug:'seaweed-soul',series:'ink-lings',title:'Seaweed Soul',medium:'Ink on Paper, 2026',price:'€75',img:'img/seaweed-soul.webp',w:1080,h:1350,alt:'Ink painting on paper of woman with organic hands and head'},
+    {slug:'inner',series:'terracotta subconscious',title:'Inner',medium:'Ink on terracotta paper, 2025',price:'€35',img:'img/inner.webp',w:1106,h:1549,alt:'Ink painting on paper of woman with organs and animal'}
+  ];
+  var titles={gallery:'Cody Saxton | Illuminator',workshops:'Workshops | Cody Saxton',thoughts:'Thoughts | Cody Saxton',news:'News | Cody Saxton',about:'About | Cody Saxton',contact:'Contact | Cody Saxton',imprint:'Imprint | Cody Saxton',privacy:'Privacy notice | Cody Saxton',terms:'Terms & Conditions | Cody Saxton'};
+  var $=function(id){return document.getElementById(id)};
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mb=document.querySelector('.menu-btn');
+  var current=0, galleryY=0, lastRoute='gallery', navCount=0;
+  window.addEventListener('hashchange',function(){navCount++});
+
+  /* ink settling */
+  var io='IntersectionObserver' in window ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -8% 0px',threshold:0.06}) : null;
+  function settle(scope){
+    scope.querySelectorAll('.ink').forEach(function(el){
+      if(!io||reduce){el.classList.add('in');return;}
+      el.classList.remove('in'); io.observe(el);
+    });
+  }
+
+  function fillWork(i){
+    var w=works[i]; current=i;
+    var img=$('d-img'); img.src=w.img; img.alt=w.alt; img.width=w.w; img.height=w.h;
+    $('d-series').textContent=w.series;
+    $('d-title').textContent=w.title;
+    $('d-medium').textContent=w.medium;
+    $('d-price').textContent=w.price;
+    var b=$('d-buy'); b.textContent='Purchase — '+w.price; b.href='https://codysaxton.eu/checkout.php?slug='+w.slug;
+    $('d-prev').href='#work/'+works[(i+works.length-1)%works.length].slug;
+    $('d-next').href='#work/'+works[(i+1)%works.length].slug;
+    document.title=w.title+' | Cody Saxton';
+  }
+
+  function route(){
+    var h=(location.hash||'#gallery').slice(1), name=h, m=h.match(/^work\/(.+)$/);
+    if(lastRoute==='gallery') galleryY=window.scrollY;
+    closeMenu();
+    if(m){
+      var i=works.findIndex(function(w){return w.slug===m[1]});
+      if(i<0){location.replace('#gallery');return;}
+      name='work'; fillWork(i);
+    } else if(!$('v-'+name)){ name='gallery'; }
+    document.querySelectorAll('.view').forEach(function(v){v.classList.toggle('on',v.id==='v-'+name)});
+    document.querySelectorAll('.nav a').forEach(function(a){
+      var r=a.getAttribute('data-r');
+      if(r===name||(name==='work'&&r==='gallery')) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    if(name!=='work') document.title=titles[name];
+    settle($('v-'+name));
+    window.scrollTo(0, name==='gallery' && lastRoute==='work' ? galleryY : 0);
+    lastRoute=name;
+  }
+  window.addEventListener('hashchange',route);
+  route();
+
+  /* back link returns in history when possible */
+  document.querySelector('[data-back]').addEventListener('click',function(e){
+    if(navCount>0){ e.preventDefault(); history.back(); }
+  });
+
+  /* mobile menu */
+  mb.addEventListener('click',function(){ var o=document.body.classList.toggle('menu'); mb.setAttribute('aria-expanded',o); mb.textContent=o?'Close':'Menu'; });
+  function closeMenu(){ document.body.classList.remove('menu'); mb.setAttribute('aria-expanded','false'); mb.textContent='Menu'; }
+
+  /* viewer */
+  var V=$('viewer'), VI=$('v-img'), stage=$('v-stage'), zoomed=false, lastFocus=null;
+  function showV(i){ var w=works[i]; current=i; VI.src=w.img; VI.alt=w.alt; $('v-title').textContent=w.title; unzoom(); }
+  function openV(){ lastFocus=document.activeElement; showV(current); V.classList.add('open'); V.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; $('v-close').focus(); }
+  function closeV(){ V.classList.remove('open'); V.setAttribute('aria-hidden','true'); document.body.style.overflow=''; unzoom(); if(lastFocus) lastFocus.focus(); }
+  function unzoom(){ zoomed=false; V.classList.remove('zoom'); VI.style.transform=''; }
+  function origin(e){ var r=VI.getBoundingClientRect(); var x=(e.clientX-r.left)/r.width*100, y=(e.clientY-r.top)/r.height*100; VI.style.transformOrigin=Math.max(0,Math.min(100,x))+'% '+Math.max(0,Math.min(100,y))+'%'; }
+  stage.addEventListener('click',function(e){
+    if(!zoomed){ origin(e); zoomed=true; V.classList.add('zoom'); VI.style.transform='scale(2.4)'; }
+    else unzoom();
+  });
+  stage.addEventListener('mousemove',function(e){ if(zoomed) origin(e); });
+  $('d-open').addEventListener('click',openV);
+  $('v-close').addEventListener('click',closeV);
+  function step(d){ var i=(current+d+works.length)%works.length; if(V.classList.contains('open')) showV(i); location.hash='#work/'+works[i].slug; }
+  $('v-prev').addEventListener('click',function(e){e.stopPropagation();step(-1)});
+  $('v-next').addEventListener('click',function(e){e.stopPropagation();step(1)});
+  document.addEventListener('keydown',function(e){
+    var open=V.classList.contains('open'), onWork=$('v-work').classList.contains('on');
+    if(e.key==='Escape'){ if(open) closeV(); else if(document.body.classList.contains('menu')) closeMenu(); }
+    if((open||onWork) && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)){
+      if(e.key==='ArrowRight') step(1);
+      if(e.key==='ArrowLeft') step(-1);
+    }
+    if(open && e.key==='Tab'){ var f=[$('v-close'),$('v-prev'),$('v-next')], i=f.indexOf(document.activeElement); e.preventDefault(); f[(i+(e.shiftKey?-1:1)+f.length)%f.length].focus(); }
+  });
+
+  /* contact: open a prepared email */
+  $('cform').addEventListener('submit',function(e){
+    e.preventDefault();
+    if($('f-web').value) return;
+    var s=$('f-subject').value||'Message from codysaxton.eu';
+    var body=$('f-message').value+'\n\n'+$('f-name').value+'\n'+$('f-email').value;
+    location.href='mailto:invigorated@proton.me?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(body);
+  });
+})();
+</script>
+</body>
+</html>

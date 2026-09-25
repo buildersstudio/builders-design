@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cody Saxton | Illuminator</title>
+<meta name="description" content="Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0a0a;
+  --grey:#6b6b6b;
+  --soft:#9a9a9a;
+  --line:#e4e4e4;
+  --paper:#fff;
+  --m:48px;
+  --g:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper);-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,sans-serif;font-size:15px;line-height:1.55;font-feature-settings:"cv11" 1;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.lab{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+.num,.row .r,.row .y,.dated time,.ev .d{font-feature-settings:"tnum" 1,"cv11" 1}
+
+/* header */
+.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+.top__in{display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 var(--m)}
+.brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;letter-spacing:-.005em}
+.brand svg{width:26px;height:16px}
+.brand span{color:var(--grey);font-weight:400}
+.nav{display:flex;gap:32px}
+.nav a{font-size:13px;color:var(--grey);transition:color .3s}
+.nav a:hover,.nav a[aria-current="page"]{color:var(--ink)}
+.menu{display:none;font-size:13px}
+
+/* routing */
+main{min-height:calc(100vh - 64px)}
+.view{display:none;padding:0 var(--m)}
+.view.on{display:block;animation:fade .6s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* shared page head */
+.head{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:72px 0 40px;border-bottom:1px solid var(--ink)}
+.head h1{grid-column:1/8;font-size:56px;line-height:1.02;font-weight:500;letter-spacing:-.03em}
+.head .aside{grid-column:9/13;align-self:end;color:var(--grey);font-size:14px;max-width:44ch}
+.head .meta{grid-column:9/13;align-self:end;display:flex;justify-content:space-between}
+
+/* gallery: index + reveal */
+.cat{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.idx{grid-column:1/8}
+.reveal{grid-column:9/13;position:relative}
+.reveal__stick{position:sticky;top:88px;padding-top:24px}
+.reveal__frame{position:relative;aspect-ratio:4/5;width:100%}
+.reveal__frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center top;opacity:0;transition:opacity .7s ease}
+.reveal__frame img.on{opacity:1}
+.reveal__cap{display:flex;justify-content:space-between;gap:16px;margin-top:16px;font-size:13px;color:var(--grey);min-height:20px}
+.reveal__cap b{color:var(--ink);font-weight:500}
+
+.row{display:grid;grid-template-columns:72px 1fr 200px 56px 64px;column-gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding:14px 0}
+.row.hd{padding:14px 0 10px}
+.row.ch{border-bottom:1px solid var(--line);padding:36px 0 14px}
+.row.ch .t{font-size:20px;font-weight:500;letter-spacing:-.015em}
+.row.ch .l{grid-column:3/5;color:var(--grey);font-size:13px}
+.row.ch .c{text-align:right;color:var(--grey);font-size:13px}
+.row .n{color:var(--grey);font-size:13px}
+.row .r{text-align:right}
+a.row{transition:background .3s}
+a.row .t{transition:transform .5s ease}
+a.row:hover .t,a.row.act .t{transform:translateX(6px)}
+a.row:hover .n,a.row.act .n{color:var(--ink)}
+.row .md,.row .y{color:var(--grey)}
+
+.plates{padding:120px 0 40px}
+.plates__hd{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:14px}
+.plates__hd h2{font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.chap{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:32px 0 72px;border-bottom:1px solid var(--line)}
+.chap__lab{grid-column:1/4}
+.chap__lab .k{color:var(--grey);font-size:13px}
+.chap__lab h3{font-size:20px;font-weight:500;letter-spacing:-.015em;margin:4px 0 6px}
+.chap__lab p{color:var(--grey);font-size:13px}
+.chap__grid{grid-column:4/13;display:grid;grid-template-columns:repeat(3,1fr);column-gap:var(--g);row-gap:48px}
+.chap__empty{grid-column:4/13;color:var(--soft);font-size:13px;align-self:start;padding-top:6px}
+.plate{display:block}
+.plate__img{aspect-ratio:4/5;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.plate__img img{max-width:100%;max-height:100%;object-fit:contain;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.plate:hover .plate__img img{transform:scale(1.02)}
+.plate__cap{display:grid;grid-template-columns:1fr auto;gap:2px 12px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:13px}
+.plate__cap .k{color:var(--grey)}
+.plate__cap .t{font-weight:500;font-size:14px}
+.plate__cap .md{color:var(--grey)}
+.plate__cap .r{text-align:right}
+
+/* work entry */
+.entry{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:40px 0 64px;min-height:calc(100vh - 64px)}
+.entry__fig{grid-column:1/8;display:flex;justify-content:center;align-items:flex-start;background:var(--paper)}
+.entry__fig button{display:block;cursor:zoom-in}
+.entry__fig img{max-height:calc(100vh - 160px);width:auto;height:auto;max-width:100%;object-fit:contain}
+.entry__txt{grid-column:9/13;display:flex;flex-direction:column;padding-top:8px}
+.entry__txt .k{display:flex;justify-content:space-between}
+.entry__txt h1{font-size:40px;line-height:1.05;font-weight:500;letter-spacing:-.025em;margin:28px 0 32px}
+.dl{border-top:1px solid var(--ink)}
+.dl div{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.dl dt{color:var(--grey);font-size:13px}
+.entry__note{margin-top:28px;color:var(--grey);font-size:14px}
+.buy{display:flex;justify-content:center;align-items:center;height:52px;margin-top:20px;background:var(--ink);color:var(--paper);font-size:14px;font-weight:500;letter-spacing:.01em;transition:opacity .3s}
+.buy:hover{opacity:.82}
+.fine{margin-top:14px;font-size:12.5px;color:var(--grey)}
+.fine a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--soft)}
+.zoomlink{margin-top:28px;font-size:13px;color:var(--grey);text-align:left;align-self:flex-start;border-bottom:1px solid var(--line);padding-bottom:2px}
+.zoomlink:hover{color:var(--ink);border-color:var(--ink)}
+.pn{margin-top:auto;padding-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:var(--g);font-size:13px}
+.pn a{border-top:1px solid var(--line);padding-top:12px;color:var(--grey);transition:color .3s}
+.pn a:hover{color:var(--ink)}
+.pn a b{display:block;font-weight:500;color:var(--ink);font-size:14px;margin-top:2px}
+.pn a+a{text-align:right}
+.back{font-size:13px;color:var(--grey)}
+.back:hover{color:var(--ink)}
+
+/* text pages */
+.sec{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:32px 0 56px;border-bottom:1px solid var(--line)}
+.sec:last-child{border-bottom:0}
+.sec>h2{grid-column:1/4;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);padding-top:4px}
+.sec>.body{grid-column:4/11;max-width:66ch}
+.body p+p,.body p+ul,.body ul+p,.body h3+p{margin-top:14px}
+.body h3{font-size:15px;font-weight:500;margin-top:32px}
+.body h3:first-child{margin-top:0}
+.body h4{font-size:14px;font-weight:500;margin-top:24px}
+.body ul{list-style:none}
+.body li{padding:8px 0;border-bottom:1px solid var(--line)}
+.body li:first-child{border-top:1px solid var(--line)}
+.body a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--soft)}
+.lead{font-size:20px;line-height:1.45;letter-spacing:-.01em;max-width:40ch}
+.muted{color:var(--grey)}
+.addr{white-space:pre-line}
+
+/* dated lists (thoughts, workshops) */
+.dated{grid-column:4/13}
+.dated article{display:grid;grid-template-columns:180px 1fr;column-gap:var(--g);padding:22px 0;border-bottom:1px solid var(--line)}
+.dated article:first-child{border-top:1px solid var(--line)}
+.dated time,.dated .d{color:var(--grey);font-size:13px;padding-top:2px}
+.dated p{max-width:64ch}
+.dated .t{font-weight:500}
+
+/* chronology */
+.chron{grid-column:1/13}
+.ev{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);padding:36px 0;border-top:1px solid var(--line)}
+.ev:first-child{border-top-color:var(--ink)}
+.ev:last-child{border-bottom:1px solid var(--line)}
+.ev .d{grid-column:1/4;font-size:13px;color:var(--grey);padding-top:4px}
+.ev .x{grid-column:4/9}
+.ev h3{font-size:20px;line-height:1.3;font-weight:500;letter-spacing:-.015em;max-width:30ch}
+.ev p{margin-top:12px;max-width:56ch;color:#2b2b2b}
+.ev p a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--soft)}
+.ev .fig{grid-column:9/13}
+.ev .fig img{width:100%;height:auto}
+.ev .fig.sm img{max-width:320px}
+.ev .fig figcaption{margin-top:10px;font-size:12.5px;color:var(--grey)}
+.ev .fig figcaption a{text-decoration:underline;text-underline-offset:3px}
+.ev .fig .pdf{display:block}
+.ev .fig .pdf img{border:1px solid var(--line)}
+
+/* contact */
+.form{grid-column:4/10;display:grid;gap:28px}
+.fld label{display:block;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-bottom:6px}
+.fld input,.fld textarea{width:100%;border:0;border-bottom:1px solid #cfcfcf;padding:10px 0;font:inherit;font-size:16px;background:transparent;color:var(--ink);border-radius:0;transition:border-color .3s}
+.fld textarea{min-height:160px;resize:vertical}
+.fld input:focus,.fld textarea:focus{outline:0;border-bottom-color:var(--ink)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.send{justify-self:start;height:52px;padding:0 32px;background:var(--ink);color:#fff;font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.send:hover{opacity:.82}
+
+/* footer */
+.foot{margin-top:120px;border-top:1px solid var(--line);padding:24px var(--m) 40px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:12px;color:var(--grey)}
+.foot nav{display:flex;gap:24px;flex-wrap:wrap}
+.foot a:hover{color:var(--ink)}
+.foot .c{letter-spacing:.14em;text-transform:uppercase;font-size:11px}
+.foot nav a{letter-spacing:.14em;text-transform:uppercase;font-size:11px}
+
+/* viewer */
+.vw{position:fixed;inset:0;z-index:50;background:var(--paper);display:none;opacity:0;transition:opacity .5s ease}
+.vw.open{display:block}
+.vw.show{opacity:1}
+.vw__stage{position:absolute;inset:64px 64px 72px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in;touch-action:pinch-zoom}
+.vw__stage img{max-width:100%;max-height:100%;object-fit:contain;transition:transform .6s cubic-bezier(.2,.7,.2,1);transform-origin:50% 50%;user-select:none;-webkit-user-drag:none}
+.vw.z .vw__stage{cursor:zoom-out}
+.vw.z .vw__stage img{transform:scale(2.4)}
+.vw__top{position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--m);font-size:13px}
+.vw__top .k{color:var(--grey)}
+.vw__bot{position:absolute;bottom:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--m);font-size:12px;color:var(--grey)}
+.vw__bot .arr{display:flex;gap:24px}
+.vw__bot button:hover,.vw__top button:hover{color:var(--ink)}
+.vw__bot button{color:var(--grey)}
+
+@media (max-width:1100px){
+  .row{grid-template-columns:56px 1fr 150px 48px 56px}
+  .idx{grid-column:1/9}.reveal{grid-column:9/13}
+}
+@media (max-width:860px){
+  :root{--m:16px;--g:16px}
+  .nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--paper);flex-direction:column;gap:0;padding:8px var(--m) 16px;border-bottom:1px solid var(--line)}
+  .nav.open{display:flex}
+  .nav a{padding:12px 0;font-size:16px;border-bottom:1px solid var(--line)}
+  .nav a:last-child{border-bottom:0}
+  .menu{display:block}
+  .brand{font-size:13px}
+  .head{padding:40px 0 24px;row-gap:16px}
+  .head h1{grid-column:1/13;font-size:40px}
+  .head .aside,.head .meta{grid-column:1/13}
+  .idx{grid-column:1/13}
+  .reveal{display:none}
+  a.row.act .t{transform:none}
+  .row{grid-template-columns:60px 1fr auto;column-gap:12px;row-gap:2px;padding:14px 0}
+  .row .n{white-space:nowrap}
+  .row .md{grid-column:2/3;grid-row:2;font-size:13px}
+  .row .y{display:none}
+  .row .r{grid-row:1;grid-column:3}
+  .row.hd{display:none}
+  .row.ch{padding:32px 0 12px}
+  .row.ch .l{grid-column:2/4;grid-row:2;font-size:12.5px}
+  .row.ch .c{grid-row:1;grid-column:3}
+  .plates{padding:72px 0 24px}
+  .chap{padding:24px 0 48px;row-gap:24px}
+  .chap__lab,.chap__grid,.chap__empty{grid-column:1/13}
+  .chap__grid{grid-template-columns:1fr;row-gap:40px}
+  .entry{padding:24px 0 48px;row-gap:32px;min-height:0}
+  .entry__fig,.entry__txt{grid-column:1/13}
+  .entry__fig img{max-height:none;width:100%}
+  .entry__txt h1{font-size:32px;margin:20px 0 24px}
+  .sec{padding:24px 0 40px;row-gap:16px}
+  .sec>h2,.sec>.body,.dated,.form{grid-column:1/13}
+  .dated article{grid-template-columns:1fr;row-gap:6px}
+  .ev{padding:28px 0;row-gap:12px}
+  .ev .d,.ev .x,.ev .fig{grid-column:1/13}
+  .ev .fig{margin-top:8px}
+  .lead{font-size:18px}
+  .vw__stage{inset:56px 0 64px}
+  .vw__top,.vw__bot{padding:0 var(--m)}
+  .vw__bot .hint{max-width:14ch}
+  .foot{margin-top:72px;flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top__in">
+    <a class="brand" href="#gallery" aria-label="Cody Saxton | Illuminator, gallery">
+      <svg viewBox="0 0 52 30" aria-hidden="true"><path d="M26 15c-4.6-6.3-8.6-9.4-12.4-9.4a9.4 9.4 0 1 0 0 18.8c3.8 0 7.8-3.1 12.4-9.4s8.6-9.4 12.4-9.4a9.4 9.4 0 1 1 0 18.8c-3.8 0-7.8-3.1-12.4-9.4z" fill="none" stroke="currentColor" stroke-width="3.6"/></svg>
+      <span style="color:var(--ink);font-weight:500">Cody Saxton</span><span>| Illuminator</span>
+    </a>
+    <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#gallery" data-r="gallery">Gallery</a>
+      <a href="#workshops" data-r="workshops">Workshops</a>
+      <a href="#thoughts" data-r="thoughts">Thoughts</a>
+      <a href="#news" data-r="news">News</a>
+      <a href="#about" data-r="about">About</a>
+      <a href="#contact" data-r="contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- GALLERY -->
+<section class="view" data-view="gallery" aria-labelledby="g-h">
+  <div class="head">
+    <h1 id="g-h">Art &amp; Life</h1>
+    <div class="meta lab"><span>Index</span><span class="num" id="g-count"></span></div>
+  </div>
+  <div class="cat">
+    <div class="idx" id="idx" role="list"></div>
+    <div class="reveal" aria-hidden="true">
+      <div class="reveal__stick">
+        <div class="reveal__frame" id="rv"></div>
+        <div class="reveal__cap" id="rvcap"></div>
+      </div>
+    </div>
+  </div>
+  <div class="plates" aria-labelledby="p-h">
+    <div class="plates__hd"><h2 id="p-h">Plates</h2><span class="lab num" id="p-count"></span></div>
+    <div id="chaps"></div>
+  </div>
+</section>
+
+<!-- WORK ENTRY -->
+<section class="view" data-view="work" id="work" aria-live="polite"></section>
+
+<!-- WORKSHOPS -->
+<section class="view" data-view="workshops" aria-labelledby="w-h">
+  <div class="head">
+    <h1 id="w-h">Workshops</h1>
+    <p class="aside">Small in-person sessions around meaning making and creativity. Dates and venues are announced here when scheduled.</p>
+  </div>
+  <div class="sec">
+    <h2>Upcoming</h2>
+    <div class="body"><p>More to come soon. Add yourself to the mailing list via the <a href="#contact">contact form</a> to be notified.</p></div>
+  </div>
+  <div class="sec">
+    <h2>Past</h2>
+    <div class="dated">
+      <article><span class="d num">May 2024</span><p><span class="t">Markmaking as Metaphor.</span> OBA Oosterdok. May 2024. Exploring unusual mark-making techniques and visual vocabulary translation.</p></article>
+      <article><span class="d num">June 2024</span><p><span class="t">Personal Rituals.</span> OBA Oosterdok. June 2024.</p></article>
+      <article><span class="d num">May 2024</span><p><span class="t">Design Your Life.</span> OBA Oosterdok. May 2024.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- THOUGHTS -->
+<section class="view" data-view="thoughts" aria-labelledby="t-h">
+  <div class="head">
+    <h1 id="t-h">Thoughts</h1>
+    <p class="aside">Notes from the studio — fragments on everything: art, philosophy, process to influences and relevant tangents. Posts will appear here as they're written.</p>
+  </div>
+  <div class="sec">
+    <h2>Notes</h2>
+    <div class="dated">
+      <article><time class="num" datetime="2026-09-10">10 September 2026</time><p>“Let everything happen to you: beauty, terror. Just keep going. No feeling is final.” — Rainer Maria Rilke (exerpt from Go To The Limits of Your Longing)</p></article>
+      <article><time class="num" datetime="2026-08-28">28 August 2026</time><p>With every trip around the sun, I think of all the good to come. Planting trees and helping friends, building Gaia up again.</p></article>
+      <article><time class="num" datetime="2026-08-15">15 August 2026</time><p>Leaping from a bridge into the Aare River in Bern, Switzerland was transformational...it feels like a part of me from long ago woke up from hibernation. I hesitated, nervous, and then remembered: "You don't have to go alone." When two women stepped over the railing, I broke with my habit of hyperindependence and asked to jump with them. They said "Of Course!"" And off we went, into the beautiful, clear, racing water. The power of secure attachment...can't say how much I feel glad for all I have learned over these years.</p></article>
+      <article><time class="num" datetime="2026-07-15">15 July 2026</time><p>Overnight train to Zurich, onto Milan...then trekking in the Italian Alps with silly friends. The mountains hold some power that exists nowhere in The Netherlands---they charge my battery with something so necessary. The lowlands have convenient bicycling and interesting international culture, among other things...but the nature ain't nature-ing. The word soul, or maybe the sense of connectedness to our Earth, tends to feel watery and diffuse in the swamp.</p></article>
+      <article><time class="num" datetime="2026-06-22">22 June 2026</time><p>Art is to make and speak and act in alignment with your highest-held values—it is real freedom.</p></article>
+      <article><time class="num" datetime="2026-05-21">21 May 2026</time><p>“Everything is art. Everything is politics.” — Ai Weiwei</p></article>
+      <article><time class="num" datetime="2026-05-19">19 May 2026</time><p>Ideas should be shared, explored and examined with others. I see each of us as an entirely unique little sensor of the specifics our particular nook of the universe--the view from "in here". When we transmit our condition and collected data--our perspective--the collective can include it to gain an unbiased understanding of the world. When we are silent, our view of the universe is wasted.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="view" data-view="news" aria-labelledby="n-h">
+  <div class="head">
+    <h1 id="n-h">News</h1>
+    <p class="aside">Announcements, new series, and upcoming shows. Nothing fresh just yet — check back soon.</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="view" data-view="about" aria-labelledby="a-h">
+  <div class="head">
+    <h1 id="a-h">About</h1>
+    <p class="aside" style="color:var(--ink)">Cody Saxton, Illuminator Omnimedia</p>
+  </div>
+  <div class="sec">
+    <h2>Practice</h2>
+    <div class="body">
+      <p class="lead">Art and Illustrations to illuminate ways toward a Healed World. Based in Amsterdam, Netherlands.</p>
+      <p class="muted" style="margin-top:24px">All works are sold unframed unless otherwise indicated, shipping is additional. 10% of sales donated to reforestation and degrowth efforts. No returns are possible at this time. Any items damaged in shipping must be claimed through insurance by the buyer. Transactions are conducted in Euros. Payment in full must be received prior to shipping. Payments can be made by Mollie or direct IBAN deposit: NL55SNSB8841074353 Illuminator Omnimedia. KVK #91859476 Registered business address: Bankwerkerij 159, Amsterdam NL 1021NT. Live contact through Instagram <a href="https://instagram.com/codysaxtonart" rel="noopener" target="_blank">@codysaxtonart</a> or <a href="mailto:invigorated@proton.me">invigorated@proton.me</a>.</p>
+    </div>
+  </div>
+  <div class="sec" style="border-bottom:0;padding-bottom:8px">
+    <h2>Exhibitions &amp; Press</h2>
+  </div>
+  <div class="chron">
+    <article class="ev">
+      <span class="d num">November 2026</span>
+      <div class="x"><h3>Things</h3><p>Upcoming: PopUp show of selected works at Things.</p></div>
+      <figure class="fig"><img src="img/creature1.jpg" alt="Ink line drawing of a masked winged creature with antlers and long fingers" width="1280" height="1075" loading="lazy"></figure>
+    </article>
+    <article class="ev">
+      <span class="d num">June 2025</span>
+      <div class="x"><h3>Plum Village, France: Science, Zen and the Art of Health retreat</h3><p>Participant, <a href="https://plumvillage.org" target="_blank" rel="noopener">Plum Village</a> retreat : <a href="https://plumvillage.org/event/retreat/the-wonder-of-it-all" target="_blank" rel="noopener">The Wonder of It All</a></p></div>
+    </article>
+    <article class="ev">
+      <span class="d num">Nov 2023</span>
+      <div class="x"><h3>Open Gallery Exhibition 2023</h3><p>5 piece series, shown as part of group show of the Amsterdam International Artist Collective gallery.</p></div>
+      <figure class="fig"><img src="img/aiac-install-photo.jpg" alt="Five framed works hung on a white gallery wall at the Amsterdam International Artist Collective group show" width="1500" height="2000" loading="lazy" style="max-width:360px"></figure>
+    </article>
+    <article class="ev">
+      <span class="d num">July 2020</span>
+      <div class="x"><h3>Pandemic Testing Shelter, newspaper coverage in Albuquerque Journal.</h3><p>Newspaper article described and pictured my invention, development with engineers and deployment at Sandia National Laboratories to build and deploy an alternative PPE system as a shortage threatened early in the Covid-19 pandemic. Building plans were released open-source, so other institutions built their own versions to protect healthcare workers at testing sites around New Mexico.</p></div>
+      <figure class="fig"><a class="pdf" href="img/albuquerque-journal-2020.pdf" target="_blank" rel="noopener"><img src="img/albuquerque-journal-2020.jpg" alt="Albuquerque Journal clipping: Sandia shares design for testing shelters" width="1000" height="954" loading="lazy"></a><figcaption><a href="img/albuquerque-journal-2020.pdf" target="_blank" rel="noopener">Read the article (PDF)</a></figcaption></figure>
+    </article>
+    <article class="ev">
+      <span class="d num">designed 2005</span>
+      <div class="x"><h3>T-shirt design for Rojas, worn by Rosario Dawson in Quentin Tarantino's 2007 film Deathproof</h3><p>Film wardrobe piece for Deathproof (grossed 31.1 USD at box office). Unicorn t-shirt graphic designed for Freddy Rojas' Los Angeles clothing brand, Rojas.</p></div>
+      <figure class="fig sm"><img src="img/deathproof-rojas-tshirt.jpg" alt="Film still from Deathproof showing the Rojas unicorn t-shirt" width="1600" height="1073" loading="lazy"></figure>
+    </article>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="view" data-view="contact" aria-labelledby="c-h">
+  <div class="head">
+    <h1 id="c-h">Contact</h1>
+    <p class="aside">For purchases, exhibition enquiries, or workshop dates — use the form below or write to <a href="mailto:invigorated@proton.me" style="color:var(--ink)">invigorated@proton.me</a>.</p>
+  </div>
+  <div class="sec" style="border-bottom:0">
+    <h2>Form</h2>
+    <form class="form" id="cform" novalidate>
+      <div class="fld"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+      <div class="fld"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="fld"><label for="f-subject">Subject (optional)</label><input id="f-subject" name="subject"></div>
+      <div class="fld"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required></textarea></div>
+      <div class="hp" aria-hidden="true"><label for="f-web">Leave this empty</label><input id="f-web" name="website" tabindex="-1" autocomplete="off"></div>
+      <button class="send" type="submit">Send message</button>
+    </form>
+  </div>
+</section>
+
+<!-- IMPRINT -->
+<section class="view" data-view="imprint" aria-labelledby="i-h">
+  <div class="head"><h1 id="i-h">Imprint</h1><p class="aside">Instagram <a href="https://instagram.com/codysaxtonart" target="_blank" rel="noopener" style="color:var(--ink)">@codysaxtonart</a></p></div>
+  <div class="sec"><h2>Responsible for content</h2><div class="body"><p class="addr">[Illuminator Omnimedia]
+[Bankwerkerij 159]
+[1021 NT, Amsterdam]
+[NL]</p></div></div>
+  <div class="sec"><h2>Contact</h2><div class="body"><p>Email: <a href="mailto:invigorated@proton.me">invigorated@proton.me</a></p></div></div>
+  <div class="sec"><h2>VAT / Chamber of Commerce</h2><div class="body"><p>KvK / HRB number: [91859476]<br>VAT ID: [upon request]</p></div></div>
+</section>
+
+<!-- PRIVACY -->
+<section class="view" data-view="privacy" aria-labelledby="pr-h">
+  <div class="head"><h1 id="pr-h">Privacy notice</h1><p class="aside num">Last reviewed: 2026-05-11</p></div>
+  <div class="sec"><h2>Notice</h2><div class="body"><p>This notice explains what personal data this site collects, why, who else sees it, and what you can do about it. The site is small and intentionally light: no analytics, no advertising, no tracking cookies.</p></div></div>
+  <div class="sec"><h2>1. Who is responsible</h2><div class="body">
+    <p class="addr">Controller: [LEGAL_NAME]
+[STREET_ADDRESS]
+[POSTAL_CODE_CITY]
+[COUNTRY]
+Email: [EMAIL]
+KvK / Chamber of Commerce: [KVK_NUMBER]
+VAT ID: [VAT_ID]</p>
+    <p>For any privacy question, email the address above. We will respond within 30 days.</p>
+  </div></div>
+  <div class="sec"><h2>2. What we collect, and why</h2><div class="body">
+    <h3>a) Just visiting the site</h3>
+    <p>When you load a page, our hosting provider (TransIP B.V., Netherlands) records standard server logs: your IP address, the URL you requested, the time of the request, your browser identifier (User-Agent), and the referring page.</p>
+    <ul><li>Purpose: to keep the site running and detect abuse.</li><li>Legal basis: legitimate interest (GDPR Art. 6(1)(f)).</li><li>Retention: TransIP rotates server logs within roughly 30 days.</li></ul>
+    <h3>b) Buying an artwork</h3>
+    <p>When you click "Purchase" on an artwork page, you are redirected to Mollie B.V. (Netherlands). Mollie collects what the payment method requires — typically your name, email address, billing address, and, where shipping collection is enabled, your shipping address. Payment details (card number, bank account) stay with Mollie; we never see or store them.</p>
+    <p>After a successful payment, Mollie sends us a confirmation email containing your name, email, and shipping address so we can ship the work.</p>
+    <ul><li>Purpose: process the sale and ship the artwork.</li><li>Legal basis: performance of a contract (GDPR Art. 6(1)(b)).</li><li>Retention: order records are kept for 7 years as required by Dutch tax law (Algemene wet inzake rijksbelastingen, art. 52).</li></ul>
+    <h3>c) Emailing us</h3>
+    <p>If you write to us at the contact address, we receive whatever you put in the email — typically your email address, your name, and the content of your message.</p>
+    <ul><li>Purpose: to reply.</li><li>Legal basis: legitimate interest, or pre-contractual measures if the email concerns a possible purchase.</li><li>Retention: up to 3 years, unless the correspondence relates to a sale — in which case the 7-year tax-record retention above applies.</li></ul>
+    <h3>d) Shipping</h3>
+    <p>To ship a purchased artwork we share your name and shipping address with our carrier ([SHIPPING_CARRIER]). The carrier acts as a separate controller for that data and you should consult their own privacy notice for how they handle it.</p>
+  </div></div>
+  <div class="sec"><h2>3. Who else processes your data</h2><div class="body">
+    <p>We rely on a small number of service providers. None of them sell or share your data for advertising:</p>
+    <ul><li>TransIP B.V. — hosting, server logs, daily backups. Netherlands (EU).</li><li>Mollie B.V. — payment processing. Netherlands (EU). See <a href="https://www.mollie.com/privacy" target="_blank" rel="noopener">Mollie's privacy notice</a>.</li><li>[EMAIL_PROVIDER] — email inbox. [EMAIL_PROVIDER_LOCATION].</li><li>[SHIPPING_CARRIER] — delivery. [COUNTRY].</li></ul>
+    <p>We do not sell or rent your data. We share it only with the parties above, and only as needed to operate the site, process your order, and deliver your purchase — or where we are required to by law.</p>
+  </div></div>
+  <div class="sec"><h2>4. International transfers</h2><div class="body"><p>All processing happens within the EU/EEA. We do not transfer your personal data to countries outside the EU/EEA. (Should that ever change — for example if we add a service hosted elsewhere — this notice will be updated before the transfer starts.)</p></div></div>
+  <div class="sec"><h2>5. Cookies and tracking</h2><div class="body"><p>This site sets no cookies of its own. We use no analytics (no Google Analytics, no Plausible, no Matomo), no tracking pixels, no advertising scripts, and no embedded social media widgets. Because of this, we do not show a cookie banner.</p><p>Note that Mollie's checkout pages — which you are redirected to when you press "Purchase" — set their own cookies. Those are governed by Mollie's privacy policy linked above.</p></div></div>
+  <div class="sec"><h2>6. Your rights</h2><div class="body">
+    <p>Under the GDPR you have the right to:</p>
+    <ul><li>access the personal data we hold about you;</li><li>rectify inaccurate or incomplete data;</li><li>erase your data ("right to be forgotten"), within the limits of our legal retention obligations (notably the 7-year tax records);</li><li>restrict processing of your data;</li><li>data portability — receive your data in a machine-readable format;</li><li>object to processing based on legitimate interest; and</li><li>withdraw consent, where consent was the legal basis.</li></ul>
+    <p>To exercise any of these, email [EMAIL]. We will respond within 30 days.</p>
+    <p>You also have the right to lodge a complaint with your national supervisory authority. In the Netherlands this is <a href="https://autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener">Autoriteit Persoonsgegevens</a>.</p>
+  </div></div>
+  <div class="sec"><h2>7. Children</h2><div class="body"><p>This site is not directed at children under 16. We do not knowingly collect data from children. If you believe a child has provided personal data to us, please contact us so we can remove it.</p></div></div>
+  <div class="sec"><h2>8. Security</h2><div class="body"><p>The site is served exclusively over HTTPS (TLS) using a certificate issued by Let's Encrypt and auto-renewed by TransIP. Order data lives only in our email inbox and in Mollie's systems; we do not operate a customer database.</p></div></div>
+  <div class="sec"><h2>9. Changes to this notice</h2><div class="body"><p>We may update this notice when our processing changes — for example, when we add a new shipping carrier or switch hosting provider. Material changes are reflected in the "last reviewed" date at the top of the page.</p></div></div>
+  <div class="sec"><h2>10. Contact</h2><div class="body"><p>For any privacy question or rights request: [EMAIL].</p></div></div>
+</section>
+
+<!-- TERMS -->
+<section class="view" data-view="terms" aria-labelledby="te-h">
+  <div class="head"><h1 id="te-h">Terms &amp; Conditions</h1><p class="aside">This is a placeholder for the legally required terms. Replace with vetted text — consider iubenda or a local accountant/lawyer before launch.</p></div>
+  <div class="sec"><h2>Prices and VAT</h2><div class="body"><p>All prices in euro. VAT treatment depends on the small-business scheme — confirm with an accountant whether VAT must be added to listed prices.</p></div></div>
+  <div class="sec"><h2>Payment</h2><div class="body"><p>Payments are processed by Mollie. Accepted methods depend on what is enabled per payment link (iDEAL, cards, etc.).</p></div></div>
+  <div class="sec"><h2>Shipping</h2><div class="body"><p>Originals are packed and shipped within 5 working days of payment. Shipping cost and method are agreed by email after purchase.</p></div></div>
+  <div class="sec" id="withdrawal"><h2>Right of withdrawal (EU)</h2><div class="body"><p>You have 14 days from receipt to withdraw from the purchase without giving a reason. Send an email to hello@example.com to start the return. Pieces must be returned in their original condition at your expense; the purchase price is refunded within 14 days of receipt of the returned work.</p></div></div>
+  <div class="sec"><h2>Originals as "made to order"</h2><div class="body"><p>Some original works may be exempt from the right of withdrawal as personalised or made-to-order goods. If so, it will be stated on the artwork page. Otherwise the standard 14-day right above applies.</p></div></div>
+  <div class="sec"><h2>Liability</h2><div class="body"><p>Damage in transit: notify within 7 days of delivery with photos so a claim can be filed with the carrier.</p></div></div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <span class="c">© 2026 Cody Saxton · Art &amp; Utopianism</span>
+  <nav aria-label="Footer">
+    <a href="#imprint">Imprint</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#terms">Terms</a>
+    <a href="#contact">Contact</a>
+    <a href="https://instagram.com/codysaxtonart" target="_blank" rel="noopener">@codysaxtonart</a>
+  </nav>
+</footer>
+
+<!-- VIEWER -->
+<div class="vw" id="vw" role="dialog" aria-modal="true" aria-label="Full view" hidden>
+  <div class="vw__top"><span class="k" id="vw-k"></span><button id="vw-x">Close</button></div>
+  <div class="vw__stage" id="vw-stage"><img id="vw-img" alt=""></div>
+  <div class="vw__bot"><span class="hint">pinch or click to zoom · esc to close</span><span class="arr"><button id="vw-p" aria-label="Previous work">Previous</button><button id="vw-n" aria-label="Next work">Next</button></span></div>
+</div>
+
+<script>
+const SERIES=[
+  {id:'ink-lings',name:'ink-lings',line:'brush and sumi ink on rice paper · 2024–',roman:'I'},
+  {id:'color-wonderings',name:'color wonderings',line:'watercolor and gouache · 2023–',roman:'II'},
+  {id:'terracotta-subconscious',name:'terracotta subconscious',line:'earth pigments and oil pastel · 2025–',roman:'III'}
+];
+const WORKS=[
+  {slug:'wind-women-1',series:'ink-lings',title:'Wind Women 1',medium:'Ink on paper',year:'2025',price:50,img:'img/wind-women-1.webp',w:1080,h:1350,alt:'Ink painting on paper of masked and winged woman'},
+  {slug:'seaweed-soul',series:'ink-lings',title:'Seaweed Soul',medium:'Ink on Paper',year:'2026',price:75,img:'img/seaweed-soul.webp',w:1080,h:1350,alt:'Ink painting on paper of woman with organic hands and head'},
+  {slug:'inner',series:'terracotta-subconscious',title:'Inner',medium:'Ink on terracotta paper',year:'2025',price:35,img:'img/inner.webp',w:1106,h:1549,alt:'Ink painting on paper of woman with organs and animal'}
+];
+WORKS.forEach((w,i)=>w.plate=i+1);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ser=id=>SERIES.find(s=>s.id===id);
+const eur=n=>'€'+n;
+const plural=n=>n+(n===1?' work':' works');
+
+/* index */
+(function(){
+  let h='<div class="row hd lab" role="presentation"><span>No.</span><span>Title</span><span>Medium</span><span>Year</span><span class="r">Price</span></div>';
+  SERIES.forEach(s=>{
+    const ws=WORKS.filter(w=>w.series===s.id);
+    h+=`<div class="row ch" role="listitem"><span class="n">${s.roman}</span><span class="t">${esc(s.name)}</span><span class="l">${esc(s.line)}</span><span class="c num">${plural(ws.length)}</span></div>`;
+    ws.forEach(w=>{
+      h+=`<a class="row" role="listitem" href="#work/${w.slug}" data-slug="${w.slug}"><span class="n num">Plate ${w.plate}</span><span class="t">${esc(w.title)}</span><span class="md">${esc(w.medium)}</span><span class="y num">${w.year}</span><span class="r num">${eur(w.price)}</span></a>`;
+    });
+  });
+  $('#idx').innerHTML=h;
+  $('#g-count').textContent=SERIES.length+' series · '+plural(WORKS.length);
+  $('#p-count').textContent=WORKS.length+' plates';
+  $('#rv').innerHTML=WORKS.map(w=>`<img src="${w.img}" alt="" width="${w.w}" height="${w.h}" data-slug="${w.slug}">`).join('');
+  const cap=$('#rvcap');
+  function show(slug){
+    const w=WORKS.find(x=>x.slug===slug);
+    document.querySelectorAll('#rv img').forEach(i=>i.classList.toggle('on',i.dataset.slug===slug));
+    document.querySelectorAll('#idx a.row').forEach(r=>r.classList.toggle('act',r.dataset.slug===slug));
+    cap.innerHTML=`<span>Plate ${w.plate} · <b>${esc(w.title)}</b></span><span class="num">${w.year}</span>`;
+  }
+  document.querySelectorAll('#idx a.row').forEach(r=>{
+    r.addEventListener('mouseenter',()=>show(r.dataset.slug));
+    r.addEventListener('focus',()=>show(r.dataset.slug));
+  });
+  show(WORKS[0].slug);
+
+  /* plates by chapter */
+  $('#chaps').innerHTML=SERIES.map(s=>{
+    const ws=WORKS.filter(w=>w.series===s.id);
+    const lab=`<div class="chap__lab"><span class="k">Chapter ${s.roman}</span><h3>${esc(s.name)}</h3><p>${esc(s.line)}</p></div>`;
+    const body=ws.length?`<div class="chap__grid">${ws.map(w=>`<a class="plate" href="#work/${w.slug}"><div class="plate__img"><img src="${w.img}" alt="${esc(w.alt)}" width="${w.w}" height="${w.h}" loading="lazy"></div><div class="plate__cap"><span class="k num">Plate ${w.plate}</span><span class="r num">${eur(w.price)}</span><span class="t">${esc(w.title)}</span><span></span><span class="md">${esc(w.medium)}, ${w.year}</span></div></a>`).join('')}</div>`:`<p class="chap__empty num">${plural(0)}</p>`;
+    return `<section class="chap" id="ch-${s.id}">${lab}${body}</section>`;
+  }).join('');
+})();
+
+/* work entry */
+function renderWork(slug){
+  const i=WORKS.findIndex(w=>w.slug===slug);
+  if(i<0) return false;
+  const w=WORKS[i],s=ser(w.series);
+  const prev=WORKS[(i-1+WORKS.length)%WORKS.length],next=WORKS[(i+1)%WORKS.length];
+  $('#work').innerHTML=`
+  <div class="entry">
+    <div class="entry__fig"><button type="button" id="openvw" aria-label="Open full view of ${esc(w.title)}"><img src="${w.img}" alt="${esc(w.alt)}" width="${w.w}" height="${w.h}"></button></div>
+    <div class="entry__txt">
+      <div class="k"><a class="back" href="#gallery">Back to index</a><span class="lab num">Plate ${w.plate} / ${WORKS.length}</span></div>
+      <h1>${esc(w.title)}</h1>
+      <dl class="dl">
+        <div><dt>Series</dt><dd>${esc(s.name.toUpperCase())}</dd></div>
+        <div><dt>Medium</dt><dd>${esc(w.medium)}</dd></div>
+        <div><dt>Year</dt><dd class="num">${w.year}</dd></div>
+        <div><dt>Price</dt><dd class="num">${eur(w.price)}</dd></div>
+      </dl>
+      <p class="entry__note">Includes packaging. Shipping calculated at checkout.</p>
+      <a class="buy num" href="https://codysaxton.eu/checkout.php?slug=${w.slug}">Purchase — ${eur(w.price)}</a>
+      <p class="fine">Right of withdrawal within 14 days under EU consumer law — <a href="#terms">see terms</a>.</p>
+      <button type="button" class="zoomlink" id="openvw2">View full size</button>
+      <nav class="pn" aria-label="Other plates">
+        <a href="#work/${prev.slug}"><span class="num">Previous · Plate ${prev.plate}</span><b>${esc(prev.title)}</b></a>
+        <a href="#work/${next.slug}"><span class="num">Next · Plate ${next.plate}</span><b>${esc(next.title)}</b></a>
+      </nav>
+    </div>
+  </div>`;
+  $('#openvw').onclick=()=>openViewer(w.slug);
+  $('#openvw2').onclick=()=>openViewer(w.slug);
+  document.title=w.title+' · Cody Saxton | Illuminator';
+  return true;
+}
+
+/* router */
+const TITLES={gallery:'Cody Saxton | Illuminator',workshops:'Workshops',thoughts:'Thoughts',news:'News',about:'About',contact:'Contact',imprint:'Imprint',privacy:'Privacy notice',terms:'Terms & Conditions'};
+let current=null;
+function route(){
+  let h=(location.hash||'#gallery').slice(1);
+  let view=h,slug=null;
+  if(h.startsWith('work/')){view='work';slug=h.slice(5)}
+  if(view==='work'&&!renderWork(slug)) view='gallery';
+  if(view!=='work'&&!TITLES[view]) view='gallery';
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.dataset.view===view));
+  const navKey=view==='work'?'gallery':view;
+  document.querySelectorAll('.nav a').forEach(a=>{if(a.dataset.r===navKey)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  if(view!=='work') document.title=view==='gallery'?TITLES.gallery:TITLES[view]+' · Cody Saxton | Illuminator';
+  if(current!==null) window.scrollTo(0,0);
+  current=h;
+  $('#nav').classList.remove('open');$('.menu').setAttribute('aria-expanded','false');
+}
+window.addEventListener('hashchange',route);
+route();
+$('.menu').addEventListener('click',e=>{const o=$('#nav').classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o)});
+
+/* viewer */
+const vw=$('#vw'),vimg=$('#vw-img'),stage=$('#vw-stage');
+let vIdx=0,lastFocus=null;
+function setViewer(i){
+  vIdx=(i+WORKS.length)%WORKS.length;const w=WORKS[vIdx];
+  vw.classList.remove('z');
+  vimg.src=w.img;vimg.alt=w.alt;
+  $('#vw-k').textContent='Plate '+w.plate+' · '+w.title+' · '+w.medium+', '+w.year;
+}
+function openViewer(slug){
+  lastFocus=document.activeElement;
+  setViewer(WORKS.findIndex(w=>w.slug===slug));
+  vw.hidden=false;vw.classList.add('open');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>vw.classList.add('show')));
+  document.body.style.overflow='hidden';
+  $('#vw-x').focus();
+}
+function closeViewer(){
+  vw.classList.remove('show','z');
+  document.body.style.overflow='';
+  setTimeout(()=>{vw.classList.remove('open');vw.hidden=true},matchMedia('(prefers-reduced-motion: reduce)').matches?0:450);
+  if(lastFocus) lastFocus.focus();
+}
+function step(d){
+  if(vw.classList.contains('open')){setViewer(vIdx+d);return}
+  const h=location.hash.slice(1);
+  if(h.startsWith('work/')){const i=WORKS.findIndex(w=>w.slug===h.slice(5));location.hash='work/'+WORKS[(i+d+WORKS.length)%WORKS.length].slug}
+}
+stage.addEventListener('click',e=>{
+  const r=vimg.getBoundingClientRect();
+  if(!vw.classList.contains('z')){
+    const x=Math.min(Math.max((e.clientX-r.left)/r.width,0),1)*100,y=Math.min(Math.max((e.clientY-r.top)/r.height,0),1)*100;
+    vimg.style.transformOrigin=x+'% '+y+'%';
+  }
+  vw.classList.toggle('z');
+});
+stage.addEventListener('mousemove',e=>{
+  if(!vw.classList.contains('z')) return;
+  const s=stage.getBoundingClientRect();
+  vimg.style.transformOrigin=((e.clientX-s.left)/s.width*100)+'% '+((e.clientY-s.top)/s.height*100)+'%';
+});
+$('#vw-x').onclick=closeViewer;
+$('#vw-p').onclick=()=>setViewer(vIdx-1);
+$('#vw-n').onclick=()=>setViewer(vIdx+1);
+document.addEventListener('keydown',e=>{
+  if(e.target.matches('input,textarea')) return;
+  if(e.key==='Escape'&&vw.classList.contains('open')) closeViewer();
+  else if(e.key==='ArrowRight') step(1);
+  else if(e.key==='ArrowLeft') step(-1);
+  else if(e.key==='Tab'&&vw.classList.contains('open')){
+    const f=[...vw.querySelectorAll('button')];const a=f.indexOf(document.activeElement);
+    e.preventDefault();f[(a+(e.shiftKey?-1:1)+f.length)%f.length].focus();
+  }
+});
+
+/* contact: opens the visitor's mail app */
+$('#cform').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=e.target;
+  if(f.website.value) return;
+  if(!f.reportValidity()) return;
+  const subj=f.subject.value;
+  const body=f.message.value+'\n\n'+f.name.value+'\n'+f.email.value;
+  location.href='mailto:invigorated@proton.me?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+});
+</script>
+</body>
+</html>
