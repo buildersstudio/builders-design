@@ -1,0 +1,2014 @@
+{
+  "updated": "2026-09-27",
+  "vision": "Krans becomes the evidence layer that corporate venture teams and the agencies who build for them run their validation on: every call reviewed within minutes, every learning graded and cited, and at the end of each sprint a verdict the sponsor can check, delivered as much through the assistant people already work in as through the app.",
+  "strategy": {
+    "direction": "Sell the sprint verdict, not the portfolio dashboard. Package Krans as a priced validation sprint for corporate venture teams and innovation agencies, whose sponsors already pay for validation, and make its output a sponsor-ready go, pivot or kill report cited to the call and second. Make the MCP connector as reliable as the app, because the heaviest users live in Claude, and keep Reflections free as the hook that gets every call into Krans. Hold the studio-wide portfolio overview until one partner uses it across their own live ventures.",
+    "why": [
+      "Nobody in 78 relevant calls is shown paying or signing. The only budgets that moved belong to teams with a sponsor: an innovation agency agreed a four-month pilot verbally and plans to pass the cost to its corporate client, and a corporate innovation team used a Krans prompt to write its sponsor report.",
+      "Studios anchor far below the list price of about 3,000 to 4,000 a month: 600 euros for three months, 5,000 to 10,000 dollars for an experiment, or zero while fundraising. Several build their own second brain in Git, Claude or a portal instead.",
+      "The three accounts with real use all work through an assistant: the investor briefs himself in Claude before founder meetings, the corporate lead writes Notion pages from Claude, the agency connected Read AI and Claude and cancelled Otter. When the connector breaks, the product is gone for them.",
+      "Reflections is the feature users name unprompted, because it changes how they interview; Threads and the baseline come next. The E0 to E5 scale is valued when it is explained and resented when a score moves without a reason.",
+      "In the market, recording is becoming free (Notion, ChatGPT Record, Superhuman buying Fathom) and every note-taker now ships an MCP server, so capture is not a moat. The unmet complaint is the step from insight to decision: one reviewer can find the call where pricing came up, not the one where it was decided."
+    ],
+    "notNow": [
+      "A portfolio overview sold to studio partners as monitoring. Partners ask for visibility in 15 calls, but investors and a fund partner warn founders will resist being listened to, and no partner has used the overview across their own live ventures.",
+      "A standalone note-taker or bot. Capture is commoditised and platforms are blocking bots; Krans should read Read AI, Granola, Fathom, Meet and uploads rather than compete with them.",
+      "Outreach and go-to-market automation for founders. Several inbound founders wanted it, but it is a different product and those founders had no budget.",
+      "Selling to solo founders. The team itself says they will not pay even 100 a month, and the heaviest founder use was free."
+    ],
+    "sequence": [
+      {
+        "step": "Fix the MCP connector: tools always exposed, no silent logouts, a health check the user can see, and a regression test per release.",
+        "when": "October 2026"
+      },
+      {
+        "step": "Write the verdict report by hand from Krans data for the agency pilot and the corporate team, and ask each sponsor to read it.",
+        "when": "October to November 2026"
+      },
+      {
+        "step": "Put a price on the sprint (per venture, per sprint, unlimited readers) and send it to the agency, the corporate team and two corporate venture studios from the pipeline.",
+        "when": "November 2026"
+      },
+      {
+        "step": "Productise the verdict and the method editor once two sponsors have used a report in a real decision.",
+        "when": "December 2026 to January 2027"
+      },
+      {
+        "step": "Revisit the portfolio overview with the first studio that runs three or more ventures on Krans.",
+        "when": "Q1 2027"
+      }
+    ],
+    "killCriteria": [
+      "By 15 December 2026 no sponsor has read a verdict report and no team has paid for a second sprint: the sponsor wedge is wrong.",
+      "The agency pilot does not convert to a signed, paid agreement by the end of its sprint.",
+      "Users keep choosing their own Claude plus note-taker setup over the connector even after it is reliable: Krans is a feature of their assistant, not a product."
+    ],
+    "evidenceGaps": [
+      "No contract, invoice or renewal in any call: whether the corporate team and the agency pay rests on the team's own statements. Check the books before anything else.",
+      "No usage data: weekly active users, calls per workspace, and whether use survives the first venture.",
+      "The founder-resistance objection is untested outside the studio's own programme. Ask three portfolio founders at a customer before building partner views.",
+      "No lost-deal reasons and no head-to-head against Dovetail, Granola or Notion AI.",
+      "Nothing yet on what sponsors do with a report: whether they read it, trust it, or ask for slides.",
+      "Reddit, X and LinkedIn were not reachable for this research, so the voice of the market leans on Hacker News, Trustpilot, Capterra and Product Hunt."
+    ]
+  },
+  "research": {
+    "patterns": [
+      {
+        "title": "The winners in capture grew on free, then moved into context",
+        "text": "Granola (valued at 1.5 billion dollars in March 2026), Fireflies (1 billion via a tender in 2025), Otter (100 million ARR) and Read AI grew bottom-up on free tiers, then added team spaces, email and MCP. Gong still passed 300 million ARR by selling deal intelligence to revenue teams rather than recordings.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Granola raised 125 million dollars at a 1.5 billion valuation and expanded from notetaker to enterprise app.",
+            "url": "https://techcrunch.com/2026/03/25/granola-raises-125m-hits-1-5b-valuation-as-it-expands-from-meeting-notetaker-to-enterprise-ai-app/",
+            "source": "TechCrunch",
+            "date": "2026-03-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Gong surpassed 300 million dollars ARR.",
+            "url": "https://www.gong.io/press/gong-surpasses-300m-arr-amid-increased-demand-for-ai-powered-revenue-solutions",
+            "source": "Gong",
+            "date": "2025-03-05"
+          },
+          {
+            "kind": "competitor",
+            "text": "Otter passed 100 million dollars ARR in 2025 with fewer than 200 employees.",
+            "url": "https://otter.ai/blog/otter-ai-caps-transformational-2025-with-100m-arr-milestone-industry-first-ai-meeting-agents-and-global-enterprise-expansion",
+            "source": "Otter",
+            "date": "2025-12-22"
+          }
+        ]
+      },
+      {
+        "title": "Research tools that charge readers lose to ones that charge producers",
+        "text": "Condens charges per contributor with unlimited viewers; Dovetail dropped published seat pricing, and reviewers describe a near 4x tier jump. Studios and corporate teams have many readers (partners, sponsors) and few people running calls, so seat pricing punishes exactly the audience Krans needs.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Condens: per contributor, unlimited viewers.",
+            "url": "https://condens.io/pricing/",
+            "source": "Condens",
+            "date": "2026"
+          },
+          {
+            "kind": "signal",
+            "text": "\"It was a near 4x leap in costs.\" (UX researcher on Dovetail)",
+            "url": "https://capterra.com/p/174077/Dovetail/reviews/",
+            "source": "Capterra",
+            "date": "2024-10-30"
+          }
+        ]
+      },
+      {
+        "title": "Portfolio tools work on numbers and relationships, not on what customers said",
+        "text": "Affinity, Visible and Standard Metrics track relationships, KPIs and financials, and are adding AI analysts and MCP. None grade qualitative evidence from calls. Affinity now bundles a notetaker and a hosted MCP server in its 2,300 dollar per user tier, which moves it closest to Krans for funds.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Affinity Scale adds Notetaker, AI chat, agents and a hosted MCP server.",
+            "url": "https://www.affinity.co/product/affinity-pricing",
+            "source": "Affinity",
+            "date": "2026-09"
+          },
+          {
+            "kind": "competitor",
+            "text": "Standard Metrics raised 20 million dollars and launched a portfolio-wide AI analyst.",
+            "url": "https://www.prnewswire.com/news-releases/ai-driven-portfolio-management-platform-standard-metrics-raises-20m-to-supercharge-private-markets-innovation-302856929.html",
+            "source": "PR Newswire",
+            "date": "2026-08"
+          }
+        ]
+      },
+      {
+        "title": "Innovation suites run stage gates by hand",
+        "text": "ITONICS, Qmarkets and Wazoku sell radars, portfolios and stage gates to corporate innovation teams, priced on request and typically in the tens of thousands a year. The evidence behind a gate still arrives as a deck. Board of Innovation gives away AI interview tools to win the same buyers.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "ITONICS: Core, Pro and Enterprise tiers, prices on request, AI agents as an add-on.",
+            "url": "https://www.itonics-innovation.com/pricing",
+            "source": "ITONICS",
+            "date": "2026-09"
+          },
+          {
+            "kind": "competitor",
+            "text": "Board of Innovation offers free AI tools for corporate venture building.",
+            "url": "https://ai.boardofinnovation.com/",
+            "source": "Board of Innovation",
+            "date": "2026"
+          }
+        ]
+      }
+    ],
+    "problem": [
+      {
+        "title": "Go or kill is decided on a feeling, then written up in a deck",
+        "text": "Corporate venture builders and studio partners describe evidence bars they set themselves and cannot defend, and write-ups in Word or PowerPoint. The corporate user stopped interviewing when Krans showed no new problems appearing.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "je maakt het vooral op feeling vaak... Het is vaak anekdotisch.",
+            "tier": "E3",
+            "who": "Solo venture builder, Dutch corporate venture unit",
+            "conv": "4d8c84f6-6960-4622-8dfa-2da23d83ede1",
+            "ms": 1049898
+          },
+          {
+            "kind": "call",
+            "text": "je kan een klein stukje valideren, maar dan is nog steeds 99% niet gevalideerd. Dus zo moet je gewoon telkens zelf ook een beetje ...",
+            "tier": "E3",
+            "who": "Venture creation lead, Dutch corporate venture studio (insurance group)",
+            "conv": "c8e71705-2b97-42e8-a4b2-4ab14367ea10",
+            "ms": 570300
+          },
+          {
+            "kind": "call",
+            "text": "ik zie in VDI ook niet als ik hier nog het aantal interviews zou gaan verdubbelen, zie ik nog niet andere problemen op gaan poppen.",
+            "tier": "E3",
+            "who": "Venture builder, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+            "conv": "f756421d-9a1b-4fea-a983-5ad92c49fdff",
+            "ms": 234190
+          }
+        ]
+      },
+      {
+        "title": "Sponsors pay for validation and want proof",
+        "text": "Agencies and corporate teams answer to a sponsor. One agency partner will pay for validation but not beyond it, and wants to show the client how a result was reached.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "I'll pay for validation, but I won't pay beyond validation. Like for create like it's already created, it's running.",
+            "tier": "E2",
+            "who": "Partner, innovation agency working for corporates (about its energy-corporate sponsor)",
+            "conv": "125873f3-0a94-4a02-934c-439842f20087",
+            "ms": 337290
+          },
+          {
+            "kind": "call",
+            "text": "it's impressive, right, to show them the actual UI and show them, hey, this is how we got to this result... one thing that I complain about is that ...",
+            "tier": "E3",
+            "who": "Partner, innovation agency working for corporates",
+            "conv": "84a8c28a-1500-4077-8487-11854e0f8e95",
+            "ms": 2863350
+          },
+          {
+            "kind": "call",
+            "text": "En ik heb jouw prompt van jou toevallig net gebruikt om de rapportage op te stellen. Dat werkt echt super goed.",
+            "tier": "E4",
+            "who": "Venture builder / innovation lead, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+            "conv": "f756421d-9a1b-4fea-a983-5ad92c49fdff",
+            "ms": 199782
+          }
+        ]
+      },
+      {
+        "title": "The evidence is everywhere except in one place",
+        "text": "Calls sit in four different note-takers, notes in Notion, deals in a CRM, context on WhatsApp and in people's heads. Synthesis across dozens of calls is manual.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "My data sits somewhere in Google Drive. Some it's sitting on my WhatsApp, some of it is sitting somewhere on the email and some is in my own head and the founder's head.",
+            "tier": "E3",
+            "who": "Studio lead, new real-estate venture studio backed by a real estate group",
+            "conv": "f5a5a628-61fa-472d-9170-8b6e39c93149",
+            "ms": 772530
+          },
+          {
+            "kind": "call",
+            "text": "it was so hard to try to like look across all of those conversations and be like, okay, what's like an actual trend within this? Like, what is this telling us?",
+            "tier": "E3",
+            "who": "Partner, US fund investing in venture-builder startups (former startup operator)",
+            "conv": "d7e8ba73-4c9b-48d1-99ff-f1b30e323c95",
+            "ms": 1776562
+          },
+          {
+            "kind": "call",
+            "text": "Je merkt vooral dat er heel veel data komt en niet echt een rode lijn ingetrokken wordt zeg maar.",
+            "tier": "E3",
+            "who": "Solo venture builder, Dutch corporate venture unit",
+            "conv": "4d8c84f6-6960-4622-8dfa-2da23d83ede1",
+            "ms": 1166587
+          }
+        ]
+      },
+      {
+        "title": "People do not trust AI output they cannot trace",
+        "text": "Users want every signal traced to the call and second, and push back when the assistant jumps to a conclusion or remembers the call differently. Misattribution is also the second most common complaint about note-takers online.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "I'm seeing these signals based on what the AI is telling me. Right. I want to make sure that this is correct.",
+            "tier": "E2",
+            "who": "Founder in the studio programme (lab data software, biotech)",
+            "conv": "329fb11e-5618-4159-9205-7f3572c5be92",
+            "ms": 910070
+          },
+          {
+            "kind": "call",
+            "text": "Wat ik dus hier moeilijk aan vond, is hij pakt meteen een soort van conclusie, terwijl ik zit dan nog midden in mijn exploratie.",
+            "tier": "E3",
+            "who": "Venture builder / innovation lead, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+            "conv": "d2783e02-2987-415a-9021-fd7d15b81062",
+            "ms": 1057280
+          },
+          {
+            "kind": "signal",
+            "text": "\"Speaker attribution on a four person call is still a coin flip\" (Granola review)",
+            "url": "https://www.producthunt.com/products/granola/reviews",
+            "source": "Product Hunt",
+            "date": "2026-09"
+          }
+        ]
+      }
+    ],
+    "trends": [
+      {
+        "title": "Recording is becoming a free feature",
+        "text": "Notion added meeting notes to its Business plan (May 2025), ChatGPT added Record (June 2025), and Superhuman bought Fathom on 14 September 2026 to feed its agents meeting memory.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Superhuman acquires Fathom as productivity platforms push for agentic work.",
+            "url": "https://techcrunch.com/2026/09/14/superhuman-acquires-yc-backed-notetaker-fathom-as-productivity-platforms-push-for-agentic-work/",
+            "source": "TechCrunch",
+            "date": "2026-09-14"
+          },
+          {
+            "kind": "trend",
+            "text": "ChatGPT Record on desktop.",
+            "url": "https://help.openai.com/en/articles/11487532-chatgpt-record",
+            "source": "OpenAI",
+            "date": "2025-06"
+          }
+        ]
+      },
+      {
+        "title": "Bots are being pushed out of calls",
+        "text": "Since 25 March 2026 Google Meet puts third-party notetaker bots in a risk queue that defaults to deny, and a class action against Otter alleges recording without consent. Uninvited bots are the most frequent complaint across channels.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Google Meet \"Potential Risk\" queue for notetaker bots.",
+            "url": "https://docs.glyphic.ai/articles/7805421929-glyphic-notetaker-google-meet-potential-risk-faq",
+            "source": "Glyphic",
+            "date": "2026-03"
+          },
+          {
+            "kind": "trend",
+            "text": "Otter.ai faces a class action over recording without consent.",
+            "url": "https://www.npr.org/2025/08/15/g-s1-83087/otter-ai-transcription-class-action-lawsuit",
+            "source": "NPR",
+            "date": "2025-08-15"
+          },
+          {
+            "kind": "signal",
+            "text": "\"Two more meetings today where Read.ai joined, uninvited\"",
+            "url": "https://www.trustpilot.com/review/read.ai",
+            "source": "Trustpilot",
+            "date": "2026-08-29"
+          }
+        ]
+      },
+      {
+        "title": "Every note-taker is now an MCP source",
+        "text": "Fireflies, Gong, Granola and Affinity ship MCP servers, so \"just use Claude across my meetings\" is a real substitute. They mostly return summaries or limited history, not graded, cited evidence.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Granola MCP.",
+            "url": "https://www.granola.ai/blog/granola-mcp",
+            "source": "Granola",
+            "date": "2026-02"
+          },
+          {
+            "kind": "signal",
+            "text": "\"It's so awesome to have Claude access my transcripts and get me answers from across all meetings\"",
+            "url": "https://news.ycombinator.com/item?id=47313713",
+            "source": "Hacker News",
+            "date": "2026-03-09"
+          }
+        ]
+      },
+      {
+        "title": "Nobody reads summaries; the gap is the decision",
+        "text": "Hacker News threads repeat that transcripts and summaries pile up unread. In a survey of 300 researchers, 39.3% named turning insights into recommendations as a frustration.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "\"meeting summaries (nobody reads them)\"",
+            "url": "https://news.ycombinator.com/item?id=45202592",
+            "source": "Hacker News",
+            "date": "2025-09-10"
+          },
+          {
+            "kind": "signal",
+            "text": "\"I can find the call where someone said pricing but not the call where we decided it.\"",
+            "url": "https://www.producthunt.com/products/granola/reviews",
+            "source": "Product Hunt",
+            "date": "2026-09"
+          },
+          {
+            "kind": "market",
+            "text": "Lyssna research synthesis report: 39.3% of 300 cite turning findings into next steps.",
+            "url": "https://www.lyssna.com/reports/research-synthesis/",
+            "source": "Lyssna",
+            "date": "2025-06-13"
+          }
+        ]
+      },
+      {
+        "title": "Corporate venturing is at a record",
+        "text": "3,068 corporations invested in startups in 2025, 46 new CVC units launched, and a studio-industry report estimates about 35% of new studios are corporate-affiliated (a single, self-published source). Active studios number roughly 724 by one census and 1,107 by a broader one.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "World of Corporate Venturing 2026 executive summary.",
+            "url": "https://www.worldofcorporateventuring.com/executive-summary",
+            "source": "Global Venturing",
+            "date": "2026"
+          },
+          {
+            "kind": "market",
+            "text": "State of the Venture Studio Economy 2026, citing GSSN.",
+            "url": "https://stealth1000.com/research/STEALTH_State_of_the_Venture_Studio_Economy_2026.pdf",
+            "source": "STEALTH Research",
+            "date": "2026-06"
+          },
+          {
+            "kind": "market",
+            "text": "Big Venture Studio Research 2024: 1,107 studios checked.",
+            "url": "https://inniches.com/big-venture-studio-research",
+            "source": "Inniches",
+            "date": "2024"
+          }
+        ]
+      },
+      {
+        "title": "EU rules favour transcripts over voice analytics",
+        "text": "The EU AI Act bans emotion recognition at work from February 2025, and recording without consent can be criminal in Germany. Consent per call, transcripts rather than audio, and EU hosting are becoming buying criteria.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Emotion recognition prohibition under the EU AI Act.",
+            "url": "https://fpf.org/blog/red-lines-under-eu-ai-act-unpacking-the-prohibition-of-emotion-recognition-in-the-workplace-and-education-institutions/",
+            "source": "Future of Privacy Forum",
+            "date": "2025"
+          }
+        ]
+      }
+    ],
+    "status": [
+      {
+        "title": "78 relevant calls, no signed contract",
+        "text": "45 prospect calls, 26 user calls and 7 internal product sessions between April and September 2026. The list price discussed is about 3,000 to 4,000 a month for 3 to 4 active ventures, with an entry of about 1,250 a month; no call shows anyone paying it. The only E5 after re-grading is an IT admin granting scoped access to Notion.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "Most of our customers are like 3, 4 active, and then they have a set fee. And those fees are depending on who you are and your setup around €3,000, €4,000 a month.",
+            "tier": "E2",
+            "who": "Co-founder, Dutch venture studio (vendor)",
+            "conv": "fe8e11f4-585b-407c-81dd-a8bc3834e0b1",
+            "ms": 2287630
+          },
+          {
+            "kind": "call",
+            "text": "A bit less, I would say for this tool, a bit less like 600.",
+            "tier": "E2",
+            "who": "Founder, small Italian AI-first venture studio",
+            "conv": "42045a05-1222-436e-9937-e469b135e412",
+            "ms": 2782700
+          },
+          {
+            "kind": "call",
+            "text": "Yeah. So budget is zero. That's obvious.",
+            "tier": "E2",
+            "who": "Partner, innovation agency working for corporates",
+            "conv": "84a8c28a-1500-4077-8487-11854e0f8e95",
+            "ms": 2641637
+          },
+          {
+            "kind": "call",
+            "text": "Ja, alle andere dingen zijn niet zichtbaar, ondanks dat ze wel onder de AI-kennisbank vallen, wat nou eigenlijk bovenaan staat.",
+            "tier": "E5",
+            "who": "IT and AI integration admin, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+            "conv": "b21f2a21-81d6-4b5a-9e21-a127097e95b8",
+            "ms": 1215070
+          }
+        ]
+      },
+      {
+        "title": "Three accounts use it for real, mostly through Claude",
+        "text": "A Dutch corporate innovation team runs two ventures through it and fed its signals into a build-or-partner decision; an innovation agency routes a 50-plus interview sprint through it after an analyst left; an investor briefs himself before weekly founder meetings over MCP.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "for me, [VSI] is the source of truth in how the organization is doing, like what, what, whether they are focused, like what they changed over the week, because I'm not like fully involved.",
+            "tier": "E4",
+            "who": "Investor and venture builder, Polish software consultancy (using VSI via MCP)",
+            "conv": "d8cc0e3c-c36b-4d61-a8e4-e79fc9ac6b7c",
+            "ms": 421434
+          },
+          {
+            "kind": "call",
+            "text": "it's everything I'm going to be doing for the next 8 weeks is going to be related to this.",
+            "tier": "E3",
+            "who": "Venture architect, innovation agency working for corporates",
+            "conv": "19ee70b2-2d29-405c-85e7-04131f7295d7",
+            "ms": 380462
+          },
+          {
+            "kind": "call",
+            "text": "I actually canceled my Otter.",
+            "tier": "E4",
+            "who": "Venture architect, innovation agency working for corporates",
+            "conv": "4ca0f10a-8ee5-4568-b6de-5ef2a5c14f8c",
+            "ms": 549367
+          },
+          {
+            "kind": "call",
+            "text": "toen ben ik naar Claude gegaan en daar inderdaad bijgewerkt en ook gewoon direct een Notion-pagina laten bijwerken vanuit Claude.",
+            "tier": "E4",
+            "who": "Venture builder, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+            "conv": "d2783e02-2987-415a-9021-fd7d15b81062",
+            "ms": 1366320
+          }
+        ]
+      },
+      {
+        "title": "What breaks: the connector, the setup, unexplained scores",
+        "text": "The connector showing connected with no tools, re-adding it after releases, IT committees, per-user OAuth, processing lag, 60 candidate signals nobody can merge, and a success rate that moves from 55% to 35% without a reason.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "Cloud tells me I'm disconnected. Even though it looks it is connected here and I cannot do anything right now with vsi. I broke it. I guess.",
+            "tier": "E4",
+            "who": "Founder in the studio programme (marketing attribution / data)",
+            "conv": "1faaeefd-8b97-4eaf-a637-b8b0571c9821",
+            "ms": 1453420
+          },
+          {
+            "kind": "call",
+            "text": "En toen was daar een beetje weerstand tegen, omdat ze de tool nog niet door een soort van commissie heen hadden gehaald.",
+            "tier": "E3",
+            "who": "Venture builder / innovation lead, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+            "conv": "c231b722-9c11-4d7a-918e-83e29188e95e",
+            "ms": 2657217
+          },
+          {
+            "kind": "call",
+            "text": "right now we have many, I think nearly 60 signals, but they're all candidates. How can we strengthen them? We don't know.",
+            "tier": "E3",
+            "who": "Founder in the studio programme (ERP for manufacturing SMBs, Turkey)",
+            "conv": "1851fa37-a179-45e0-bb3e-ff7919b5becf",
+            "ms": 431878
+          },
+          {
+            "kind": "call",
+            "text": "At the reflections page, there's something called success rate. Yeah, we don't know exactly what it is, but last week it was 55%, now it is 35%.",
+            "tier": "E3",
+            "who": "Founder in the studio programme (ERP for manufacturing SMBs, Turkey)",
+            "conv": "1851fa37-a179-45e0-bb3e-ff7919b5becf",
+            "ms": 558865
+          }
+        ]
+      },
+      {
+        "title": "VSI grades its own evidence too kindly",
+        "text": "Agreeing to a follow-up, a questionnaire or a trial is repeatedly graded E5, enthusiasm counts as a buying signal, and statements the team made about other customers are graded as outcomes. One recording was processed twice. Every grade on this board is re-graded from the call."
+      }
+    ]
+  },
+  "sources": {
+    "vsi": {
+      "venture": "builders",
+      "conversations": 78,
+      "compiled": "2026-09-25"
+    },
+    "web": [
+      {
+        "title": "Gong",
+        "url": "https://www.gong.io/press/gong-surpasses-300m-arr-amid-increased-demand-for-ai-powered-revenue-solutions",
+        "date": "2025-03-05 / 2026-07-16"
+      },
+      {
+        "title": "Gong",
+        "url": "https://coworker.ai/blog/gong-pricing",
+        "date": "2025-03-05 / 2026-07-16"
+      },
+      {
+        "title": "Gong",
+        "url": "https://www.usecarly.com/blog/gong-mcp/",
+        "date": "2025-03-05 / 2026-07-16"
+      },
+      {
+        "title": "Gong",
+        "url": "https://getlatka.com/blog/gong-revenue",
+        "date": "2025-03-05 / 2026-07-16"
+      },
+      {
+        "title": "Chorus by ZoomInfo",
+        "url": "https://www.claap.io/blog/gong-vs-chorus-which-is-better-and-why",
+        "date": "2026"
+      },
+      {
+        "title": "Sybill",
+        "url": "https://www.sybill.ai/pricing",
+        "date": "2024-07-31 / 2026-09"
+      },
+      {
+        "title": "Sybill",
+        "url": "https://techcrunch.com/2024/07/31/sybill-raises-11m-for-its-ai-assistant-that-helps-salespeople-reduce-administrative-burden",
+        "date": "2024-07-31 / 2026-09"
+      },
+      {
+        "title": "Attention",
+        "url": "https://www.attention.com/blog-posts/attention-raises-14-million-to-augment-all-sales-functions-with-ai-powered-automations",
+        "date": "2024"
+      },
+      {
+        "title": "Attention",
+        "url": "https://theaiagentindex.com/agents/attention",
+        "date": "2024"
+      },
+      {
+        "title": "Avoma",
+        "url": "https://www.avoma.com/pricing",
+        "date": "2026-09"
+      },
+      {
+        "title": "Fathom",
+        "url": "https://www.fathom.ai/pricing",
+        "date": "2026-09-14"
+      },
+      {
+        "title": "Fathom",
+        "url": "https://techcrunch.com/2026/09/14/superhuman-acquires-yc-backed-notetaker-fathom-as-productivity-platforms-push-for-agentic-work/",
+        "date": "2026-09-14"
+      },
+      {
+        "title": "Fathom",
+        "url": "https://blog.superhuman.com/superhuman-acquires-fathom/",
+        "date": "2026-09-14"
+      },
+      {
+        "title": "Granola",
+        "url": "https://www.granola.ai/pricing",
+        "date": "2026-03-25"
+      },
+      {
+        "title": "Granola",
+        "url": "https://techcrunch.com/2026/03/25/granola-raises-125m-hits-1-5b-valuation-as-it-expands-from-meeting-notetaker-to-enterprise-ai-app/",
+        "date": "2026-03-25"
+      },
+      {
+        "title": "Granola",
+        "url": "https://www.granola.ai/blog/granola-mcp",
+        "date": "2026-03-25"
+      },
+      {
+        "title": "Granola",
+        "url": "https://www.techbuzz.ai/articles/granola-s-private-ai-notes-are-public-by-default",
+        "date": "2026-03-25"
+      },
+      {
+        "title": "Fireflies.ai",
+        "url": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
+        "date": "2025-06 / 2026"
+      },
+      {
+        "title": "Fireflies.ai",
+        "url": "https://www.claap.io/blog/fireflies-pricing",
+        "date": "2025-06 / 2026"
+      },
+      {
+        "title": "Fireflies.ai",
+        "url": "https://fireflies.ai/blog/fireflies-claude",
+        "date": "2025-06 / 2026"
+      },
+      {
+        "title": "Otter.ai",
+        "url": "https://otter.ai/pricing",
+        "date": "2025-08-15 / 2025-12-22"
+      },
+      {
+        "title": "Otter.ai",
+        "url": "https://otter.ai/blog/otter-ai-caps-transformational-2025-with-100m-arr-milestone-industry-first-ai-meeting-agents-and-global-enterprise-expansion",
+        "date": "2025-08-15 / 2025-12-22"
+      },
+      {
+        "title": "Otter.ai",
+        "url": "https://www.npr.org/2025/08/15/g-s1-83087/otter-ai-transcription-class-action-lawsuit",
+        "date": "2025-08-15 / 2025-12-22"
+      },
+      {
+        "title": "Read AI",
+        "url": "https://www.read.ai/plans-pricing",
+        "date": "2024-10-28 / 2026-09"
+      },
+      {
+        "title": "Read AI",
+        "url": "https://www.geekwire.com/2024/seattle-startup-read-ai-raises-50m-to-fuel-copilot-everywhere-vision-for-enterprise-software/",
+        "date": "2024-10-28 / 2026-09"
+      },
+      {
+        "title": "Read AI",
+        "url": "https://www.trustpilot.com/review/read.ai",
+        "date": "2024-10-28 / 2026-09"
+      },
+      {
+        "title": "tl;dv",
+        "url": "https://www.claap.io/blog/tl-dv-pricing",
+        "date": "2026"
+      },
+      {
+        "title": "Dovetail",
+        "url": "https://dovetail.com/pricing/",
+        "date": "2026-09"
+      },
+      {
+        "title": "Dovetail",
+        "url": "https://capterra.com/p/174077/Dovetail/reviews/",
+        "date": "2026-09"
+      },
+      {
+        "title": "Enterpret",
+        "url": "https://www.enterpret.com",
+        "date": "2024-12-04 / 2026-09"
+      },
+      {
+        "title": "Enterpret",
+        "url": "https://techcrunch.com/2024/12/04/enterpret-automatically-extracts-insights-from-customer-feedback/",
+        "date": "2024-12-04 / 2026-09"
+      },
+      {
+        "title": "Marvin (HeyMarvin)",
+        "url": "https://heymarvin.com/pricing",
+        "date": "2026-09"
+      },
+      {
+        "title": "Condens",
+        "url": "https://condens.io/pricing/",
+        "date": "2026"
+      },
+      {
+        "title": "Grain",
+        "url": "https://www.claap.io/blog/grain-pricing",
+        "date": "2026"
+      },
+      {
+        "title": "UserTesting / EnjoyHQ",
+        "url": "https://blog.buildbetter.ai/best-enjoyhq-alternatives-in-2026/",
+        "date": "2026"
+      },
+      {
+        "title": "Productboard (Pulse / Spark)",
+        "url": "https://support.productboard.com/hc/en-us/articles/34626825281171-Productboard-Pulse",
+        "date": "2026-07-28"
+      },
+      {
+        "title": "Productboard (Pulse / Spark)",
+        "url": "https://www.productboard.com/pricing/pulse/",
+        "date": "2026-07-28"
+      },
+      {
+        "title": "Unwrap",
+        "url": "https://www.thesaasnews.com/news/unwrap-raises-12-million-in-series-a",
+        "date": "2025-01-30"
+      },
+      {
+        "title": "Viable",
+        "url": "https://dang.ai/tool/ai-qualitative-data-analysis-tool-viable",
+        "date": "2025"
+      },
+      {
+        "title": "Affinity",
+        "url": "https://www.affinity.co/product/affinity-pricing",
+        "date": "2026-09"
+      },
+      {
+        "title": "Affinity",
+        "url": "https://www.capterra.com/p/172301/Affinity/reviews/",
+        "date": "2026-09"
+      },
+      {
+        "title": "Attio",
+        "url": "https://attio.com/pricing",
+        "date": "2025-08"
+      },
+      {
+        "title": "Attio",
+        "url": "https://attio.com/blog/attio-raises-52m-series-b",
+        "date": "2025-08"
+      },
+      {
+        "title": "Visible",
+        "url": "https://visible.vc/investor-pricing/",
+        "date": "2026-09"
+      },
+      {
+        "title": "Standard Metrics",
+        "url": "https://www.prnewswire.com/news-releases/ai-driven-portfolio-management-platform-standard-metrics-raises-20m-to-supercharge-private-markets-innovation-302856929.html",
+        "date": "2026-08"
+      },
+      {
+        "title": "Carta",
+        "url": "https://carta.com/plans/pricing-for-investors/",
+        "date": "2026"
+      },
+      {
+        "title": "4Degrees",
+        "url": "https://www.4degrees.ai/pricing",
+        "date": "2026"
+      },
+      {
+        "title": "Harmonic",
+        "url": "https://harmonic.ai/",
+        "date": "2026-09"
+      },
+      {
+        "title": "ITONICS",
+        "url": "https://www.itonics-innovation.com/pricing",
+        "date": "2025-09 / 2026-09"
+      },
+      {
+        "title": "ITONICS",
+        "url": "https://www.itonics-innovation.com/news/ionx-2025",
+        "date": "2025-09 / 2026-09"
+      },
+      {
+        "title": "Qmarkets",
+        "url": "https://qmarkets.net/resources/article/best-innovation-portfolio-software/",
+        "date": "2026"
+      },
+      {
+        "title": "Wazoku",
+        "url": "https://www.g2.com/compare/qmarkets-innovation-management-vs-wazoku",
+        "date": "2026"
+      },
+      {
+        "title": "Board of Innovation (AI tools)",
+        "url": "https://ai.boardofinnovation.com/",
+        "date": "2026"
+      },
+      {
+        "title": "Board of Innovation (AI tools)",
+        "url": "https://www.boardofinnovation.com/blog/ai-powered-corporate-venture-building/",
+        "date": "2026"
+      },
+      {
+        "title": "Glean",
+        "url": "https://www.glean.com/press/glean-surpasses-300m-arr-unrivaled-enterprise-context-fuels-ai-adoption",
+        "date": "2026-05-28"
+      },
+      {
+        "title": "Glean",
+        "url": "https://techcrunch.com/2026/05/28/gleans-top-line-crosses-300m-as-ai-budget-cutting-becomes-its-major-selling-point/",
+        "date": "2026-05-28"
+      },
+      {
+        "title": "Notion AI (Meeting Notes)",
+        "url": "https://www.notion.com/pricing",
+        "date": "2025-05-13"
+      },
+      {
+        "title": "Notion AI (Meeting Notes)",
+        "url": "https://tldv.io/blog/notion-ai-meeting-notes-review/",
+        "date": "2025-05-13"
+      },
+      {
+        "title": "ChatGPT (Record + connectors)",
+        "url": "https://help.openai.com/en/articles/11487532-chatgpt-record",
+        "date": "2025-06"
+      },
+      {
+        "title": "Claude with connectors / MCP",
+        "url": "https://claude.com/connectors/granola",
+        "date": "2026"
+      },
+      {
+        "title": "Claude with connectors / MCP",
+        "url": "https://claude.com/connectors/fireflies",
+        "date": "2026"
+      },
+      {
+        "title": "Claude with connectors / MCP",
+        "url": "https://www.usecarly.com/blog/claude-gong-integration/",
+        "date": "2026"
+      },
+      {
+        "title": "Hacker News, footlose_3815",
+        "url": "https://news.ycombinator.com/item?id=44448338",
+        "date": "2025-07-02"
+      },
+      {
+        "title": "Hacker News, unstatusthequo",
+        "url": "https://news.ycombinator.com/item?id=46206521",
+        "date": "2025-12-09"
+      },
+      {
+        "title": "Hacker News, mlcruz",
+        "url": "https://news.ycombinator.com/item?id=44100435",
+        "date": "2025-05-26"
+      },
+      {
+        "title": "Hacker News, hncbw02z5a",
+        "url": "https://news.ycombinator.com/item?id=49642335",
+        "date": "2026-09-10"
+      },
+      {
+        "title": "Hacker News, fnel (founder of a competing tool)",
+        "url": "https://news.ycombinator.com/item?id=47750792",
+        "date": "2026-04-13"
+      },
+      {
+        "title": "Hacker News, gumby271",
+        "url": "https://news.ycombinator.com/item?id=49637221",
+        "date": "2026-09-10"
+      },
+      {
+        "title": "UW-Madison IT knowledge base",
+        "url": "https://kb.wisc.edu/helpdesk/149383",
+        "date": "2025"
+      },
+      {
+        "title": "Trustpilot, Brian King (Fireflies)",
+        "url": "https://www.trustpilot.com/review/fireflies.ai",
+        "date": "2026-09-24"
+      },
+      {
+        "title": "Product Hunt, Asad M. (Granola)",
+        "url": "https://www.producthunt.com/products/granola/reviews",
+        "date": "2026-09 (about 23 days before 2026-09-25)"
+      },
+      {
+        "title": "Hacker News, ShakataGaNai",
+        "url": "https://news.ycombinator.com/item?id=44458393",
+        "date": "2025-07-03"
+      },
+      {
+        "title": "Hacker News, adamddev1",
+        "url": "https://news.ycombinator.com/item?id=48823547",
+        "date": "2026-07-07"
+      },
+      {
+        "title": "Hacker News, bix6",
+        "url": "https://news.ycombinator.com/item?id=48755861",
+        "date": "2026-07-02"
+      },
+      {
+        "title": "Trustpilot (Otter)",
+        "url": "https://www.trustpilot.com/review/otter.ai",
+        "date": "2026-09-23"
+      },
+      {
+        "title": "Trustpilot (Gong)",
+        "url": "https://www.trustpilot.com/review/gong.io",
+        "date": "2024-12"
+      },
+      {
+        "title": "G2 review quoted by Sybill (competitor)",
+        "url": "https://www.sybill.ai/blogs/gong-reviews",
+        "date": "2026-03-04"
+      },
+      {
+        "title": "G2 review quoted by Oliv (competitor)",
+        "url": "https://www.oliv.ai/blog/gong-reviews",
+        "date": "2025-10-03"
+      },
+      {
+        "title": "Hacker News, sensanaty",
+        "url": "https://news.ycombinator.com/item?id=49195343",
+        "date": "2026-08-06"
+      },
+      {
+        "title": "Hacker News, tkiolp4",
+        "url": "https://news.ycombinator.com/item?id=45202592",
+        "date": "2025-09-10"
+      },
+      {
+        "title": "DEV Community (article title)",
+        "url": "https://dev.to/automate-archit/ai-meeting-notes-without-a-decision-log-are-just-expensive-noise-31pm",
+        "date": "2026"
+      },
+      {
+        "title": "Lyssna Research Synthesis Report (survey respondent; 39.3% of 300 cite this frustration)",
+        "url": "https://www.lyssna.com/reports/research-synthesis/",
+        "date": "2025-06-13"
+      },
+      {
+        "title": "Koji blog (vendor)",
+        "url": "https://www.koji.so/blog/best-ux-research-repository-tools-2026",
+        "date": "2026"
+      },
+      {
+        "title": "Hacker News, zlat1997 (founder of a competing tool)",
+        "url": "https://news.ycombinator.com/item?id=48968135",
+        "date": "2026-07-19"
+      },
+      {
+        "title": "Hacker News, shikham59",
+        "url": "https://news.ycombinator.com/item?id=47313713",
+        "date": "2026-03-09"
+      },
+      {
+        "title": "Hacker News, AquiGorka (founder of a competing tool)",
+        "url": "https://news.ycombinator.com/item?id=48437851",
+        "date": "2026-06-07"
+      },
+      {
+        "title": "Tonet blog (title)",
+        "url": "https://tonet.ai/blog/every-meeting-now-has-three-ai-notetakers-fix-your-meeting-culture-before-it-gets-weirder/",
+        "date": "2026"
+      },
+      {
+        "title": "Hacker News, dirkc",
+        "url": "https://news.ycombinator.com/item?id=44454884",
+        "date": "2025-07-03"
+      },
+      {
+        "title": "Glyphic / Airspeed knowledge base",
+        "url": "https://docs.glyphic.ai/articles/7805421929-glyphic-notetaker-google-meet-potential-risk-faq",
+        "date": "2026-03"
+      },
+      {
+        "title": "Recall.ai",
+        "url": "https://www.recall.ai/product/desktop-recording-sdk",
+        "date": "2026"
+      },
+      {
+        "title": "Andrej Karpathy on X",
+        "url": "https://x.com/karpathy/status/1937902205765607626",
+        "date": "2025-06-25"
+      },
+      {
+        "title": "Salesloft newsroom",
+        "url": "https://www.salesloft.com/company/newsroom/clari-salesloft-merger",
+        "date": "2025-12"
+      },
+      {
+        "title": "heyData",
+        "url": "https://heydata.eu/en/magazine/balancing-trust-and-control-how-to-make-ai-recorded-online-meetings-gdpr-compliant",
+        "date": "2025"
+      },
+      {
+        "title": "Future of Privacy Forum",
+        "url": "https://fpf.org/blog/red-lines-under-eu-ai-act-unpacking-the-prohibition-of-emotion-recognition-in-the-workplace-and-education-institutions/",
+        "date": "2025"
+      },
+      {
+        "title": "STEALTH Research, State of the Venture Studio Economy 2026",
+        "url": "https://stealth1000.com/research/STEALTH_State_of_the_Venture_Studio_Economy_2026.pdf",
+        "date": "2026-06"
+      },
+      {
+        "title": "Inniches, Big Venture Studio Research 2024",
+        "url": "https://inniches.com/big-venture-studio-research",
+        "date": "2024"
+      },
+      {
+        "title": "Global Venturing, World of Corporate Venturing 2026",
+        "url": "https://www.worldofcorporateventuring.com/executive-summary",
+        "date": "2026"
+      },
+      {
+        "title": "M Accelerator",
+        "url": "https://maccelerator.la/en/blog/enterprise/systematic-derisking-framework-venture-studios-validation/",
+        "date": "n/a"
+      },
+      {
+        "title": "Venture Studio Forum",
+        "url": "https://venturestudioforum.org/venture-studio-index",
+        "date": "2025-09-24"
+      },
+      {
+        "title": "SNS Insider via Yahoo Finance; Research and Markets",
+        "url": "https://finance.yahoo.com/technology/ai/articles/conversation-intelligence-software-market-projected-092700282.html",
+        "date": "2026-07-13"
+      },
+      {
+        "title": "Verified Research Insights and others",
+        "url": "https://www.verifiedresearchinsights.com/industry-report/user-research-repositories-software-market/",
+        "date": "2025"
+      }
+    ]
+  },
+  "initiatives": [
+    {
+      "id": "sprint-verdict",
+      "title": "Sponsor verdict at the end of every sprint",
+      "column": "recommended",
+      "summary": "At the end of a validation sprint Krans writes a go, pivot or kill report against the evidence bar the team set at the start, with every claim cited to the call and second, shareable with the sponsor as a read-only link or slides.",
+      "bet": "We believe that giving corporate venture teams and innovation agencies a sponsor-ready verdict cited to the calls will make Krans the line item their sponsor pays for. We will know when two sponsors read a verdict and use it in a real go, pivot or kill decision, and one team pays for a second sprint.",
+      "problem": "Go or kill is argued on a feeling and written up by hand in Word or PowerPoint, while the teams that have budget answer to a sponsor who wants to see how the result was reached.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "Sponsors may want the team's own slides, not a tool's report. Test with the first two sponsors before building export.",
+        "A verdict that is wrong once costs trust for good. Keep the human sign-off on the verdict and show contradicting evidence next to supporting evidence.",
+        "Agencies may keep the report as their own deliverable and hide Krans. Accept it: price per sprint, not per logo."
+      ],
+      "firstMove": "From 29 September, write the verdict by hand from Krans data for the agency's current sprint and the corporate team's second venture, send it to each sponsor, and record whether they read it, what they ask, and whether it changed the decision.",
+      "prototype": "vision/prototypes/verdict-pack/index.html",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "En ik heb jouw prompt van jou toevallig net gebruikt om de rapportage op te stellen. Dat werkt echt super goed.",
+          "tier": "E4",
+          "who": "Venture builder / innovation lead, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "f756421d-9a1b-4fea-a983-5ad92c49fdff",
+          "ms": 199782
+        },
+        {
+          "kind": "call",
+          "text": "I'll pay for validation, but I won't pay beyond validation. Like for create like it's already created, it's running.",
+          "tier": "E2",
+          "who": "Partner, innovation agency working for corporates (about its energy-corporate sponsor)",
+          "conv": "125873f3-0a94-4a02-934c-439842f20087",
+          "ms": 337290
+        },
+        {
+          "kind": "call",
+          "text": "Just a demo to [company] at the end saying that hey, it validates because of this or it doesn't validate because of that. If it doesn't validate, by the way, ...",
+          "tier": "E3",
+          "who": "Partner, innovation agency working for corporates",
+          "conv": "b4811fc5-b376-4a39-b643-d4065513e014",
+          "ms": 604591
+        },
+        {
+          "kind": "call",
+          "text": "it's impressive, right, to show them the actual UI and show them, hey, this is how we got to this result... one thing that I complain about is that they don't ...",
+          "tier": "E3",
+          "who": "Partner, innovation agency working for corporates",
+          "conv": "84a8c28a-1500-4077-8487-11854e0f8e95",
+          "ms": 2863350
+        },
+        {
+          "kind": "call",
+          "text": "right now our deal with [company] is done, right? This is money out of our pocket. When it is, you know, coming from, you know, [company]'s pocket... we'll ...",
+          "tier": "E2",
+          "who": "Partner, innovation agency working for corporates",
+          "conv": "b4811fc5-b376-4a39-b643-d4065513e014",
+          "ms": 1892159
+        },
+        {
+          "kind": "call",
+          "text": "je kan een klein stukje valideren, maar dan is nog steeds 99% niet gevalideerd. Dus zo moet je gewoon telkens zelf ook een beetje aanvoelen: heb ik genoeg ...",
+          "tier": "E3",
+          "who": "Venture creation lead, Dutch corporate venture studio (insurance group)",
+          "conv": "c8e71705-2b97-42e8-a4b2-4ab14367ea10",
+          "ms": 570300
+        },
+        {
+          "kind": "signal",
+          "text": "\"I can find the call where someone said pricing but not the call where we decided it.\"",
+          "url": "https://www.producthunt.com/products/granola/reviews",
+          "source": "Product Hunt",
+          "date": "2026-09"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "Relevant calls by theme (distinct calls)",
+          "unit": "calls",
+          "items": [
+            {
+              "label": "Pricing and budget",
+              "value": 18
+            },
+            {
+              "label": "Partner visibility",
+              "value": 15
+            },
+            {
+              "label": "Evidence over gut feel",
+              "value": 14
+            },
+            {
+              "label": "Reporting to sponsors, investors, LPs",
+              "value": 14
+            },
+            {
+              "label": "Claude and MCP as the interface",
+              "value": 13
+            },
+            {
+              "label": "Build versus buy",
+              "value": 13
+            },
+            {
+              "label": "Own framework and criteria",
+              "value": 12
+            }
+          ]
+        },
+        {
+          "kind": "flow",
+          "title": "From sprint to sponsor decision",
+          "before": [
+            {
+              "step": "Calls in four note-takers"
+            },
+            {
+              "step": "Analyst synthesises by hand",
+              "time": "days"
+            },
+            {
+              "step": "Deck for the sponsor",
+              "time": "a week or two"
+            },
+            {
+              "step": "Decision argued on feeling"
+            }
+          ],
+          "after": [
+            {
+              "step": "Calls read as they land"
+            },
+            {
+              "step": "Learnings graded and cited"
+            },
+            {
+              "step": "Verdict against the bar set at the start"
+            },
+            {
+              "step": "Sponsor reads the link, checks any quote"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mcp-first",
+      "title": "Make the connector as reliable as the app",
+      "column": "recommended",
+      "summary": "Treat the MCP server as the main interface: tools always exposed, no silent logouts, a visible health check, graded and cited answers by default, write-back to Notion, and a regression test on every release.",
+      "bet": "We believe that the heaviest users will live in Claude and Codex, so a connector that never breaks and returns graded, cited evidence will keep them and set Krans apart from note-taker MCPs that return summaries. We will know when connector incidents reported in calls drop to zero for a month and weekly MCP sessions per active account grow.",
+      "problem": "The three real accounts work through an assistant. The connector shows as connected with no tools, loses transcript access, logs users out and must be re-added after releases, and the assistant sometimes answers from Notion instead of Krans.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E4",
+      "horizon": "now",
+      "risks": [
+        "Better MCP makes Krans easier to treat as a feature of someone else's assistant. Keep Reflections, the verdict and the method in Krans itself.",
+        "Assistant vendors change connector rules often; budget for it rather than treat it as a one-off fix.",
+        "Corporate IT may block custom connectors entirely. Keep the manual upload and the app path working."
+      ],
+      "firstMove": "This week, list every connector failure in the calls and support threads, write an automated check that runs the nine tools after each deploy, and add a health line (tools, last sync, scopes) users can see.",
+      "prototype": "vision/prototypes/krans-in-claude/index.html",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "So I use MCP for most of the time because this is how I prepared already, like things that brief me or like have a like follow-up after a meeting.",
+          "tier": "E4",
+          "who": "Investor and venture builder, Polish software consultancy (using VSI via MCP)",
+          "conv": "d8cc0e3c-c36b-4d61-a8e4-e79fc9ac6b7c",
+          "ms": 730409
+        },
+        {
+          "kind": "call",
+          "text": "I actually have a scheduled task that works every Monday at 6 AM, gets a weekly VSI report for me.",
+          "tier": "E4",
+          "who": "Founder in the studio programme (ERP for manufacturing SMBs, Turkey)",
+          "conv": "1851fa37-a179-45e0-bb3e-ff7919b5becf",
+          "ms": 369586
+        },
+        {
+          "kind": "call",
+          "text": "toen ben ik naar Claude gegaan en daar inderdaad bijgewerkt en ook gewoon direct een Notion-pagina laten bijwerken vanuit Claude.",
+          "tier": "E4",
+          "who": "Venture builder, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "d2783e02-2987-415a-9021-fd7d15b81062",
+          "ms": 1366320
+        },
+        {
+          "kind": "call",
+          "text": "Cloud tells me I'm disconnected. Even though it looks it is connected here and I cannot do anything right now with vsi. I broke it. I guess.",
+          "tier": "E4",
+          "who": "Founder in the studio programme (marketing attribution / data)",
+          "conv": "1faaeefd-8b97-4eaf-a637-b8b0571c9821",
+          "ms": 1453420
+        },
+        {
+          "kind": "call",
+          "text": "VSI MCP is in deze sessie niet verbonden. Ik heb geen tools voor VSI Build Studio kunnen vinden.",
+          "tier": "E3",
+          "who": "VSI team member (vendor, internal support)",
+          "conv": "9f53c8b6-dbac-4309-8d12-95ad07003b3c",
+          "ms": 0
+        },
+        {
+          "kind": "call",
+          "text": "... fix my VSI. I need to reconnect it all the time. I thought I fixed this.",
+          "tier": "E2",
+          "who": "Krans team",
+          "conv": "a7fe6afa-4bbe-4a93-abc8-df1c4cb53d0d",
+          "ms": 564881
+        },
+        {
+          "kind": "trend",
+          "text": "Granola, Fireflies, Gong and Affinity ship MCP servers; most return summaries or limited history.",
+          "url": "https://www.granola.ai/blog/granola-mcp",
+          "source": "Granola",
+          "date": "2026-02"
+        },
+        {
+          "kind": "signal",
+          "text": "\"the intelligence layer is usually fixed and owned by the product. I don't want to pay twice for same LLM tokens.\"",
+          "url": "https://news.ycombinator.com/item?id=48968135",
+          "source": "Hacker News",
+          "date": "2026-07-19"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "compare",
+          "title": "What each MCP returns to the assistant",
+          "columns": [
+            "Krans",
+            "Granola",
+            "Gong",
+            "Fireflies",
+            "Affinity"
+          ],
+          "rows": [
+            {
+              "label": "Verbatim passages with speaker and time",
+              "values": [
+                "yes",
+                "partial",
+                "no",
+                "yes",
+                "partial"
+              ]
+            },
+            {
+              "label": "Evidence grade per learning",
+              "values": [
+                "yes",
+                "no",
+                "no",
+                "no",
+                "no"
+              ]
+            },
+            {
+              "label": "Signals across calls",
+              "values": [
+                "yes",
+                "no",
+                "partial",
+                "no",
+                "no"
+              ]
+            },
+            {
+              "label": "Positions and decisions",
+              "values": [
+                "yes",
+                "no",
+                "no",
+                "no",
+                "no"
+              ]
+            },
+            {
+              "label": "Full history on entry plan",
+              "values": [
+                "yes",
+                "no",
+                "partial",
+                "partial",
+                "no"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reflections-hook",
+      "title": "Reflections on every call, free",
+      "column": "recommended",
+      "summary": "Offer Reflections (Helped, Hurt, Missed, and the pattern across the last ten calls) free for the first venture, so every call a team runs flows into Krans and the paid sprint starts with its evidence already there.",
+      "bet": "We believe that a free call coach will get interviewers to route every call through Krans, and that those calls turn into paid sprints when a sponsor is involved. We will know when free workspaces reach ten reviewed calls in their first two weeks and one in five of them asks about a sprint.",
+      "problem": "Reflections is the feature users name unprompted, because it changes how they interview, but getting calls into Krans is the first hurdle and trials stall at a questionnaire or a demo.",
+      "impact": 2,
+      "effort": 1,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "Free users with no sponsor may never convert, as with solo founders. Limit free to one venture and gate the verdict.",
+        "Advice that contradicts itself across calls erodes trust fast. Show why a moment was judged, and keep it consistent.",
+        "Language: Dutch, Turkish and mixed-language calls still confuse transcripts and analysis."
+      ],
+      "firstMove": "Offer the next ten inbound studios and agencies a free Reflections workspace instead of a demo, and count reviewed calls per workspace after 14 days.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Actually, reflections were really helpful... Because it really shows what affected what. And for the next call I can keep in mind those points.",
+          "tier": "E3",
+          "who": "Founder in the studio programme (ERP for manufacturing SMBs, Turkey)",
+          "conv": "2c1d9f01-2dfb-45db-a208-954e3efd6883",
+          "ms": 414340
+        },
+        {
+          "kind": "call",
+          "text": "I love the guidance of the conversational aspect... How to interview the prospects, how to ask them questions, maybe flagging your mistakes... And it's quite on spot.",
+          "tier": "E3",
+          "who": "Founder in the studio programme (lab data software, biotech)",
+          "conv": "f75e70b0-e860-410d-bec5-12db0ae0bc1e",
+          "ms": 832150
+        },
+        {
+          "kind": "call",
+          "text": "Je wordt wel inderdaad best wel gedwongen om gewoon door te vragen... nu probeer ik bijvoorbeeld ook wel echt te kwantificeren hoeveel tijd mensen kwijt zijn",
+          "tier": "E3",
+          "who": "Venture builder / innovation lead, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "583816f4-0691-4aa1-9f3d-28fcaf52ac77",
+          "ms": 578304
+        },
+        {
+          "kind": "call",
+          "text": "it gave me a feedback to keep the connection alive for future meetings. So I tried that in my second call and the VSI didn't like it... It said it was an early ...",
+          "tier": "E4",
+          "who": "Founder in the studio programme (ERP for manufacturing SMBs, Turkey)",
+          "conv": "2c1d9f01-2dfb-45db-a208-954e3efd6883",
+          "ms": 318730
+        },
+        {
+          "kind": "call",
+          "text": "what I use the most is actually the threads. I go to the threads and I go to a call by call ... I still have a clear vivid memory of the conversation",
+          "tier": "E3",
+          "who": "Founder in the studio programme (lab data software, biotech)",
+          "conv": "f75e70b0-e860-410d-bec5-12db0ae0bc1e",
+          "ms": 1368650
+        },
+        {
+          "kind": "call",
+          "text": "But will, will I get the access to 7-day? You mentioned 7-day access to VSI.",
+          "tier": "E2",
+          "who": "Fractional marketer and accelerator mentor (Poland/Netherlands)",
+          "conv": "52504480-3473-4e9f-8bd6-01975c4ca6ca",
+          "ms": 1964049
+        }
+      ]
+    },
+    {
+      "id": "own-method",
+      "title": "Bring your own method and evidence bar",
+      "column": "recommended",
+      "summary": "Let each studio or corporate team load its own stage gates, thresholds, respondent roles (buyer, user, expert, sponsor) and categories, and score every venture against them, with templates for teams that have none.",
+      "bet": "We believe that scoring against a team's own gates instead of a fixed method will remove the \"we know our own way better\" objection and make the verdict defensible to a sponsor. We will know when two teams load their gates and stop keeping a parallel spreadsheet.",
+      "problem": "About 90% of the method maps, but every studio and corporate wants its own gates and categories, experts counted differently from buyers, and its own thresholds; today the tool penalises them for scoping differently.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "next",
+      "risks": [
+        "Every customer becomes a custom build. Offer three templates and a small set of editable fields, not a rules engine.",
+        "Teams without a clear bar cannot fill it in. Start from a template and let them edit after the first sprint."
+      ],
+      "firstMove": "Ask the corporate team and the agency to write down their gates and thresholds for the current sprint, load them by hand into the scoring, and compare the result with their own judgement.",
+      "prototype": "vision/prototypes/own-gates/index.html",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "they all have their own process, all their own method. And if you come with something standardized... they say no, we know better our own way",
+          "tier": "E2",
+          "who": "Partner, Dutch early-stage venture fund",
+          "conv": "45c88d95-acb5-4f02-81b2-be2d7d6be513",
+          "ms": 1393007
+        },
+        {
+          "kind": "call",
+          "text": "Dan had ik zelf van tevoren bepaalde niveaus bedacht. Maar ja, goed, dat wordt natuurlijk niet door VSI meegenomen... Je hebt niet de mogelijkheid om wat input te geven",
+          "tier": "E3",
+          "who": "Venture builder, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "583816f4-0691-4aa1-9f3d-28fcaf52ac77",
+          "ms": 715750
+        },
+        {
+          "kind": "call",
+          "text": "Ja, dat zou ik ook zeggen als ik subsidiebureau was. Want dat is jouw brood. Dus je zou eigenlijk willen dat daar ook een onderscheid in is. Ja, er ...",
+          "tier": "E3",
+          "who": "Innovation manager, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "8c69192d-1b5b-4012-9a43-31e065e70e15",
+          "ms": 1513540
+        },
+        {
+          "kind": "call",
+          "text": "Alleen dat wordt in de tool natuurlijk afgestraft, want dan ga je scopen.",
+          "tier": "E3",
+          "who": "Venture builder / innovation lead, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "583816f4-0691-4aa1-9f3d-28fcaf52ac77",
+          "ms": 775370
+        },
+        {
+          "kind": "call",
+          "text": "Like, we had a whole structure mapped out. I don't think it is being used like it was supposed to have been used.",
+          "tier": "E2",
+          "who": "Venture builder, Austrian corporate venture studio",
+          "conv": "7104b29a-5d53-406e-833d-3ee2dd9af05b",
+          "ms": 916300
+        },
+        {
+          "kind": "call",
+          "text": "Ik moet zeggen dat we die niet zo heel erg helder omschreven hadden... Het is niet zo dat we daar een wetenschappelijke studie over hadden gedaan of ...",
+          "tier": "E3",
+          "who": "Venture builder, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "f756421d-9a1b-4fea-a983-5ad92c49fdff",
+          "ms": 525977
+        }
+      ]
+    },
+    {
+      "id": "signal-merge",
+      "title": "Fewer, stronger signals you can explain",
+      "column": "recommended",
+      "summary": "Merge repeated learnings into one signal automatically, let users merge and split by hand, and explain every score and promotion in one line (\"promoted to E4: 6 buyers, 3 unprompted, last heard 9 days ago\").",
+      "bet": "We believe that turning 60 candidate signals into ten explained ones will make Krans trusted enough to base a verdict on. We will know when active users stop asking what a score means and the median venture has fewer than 15 open signals.",
+      "problem": "The same pain heard in every call is split into separate signals, users end up with about 60 candidates or twenty hypotheses they cannot strengthen, and scores such as success rate swing without an explanation.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "Over-merging hides a real difference between segments. Keep the split visible per segment.",
+        "Explanations that read like jargon do not help. Test the one-liners with three users."
+      ],
+      "firstMove": "Take the three ventures with the most candidate signals, merge them by hand with the users, and use the merges as the test set for automatic clustering.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "right now we have many, I think nearly 60 signals, but they're all candidates. How can we strengthen them? We don't know.",
+          "tier": "E3",
+          "who": "Founder in the studio programme (ERP for manufacturing SMBs, Turkey)",
+          "conv": "1851fa37-a179-45e0-bb3e-ff7919b5becf",
+          "ms": 431878
+        },
+        {
+          "kind": "call",
+          "text": "I think I have some signals getting repetition but the tool is not putting them in the same basket all the time.",
+          "tier": "E3",
+          "who": "Founder in the studio programme (marketing attribution / data)",
+          "conv": "1faaeefd-8b97-4eaf-a637-b8b0571c9821",
+          "ms": 331080
+        },
+        {
+          "kind": "call",
+          "text": "En op een gegeven moment had ik twintig hypotheses. Ja, daar was gewoon veel te veel. Er stond heel veel rommel ook, zeg maar, in mijn Notion.",
+          "tier": "E3",
+          "who": "Venture builder / innovation lead, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "d2783e02-2987-415a-9021-fd7d15b81062",
+          "ms": 519672
+        },
+        {
+          "kind": "call",
+          "text": "At the reflections page, there's something called success rate. Yeah, we don't know exactly what it is, but last week it was 55%, now it is 35%.",
+          "tier": "E3",
+          "who": "Founder in the studio programme (ERP for manufacturing SMBs, Turkey)",
+          "conv": "1851fa37-a179-45e0-bb3e-ff7919b5becf",
+          "ms": 558865
+        },
+        {
+          "kind": "call",
+          "text": "Je ziet hier bijvoorbeeld bij E5 Decision Create best wel wat signalen staan die gewoon op E4 staan. Hoe werkt dat? Is dat maar dan de hoeveelheid?",
+          "tier": "E3",
+          "who": "Venture builder / innovation lead, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "c7f32ed9-d07e-4ff4-9756-410a65064547",
+          "ms": 485232
+        },
+        {
+          "kind": "call",
+          "text": "the signals were like a mixed bag between things that are either obvious or a bit hallucinations.",
+          "tier": "E2",
+          "who": "Krans team (relaying founder feedback)",
+          "conv": "8c6833be-0013-4971-b51e-2fa20bb5ae95",
+          "ms": 612781
+        },
+        {
+          "kind": "signal",
+          "text": "\"Taxonomizing and tagging the information is a challenge that Dovetail does not provide a lot of support for.\"",
+          "url": "https://capterra.com/p/174077/Dovetail/reviews/",
+          "source": "Capterra",
+          "date": "2024-10-15"
+        }
+      ]
+    },
+    {
+      "id": "sprint-pricing",
+      "title": "Price per sprint, unlimited readers",
+      "column": "recommended",
+      "summary": "Replace the monthly per-workspace fee with a fixed price per venture per sprint (for example six to eight weeks), unlimited readers for partners and sponsors, and read-only access after the sprint ends.",
+      "bet": "We believe that a sprint price that maps onto how agencies and corporate teams already budget validation will close faster than a monthly fee. We will know when two of the next five proposals are accepted without a price negotiation.",
+      "problem": "No studio has accepted the list price; agencies want to pass the cost to a client for a fixed piece of validation; readers such as partners and sponsors should not cost a seat; studios want to keep access to killed ventures.",
+      "impact": 3,
+      "effort": 1,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "A sprint price may cap revenue from teams that run continuously. Offer an annual plan once a team runs three sprints.",
+        "Price anchoring: studios anchor at 600 euros, sponsors at thousands. Sell to the sponsor, not the studio."
+      ],
+      "firstMove": "Send a one-page sprint offer to the agency, the corporate team and two corporate venture studios in the pipeline in November, with one price, and record who accepts.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "In this first case, you just, you know, what is it, $1,000 a month, something like that... we have to finish in 2 months this validation.",
+          "tier": "E2",
+          "who": "Partner, innovation agency working for corporates",
+          "conv": "b4811fc5-b376-4a39-b643-d4065513e014",
+          "ms": 1675292
+        },
+        {
+          "kind": "call",
+          "text": "right now our deal with [company] is done, right? This is money out of our pocket. When it is, you know, coming from, you know, [company]'s pocket... we'll ...",
+          "tier": "E2",
+          "who": "Partner, innovation agency working for corporates",
+          "conv": "b4811fc5-b376-4a39-b643-d4065513e014",
+          "ms": 1892159
+        },
+        {
+          "kind": "call",
+          "text": "I'll pay for validation, but I won't pay beyond validation. Like for create like it's already created, it's running.",
+          "tier": "E2",
+          "who": "Partner, innovation agency working for corporates (about its energy-corporate sponsor)",
+          "conv": "125873f3-0a94-4a02-934c-439842f20087",
+          "ms": 337290
+        },
+        {
+          "kind": "call",
+          "text": "Dus we hebben onze eigen back-office gebouwd, zeg maar. En dat werkt supergoed. Maar dat is gewoon wel echt gewoon: oké, we gaan eerst specs schrijven en dan ...",
+          "tier": "E4",
+          "who": "Partner, Latin American VC fund, venture studio and credit platform",
+          "conv": "cd7a0586-61a4-404d-ae53-790ff2c34c26",
+          "ms": 757280
+        },
+        {
+          "kind": "call",
+          "text": "I see Nothing less than 5,000 or $10,000 in the experimentation phase. I think should be a good fit is what I think.",
+          "tier": "E2",
+          "who": "Studio lead, new real-estate venture studio backed by a real estate group",
+          "conv": "f5a5a628-61fa-472d-9170-8b6e39c93149",
+          "ms": 1230420
+        },
+        {
+          "kind": "call",
+          "text": "this is a product that costs around $4K a month... The lowest we are onboarding people with workspaces, like maybe 1 or 2, is around $1,250 a month.",
+          "tier": "E1",
+          "who": "Krans team (vendor, pricing disclosed)",
+          "conv": "d61d6926-61be-4406-8229-64ac7a7b5d0f",
+          "ms": 3540719
+        },
+        {
+          "kind": "competitor",
+          "text": "Condens: per contributor, unlimited viewers.",
+          "url": "https://condens.io/pricing/",
+          "source": "Condens",
+          "date": "2026"
+        },
+        {
+          "kind": "signal",
+          "text": "\"Way too expensive when there are more affordable tools that work\" (Gong review)",
+          "url": "https://www.sybill.ai/blogs/gong-reviews",
+          "source": "G2 via Sybill",
+          "date": "2026-03-04"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "Price anchors named in calls, per month in euros (approximate)",
+          "unit": "€ / month",
+          "items": [
+            {
+              "label": "List price, 3 to 4 ventures",
+              "value": 3500,
+              "note": "team statement"
+            },
+            {
+              "label": "Entry, 1 to 2 workspaces",
+              "value": 1150,
+              "note": "about 1,250 dollars"
+            },
+            {
+              "label": "Agency pilot, verbal",
+              "value": 875,
+              "note": "3,000 to 4,000 over four months"
+            },
+            {
+              "label": "Small studio offer",
+              "value": 200,
+              "note": "600 for three months"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capture-anywhere",
+      "title": "Read every source, record nothing yourself",
+      "column": "recommended",
+      "summary": "Ingest from the note-takers teams already run (Read AI, Granola, Fathom, Meet and Gemini notes, Teams uploads) plus selected Slack channels and email threads, with consent shown per call and no bot of Krans's own.",
+      "bet": "We believe that reading whatever a team already records, instead of adding a bot, will remove the capture gap and the consent objection at once. We will know when the share of a venture's calls that reach Krans passes 80% in the pilot accounts.",
+      "problem": "Teams mix four or five note-takers, forget to record, forward Gemini summaries Krans cannot read, and keep half their validation in email, Slack and WhatsApp; bots are being blocked and resented.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "next",
+      "risks": [
+        "Transcript-only sources lose speaker and time detail; show when a learning comes from a summary rather than a transcript.",
+        "Every new connector adds IT review in corporates. Prioritise uploads and the two note-takers the pilots use."
+      ],
+      "firstMove": "Measure, for the corporate team and the agency, how many of last month's calls reached Krans and why the rest did not.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "It's also saying that I've got Read AI, and actually I had a call earlier on... so it actually did work. It worked pretty well.",
+          "tier": "E4",
+          "who": "Venture architect, innovation agency working for corporates",
+          "conv": "19ee70b2-2d29-405c-85e7-04131f7295d7",
+          "ms": 97300
+        },
+        {
+          "kind": "call",
+          "text": "I think it's a Gemini summary, something that the customer sent to me and I looked it in into the platform, didn't find anything to connect with.",
+          "tier": "E3",
+          "who": "Founder in the studio programme (energy tech, Brazil)",
+          "conv": "4bd69cf7-c20a-4763-94bf-6c5ee39bdb47",
+          "ms": 253420
+        },
+        {
+          "kind": "call",
+          "text": "Usually I forget to. To activate it, but whenever there is someone who, who has it from his side, I ask him to forward me the notes.",
+          "tier": "E3",
+          "who": "Solo founder, early-stage venture",
+          "conv": "bc04d6fc-0178-44c1-b383-f245af543086",
+          "ms": 236410
+        },
+        {
+          "kind": "call",
+          "text": "my team, we are using a lot of Slack. ... if it could be connected to some selected channels, you know, you will be really able to merge all the ...",
+          "tier": "E2",
+          "who": "Founder in the studio programme (early-stage B2B, remote)",
+          "conv": "782d60b0-caca-41f2-a3f5-3c4f78e5fc6b",
+          "ms": 498644
+        },
+        {
+          "kind": "call",
+          "text": "if you are in the discovery phase we use the same mail inbox for all the or like few of the ventures... That means that probably the same inbox will ...",
+          "tier": "E3",
+          "who": "Founder, small Italian AI-first venture studio",
+          "conv": "0eee6eb3-1bd0-4394-8cfb-bee15910567f",
+          "ms": 1176030
+        },
+        {
+          "kind": "trend",
+          "text": "Google Meet puts third-party notetaker bots in a risk queue that defaults to deny.",
+          "url": "https://docs.glyphic.ai/articles/7805421929-glyphic-notetaker-google-meet-potential-risk-faq",
+          "source": "Glyphic",
+          "date": "2026-03"
+        },
+        {
+          "kind": "signal",
+          "text": "\"Two more meetings today where Read.ai joined, uninvited\"",
+          "url": "https://www.trustpilot.com/review/read.ai",
+          "source": "Trustpilot",
+          "date": "2026-08-29"
+        }
+      ]
+    },
+    {
+      "id": "enterprise-ready",
+      "title": "Pass the corporate IT committee",
+      "column": "recommended",
+      "summary": "A security pack for corporate buyers: EU hosting, retention settings, scoped connectors an admin approves once, no audio kept, no emotion scoring, and a data processing agreement ready to sign.",
+      "bet": "We believe that clearing IT review in days instead of months will decide whether corporate pilots start at all. We will know when the next corporate account connects Notion and Claude in its first week.",
+      "problem": "In the one corporate account, IT approval, per-user OAuth, Notion scoping and an admin-only custom connector were the real adoption gates, and a studio handling consultancy client data asked where data lives before anything else.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E4",
+      "horizon": "next",
+      "risks": [
+        "Certification work can swallow a small team. Start with a written pack and EU hosting; certify when a deal requires it."
+      ],
+      "firstMove": "Write the two-page security and data note from the questions the corporate IT admin and the French and German studios asked, and send it ahead of the next corporate demo.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "En toen was daar een beetje weerstand tegen, omdat ze de tool nog niet door een soort van commissie heen hadden gehaald.",
+          "tier": "E3",
+          "who": "Venture builder / innovation lead, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "c231b722-9c11-4d7a-918e-83e29188e95e",
+          "ms": 2657217
+        },
+        {
+          "kind": "call",
+          "text": "Ja, alle andere dingen zijn niet zichtbaar, ondanks dat ze wel onder de AI-kennisbank vallen, wat nou eigenlijk bovenaan staat.",
+          "tier": "E5",
+          "who": "IT and AI integration admin, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "b21f2a21-81d6-4b5a-9e21-a127097e95b8",
+          "ms": 1215070
+        },
+        {
+          "kind": "call",
+          "text": "Dus hij had alleen maar vanuit Notion mijn aantekeningen gepakt, maar niet alle informatie.",
+          "tier": "E3",
+          "who": "VSI team member (vendor, internal support)",
+          "conv": "9f53c8b6-dbac-4309-8d12-95ad07003b3c",
+          "ms": 578646
+        },
+        {
+          "kind": "call",
+          "text": "we handle customer data at the end with the consultancy business. Therefore, we are using a lot of customer data, which, where the customers are super hard, ...",
+          "tier": "E3",
+          "who": "Managing director, German venture studio and consultancy",
+          "conv": "d07b553b-e704-4471-aa17-b5af1dee311a",
+          "ms": 1717730
+        },
+        {
+          "kind": "call",
+          "text": "Since we are a US-based fund right now and we are getting certified... we need to look at cybersecurity and we need to look to how we're gonna host our data",
+          "tier": "E3",
+          "who": "Partner, French venture studio (US-based fund in certification)",
+          "conv": "fe8e11f4-585b-407c-81dd-a8bc3834e0b1",
+          "ms": 2170720
+        },
+        {
+          "kind": "trend",
+          "text": "EU AI Act prohibition of emotion recognition at work.",
+          "url": "https://fpf.org/blog/red-lines-under-eu-ai-act-unpacking-the-prohibition-of-emotion-recognition-in-the-workplace-and-education-institutions/",
+          "source": "Future of Privacy Forum",
+          "date": "2025"
+        }
+      ]
+    },
+    {
+      "id": "history-import",
+      "title": "Import the archive, keep killed ventures",
+      "column": "recommended",
+      "summary": "Load years of past calls and documents into Krans in one pass, and keep read-only access to killed and finished ventures, so a studio's past learnings answer questions about its next venture.",
+      "bet": "We believe that importing a studio's archive will make Krans useful from day one and make it hard to leave. We will know when one studio imports more than 1,000 past calls and asks Krans about a new venture using them.",
+      "problem": "Studios have years of calls they cannot search (one mentions about 15,000), the same conversations repeat across ventures, and learnings from killed ventures are lost.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E3",
+      "horizon": "later",
+      "risks": [
+        "Processing cost for thousands of calls. Price the import separately.",
+        "Old calls without consent records may not be usable in the EU."
+      ],
+      "firstMove": "Ask the French studio for a sample of 200 old calls and measure cost, time and how many learnings still hold.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "we have 5, 6 years worth of data, so roughly like 15K conversations. Can we push all of the legacy stuff in and structure it?",
+          "tier": "E3",
+          "who": "Partner, French venture studio (industrial/manufacturing)",
+          "conv": "fe8e11f4-585b-407c-81dd-a8bc3834e0b1",
+          "ms": 1350888
+        },
+        {
+          "kind": "call",
+          "text": "even if we increased our team size by 10, unless people are prepared to read thousands of pages, they can't retain the knowledge to share it.",
+          "tier": "E3",
+          "who": "Founder-director, UK health-tech startup",
+          "conv": "da71c697-6681-4a26-852f-247403ab3be4",
+          "ms": 588110
+        },
+        {
+          "kind": "call",
+          "text": "My data sits somewhere in Google Drive. Some it's sitting on my WhatsApp, some of it is sitting somewhere on the email and some is in my own head and ...",
+          "tier": "E3",
+          "who": "Studio lead, new real-estate venture studio backed by a real estate group",
+          "conv": "f5a5a628-61fa-472d-9170-8b6e39c93149",
+          "ms": 772530
+        }
+      ]
+    },
+    {
+      "id": "founder-brief",
+      "title": "A weekly brief founders own and partners read",
+      "column": "recommended",
+      "summary": "Instead of monitoring, a weekly brief each venture team writes with Krans (what changed, what we learned, what we need), which partners and investors read, with the founder deciding what is shared.",
+      "bet": "We believe that partners get the visibility they ask for without founders feeling watched if the founder owns the brief. We will know when three portfolio founders at a customer choose to share it every week for a month.",
+      "problem": "Partners and investors see ventures through summaries and numbers they do not fully trust and chase founders for updates, but investors warn a shareholder should never listen in on a founder, and a founder felt judged by the scoring.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Founders may still see it as surveillance. Test with founders at a customer, not the studio's own programme.",
+        "Directive advice stresses teams (\"a narrow line between focused and stressed\"). Keep it descriptive."
+      ],
+      "firstMove": "Interview three portfolio founders at a customer studio about what they would share with their partner and what they would not.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "for me, [VSI] is the source of truth in how the organization is doing, like what, what, whether they are focused, like what they changed over the week, because ...",
+          "tier": "E4",
+          "who": "Investor and venture builder, Polish software consultancy (using VSI via MCP)",
+          "conv": "d8cc0e3c-c36b-4d61-a8e4-e79fc9ac6b7c",
+          "ms": 421434
+        },
+        {
+          "kind": "call",
+          "text": "Making visible the conversations that are happening that maybe we're not privy to, and we only hear secondhand.",
+          "tier": "E3",
+          "who": "Venture lead, Dutch venture studio (regenerative food)",
+          "conv": "d61d6926-61be-4406-8229-64ac7a7b5d0f",
+          "ms": 2495327
+        },
+        {
+          "kind": "call",
+          "text": "there are moments when I want to see what the value of the company is. And I don't see that anywhere. I've asked about it.",
+          "tier": "E3",
+          "who": "Angel investor in studio portfolio companies",
+          "conv": "9116b981-5275-4d4b-ab63-c6c49806fcdc"
+        },
+        {
+          "kind": "call",
+          "text": "ik denk dat een aandeelhouder nooit een meeting zou moeten afluisteren van van een directeur of een founder",
+          "tier": "E2",
+          "who": "Private investor, Dutch investment vehicle",
+          "conv": "37ba786d-6645-4082-82a6-4cb094c225cd",
+          "ms": 863187
+        },
+        {
+          "kind": "call",
+          "text": "before you start thinking about what it is for investors, it only makes sense to me if you can say it's a great success for the founders... the ...",
+          "tier": "E2",
+          "who": "Partner, Dutch early-stage venture fund",
+          "conv": "45c88d95-acb5-4f02-81b2-be2d7d6be513",
+          "ms": 2822729
+        },
+        {
+          "kind": "call",
+          "text": "I'm spending so much, really, time on this. And then I also know that I'm gonna be judged a little bit ... by a system that I wouldn't have to ...",
+          "tier": "E3",
+          "who": "Founder in the studio programme (marketing attribution / data)",
+          "conv": "1faaeefd-8b97-4eaf-a637-b8b0571c9821",
+          "ms": 417230
+        },
+        {
+          "kind": "call",
+          "text": "there is like a really narrow line between be focused and be stressed.",
+          "tier": "E2",
+          "who": "Investor and venture builder, Polish software consultancy (using VSI via MCP)",
+          "conv": "9b9ed3c4-cd93-49ab-971e-329be4038ef0",
+          "ms": 897332
+        },
+        {
+          "kind": "call",
+          "text": "I actually have a scheduled task that works every Monday at 6 AM, gets a weekly VSI report for me.",
+          "tier": "E4",
+          "who": "Founder in the studio programme (ERP for manufacturing SMBs, Turkey)",
+          "conv": "1851fa37-a179-45e0-bb3e-ff7919b5becf",
+          "ms": 369586
+        }
+      ]
+    },
+    {
+      "id": "portfolio-monitor",
+      "title": "Portfolio monitoring for studio partners",
+      "column": "parked",
+      "summary": "A studio-wide overview that ranks every venture by the attention it needs, sold to partners as the main product.",
+      "problem": "Partners ask for visibility, and the overview demos well, but it has not been used by a partner across their own live ventures.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Parked: no partner has used it across their own live ventures, founder resistance is untested, and studios have not accepted the price. Revisit with the first studio running three or more ventures on Krans."
+      ],
+      "firstMove": "None now. Track which pilot first runs three ventures at once.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "We developed a portal, a monitoring portal for our startups. So a studio management portal where once we build a startup, we register that startup on ...",
+          "tier": "E4",
+          "who": "Founder, West African venture studio",
+          "conv": "ac4d3712-578b-4d6d-8406-5e1a64cfc8ff",
+          "ms": 1176298
+        },
+        {
+          "kind": "call",
+          "text": "before you start thinking about what it is for investors, it only makes sense to me if you can say it's a great success for the founders... the ...",
+          "tier": "E2",
+          "who": "Partner, Dutch early-stage venture fund",
+          "conv": "45c88d95-acb5-4f02-81b2-be2d7d6be513",
+          "ms": 2822729
+        },
+        {
+          "kind": "call",
+          "text": "ik denk dat een aandeelhouder nooit een meeting zou moeten afluisteren van van een directeur of een founder",
+          "tier": "E2",
+          "who": "Private investor, Dutch investment vehicle",
+          "conv": "37ba786d-6645-4082-82a6-4cb094c225cd",
+          "ms": 863187
+        },
+        {
+          "kind": "market",
+          "text": "Studios cap out at 15 to 25 active companies because attention does not scale (self-published studio report; opinion).",
+          "url": "https://stealth1000.com/research/STEALTH_State_of_the_Venture_Studio_Economy_2026.pdf",
+          "source": "STEALTH Research",
+          "date": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "outreach",
+      "title": "Outreach and go-to-market automation",
+      "column": "parked",
+      "summary": "Tools that find interviewees, write outreach and run go-to-market tests for founders.",
+      "problem": "Several inbound founders wanted help getting conversations, not analysing them, and access to interviewees is a real pain.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Parked: a different product with crowded competition, asked for by founders without budget. Point them to partners instead."
+      ],
+      "firstMove": "None now.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Het blijft bij: ik krijg inzicht via jullie tool hoe ik iets anders moet doen. Maar het is niet dat hij uit zichzelf e-mails gaat schrijven en klanten gaat bellen.",
+          "tier": "E2",
+          "who": "Founder, Dutch investment data firm",
+          "conv": "0b18982a-5c61-48a9-a719-a3cb14645e26",
+          "ms": 809816
+        },
+        {
+          "kind": "call",
+          "text": "is there any other way where your venture studio can help us means apart from using this tool",
+          "tier": "E2",
+          "who": "Founder of a pre-launch PropTech venture, declined batch applicant",
+          "conv": "a4e2c1b7-0c5b-4c4e-b790-cb7cd401ec63",
+          "ms": 1083160
+        },
+        {
+          "kind": "call",
+          "text": "Ik heb gewoon vorige week twee uur lang koud lopen bellen en gewoon geen. Ik heb één gesprek eruit gehaald.",
+          "tier": "E3",
+          "who": "Venture builder / innovation lead, Dutch corporate group (business services for SME entrepreneurs), in-house innovation team",
+          "conv": "c231b722-9c11-4d7a-918e-83e29188e95e",
+          "ms": 832390
+        },
+        {
+          "kind": "call",
+          "text": "Now it's, yeah, you get a reply from the email from 1 out of 1,000, and then they don't show up. So it's managing the throughput from validation ...",
+          "tier": "E3",
+          "who": "Partner, US bootstrapped venture studio and corporate innovation firm",
+          "conv": "f9e1a631-9ee6-49b3-a06f-bab160df4ae0",
+          "ms": 2224755
+        }
+      ]
+    }
+  ]
+}

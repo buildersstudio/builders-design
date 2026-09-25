@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krans in your assistant</title>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#212227;--cream:#EFE9DB;--lift:#F5F1E7;--card:#FBF9F4;--orange:#F95738;--blue:#30BCED;--purple:#5E239D;
+  --muted:#5F5E5A;--faint:#8E8A80;--line:rgba(33,34,39,.10);--line2:rgba(33,34,39,.17);
+  --o-soft:#FCE3D9;--o-ink:#B83A1F;--b-soft:#DCF1F9;--b-ink:#136F91;--p-soft:#E9DFF3;--p-ink:#4A1B7D;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--cream)}
+body{font-family:"Switzer",system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+svg{display:block}
+
+/* caption */
+.cap{height:34px;display:flex;align-items:center;gap:14px;padding:0 20px;background:var(--ink);color:#E9E4D6;font-size:12.5px}
+.cap b{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:#FF8E77;white-space:nowrap}
+.cap b i{font-style:normal;color:#E9E4D6;opacity:.6;margin:0 4px}
+.cap span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.8}
+.cap .r{margin-left:auto;opacity:.55;flex:none}
+
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 344px;gap:16px;padding:16px;height:calc(100vh - 34px);min-height:720px}
+
+/* assistant window */
+.win{background:var(--lift);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;min-height:0;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 24px 48px -32px rgba(33,34,39,.35)}
+.wh{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.av{width:30px;height:30px;border-radius:9px;background:var(--ink);display:grid;place-items:center;flex:none}
+.av svg{width:16px;height:16px}
+.wt b{display:block;font-weight:600;font-size:14.5px;letter-spacing:-.01em;line-height:1.2}
+.wt span{font-size:12px;color:var(--faint)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 7px;border-radius:999px;background:#fff;border:1px solid var(--line2);font-size:12px;font-weight:500;white-space:nowrap}
+.pill svg{width:15px;height:15px}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px rgba(48,188,237,.2)}
+.wh .sp{flex:1}
+.replay{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:9px;border:1px solid var(--line2);font-size:12.5px;font-weight:500;background:transparent;white-space:nowrap}
+.replay:hover{background:#fff}
+.replay svg{width:13px;height:13px}
+
+.log{flex:1;min-height:0;overflow-y:auto;scroll-behavior:smooth;padding:20px 24px 12px}
+.col{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+
+.u{align-self:flex-end;max-width:82%;background:var(--ink);color:#F3EEE2;padding:10px 14px;border-radius:14px 14px 4px 14px;font-size:14px;line-height:1.45}
+.a{display:flex;gap:12px;align-items:flex-start}
+.a>.av{width:26px;height:26px;border-radius:8px;margin-top:1px}
+.a>.av svg{width:13px;height:13px}
+.ab{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
+
+/* tool calls */
+.tools{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+.th{display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line)}
+.th svg{width:14px;height:14px}
+.th b{font-weight:600;color:var(--ink)}
+.th .n{margin-left:auto;color:var(--faint)}
+.tool{border-top:1px solid var(--line)}
+.th+.tool{border-top:0}
+.tool summary{list-style:none;display:grid;grid-template-columns:18px auto minmax(0,1fr) auto 14px;gap:10px;align-items:center;padding:8px 12px;cursor:pointer}
+.tool summary::-webkit-details-marker{display:none}
+.tool summary:hover{background:rgba(255,255,255,.7)}
+.st{width:16px;height:16px;border-radius:50%;display:grid;place-items:center}
+.st.ok{background:var(--ink)}
+.st.ok svg{width:9px;height:9px}
+.st.run{border:2px solid var(--line2);border-top-color:var(--orange);animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tn{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:6px;font-size:12.5px;font-weight:600;letter-spacing:.005em;white-space:nowrap;background:var(--o-soft);color:var(--o-ink)}
+.tn.nt{background:rgba(33,34,39,.07);color:var(--ink)}
+.tn em{font-style:normal;font-weight:400;opacity:.7}
+.tr{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tr b{color:var(--ink);font-weight:500}
+.tt{font-size:11.5px;color:var(--faint);white-space:nowrap}
+.cv{width:12px;height:12px;color:var(--faint);transition:transform .15s}
+.tool[open] .cv{transform:rotate(90deg)}
+.td{padding:2px 12px 12px 40px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:12.5px;color:var(--muted)}
+.td dt{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--faint);padding-top:2px}
+.td dd{color:var(--ink)}
+.tag{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:2px 7px;border-radius:5px;background:var(--p-soft);color:var(--p-ink);white-space:nowrap}
+
+/* answer */
+.ans{font-size:14.5px;line-height:1.55}
+.ans p+p,.ans p+.blk,.ans .blk+.blk{margin-top:10px}
+.blk h4{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--faint);margin-bottom:3px}
+.blk ul,.blk ol{padding-left:18px}
+.blk li+li{margin-top:2px}
+.cite{display:inline-grid;place-items:center;min-width:19px;height:18px;padding:0 5px;border-radius:5px;font-size:11px;font-weight:600;background:var(--o-soft);color:var(--o-ink);vertical-align:1px;margin-left:2px;transition:background .15s,color .15s}
+.cite:hover,.cite.on{background:var(--orange);color:#fff}
+.two{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px;align-items:start}
+.verdict{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:12px 14px}
+.verdict .vh{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.verdict .vh span{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--faint)}
+.vchip{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--o-soft);color:var(--o-ink);white-space:nowrap}
+.verdict h5{font-size:15px;font-weight:600;letter-spacing:-.01em;margin:6px 0 8px;line-height:1.3}
+.meter{position:relative;height:8px;border-radius:999px;background:rgba(33,34,39,.08)}
+.meter i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--orange);width:48%;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.meter u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.35;left:71%;border-radius:2px}
+.mlab{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:6px}
+.mlab b{color:var(--ink);font-weight:600}
+
+/* evidence cards */
+.ev{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.card{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:11px 12px 10px;display:flex;flex-direction:column;gap:7px;transition:box-shadow .2s,border-color .2s,transform .2s}
+.card.on{border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,87,56,.16);transform:translateY(-1px)}
+.ch{display:flex;align-items:center;gap:7px}
+.num{display:grid;place-items:center;width:19px;height:18px;border-radius:5px;background:var(--ink);color:var(--cream);font-size:11px;font-weight:600}
+.grade{display:inline-flex;align-items:center;gap:6px;margin-left:auto;font-size:11.5px;font-weight:600}
+.grade .seg{display:flex;gap:2px}
+.grade .seg i{width:5px;height:10px;border-radius:1.5px;background:rgba(33,34,39,.12)}
+.grade .seg i.f{background:var(--purple)}
+.q{font-size:13.5px;line-height:1.42;font-weight:500;letter-spacing:-.005em}
+.who{font-size:12px;color:var(--muted);line-height:1.35}
+.age{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--muted);padding-top:7px;border-top:1px solid var(--line);margin-top:auto}
+.age .bar{flex:none;width:34px;height:4px;border-radius:999px;background:rgba(33,34,39,.1);overflow:hidden}
+.age .bar i{display:block;height:100%;border-radius:999px;background:var(--blue)}
+.age.fade{color:var(--o-ink)}
+.age.fade .bar i{background:var(--orange)}
+.age b{font-weight:600}
+
+/* notion result */
+.page{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;background:#fff;padding:11px 12px}
+.pic{width:36px;height:40px;border-radius:6px;border:1px solid var(--line2);background:var(--card);flex:none;display:flex;flex-direction:column;gap:3px;padding:8px 7px}
+.pic i{height:3px;border-radius:2px;background:rgba(33,34,39,.22)}
+.pic i:nth-child(2){width:70%}.pic i:nth-child(3){width:85%;background:var(--orange)}
+.pinfo{flex:1;min-width:0}
+.pinfo b{display:block;font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pinfo span{font-size:12.5px;color:var(--muted)}
+.pact{display:flex;gap:6px;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:6px 12px;border-radius:8px;border:1px solid var(--line2);font-size:12.5px;font-weight:500;background:transparent;white-space:nowrap}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+
+/* composer */
+.comp{padding:10px 20px 14px}
+.box{max-width:820px;margin:0 auto;border:1px solid var(--line2);border-radius:14px;background:#fff;padding:10px 10px 8px 14px;display:flex;flex-direction:column;gap:6px;box-shadow:0 8px 20px -16px rgba(33,34,39,.4)}
+.inp{min-height:21px;font-size:14px;color:var(--ink)}
+.inp:empty:before{content:"Ask anything about your ventures";color:var(--faint)}
+.inp .caret{display:inline-block;width:1.5px;height:16px;background:var(--orange);vertical-align:-3px;margin-left:1px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.bx{display:flex;align-items:center;gap:8px}
+.bx .pill{background:var(--card)}
+.bx .hint{font-size:12px;color:var(--faint)}
+.send{margin-left:auto;width:30px;height:30px;border-radius:9px;background:var(--ink);display:grid;place-items:center;flex:none;transition:transform .12s}
+.send svg{width:14px;height:14px}
+.send.hit{transform:scale(.9);background:var(--orange)}
+
+/* reveal */
+.pending{display:none}
+.in{animation:rise .35s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* krans panel */
+.kp{background:var(--lift);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.kh{display:flex;align-items:center;gap:10px;padding:14px 16px 12px;border-bottom:1px solid var(--line)}
+.kh .logo svg{height:20px;width:auto}
+.kh span{margin-left:auto;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--faint)}
+.kbody{flex:1;min-height:0;overflow-y:auto;padding:14px 16px 16px;display:flex;flex-direction:column;gap:14px}
+.lbl{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--faint)}
+.health{border-radius:12px;background:var(--ink);color:var(--cream);padding:14px}
+.health .hr{display:flex;align-items:center;gap:10px}
+.health .lbl{color:rgba(239,233,219,.55)}
+.dot{position:relative;width:10px;height:10px;border-radius:50%;background:var(--blue);flex:none}
+.dot:after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--blue);opacity:.5;animation:ping 2s ease-out infinite}
+@keyframes ping{from{transform:scale(.6);opacity:.7}to{transform:scale(1.5);opacity:0}}
+.health h3{font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1}
+.health p{font-size:12.5px;color:rgba(239,233,219,.72);margin-top:8px;line-height:1.45}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(239,233,219,.14);border-radius:10px;overflow:hidden;margin-top:12px}
+.stats div{background:#2A2B31;padding:9px 11px}
+.stats b{display:block;font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.stats b small{font-size:12px;font-weight:500;color:rgba(239,233,219,.6)}
+.stats span{font-size:11.5px;color:rgba(239,233,219,.6)}
+.segs{display:flex;gap:3px;margin-top:6px}
+.segs i{flex:1;height:4px;border-radius:2px;background:var(--blue)}
+.scopes{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+.sc{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 12px}
+.sc+.sc{border-top:1px solid var(--line)}
+.si{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:#fff;border:1px solid var(--line)}
+.si svg{width:14px;height:14px}
+.sc b{display:block;font-size:13.5px;font-weight:600;line-height:1.25}
+.sc span{font-size:12px;color:var(--muted)}
+.perm{font-size:11px;font-weight:600;padding:2px 7px;border-radius:5px;background:var(--b-soft);color:var(--b-ink);white-space:nowrap}
+.perm.w{background:var(--p-soft);color:var(--p-ink)}
+.tlist{display:flex;flex-wrap:wrap;gap:5px}
+.tlist span{font-size:12px;font-weight:500;padding:3px 8px;border-radius:6px;background:#fff;border:1px solid var(--line);color:var(--muted);transition:all .25s}
+.tlist span.used{background:var(--o-soft);border-color:transparent;color:var(--o-ink)}
+.act{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);margin-left:4px}
+.act div{display:flex;gap:8px;align-items:baseline;font-size:12.5px;padding:3px 0 3px 12px;position:relative}
+.act div:before{content:"";position:absolute;left:-5px;top:10px;width:8px;height:8px;border-radius:50%;background:var(--lift);border:2px solid var(--ink)}
+.act div b{font-weight:600}
+.act div span{margin-left:auto;color:var(--faint);font-size:11.5px;white-space:nowrap}
+.act .empty{color:var(--faint)}
+.act .empty:before{border-color:var(--line2)}
+.rec{border:1px dashed var(--line2);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.rec p{font-size:12.5px;color:var(--muted);line-height:1.45}
+.rec p b{color:var(--ink);font-weight:600}
+.rec .row{display:flex;gap:8px;align-items:center}
+.rec .btn{background:#fff}
+.rec .btn svg{width:13px;height:13px}
+.rec .row span{font-size:11.5px;color:var(--faint)}
+
+
+.lead{margin-bottom:8px}
+.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+.two+.two{margin-top:10px}
+.two>.blk{margin-top:0!important}
+.two.pr{grid-template-columns:minmax(0,1fr) 300px;align-items:center}
+.vchip{font-style:normal}
+.verdict{padding:10px 12px}.verdict h5{font-size:13.5px;margin:4px 0 7px}
+.box{flex-direction:row;padding:7px 7px 7px 14px}
+.bx{flex:1;min-width:0}
+.inp{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card{padding:10px 12px 9px;gap:6px}
+.q{font-size:13px}
+.log{padding:16px 24px 10px}
+.col{max-width:880px}.box{max-width:880px}
+.tool summary{padding:7px 12px}
+.th{padding:7px 12px}
+.comp{padding:8px 20px 12px}
+.stage{padding:12px;gap:12px}
+.kbody{gap:12px;padding:12px 16px 14px}
+.health{padding:12px 14px}
+.sc{padding:8px 12px}
+@media (max-width:640px){
+  .two,.two.pr{grid-template-columns:1fr;gap:10px}
+  .tool summary .tt,.tool summary .tag{grid-column:3;grid-row:1}
+  .tool summary .cv{grid-column:4;grid-row:1}
+  .tool summary .tr{grid-row:2}
+  .bx .pill{display:none}
+}
+.mrow{display:flex;align-items:center;gap:10px}.mrow .meter{flex:1}.mrow .mlab{margin:0;font-size:12px;white-space:nowrap}
+.also{font-style:normal;margin-left:auto;font-size:11px;font-weight:600;padding:1px 6px;border-radius:5px;background:var(--b-soft);color:var(--b-ink)}
+.col{gap:10px}.wh{padding:9px 16px}.lead{margin-bottom:6px}.tool summary{padding:6px 12px}.th{padding:6px 12px}
+.card{gap:5px}.age{padding-top:6px}
+.log{padding:12px 24px 6px}.u{padding:8px 14px}.page{padding:9px 12px}.comp{padding:6px 20px 12px}.verdict{padding:9px 12px}
+.mrow .mlab{display:inline;color:var(--muted)}
+.act div:before{top:8px}
+@media (max-width:640px){.pinfo b{white-space:normal}}
+@media (max-height:860px) and (min-width:1100px){.log{padding-top:14px}.col{gap:12px}}
+@media (max-width:1100px){
+  .stage{grid-template-columns:1fr;height:auto;min-height:0}
+  .win{height:calc(100vh - 66px);min-height:620px}
+  .kp{overflow:visible}.kbody{overflow:visible}
+}
+@media (max-width:640px){
+  .cap{padding:0 16px}.cap span,.cap .r{display:none}
+  .stage{padding:10px;gap:10px}
+  .win{height:auto;min-height:0;border-radius:14px}
+  .log{overflow:visible;padding:14px 12px 8px}
+  .wh{padding:10px 12px;flex-wrap:wrap;gap:8px 10px}
+  .wh .sp{display:none}
+  .wh .pill{order:3}
+  .replay{margin-left:auto}
+  .u{max-width:92%}
+  .a{gap:0}.a>.av{display:none}
+  .tool summary{grid-template-columns:18px minmax(0,1fr) auto 12px;row-gap:3px}
+  .tool summary .tr{grid-column:2 / 5;white-space:normal}
+  .tool summary .tn{justify-self:start}
+  .td{padding-left:12px}
+  .two{grid-template-columns:1fr;gap:10px}
+  .ev{grid-template-columns:1fr}
+  .page{flex-wrap:wrap}.pact{width:100%}.pact .btn{flex:1}
+  .comp{padding:8px 10px 10px;position:sticky;bottom:0;background:linear-gradient(to bottom,rgba(245,241,231,0),var(--lift) 30%)}
+  .bx .hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.log{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype<i>·</i>illustrative data</b><span>Krans where the work happens: the venture model, cited and graded, inside the assistant a builder already uses. Ventures, people and numbers are invented.</span><span class="r">Not a live product</span></div>
+
+<main class="stage">
+  <section class="win" aria-label="Assistant conversation">
+    <header class="wh">
+      <div class="av"><svg viewBox="0 0 16 16" fill="none" stroke="#EFE9DB" stroke-width="1.6" stroke-linecap="round"><path d="M8 2v3M8 11v3M2 8h3M11 8h3M3.8 3.8l2 2M10.2 10.2l2 2M12.2 3.8l-2 2M5.8 10.2l-2 2"/></svg></div>
+      <div class="wt"><b>Your assistant</b><span>Pilot prep, Venture A</span></div>
+      <span class="pill"><i></i>Connected: Krans</span>
+      <div class="sp"></div>
+      <button class="replay" id="replay" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8a5.5 5.5 0 1 0 1.7-4"/><path d="M2.5 2.5v3h3"/></svg>Replay</button>
+    </header>
+
+    <div class="log" id="log">
+      <div class="col">
+        <div class="u pending" data-s="u1">Brief me for my 10:00 with the pilot customer, and tell me if our pricing assumption still holds.</div>
+
+        <div class="a pending" data-s="a1">
+          <div class="av"><svg viewBox="0 0 16 16" fill="none" stroke="#EFE9DB" stroke-width="1.8" stroke-linecap="round"><path d="M8 2v3M8 11v3M2 8h3M11 8h3M3.8 3.8l2 2M10.2 10.2l2 2M12.2 3.8l-2 2M5.8 10.2l-2 2"/></svg></div>
+          <div class="ab">
+            <div class="tools">
+              <div class="th"><svg viewBox="0 0 86 87" fill="#212227"><use href="#rings"/></svg><b>Krans</b> reading the venture model<span class="n" id="tcount">0 of 3</span></div>
+              <details class="tool pending" data-s="t1">
+                <summary><span class="st"></span><span class="tn">krans.get_thread</span><span class="tr"><b>7 calls joined</b> into one story, last one 19 Sep</span><span class="tt">0.4 s</span><svg class="cv" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></summary>
+                <dl class="td"><dt>Asked</dt><dd>Venture A, company: pilot customer (logistics SME)</dd><dt>Got</dt><dd>Thread with 7 calls, 2 Slack threads, 1 pilot plan in Notion. Stage: pilot, week 5 of 8. Warmth rising.</dd></dl>
+              </details>
+              <details class="tool pending" data-s="t2">
+                <summary><span class="st"></span><span class="tn">krans.get_signals</span><span class="tr"><b>4 signals</b>, one forming on volume-based pricing</span><span class="tt">0.3 s</span><svg class="cv" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></summary>
+                <dl class="td"><dt>Asked</dt><dd>Venture A, last 90 days, topics: pricing, rollout</dd><dt>Got</dt><dd>Carrier integration (hardened, 3 companies). Volume-based pricing (forming, 3 of 5 pilots). Two weaker signals left out.</dd></dl>
+              </details>
+              <details class="tool pending" data-s="t3">
+                <summary><span class="st"></span><span class="tn">krans.get_position</span><span class="tr"><b>Pricing per site</b>, confidence 0.48, down from 0.71</span><span class="tt">0.5 s</span><svg class="cv" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></summary>
+                <dl class="td"><dt>Asked</dt><dd>Position: "Pilots convert at 900 euros per site per month"</dd><dt>Got</dt><dd>Score 0.48. Best support is E4 and 41 days old. Two newer E3 learnings point the other way.</dd></dl>
+              </details>
+            </div>
+
+            <div class="ans pending" data-s="ans">
+              <p class="lead">Brief for your 10:00 with the pilot customer, the logistics SME trialling Venture A.</p>
+              <div class="two">
+                <div class="blk"><h4>Where it stands</h4>
+                  <ul><li>Week 5 of an 8 week pilot, warmth rising.</li><li>Rollout waits on a carrier portal integration <button class="cite" data-c="1">1</button></li></ul>
+                </div>
+                <div class="blk"><h4>Ask at 10:00</h4>
+                  <ol><li>Would a per-shipment price use the same budget?</li><li>Who signs off above 10,000 euros a year?</li></ol>
+                </div>
+              </div>
+              <div class="two pr">
+                <div class="blk"><h4>Pricing: no longer holds as stated</h4>
+                  <p>The 900 euros per site rests on one sign-off that is fading <button class="cite" data-c="2">2</button> while the two latest calls point to paying by volume <button class="cite" data-c="3">3</button></p>
+                </div>
+                <div class="verdict">
+                  <div class="vh"><span>Position</span><em class="vchip">Weakening</em></div>
+                  <h5>Pilots convert at 900 euros per site per month</h5>
+                  <div class="mrow"><div class="meter"><i id="meter"></i><u title="Score 30 days ago"></u></div><span class="mlab">Confidence <b>0.48</b>, was 0.71</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ev pending" data-s="ev">
+              <article class="card" data-card="1">
+                <div class="ch"><span class="num">1</span><span class="grade">E3<span class="seg"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></span></span></div>
+                <p class="q">"We can't roll it out to the other depots until it talks to our carrier portal."</p>
+                <p class="who">Operations lead, logistics SME · 12 Sep</p>
+                <div class="age"><span class="bar"><i style="width:84%"></i></span>heard 13 days ago, <b>fresh</b></div>
+              </article>
+              <article class="card" data-card="2">
+                <div class="ch"><span class="num">2</span><span class="grade">E4<span class="seg"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></span></span></div>
+                <p class="q">"Nine hundred a site is something I could sign off myself."</p>
+                <p class="who">Finance lead, logistics SME · 15 Aug</p>
+                <div class="age fade"><span class="bar"><i style="width:32%"></i></span>heard 41 days ago, <b>fading</b></div>
+              </article>
+              <article class="card" data-card="3">
+                <div class="ch"><span class="num">3</span><span class="grade">E3<span class="seg"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></span></span></div>
+                <p class="q">"Our budget moves with volume, so a per-shipment price is easier to defend."</p>
+                <p class="who">Operations lead, logistics SME · 19 Sep</p>
+                <div class="age"><span class="bar"><i style="width:92%"></i></span>heard 6 days ago, <b>fresh</b><em class="also">+2 pilots</em></div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="u pending" data-s="u2">Write it to our Notion venture page.</div>
+
+        <div class="a pending" data-s="a2">
+          <div class="av"><svg viewBox="0 0 16 16" fill="none" stroke="#EFE9DB" stroke-width="1.8" stroke-linecap="round"><path d="M8 2v3M8 11v3M2 8h3M11 8h3M3.8 3.8l2 2M10.2 10.2l2 2M12.2 3.8l-2 2M5.8 10.2l-2 2"/></svg></div>
+          <div class="ab">
+            <div class="tools">
+              <details class="tool" data-s="t4">
+                <summary><span class="st"></span><span class="tn nt">notion.update_page</span><span class="tr"><b>Venture A</b>, section "Pilot customer brief" added</span><span class="tag">Write, approved</span><svg class="cv" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></summary>
+                <dl class="td"><dt>Page</dt><dd>Ventures / Venture A (one of the 2 pages Krans may write to)</dd><dt>Wrote</dt><dd>3 sections, 3 citations linked back to the evidence in Krans, position flagged as weakening.</dd></dl>
+              </details>
+            </div>
+            <div class="page pending" data-s="done">
+              <div class="pic"><i></i><i></i><i></i></div>
+              <div class="pinfo"><b>Done. Brief written to Venture A / Pilot customer brief</b><span>3 sections, every claim linked back to its evidence in Krans · just now</span></div>
+              <div class="pact"><button class="btn" type="button">Undo</button><button class="btn pri" type="button">Open page</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp">
+      <div class="box">
+        <div class="bx"><div class="inp" id="inp"></div><span class="pill"><svg viewBox="0 0 86 87" fill="#212227"><use href="#rings"/></svg>Krans</span><span class="hint">9 tools · asks before it writes</span><span class="send" id="send"><svg viewBox="0 0 16 16" fill="none" stroke="#EFE9DB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></span></div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="kp" aria-label="Krans connection health">
+    <div class="kh">
+      <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.6 86.5" fill="#212227" role="img" aria-label="Krans"><path fill-rule="evenodd" d="M0 44.875a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM4 44.875a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M8.4316 52.3069a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM12.4316 52.3069a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M16.75 40.3296a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM20.75 40.3296a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M2.7734 34.125a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM6.7734 34.125a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path d="M96.75 75V5.25H107.19V43.68H108.18L127.89 23.25H140.67L120.42 43.86L143.1 75H130.5L113.76 51.42H112.77L107.19 57.09V75H96.75Z"/><path d="M145.728 75V23.25H156.078V32.07H156.528C159.138 24.69 165.258 22.17 174.168 22.17V31.62C160.038 32.16 156.258 38.91 156.258 53.85V75H145.728Z"/><path d="M199.64 22.17C212.06 22.17 220.61 27.84 220.61 39.36V75H210.26V69.42H209.54C203.78 74.19 197.84 76.08 191.9 76.08C181.55 76.08 175.43 70.5 175.43 61.5C175.43 50.88 184.61 46.56 193.43 44.13L210.26 39.63V39.27C210.26 33.42 206.39 30.09 199.1 30.09C192.26 30.09 186.59 33.24 182.27 38.1L176.42 31.62C182.54 25.14 190.91 22.17 199.64 22.17ZM194.51 68.16C200.36 68.16 205.49 65.1 210.26 60.24V47.73L195.23 52.05C189.38 53.76 185.87 56.28 185.87 60.87C185.87 65.1 188.93 68.16 194.51 68.16Z"/><path d="M230.134 75V23.25H240.574V29.82H241.114C243.814 25.59 249.034 22.17 256.324 22.17C266.404 22.17 273.064 28.56 273.064 40.44V75H262.714V43.05C262.714 35.22 259.924 30.9 252.904 30.9C244.894 30.9 240.664 36.57 240.664 44.76V75H230.134Z"/><path d="M299.097 76.08C290.187 76.08 282.087 71.31 277.767 65.28L284.247 59.07C287.037 63.48 292.347 68.07 299.727 68.07C304.677 68.07 309.087 65.82 309.087 60.6C309.087 56.37 305.937 54.75 301.167 53.58L293.337 51.51C286.587 49.71 280.197 45.75 280.197 37.11C280.197 27.57 287.937 22.17 299.097 22.17C308.727 22.17 314.847 26.67 318.717 32.07L312.597 37.74C309.717 32.88 304.317 29.91 298.737 29.91C293.787 29.91 290.277 32.25 290.277 36.39C290.277 39.72 292.977 41.16 296.757 42.15L304.137 44.13C310.977 46.02 319.527 49.53 319.527 59.79C319.527 70.41 310.437 76.08 299.097 76.08Z"/></svg></div>
+      <span>Connection health</span>
+    </div>
+    <div class="kbody">
+      <div class="health">
+        <div class="hr"><span class="dot"></span><h3>Healthy</h3><span class="lbl" style="margin-left:auto">Studio</span></div>
+        <p>Every tool answers and every source is in sync. If something drops, you see it here first.</p>
+        <div class="stats">
+          <div><b>9 <small>of 9</small></b><span>Tools available</span><div class="segs"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div><b>2 min</b><span>Last sync, ago</span><div class="segs"><i style="opacity:.25"></i><i style="opacity:.25"></i><i style="opacity:.25"></i><i></i></div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="lbl" style="margin-bottom:7px">Scopes</div>
+        <div class="scopes">
+          <div class="sc"><span class="si"><svg viewBox="0 0 16 16" fill="none" stroke="#212227" stroke-width="1.5" stroke-linecap="round"><path d="M3 6v4M6 4v8M9.5 2.5v11M13 6v4"/></svg></span><div><b>Calls</b><span>128 calls, Meet and uploads</span></div><span class="perm">Read</span></div>
+          <div class="sc"><span class="si"><svg viewBox="0 0 16 16" fill="none" stroke="#212227" stroke-width="1.5" stroke-linejoin="round"><path d="M3.5 2.5h6l3 3v8h-9z"/><path d="M6 8h4M6 10.5h3"/></svg></span><div><b>Notion</b><span>2 pages</span></div><span class="perm w">Read, write</span></div>
+          <div class="sc"><span class="si"><svg viewBox="0 0 16 16" fill="none" stroke="#212227" stroke-width="1.5" stroke-linecap="round"><path d="M6 2.5 4.5 13.5M11.5 2.5 10 13.5M2.5 5.5h11M2 10.5h11"/></svg></span><div><b>Slack</b><span>3 channels</span></div><span class="perm">Read</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="lbl" style="margin-bottom:7px">Tools</div>
+        <div class="tlist" id="tlist">
+          <span data-t="get_thread">get_thread</span><span data-t="get_signals">get_signals</span><span data-t="get_position">get_position</span><span>get_venture</span><span>search_evidence</span><span>get_reflections</span><span>ask</span><span>list_ventures</span><span>get_portfolio</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="lbl" style="margin-bottom:7px">This conversation</div>
+        <div class="act" id="act"><div class="empty">No calls yet</div></div>
+      </div>
+
+      <div class="rec">
+        <p><b>Connector acting up?</b> Reconnect in one step. Scopes, tools and history stay as they are.</p>
+        <div class="row"><button class="btn" type="button" id="recon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 8a5.5 5.5 0 1 1-1.7-4"/><path d="M13.5 2.5v3h-3"/></svg>Reconnect</button><span id="reconNote">Last reconnect 12 days ago</span></div>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="rings"><path fill-rule="evenodd" d="M0 44.875a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM4 44.875a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M8.4316 52.3069a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM12.4316 52.3069a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M16.75 40.3296a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM20.75 40.3296a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M2.7734 34.125a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM6.7734 34.125a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/></g></defs></svg>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var log = document.getElementById('log'), inp = document.getElementById('inp'), send = document.getElementById('send');
+  var act = document.getElementById('act'), tcount = document.getElementById('tcount'), meter = document.getElementById('meter');
+  var CHECK = '<svg viewBox="0 0 10 10" fill="none" stroke="#EFE9DB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5.2 4.2 7.3 8 3"/></svg>';
+  var run = 0;
+  function $(s){return document.querySelector('[data-s="'+s+'"]')}
+  function wait(ms){return new Promise(function(r){setTimeout(r, reduce?0:ms)})}
+  function show(s){var el=$(s); el.classList.remove('pending'); if(!reduce){el.classList.remove('in'); void el.offsetWidth; el.classList.add('in')} scroll()}
+  function scroll(){ if(window.innerWidth>640){ log.scrollTop = log.scrollHeight } }
+  function status(s, state){var st=$(s).querySelector('.st'); st.className='st '+state; st.innerHTML = state==='ok'?CHECK:''}
+  function addAct(name, time){
+    var e=act.querySelector('.empty'); if(e) e.remove();
+    var d=document.createElement('div'); d.innerHTML='<b>'+name+'</b><span>'+time+'</span>'; act.appendChild(d);
+    var t=document.querySelector('#tlist [data-t="'+name.replace('krans.','')+'"]'); if(t) t.classList.add('used');
+  }
+  function type(text, token){
+    return new Promise(function(res){
+      if(reduce){res();return}
+      var i=0; inp.innerHTML='<span class="t"></span><span class="caret"></span>'; var t=inp.querySelector('.t');
+      (function step(){ if(token!==run) return res(); i+=2; t.textContent=text.slice(0,i); if(i<text.length) setTimeout(step,22); else setTimeout(res,260) })();
+    });
+  }
+  function hitSend(){ send.classList.add('hit'); setTimeout(function(){send.classList.remove('hit')},160); inp.innerHTML='' }
+
+  function reset(){
+    document.querySelectorAll('[data-s]').forEach(function(el){ if(el.dataset.s!=='t4') el.classList.add('pending'); el.classList.remove('in'); var st=el.querySelector&&el.querySelector('.st'); if(st){st.className='st';st.innerHTML=''} if(el.tagName==='DETAILS') el.open=false });
+    act.innerHTML='<div class="empty">No calls yet</div>'; tcount.textContent='0 of 3';
+    document.querySelectorAll('#tlist span').forEach(function(s){s.classList.remove('used')});
+    meter.style.transition='none'; meter.style.width='71%'; void meter.offsetWidth; meter.style.transition='';
+    inp.innerHTML=''; log.scrollTop=0;
+  }
+
+  async function play(){
+    var token = ++run; reset();
+    var q1='Brief me for my 10:00 with the pilot customer, and tell me if our pricing assumption still holds.';
+    await wait(500); await type(q1, token); if(token!==run) return; hitSend();
+    show('u1'); await wait(450); if(token!==run) return;
+    show('a1');
+    var tools=[['t1','krans.get_thread','0.4 s',700],['t2','krans.get_signals','0.3 s',600],['t3','krans.get_position','0.5 s',800]];
+    for(var k=0;k<tools.length;k++){
+      var t=tools[k]; show(t[0]); status(t[0],'run'); await wait(t[3]); if(token!==run) return;
+      status(t[0],'ok'); tcount.textContent=(k+1)+' of 3'; addAct(t[1], t[2]);
+    }
+    await wait(350); if(token!==run) return;
+    show('ans'); await wait(reduce?0:250); meter.style.width='48%';
+    await wait(900); if(token!==run) return;
+    show('ev'); await wait(1400); if(token!==run) return;
+    await type('Write it to our Notion venture page.', token); if(token!==run) return; hitSend();
+    show('u2'); await wait(450); if(token!==run) return;
+    show('a2'); status('t4','run'); await wait(900); if(token!==run) return;
+    status('t4','ok'); addAct('notion.update_page','0.6 s');
+    await wait(300); show('done');
+  }
+
+  // citations highlight cards
+  document.addEventListener('mouseover', function(e){ var c=e.target.closest('.cite'); if(c) hl(c.dataset.c) });
+  document.addEventListener('mouseout', function(e){ var c=e.target.closest('.cite'); if(c) hl(null) });
+  document.addEventListener('click', function(e){ var c=e.target.closest('.cite'); if(!c) return; hl(c.dataset.c); var card=document.querySelector('[data-card="'+c.dataset.c+'"]'); if(card && window.innerWidth<=640) card.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); setTimeout(function(){hl(null)},1600) });
+  function hl(n){ document.querySelectorAll('.card').forEach(function(c){c.classList.toggle('on', c.dataset.card===n)}); document.querySelectorAll('.cite').forEach(function(c){c.classList.toggle('on', c.dataset.c===n)}) }
+
+  document.getElementById('replay').addEventListener('click', play);
+  document.getElementById('recon').addEventListener('click', function(){
+    var n=document.getElementById('reconNote'); n.textContent='Reconnecting...';
+    setTimeout(function(){ n.textContent='Reconnected just now, 9 of 9 tools' }, reduce?0:900);
+  });
+  play();
+})();
+</script>
+</body>
+</html>

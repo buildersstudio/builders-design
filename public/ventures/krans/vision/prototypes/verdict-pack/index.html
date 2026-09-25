@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krans sponsor verdict</title>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#212227;--paper:#EFE9DB;--lift:#F5F1E7;--card:#FAF7F0;--orange:#F95738;--blue:#30BCED;--purple:#5E239D;
+  --muted:#5F5D57;--faint:#8D897E;--line:#DDD5C3;--line2:#CFC6B1;
+  --good:#2F7A4F;--good-soft:#DCEBDD;--bad:#C8401F;--bad-soft:#FBDDD3;--unc:#1C7FA6;--unc-soft:#D6EEF6;
+  --pur-soft:#E6DCF1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--paper)}
+body{font-family:"Switzer",system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;text-align:left}
+.lbl{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--faint)}
+.app{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:100vh}
+
+/* sidebar */
+.side{border-right:1px solid var(--line);padding:20px 12px 18px;display:flex;flex-direction:column;gap:2px;position:sticky;top:0;height:100vh}
+.logo{display:flex;align-items:center;padding:2px 10px 20px}
+.logo svg{height:21px;width:auto}
+.ws{margin:0 2px 14px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--lift);display:flex;align-items:center;gap:10px}
+.ws i{width:26px;height:26px;border-radius:7px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-style:normal;font-weight:600;font-size:12px}
+.ws b{display:block;font-weight:600;font-size:13px;line-height:1.2}.ws span{font-size:11.5px;color:var(--muted)}
+.nav a{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:13.5px}
+.nav a svg{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.5}
+.nav a em{margin-left:auto;font-style:normal;font-size:12px;color:var(--faint)}
+.nav a.on{background:var(--lift);color:var(--ink);font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
+.nav .grp{padding:14px 10px 6px}
+.side .foot{padding:10px 10px 0;font-size:12px;color:var(--faint);line-height:1.45}
+
+/* main */
+.main{padding:20px 28px 60px;min-width:0}
+.crumbs{font-size:12.5px;color:var(--faint);display:flex;gap:8px;align-items:center}
+.crumbs b{color:var(--muted);font-weight:500}
+.head{display:flex;align-items:flex-end;gap:20px;margin:4px 0 12px;flex-wrap:wrap}
+.head h1{font-size:25px;font-weight:600;letter-spacing:-.022em;line-height:1.15;margin-top:6px}
+.head .sub{color:var(--muted);margin-top:4px;font-size:13.5px}
+.acts{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.seg{display:flex;background:var(--lift);border:1px solid var(--line);border-radius:9px;padding:3px}
+.seg button{padding:5px 11px;border-radius:6px;font-size:13px;color:var(--muted);font-weight:500}
+.seg button.on{background:var(--ink);color:var(--paper)}
+.btn{border:1px solid var(--line2);background:var(--card);border-radius:9px;padding:7px 13px;font-weight:500;font-size:13.5px;white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
+.btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6}
+.btn.pri{background:var(--orange);border-color:var(--orange);color:#fff}
+.btn:hover{border-color:var(--ink)}.btn.pri:hover{background:#e84a2c}
+.menuwrap{position:relative}
+.menu{position:absolute;right:0;top:calc(100% + 6px);background:var(--card);border:1px solid var(--line2);border-radius:12px;box-shadow:0 18px 40px -16px rgba(33,34,39,.35);padding:6px;width:250px;z-index:30;display:none}
+.menu.open{display:block}
+.menu button{display:flex;width:100%;justify-content:space-between;padding:9px 10px;border-radius:8px;font-size:13.5px}
+.menu button span{color:var(--faint);font-size:12px}
+.menu button:hover{background:var(--lift)}
+.menu p{font-size:12px;color:var(--faint);padding:6px 10px 4px}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 272px;gap:16px;align-items:start}
+.card{background:var(--lift);border:1px solid var(--line);border-radius:14px}
+
+/* verdict */
+.verdict{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);overflow:hidden}
+.vl{padding:14px 20px 15px}
+.vbadge{display:flex;align-items:center;gap:12px;margin-top:8px}
+.vbadge .dot{width:34px;height:34px;border-radius:50%;background:var(--good);display:grid;place-items:center;flex:none}
+.vbadge .dot svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.2}
+.vbadge h2{font-size:27px;font-weight:600;letter-spacing:-.025em;line-height:1}
+.vbadge small{display:block;font-size:12.5px;color:var(--muted);margin-top:4px;font-weight:400;letter-spacing:0}
+.conds{margin-top:14px;display:flex;flex-direction:column;gap:7px}
+.cond{display:grid;grid-template-columns:20px 1fr;gap:8px;font-size:13.5px;line-height:1.4}
+.cond i{width:20px;height:20px;border-radius:6px;background:var(--ink);color:var(--paper);font-style:normal;font-size:11px;font-weight:600;display:grid;place-items:center;margin-top:0}
+.cond em{font-style:normal;color:var(--faint);font-size:12px;display:block}
+.vr{background:var(--ink);color:var(--paper);padding:14px 20px 15px;position:relative}
+.vr .lbl{color:#B7B0A0}
+.vr q{display:block;font-size:15.5px;line-height:1.4;margin-top:8px;font-weight:500;quotes:none;letter-spacing:-.005em}
+.vr .setby{font-size:12px;color:#A8A192;margin-top:6px}
+.meter{margin-top:14px}
+.cells{display:grid;grid-template-columns:repeat(20,1fr);gap:3px;position:relative}
+.cells s{height:18px;border-radius:3px;background:#3A3B41}
+.cells s.f{background:var(--blue)}
+.killline{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--orange)}
+.mlegend{display:flex;justify-content:space-between;font-size:12px;color:#B7B0A0;margin-top:8px;gap:10px}
+.mlegend b{color:var(--paper);font-weight:600}
+.mlegend .k{color:#FF8E77}
+
+/* criteria */
+.crit{margin-top:12px}
+.ch{display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--line)}
+.ch h3{font-size:15px;font-weight:600}
+.ch .sum{margin-left:auto;font-size:12.5px;color:var(--muted);display:flex;gap:14px}
+.ch .sum span{display:inline-flex;align-items:center;gap:6px}.ch .sum span:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c)}
+.ch .hint{font-size:12px;color:var(--faint)}
+.row{display:grid;grid-template-columns:84px minmax(0,.9fr) minmax(0,1.2fr);gap:16px;padding:10px 18px;border-bottom:1px solid var(--line);align-items:start}
+.row .st{margin-top:1px}
+.row:last-child{border-bottom:0}
+.st{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.st:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.st.met{background:var(--good-soft);color:var(--good)}.st.not{background:var(--bad-soft);color:var(--bad)}.st.unc{background:var(--unc-soft);color:var(--unc)}
+.cname{font-weight:600;font-size:14px;line-height:1.35}
+.cbar{font-size:12.5px;color:var(--muted);margin-top:2px}
+.cbar b{color:var(--ink);font-weight:600}
+.quote{display:block;width:100%;margin-top:0;padding:9px 12px 9px 13px;border-radius:10px;background:var(--card);border:1px solid var(--line);position:relative;transition:border-color .15s,box-shadow .15s}
+.quote:before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:2px;background:var(--purple)}
+.quote:hover{border-color:var(--ink);box-shadow:0 6px 18px -12px rgba(33,34,39,.5)}
+.quote p{font-size:13.5px;line-height:1.4}
+.meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:6px;font-size:12px;color:var(--muted)}
+.meta .sep{color:var(--line2)}
+.ts{display:inline-flex;align-items:center;gap:5px;padding:2px 8px 2px 6px;border-radius:999px;background:var(--ink);color:var(--paper);font-size:11.5px;font-weight:500}
+.ts svg{width:9px;height:9px;fill:currentColor}
+.gr{display:inline-flex;align-items:center;padding:2px 7px;border-radius:5px;font-size:11px;font-weight:600;letter-spacing:.02em}
+.gr.e5{background:var(--purple);color:#fff}.gr.e4{background:var(--pur-soft);color:var(--purple)}.gr.e3{background:var(--unc-soft);color:var(--unc)}.gr.e2{background:#E6E0D2;color:var(--muted)}
+.fade{color:var(--bad);font-size:11.5px}
+.counts{font-size:12px;color:var(--muted);margin-top:7px;max-width:240px}
+.counts .n{display:flex;justify-content:space-between;gap:6px}
+.counts .n b{color:var(--ink);font-weight:600}
+.split{display:flex;height:5px;border-radius:3px;overflow:hidden;background:#E3DCCB;margin:0 0 5px;gap:2px}
+.split i{display:block;height:100%}
+.split .s{background:var(--good)}.split .c{background:var(--orange)}
+.counts small{display:block;font-size:11.5px;color:var(--faint);margin-top:2px}
+.counts .n{margin-bottom:4px}
+.counts .n span b{color:var(--ink)}
+
+.internal{margin-top:6px;border:1px dashed #C9A56A;background:#F6EBD3;border-radius:9px;padding:5px 10px;font-size:12.5px;color:#6B5226;display:flex;gap:8px}
+.internal b{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;white-space:nowrap;padding-top:2px}
+body.sponsor .internal{display:none}
+.eyebrow{display:flex;align-items:center;gap:10px;height:18px;white-space:nowrap}
+.svchip{display:none;align-items:center;gap:6px;background:var(--ink);color:var(--paper);border-radius:999px;padding:0 10px 0 8px;height:18px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.svchip svg{width:12px;height:12px;stroke:var(--blue);fill:none;stroke-width:1.8;flex:none}
+body.sponsor .svchip{display:inline-flex}
+body.sponsor .teamonly{display:none}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.two .card{padding:15px 18px}
+.two h3{font-size:15px;font-weight:600;margin-bottom:10px}
+.chg{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:13.5px}
+.chg:first-of-type{border-top:0}
+.chg .d{font-size:11.5px;font-weight:600;padding:2px 7px;border-radius:5px;white-space:nowrap;height:fit-content}
+.chg .d.up{background:var(--good-soft);color:var(--good)}.chg .d.dn{background:var(--bad-soft);color:var(--bad)}.chg .d.nw{background:var(--pur-soft);color:var(--purple)}
+.chg span{display:block;font-size:12px;color:var(--faint)}
+.risk{display:grid;grid-template-columns:8px 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:13.5px}
+.risk:first-of-type{border-top:0}
+.risk i{width:8px;height:8px;border-radius:50%;background:var(--orange);margin-top:6px}
+.risk i.m{background:#E3A233}
+.risk span{display:block;font-size:12px;color:var(--faint)}
+
+/* source panel */
+.src{padding:16px 16px 14px;position:sticky;top:16px}
+.src h3{font-size:15px;font-weight:600}
+.src .gen{font-size:12px;color:var(--faint);margin-top:2px}
+.big3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:14px 0 4px}
+.big3 div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 10px}
+.big3 b{display:block;font-size:21px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.big3 span{font-size:12px;color:var(--muted)}
+.ssec{margin-top:14px}
+.ssec .lbl{display:block;margin-bottom:7px}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{display:inline-flex;gap:6px;align-items:center;padding:4px 9px;border:1px solid var(--line2);border-radius:999px;font-size:12px;background:var(--card)}
+.chip b{font-weight:600}
+.kv{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-top:1px solid var(--line)}
+.kv:first-of-type{border-top:0}
+.kv span{color:var(--muted)}
+.lbar{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px;margin:4px 0 7px}
+.lbar i{display:block}
+.lkey{display:flex;gap:10px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.lkey span:before{content:"";display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:5px;background:var(--c)}
+.src .note{font-size:12px;color:var(--faint);margin-top:14px;padding-top:12px;border-top:1px solid var(--line);line-height:1.45}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(33,34,39,.28);opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(470px,100vw);background:var(--card);border-left:1px solid var(--line2);z-index:41;transform:translateX(102%);transition:transform .25s ease;display:flex;flex-direction:column;box-shadow:-24px 0 50px -30px rgba(33,34,39,.5)}
+.drawer.open{transform:none}
+.dh{padding:16px 20px 14px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+.dh h4{font-size:16px;font-weight:600;line-height:1.3}
+.dh p{font-size:12.5px;color:var(--muted);margin-top:3px}
+.x{margin-left:auto;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;border:1px solid var(--line);flex:none}
+.x svg{width:14px;height:14px;stroke:var(--ink);stroke-width:1.8}
+.player{margin:14px 20px 0;background:var(--ink);color:var(--paper);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:center}
+.play{width:38px;height:38px;border-radius:50%;background:var(--orange);display:grid;place-items:center}
+.play svg{width:14px;height:14px;fill:#fff}
+.wave{display:flex;gap:2px;align-items:center;height:26px;position:relative}
+.wave s{flex:1;background:#4A4B52;border-radius:1px}
+.wave s.p{background:var(--blue)}
+.wave .cite{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--orange);border-radius:1px}
+.wave .cite:after{content:"";position:absolute;top:-3px;left:-3px;width:8px;height:8px;border-radius:50%;background:var(--orange)}
+.used{margin:12px 20px 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.used .st{font-size:11.5px}
+.ptime{display:flex;justify-content:space-between;font-size:11.5px;color:#B7B0A0;margin-top:5px}
+.ptime b{color:var(--paper);font-weight:600}
+.ctx{padding:14px 20px;overflow:auto;flex:1}
+.line{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:9px 10px;border-radius:9px;margin-bottom:2px}
+.line .t{font-size:12px;color:var(--faint);padding-top:1px}
+.line b{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+.line p{font-size:14px;line-height:1.45;margin-top:1px}
+.line.hl{background:var(--pur-soft);box-shadow:inset 3px 0 0 var(--purple)}
+.line.hl b{color:var(--purple)}
+.line.now .t{color:var(--orange);font-weight:600}
+.df{border-top:1px solid var(--line);padding:12px 20px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.df .info{font-size:12px;color:var(--faint);margin-right:auto}
+
+/* modal */
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%);opacity:0;pointer-events:none;width:min(480px,calc(100vw - 32px));background:var(--card);border:1px solid var(--line2);border-radius:16px;z-index:42;transition:all .2s;box-shadow:0 30px 70px -30px rgba(33,34,39,.6)}
+.modal.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+.mh{padding:18px 20px 0;display:flex;gap:12px}
+.mh h4{font-size:17px;font-weight:600}
+.mh p{font-size:13px;color:var(--muted);margin-top:3px}
+.mb{padding:16px 20px}
+.link{display:flex;gap:8px}
+.link div{flex:1;min-width:0;border:1px solid var(--line2);border-radius:9px;padding:8px 11px;font-size:13.5px;background:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.opt{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:13.5px}
+.opt:first-of-type{margin-top:12px}
+.opt span{display:block;font-size:12px;color:var(--faint)}
+.tog{margin-left:auto;width:34px;height:20px;border-radius:999px;background:var(--line2);position:relative;flex:none;transition:background .15s}
+.tog:after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .15s}
+.tog.on{background:var(--ink)}.tog.on:after{left:16px}
+.who{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.mf{padding:0 20px 18px;display:flex;justify-content:flex-end;gap:8px}
+
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:10px;font-size:13.5px;opacity:0;pointer-events:none;transition:all .25s;z-index:50;display:flex;gap:10px;align-items:center;max-width:calc(100vw - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast i{width:8px;height:8px;border-radius:50%;background:var(--blue);flex:none}
+
+.vp{display:block;margin:auto 10px 0;background:var(--ink);color:var(--paper);font-size:10px;line-height:1.5;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:7px 11px;border-radius:9px}
+.vp span{display:none;color:#FF8E77}.vp b{display:block;font-weight:600}
+
+@media (max-width:1180px){.layout{grid-template-columns:1fr}.src{position:static}}
+@media (max-width:860px){
+  .app{grid-template-columns:1fr}
+  .side{position:static;height:auto;flex-direction:row;align-items:center;padding:12px 16px;border-right:0;border-bottom:1px solid var(--line)}
+  .logo{padding:0}.ws,.nav,.side .foot{display:none}
+  .vp{margin:0 0 0 auto;font-size:9.5px;letter-spacing:.08em;padding:5px 10px;border-radius:999px;white-space:nowrap}
+  .vp span,.vp b{display:inline}
+  .hm,.ch .hint{display:none}
+  .eyebrow{height:auto;flex-wrap:wrap;row-gap:6px;white-space:normal}
+  .head>div:first-child{min-width:0;width:100%}
+  .toast{width:calc(100vw - 32px);bottom:16px}
+  .main{padding:14px 16px 40px}
+  .head h1{font-size:21px}
+  .acts{margin-left:0;width:100%}
+  .acts .menuwrap,.acts .btn.pri{flex:1}
+  .acts .btn{justify-content:center;width:100%}
+  .seg{width:100%}.seg button{flex:1;text-align:center}
+  .verdict{grid-template-columns:1fr}
+  .vbadge h2{font-size:23px}
+  .row{grid-template-columns:1fr;gap:8px;padding:14px 16px}
+  .counts{display:grid;grid-template-columns:1fr;max-width:none}
+  .ch{flex-wrap:wrap}.ch .sum{margin-left:0;width:100%}
+  .two{grid-template-columns:1fr}
+  .crumbs{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319.6 86.5" fill="#212227" role="img" aria-label="Krans"><path fill-rule="evenodd" d="M0 44.875a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM4 44.875a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M8.4316 52.3069a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM12.4316 52.3069a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M16.75 40.3296a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM20.75 40.3296a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path fill-rule="evenodd" d="M2.7734 34.125a34.125 34.125 0 1 0 68.25 0a34.125 34.125 0 1 0 -68.25 0ZM6.7734 34.125a30.125 30.125 0 1 1 60.25 0a30.125 30.125 0 1 1 -60.25 0Z"/><path d="M96.75 75V5.25H107.19V43.68H108.18L127.89 23.25H140.67L120.42 43.86L143.1 75H130.5L113.76 51.42H112.77L107.19 57.09V75H96.75Z"/><path d="M145.728 75V23.25H156.078V32.07H156.528C159.138 24.69 165.258 22.17 174.168 22.17V31.62C160.038 32.16 156.258 38.91 156.258 53.85V75H145.728Z"/><path d="M199.64 22.17C212.06 22.17 220.61 27.84 220.61 39.36V75H210.26V69.42H209.54C203.78 74.19 197.84 76.08 191.9 76.08C181.55 76.08 175.43 70.5 175.43 61.5C175.43 50.88 184.61 46.56 193.43 44.13L210.26 39.63V39.27C210.26 33.42 206.39 30.09 199.1 30.09C192.26 30.09 186.59 33.24 182.27 38.1L176.42 31.62C182.54 25.14 190.91 22.17 199.64 22.17ZM194.51 68.16C200.36 68.16 205.49 65.1 210.26 60.24V47.73L195.23 52.05C189.38 53.76 185.87 56.28 185.87 60.87C185.87 65.1 188.93 68.16 194.51 68.16Z"/><path d="M230.134 75V23.25H240.574V29.82H241.114C243.814 25.59 249.034 22.17 256.324 22.17C266.404 22.17 273.064 28.56 273.064 40.44V75H262.714V43.05C262.714 35.22 259.924 30.9 252.904 30.9C244.894 30.9 240.664 36.57 240.664 44.76V75H230.134Z"/><path d="M299.097 76.08C290.187 76.08 282.087 71.31 277.767 65.28L284.247 59.07C287.037 63.48 292.347 68.07 299.727 68.07C304.677 68.07 309.087 65.82 309.087 60.6C309.087 56.37 305.937 54.75 301.167 53.58L293.337 51.51C286.587 49.71 280.197 45.75 280.197 37.11C280.197 27.57 287.937 22.17 299.097 22.17C308.727 22.17 314.847 26.67 318.717 32.07L312.597 37.74C309.717 32.88 304.317 29.91 298.737 29.91C293.787 29.91 290.277 32.25 290.277 36.39C290.277 39.72 292.977 41.16 296.757 42.15L304.137 44.13C310.977 46.02 319.527 49.53 319.527 59.79C319.527 70.41 310.437 76.08 299.097 76.08Z"/></svg></div>
+    <div class="ws"><i>S</i><div><b>Studio workspace</b><span>12 live ventures</span></div></div>
+    <nav class="nav">
+      <a href="#"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>Portfolio</a>
+      <a href="#"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><circle cx="8" cy="8" r="2"/></svg>Ventures<em>12</em></a>
+      <a href="#"><svg viewBox="0 0 16 16"><path d="M2 4h12M2 8h9M2 12h6"/></svg>Threads</a>
+      <a href="#"><svg viewBox="0 0 16 16"><path d="M3 13V8M8 13V3M13 13V6"/></svg>Positions</a>
+      <a href="#"><svg viewBox="0 0 16 16"><path d="M1.5 8h3l2-5 3 10 2-5h3"/></svg>Signals</a>
+      <div class="grp lbl">Venture A</div>
+      <a href="#"><svg viewBox="0 0 16 16"><path d="M3 2.5h7l3 3v8H3z"/><path d="M6 8h4M6 11h4"/></svg>Overview</a>
+      <a class="on" href="#"><svg viewBox="0 0 16 16"><path d="M3 13.5V2.5h10v11z"/><path d="M5.5 6l1.5 1.5L10.5 4.5M5.5 10.5h5"/></svg>Sprint reports<em>3</em></a>
+      <a href="#"><svg viewBox="0 0 16 16"><path d="M2.5 3.5h11v7h-6l-3 2.5v-2.5h-2z"/></svg>Ask Krans</a>
+    </nav>
+    <div class="vp"><b>Vision prototype</b><span> · </span><b>illustrative data</b></div>
+    <div class="foot">Reports update as new calls arrive. A shared link freezes the version the sponsor sees.</div>
+  </aside>
+
+  <main class="main">
+    <header class="head">
+      <div>
+        <div class="eyebrow"><span class="lbl"><span class="hm">Venture A / Sprint reports · </span>Sponsor verdict · 25 Sep 2026</span><span class="svchip" aria-live="polite"><svg viewBox="0 0 16 16"><path d="M1.5 8S4 3.5 8 3.5 14.5 8 14.5 8 12 12.5 8 12.5 1.5 8 1.5 8z"/><circle cx="8" cy="8" r="2"/></svg>As the sponsor sees it</span></div>
+        <h1>Sprint 3 · Venture A · 6 weeks · 34 interviews</h1>
+        <p class="sub">Invoice automation for SME accountants · for the Sponsor and the Innovation lead</p>
+      </div>
+      <div class="acts">
+        <div class="seg" role="tablist" aria-label="View">
+          <button id="vSponsor" role="tab" aria-selected="false">Sponsor view</button>
+          <button id="vTeam" class="on" role="tab" aria-selected="true">Team view</button>
+        </div>
+        <div class="menuwrap">
+          <button class="btn" id="expBtn"><svg viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="8.5" rx="1"/><path d="M8 11.5V14M5.5 14h5"/></svg>Export to slides</button>
+          <div class="menu" id="expMenu">
+            <p>Exports the sponsor view, one criterion per slide, quotes linked to the call.</p>
+            <button data-exp="Google Slides">Google Slides <span>9 slides</span></button>
+            <button data-exp="PowerPoint">PowerPoint <span>9 slides</span></button>
+            <button data-exp="PDF">PDF handout <span>4 pages</span></button>
+          </div>
+        </div>
+        <button class="btn pri" id="shareBtn"><svg viewBox="0 0 16 16"><path d="M6.5 9.5l3-3M5 7.5L3.8 8.7a2.5 2.5 0 003.5 3.5L8.5 11M11 8.5l1.2-1.2a2.5 2.5 0 00-3.5-3.5L7.5 5"/></svg>Share with sponsor</button>
+      </div>
+    </header>
+
+    
+    <div class="layout">
+      <section>
+        <div class="card verdict">
+          <div class="vl">
+            <span class="lbl">Verdict</span>
+            <div class="vbadge">
+              <span class="dot"><svg viewBox="0 0 18 18"><path d="M4 9.5l3.2 3L14 5.5"/></svg></span>
+              <h2>Go with conditions<small>Continue to a paid pilot. Two conditions before Sprint 4 funding.</small></h2>
+            </div>
+            <div class="conds">
+              <div class="cond"><i>1</i><div>Price holds in a paid pilot with 5 firms by week 10<em>Willingness to pay is still talk, not commitment</em></div></div>
+              <div class="cond"><i>2</i><div>Sell as an add-on to the current package, not a replacement<em>Replacement thesis contradicted in 12 learnings</em></div></div>
+            </div>
+          </div>
+          <div class="vr">
+            <span class="lbl">Evidence bar · set 12 Aug, before the first call</span>
+            <q>Kill if fewer than 5 of 20 target buyers describe the pain unprompted.</q>
+            <div class="setby">Agreed by the Sponsor, the Innovation lead and the Venture architect</div>
+            <div class="meter">
+              <div class="cells" id="cells"><span class="killline" style="left:calc(25% - 2px)"></span></div>
+              <div class="mlegend"><span class="k">Kill line: 5</span><span><b>11 of 20</b> described it unprompted</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card crit">
+          <div class="ch"><h3>Decision criteria</h3><span class="hint teamonly">Click a quote to hear it in context</span><div class="sum"><span style="--c:var(--good)">2 met</span><span style="--c:var(--unc)">1 unclear</span><span style="--c:var(--bad)">1 not met</span></div></div>
+          <div id="rows"></div>
+        </div>
+
+        <div class="two">
+          <div class="card">
+            <h3>Since the last sponsor review <span class="lbl" style="margin-left:6px">14 Aug</span></h3>
+            <div class="chg"><span class="d up">Unclear to Met</span><div>Pain is unprompted for 11 buyers, up from 5<span>6 new buyer calls, weeks 4 to 6</span></div></div>
+            <div class="chg"><span class="d dn">Dropped</span><div>Replacing the practice-management package<span>12 contradicting learnings across 9 firms</span></div></div>
+            <div class="chg"><span class="d nw">New signal</span><div>Software vendors ask for a connector, not a rival<span>Heard in 3 partner calls</span></div></div>
+          </div>
+          <div class="card">
+            <h3>Open risks</h3>
+            <div class="risk"><i></i><div>Willingness to pay rests on E2 and E3 evidence<span>Nobody has put money or time at stake yet</span></div></div>
+            <div class="risk"><i class="m"></i><div>Sample skews to firms under 15 staff<span>2 of 20 buyers come from larger firms</span></div></div>
+            <div class="risk"><i class="m"></i><div>Two cited quotes are older than 45 days<span>Fading unless heard again in Sprint 4</span></div></div>
+            <div class="internal"><b>Team note</b>3 of the 7 contradicting pricing learnings come from one firm. Worth saying out loud.</div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card src">
+        <h3>Where this came from</h3>
+        <div class="gen">Built 25 Sep, 09:12 from 49 sources</div>
+        <div class="big3"><div><b>34</b><span>calls</span></div><div><b>12</b><span>emails</span></div><div><b>3</b><span>documents</span></div></div>
+        <div class="ssec"><span class="lbl">Calls by source</span>
+          <div class="chips"><span class="chip">Google Meet <b>14</b></span><span class="chip">Read AI <b>9</b></span><span class="chip">Granola <b>8</b></span><span class="chip">Upload <b>3</b></span></div>
+        </div>
+        <div class="ssec"><span class="lbl">Who we heard</span>
+          <div class="kv"><span>Target buyers</span><b>20</b></div>
+          <div class="kv"><span>Users</span><b>6</b></div>
+          <div class="kv"><span>Experts, context only</span><b>5</b></div>
+          <div class="kv"><span>Software partners</span><b>3</b></div>
+        </div>
+        <div class="ssec"><span class="lbl">212 learnings</span>
+          <div class="lbar"><i style="flex:148;background:var(--good)"></i><i style="flex:41;background:var(--orange)"></i><i style="flex:23;background:var(--line2)"></i></div>
+          <div class="lkey"><span style="--c:var(--good)">148 support</span><span style="--c:var(--orange)">41 contradict</span><span style="--c:var(--line2)">23 context</span></div>
+        </div>
+        <div class="ssec"><span class="lbl">Grade mix</span>
+          <div class="chips"><span class="chip"><span class="gr e5">E5</span> 2</span><span class="chip"><span class="gr e4">E4</span> 31</span><span class="chip"><span class="gr e3">E3</span> 96</span><span class="chip"><span class="gr e2">E2</span> 83</span></div>
+        </div>
+        <div class="note">Every claim links to the call and the second it was said. Experts inform the story but never count toward a bar.</div>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dh"><div><span class="lbl" id="dLbl">Call 07 · Granola</span><h4 id="dTitle"></h4><p id="dSub"></p></div><button class="x" id="dClose" aria-label="Close"><svg viewBox="0 0 14 14"><path d="M2 2l10 10M12 2L2 12"/></svg></button></div>
+  <div class="player">
+    <button class="play" id="play" aria-label="Play from timestamp"><svg viewBox="0 0 14 14" id="playIco"><path d="M3 1.5l9 5.5-9 5.5z"/></svg></button>
+    <div><div class="wave" id="wave"></div><div class="ptime"><span id="pNow">Play from <b>12:04</b></span><span id="pDur">41:10</span></div></div>
+  </div>
+  <div class="used" id="used"></div>
+  <div class="ctx" id="ctx"></div>
+  <div class="df"><span class="info" id="dInfo"></span><button class="btn">Open thread</button><button class="btn">Copy citation</button></div>
+</aside>
+
+<div class="modal" id="modal" role="dialog" aria-label="Share with sponsor">
+  <div class="mh"><div><h4>Share with sponsor</h4><p>A read-only link to the sponsor view. Team notes and team-only learnings stay out.</p></div><button class="x" id="mClose" aria-label="Close"><svg viewBox="0 0 14 14"><path d="M2 2l10 10M12 2L2 12"/></svg></button></div>
+  <div class="mb">
+    <div class="link"><div>krans.ai/r/venture-a/sprint-3-verdict</div><button class="btn pri" id="copy">Copy link</button></div>
+    <div class="opt"><div>Freeze this version<span>New calls update the team view, not the shared one</span></div><button class="tog on" aria-label="Freeze"></button></div>
+    <div class="opt"><div>Let viewers play cited audio<span>Only the cited passage, 30 seconds either side</span></div><button class="tog on" aria-label="Audio"></button></div>
+    <div class="opt"><div>Expire after 30 days<span>Until 25 Oct 2026</span></div><button class="tog" aria-label="Expiry"></button></div>
+    <div class="who"><span class="chip">Sponsor</span><span class="chip">Innovation lead</span><span class="chip" style="color:var(--faint)">+ Add viewer by email</span></div>
+  </div>
+  <div class="mf"><button class="btn" id="mDone">Done</button></div>
+</div>
+
+<div class="toast" id="toast"><i></i><span id="toastT"></span></div>
+
+<script>
+const Q = [
+  {status:'met',label:'Met',name:'Target buyers describe the month-end invoice chase unprompted',bar:'Bar <b>5 of 20</b> buyers · result <b>11 of 20</b>',
+   s:38,c:4,quote:'Every month end I lose two days chasing clients for invoices that are already sitting in their inbox.',
+   role:'Managing partner',seg:'Accounting firm, 8 staff',call:'Call 07',ts:'12:04',sec:724,dur:2470,grade:'e4',src:'Granola',date:'2 Sep',age:'23 days ago',
+   ctx:[['Venture architect','11:41','Walk me through the last week of a month. What actually happens?'],['Managing partner','11:52','We close the books for about sixty clients. Most of it is fine.'],['Managing partner','12:04','Every month end I lose two days chasing clients for invoices that are already sitting in their inbox.',1],['Venture architect','12:19','Two days of your own time, or the team?'],['Managing partner','12:24','Mine and one junior. And the junior hates it more than I do.']]},
+  {status:'unc',label:'Unclear',name:'At least 5 buyers name a budget above 80 euros a month',bar:'Bar <b>5 buyers</b> · result <b>4</b>, none committed',
+   s:9,c:7,quote:'If it gave us back one junior hour a week, sure. But I would want to see it on our own clients first.',
+   role:'Office manager',seg:'Accounting firm, 14 staff',call:'Call 19',ts:'27:36',sec:1656,dur:2890,grade:'e3',src:'Read AI',date:'16 Sep',age:'9 days ago',
+   note:'Two of four budget mentions followed the price slide.',
+   ctx:[['Innovation lead','27:02','If this worked the way we showed, what would it be worth to you?'],['Office manager','27:20','Hard to say. We pay for a lot of tools already.'],['Office manager','27:36','If it gave us back one junior hour a week, sure. But I would want to see it on our own clients first.',1],['Innovation lead','27:58','Would you run a paid pilot on ten clients?'],['Office manager','28:07','Probably. I would need the partners to agree.']]},
+  {status:'not',label:'Not met',name:'Buyers would replace their current practice-management add-on',bar:'Bar <b>5 buyers</b> · result <b>1</b>',
+   s:3,c:12,quote:'We only just moved everything to our current package. I am not moving again this year, whatever it does.',
+   role:'Partner',seg:'Accounting firm, 22 staff',call:'Call 11',ts:'08:15',sec:495,dur:2210,grade:'e3',src:'Google Meet',date:'8 Aug',age:'48 days ago',fading:true,
+   ctx:[['Venture architect','07:50','Where does invoice collection live today?'],['Partner','08:02','In the add-on that came with our package. It is clumsy.'],['Partner','08:15','We only just moved everything to our current package. I am not moving again this year, whatever it does.',1],['Venture architect','08:34','And if it plugged into the package instead?'],['Partner','08:41','That is a different conversation. Then I would look.']]},
+  {status:'met',label:'Met',name:'Two software partners willing to co-sell',bar:'Bar <b>2 partners</b> · result <b>2</b>',
+   s:6,c:1,quote:'If your connector is live by the spring release we would put it in our marketplace in the first wave.',
+   role:'Partnerships lead',seg:'Software vendor',call:'Call 28',ts:'19:48',sec:1188,dur:1980,grade:'e4',src:'Upload',date:'19 Sep',age:'6 days ago',
+   ctx:[['Sponsor','19:10','What would you need from us to list it?'],['Partnerships lead','19:31','Security review, a named contact, and the connector on our current API.'],['Partnerships lead','19:48','If your connector is live by the spring release we would put it in our marketplace in the first wave.',1],['Sponsor','20:05','Is that a commitment we can write down?'],['Partnerships lead','20:12','Write it down as intent. Send me the security pack this week.']]}
+];
+
+const $ = s => document.querySelector(s);
+const cells = $('#cells');
+for(let i=0;i<20;i++){const s=document.createElement('s'); if(i<11) s.className='f'; cells.appendChild(s);}
+
+const rows = $('#rows');
+Q.forEach((q,i)=>{
+  const tot=q.s+q.c;
+  const el=document.createElement('div'); el.className='row';
+  el.innerHTML=`<div><span class="st ${q.status}">${q.label}</span></div><div><div class="cname">${q.name}</div><div class="cbar">${q.bar}</div>
+    <div class="counts"><div class="n"><span><b>${q.s}</b> support</span><span><b>${q.c}</b> contradict</span></div><div class="split"><i class="s" style="flex:${q.s}"></i><i class="c" style="flex:${q.c}"></i></div></div></div>
+  <div><button class="quote" data-i="${i}" aria-label="Open quote in context"><p>“${q.quote}”</p>
+    <div class="meta"><span>${q.role}, ${q.seg}</span><span class="ts"><svg viewBox="0 0 10 10"><path d="M2 1l7 4-7 4z"/></svg>${q.call} · ${q.ts}</span><span class="gr ${q.grade}">${q.grade.toUpperCase()}</span>${q.fading?'<span class="fade">heard '+q.age+', fading</span>':''}</div></button>
+    ${q.note?`<div class="internal"><b>Team note</b>${q.note}</div>`:''}</div>`;
+  rows.appendChild(el);
+});
+
+/* view toggle */
+function setView(sp){document.body.classList.toggle('sponsor',sp);$('#vSponsor').classList.toggle('on',sp);$('#vTeam').classList.toggle('on',!sp);$('#vSponsor').setAttribute('aria-selected',sp);$('#vTeam').setAttribute('aria-selected',!sp);toast(sp?'Sponsor view. Team notes are hidden, exactly as the shared link shows it.':'Team view. Internal notes are visible to the studio team only.');}
+$('#vSponsor').onclick=()=>setView(true);$('#vTeam').onclick=()=>setView(false);
+
+/* toast */
+let tt;function toast(t){$('#toastT').textContent=t;$('#toast').classList.add('on');clearTimeout(tt);tt=setTimeout(()=>$('#toast').classList.remove('on'),2600);}
+
+/* export menu */
+$('#expBtn').onclick=e=>{e.stopPropagation();$('#expMenu').classList.toggle('open');};
+document.addEventListener('click',()=>$('#expMenu').classList.remove('open'));
+document.querySelectorAll('[data-exp]').forEach(b=>b.onclick=()=>{toast('Exporting the sponsor view to '+b.dataset.exp+'. Quotes keep their links to the call.');});
+
+/* drawer */
+const W=$('#wave'); const bars=[];
+for(let i=0;i<64;i++){const s=document.createElement('s');s.style.height=(6+Math.abs(Math.sin(i*1.7)*14+Math.sin(i*.45)*6))+'px';W.appendChild(s);bars.push(s);}
+let cur=null,t=0,timer=null;
+const fmt=s=>Math.floor(s/60).toString().padStart(2,'0')+':'+(s%60).toString().padStart(2,'0');
+const toSec=m=>{const [a,b]=m.split(':').map(Number);return a*60+b;};
+function paint(){const p=t/cur.dur;bars.forEach((b,i)=>b.classList.toggle('p',i/bars.length<=p));
+  document.querySelectorAll('.line').forEach(l=>{l.classList.toggle('now',timer&&+l.dataset.s<=t&&t<+l.dataset.e);});}
+function stop(){clearInterval(timer);timer=null;$('#playIco').innerHTML='<path d="M3 1.5l9 5.5-9 5.5z"/>';}
+function openQ(i){
+  cur=Q[i];t=cur.sec;stop();$('#toast').classList.remove('on');
+  $('#dLbl').textContent=cur.call+' · '+cur.src+' · '+cur.date;
+  $('#dTitle').textContent=cur.name;
+  $('#dSub').textContent=cur.role+', '+cur.seg+' · graded '+cur.grade.toUpperCase();
+  $('#pNow').innerHTML='Play from <b>'+cur.ts+'</b>';$('#pDur').textContent=fmt(cur.dur);
+  $('#ctx').innerHTML=cur.ctx.map((c,k)=>{const s=toSec(c[1]);const e=cur.ctx[k+1]?toSec(cur.ctx[k+1][1]):s+20;return `<div class="line${c[3]?' hl':''}" data-s="${s}" data-e="${e}"><span class="t">${c[1]}</span><div><b>${c[0]}</b><p>${c[2]}</p></div></div>`}).join('');
+  $('#dInfo').textContent='Heard '+cur.age+(cur.fading?', fading':'');
+  $('#used').innerHTML='<span>Counts toward</span><span class="st '+cur.status+'">'+cur.label+'</span><span>'+cur.s+' support · '+cur.c+' contradict</span>';
+  let m=W.querySelector('.cite'); if(!m){m=document.createElement('i');m.className='cite';W.appendChild(m);} m.style.left=(cur.sec/cur.dur*100)+'%';
+  paint();
+  $('#drawer').classList.add('open');$('#scrim').classList.add('open');$('#drawer').setAttribute('aria-hidden','false');
+}
+function closeAll(){stop();$('#drawer').classList.remove('open');$('#modal').classList.remove('open');$('#scrim').classList.remove('open');$('#drawer').setAttribute('aria-hidden','true');}
+document.querySelectorAll('.quote').forEach(b=>b.title='Open the passage in context');
+rows.addEventListener('click',e=>{const b=e.target.closest('.quote');if(b)openQ(+b.dataset.i);});
+$('#dClose').onclick=closeAll;$('#scrim').onclick=closeAll;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll();});
+$('#play').onclick=()=>{
+  if(timer){stop();$('#pNow').innerHTML='Paused at <b>'+fmt(t)+'</b>';paint();return;}
+  $('#playIco').innerHTML='<path d="M3 1.5h3v11H3zM8 1.5h3v11H8z"/>';
+  timer=setInterval(()=>{t++;$('#pNow').innerHTML='Playing <b>'+fmt(t)+'</b>';paint();if(t>=cur.sec+60)stop();},1000);
+  $('#pNow').innerHTML='Playing <b>'+fmt(t)+'</b>';paint();
+};
+
+/* share */
+$('#shareBtn').onclick=()=>{$('#toast').classList.remove('on');$('#modal').classList.add('open');$('#scrim').classList.add('open');};
+$('#mClose').onclick=closeAll;$('#mDone').onclick=closeAll;
+$('#copy').onclick=()=>{try{navigator.clipboard&&navigator.clipboard.writeText('https://krans.ai/r/venture-a/sprint-3-verdict');}catch(e){}$('#copy').textContent='Copied';setTimeout(()=>$('#copy').textContent='Copy link',1800);};
+document.querySelectorAll('.tog').forEach(t=>t.onclick=()=>t.classList.toggle('on'));
+</script>
+</body>
+</html>
