@@ -1,0 +1,8 @@
+{
+  "title": "Docs-first quickstart",
+  "created": "2026-09-27",
+  "note": "A white, Stripe and Resend style page in Inter where the hero is a code-tabbed quickstart (example GitHub Action with its check output, example CLI eval run, and the live analyser API with a real response from 25 September 2026), followed by the rebuilt agent eval report on a sample API, three steps from spec repair diff to receipt, docs cards, analyser findings as a check-by-check bar table, design partner pricing and a changelog.",
+  "credits": [
+    { "file": "img/mark-ink.svg", "source": "Doctorine", "author": "Doctorine horse mark from the gallery, cropped viewBox", "url": "https://doctorine.xyz" }
+  ]
+}

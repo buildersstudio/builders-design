@@ -1,0 +1,8 @@
+{
+  "title": "Reference-native docs",
+  "created": "2026-09-27",
+  "note": "A Mintlify and Scalar style page in Instrument Sans built as the docs portal itself: top tabs, search and a left nav, then a sample OpenAPI operation (POST /v1/refunds on acme-payments) with its parameters, request tabs for cURL, TypeScript, Python, Go, CLI and MCP, responses, and the release gate verdict per surface inline, followed by quickstart, eval report, gate checks with a receipt, spec repair diff, the live analyser endpoint with 25 September 2026 findings, pricing and a changelog.",
+  "credits": [
+    { "file": "img/mark-ink.svg", "source": "Doctorine", "author": "Doctorine horse mark from the gallery, cropped viewBox", "url": "https://doctorine.xyz" }
+  ]
+}

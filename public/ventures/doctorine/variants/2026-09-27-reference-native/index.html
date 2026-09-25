@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introduction · Doctorine Docs</title>
+<meta name="description" content="Doctorine proves every API change works for developers and agents before it ships: agent task evals, a release gate in CI, and surfaces generated from one OpenAPI spec.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@85..100,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --side:#FAFAF9; --soft:#F6F7F6; --soft2:#EFF1EF;
+  --line:#E7E8E6; --line2:#DADCD9;
+  --ink:#0E1210; --text:#262B28; --muted:#5E6661; --dim:#8C938E;
+  --accent:#0E8A5F; --accent-ink:#0B6E4C; --accent-soft:#E8F5EF;
+  --post:#2F62D8; --post-bg:#EAF0FC; --get:#0E8A5F; --get-bg:#E8F5EF;
+  --pass:#0E8A5F; --pass-bg:#E8F5EF; --fail:#C73E3A; --fail-bg:#FBECEB; --warn:#AD6800; --warn-bg:#FCF2DF;
+  --code-bg:#F8F9F8;
+  --sans:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --code:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+pre,code{font-family:var(--code)}
+.tnum{font-variant-numeric:tabular-nums}
+.label{font-size:11.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+.tag{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;padding:1px 6px;border:1px solid var(--line2);color:var(--dim);line-height:1.5;white-space:nowrap}
+p code,li code,td code{font-size:.86em;background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--ink)}
+a.u{color:var(--accent-ink);text-decoration:underline;text-decoration-color:rgba(14,138,95,.35);text-underline-offset:3px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:30;height:60px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:grid;grid-template-columns:264px minmax(0,1fr) auto;align-items:center}
+.brand{display:flex;align-items:center;gap:9px;padding-left:24px;font-weight:600;font-size:16.5px;letter-spacing:-.01em;color:var(--ink)}
+.brand img{height:18px}
+.brand span{font-weight:500;color:var(--dim);font-size:14px;margin-left:2px;padding-left:10px;border-left:1px solid var(--line2)}
+.top nav{display:flex;align-items:center;gap:4px;padding-left:28px;height:100%}
+.top nav a{height:100%;display:flex;align-items:center;padding:0 12px;font-size:14px;color:var(--muted);font-weight:500;position:relative}
+.top nav a:hover{color:var(--ink)}
+.top nav a.on{color:var(--ink)}
+.top nav a.on::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;background:var(--accent);border-radius:2px}
+.search{margin-left:auto;margin-right:18px;display:flex;align-items:center;gap:8px;width:260px;height:34px;padding:0 8px 0 11px;border:1px solid var(--line);border-radius:8px;background:var(--soft);font-size:13.5px;color:var(--dim)}
+.search kbd{margin-left:auto;font-family:var(--sans);font-size:11.5px;border:1px solid var(--line2);border-radius:4px;padding:0 5px;background:#fff;color:var(--muted)}
+.tright{display:flex;gap:10px;align-items:center;padding-right:24px}
+.btn{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 13px;border-radius:8px;font-size:14px;font-weight:500;border:1px solid transparent;white-space:nowrap;cursor:pointer;font-family:var(--sans);background:none}
+.btn-acc{background:var(--accent);color:#fff}
+.btn-acc:hover{background:var(--accent-ink)}
+.btn-line{border-color:var(--line2);color:var(--ink);background:#fff}
+.btn-line:hover{border-color:#C3C7C3}
+.btn-ghost{color:var(--muted)}
+.btn-ghost:hover{color:var(--ink);background:var(--soft)}
+.menu-btn{display:none}
+
+/* shell */
+.shell{display:grid;grid-template-columns:264px minmax(0,1fr)}
+.side{position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;border-right:1px solid var(--line);background:var(--side);padding:20px 14px 40px}
+.side h5{font-size:11.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--dim);padding:0 10px;margin:22px 0 6px}
+.side h5:first-child{margin-top:4px}
+.side a{display:flex;align-items:center;gap:8px;padding:5px 10px;border-radius:7px;font-size:14px;color:var(--muted)}
+.side a:hover{color:var(--ink);background:rgba(14,18,16,.035)}
+.side a.on{color:var(--accent-ink);background:var(--accent-soft);font-weight:500}
+.m{font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.06em;border-radius:4px;padding:0 4px;min-width:34px;text-align:center;line-height:16px}
+.m.post{color:var(--post);background:var(--post-bg)}
+.m.get{color:var(--get);background:var(--get-bg)}
+.side .grp-note{font-size:12px;color:var(--dim);padding:2px 10px 4px}
+
+main{min-width:0}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:48px;padding:48px 48px 56px;border-bottom:1px solid var(--line)}
+.row.full{grid-template-columns:minmax(0,1fr)}
+.row>*{min-width:0}
+.crumb{font-size:13.5px;color:var(--accent-ink);font-weight:500;display:flex;gap:8px;align-items:center}
+.crumb span{color:var(--dim);font-weight:400}
+h1{font-size:44px;line-height:1.08;letter-spacing:-.03em;font-weight:600;color:var(--ink);margin-top:10px;max-width:880px}
+.lead{font-size:17.5px;line-height:1.6;color:var(--muted);margin-top:14px;max-width:800px}
+.acts{display:flex;align-items:center;gap:10px;margin-top:22px;flex-wrap:wrap}
+.acts .sep{width:1px;height:20px;background:var(--line2);margin:0 6px}
+.acts .btn-ghost{font-size:13.5px;height:32px;padding:0 10px}
+h2{font-size:26px;letter-spacing:-.02em;font-weight:600;color:var(--ink);line-height:1.2}
+h2 .anchor{color:var(--line2);font-weight:400;margin-left:6px}
+h3{font-size:16px;font-weight:600;color:var(--ink);margin-top:28px}
+.prose p{margin-top:10px;color:var(--text);max-width:680px}
+.prose p.muted{color:var(--muted)}
+
+/* endpoint */
+.ep-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ep-path{display:flex;align-items:center;gap:10px;margin-top:12px;height:38px;padding:0 12px;border:1px solid var(--line);border-radius:9px;background:var(--soft);font-size:14px;color:var(--ink);max-width:100%}
+.ep-path .m{font-size:11px;padding:1px 6px;line-height:18px}
+.ep-path code{font-size:13.5px}
+.ep-path .src{margin-left:auto;font-size:12.5px;color:var(--dim)}
+.verified{display:flex;align-items:center;gap:12px;margin-top:14px;padding:11px 14px;border:1px solid #CBE8DA;background:#F3FAF6;border-radius:10px;font-size:13.5px;color:var(--text)}
+.verified b{color:var(--ink);font-weight:600}
+.verified .dots{display:flex;gap:4px;margin-left:auto}
+.verified .dots i{width:9px;height:9px;border-radius:3px;background:var(--pass)}
+.verified .dots i.no{background:var(--fail)}
+.params{margin-top:10px;border-top:1px solid var(--line)}
+.param{padding:14px 0;border-bottom:1px solid var(--line)}
+.param .pn{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.param .pn code{font-size:13.5px;font-weight:500;color:var(--ink)}
+.param .pt{font-size:13px;color:var(--dim)}
+.param .req{font-size:12px;font-weight:600;color:var(--warn)}
+.param p{font-size:14px;color:var(--muted);margin-top:4px}
+.param .enum{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.param .enum code{font-size:12px;background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--text)}
+.param .chg{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--accent-ink);background:var(--accent-soft);border-radius:99px;padding:0 8px;margin-left:auto}
+
+/* code panels */
+.stick{position:sticky;top:84px;display:grid;gap:16px;align-content:start}
+.panel{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 1px 2px rgba(14,18,16,.04)}
+.ph{display:flex;align-items:center;gap:10px;height:42px;padding:0 8px 0 14px;border-bottom:1px solid var(--line);background:var(--soft);font-size:13px;color:var(--muted)}
+.ph .m{font-size:10px;line-height:17px}
+.ph code{font-size:12.5px;color:var(--ink)}
+.ph .r{margin-left:auto;display:flex;gap:4px;align-items:center}
+.ltabs{display:flex;gap:0;border-bottom:1px solid var(--line);padding:0 8px;overflow-x:auto;scrollbar-width:none}
+.ltabs::-webkit-scrollbar{display:none}
+.ltabs button{all:unset;cursor:pointer;height:38px;padding:0 10px;font-size:13px;color:var(--muted);font-weight:500;position:relative;white-space:nowrap}
+.ltabs button:hover{color:var(--ink)}
+.ltabs button.on{color:var(--ink)}
+.ltabs button.on::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:2px;background:var(--ink);border-radius:2px}
+.copy{all:unset;cursor:pointer;width:28px;height:28px;display:grid;place-items:center;border-radius:6px;color:var(--dim)}
+.copy:hover{background:#fff;color:var(--ink)}
+.panel pre{padding:14px 16px;font-size:12.5px;line-height:1.72;color:#2A302C;overflow:auto;background:#fff;white-space:pre}
+.pane{display:none}.pane.on{display:block}
+.k{color:#8A3FB8}.s{color:#0A7A4E}.c{color:#8C938E}.n{color:#B35A00}.p{color:#2F62D8}.r{color:#C73E3A}.g{color:#0E8A5F}
+.stat{font-family:var(--sans);font-size:12px;font-weight:600;border-radius:5px;padding:0 6px;line-height:19px}
+.stat.ok{color:var(--pass);background:var(--pass-bg)}.stat.no{color:var(--fail);background:var(--fail-bg)}
+.rtabs{display:flex;gap:4px}
+.rtabs button{all:unset;cursor:pointer;font-size:12px;font-weight:600;border-radius:5px;padding:0 7px;line-height:22px;color:var(--muted)}
+.rtabs button.on.ok{color:var(--pass);background:var(--pass-bg)}
+.rtabs button.on.no{color:var(--fail);background:var(--fail-bg)}
+
+/* gate table */
+.gate{margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.gr{display:grid;grid-template-columns:20px 150px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);font-size:14px}
+.gr:last-child{border-bottom:0}
+.gr .w{color:var(--dim);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gr.held{background:#FDF6F6}
+.gr .sub{grid-column:2/-1;font-size:13px;color:var(--muted);margin-top:-2px}
+.ic{width:18px;height:18px;border-radius:50%;display:grid;place-items:center}
+.ic.ok{background:var(--pass-bg);color:var(--pass)}.ic.no{background:var(--fail-bg);color:var(--fail)}.ic.wait{background:var(--warn-bg);color:var(--warn)}
+.b{font-size:12px;font-weight:600;border-radius:6px;padding:1px 8px;white-space:nowrap}
+.b.ok{color:var(--pass);background:var(--pass-bg)}.b.no{color:var(--fail);background:var(--fail-bg)}.b.wait{color:var(--warn);background:var(--warn-bg)}
+.ba{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.ba div{padding:14px 16px}
+.ba div+div{border-left:1px solid var(--line);background:#F3FAF6}
+.ba b{display:block;font-size:26px;font-weight:600;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.15;margin-top:4px}
+.ba div:first-child b{color:var(--fail)}
+.ba div+div b{color:var(--pass)}
+.ba small{font-size:13px;color:var(--muted)}
+
+/* steps */
+.steps{margin-top:18px;list-style:none;counter-reset:s}
+.steps li{position:relative;padding:0 0 26px 44px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--soft);border:1px solid var(--line2);display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.steps li::after{content:"";position:absolute;left:14px;top:34px;bottom:6px;width:1px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps li b{display:block;color:var(--ink);font-weight:600;font-size:15.5px;line-height:28px}
+.steps li p{margin-top:2px;color:var(--muted);font-size:14.5px}
+
+.callout{margin-top:18px;display:grid;grid-template-columns:20px 1fr;gap:10px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--soft);font-size:14px;color:var(--text)}
+.callout svg{margin-top:3px;color:var(--muted)}
+.callout.acc{border-color:#CBE8DA;background:#F3FAF6}
+.callout.acc svg{color:var(--accent)}
+
+/* tables */
+.tbl{margin-top:16px;border:1px solid var(--line);border-radius:10px;overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding:10px 14px;background:var(--soft);border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td small{display:block;color:var(--dim);font-size:12.5px}
+td code{white-space:nowrap}
+.st{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;white-space:nowrap}
+.st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.st.ok{color:var(--pass)}.st.no{color:var(--fail)}.st.fl{color:var(--warn)}
+tr.sel td{background:#FDF6F6}
+
+/* trace */
+.trace{list-style:none;padding:14px 16px 4px}
+.trace li{display:grid;grid-template-columns:14px 1fr;gap:10px;font-size:13.5px;color:var(--ink);padding-bottom:12px}
+.trace li i{width:9px;height:9px;border-radius:50%;background:var(--pass);margin-top:6px}
+.trace li.no i{background:var(--fail)}
+.trace li small{display:block;color:var(--muted);font-size:12.5px}
+.why{margin:0 16px 16px;border:1px solid #F0D2D0;background:#FDF6F6;border-radius:9px;padding:11px 13px;font-size:13px;color:#5E2926}
+.why b{display:block;color:var(--ink);font-weight:600}
+
+/* findings */
+.find{margin-top:16px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.fr{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);font-size:14px;align-items:start}
+.fr:last-child{border-bottom:0}
+.fr input{margin-top:4px;accent-color:var(--accent)}
+.fr b{font-weight:500;color:var(--ink);display:block}
+.fr small{color:var(--muted);font-size:13px}
+.fr .ops{font-size:12.5px;color:var(--dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fgrp{padding:9px 14px;background:var(--soft);border-bottom:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--ink);display:flex;gap:8px;align-items:center}
+.fgrp i{width:7px;height:7px;border-radius:50%}
+.diff .l{display:block;padding:0 16px}
+.diff .add{background:#EAF6EF;color:#0B5A3B}
+.diff .add::before{content:"+ ";color:var(--pass)}
+.diff .ctx::before{content:"  "}
+.panel pre.diff{padding:12px 0}
+
+/* bars */
+.bar{height:6px;border-radius:99px;background:var(--soft2);overflow:hidden;margin-top:6px;min-width:80px}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.bar.low i{background:var(--fail)}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:18px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.plan{padding:22px 22px 24px;display:flex;flex-direction:column}
+.plan+.plan{border-left:1px solid var(--line)}
+.plan.hl{background:#F3FAF6}
+.plan h4{font-size:15px;font-weight:600;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.plan .amt{font-size:34px;font-weight:600;letter-spacing:-.03em;color:var(--ink);margin-top:10px;line-height:1;font-variant-numeric:tabular-nums}
+.plan .amt small{font-size:14px;color:var(--dim);font-weight:500;letter-spacing:0}
+.plan p{font-size:14px;color:var(--muted);margin-top:8px}
+.plan ul{list-style:none;margin:16px 0 20px;display:grid;gap:8px;font-size:14px}
+.plan li{display:grid;grid-template-columns:16px 1fr;gap:8px}
+.plan li svg{margin-top:5px;color:var(--accent)}
+.plan .btn{margin-top:auto;justify-content:center}
+
+/* changelog */
+.cl{margin-top:18px}
+.ce{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:18px 0;border-top:1px solid var(--line)}
+.ce time{font-size:13.5px;color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums}
+.ce .tag{margin-top:6px;display:inline-block}
+.ce b{font-weight:600;color:var(--ink);font-size:15.5px}
+.ce p{color:var(--muted);font-size:14.5px;margin-top:2px}
+
+/* page foot */
+.pfoot{padding:36px 48px 48px}
+.helpful{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.helpful .btn{height:30px;font-size:13.5px}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.pn a{border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:block}
+.pn a:hover{border-color:#C3C7C3}
+.pn small{display:block;font-size:12.5px;color:var(--dim)}
+.pn b{font-weight:600;color:var(--ink)}
+.pn a+a{text-align:right}
+.links{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-top:44px;padding-top:28px;border-top:1px solid var(--line);font-size:13.5px}
+.links h6{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:10px}
+.links ul{list-style:none;display:grid;gap:7px;color:var(--muted)}
+.links a:hover{color:var(--ink)}
+.fb{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:32px;font-size:12.5px;color:var(--dim)}
+.fb .brand{padding-left:0;font-size:14px}
+.fb .brand img{height:15px}
+
+@media (max-width:1280px){
+  .row{grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:36px;padding:44px 36px 50px}
+  .search{width:200px}
+}
+@media (max-width:1060px){
+  .top{grid-template-columns:auto minmax(0,1fr) auto}
+  .top nav{display:none}
+  .shell{grid-template-columns:1fr}
+  .side{position:fixed;top:60px;left:0;bottom:0;width:290px;height:auto;z-index:25;transform:translateX(-100%);transition:transform .2s;box-shadow:0 20px 40px rgba(0,0,0,.12)}
+  body.nav-open .side{transform:none}
+  .menu-btn{display:flex}
+  .row{grid-template-columns:1fr;padding:36px 32px 44px}
+  .stick{position:static}
+  .links{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:640px){
+  .brand{padding-left:16px}
+  .brand span,.search,.tright .btn-line{display:none}
+  .tright{padding-right:12px;gap:6px}
+  .row{padding:28px 16px 36px;gap:24px}
+  h1{font-size:32px}
+  .lead{font-size:16.5px}
+  h2{font-size:22px}
+  .acts .sep,.acts .btn-ghost{display:none}
+  .ep-path .src{display:none}
+  .verified{display:grid;grid-template-columns:18px 1fr;gap:6px 10px;align-items:start}
+  .verified .ic{margin-top:2px}
+  .verified .dots{margin-left:0;grid-column:2}
+  .gr{grid-template-columns:20px minmax(0,1fr) auto;padding:10px 12px}
+  .gr .w{display:none}
+  .gr .sub{grid-column:2/-1}
+  .panel pre{font-size:11.5px}
+  .plans{grid-template-columns:1fr}
+  .plan+.plan{border-left:0;border-top:1px solid var(--line)}
+  .ce{grid-template-columns:1fr;gap:4px}
+  .pfoot{padding:28px 16px 40px}
+  .pn{grid-template-columns:1fr}
+  .pn a+a{text-align:left}
+  .links{grid-template-columns:1fr 1fr}
+  .ba b{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div style="display:flex;align-items:center">
+    <button class="btn btn-ghost menu-btn" aria-label="Menu" style="margin-left:8px;padding:0 8px" onclick="document.body.classList.toggle('nav-open')"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 5h12M3 9h12M3 13h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="#intro"><img src="img/mark-ink.svg" alt="">Doctorine<span>Docs</span></a>
+  </div>
+  <div style="display:flex;align-items:center;height:100%">
+    <nav>
+      <a class="on" href="#intro">Guides</a>
+      <a href="#refund">API reference</a>
+      <a href="#eval">Eval</a>
+      <a href="#changelog">Changelog</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <div class="search"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.3" stroke="currentColor" stroke-width="1.4"/><path d="m9.3 9.3 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Search or ask<kbd>⌘K</kbd></div>
+  </div>
+  <div class="tright">
+    <a class="btn btn-line" href="#">Sign in</a>
+    <a class="btn btn-acc" href="#eval">Run a free eval</a>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="side" onclick="if(event.target.closest('a'))document.body.classList.remove('nav-open')">
+    <h5>Get started</h5>
+    <a class="on" href="#intro">Introduction</a>
+    <a href="#quickstart">Quickstart</a>
+    <a href="#gate">How the gate works</a>
+    <h5>Agent task eval</h5>
+    <a href="#eval">Free eval report</a>
+    <a href="#quickstart">Task definitions</a>
+    <a href="#analyser">Static analyser</a>
+    <h5>Release gate</h5>
+    <a href="#gate">GitHub Action</a>
+    <a href="#gate">Surfaces and verdicts</a>
+    <a href="#gate">Receipts and rollback</a>
+    <a href="#repair">Spec repair</a>
+    <h5>Example reference</h5>
+    <div class="grp-note">acme-payments, a sample API</div>
+    <a class="" href="#refund"><span class="m post">POST</span>Create a refund</a>
+    <a href="#refund"><span class="m get">GET</span>Retrieve a refund</a>
+    <a href="#refund"><span class="m post">POST</span>Create a payment</a>
+    <a href="#refund"><span class="m get">GET</span>List payouts</a>
+    <h5>Surfaces</h5>
+    <a href="#refund">Docs portal</a>
+    <a href="#refund">TypeScript, Python, Go SDKs</a>
+    <a href="#refund">CLI</a>
+    <a href="#refund">MCP server</a>
+    <a href="#refund">Agent Skills</a>
+    <h5>Resources</h5>
+    <a href="#pricing">Pricing</a>
+    <a href="#changelog">Changelog</a>
+    <a href="https://doctorine.dev">doctorine.dev analyser</a>
+  </aside>
+
+  <main>
+    <!-- intro -->
+    <section class="row full" id="intro" style="padding-top:38px;padding-bottom:34px">
+      <div>
+        <div class="crumb">Get started <span>/</span> <span>Introduction</span></div>
+        <h1>Prove every API change works for developers and agents before it ships.</h1>
+        <p class="lead">Doctorine runs coding agents through real integration tasks with your docs, SDKs, CLI and MCP server, gates each release on the result, and publishes only the surfaces that passed. The reference below is built the way Doctorine publishes one: generated from a sample OpenAPI spec, with its gate result inline.</p>
+        <div class="acts">
+          <a class="btn btn-acc" href="#eval">Run a free eval</a>
+          <a class="btn btn-line" href="#quickstart">Quickstart</a>
+          <span class="sep"></span>
+          <a class="btn btn-ghost" href="#"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4.5" y="4.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M9.5 2.5h-6a1 1 0 0 0-1 1v6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Copy page as Markdown</a>
+          <a class="btn btn-ghost" href="#"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 2.5h4.5L11 5v6.5H4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>llms.txt</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- endpoint example -->
+    <section class="row" id="refund">
+      <div>
+        <div class="ep-head"><span class="label">Example reference · acme-payments</span><span class="tag">Sample</span></div>
+        <h2 style="margin-top:8px">Create a refund</h2>
+        <div class="ep-path"><span class="m post">POST</span><code>/v1/refunds</code><span class="src">openapi.yaml · refunds.create</span></div>
+        <div class="verified">
+          <span class="ic ok"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.3 8 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span><b>Verified in release 4.13.0.</b> 6 of 7 surfaces passed, Python SDK held back.</span>
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="no"></i><i></i><i></i></span>
+        </div>
+        <div class="prose"><p class="muted">Refunds part or all of a payment. The refund is created as <code>pending</code> and settles to the original payment method.</p></div>
+        <h3>Body parameters</h3>
+        <div class="params">
+          <div class="param"><div class="pn"><code>payment</code><span class="pt">string</span><span class="req">required</span></div><p>ID of the payment to refund.</p></div>
+          <div class="param"><div class="pn"><code>amount</code><span class="pt">integer</span><span class="req">required</span><span class="chg">Changed in 4.13.0</span></div><p>Amount to refund in the currency's minor unit. <code>1250</code> refunds 12.50 EUR.</p></div>
+          <div class="param"><div class="pn"><code>reason</code><span class="pt">enum</span><span class="req">required for partial refunds</span><span class="chg">New in 4.13.0</span></div><p>Why the payment is refunded.</p><div class="enum"><code>requested_by_customer</code><code>duplicate</code><code>fraudulent</code></div></div>
+          <div class="param"><div class="pn"><code>metadata</code><span class="pt">object</span></div><p>Up to 20 key and value pairs stored with the refund.</p></div>
+        </div>
+        <h3>Release gate for this operation</h3>
+        <div class="gate">
+          <div class="gr"><span class="ic ok"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.3 8 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Docs portal</span><span class="w">Examples compile, links resolve</span><span class="b ok">Passed</span></div>
+          <div class="gr"><span class="ic ok"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.3 8 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>CLI</span><span class="w">acme refunds create</span><span class="b ok">Passed</span></div>
+          <div class="gr"><span class="ic ok"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.3 8 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>MCP server</span><span class="w">refunds_create tool</span><span class="b ok">Passed</span></div>
+          <div class="gr"><span class="ic ok"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.3 8 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>TypeScript SDK</span><span class="w">@acme/payments 4.13.0</span><span class="b ok">Passed</span></div>
+          <div class="gr held"><span class="ic no"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M3 3l4 4M7 3 3 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>Python SDK</span><span class="w">acme-payments 4.13.0</span><span class="b no">Held back</span><span class="sub">Contract test sent <code>reason_code</code> instead of <code>reason</code>; sandbox returned 422.</span></div>
+          <div class="gr"><span class="ic ok"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.3 8 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Go SDK</span><span class="w">v4.13.0</span><span class="b ok">Passed</span></div>
+          <div class="gr"><span class="ic ok"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.3 8 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Agent Skill</span><span class="w">acme-payments/refunds</span><span class="b ok">Passed</span></div>
+        </div>
+        <div class="ba">
+          <div><small>Agent task "Refund part of a payment", 4.12.0</small><b>0 of 4</b><small>surfaces completed it</small></div>
+          <div><small>Same task after the spec fix, 4.13.0</small><b>4 of 4</b><small>surfaces, 3 of 3 runs each</small></div>
+        </div>
+      </div>
+      <div>
+        <div class="stick">
+          <div class="panel" id="req">
+            <div class="ph"><span class="m post">POST</span><code>/v1/refunds</code><span class="r"><span class="tag">Sample</span><button class="copy" data-copy="req" aria-label="Copy"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4.5" y="4.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M9.5 2.5h-6a1 1 0 0 0-1 1v6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></button></span></div>
+            <div class="ltabs" data-group="req"><button class="on" data-p="r-curl">cURL</button><button data-p="r-ts">TypeScript</button><button data-p="r-py">Python</button><button data-p="r-go">Go</button><button data-p="r-cli">CLI</button><button data-p="r-mcp">MCP</button></div>
+<pre class="pane on" id="r-curl">curl https://api.acme-payments.example/v1/refunds \
+  -H <span class="s">"Authorization: Bearer $ACME_API_KEY"</span> \
+  -d payment=<span class="s">pay_sample_01</span> \
+  -d amount=<span class="n">1250</span> \
+  -d reason=<span class="s">requested_by_customer</span></pre>
+<pre class="pane" id="r-ts"><span class="k">import</span> Acme <span class="k">from</span> <span class="s">"@acme/payments"</span>;
+<span class="k">const</span> acme = <span class="k">new</span> <span class="p">Acme</span>();
+
+<span class="k">const</span> refund = <span class="k">await</span> acme.refunds.<span class="p">create</span>({
+  payment: <span class="s">"pay_sample_01"</span>,
+  amount: <span class="n">1250</span>,
+  reason: <span class="s">"requested_by_customer"</span>,
+});</pre>
+<pre class="pane" id="r-py"><span class="c"># held back in 4.13.0, previous release shown</span>
+<span class="k">from</span> acme_payments <span class="k">import</span> <span class="p">Acme</span>
+acme = <span class="p">Acme</span>()
+
+refund = acme.refunds.<span class="p">create</span>(
+    payment=<span class="s">"pay_sample_01"</span>,
+    amount=<span class="n">1250</span>,
+)</pre>
+<pre class="pane" id="r-go">refund, err := client.Refunds.<span class="p">Create</span>(ctx, acme.RefundCreateParams{
+    Payment: <span class="s">"pay_sample_01"</span>,
+    Amount:  <span class="n">1250</span>,
+    Reason:  acme.<span class="p">RefundReasonRequestedByCustomer</span>,
+})</pre>
+<pre class="pane" id="r-cli"><span class="c">$</span> acme refunds create \
+    --payment pay_sample_01 \
+    --amount 1250 \
+    --reason requested_by_customer</pre>
+<pre class="pane" id="r-mcp">{
+  <span class="k">"method"</span>: <span class="s">"tools/call"</span>,
+  <span class="k">"params"</span>: {
+    <span class="k">"name"</span>: <span class="s">"refunds_create"</span>,
+    <span class="k">"arguments"</span>: { <span class="k">"payment"</span>: <span class="s">"pay_sample_01"</span>, <span class="k">"amount"</span>: <span class="n">1250</span>,
+                   <span class="k">"reason"</span>: <span class="s">"requested_by_customer"</span> }
+  }
+}</pre>
+          </div>
+          <div class="panel">
+            <div class="ph">Response<span class="r rtabs" data-group="res"><button class="on ok" data-p="s-200">200</button><button class="no" data-p="s-422">422</button></span></div>
+<pre class="pane on" id="s-200">{
+  <span class="k">"id"</span>: <span class="s">"re_sample_09"</span>,
+  <span class="k">"object"</span>: <span class="s">"refund"</span>,
+  <span class="k">"payment"</span>: <span class="s">"pay_sample_01"</span>,
+  <span class="k">"amount"</span>: <span class="n">1250</span>,
+  <span class="k">"currency"</span>: <span class="s">"eur"</span>,
+  <span class="k">"reason"</span>: <span class="s">"requested_by_customer"</span>,
+  <span class="k">"status"</span>: <span class="s">"pending"</span>
+}</pre>
+<pre class="pane" id="s-422">{
+  <span class="k">"error"</span>: {
+    <span class="k">"type"</span>: <span class="s">"invalid_request"</span>,
+    <span class="k">"param"</span>: <span class="s">"reason"</span>,
+    <span class="k">"message"</span>: <span class="s">"reason is required for partial refunds"</span>
+  }
+}</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quickstart -->
+    <section class="row" id="quickstart">
+      <div class="prose">
+        <span class="label">Get started</span>
+        <h2 style="margin-top:6px">Quickstart <span class="anchor">#</span></h2>
+        <p>Start with the free report, then run the same tasks on every pull request that changes the spec. Nothing needs to move: the eval reads the docs you host today.</p>
+        <ol class="steps">
+          <li><b>Run the free eval</b><p>Send a docs URL and your OpenAPI spec. Agents attempt five integration tasks against a sandbox generated from the spec, three runs each.</p></li>
+          <li><b>Apply the fixes</b><p>Each failed task comes with its cause. When the cause is the spec, Doctorine opens one pull request with the mechanical fixes.</p></li>
+          <li><b>Add the gate to CI</b><p>The tasks become a check. Passed surfaces publish together, the rest are held back, and a receipt records the release.</p></li>
+        </ol>
+        <div class="callout"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.2" stroke="currentColor" stroke-width="1.3"/><path d="M8 7.2v4M8 4.8v.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>The action, CLI and file names on this page are examples. The gate is being built with design partners.</span></div>
+      </div>
+      <div>
+        <div class="stick">
+          <div class="panel" id="qs">
+            <div class="ltabs" data-group="qs"><button class="on" data-p="q-gh">GitHub Action</button><button data-p="q-tasks">tasks.yaml</button><button data-p="q-cli">CLI</button><span style="margin-left:auto;display:flex;align-items:center;gap:4px"><span class="tag">Example</span><button class="copy" data-copy="qs" aria-label="Copy"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4.5" y="4.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M9.5 2.5h-6a1 1 0 0 0-1 1v6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></button></span></div>
+<pre class="pane on" id="q-gh"><span class="c"># .github/workflows/doctorine.yml</span>
+<span class="k">on</span>:
+  <span class="k">pull_request</span>:
+    <span class="k">paths</span>: [<span class="s">"openapi.yaml"</span>]
+<span class="k">jobs</span>:
+  <span class="k">gate</span>:
+    <span class="k">runs-on</span>: ubuntu-latest
+    <span class="k">steps</span>:
+      - <span class="k">uses</span>: actions/checkout@v4
+      - <span class="k">uses</span>: doctorine/release-gate@v0 <span class="c"># example</span>
+        <span class="k">with</span>:
+          <span class="k">spec</span>: openapi.yaml
+          <span class="k">tasks</span>: .doctorine/tasks.yaml
+          <span class="k">surfaces</span>: docs, cli, mcp, sdk-ts, sdk-python</pre>
+<pre class="pane" id="q-tasks"><span class="c"># .doctorine/tasks.yaml</span>
+- <span class="k">id</span>: refund-partial
+  <span class="k">task</span>: <span class="s">Refund 12.50 EUR of a 25.00 EUR payment</span>
+  <span class="k">expect</span>:
+    <span class="k">request</span>: POST /v1/refunds
+    <span class="k">body.amount</span>: <span class="n">1250</span>
+  <span class="k">runs</span>: <span class="n">3</span>
+- <span class="k">id</span>: payouts-last-month
+  <span class="k">task</span>: <span class="s">List every payout from last month</span>
+  <span class="k">expect</span>:
+    <span class="k">pagination</span>: exhausted</pre>
+<pre class="pane" id="q-cli"><span class="c">$</span> npx doctorine eval --spec openapi.yaml \
+    --docs https://docs.acme-payments.example
+
+<span class="g">✓</span> Create a customer and save a card   4 of 4
+<span class="r">✕</span> Refund part of a payment            0 of 4
+<span class="c">  cause: amount unit undocumented (spec)</span>
+
+9 of 20 tasks completed · 6 fixable causes</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- eval -->
+    <section class="row" id="eval">
+      <div class="prose">
+        <span class="label">Agent task eval</span>
+        <h2 style="margin-top:6px">Free eval report <span class="anchor">#</span></h2>
+        <p>Two coding agents, Claude Code and Codex, attempt real integration jobs using only what you publish. A task counts as completed when all three runs agree, and flaky results are reported but not counted.</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Task, sample report</th><th>Docs</th><th>CLI</th><th>MCP</th><th>TS SDK</th></tr></thead>
+            <tbody>
+              <tr><td>Create a customer and save a card</td><td><span class="st ok">Done</span></td><td><span class="st ok">Done</span></td><td><span class="st ok">Done</span></td><td><span class="st ok">Done</span></td></tr>
+              <tr><td>Take a payment safely on retry</td><td><span class="st no">Failed</span></td><td><span class="st ok">Done</span></td><td><span class="st no">Failed</span></td><td><span class="st ok">Done</span></td></tr>
+              <tr class="sel"><td>Refund part of a payment</td><td><span class="st no">Failed</span></td><td><span class="st no">Failed</span></td><td><span class="st no">Failed</span></td><td><span class="st no">Failed</span></td></tr>
+              <tr><td>List every payout from last month</td><td><span class="st no">Failed</span></td><td><span class="st ok">Done</span></td><td><span class="st fl">Flaky</span></td><td><span class="st ok">Done</span></td></tr>
+              <tr><td>Verify a webhook signature</td><td><span class="st no">Failed</span></td><td><span class="st no">Failed</span></td><td><span class="st no">Failed</span></td><td><span class="st ok">Done</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted" style="font-size:14px">Sample report on acme-payments, Claude Code: 9 of 20 tasks completed, 93% repeat agreement (56 of 60 runs), 6 fixable causes. The same docs score 91 of 100 on a static readiness check.</p>
+      </div>
+      <div>
+        <div class="stick">
+          <div class="panel">
+            <div class="ph">Trace · Refund part of a payment<span class="r"><span class="b no">Failed 3 of 3</span></span></div>
+            <ul class="trace">
+              <li><i></i><span>Found the Refunds page<small>Docs only, Claude Code</small></span></li>
+              <li><i></i><span>Created a payment of 25.00 EUR<small>Sandbox returned amount 2500</small></span></li>
+              <li class="no"><i></i><span>Sent amount 12.5 for the refund<small>Rejected: amount must be an integer</small></span></li>
+              <li class="no"><i></i><span>Retried with amount 12<small>Refunded 0.12 EUR instead of 12.00 EUR and reported success</small></span></li>
+            </ul>
+            <div class="why"><b>Cause</b>amount is in cents but described only as "The amount", with no example on the Refunds page. Fixed in 4.13.0 above.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- gate -->
+    <section class="row" id="gate">
+      <div class="prose">
+        <span class="label">Release gate</span>
+        <h2 style="margin-top:6px">How the gate works <span class="anchor">#</span></h2>
+        <p>The gate is a check on the pull request that changes the spec. It rebuilds every surface, runs contract tests and the agent task suite, classifies the change, and writes a receipt.</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Check</th><th>What it decides</th></tr></thead>
+            <tbody>
+              <tr><td><code>contract</code></td><td>Each SDK, the CLI and the MCP server call a sandbox built from the spec. A mismatch fails only that surface.</td></tr>
+              <tr><td><code>agent-tasks</code></td><td>The task suite from your report, three runs per task, on every surface you publish.</td></tr>
+              <tr><td><code>classify</code></td><td>Bug fix or breaking change, with the consumers affected. When it cannot tell, it asks one question.</td></tr>
+              <tr><td><code>publish</code></td><td>Passed surfaces ship together. Failed ones are held back, not the whole release.</td></tr>
+              <tr><td><code>receipt</code></td><td>A record of the spec, the generator, every check and verdict, with one-step rollback of all surfaces.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout acc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 11.5 13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>For the example release: 38 wording checks, 211 of 212 contract tests and 24 agent tasks passed. A reviewer sees two decisions, not the whole diff.</span></div>
+      </div>
+      <div>
+        <div class="stick">
+          <div class="panel">
+            <div class="ph"><code>receipt.json</code><span class="r"><span class="tag">Sample</span></span></div>
+<pre>{
+  <span class="k">"release"</span>: <span class="s">"2026-10-14"</span>,
+  <span class="k">"spec"</span>: { <span class="k">"from"</span>: <span class="s">"4.12.0"</span>, <span class="k">"to"</span>: <span class="s">"4.13.0"</span> },
+  <span class="k">"generator"</span>: <span class="s">"@doctorine/sdk-codegen 0.11.1"</span>,
+  <span class="k">"surfaces"</span>: {
+    <span class="k">"docs"</span>:   { <span class="k">"verdict"</span>: <span class="g">"passed"</span> },
+    <span class="k">"cli"</span>:    { <span class="k">"verdict"</span>: <span class="g">"passed"</span>, <span class="k">"agentTasks"</span>: <span class="n">5</span> },
+    <span class="k">"mcp"</span>:    { <span class="k">"verdict"</span>: <span class="g">"passed"</span>, <span class="k">"agentTasks"</span>: <span class="n">5</span> },
+    <span class="k">"ts"</span>:     { <span class="k">"verdict"</span>: <span class="g">"passed"</span> },
+    <span class="k">"python"</span>: { <span class="k">"verdict"</span>: <span class="r">"held"</span>,
+                <span class="k">"failed"</span>: <span class="s">"contract.refund_reason"</span> },
+    <span class="k">"go"</span>:     { <span class="k">"verdict"</span>: <span class="g">"passed"</span> },
+    <span class="k">"skill"</span>:  { <span class="k">"verdict"</span>: <span class="g">"passed"</span>, <span class="k">"signed"</span>: <span class="n">true</span> }
+  },
+  <span class="k">"rollback"</span>: <span class="s">"4.12.0"</span>,
+  <span class="k">"decisions"</span>: <span class="s">"pending reviewer"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- repair -->
+    <section class="row" id="repair">
+      <div class="prose">
+        <span class="label">Spec repair</span>
+        <h2 style="margin-top:6px">Repair pull requests <span class="anchor">#</span></h2>
+        <p>Point Doctorine at a repository and it checks the spec against what docs, SDKs, the CLI, MCP tools and agents need. Mechanical fixes go into one pull request; anything that changes what your API means is left as a review comment.</p>
+        <div class="find">
+          <div class="fgrp"><i style="background:var(--fail)"></i>Blocks generation <span class="tag">Sample, acme/logistics-api</span></div>
+          <div class="fr"><input type="checkbox" checked aria-label="Selected"><span><b>No security scheme declared</b><small>Every operation needs a bearer token, but the spec never says so</small></span><span class="ops">64 ops</span></div>
+          <div class="fr"><input type="checkbox" checked aria-label="Selected"><span><b>oneOf without a discriminator on Shipment.destination</b><small>Address and PickupPoint cannot be told apart</small></span><span class="ops">3 ops</span></div>
+          <div class="fgrp"><i style="background:var(--warn)"></i>Confuses agents and developers</div>
+          <div class="fr"><input type="checkbox" checked aria-label="Selected"><span><b>No examples on 22 request bodies</b><small>Including Create shipment and Book pickup</small></span><span class="ops">22 ops</span></div>
+          <div class="fgrp"><i style="background:var(--post)"></i>Needs your judgement, left as review comments</div>
+          <div class="fr"><input type="checkbox" disabled aria-label="Not selected"><span><b>PATCH /shipments/{id} is live but not in the spec</b><small>Found in the router, not in openapi.yaml</small></span><span class="ops">1 op</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="stick">
+          <div class="panel">
+            <div class="ph"><code>openapi.yaml</code><span class="r"><span class="tag">Sample diff</span></span></div>
+<pre class="diff"><span class="l ctx">components:</span><span class="l add">  securitySchemes:</span><span class="l add">    bearerAuth:</span><span class="l add">      type: http</span><span class="l add">      scheme: bearer</span><span class="l ctx">security:</span><span class="l add">  - bearerAuth: []</span></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- analyser -->
+    <section class="row" id="analyser">
+      <div class="prose">
+        <span class="label">Static analyser</span>
+        <h2 style="margin-top:6px">What static checks find <span class="anchor">#</span></h2>
+        <p>The free analyser at <a class="u" href="https://doctorine.dev">doctorine.dev</a> scores whether agents can find, read and use a docs portal. We ran it on 33 public docs portals on 25 September 2026.</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Check</th><th style="width:40%">Present</th><th style="text-align:right">Sites</th></tr></thead>
+            <tbody>
+              <tr><td>llms.txt index</td><td><div class="bar"><i style="width:78.8%"></i></div></td><td class="num">26 of 33</td></tr>
+              <tr><td>Markdown for agents</td><td><div class="bar"><i style="width:57.6%"></i></div></td><td class="num">19 of 33</td></tr>
+              <tr><td>Agent Skills index</td><td><div class="bar low"><i style="width:33.3%"></i></div></td><td class="num">11 of 33</td></tr>
+              <tr><td>MCP Server Card</td><td><div class="bar low"><i style="width:18.2%"></i></div></td><td class="num">6 of 33</td></tr>
+              <tr><td>API Catalog</td><td><div class="bar low"><i style="width:18.2%"></i></div></td><td class="num">6 of 33</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted" style="font-size:14px">16 of the 33 sites received a score, with a median of 74 and a range of 52 to 95. The other 17 returned an incomplete scan. A static score shows which files exist; it does not show whether a task succeeds.</p>
+      </div>
+      <div>
+        <div class="stick">
+          <div class="panel">
+            <div class="ph"><span class="m post">POST</span><code>/api/agent-readiness/scan</code><span class="r"><span class="tag">Live</span></span></div>
+<pre>curl -X POST https://doctorine.dev/api/agent-readiness/scan \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{"url": "https://resend.com/docs"}'</span></pre>
+          </div>
+          <div class="panel">
+            <div class="ph">Response, abridged<span class="r"><span class="stat ok">200</span></span></div>
+<pre>{
+  <span class="k">"target"</span>: { <span class="k">"displayHost"</span>: <span class="s">"resend.com"</span> },
+  <span class="k">"result"</span>: {
+    <span class="k">"levelName"</span>: <span class="s">"Agent-Native"</span>,
+    <span class="k">"passedSignals"</span>: <span class="n">23</span>,
+    <span class="k">"measuredSignals"</span>: <span class="n">25</span>,
+    <span class="k">"score"</span>: { <span class="k">"overall"</span>: <span class="n">95</span>, <span class="k">"label"</span>: <span class="s">"Agent-ready"</span> }
+  }
+}</pre>
+          </div>
+          <p style="font-size:12.5px;color:var(--dim)">Run of 25 September 2026, from the Doctorine analyser records.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- pricing -->
+    <section class="row full" id="pricing">
+      <div class="prose">
+        <span class="label">Resources</span>
+        <h2 style="margin-top:6px">Pricing <span class="anchor">#</span></h2>
+        <p>The eval report is free. The release gate and the full product are open to design partners on a monthly subscription, with no annual plan.</p>
+        <div class="plans">
+          <div class="plan">
+            <h4>Eval report</h4><div class="amt">€0</div><p>Any team with public docs and an OpenAPI spec.</p>
+            <ul><li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 8.8 10 3.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Agent task eval on existing docs</li><li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 8.8 10 3.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Cause and fix for each failed task</li></ul>
+            <a class="btn btn-line" href="#eval">Run a free eval</a>
+          </div>
+          <div class="plan hl">
+            <h4>Design partner, individual <span class="tag">20 seats</span></h4><div class="amt">€100<small> / month</small></div><p>One person shipping their own API.</p>
+            <ul><li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 8.8 10 3.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Full product, weekly session</li><li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 8.8 10 3.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>50% off for 12 months after</li></ul>
+            <a class="btn btn-acc" href="#">Apply as an individual</a>
+          </div>
+          <div class="plan">
+            <h4>Design partner, company <span class="tag">20 seats</span></h4><div class="amt">€300<small> / month</small></div><p>A team, one subscription, one weekly session.</p>
+            <ul><li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 8.8 10 3.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Release gate in your own CI</li><li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 8.8 10 3.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>A say in the roadmap</li></ul>
+            <a class="btn btn-line" href="#">Apply as a company</a>
+          </div>
+        </div>
+        <p class="muted" style="font-size:13.5px">Design partners commit 3 to 6 months, chosen before they start. EU data residency for the core data plane.</p>
+      </div>
+    </section>
+
+    <!-- changelog -->
+    <section class="row full" id="changelog">
+      <div class="prose">
+        <span class="label">Resources</span>
+        <h2 style="margin-top:6px">Changelog <span class="anchor">#</span></h2>
+        <div class="cl">
+          <div class="ce"><div><time>25 Sep 2026</time><br><span class="tag">Analyser</span></div><div><b>Analyser run on 33 public docs portals</b><p>Cloudflare Agent Ready signals plus Doctorine's own probes, with every result kept, including 17 incomplete scans.</p></div></div>
+          <div class="ce"><div><time>2026</time><br><span class="tag">Analyser</span></div><div><b>Docs analyser live at doctorine.dev</b><p>Paste a documentation portal and get a 0 to 100 score for how well agents find, read and use it.</p></div></div>
+          <div class="ce"><div><time>2026</time><br><span class="tag">Programme</span></div><div><b>Design partner seats open</b><p>20 individual and 20 company seats for teams putting a real API on Doctorine.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="pfoot">
+      <div class="helpful">Was this page helpful? <button class="btn btn-line">Yes</button><button class="btn btn-line">No</button></div>
+      <div class="pn"><a href="#intro"><small>Previous</small><b>Introduction</b></a><a href="#quickstart"><small>Next</small><b>Quickstart</b></a></div>
+      <div class="links">
+        <div><h6>Product</h6><ul><li><a href="#eval">Agent task eval</a></li><li><a href="#gate">Release gate</a></li><li><a href="#repair">Spec repair</a></li><li><a href="#gate">Receipts</a></li></ul></div>
+        <div><h6>Surfaces</h6><ul><li><a href="#refund">Docs portal</a></li><li><a href="#refund">SDKs</a></li><li><a href="#refund">CLI</a></li><li><a href="#refund">MCP server</a></li><li><a href="#refund">Agent Skills</a></li></ul></div>
+        <div><h6>Docs</h6><ul><li><a href="#quickstart">Quickstart</a></li><li><a href="#quickstart">GitHub Action</a></li><li><a href="#quickstart">Task definitions</a></li><li><a href="#gate">Receipt format</a></li></ul></div>
+        <div><h6>Resources</h6><ul><li><a href="https://doctorine.dev">Docs analyser</a></li><li><a href="#changelog">Changelog</a></li><li><a href="#pricing">Design partners</a></li></ul></div>
+        <div><h6>Company</h6><ul><li><a href="#">Contact</a></li><li><a href="#">Trust Center</a></li><li><a href="#">Security</a></li><li><a href="#">GitHub App permissions</a></li></ul></div>
+      </div>
+      <div class="fb"><a class="brand" href="#intro"><img src="img/mark-ink.svg" alt="">Doctorine</a><span>© 2026 Doctorine · EU data residency for the core data plane · Privacy · Terms</span></div>
+    </div>
+  </main>
+</div>
+
+<script>
+document.querySelectorAll('[data-group]').forEach(g=>{
+  const panel=g.closest('.panel');
+  g.querySelectorAll('button[data-p]').forEach(b=>b.addEventListener('click',()=>{
+    g.querySelectorAll('button[data-p]').forEach(x=>x.classList.toggle('on',x===b));
+    panel.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===b.dataset.p));
+  }));
+});
+document.querySelectorAll('.copy[data-copy]').forEach(b=>b.addEventListener('click',()=>{
+  const p=document.getElementById(b.dataset.copy).querySelector('.pane.on');
+  try{navigator.clipboard.writeText(p.innerText)}catch(e){}
+  b.style.color='var(--pass)';setTimeout(()=>b.style.color='',900);
+}));
+const links=[...document.querySelectorAll('.side a[href^="#"]')];
+const secs=[...document.querySelectorAll('main section[id]')];
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;const first=links.find(l=>l.getAttribute('href')==='#'+id);if(first){links.forEach(l=>l.classList.remove('on'));first.classList.add('on')}}})},{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
