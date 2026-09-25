@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="nl" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doctorine: de release gate voor API&#x27;s en AI-agents</title>
+<meta name="description" content="Doctorine controleert of coding agents en ontwikkelaars nog echte taken afronden met je API-docs, CLI, MCP-server en SDK&#x27;s, en publiceert alleen wat slaagt.">
+<link rel="canonical" href="https://doctorine.xyz/nl/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="Doctorine: de release gate voor API&#x27;s en AI-agents">
+<meta property="og:description" content="Doctorine controleert of coding agents en ontwikkelaars nog echte taken afronden met je API-docs, CLI, MCP-server en SDK&#x27;s, en publiceert alleen wat slaagt.">
+<meta property="og:url" content="https://doctorine.xyz/nl/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: elke API-wijziging bewezen voordat ze live gaat">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Doctorine: de release gate voor API&#x27;s en AI-agents">
+<meta name="twitter:description" content="Doctorine controleert of coding agents en ontwikkelaars nog echte taken afronden met je API-docs, CLI, MCP-server en SDK&#x27;s, en publiceert alleen wat slaagt.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://doctorine.xyz/#org",
+   "name": "Doctorine",
+   "url": "https://doctorine.xyz/",
+   "logo": "https://doctorine.xyz/assets/img/apple-touch-icon.png",
+   "email": "pilot@doctorine.xyz",
+   "description": "Doctorine is the release gate for APIs: it checks that coding agents and developers can still complete real tasks with an API's docs, CLI, MCP server, SDKs and Agent Skills before a change ships."
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://doctorine.xyz/#site",
+   "url": "https://doctorine.xyz/",
+   "name": "Doctorine",
+   "inLanguage": [
+    "en",
+    "nl"
+   ],
+   "publisher": {
+    "@id": "https://doctorine.xyz/#org"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Wat is Doctorine?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Doctorine is de release gate voor API's. Voordat een API-wijziging live gaat, controleert het of coding agents en ontwikkelaars nog echte taken kunnen afronden met de docs, CLI, MCP-server, SDK's en Agent Skills, publiceert het alleen de interfaces die slaagden en bewaart het bewijs van wat er is gecontroleerd."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Moeten we onze docs migreren?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nee. Het gratis evaluatierapport leest de docs en spec die je al publiceert, waar ze ook gehost zijn. De release gate draait in je eigen repository. Het Doctorine-portaal is een optie, geen vereiste."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Wat is het verschil met een agent-readinessscore?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Een readinessscore controleert of bestanden als llms.txt, Markdown-pagina's en sitemaps bestaan. De evaluatie laat coding agents echte integratietaken uitvoeren, dus je ziet of een agent echt kan aanmaken, betalen, terugbetalen of opvragen met je API, en waarom het misgaat als dat niet lukt."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Welke interfaces controleert Doctorine?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Het docsportaal, de CLI, de MCP-server, de TypeScript-, Python- en Go-SDK's en Agent Skills. Je controleert de interfaces die je al hebt en genereert de ontbrekende uit je OpenAPI-spec."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Wat kost het?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "De Docs Analyser en het evaluatierapport zijn gratis. De release gate is beschikbaar voor designpartners voor 100 euro per maand voor een persoon en 300 euro per maand voor een bedrijf. Publieke abonnementen zijn nog niet gepubliceerd."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Waar worden onze gegevens opgeslagen?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Kerncontent en tenantopslag staan in EU-regio's. Een klein aantal diensten, zoals authenticatie en betalingen, zijn gedocumenteerde uitzonderingen buiten de EU."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Doctorine home"><img src="../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Hoofdmenu">
+      <div class="dd"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="agenttaken-evaluatie/index.html"><b>Agenttaken-evaluatie <span class="st">Gratis rapport</span></b><span>Kan een agent de klus klaren met je API? Een gratis rapport.</span></a><a href="releasecontrole/index.html"><b>Release gate <span class="st">Designpartners</span></b><span>Een CI-check die alleen geslaagde interfaces publiceert.</span></a><a href="spec-herstel/index.html"><b>Spec-herstel <span class="st">Early access</span></b><span>Vind wat agents blokkeert in je spec en los het op in één pull request.</span></a><a href="gegenereerde-interfaces/index.html"><b>Gegenereerde interfaces <span class="st">Live</span></b><span>Docsportaal, SDK&#x27;s, CLI, MCP-server en skills uit één spec.</span></a><a href="docs-analyse/index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Gratis: scoor hoe goed agents je docs vinden, lezen en gebruiken.</span></a></div></div>
+      <a href="oplossingen/index.html">Oplossingen</a><a href="sectoren/index.html">Sectoren</a><a href="onderzoek/index.html">Onderzoek</a><a href="prijzen/index.html">Prijzen</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Taal"><a href="../en/index.html" hreflang="en" lang="en" title="English">EN</a><span aria-current="true" lang="nl">NL</span></div>
+      <a class="btn pri sm" href="designpartners/index.html#eval">Gratis evaluatie</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu openen"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobiel"><h2>Product</h2><a href="agenttaken-evaluatie/index.html">Agenttaken-evaluatie <span>Gratis rapport</span></a><a href="releasecontrole/index.html">Release gate <span>Designpartners</span></a><a href="spec-herstel/index.html">Spec-herstel <span>Early access</span></a><a href="gegenereerde-interfaces/index.html">Gegenereerde interfaces <span>Live</span></a><a href="docs-analyse/index.html">Docs Analyser <span>Live</span></a><h2>Ontdek</h2><a href="oplossingen/index.html">Oplossingen</a><a href="sectoren/index.html">Sectoren</a><a href="onderzoek/index.html">Onderzoek</a><a href="prijzen/index.html">Prijzen</a><h2>Bedrijf</h2><a href="beveiliging/index.html">Beveiliging</a><a href="over-ons/index.html">Over ons</a><a href="designpartners/index.html">Designpartners</a><div class="cta"><a class="btn pri" href="designpartners/index.html#eval">Vraag een gratis evaluatie aan</a><a class="btn ghost" href="https://doctorine.dev/">Start de Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="hero"><div class="wrap hero-g">
+  <div>
+    <span class="eyebrow"><i aria-hidden="true"></i>De release gate voor API's in het tijdperk van agents</span>
+    <h1>Elke API-wijziging <span class="g">bewezen</span> voordat ze live gaat.</h1>
+    <p class="lead">Doctorine is de release gate voor je API. Bij elke pull request op je spec voeren coding agents echte integratietaken uit met je docs, CLI, MCP-server en SDK's. Wat slaagt, gaat live. Wat breekt, blijft achter, met de oorzaak en de oplossing.</p>
+    <div class="cta"><a class="btn pri" href="designpartners/index.html#eval">Vraag een gratis evaluatie aan <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Start de Docs Analyser</a></div>
+    <p class="hint"><b>Probeer het.</b> De voorbeeld-pull-request wacht op een fix van één regel voor de Python SDK.</p>
+  </div>
+  <div class="ui-stage"><div class="ui gate" data-play data-n="7" data-rel="4.13.0" role="region" aria-labelledby="gate-h">
+<div class="pr-top"><div class="repo">acme/payments-api <span aria-hidden="true">&middot;</span> Pull request 482 <span class="sample">Voorbeeld-API</span></div>
+<h3 id="gate-h">Gedeeltelijke terugbetalingen en een reden toevoegen <span>#482</span></h3>
+<div class="chips"><span class="chip">spec <b>4.12.0</b> naar <b>4.13.0</b></span><span class="chip">1 nieuw veld, 1 gewijzigd voorbeeld</span><span class="chip">24 agenttaken</span></div></div>
+<div class="gate-h"><span class="ic"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 3v3.6M6 8.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span><b aria-live="polite">Doctorine release gate: 6 van 7 interfaces geslaagd</b><small>Python SDK tegengehouden. De rest kan live.</small></span></div>
+<div class="rows"><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Docs portal</b><span class="d">5 van 5 agenttaken afgerond</span><span class="t">2m</span></div><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>CLI</b><span class="d">refunds create --reason, JSON klopt met schema</span><span class="t">1m</span></div><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>MCP-server</b><span class="d">refunds.create krijgt reason</span><span class="t">2m</span></div><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>TypeScript SDK</b><span class="d">212 gegenereerde tests geslaagd</span><span class="t">41s</span></div><div class="row fail" data-held><span class="dot f"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 3.5l5 5m0-5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><b>Python SDK</b><span class="d">Contracttest: terugbetaling met reden, sandbox gaf 422</span><span class="t">7s</span></div><div class="why">Het requestschema zegt <b>reason</b>, maar het voorbeeld zegt nog <b>reason_code</b>, en de Python SDK is vanuit dat voorbeeld gebouwd.<pre><span class="del">- reason_code: requested_by_customer</span>
+<span class="add">+ reason: requested_by_customer</span></pre></div><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Go SDK</b><span class="d">198 gegenereerde tests geslaagd</span><span class="t">12s</span></div><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Agent Skill</b><span class="d">Ondertekend, verwijst alleen naar gepubliceerde operaties</span><span class="t">1s</span></div></div>
+<div class="merge"><p><b>Tegengehouden:</b> Python SDK. De oplossing is één regel in je spec.</p>
+<div class="acts"><button class="gbtn" type="button" data-fix>Fix toepassen en opnieuw draaien</button><button class="gbtn alt" type="button" data-pub disabled>Publiceer 7 interfaces</button></div></div>
+</div><p class="caption">Voorbeeld-pull-request op een fictieve API. Geen klantdata.</p></div>
+</div></section>
+<div class="strip" aria-label="Gecontroleerde interfaces"><div class="wrap"><span class="label">Eén oordeel per interface</span><ul><li>Docs portal</li><li>CLI</li><li>MCP-server</li><li>TypeScript SDK</li><li>Python SDK</li><li>Go SDK</li><li>Agent Skills</li></ul></div></div>
+
+<section class="sec paper" aria-labelledby="def-h"><div class="wrap">
+  <div class="define">
+    <div class="rv"><span class="label">Wat is Doctorine</span><h2 id="def-h" style="margin-top:16px">Een check dat agents en ontwikkelaars je API nog kunnen gebruiken, bij elke wijziging.</h2></div>
+    <div class="rv d1"><p>Doctorine is een release gate voor API's. Voordat een wijziging live gaat, bewijst het dat coding agents en ontwikkelaars nog echte taken kunnen afronden met je docs, CLI, MCP-server, SDK's en Agent Skills. Het publiceert alleen de interfaces die slaagden en bewaart bewijs van wat er is gecontroleerd.</p>
+    <p>Het werkt bovenop de docs die je al hebt. Ontbreekt er een interface, dan genereert Doctorine die uit je OpenAPI-spec en gaat die door dezelfde gate.</p></div>
+  </div>
+  <div class="facts rv d2">
+    <div><b>Begint bij je bestaande docs</b><span>De gratis evaluatie leest je publieke docs en spec. Geen migratie, geen productiesleutels.</span></div>
+    <div><b>Draait in je CI</b><span>Een check op de pull request die de spec wijzigt, naast je andere checks.</span></div>
+    <div><b>Publiceert alleen wat slaagt</b><span>Een gefaalde interface blijft achter. Elke release laat bewijs achter.</span></div>
+  </div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="polite-h"><div class="wrap split onpaper">
+  <div class="rv">
+    <span class="label">Het probleem</span>
+    <h2 id="polite-h" style="margin-top:16px">Agents falen niet luid. Ze falen beleefd.</h2>
+    <p>In deze voorbeeldrun las een coding agent de docs, riep de API aan, betaalde 12 cent terug in plaats van 12,50 euro en meldde succes. Er crashte niets, dus niemand maakte een ticket aan.</p>
+    <ul class="ticks">
+      <li>Een retry schrijft de klant twee keer af, omdat de idempotency-header wel in de spec staat maar niet in de docs.</li>
+      <li>Een rapport stopt na de eerste pagina, omdat geen enkel voorbeeld de cursor volgt.</li>
+      <li>Een webhook wordt vertrouwd zonder geldige handtekening, omdat de docs niet zeggen wat er ondertekend is.</li>
+    </ul>
+    <p>Een readinessscore ziet hier niets van. Die controleert of bestanden bestaan, niet of taken slagen.</p>
+  </div>
+  <div class="rv d1"><div class="trace" role="region" aria-label="Voorbeeldrun van een agent">
+<div class="trace-h"><div><b>Betaal de helft van 25,00 EUR terug</b><small>Coding agent, alleen docs, taak 3 van 5</small></div><span class="sample">Voorbeeld-API</span></div>
+<ol class="steps-t orig">
+<li><span class="n">1</span><div><b>Las</b> de referentiepagina Refunds</div></li>
+<li><span class="n">2</span><div><b>Maakte</b> een testbetaling van 25,00 EUR<pre><span class="m">POST</span> /v1/payments  {"amount": 2500, "currency": "EUR"}
+<span class="o">201</span> pay_8Hq2 &middot; amount 2500</pre></div></li>
+<li><span class="n bad">3</span><div><b>Probeerde</b> de helft terug te betalen<pre><span class="m">POST</span> /v1/refunds  {"payment": "pay_8Hq2", "amount": 12.5}
+<span class="e">400</span> amount must be an integer</pre></div></li>
+<li><span class="n bad">4</span><div><b>Rondde af</b> en probeerde opnieuw<pre><span class="m">POST</span> /v1/refunds  {"payment": "pay_8Hq2", "amount": 12}
+<span class="o">201</span> re_31Kd &middot; amount 12 &middot; 0.12 EUR</pre></div></li>
+<li><span class="n">A</span><div><span class="said">Klaar. Terugbetaling aangemaakt voor de helft van de betaling. <em>meldde succes</em></span></div></li>
+</ol>
+<ol class="steps-t alt">
+<li><span class="n">1</span><div><b>Las</b> de pagina Refunds, nu met de regel: amount is in centen, 1250 is 12,50</div></li>
+<li><span class="n">2</span><div><b>Maakte</b> een testbetaling van 25,00 EUR<pre><span class="m">POST</span> /v1/payments  {"amount": 2500, "currency": "EUR"}
+<span class="o">201</span> pay_8Hq2 &middot; amount 2500</pre></div></li>
+<li><span class="n good">3</span><div><b>Betaalde</b> de helft terug in centen<pre><span class="m">POST</span> /v1/refunds  {"payment": "pay_8Hq2", "amount": 1250}
+<span class="o">201</span> re_31Kd &middot; amount 1250 &middot; 12.50 EUR</pre></div></li>
+<li><span class="n good">A</span><div><span class="said">Klaar. Terugbetaling van 12,50 EUR aangemaakt. <em>gecontroleerd door de taakcheck</em></span></div></li>
+</ol>
+<div class="trace-f"><p>Een voorbeeldrun op acme-payments.example</p><button class="tbtn" type="button" data-replay aria-pressed="false" data-alt="Toon de oorspronkelijke run">Opnieuw met de fix</button></div>
+</div></div>
+</div></section>
+
+<section class="sec" aria-labelledby="lgtm-h"><div class="wrap split">
+  <h2 id="lgtm-h" class="big-s rv"><s>LGTM</s><br>is geen test.</h2>
+  <div class="rv d1">
+    <p class="lead">Een specwijziging leest prima in de review. Daarna stuurt de Python SDK de oude veldnaam, houdt een tutorial het voorbeeld van vorige maand en doet een agent ongemerkt een terugbetaling fout.</p>
+    <p style="color:var(--muted)">Een agent schrijft de wijziging in seconden. Goedkeuren is waar de weken in gaan zitten. Doctorine haalt de mechanische review van de lijst, zodat reviewers alleen beslissen wat een check niet kan.</p>
+  </div>
+</div></section>
+
+<section class="sec" aria-labelledby="path-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Hoe teams beginnen</span><h2 id="path-h">Begin gratis. Toets elke release. Herstel de spec.</h2></div>
+  <p>Er komt geen migratie aan te pas. Doctorine leest wat je al publiceert, laat zien waar agents falen en vraagt pas daarna om een plek in je CI.</p></div>
+  <div class="path rv">
+    <a class="step" href="agenttaken-evaluatie/index.html"><span class="tag free">Gratis</span><span class="num">01</span><h3>Agenttaken-evaluatie</h3>
+      <p>Vijf echte taken op je API, op elke interface die je publiceert, drie runs per taak. Je krijgt wat faalde, waarom en de wijziging die het oplost.</p>
+      <div class="mini"><div class="mini-grid" aria-hidden="true"><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="f"></i><i class="p"></i><i class="f"></i><i class="p"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="p"></i><i class="k"></i><i class="p"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="p"></i></div></div><span class="more">Bekijk een voorbeeldrapport</span></a>
+    <a class="step" href="releasecontrole/index.html"><span class="tag paid">Betaald</span><span class="num">02</span><h3>Release gate</h3>
+      <p>Dezelfde taken bij elke pull request op de spec, als check. Een interface die faalt, wordt tegengehouden. Alles wat slaagt, gaat samen live, met bewijs.</p>
+      <div class="mini"><div class="mini-list" aria-hidden="true"><div><i class="x "></i>Docs portal<span>geslaagd</span></div><div><i class="x "></i>CLI<span>geslaagd</span></div><div><i class="x "></i>TypeScript SDK<span>geslaagd</span></div><div><i class="x f"></i>Python SDK<span>tegengehouden</span></div></div></div><span class="more">Hoe de gate werkt</span></a>
+    <a class="step" href="spec-herstel/index.html"><span class="tag">Early access</span><span class="num">03</span><h3>Spec-herstel</h3>
+      <p>Ligt de oorzaak in de spec zelf, dan opent Doctorine één pull request met de mechanische fixes en laat het de afwegingen aan jou.</p>
+      <div class="mini"><pre class="mini-diff" aria-hidden="true"><span class="cm">components:</span>
+<span class="add">+  securitySchemes:</span>
+<span class="add">+    bearerAuth:</span>
+<span class="add">+      type: http</span>
+<span class="add">+      scheme: bearer</span></pre></div><span class="more">Bekijk het herstel</span></a>
+  </div>
+  <div class="upgrade rv"><p><b>Mist er een interface?</b> Genereer een docsportaal, TypeScript-, Python- en Go-SDK's, een CLI, een MCP-server of Agent Skills uit dezelfde spec. Ze gaan door dezelfde gate.</p>
+  <a class="btn ghost sm" href="gegenereerde-interfaces/index.html">Gegenereerde interfaces <span class="ar" aria-hidden="true">→</span></a></div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="res-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Onderzoek, 25 september 2026</span><h2 id="res-h">We draaiden de gratis Docs Analyser op 33 publieke API-docsportalen.</h2></div>
+  <p>De meeste portalen zijn leesbaar. Weinig zijn vindbaar voor agents. En een score zegt nog steeds niet of een taak slaagt.</p></div>
+  <div class="stats rv">
+    <div class="stat"><b>27<small> / 33</small></b><span>portalen hadden geen API Catalog, en 27 geen MCP Server Card</span></div>
+    <div class="stat"><b>40<small> / 100</small></b><span>gemiddelde score voor agent- en API-vindbaarheid bij de 16 gescoorde sites</span></div>
+    <div class="stat"><b>74</b><span>mediane score van de 16 sites met een score, van 52 tot 95</span></div>
+    <div class="stat"><b>17<small> / 33</small></b><span>scans waren onvolledig, dus de analyser gaf geen score</span></div>
+  </div>
+  <p class="src-note rv">Bron: Doctorine Docs Analyser op doctorine.dev, gedraaid op 33 publieke docsportalen op 25 september 2026. Alleen geaggregeerde cijfers. <a class="tlink" href="onderzoek/index.html">Lees de bevindingen</a></p>
+</div></section>
+
+<section class="sec" aria-labelledby="rec-h"><div class="wrap split">
+  <div class="rv"><span class="label">Bewijs</span>
+    <h2 id="rec-h" style="margin-top:16px">Elke release laat bewijs achter.</h2>
+    <p class="lead" style="margin-top:22px">De hash van de spec, de versies van generator en kernel en de hash van elke output. Vraagt iemand welke versie de agent van een klant las, dan open je één bestand in plaats van een chatdraad.</p>
+    <p style="margin-top:22px"><a class="tlink" href="https://doctorine.xyz/proof/doctorine-sdk-receipt.json">Open een echt SDK-bewijs</a></p></div>
+  <div class="rv d1"><div class="codecard"><div class="h"><b>doctorine-sdk-receipt.json</b><span>publiek bewijs van doctorine.xyz</span></div><pre>{
+  <span class="k">"generator"</span>: <span class="s">"@doctorine/sdk-codegen"</span>,
+  <span class="k">"generatorVersion"</span>: <span class="s">"0.11.1"</span>,
+  <span class="k">"kernelVersion"</span>: <span class="s">"0.7.1"</span>,
+  <span class="k">"language"</span>: <span class="s">"ts"</span>,
+  <span class="k">"package"</span>: { <span class="k">"name"</span>: <span class="s">"@doctorine/sdk"</span>, <span class="k">"version"</span>: <span class="s">"0.0.1"</span> },
+  <span class="k">"irSha"</span>:     <span class="s">"43fdb220d025ecb6…"</span>,
+  <span class="k">"configSha"</span>: <span class="s">"90f4aa61c88d9ddf…"</span>,
+  <span class="k">"bundleSha"</span>: <span class="s">"03ab38e66d345b0c…"</span>,
+  <span class="k">"sdkSha"</span>:    <span class="s">"f83bfe23dd2befc0…"</span>
+}</pre></div></div>
+</div></section>
+
+<section class="sec" aria-labelledby="who-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Voor wie</span><h2 id="who-h">Gemaakt voor teams die verantwoordelijk zijn voor een API.</h2></div>
+  <p>API-bedrijven en platformteams die API's publiceren voor ontwikkelaars, partners en steeds vaker AI-agents.</p></div>
+  <div class="who">
+    <div class="rv"><h3 class="label" style="font-size:12px">Oplossingen</h3><div class="list" style="margin-top:14px"><a href="oplossingen/publieke-api-teams/index.html"><b>Publieke API-teams</b><span>Voor teams wier API betalende klanten en partners bedient: toets elke specwijziging aan echte integratietaken voordat docs, SDK&#x27;s en tools bijwerken.</span><i aria-hidden="true">→</i></a><a href="oplossingen/platformteams/index.html"><b>Platformteams</b><span>Eén check op de pull request van de spec in plaats van nog een reviewlaag: bouw elke interface, draai de taken en laat alleen echte keuzes over.</span><i aria-hidden="true">→</i></a><a href="oplossingen/devrel-en-documentatie/index.html"><b>DevRel en docs-eigenaren</b><span>Zie welke echte taken coding agents en ontwikkelaars met je docs afronden, welke pagina of welk voorbeeld ze laat struikelen en wat je eerst oplost.</span><i aria-hidden="true">→</i></a><a href="oplossingen/overstap-sdk-leverancier/index.html"><b>Overstap van SDK-leverancier</b><span>Je SDK-pipeline kwijt doordat een leverancier stopte? Importeer ondersteunde configuratie, genereer de SDK&#x27;s opnieuw en bewijs wat er veranderde.</span><i aria-hidden="true">→</i></a></div></div>
+    <div class="rv d1"><h3 class="label" style="font-size:12px">Sectoren</h3><div class="list" style="margin-top:14px"><a href="sectoren/fintech-en-betalingen/index.html"><b>Fintech en betalingen</b><span>Test de taken die betaal-API&#x27;s ongemerkt fout laten gaan, van terugbetalingen in centen tot veilige retries en webhook-handtekeningen, voor elke release.</span><i aria-hidden="true">→</i></a><a href="sectoren/saas-met-partner-apis/index.html"><b>SaaS met partner-API&#x27;s</b><span>Toets elke specwijziging aan de taken van je partners, en publiceer docs, SDK&#x27;s en tools vanuit één release waar vastgepinde integraties op kunnen bouwen.</span><i aria-hidden="true">→</i></a><a href="sectoren/ontwikkelaarsplatformen/index.html"><b>Ontwikkelaarsplatformen</b><span>Je gebruikers bouwen met coding agents. Meet welke interface ze het snelst tot een werkende integratie brengt, tegen welke tokenkosten, en toets elke release.</span><i aria-hidden="true">→</i></a></div></div>
+  </div>
+</div></section>
+
+<section class="sec paper" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">Wat teams als eerste vragen</h2></div>
+<div class="faq rv d1"><details><summary>Wat is Doctorine?</summary><div class="a"><p>Doctorine is de release gate voor API&#x27;s. Voordat een API-wijziging live gaat, controleert het of coding agents en ontwikkelaars nog echte taken kunnen afronden met de docs, CLI, MCP-server, SDK&#x27;s en Agent Skills, publiceert het alleen de interfaces die slaagden en bewaart het bewijs van wat er is gecontroleerd.</p></div></details><details><summary>Moeten we onze docs migreren?</summary><div class="a"><p>Nee. Het gratis evaluatierapport leest de docs en spec die je al publiceert, waar ze ook gehost zijn. De release gate draait in je eigen repository. Het Doctorine-portaal is een optie, geen vereiste.</p></div></details><details><summary>Wat is het verschil met een agent-readinessscore?</summary><div class="a"><p>Een readinessscore controleert of bestanden als llms.txt, Markdown-pagina&#x27;s en sitemaps bestaan. De evaluatie laat coding agents echte integratietaken uitvoeren, dus je ziet of een agent echt kan aanmaken, betalen, terugbetalen of opvragen met je API, en waarom het misgaat als dat niet lukt.</p></div></details><details><summary>Welke interfaces controleert Doctorine?</summary><div class="a"><p>Het docsportaal, de CLI, de MCP-server, de TypeScript-, Python- en Go-SDK&#x27;s en Agent Skills. Je controleert de interfaces die je al hebt en genereert de ontbrekende uit je OpenAPI-spec.</p></div></details><details><summary>Wat kost het?</summary><div class="a"><p>De Docs Analyser en het evaluatierapport zijn gratis. De release gate is beschikbaar voor designpartners voor 100 euro per maand voor een persoon en 300 euro per maand voor een bedrijf. Publieke abonnementen zijn nog niet gepubliceerd.</p></div></details><details><summary>Waar worden onze gegevens opgeslagen?</summary><div class="a"><p>Kerncontent en tenantopslag staan in EU-regio&#x27;s. Een klein aantal diensten, zoals authenticatie en betalingen, zijn gedocumenteerde uitzonderingen buiten de EU.</p></div></details></div></div></section>
+<section class="close" aria-labelledby="close-h"><div class="wrap">
+<div class="rv"><h2 id="close-h">Ship de wijziging. Houd het bewijs.</h2><p>Stuur ons je publieke docs en spec, en we laten zien welke echte taken agents vandaag met je API kunnen afronden. Het rapport is gratis en leest alleen wat je al publiceert.</p>
+<div class="cta"><a class="btn pri" href="designpartners/index.html#eval">Vraag een gratis evaluatie aan <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Start de Docs Analyser</a></div></div>
+<img class="rv d1" src="../assets/img/horse-portrait-dark.jpg" width="912" height="941" loading="lazy" alt="Het Doctorine-paard, getekend in fijne lichtpunten op zwart">
+</div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="index.html"><img src="../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>De release gate voor API's in het tijdperk van agents. Bewijs dat agents en ontwikkelaars je API nog kunnen gebruiken, bij elke wijziging.</p></div>
+      <div><h2>Product</h2><ul><li><a href="agenttaken-evaluatie/index.html">Agenttaken-evaluatie</a></li><li><a href="releasecontrole/index.html">Release gate</a></li><li><a href="spec-herstel/index.html">Spec-herstel</a></li><li><a href="gegenereerde-interfaces/index.html">Gegenereerde interfaces</a></li><li><a href="docs-analyse/index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Oplossingen</h2><ul><li><a href="oplossingen/publieke-api-teams/index.html">Publieke API-teams</a></li><li><a href="oplossingen/platformteams/index.html">Platformteams</a></li><li><a href="oplossingen/devrel-en-documentatie/index.html">DevRel en docs-eigenaren</a></li><li><a href="oplossingen/overstap-sdk-leverancier/index.html">Overstap van SDK-leverancier</a></li></ul></div>
+      <div><h2>Sectoren</h2><ul><li><a href="sectoren/fintech-en-betalingen/index.html">Fintech en betalingen</a></li><li><a href="sectoren/saas-met-partner-apis/index.html">SaaS met partner-API&#x27;s</a></li><li><a href="sectoren/ontwikkelaarsplatformen/index.html">Ontwikkelaarsplatformen</a></li></ul></div>
+      <div><h2>Bedrijf</h2><ul><li><a href="onderzoek/index.html">Onderzoek</a></li><li><a href="prijzen/index.html">Prijzen</a></li><li><a href="beveiliging/index.html">Beveiliging</a></li><li><a href="over-ons/index.html">Over ons</a></li><li><a href="designpartners/index.html">Designpartners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Voorbeelddata op deze site gebruikt een fictieve API, Acme Payments. Het is geen klantdata.</span><span>EU-dataresidentie voor het kerndatavlak, met gedocumenteerde uitzonderingen. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

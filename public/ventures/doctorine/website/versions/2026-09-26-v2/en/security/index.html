@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security and deployment | Doctorine</title>
+<meta name="description" content="What Doctorine touches and where it runs: public docs only for the eval, scoped GitHub App permissions for the gate, EU data residency for the core.">
+<link rel="canonical" href="https://doctorine.xyz/security/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/security/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/beveiliging/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/security/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="Security and deployment | Doctorine">
+<meta property="og:description" content="What Doctorine touches and where it runs: public docs only for the eval, scoped GitHub App permissions for the gate, EU data residency for the core.">
+<meta property="og:url" content="https://doctorine.xyz/security/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: every API change, proven before it ships">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="nl_NL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Security and deployment | Doctorine">
+<meta name="twitter:description" content="What Doctorine touches and where it runs: public docs only for the eval, scoped GitHub App permissions for the gate, EU data residency for the core.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://doctorine.xyz/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Security",
+     "item": "https://doctorine.xyz/security/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Does Doctorine need our production credentials?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. The eval reads public docs and your spec, and tasks run against a sandbox that answers from the spec. Do not send credentials or private production data."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can we self-host Doctorine?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not today. If running inside your own network is the blocker, tell us, because it decides what we build next."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How do we report a vulnerability?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Email security@doctorine.xyz with a description, reproduction steps and impact. We acknowledge within 2 business days and make a triage decision within 5."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Doctorine home"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Main">
+      <div class="dd"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="../agent-task-eval/index.html"><b>Agent task eval <span class="st">Free report</span></b><span>Can an agent finish the job with your API? A free report.</span></a><a href="../release-gate/index.html"><b>Release gate <span class="st">Design partners</span></b><span>A CI check that publishes only the surfaces that passed.</span></a><a href="../spec-repair/index.html"><b>Spec repair <span class="st">Early access</span></b><span>Find what blocks agents in your spec, fix it in one pull request.</span></a><a href="../generated-surfaces/index.html"><b>Generated surfaces <span class="st">Live</span></b><span>Docs portal, SDKs, CLI, MCP server and skills from one spec.</span></a><a href="../docs-analyser/index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Free: score how well agents find, read and use your docs.</span></a></div></div>
+      <a href="../solutions/index.html">Solutions</a><a href="../industries/index.html">Industries</a><a href="../research/index.html">Research</a><a href="../pricing/index.html">Pricing</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Language"><span aria-current="true" lang="en">EN</span><a href="../../nl/beveiliging/index.html" hreflang="nl" lang="nl" title="Nederlands">NL</a></div>
+      <a class="btn pri sm" href="../design-partners/index.html#eval">Get a free eval</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile"><h2>Product</h2><a href="../agent-task-eval/index.html">Agent task eval <span>Free report</span></a><a href="../release-gate/index.html">Release gate <span>Design partners</span></a><a href="../spec-repair/index.html">Spec repair <span>Early access</span></a><a href="../generated-surfaces/index.html">Generated surfaces <span>Live</span></a><a href="../docs-analyser/index.html">Docs Analyser <span>Live</span></a><h2>Explore</h2><a href="../solutions/index.html">Solutions</a><a href="../industries/index.html">Industries</a><a href="../research/index.html">Research</a><a href="../pricing/index.html">Pricing</a><h2>Company</h2><a href="index.html">Security</a><a href="../about/index.html">About</a><a href="../design-partners/index.html">Design partners</a><div class="cta"><a class="btn pri" href="../design-partners/index.html#eval">Get a free eval report</a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="phero"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Security</span></nav><h1>Security and deployment: what Doctorine touches and where it runs</h1><p class="lead">The free eval reads only what you already publish. The release gate runs in your repository with narrow GitHub App permissions. Core data stays in the EU, and every limit is written down.</p></div></section>
+<section class="sec paper" aria-labelledby="s1-h"><div class="wrap two-col">
+  <div class="rv"><span class="label">The free eval</span><h2 id="s1-h" style="margin-top:16px">Public docs in, report out.</h2></div>
+  <div class="body rv d1"><p>The eval reads your public docs and, if you publish one, your OpenAPI spec. Tasks run against a sandbox that answers from the spec, so no production keys are used and no real data is touched.</p>
+  <p>A public, synthetic or redacted definition is enough for a first pass. Do not send credentials or private production data.</p></div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="s2-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">The release gate</span><h2 id="s2-h">A GitHub App that works only where you let it.</h2></div>
+  <p>You choose the repositories. Each operation uses a short-lived, single-repository token instead of a broad installation token.</p></div>
+  <div class="rv"><table class="tbl stack"><thead><tr><th scope="col">Permission</th><th scope="col">Access</th><th scope="col">Why</th></tr></thead><tbody><tr><td>Metadata</td><td data-l="Access">read</td><td data-l="Why">Identify the selected repository and its default branch.</td></tr><tr><td>Contents</td><td data-l="Access">write</td><td data-l="Why">Write generated SDK code and managed release branches, only in repositories you select.</td></tr><tr><td>Pull requests</td><td data-l="Access">write</td><td data-l="Why">Open and update release pull requests. Does not bypass branch protection or required checks.</td></tr><tr><td>Checks</td><td data-l="Access">write</td><td data-l="Why">Publish Doctorine generation and release checks.</td></tr><tr><td>Administration</td><td data-l="Access">read</td><td data-l="Why">Read branch protection before a safe automatic merge. Cannot change settings.</td></tr></tbody></table></div>
+  <p class="src-note rv">Excerpt. Doctorine refuses write access to repository and organization secrets, repository and organization administration, webhook management and all user and account permissions. <a class="tlink" href="https://doctorine.xyz/trust/github-app-permissions/">Full permission list</a></p>
+</div></section>
+
+<section class="sec" aria-labelledby="s3-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Controls</span><h2 id="s3-h">Each control, with the limit around it.</h2></div></div>
+  <div class="cards"><div class="card rv"><span class="label">Residency</span><h3>EU data at rest for the core data plane</h3><p>Core content and tenant stores are in EU regions. 11 of 16 declared subprocessor rows are EU-resident; 5 non-EU carve-outs cover services such as authentication, payments and consented analytics. This is not a claim of EU-only edge processing.</p></div><div class="card rv"><span class="label">Isolation</span><h3>Tenant isolation in the database</h3><p>Tenant-scoped tables use Postgres FORCE ROW LEVEL SECURITY, with cross-tenant probes in the test harness. Application authorization is an extra layer, not the only boundary.</p></div><div class="card rv"><span class="label">Releases</span><h3>Immutable artifacts, explicit activation</h3><p>Publishing writes content-addressed release artifacts and activates one through a pointer, which makes rollback deterministic.</p></div><div class="card rv"><span class="label">Erasure</span><h3>Crypto-shred erasure with a receipt</h3><p>Erasure destroys the scoped encryption key, reconciles every declared store and emits a completion receipt only after clean verification.</p></div><div class="card rv"><span class="label">Access</span><h3>Audited staff access</h3><p>Supported staff sessions and back-office actions are written to audited tables and shown in the customer activity feed.</p></div><div class="card rv"><span class="label">Deployment</span><h3>Hosted, not self-hosted</h3><p>Doctorine runs as a hosted service today. Self-hosting is not available yet.</p></div></div>
+  <p class="src-note rv">Details, subprocessors and residency are in the Doctorine Trust Center. <a class="tlink" href="https://doctorine.xyz/trust/">Trust Center</a></p>
+</div></section>
+
+<section class="sec paper" aria-labelledby="s4-h"><div class="wrap two-col">
+  <div class="rv"><span class="label">Disclosure</span><h2 id="s4-h" style="margin-top:16px">Found something? Tell us.</h2></div>
+  <div class="body rv d1"><p>Email security@doctorine.xyz with a description, reproduction steps and impact. We acknowledge within 2 business days, make a triage decision within 5 and keep you informed through the fix. Machine-readable details are at /.well-known/security.txt.</p>
+  <div class="cta"><a class="btn pri" href="mailto:security@doctorine.xyz">security@doctorine.xyz</a><a class="btn ghost" href="https://doctorine.xyz/trust/security/">Disclosure policy</a></div></div>
+</div></section>
+<section class="sec" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">Questions</h2></div>
+<div class="faq rv d1"><details><summary>Does Doctorine need our production credentials?</summary><div class="a"><p>No. The eval reads public docs and your spec, and tasks run against a sandbox that answers from the spec. Do not send credentials or private production data.</p></div></details><details><summary>Can we self-host Doctorine?</summary><div class="a"><p>Not today. If running inside your own network is the blocker, tell us, because it decides what we build next.</p></div></details><details><summary>How do we report a vulnerability?</summary><div class="a"><p>Email security@doctorine.xyz with a description, reproduction steps and impact. We acknowledge within 2 business days and make a triage decision within 5.</p></div></details></div></div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="../index.html"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>The release gate for APIs in the agent era. Proof that agents and developers can still use your API, on every change.</p></div>
+      <div><h2>Product</h2><ul><li><a href="../agent-task-eval/index.html">Agent task eval</a></li><li><a href="../release-gate/index.html">Release gate</a></li><li><a href="../spec-repair/index.html">Spec repair</a></li><li><a href="../generated-surfaces/index.html">Generated surfaces</a></li><li><a href="../docs-analyser/index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Solutions</h2><ul><li><a href="../solutions/public-api-teams/index.html">Public API teams</a></li><li><a href="../solutions/platform-teams/index.html">Platform teams</a></li><li><a href="../solutions/devrel-and-docs/index.html">DevRel and docs owners</a></li><li><a href="../solutions/sdk-vendor-migration/index.html">SDK vendor migration</a></li></ul></div>
+      <div><h2>Industries</h2><ul><li><a href="../industries/fintech-and-payments/index.html">Fintech and payments</a></li><li><a href="../industries/saas-partner-apis/index.html">SaaS with partner APIs</a></li><li><a href="../industries/developer-platforms/index.html">Developer platforms</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="../research/index.html">Research</a></li><li><a href="../pricing/index.html">Pricing</a></li><li><a href="index.html">Security</a></li><li><a href="../about/index.html">About</a></li><li><a href="../design-partners/index.html">Design partners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Sample data on this site uses an example API called Acme Payments. It is not customer data.</span><span>EU data residency for the core data plane, with documented carve-outs. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

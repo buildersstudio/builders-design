@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doctorine: the release gate for APIs and AI agents</title>
+<meta name="description" content="Doctorine checks that coding agents and developers can still finish real tasks with your API docs, CLI, MCP server and SDKs, and ships only what passed.">
+<link rel="canonical" href="https://doctorine.xyz/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="Doctorine: the release gate for APIs and AI agents">
+<meta property="og:description" content="Doctorine checks that coding agents and developers can still finish real tasks with your API docs, CLI, MCP server and SDKs, and ships only what passed.">
+<meta property="og:url" content="https://doctorine.xyz/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: every API change, proven before it ships">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="nl_NL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Doctorine: the release gate for APIs and AI agents">
+<meta name="twitter:description" content="Doctorine checks that coding agents and developers can still finish real tasks with your API docs, CLI, MCP server and SDKs, and ships only what passed.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://doctorine.xyz/#org",
+   "name": "Doctorine",
+   "url": "https://doctorine.xyz/",
+   "logo": "https://doctorine.xyz/assets/img/apple-touch-icon.png",
+   "email": "pilot@doctorine.xyz",
+   "description": "Doctorine is the release gate for APIs: it checks that coding agents and developers can still complete real tasks with an API's docs, CLI, MCP server, SDKs and Agent Skills before a change ships."
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://doctorine.xyz/#site",
+   "url": "https://doctorine.xyz/",
+   "name": "Doctorine",
+   "inLanguage": [
+    "en",
+    "nl"
+   ],
+   "publisher": {
+    "@id": "https://doctorine.xyz/#org"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is Doctorine?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Doctorine is the release gate for APIs. Before an API change ships, it checks that coding agents and developers can still complete real tasks with the docs, CLI, MCP server, SDKs and Agent Skills, publishes only the surfaces that passed and keeps a receipt of what was checked."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do we have to migrate our docs to use it?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. The free eval report reads the docs and spec you already publish, wherever they are hosted. The release gate runs in your own repository. The Doctorine portal is an option, not a requirement."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How is this different from an agent readiness score?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A readiness score checks whether files such as llms.txt, Markdown pages and sitemaps exist. The eval runs real integration tasks with coding agents, so it shows whether an agent can actually create, pay, refund or list with your API, and why it fails when it cannot."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which surfaces does Doctorine check?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The docs portal, the CLI, the MCP server, TypeScript, Python and Go SDKs and Agent Skills. You can check the surfaces you already have, and generate the missing ones from your OpenAPI spec."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What does it cost?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The Docs Analyser and the eval report are free. The release gate is available to design partners at 100 euros a month for an individual and 300 euros a month for a company. Public plans are not published yet."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where is our data stored?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Core content and tenant stores are configured in EU regions. A small number of services, such as authentication and payments, are documented carve-outs outside the EU."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Doctorine home"><img src="../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Main">
+      <div class="dd"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="agent-task-eval/index.html"><b>Agent task eval <span class="st">Free report</span></b><span>Can an agent finish the job with your API? A free report.</span></a><a href="release-gate/index.html"><b>Release gate <span class="st">Design partners</span></b><span>A CI check that publishes only the surfaces that passed.</span></a><a href="spec-repair/index.html"><b>Spec repair <span class="st">Early access</span></b><span>Find what blocks agents in your spec, fix it in one pull request.</span></a><a href="generated-surfaces/index.html"><b>Generated surfaces <span class="st">Live</span></b><span>Docs portal, SDKs, CLI, MCP server and skills from one spec.</span></a><a href="docs-analyser/index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Free: score how well agents find, read and use your docs.</span></a></div></div>
+      <a href="solutions/index.html">Solutions</a><a href="industries/index.html">Industries</a><a href="research/index.html">Research</a><a href="pricing/index.html">Pricing</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Language"><span aria-current="true" lang="en">EN</span><a href="../nl/index.html" hreflang="nl" lang="nl" title="Nederlands">NL</a></div>
+      <a class="btn pri sm" href="design-partners/index.html#eval">Get a free eval</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile"><h2>Product</h2><a href="agent-task-eval/index.html">Agent task eval <span>Free report</span></a><a href="release-gate/index.html">Release gate <span>Design partners</span></a><a href="spec-repair/index.html">Spec repair <span>Early access</span></a><a href="generated-surfaces/index.html">Generated surfaces <span>Live</span></a><a href="docs-analyser/index.html">Docs Analyser <span>Live</span></a><h2>Explore</h2><a href="solutions/index.html">Solutions</a><a href="industries/index.html">Industries</a><a href="research/index.html">Research</a><a href="pricing/index.html">Pricing</a><h2>Company</h2><a href="security/index.html">Security</a><a href="about/index.html">About</a><a href="design-partners/index.html">Design partners</a><div class="cta"><a class="btn pri" href="design-partners/index.html#eval">Get a free eval report</a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="hero"><div class="wrap hero-g">
+  <div>
+    <span class="eyebrow"><i aria-hidden="true"></i>The release gate for APIs in the agent era</span>
+    <h1>Every API change, <span class="g">proven</span> before it ships.</h1>
+    <p class="lead">Doctorine is the release gate for your API. On every spec pull request, coding agents run real integration tasks against your docs, CLI, MCP server and SDKs. What passed ships. What broke stays behind, with the reason and the fix.</p>
+    <div class="cta"><a class="btn pri" href="design-partners/index.html#eval">Get a free eval report <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div>
+    <p class="hint"><b>Try it.</b> The sample pull request is waiting for a one-line fix to the Python SDK.</p>
+  </div>
+  <div class="ui-stage"><div class="ui gate" data-play data-n="7" data-rel="4.13.0" role="region" aria-labelledby="gate-h">
+<div class="pr-top"><div class="repo">acme/payments-api <span aria-hidden="true">&middot;</span> Pull request 482 <span class="sample">Sample API</span></div>
+<h3 id="gate-h">Add partial refunds and a refund reason <span>#482</span></h3>
+<div class="chips"><span class="chip">spec <b>4.12.0</b> to <b>4.13.0</b></span><span class="chip">1 new field, 1 changed example</span><span class="chip">24 agent tasks</span></div></div>
+<div class="gate-h"><span class="ic"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 3v3.6M6 8.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span><b aria-live="polite">Doctorine release gate: 6 of 7 surfaces passed</b><small>Python SDK held back. Everything else can ship.</small></span></div>
+<div class="rows"><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Docs portal</b><span class="d">5 of 5 agent tasks completed</span><span class="t">2m</span></div><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>CLI</b><span class="d">refunds create --reason, JSON matches schema</span><span class="t">1m</span></div><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>MCP server</b><span class="d">refunds.create gains reason</span><span class="t">2m</span></div><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>TypeScript SDK</b><span class="d">212 generated tests passed</span><span class="t">41s</span></div><div class="row fail" data-held><span class="dot f"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 3.5l5 5m0-5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><b>Python SDK</b><span class="d">Contract test: refund with reason, sandbox returned 422</span><span class="t">7s</span></div><div class="why">The request schema says <b>reason</b>, but the example still says <b>reason_code</b>, and the Python SDK was built from the example.<pre><span class="del">- reason_code: requested_by_customer</span>
+<span class="add">+ reason: requested_by_customer</span></pre></div><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Go SDK</b><span class="d">198 generated tests passed</span><span class="t">12s</span></div><div class="row"><span class="dot p"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Agent Skill</b><span class="d">Signed, references only published operations</span><span class="t">1s</span></div></div>
+<div class="merge"><p><b>Held back:</b> Python SDK. The fix is one line in your spec.</p>
+<div class="acts"><button class="gbtn" type="button" data-fix>Apply fix and re-run</button><button class="gbtn alt" type="button" data-pub disabled>Publish 7 surfaces</button></div></div>
+</div><p class="caption">Sample pull request on an example API. Not customer data.</p></div>
+</div></section>
+<div class="strip" aria-label="Surfaces checked"><div class="wrap"><span class="label">One verdict per surface</span><ul><li>Docs portal</li><li>CLI</li><li>MCP server</li><li>TypeScript SDK</li><li>Python SDK</li><li>Go SDK</li><li>Agent Skills</li></ul></div></div>
+
+<section class="sec paper" aria-labelledby="def-h"><div class="wrap">
+  <div class="define">
+    <div class="rv"><span class="label">What is Doctorine</span><h2 id="def-h" style="margin-top:16px">A check that agents and developers can still use your API, on every change.</h2></div>
+    <div class="rv d1"><p>Doctorine is an API release gate. Before a change ships, it proves that coding agents and developers can still complete real tasks with your docs, CLI, MCP server, SDKs and Agent Skills. It publishes only the surfaces that passed and keeps a receipt of what was checked.</p>
+    <p>It works on top of the docs you already have. When a surface is missing, Doctorine generates it from your OpenAPI spec and puts it through the same gate.</p></div>
+  </div>
+  <div class="facts rv d2">
+    <div><b>Starts on the docs you have</b><span>The free eval reads your public docs and spec. No migration, no production keys.</span></div>
+    <div><b>Runs in your CI</b><span>A check on the pull request that changes the spec, next to your other checks.</span></div>
+    <div><b>Publishes only what passed</b><span>A failed surface stays behind. Every release leaves a receipt.</span></div>
+  </div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="polite-h"><div class="wrap split onpaper">
+  <div class="rv">
+    <span class="label">The problem</span>
+    <h2 id="polite-h" style="margin-top:16px">Agents don't fail loudly. They fail politely.</h2>
+    <p>In this sample run, a coding agent read the docs, called the API, refunded 12 cents instead of 12.50 euros and reported success. Nothing crashed, so nobody filed a ticket.</p>
+    <ul class="ticks">
+      <li>A retry charges the customer twice, because the idempotency header is in the spec but not in the docs.</li>
+      <li>A report stops after the first page of results, because no example follows the cursor.</li>
+      <li>A webhook is trusted without a valid signature, because the docs never say what was signed.</li>
+    </ul>
+    <p>A readiness score cannot see any of this. It checks that files exist, not that tasks finish.</p>
+  </div>
+  <div class="rv d1"><div class="trace" role="region" aria-label="Sample agent run">
+<div class="trace-h"><div><b>Refund half of a 25.00 EUR payment</b><small>Coding agent, docs only, task 3 of 5</small></div><span class="sample">Sample API</span></div>
+<ol class="steps-t orig">
+<li><span class="n">1</span><div><b>Read</b> the Refunds reference page</div></li>
+<li><span class="n">2</span><div><b>Created</b> a 25.00 EUR test payment<pre><span class="m">POST</span> /v1/payments  {"amount": 2500, "currency": "EUR"}
+<span class="o">201</span> pay_8Hq2 &middot; amount 2500</pre></div></li>
+<li><span class="n bad">3</span><div><b>Tried</b> to refund half<pre><span class="m">POST</span> /v1/refunds  {"payment": "pay_8Hq2", "amount": 12.5}
+<span class="e">400</span> amount must be an integer</pre></div></li>
+<li><span class="n bad">4</span><div><b>Rounded</b> and retried<pre><span class="m">POST</span> /v1/refunds  {"payment": "pay_8Hq2", "amount": 12}
+<span class="o">201</span> re_31Kd &middot; amount 12 &middot; 0.12 EUR</pre></div></li>
+<li><span class="n">A</span><div><span class="said">Done. Refund created for half of the payment. <em>reported success</em></span></div></li>
+</ol>
+<ol class="steps-t alt">
+<li><span class="n">1</span><div><b>Read</b> the Refunds page, now with the line: amount is in minor units, 1250 is 12.50</div></li>
+<li><span class="n">2</span><div><b>Created</b> a 25.00 EUR test payment<pre><span class="m">POST</span> /v1/payments  {"amount": 2500, "currency": "EUR"}
+<span class="o">201</span> pay_8Hq2 &middot; amount 2500</pre></div></li>
+<li><span class="n good">3</span><div><b>Refunded</b> half in minor units<pre><span class="m">POST</span> /v1/refunds  {"payment": "pay_8Hq2", "amount": 1250}
+<span class="o">201</span> re_31Kd &middot; amount 1250 &middot; 12.50 EUR</pre></div></li>
+<li><span class="n good">A</span><div><span class="said">Done. Refund of 12.50 EUR created. <em>verified by the task check</em></span></div></li>
+</ol>
+<div class="trace-f"><p>Replaying a sample run against acme-payments.example</p><button class="tbtn" type="button" data-replay aria-pressed="false" data-alt="Show the original run">Replay with the fix</button></div>
+</div></div>
+</div></section>
+
+<section class="sec" aria-labelledby="lgtm-h"><div class="wrap split">
+  <h2 id="lgtm-h" class="big-s rv"><s>LGTM</s><br>is not a test.</h2>
+  <div class="rv d1">
+    <p class="lead">A spec change reads fine in review. Then the Python SDK sends the old field name, a tutorial keeps last month's example, and an agent quietly gets a refund wrong.</p>
+    <p style="color:var(--muted)">Writing the change takes an agent seconds. Approving it is where the weeks go. Doctorine takes the mechanical review off the list, so reviewers only decide what a check cannot.</p>
+  </div>
+</div></section>
+
+<section class="sec" aria-labelledby="path-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">How teams start</span><h2 id="path-h">Start free. Gate every release. Repair the spec.</h2></div>
+  <p>No migration comes first. Doctorine reads what you already publish, shows where agents fail, and only then asks to sit in your CI.</p></div>
+  <div class="path rv">
+    <a class="step" href="agent-task-eval/index.html"><span class="tag free">Free</span><span class="num">01</span><h3>Agent task eval</h3>
+      <p>Five real tasks on your API, on every surface you publish, three runs each. You get what failed, why, and the change that fixes it.</p>
+      <div class="mini"><div class="mini-grid" aria-hidden="true"><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="f"></i><i class="p"></i><i class="f"></i><i class="p"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="p"></i><i class="k"></i><i class="p"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="p"></i></div></div><span class="more">See a sample report</span></a>
+    <a class="step" href="release-gate/index.html"><span class="tag paid">Paid</span><span class="num">02</span><h3>Release gate</h3>
+      <p>The same tasks on every spec pull request, as a check. A surface that fails is held back. Everything that passed ships together, with a receipt.</p>
+      <div class="mini"><div class="mini-list" aria-hidden="true"><div><i class="x "></i>Docs portal<span>passed</span></div><div><i class="x "></i>CLI<span>passed</span></div><div><i class="x "></i>TypeScript SDK<span>passed</span></div><div><i class="x f"></i>Python SDK<span>held back</span></div></div></div><span class="more">How the gate works</span></a>
+    <a class="step" href="spec-repair/index.html"><span class="tag">Early access</span><span class="num">03</span><h3>Spec repair</h3>
+      <p>When the cause is the spec itself, Doctorine opens one pull request with the mechanical fixes and leaves the judgement calls to you.</p>
+      <div class="mini"><pre class="mini-diff" aria-hidden="true"><span class="cm">components:</span>
+<span class="add">+  securitySchemes:</span>
+<span class="add">+    bearerAuth:</span>
+<span class="add">+      type: http</span>
+<span class="add">+      scheme: bearer</span></pre></div><span class="more">See the repair</span></a>
+  </div>
+  <div class="upgrade rv"><p><b>Missing a surface?</b> Generate a docs portal, TypeScript, Python and Go SDKs, a CLI, an MCP server or Agent Skills from the same spec. They go through the same gate.</p>
+  <a class="btn ghost sm" href="generated-surfaces/index.html">Generated surfaces <span class="ar" aria-hidden="true">→</span></a></div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="res-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Research, 25 September 2026</span><h2 id="res-h">We ran the free Docs Analyser on 33 public API docs portals.</h2></div>
+  <p>Most portals are readable. Few are discoverable by agents. And a score still cannot tell you whether a task succeeds.</p></div>
+  <div class="stats rv">
+    <div class="stat"><b>27<small> / 33</small></b><span>portals had no API Catalog, and 27 had no MCP Server Card</span></div>
+    <div class="stat"><b>40<small> / 100</small></b><span>average agent and API discovery score among the 16 scored sites</span></div>
+    <div class="stat"><b>74</b><span>median score of the 16 sites that returned a score, from 52 to 95</span></div>
+    <div class="stat"><b>17<small> / 33</small></b><span>scans were incomplete, so the analyser withheld a score</span></div>
+  </div>
+  <p class="src-note rv">Source: Doctorine Docs Analyser at doctorine.dev, run on 33 public docs portals on 25 September 2026. Aggregates only. <a class="tlink" href="research/index.html">Read the findings</a></p>
+</div></section>
+
+<section class="sec" aria-labelledby="rec-h"><div class="wrap split">
+  <div class="rv"><span class="label">Receipts</span>
+    <h2 id="rec-h" style="margin-top:16px">Every release leaves a receipt.</h2>
+    <p class="lead" style="margin-top:22px">The spec hash, the generator and kernel versions and the hash of every output. When someone asks which version a customer's agent was reading, you open one file instead of a chat thread.</p>
+    <p style="margin-top:22px"><a class="tlink" href="https://doctorine.xyz/proof/doctorine-sdk-receipt.json">Open a real SDK receipt</a></p></div>
+  <div class="rv d1"><div class="codecard"><div class="h"><b>doctorine-sdk-receipt.json</b><span>public receipt from doctorine.xyz</span></div><pre>{
+  <span class="k">"generator"</span>: <span class="s">"@doctorine/sdk-codegen"</span>,
+  <span class="k">"generatorVersion"</span>: <span class="s">"0.11.1"</span>,
+  <span class="k">"kernelVersion"</span>: <span class="s">"0.7.1"</span>,
+  <span class="k">"language"</span>: <span class="s">"ts"</span>,
+  <span class="k">"package"</span>: { <span class="k">"name"</span>: <span class="s">"@doctorine/sdk"</span>, <span class="k">"version"</span>: <span class="s">"0.0.1"</span> },
+  <span class="k">"irSha"</span>:     <span class="s">"43fdb220d025ecb6…"</span>,
+  <span class="k">"configSha"</span>: <span class="s">"90f4aa61c88d9ddf…"</span>,
+  <span class="k">"bundleSha"</span>: <span class="s">"03ab38e66d345b0c…"</span>,
+  <span class="k">"sdkSha"</span>:    <span class="s">"f83bfe23dd2befc0…"</span>
+}</pre></div></div>
+</div></section>
+
+<section class="sec" aria-labelledby="who-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Who it is for</span><h2 id="who-h">Built for the teams that answer for an API.</h2></div>
+  <p>API companies and platform teams that publish APIs to developers, partners and, more and more, to AI agents.</p></div>
+  <div class="who">
+    <div class="rv"><h3 class="label" style="font-size:12px">Solutions</h3><div class="list" style="margin-top:14px"><a href="solutions/public-api-teams/index.html"><b>Public API teams</b><span>For teams whose API serves paying clients and partners: check every spec change against real integration tasks before docs, SDKs and tools update.</span><i aria-hidden="true">→</i></a><a href="solutions/platform-teams/index.html"><b>Platform teams</b><span>One check on the spec pull request instead of another review layer: rebuild every surface, run the tasks and leave reviewers only real decisions.</span><i aria-hidden="true">→</i></a><a href="solutions/devrel-and-docs/index.html"><b>DevRel and docs owners</b><span>See which real tasks coding agents and developers can finish with your docs, which page or example fails them, and what to fix first.</span><i aria-hidden="true">→</i></a><a href="solutions/sdk-vendor-migration/index.html"><b>SDK vendor migration</b><span>Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.</span><i aria-hidden="true">→</i></a></div></div>
+    <div class="rv d1"><h3 class="label" style="font-size:12px">Industries</h3><div class="list" style="margin-top:14px"><a href="industries/fintech-and-payments/index.html"><b>Fintech and payments</b><span>Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.</span><i aria-hidden="true">→</i></a><a href="industries/saas-partner-apis/index.html"><b>SaaS with partner APIs</b><span>Check each spec change against the tasks your partners run, and publish docs, SDKs and tools from one release that pinned integrations can trust.</span><i aria-hidden="true">→</i></a><a href="industries/developer-platforms/index.html"><b>Developer platforms</b><span>Your users build with coding agents. Measure which surface gets them to a working integration first, at what token cost, and gate each release on it.</span><i aria-hidden="true">→</i></a></div></div>
+  </div>
+</div></section>
+
+<section class="sec paper" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">What teams ask first</h2></div>
+<div class="faq rv d1"><details><summary>What is Doctorine?</summary><div class="a"><p>Doctorine is the release gate for APIs. Before an API change ships, it checks that coding agents and developers can still complete real tasks with the docs, CLI, MCP server, SDKs and Agent Skills, publishes only the surfaces that passed and keeps a receipt of what was checked.</p></div></details><details><summary>Do we have to migrate our docs to use it?</summary><div class="a"><p>No. The free eval report reads the docs and spec you already publish, wherever they are hosted. The release gate runs in your own repository. The Doctorine portal is an option, not a requirement.</p></div></details><details><summary>How is this different from an agent readiness score?</summary><div class="a"><p>A readiness score checks whether files such as llms.txt, Markdown pages and sitemaps exist. The eval runs real integration tasks with coding agents, so it shows whether an agent can actually create, pay, refund or list with your API, and why it fails when it cannot.</p></div></details><details><summary>Which surfaces does Doctorine check?</summary><div class="a"><p>The docs portal, the CLI, the MCP server, TypeScript, Python and Go SDKs and Agent Skills. You can check the surfaces you already have, and generate the missing ones from your OpenAPI spec.</p></div></details><details><summary>What does it cost?</summary><div class="a"><p>The Docs Analyser and the eval report are free. The release gate is available to design partners at 100 euros a month for an individual and 300 euros a month for a company. Public plans are not published yet.</p></div></details><details><summary>Where is our data stored?</summary><div class="a"><p>Core content and tenant stores are configured in EU regions. A small number of services, such as authentication and payments, are documented carve-outs outside the EU.</p></div></details></div></div></section>
+<section class="close" aria-labelledby="close-h"><div class="wrap">
+<div class="rv"><h2 id="close-h">Ship the change. Keep the proof.</h2><p>Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.</p>
+<div class="cta"><a class="btn pri" href="design-partners/index.html#eval">Get a free eval report <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></div>
+<img class="rv d1" src="../assets/img/horse-portrait-dark.jpg" width="912" height="941" loading="lazy" alt="The Doctorine horse, drawn in fine light points on black">
+</div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="index.html"><img src="../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>The release gate for APIs in the agent era. Proof that agents and developers can still use your API, on every change.</p></div>
+      <div><h2>Product</h2><ul><li><a href="agent-task-eval/index.html">Agent task eval</a></li><li><a href="release-gate/index.html">Release gate</a></li><li><a href="spec-repair/index.html">Spec repair</a></li><li><a href="generated-surfaces/index.html">Generated surfaces</a></li><li><a href="docs-analyser/index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Solutions</h2><ul><li><a href="solutions/public-api-teams/index.html">Public API teams</a></li><li><a href="solutions/platform-teams/index.html">Platform teams</a></li><li><a href="solutions/devrel-and-docs/index.html">DevRel and docs owners</a></li><li><a href="solutions/sdk-vendor-migration/index.html">SDK vendor migration</a></li></ul></div>
+      <div><h2>Industries</h2><ul><li><a href="industries/fintech-and-payments/index.html">Fintech and payments</a></li><li><a href="industries/saas-partner-apis/index.html">SaaS with partner APIs</a></li><li><a href="industries/developer-platforms/index.html">Developer platforms</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="research/index.html">Research</a></li><li><a href="pricing/index.html">Pricing</a></li><li><a href="security/index.html">Security</a></li><li><a href="about/index.html">About</a></li><li><a href="design-partners/index.html">Design partners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Sample data on this site uses an example API called Acme Payments. It is not customer data.</span><span>EU data residency for the core data plane, with documented carve-outs. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

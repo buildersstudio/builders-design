@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="nl" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hoe 33 API-docsportalen eruitzien voor AI-agents | Doctorine</title>
+<meta name="description" content="Geaggregeerde resultaten van de Doctorine Docs Analyser op 33 publieke API-documentatieportalen, gemeten op 25 september 2026, met methode en kanttekeningen.">
+<link rel="canonical" href="https://doctorine.xyz/nl/onderzoek/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/research/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/onderzoek/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/research/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="Hoe 33 API-docsportalen eruitzien voor AI-agents | Doctorine">
+<meta property="og:description" content="Geaggregeerde resultaten van de Doctorine Docs Analyser op 33 publieke API-documentatieportalen, gemeten op 25 september 2026, met methode en kanttekeningen.">
+<meta property="og:url" content="https://doctorine.xyz/nl/onderzoek/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: elke API-wijziging bewezen voordat ze live gaat">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hoe 33 API-docsportalen eruitzien voor AI-agents | Doctorine">
+<meta name="twitter:description" content="Geaggregeerde resultaten van de Doctorine Docs Analyser op 33 publieke API-documentatieportalen, gemeten op 25 september 2026, met methode en kanttekeningen.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://doctorine.xyz/nl/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Onderzoek",
+     "item": "https://doctorine.xyz/nl/onderzoek/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Welke portalen zaten erin?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Publieke documentatieportalen van 33 API-bedrijven, 10 in Europa en 23 elders. 25 draaien op een eigen platform, 3 op Mintlify, 2 op GitBook, 2 op Docusaurus en 1 op Redocly. We publiceren alleen geaggregeerde cijfers."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Waarom waren zoveel scans onvolledig?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "De analyser geeft geen score als te veel signalen niet te verifiëren zijn. Dat gebeurde vooral als de controles op de machineleesbare spec en het MCP-endpoint beperkt of niet beschikbaar waren. Dat kan aan het controlebudget van de analyser liggen in plaats van aan de sites, en is nog niet onderzocht."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Kunnen we ons eigen portaal testen?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ja. Dezelfde analyser is gratis beschikbaar op doctorine.dev."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Hoe 33 publieke API-docsportalen eruitzien voor AI-agents",
+   "datePublished": "2026-09-25",
+   "inLanguage": "nl",
+   "author": {
+    "@id": "https://doctorine.xyz/#org"
+   },
+   "publisher": {
+    "@id": "https://doctorine.xyz/#org"
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Doctorine home"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Hoofdmenu">
+      <div class="dd"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="../agenttaken-evaluatie/index.html"><b>Agenttaken-evaluatie <span class="st">Gratis rapport</span></b><span>Kan een agent de klus klaren met je API? Een gratis rapport.</span></a><a href="../releasecontrole/index.html"><b>Release gate <span class="st">Designpartners</span></b><span>Een CI-check die alleen geslaagde interfaces publiceert.</span></a><a href="../spec-herstel/index.html"><b>Spec-herstel <span class="st">Early access</span></b><span>Vind wat agents blokkeert in je spec en los het op in één pull request.</span></a><a href="../gegenereerde-interfaces/index.html"><b>Gegenereerde interfaces <span class="st">Live</span></b><span>Docsportaal, SDK&#x27;s, CLI, MCP-server en skills uit één spec.</span></a><a href="../docs-analyse/index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Gratis: scoor hoe goed agents je docs vinden, lezen en gebruiken.</span></a></div></div>
+      <a href="../oplossingen/index.html">Oplossingen</a><a href="../sectoren/index.html">Sectoren</a><a href="index.html" aria-current="page">Onderzoek</a><a href="../prijzen/index.html">Prijzen</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Taal"><a href="../../en/research/index.html" hreflang="en" lang="en" title="English">EN</a><span aria-current="true" lang="nl">NL</span></div>
+      <a class="btn pri sm" href="../designpartners/index.html#eval">Gratis evaluatie</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu openen"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobiel"><h2>Product</h2><a href="../agenttaken-evaluatie/index.html">Agenttaken-evaluatie <span>Gratis rapport</span></a><a href="../releasecontrole/index.html">Release gate <span>Designpartners</span></a><a href="../spec-herstel/index.html">Spec-herstel <span>Early access</span></a><a href="../gegenereerde-interfaces/index.html">Gegenereerde interfaces <span>Live</span></a><a href="../docs-analyse/index.html">Docs Analyser <span>Live</span></a><h2>Ontdek</h2><a href="../oplossingen/index.html">Oplossingen</a><a href="../sectoren/index.html">Sectoren</a><a href="index.html">Onderzoek</a><a href="../prijzen/index.html">Prijzen</a><h2>Bedrijf</h2><a href="../beveiliging/index.html">Beveiliging</a><a href="../over-ons/index.html">Over ons</a><a href="../designpartners/index.html">Designpartners</a><div class="cta"><a class="btn pri" href="../designpartners/index.html#eval">Vraag een gratis evaluatie aan</a><a class="btn ghost" href="https://doctorine.dev/">Start de Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="phero"><div class="wrap"><nav class="crumbs" aria-label="Kruimelpad"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Onderzoek</span></nav><h1>Hoe 33 publieke API-docsportalen eruitzien voor AI-agents</h1><p class="lead">Op 25 september 2026 draaiden we de gratis Doctorine Docs Analyser op 33 publieke API-documentatieportalen. Zestien gaven een score en zeventien een onvolledige scan. De meeste portalen zijn leesbaar. Weinig zijn vindbaar. En niets hiervan zegt of een agent een taak afrondt.</p><div class="cta"><a class="btn pri" href="https://doctorine.dev/">Test je eigen portaal <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="#method">Methode en kanttekeningen</a></div></div></section>
+<section class="sec tight" style="padding-top:0;border-top:0" aria-label="Kerncijfers"><div class="wrap">
+  <div class="stats rv">
+    <div class="stat"><b>33</b><span>publieke API-docsportalen geanalyseerd op 25 september 2026</span></div>
+    <div class="stat"><b>16</b><span>gaven een score, van 52 tot 95</span></div>
+    <div class="stat"><b>74</b><span>mediane score van de 16 gescoorde sites, gemiddeld 74,3</span></div>
+    <div class="stat"><b>6</b><span>scoorden 80 of meer, het label agent-ready</span></div>
+  </div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="f1-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Bevindingen</span><h2 id="f1-h">Leesbaar, ja. Vindbaar, zelden.</h2></div>
+  <p>Aantallen zijn van alle 33 sites, tenzij anders vermeld. Ontbreekt betekent dat de check faalde.</p></div>
+  <div class="cards two">
+    <div class="chart-card rv"><h3>Wat de meeste portalen missen</h3><p class="sub">Mislukte checks, van 33 sites</p>
+      <div class="bars"><div class="bar"><span>API Catalog ontbreekt</span><span class="tr"><i class="" style="--w:81.8%"></i></span><b>27 / 33</b></div><div class="bar"><span>MCP Server Card ontbreekt</span><span class="tr"><i class="" style="--w:81.8%"></i></span><b>27 / 33</b></div><div class="bar"><span>Agent Skills-index ontbreekt</span><span class="tr"><i class="" style="--w:66.7%"></i></span><b>22 / 33</b></div><div class="bar"><span>Content Signals ontbreken</span><span class="tr"><i class="" style="--w:63.6%"></i></span><b>21 / 33</b></div><div class="bar"><span>Actualiteit sitemap vraagt aandacht</span><span class="tr"><i class="n" style="--w:36.4%"></i></span><b>12 / 33</b></div></div></div>
+    <div class="chart-card rv d1"><h3>Wat de meeste portalen al doen</h3><p class="sub">Geslaagde checks</p>
+      <div class="bars"><div class="bar"><span>Leesbaar zonder JavaScript</span><span class="tr"><i class="g" style="--w:100.0%"></i></span><b>31 / 31 gemeten</b></div><div class="bar"><span>llms.txt-index</span><span class="tr"><i class="g" style="--w:78.8%"></i></span><b>26 / 33</b></div><div class="bar"><span>Markdown voor agents</span><span class="tr"><i class="g" style="--w:57.6%"></i></span><b>19 / 33</b></div></div></div>
+    <div class="chart-card rv"><h3>Gemiddelde per categorie</h3><p class="sub">Gemiddelde score van 100, bij de 16 gescoorde sites</p>
+      <div class="bars"><div class="bar"><span>Agent- en API-vindbaarheid</span><span class="tr"><i class="" style="--w:40.0%"></i></span><b>40</b></div><div class="bar"><span>Leesbare inhoud</span><span class="tr"><i class="n" style="--w:73.0%"></i></span><b>73</b></div><div class="bar"><span>Vindbaarheid</span><span class="tr"><i class="n" style="--w:83.0%"></i></span><b>83</b></div><div class="bar"><span>Levering en efficiëntie</span><span class="tr"><i class="g" style="--w:91.0%"></i></span><b>91</b></div><div class="bar"><span>Botbeleid en vertrouwen</span><span class="tr"><i class="g" style="--w:91.0%"></i></span><b>91</b></div></div></div>
+    <div class="chart-card rv d1"><h3>De 16 scores</h3><p class="sub">Elke staaf is één gescoorde site, geplaatst op score. Groen haalde Markdown voor agents, rood niet.</p>
+      <div class="dist" role="img" aria-label="Verdeling van de 16 scores tussen 52 en 95. Alle 9 sites met 73 of meer haalden Markdown voor agents; alle 7 onder de 70 niet."><i class="lo" style="left:4.0%;height:52%"></i><i class="lo" style="left:12.0%;height:56%"></i><i class="lo" style="left:14.0%;height:57%"></i><i class="lo" style="left:18.0%;height:59%"></i><i class="lo" style="left:18.0%;height:59%"></i><i class="lo" style="left:28.0%;height:64%"></i><i class="lo" style="left:36.0%;height:68%"></i><i class="hi" style="left:46.0%;height:73%"></i><i class="hi" style="left:50.0%;height:75%"></i><i class="hi" style="left:52.0%;height:76%"></i><i class="hi" style="left:74.0%;height:87%"></i><i class="hi" style="left:82.0%;height:91%"></i><i class="hi" style="left:84.0%;height:92%"></i><i class="hi" style="left:84.0%;height:92%"></i><i class="hi" style="left:86.0%;height:93%"></i><i class="hi" style="left:90.0%;height:95%"></i></div>
+      <div class="axis"><span>50</span><span>60</span><span>70</span><span>80</span><span>90</span><span>100</span></div></div>
+  </div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="f2-h"><div class="wrap two-col">
+  <div class="rv"><span class="label">Wat het betekent</span><h2 id="f2-h" style="margin-top:16px">Vier dingen die de cijfers zeggen.</h2></div>
+  <div class="body prose rv d1">
+    <h3>Vindbaarheid is de zwakste categorie</h3>
+    <p>Bij de 16 gescoorde sites was agent- en API-vindbaarheid gemiddeld 40 van de 100, tegenover 83 tot 91 voor vindbaarheid van pagina's, levering en botbeleid. Agents kunnen de meeste portalen lezen, maar vinden de API en de tools moeilijk vanuit alleen de docs.</p>
+    <h3>Markdown voor agents splitst het veld</h3>
+    <p>Alle 9 sites met 73 of meer haalden Markdown voor agents, en alle 7 onder de 70 niet. Het is de duidelijkste enkele scheidslijn tussen de bovenste en de onderste helft van deze steekproef.</p>
+    <h3>llms.txt is gewoon, catalogi niet</h3>
+    <p>26 van de 33 sites haalden de llms.txt-check, terwijl 27 geen API Catalog en 27 geen MCP Server Card hadden. Het bestand waar iedereen het over heeft, is er al. De bestanden die een agent naar de API leiden, niet.</p>
+    <h3>Een score is geen afgeronde taak</h3>
+    <p>Geen van deze checks voert een integratie uit. Ze zeggen of een agent de docs kan vinden en lezen, niet of hij kan aanmaken, betalen, terugbetalen of opvragen. Dat meet de agenttaken-evaluatie. <a href="../agenttaken-evaluatie/index.html">Agenttaken-evaluatie</a></p>
+  </div>
+</div></section>
+
+<section class="sec" id="method" aria-labelledby="m-h"><div class="wrap two-col dark">
+  <div class="rv"><span class="label">Methode</span><h2 id="m-h" style="margin-top:16px">Hoe we het deden, en waar je voorzichtig mee moet zijn.</h2></div>
+  <div class="body rv d1">
+    <p>Elk portaal is op 25 september 2026 aangeboden aan het eigen endpoint van de analyser op doctorine.dev, dezelfde aanroep die de pagina doet. De uitkomst combineert de signalen van de Cloudflare Agent Ready-benchmark met eigen controles van Doctorine.</p>
+    <p>Sites met een onvolledige scan zijn tot drie keer opnieuw geprobeerd, met 20 tot 30 seconden ertussen. We hielden de laatste run met score, of anders de poging met de minste niet-verifieerbare signalen. Niets is geschat: een site zonder score staat er zonder score in.</p>
+    <p>De steekproef is 33 portalen, geen willekeurige greep uit de markt, en 17 scans waren onvolledig. Dat kan aan het controlebudget van de analyser liggen in plaats van aan de sites, en is nog niet onderzocht. Zie de cijfers als een momentopname van één dag.</p>
+  </div>
+</div></section>
+<section class="sec paper" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">Vragen</h2></div>
+<div class="faq rv d1"><details><summary>Welke portalen zaten erin?</summary><div class="a"><p>Publieke documentatieportalen van 33 API-bedrijven, 10 in Europa en 23 elders. 25 draaien op een eigen platform, 3 op Mintlify, 2 op GitBook, 2 op Docusaurus en 1 op Redocly. We publiceren alleen geaggregeerde cijfers.</p></div></details><details><summary>Waarom waren zoveel scans onvolledig?</summary><div class="a"><p>De analyser geeft geen score als te veel signalen niet te verifiëren zijn. Dat gebeurde vooral als de controles op de machineleesbare spec en het MCP-endpoint beperkt of niet beschikbaar waren. Dat kan aan het controlebudget van de analyser liggen in plaats van aan de sites, en is nog niet onderzocht.</p></div></details><details><summary>Kunnen we ons eigen portaal testen?</summary><div class="a"><p>Ja. Dezelfde analyser is gratis beschikbaar op doctorine.dev.</p></div></details></div></div></section>
+<section class="close" aria-labelledby="close-h"><div class="wrap">
+<div class="rv"><h2 id="close-h">Ontdek nu wat agents kunnen afronden.</h2><p>Stuur ons je publieke docs en spec, en we laten zien welke echte taken agents vandaag met je API kunnen afronden. Het rapport is gratis en leest alleen wat je al publiceert.</p>
+<div class="cta"><a class="btn pri" href="../designpartners/index.html#eval">Vraag een gratis evaluatie aan <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Start de Docs Analyser</a></div></div>
+<img class="rv d1" src="../../assets/img/horse-portrait-dark.jpg" width="912" height="941" loading="lazy" alt="Het Doctorine-paard, getekend in fijne lichtpunten op zwart">
+</div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="../index.html"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>De release gate voor API's in het tijdperk van agents. Bewijs dat agents en ontwikkelaars je API nog kunnen gebruiken, bij elke wijziging.</p></div>
+      <div><h2>Product</h2><ul><li><a href="../agenttaken-evaluatie/index.html">Agenttaken-evaluatie</a></li><li><a href="../releasecontrole/index.html">Release gate</a></li><li><a href="../spec-herstel/index.html">Spec-herstel</a></li><li><a href="../gegenereerde-interfaces/index.html">Gegenereerde interfaces</a></li><li><a href="../docs-analyse/index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Oplossingen</h2><ul><li><a href="../oplossingen/publieke-api-teams/index.html">Publieke API-teams</a></li><li><a href="../oplossingen/platformteams/index.html">Platformteams</a></li><li><a href="../oplossingen/devrel-en-documentatie/index.html">DevRel en docs-eigenaren</a></li><li><a href="../oplossingen/overstap-sdk-leverancier/index.html">Overstap van SDK-leverancier</a></li></ul></div>
+      <div><h2>Sectoren</h2><ul><li><a href="../sectoren/fintech-en-betalingen/index.html">Fintech en betalingen</a></li><li><a href="../sectoren/saas-met-partner-apis/index.html">SaaS met partner-API&#x27;s</a></li><li><a href="../sectoren/ontwikkelaarsplatformen/index.html">Ontwikkelaarsplatformen</a></li></ul></div>
+      <div><h2>Bedrijf</h2><ul><li><a href="index.html">Onderzoek</a></li><li><a href="../prijzen/index.html">Prijzen</a></li><li><a href="../beveiliging/index.html">Beveiliging</a></li><li><a href="../over-ons/index.html">Over ons</a></li><li><a href="../designpartners/index.html">Designpartners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Voorbeelddata op deze site gebruikt een fictieve API, Acme Payments. Het is geen klantdata.</span><span>EU-dataresidentie voor het kerndatavlak, met gedocumenteerde uitzonderingen. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

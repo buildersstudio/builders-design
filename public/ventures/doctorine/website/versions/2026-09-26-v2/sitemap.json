@@ -1,0 +1,284 @@
+{
+  "pages": [
+    {
+      "id": "home",
+      "path": "/",
+      "title": "Doctorine: the release gate for APIs and AI agents",
+      "description": "Doctorine checks that coding agents and developers can still finish real tasks with your API docs, CLI, MCP server and SDKs, and ships only what passed.",
+      "type": "page",
+      "nav": true,
+      "langs": {
+        "en": "en/index.html",
+        "nl": "nl/index.html"
+      }
+    },
+    {
+      "id": "eval",
+      "path": "/agent-task-eval/",
+      "title": "Agent task eval: can agents finish the job? | Doctorine",
+      "description": "A free report: coding agents try five real integration tasks on your docs, CLI, MCP server and SDKs, three runs each, with the fix for every failure.",
+      "type": "page",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/agent-task-eval/index.html",
+        "nl": "nl/agenttaken-evaluatie/index.html"
+      }
+    },
+    {
+      "id": "gate",
+      "path": "/release-gate/",
+      "title": "Release gate with receipts for API changes | Doctorine",
+      "description": "A check on the spec pull request: rebuild every surface, run contract tests and agent tasks, hold back what failed and keep a receipt of each release.",
+      "type": "page",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/release-gate/index.html",
+        "nl": "nl/releasecontrole/index.html"
+      }
+    },
+    {
+      "id": "repair",
+      "path": "/spec-repair/",
+      "title": "Spec repair: fix your OpenAPI spec in one PR | Doctorine",
+      "description": "Doctorine scores your OpenAPI spec against what SDKs, the CLI, MCP tools and agents need, then opens one pull request with the mechanical fixes.",
+      "type": "page",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/spec-repair/index.html",
+        "nl": "nl/spec-herstel/index.html"
+      }
+    },
+    {
+      "id": "surfaces",
+      "path": "/generated-surfaces/",
+      "title": "Docs, SDKs, CLI, MCP and skills from one spec | Doctorine",
+      "description": "Generate a hosted docs portal, TypeScript, Python and Go SDKs, a CLI, an MCP server and Agent Skills from your OpenAPI spec, each checked before release.",
+      "type": "page",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/generated-surfaces/index.html",
+        "nl": "nl/gegenereerde-interfaces/index.html"
+      }
+    },
+    {
+      "id": "analyser",
+      "path": "/docs-analyser/",
+      "title": "Docs Analyser: free agent readiness check | Doctorine",
+      "description": "A free check at doctorine.dev: paste a documentation portal and get a 0 to 100 score for how well AI agents can find, read and use it.",
+      "type": "page",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/docs-analyser/index.html",
+        "nl": "nl/docs-analyse/index.html"
+      }
+    },
+    {
+      "id": "solutions",
+      "path": "/solutions/",
+      "title": "Solutions for teams that publish APIs | Doctorine",
+      "description": "How Doctorine works for public API teams, platform teams, DevRel and docs owners, and teams migrating off a shut-down SDK vendor.",
+      "type": "page",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/solutions/index.html",
+        "nl": "nl/oplossingen/index.html"
+      }
+    },
+    {
+      "id": "industries",
+      "path": "/industries/",
+      "title": "Industries: fintech, SaaS, developer platforms | Doctorine",
+      "description": "Doctorine for fintech and payments APIs, SaaS platforms with partner APIs and developer platforms whose users build with coding agents.",
+      "type": "page",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/industries/index.html",
+        "nl": "nl/sectoren/index.html"
+      }
+    },
+    {
+      "id": "research",
+      "path": "/research/",
+      "title": "How 33 API docs portals look to AI agents | Doctorine",
+      "description": "Aggregate results of the Doctorine Docs Analyser on 33 public API documentation portals, run on 25 September 2026, with method and caveats.",
+      "type": "page",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/research/index.html",
+        "nl": "nl/onderzoek/index.html"
+      }
+    },
+    {
+      "id": "pricing",
+      "path": "/pricing/",
+      "title": "Pricing: free eval report, paid release gate | Doctorine",
+      "description": "Start free with the Docs Analyser and an agent task eval report. Design partner seats are 100 euros a month for individuals and 300 for companies.",
+      "type": "page",
+      "parent": "home",
+      "nav": true,
+      "langs": {
+        "en": "en/pricing/index.html",
+        "nl": "nl/prijzen/index.html"
+      }
+    },
+    {
+      "id": "security",
+      "path": "/security/",
+      "title": "Security and deployment | Doctorine",
+      "description": "What Doctorine touches and where it runs: public docs only for the eval, scoped GitHub App permissions for the gate, EU data residency for the core.",
+      "type": "page",
+      "parent": "home",
+      "nav": false,
+      "langs": {
+        "en": "en/security/index.html",
+        "nl": "nl/beveiliging/index.html"
+      }
+    },
+    {
+      "id": "about",
+      "path": "/about/",
+      "title": "About Doctorine: proof that APIs still work",
+      "description": "Why Doctorine exists, what we believe about APIs in the agent era, and what is live today versus what we are building with design partners.",
+      "type": "page",
+      "parent": "home",
+      "nav": false,
+      "langs": {
+        "en": "en/about/index.html",
+        "nl": "nl/over-ons/index.html"
+      }
+    },
+    {
+      "id": "partners",
+      "path": "/design-partners/",
+      "title": "Design partners and contact | Doctorine",
+      "description": "Request a free agent task eval report on your public docs, or join the paid design partner group that puts a real API on Doctorine every week.",
+      "type": "page",
+      "parent": "home",
+      "nav": false,
+      "langs": {
+        "en": "en/design-partners/index.html",
+        "nl": "nl/designpartners/index.html"
+      }
+    },
+    {
+      "id": "sol-public",
+      "path": "/solutions/public-api-teams/",
+      "title": "Doctorine for public API teams",
+      "description": "For teams whose API serves paying clients and partners: check every spec change against real integration tasks before docs, SDKs and tools update.",
+      "type": "cms",
+      "collection": "solutions",
+      "parent": "solutions",
+      "nav": false,
+      "langs": {
+        "en": "en/solutions/public-api-teams/index.html",
+        "nl": "nl/oplossingen/publieke-api-teams/index.html"
+      }
+    },
+    {
+      "id": "sol-platform",
+      "path": "/solutions/platform-teams/",
+      "title": "Doctorine for API platform teams",
+      "description": "One check on the spec pull request instead of another review layer: rebuild every surface, run the tasks and leave reviewers only real decisions.",
+      "type": "cms",
+      "collection": "solutions",
+      "parent": "solutions",
+      "nav": false,
+      "langs": {
+        "en": "en/solutions/platform-teams/index.html",
+        "nl": "nl/oplossingen/platformteams/index.html"
+      }
+    },
+    {
+      "id": "sol-devrel",
+      "path": "/solutions/devrel-and-docs/",
+      "title": "Doctorine for DevRel and docs owners",
+      "description": "See which real tasks coding agents and developers can finish with your docs, which page or example fails them, and what to fix first.",
+      "type": "cms",
+      "collection": "solutions",
+      "parent": "solutions",
+      "nav": false,
+      "langs": {
+        "en": "en/solutions/devrel-and-docs/index.html",
+        "nl": "nl/oplossingen/devrel-en-documentatie/index.html"
+      }
+    },
+    {
+      "id": "sol-migration",
+      "path": "/solutions/sdk-vendor-migration/",
+      "title": "Migrate off a shut-down SDK vendor | Doctorine",
+      "description": "Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.",
+      "type": "cms",
+      "collection": "solutions",
+      "parent": "solutions",
+      "nav": false,
+      "langs": {
+        "en": "en/solutions/sdk-vendor-migration/index.html",
+        "nl": "nl/oplossingen/overstap-sdk-leverancier/index.html"
+      }
+    },
+    {
+      "id": "ind-fintech",
+      "path": "/industries/fintech-and-payments/",
+      "title": "Doctorine for fintech and payments APIs",
+      "description": "Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.",
+      "type": "cms",
+      "collection": "industries",
+      "parent": "industries",
+      "nav": false,
+      "langs": {
+        "en": "en/industries/fintech-and-payments/index.html",
+        "nl": "nl/sectoren/fintech-en-betalingen/index.html"
+      }
+    },
+    {
+      "id": "ind-saas",
+      "path": "/industries/saas-partner-apis/",
+      "title": "Doctorine for SaaS platforms with partner APIs",
+      "description": "Check each spec change against the tasks your partners run, and publish docs, SDKs and tools from one release that pinned integrations can trust.",
+      "type": "cms",
+      "collection": "industries",
+      "parent": "industries",
+      "nav": false,
+      "langs": {
+        "en": "en/industries/saas-partner-apis/index.html",
+        "nl": "nl/sectoren/saas-met-partner-apis/index.html"
+      }
+    },
+    {
+      "id": "ind-devplat",
+      "path": "/industries/developer-platforms/",
+      "title": "Doctorine for developer platforms",
+      "description": "Your users build with coding agents. Measure which surface gets them to a working integration first, at what token cost, and gate each release on it.",
+      "type": "cms",
+      "collection": "industries",
+      "parent": "industries",
+      "nav": false,
+      "langs": {
+        "en": "en/industries/developer-platforms/index.html",
+        "nl": "nl/sectoren/ontwikkelaarsplatformen/index.html"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "key": "solutions",
+      "label": "Solutions",
+      "path": "/solutions/",
+      "description": "Doctorine by role: public API teams, platform teams, DevRel and docs owners, SDK vendor migration."
+    },
+    {
+      "key": "industries",
+      "label": "Industries",
+      "path": "/industries/",
+      "description": "Doctorine by industry: fintech and payments, SaaS with partner APIs, developer platforms."
+    }
+  ]
+}

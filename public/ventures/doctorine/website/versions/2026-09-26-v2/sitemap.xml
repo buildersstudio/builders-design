@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://doctorine.xyz/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/agent-task-eval/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/agent-task-eval/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/agenttaken-evaluatie/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/agent-task-eval/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/agenttaken-evaluatie/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/agent-task-eval/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/agenttaken-evaluatie/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/agent-task-eval/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/release-gate/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/release-gate/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/releasecontrole/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/release-gate/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/releasecontrole/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/release-gate/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/releasecontrole/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/release-gate/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/spec-repair/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/spec-repair/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/spec-herstel/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/spec-repair/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/spec-herstel/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/spec-repair/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/spec-herstel/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/spec-repair/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/generated-surfaces/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/generated-surfaces/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/gegenereerde-interfaces/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/generated-surfaces/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/gegenereerde-interfaces/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/generated-surfaces/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/gegenereerde-interfaces/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/generated-surfaces/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/docs-analyser/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/docs-analyser/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/docs-analyse/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/docs-analyser/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/docs-analyse/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/docs-analyser/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/docs-analyse/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/docs-analyser/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/solutions/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/solutions/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/oplossingen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/solutions/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/oplossingen/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/solutions/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/oplossingen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/solutions/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/industries/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/industries/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/sectoren/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/industries/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/sectoren/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/industries/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/sectoren/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/industries/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/research/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/research/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/onderzoek/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/research/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/onderzoek/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/research/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/onderzoek/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/research/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/pricing/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/prijzen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/pricing/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/prijzen/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/prijzen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/pricing/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/security/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/security/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/beveiliging/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/security/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/beveiliging/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/security/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/beveiliging/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/security/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/about/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/about/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/over-ons/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/about/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/over-ons/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/about/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/over-ons/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/about/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/design-partners/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/design-partners/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/designpartners/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/design-partners/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/designpartners/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/design-partners/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/designpartners/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/design-partners/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/solutions/public-api-teams/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/solutions/public-api-teams/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/oplossingen/publieke-api-teams/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/solutions/public-api-teams/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/oplossingen/publieke-api-teams/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/solutions/public-api-teams/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/oplossingen/publieke-api-teams/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/solutions/public-api-teams/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/solutions/platform-teams/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/solutions/platform-teams/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/oplossingen/platformteams/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/solutions/platform-teams/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/oplossingen/platformteams/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/solutions/platform-teams/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/oplossingen/platformteams/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/solutions/platform-teams/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/solutions/devrel-and-docs/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/solutions/devrel-and-docs/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/oplossingen/devrel-en-documentatie/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/solutions/devrel-and-docs/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/oplossingen/devrel-en-documentatie/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/solutions/devrel-and-docs/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/oplossingen/devrel-en-documentatie/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/solutions/devrel-and-docs/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/solutions/sdk-vendor-migration/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/solutions/sdk-vendor-migration/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/oplossingen/overstap-sdk-leverancier/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/solutions/sdk-vendor-migration/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/oplossingen/overstap-sdk-leverancier/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/solutions/sdk-vendor-migration/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/oplossingen/overstap-sdk-leverancier/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/solutions/sdk-vendor-migration/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/industries/fintech-and-payments/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/industries/fintech-and-payments/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/sectoren/fintech-en-betalingen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/industries/fintech-and-payments/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/sectoren/fintech-en-betalingen/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/industries/fintech-and-payments/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/sectoren/fintech-en-betalingen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/industries/fintech-and-payments/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/industries/saas-partner-apis/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/industries/saas-partner-apis/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/sectoren/saas-met-partner-apis/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/industries/saas-partner-apis/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/sectoren/saas-met-partner-apis/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/industries/saas-partner-apis/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/sectoren/saas-met-partner-apis/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/industries/saas-partner-apis/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/industries/developer-platforms/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/industries/developer-platforms/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/sectoren/ontwikkelaarsplatformen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/industries/developer-platforms/"/>
+  </url>
+  <url>
+    <loc>https://doctorine.xyz/nl/sectoren/ontwikkelaarsplatformen/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://doctorine.xyz/industries/developer-platforms/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/sectoren/ontwikkelaarsplatformen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/industries/developer-platforms/"/>
+  </url>
+</urlset>

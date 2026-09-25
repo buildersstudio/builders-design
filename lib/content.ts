@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import type { JourneyFile } from "./journeys";
 import type { VisionBoard } from "./vision";
+import type { SiteFile, SiteMap } from "./website";
 import path from "node:path";
 import matter from "gray-matter";
 import type { Brand, Deck } from "./types";
@@ -15,6 +16,7 @@ export const SECTIONS = [
   { key: "presentations", label: "Presentations" },
   { key: "social", label: "Social" },
   { key: "vision", label: "Vision" },
+  { key: "website", label: "Website" },
   { key: "journeys", label: "Journeys" },
   { key: "variants", label: "Brand variants" },
   { key: "competitors", label: "Competitors" },
@@ -143,6 +145,15 @@ export function getSocialPosts(slug: string): Record<string, unknown>[] {
   return readJSON<Record<string, unknown>[]>(path.join(ROOT, slug, "social", "posts.json"), []);
 }
 
+/** Website builder: site.json and the sitemap of every version (website/versions/<id>/sitemap.json). */
+export function getSite(slug: string): { site: SiteFile; maps: Record<string, SiteMap> } | null {
+  const site = readJSON<SiteFile | null>(path.join(ROOT, slug, "website", "site.json"), null);
+  if (!site) return null;
+  const maps: Record<string, SiteMap> = {};
+  for (const v of site.versions) maps[v.id] = readJSON<SiteMap>(path.join(ROOT, slug, "website", "versions", v.id, "sitemap.json"), { pages: [] });
+  return { site, maps };
+}
+
 /** Product vision: research and the initiative board (vision/board.json), see the "Vision" section of AGENTS.md. */
 export function getVision(slug: string): VisionBoard | null {
   return readJSON<VisionBoard | null>(path.join(ROOT, slug, "vision", "board.json"), null);
@@ -192,5 +203,6 @@ export function counts(slug: string): Record<SectionKey, number> {
     social: getSocialPosts(slug).length,
     journeys: getJourneys(slug)?.journeys?.length ?? 0,
     vision: getVision(slug)?.initiatives?.length ?? 0,
+    website: (() => { const s = getSite(slug); return s ? s.maps[s.site.current]?.pages.length ?? 0 : 0; })(),
   };
 }

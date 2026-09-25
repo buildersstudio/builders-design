@@ -1,0 +1,1069 @@
+# Doctorine: full text of the English site
+
+Source: https://doctorine.xyz/ . Generated from version 2026-09-26-v2. Sample data uses a fictional API called Acme Payments.
+
+
+---
+
+URL: https://doctorine.xyz/
+Title: Doctorine: the release gate for APIs and AI agents
+Description: Doctorine checks that coding agents and developers can still finish real tasks with your API docs, CLI, MCP server and SDKs, and ships only what passed.
+
+# Every API change, proven before it ships.
+Doctorine is the release gate for your API. On every spec pull request, coding agents run real integration tasks against your docs, CLI, MCP server and SDKs. What passed ships. What broke stays behind, with the reason and the fix.
+Try it. The sample pull request is waiting for a one-line fix to the Python SDK.
+Sample pull request on an example API. Not customer data.
+- Docs portal
+- CLI
+- MCP server
+- TypeScript SDK
+- Python SDK
+- Go SDK
+- Agent Skills
+
+## A check that agents and developers can still use your API, on every change.
+Doctorine is an API release gate. Before a change ships, it proves that coding agents and developers can still complete real tasks with your docs, CLI, MCP server, SDKs and Agent Skills. It publishes only the surfaces that passed and keeps a receipt of what was checked.
+It works on top of the docs you already have. When a surface is missing, Doctorine generates it from your OpenAPI spec and puts it through the same gate.
+- Starts on the docs you have: The free eval reads your public docs and spec. No migration, no production keys.
+- Runs in your CI: A check on the pull request that changes the spec, next to your other checks.
+- Publishes only what passed: A failed surface stays behind. Every release leaves a receipt.
+
+## Agents don't fail loudly. They fail politely.
+In this sample run, a coding agent read the docs, called the API, refunded 12 cents instead of 12.50 euros and reported success. Nothing crashed, so nobody filed a ticket.
+- A retry charges the customer twice, because the idempotency header is in the spec but not in the docs.
+- A report stops after the first page of results, because no example follows the cursor.
+- A webhook is trusted without a valid signature, because the docs never say what was signed.
+A readiness score cannot see any of this. It checks that files exist, not that tasks finish.
+
+## LGTM is not a test.
+A spec change reads fine in review. Then the Python SDK sends the old field name, a tutorial keeps last month's example, and an agent quietly gets a refund wrong.
+Writing the change takes an agent seconds. Approving it is where the weeks go. Doctorine takes the mechanical review off the list, so reviewers only decide what a check cannot.
+
+## Start free. Gate every release. Repair the spec.
+No migration comes first. Doctorine reads what you already publish, shows where agents fail, and only then asks to sit in your CI.
+
+### Agent task eval
+Five real tasks on your API, on every surface you publish, three runs each. You get what failed, why, and the change that fixes it.
+
+### Release gate
+The same tasks on every spec pull request, as a check. A surface that fails is held back. Everything that passed ships together, with a receipt.
+
+### Spec repair
+When the cause is the spec itself, Doctorine opens one pull request with the mechanical fixes and leaves the judgement calls to you.
+Missing a surface? Generate a docs portal, TypeScript, Python and Go SDKs, a CLI, an MCP server or Agent Skills from the same spec. They go through the same gate.
+
+## We ran the free Docs Analyser on 33 public API docs portals.
+Most portals are readable. Few are discoverable by agents. And a score still cannot tell you whether a task succeeds.
+- 27 / 33: portals had no API Catalog, and 27 had no MCP Server Card
+- 40 / 100: average agent and API discovery score among the 16 scored sites
+- 74: median score of the 16 sites that returned a score, from 52 to 95
+- 17 / 33: scans were incomplete, so the analyser withheld a score
+Source: Doctorine Docs Analyser at doctorine.dev, run on 33 public docs portals on 25 September 2026. Aggregates only. Read the findings
+
+## Every release leaves a receipt.
+The spec hash, the generator and kernel versions and the hash of every output. When someone asks which version a customer's agent was reading, you open one file instead of a chat thread.
+Open a real SDK receipt
+
+## Built for the teams that answer for an API.
+API companies and platform teams that publish APIs to developers, partners and, more and more, to AI agents.
+
+### Solutions
+- Public API teams: For teams whose API serves paying clients and partners: check every spec change against real integration tasks before docs, SDKs and tools update.
+- Platform teams: One check on the spec pull request instead of another review layer: rebuild every surface, run the tasks and leave reviewers only real decisions.
+- DevRel and docs owners: See which real tasks coding agents and developers can finish with your docs, which page or example fails them, and what to fix first.
+- SDK vendor migration: Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.
+
+### Industries
+- Fintech and payments: Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.
+- SaaS with partner APIs: Check each spec change against the tasks your partners run, and publish docs, SDKs and tools from one release that pinned integrations can trust.
+- Developer platforms: Your users build with coding agents. Measure which surface gets them to a working integration first, at what token cost, and gate each release on it.
+
+## What teams ask first
+
+### What is Doctorine?
+Doctorine is the release gate for APIs. Before an API change ships, it checks that coding agents and developers can still complete real tasks with the docs, CLI, MCP server, SDKs and Agent Skills, publishes only the surfaces that passed and keeps a receipt of what was checked.
+
+### Do we have to migrate our docs to use it?
+No. The free eval report reads the docs and spec you already publish, wherever they are hosted. The release gate runs in your own repository. The Doctorine portal is an option, not a requirement.
+
+### How is this different from an agent readiness score?
+A readiness score checks whether files such as llms.txt, Markdown pages and sitemaps exist. The eval runs real integration tasks with coding agents, so it shows whether an agent can actually create, pay, refund or list with your API, and why it fails when it cannot.
+
+### Which surfaces does Doctorine check?
+The docs portal, the CLI, the MCP server, TypeScript, Python and Go SDKs and Agent Skills. You can check the surfaces you already have, and generate the missing ones from your OpenAPI spec.
+
+### What does it cost?
+The Docs Analyser and the eval report are free. The release gate is available to design partners at 100 euros a month for an individual and 300 euros a month for a company. Public plans are not published yet.
+
+### Where is our data stored?
+Core content and tenant stores are configured in EU regions. A small number of services, such as authentication and payments, are documented carve-outs outside the EU.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/agent-task-eval/
+Title: Agent task eval: can agents finish the job? | Doctorine
+Description: A free report: coding agents try five real integration tasks on your docs, CLI, MCP server and SDKs, three runs each, with the fix for every failure.
+
+# Agent task eval: can an agent finish the job with your API?
+Coding agents try the real integration jobs your users do, against a sandbox built from your spec, on every surface you publish. The report shows which tasks passed, where they failed and the change that fixes each one.
+- 91 / 100: eadiness score 91 / 100 Checks files and headers only
+- 9 / 20: completed 9 / 20 Agreed across 3 runs
+- 93%: eat agreement 93% Same verdict on 56 of 60 runs
+- 6: ixable causes 6 4 in the docs, 2 in the spec
+Sample report on an example API, Acme Payments. Select any cell to see the run. Not customer data.
+
+## Five tasks your users do in week one.
+The eval reads only what you publish. It needs no migration, no login and no production keys.
+- 01 Read what you publish Your public docs, your OpenAPI spec and whichever of the CLI, MCP server and SDKs you ship.
+- 02 Write the tasks Five tasks from your own operations and examples, the jobs a new integrator does first: create, pay, refund, list, verify.
+- 03 Run them three times Two coding agents attempt each task on each surface, three runs each, against a sandbox that answers from your spec. A task counts only when all runs agree.
+- 04 Report the fix Every failure comes with the step where it went wrong, the cause in your docs or spec, and the smallest change that fixes it.
+
+## A score tells you the files exist. A task tells you it works.
+Free readiness tools check whether llms.txt, Markdown and sitemaps are there. They cannot tell you whether an agent can refund a payment in the right currency unit.
+In the sample report above, the same API scores 91 out of 100 on static checks, while agents finish 9 of 20 tasks. See what 33 real portals score
+- 91 / 100: eadiness score sees 91 / 100 llms.txt found, Markdown per page, robots allow agents
+- 9 / 20: gents finished 9 / 20 5 tasks, 4 surfaces, 3 runs each
+Both numbers describe the same sample API. Not customer data.
+
+## Everything you need to fix it, nothing you have to trust blindly.
+
+### Tasks by surface
+A grid of every task on docs only, CLI, MCP server and each SDK, with what passed, what failed the same way every time and what was flaky.
+
+### The run, step by step
+What the agent read, what it called, what came back and where it went wrong, so you can see the failure instead of a number.
+
+### The smallest change
+For each failure, the line in the spec or the example in the docs that would have saved the run, ready to become a pull request.
+
+### Tokens per completed task
+How many tokens each surface needed to finish, so you know which one to point agents at.
+
+### Tasks and criteria included
+The task definitions and pass criteria come with the report, so you can argue with them or run them again.
+
+### Keep the tasks as checks
+The same tasks can run on every spec pull request in the release gate, so a fixed gap cannot quietly return.
+
+## Questions
+
+### What does the eval need from us?
+A public docs URL and, if you publish one, a link to your OpenAPI spec. It does not need access to your repository, your production API or any credentials.
+
+### Which agents run the tasks?
+Two coding agents run every task on every surface you publish, three times each. The report names the agents and versions used, so a run can be reproduced.
+
+### How do you keep the results fair?
+Tasks are written from your own operations and examples, and you see them in the report. A task counts as passed or failed only when all three runs agree. Anything else is reported as flaky and not counted.
+
+### Does it call our production API?
+No. Tasks run against a sandbox that answers from your spec, so no production keys are used and no real data is touched.
+
+### How is this different from the Docs Analyser?
+The Docs Analyser at doctorine.dev is a static check that scores whether agents can find and read your docs. The eval runs real tasks, so it shows whether agents can complete them.
+
+### What does it cost?
+The eval report is free. Teams that want the same tasks checked on every pull request move to the release gate.
+
+## Find out before the agent does.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/release-gate/
+Title: Release gate with receipts for API changes | Doctorine
+Description: A check on the spec pull request: rebuild every surface, run contract tests and agent tasks, hold back what failed and keep a receipt of each release.
+
+# Release gate: publish only the API surfaces that passed
+A check on the pull request that changes your spec. It rebuilds every surface, runs contract tests and your agent tasks, holds back anything that failed and writes a receipt of what shipped.
+
+## Red, then green. Then everything ships together.
+- One verdict per surface: docs, CLI, MCP server, each SDK and the skill.
+- A failed surface is held back with the cause and the one-line fix.
+- Only the affected surface re-runs after the fix.
+- Publishing moves every passed surface to the new release at once.
+Sample pull request on an example API. Not customer data.
+
+## One pull request. Every surface proven.
+The gate runs where your spec lives. Times below are from the sample run.
+- 01 Read the change Diff the spec, classify what moved and which surfaces it touches. 2s
+- 02 Build every surface Docs, CLI, MCP server, TypeScript, Python and Go SDKs and the Agent Skill, from the same revision. 1m
+- 03 Run contract tests Generated tests against a sandbox that answers from your spec. No production credentials. 41s
+- 04 Run agent tasks Coding agents try your real integration jobs on each surface, three times. A task counts only when all runs agree. 2m
+- 05 Ask a person only what it could not decide Is a rounding change a fix or a breaking change? That is yours. Everything mechanical is not. you
+- 06 Publish what passed, together Every passed surface points at the new release at once, and a receipt records why. 6s
+
+## Review two things, not two hundred.
+Writing a change takes an agent seconds. Approval is where the weeks go. The gate takes the mechanical review off the list and leaves you only the calls that need a person.
+
+### Partial refunds now round half-up to the minor unit.
+Clients that reconcile totals may see one cent differences. The gate cannot tell whether this is a bug fix or a breaking change for your users.
+
+### The new enum description says delivery reason.
+Your style rule says dispatch, never delivery, for fulfilment. It might be deliberate. That is a call for a person, so the gate asks one.
+What you can skip: 38 wording checks, 212 contract tests and 24 agent tasks passed on this sample change. The gate reviewed them.
+
+## Every release leaves a receipt.
+The spec hash, the generator and kernel versions and the hash of every output, plus the decisions a person made. Releases are content-addressed and activated through a pointer, so a rollback moves every surface back together.
+Open the public SDK receipt
+
+## It sits in your CI, not in your way.
+The gate runs on the pull request that changes the spec. The Doctorine GitHub App works only in repositories you select, with short-lived single-repository tokens, and never asks to write secrets or change repository settings.
+Security and deployment
+
+## Questions
+
+### Where does the release gate run?
+As a check on the pull request that changes your spec, in your own repository. Doctorine rebuilds every surface from that revision and reports one verdict per surface next to your other checks.
+
+### What happens when one surface fails?
+That surface is held back with the reason and the fix. Every surface that passed can still ship together, pointing at the same release.
+
+### Does it replace our reviewers?
+It replaces the mechanical part of review. Reviewers still decide what a check cannot, such as whether a behaviour change is a fix or a breaking change, and the decision is recorded in the receipt.
+
+### What is in a receipt?
+The spec hash, the generator and kernel versions, the hash of every output and the decisions a person made. A public example is at doctorine.xyz/proof/doctorine-sdk-receipt.json.
+
+### Can we roll back?
+Yes. Releases are content-addressed artifacts activated through a pointer, so rolling back moves every surface back to the previous release together.
+
+### How do we get it?
+The release gate is available to design partners. Seats are 100 euros a month for an individual and 300 euros a month for a company, for three to six months.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/spec-repair/
+Title: Spec repair: fix your OpenAPI spec in one PR | Doctorine
+Description: Doctorine scores your OpenAPI spec against what SDKs, the CLI, MCP tools and agents need, then opens one pull request with the mechanical fixes.
+
+# Spec repair: fix what stops agents and generators, in one pull request
+Point Doctorine at a repository or a spec. It scores the spec against what docs, SDKs, the CLI, MCP tools and agents need, explains each problem in plain terms and opens one pull request with the mechanical fixes. Anything that changes what your API means stays with your team as a review comment.
+Sample repository and sample findings. Select a finding to see its fix, untick it to leave it out of the pull request.
+
+## Fix the mechanical. Flag the meaningful.
+Every finding says which surfaces it breaks, so you fix the ones that matter to your users first.
+
+### Blocks generation
+Problems that stop SDKs, the CLI or MCP tools from being built correctly, such as a missing security scheme or a oneOf without a discriminator.
+
+### Confuses agents and developers
+Mixed naming, missing examples, undocumented errors and fields without units, the gaps that make agents guess.
+
+### Needs your judgement
+Endpoints that are live but not in the spec, or enum values clients may not handle. These change what your API means, so a person decides.
+
+## From a spec nobody trusts to one reviewable pull request.
+- 01 Scan Doctorine reads openapi.yaml, or the spec behind your public docs, and checks it against what docs, SDKs, the CLI, MCP tools and agents need.
+- 02 Explain Each problem is described in plain terms, with the operations it affects and the surfaces it breaks.
+- 03 Open one pull request Mechanical fixes land in a single pull request you review like any other. Judgement calls become review comments on the lines they concern.
+- 04 Keep it fixed Once merged, the release gate checks every later change, so the same problems do not come back.
+
+## Questions
+
+### What does spec repair change on its own?
+Only mechanical fixes that do not change what your API means, such as a missing security scheme, a discriminator, consistent naming, examples and documented error responses. Everything else stays a review comment.
+
+### Does it merge anything?
+No. It opens one pull request and your team reviews and merges it. Branch protection and required checks stay in force.
+
+### What if our spec is far from complete?
+That is where spec repair is most useful. The report shows how far the spec is from what generation and agents need, and which fixes close most of the gap first.
+
+### Is it available now?
+Spec repair is in early access with design partners. Ask for it when you request your eval report.
+
+## Start with the spec you have.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/generated-surfaces/
+Title: Docs, SDKs, CLI, MCP and skills from one spec | Doctorine
+Description: Generate a hosted docs portal, TypeScript, Python and Go SDKs, a CLI, an MCP server and Agent Skills from your OpenAPI spec, each checked before release.
+
+# Generated surfaces: docs, SDKs, CLI, MCP and skills from one spec
+When a surface is missing, Doctorine generates it from the same approved OpenAPI spec: a hosted documentation portal, TypeScript, Python and Go SDKs, a CLI, an MCP server and Agent Skills. Each goes through the same gate, so only what passed is published.
+
+## One release, expressed for every way developers and agents work.
+The same field, the same example and the same version on every surface. When the spec changes, they all change together or not at all.
+Sample outputs for an example API, Acme Payments. Not customer data.
+
+## Generation is cheap now. Proof is not.
+Coding agents write a client from a spec on demand, and free generators cover the common languages. What stays scarce is evidence that the output is correct for this release.
+That is why Doctorine leads with the eval and the gate. Generated surfaces are there when you need them, and they are held to the same tasks as the surfaces you already have.
+
+## Each surface built around its real job.
+
+### Documentation people and agents can use
+Hosted guides, reference, versions, search and private access, with Markdown per page and llms.txt.
+
+### TypeScript, Python and Go
+Client libraries that must pass their language checks and contract tests before they are delivered.
+
+### The API from a terminal or CI
+Commands with JSON output that matches the schema, for developers, scripts and agents.
+
+### Scoped access for agents
+Tools generated from your operations, with descriptions agents can act on, and the same release as the docs.
+
+### Practical knowledge, packaged
+A verified SKILL.md artifact that references only operations that were published.
+
+### One release for all of them
+Every surface carries the hashes of the spec, generator and output, and rolls back together.
+
+## Questions
+
+### Which surfaces can Doctorine generate?
+A hosted documentation portal, TypeScript, Python and Go SDKs, a CLI, an MCP server and Agent Skills, all from the same approved OpenAPI spec.
+
+### Do we have to use all of them?
+No. Generate only the surfaces you are missing and keep the ones you have. Both go through the same release gate.
+
+### Where does the SDK code live?
+In repositories you select. Doctorine writes generated code and release branches through its GitHub App and opens pull requests that respect your branch protection.
+
+### Can we bring configuration from another vendor?
+Supported configuration from Fern, Stainless, Speakeasy or ReadMe can be translated into a Doctorine draft, with a record of what mapped, what degraded and what is unsupported.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/docs-analyser/
+Title: Docs Analyser: free agent readiness check | Doctorine
+Description: A free check at doctorine.dev: paste a documentation portal and get a 0 to 100 score for how well AI agents can find, read and use it.
+
+# Docs Analyser: can AI agents find, read and use your docs?
+A free check at doctorine.dev. Paste a documentation portal and get a score from 0 to 100 for how well agents find, read and use it, with every signal that passed, failed or needs review.
+
+## A score, five categories and every check behind them.
+Each check says passed, failed, needs review or unverified, so you know exactly which file or header to add.
+
+## Five categories agents care about.
+The result combines the Cloudflare Agent Ready benchmark signals with Doctorine's own probes.
+- Agent and API discovery: Can an agent find your API and its tools: an API Catalog, an MCP Server Card, an Agent Skills index, a machine-readable spec and discovery links.
+- Findability: Can it find the right page: an llms.txt index, a sitemap with fresh dates and clean redirects.
+- Readable content: Can it read the page: Markdown for agents, Markdown mirrors, pages readable without JavaScript and the token cost per page.
+- Delivery and efficiency: Does it arrive cheaply: compressed responses, efficient re-fetching and first-byte time.
+- Bot policy and trust: Is it allowed and trusted: robots.txt, content signals, a content licence and a security.txt contact.
+A Findability checklist from a real Docs Analyser report.
+
+## Readable is not the same as usable.
+A portal can pass every static check and still lose an agent halfway through a refund. The analyser tells you whether agents can find and read your docs. The agent task eval tells you whether they can finish the job.
+
+## Questions
+
+### Is the Docs Analyser free?
+Yes. Paste any public documentation portal at doctorine.dev and get the score and the checklist.
+
+### What does an incomplete scan mean?
+When too many signals cannot be verified, the analyser withholds a score instead of guessing. In our September run this happened on 17 of 33 portals, most often when probes for the machine-readable spec and MCP endpoint were limited or unavailable.
+
+### Where do the checks come from?
+The result combines the Cloudflare Agent Ready benchmark signals with Doctorine's own probes, grouped into five categories.
+
+### Does a high score mean agents can use our API?
+Not on its own. A high score means agents can find and read your docs. Whether they can complete a task is what the agent task eval measures.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/solutions/
+Title: Solutions for teams that publish APIs | Doctorine
+Description: How Doctorine works for public API teams, platform teams, DevRel and docs owners, and teams migrating off a shut-down SDK vendor.
+
+# Solutions for teams that publish APIs
+Doctorine is built for the people who answer for an API: the team that ships spec changes, the platform team that owns the pipeline, the people who own the docs, and teams that lost a vendor.
+- Public API teams: For teams whose API serves paying clients and partners: check every spec change against real integration tasks before docs, SDKs and tools update.
+- Platform teams: One check on the spec pull request instead of another review layer: rebuild every surface, run the tasks and leave reviewers only real decisions.
+- DevRel and docs owners: See which real tasks coding agents and developers can finish with your docs, which page or example fails them, and what to fix first.
+- SDK vendor migration: Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.
+
+## Or start from your industry.
+
+### Fintech and payments
+Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.
+
+### SaaS with partner APIs
+Check each spec change against the tasks your partners run, and publish docs, SDKs and tools from one release that pinned integrations can trust.
+
+### Developer platforms
+Your users build with coding agents. Measure which surface gets them to a working integration first, at what token cost, and gate each release on it.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/industries/
+Title: Industries: fintech, SaaS, developer platforms | Doctorine
+Description: Doctorine for fintech and payments APIs, SaaS platforms with partner APIs and developer platforms whose users build with coding agents.
+
+# Industries where a wrong API call costs the most
+Different markets, the same hard question: can a developer or an agent still complete the task after this change? These are the industries where Doctorine starts.
+- Fintech and payments: Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.
+- SaaS with partner APIs: Check each spec change against the tasks your partners run, and publish docs, SDKs and tools from one release that pinned integrations can trust.
+- Developer platforms: Your users build with coding agents. Measure which surface gets them to a working integration first, at what token cost, and gate each release on it.
+
+## Or start from your role.
+
+### Public API teams
+For teams whose API serves paying clients and partners: check every spec change against real integration tasks before docs, SDKs and tools update.
+
+### Platform teams
+One check on the spec pull request instead of another review layer: rebuild every surface, run the tasks and leave reviewers only real decisions.
+
+### DevRel and docs owners
+See which real tasks coding agents and developers can finish with your docs, which page or example fails them, and what to fix first.
+
+### SDK vendor migration
+Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/research/
+Title: How 33 API docs portals look to AI agents | Doctorine
+Description: Aggregate results of the Doctorine Docs Analyser on 33 public API documentation portals, run on 25 September 2026, with method and caveats.
+
+# How 33 public API docs portals look to AI agents
+On 25 September 2026 we ran the free Doctorine Docs Analyser on 33 public API documentation portals. Sixteen returned a score and seventeen returned an incomplete scan. Most portals are readable. Few are discoverable. None of this says whether an agent finishes a task.
+- 33: public API docs portals analysed on 25 September 2026
+- 16: returned a score, from 52 to 95
+- 74: median score of the 16 scored sites, mean 74.3
+- 6: scored 80 or more, labelled agent-ready
+
+## Readable, yes. Discoverable, rarely.
+Counts are out of all 33 sites unless stated. Missing means the check failed.
+
+### What most portals are missing
+Checks that failed, out of 33 sites
+
+### What most portals already do
+Checks that passed
+
+### Category averages
+Average score out of 100, among the 16 scored sites
+
+### The 16 scores
+Each bar is one scored site, placed by score. Green passed Markdown for Agents, red failed it.
+
+## Four things the numbers say.
+
+### Discovery is the weakest category
+Among the 16 scored sites, agent and API discovery averaged 40 out of 100, against 83 to 91 for findability, delivery and bot policy. Agents can read most portals, but struggle to find the API and its tools from the docs alone.
+
+### Markdown for Agents splits the field
+All 9 sites scoring 73 or more passed Markdown for Agents, and all 7 scoring below 70 failed it. It is the clearest single line between the top and the bottom half of this sample.
+
+### llms.txt is common, catalogs are not
+26 of 33 sites passed the llms.txt check, while 27 had no API Catalog and 27 had no MCP Server Card. The file most people talk about is already there. The ones that point an agent at the API are not.
+
+### A score is not a finished task
+None of these checks runs an integration. They say whether an agent can find and read the docs, not whether it can create, pay, refund or list. That is what the agent task eval measures. Agent task eval
+
+## How we ran it, and what to be careful with.
+Each portal was submitted to the analyser's own endpoint at doctorine.dev, the same call the page makes, on 25 September 2026. The response combines the Cloudflare Agent Ready benchmark signals with Doctorine's own probes.
+Sites that came back as an incomplete scan were retried up to three more times, 20 to 30 seconds apart. We kept the latest scored run, or otherwise the attempt with the fewest unverified signals. Nothing is estimated: a site without a score is reported without one.
+The sample is 33 portals, not a random draw of the market, and 17 scans were incomplete. That may reflect the analyser's probe budget rather than the sites, and it has not been diagnosed. Treat the numbers as a snapshot of one day.
+
+## Questions
+
+### Which portals were included?
+Public documentation portals of 33 API companies, 10 in Europe and 23 elsewhere. 25 run on a bespoke platform, 3 on Mintlify, 2 on GitBook, 2 on Docusaurus and 1 on Redocly. We publish aggregates only.
+
+### Why did so many scans come back incomplete?
+The analyser withholds a score when too many signals cannot be verified. It happened most often when probes for the machine-readable spec and MCP endpoint were limited or unavailable. This may be the analyser's probe budget rather than the sites, and it has not been diagnosed.
+
+### Can we check our own portal?
+Yes. The same analyser is free at doctorine.dev.
+
+## Now find out what agents can finish.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/pricing/
+Title: Pricing: free eval report, paid release gate | Doctorine
+Description: Start free with the Docs Analyser and an agent task eval report. Design partner seats are 100 euros a month for individuals and 300 for companies.
+
+# Pricing: a free report, a paid gate, surfaces as the upgrade
+Start free on the docs you already publish. When you want the check on every change, join as a design partner. Public plans are not published yet.
+
+## Plans
+
+### Docs Analyser and eval report
+For any team with public docs. No migration, no payment details.
+- Docs Analyser at doctorine.dev, for any public docs portal
+- An agent task eval report on your public docs and spec
+- Five tasks, every surface you publish, three runs each
+- The cause and the fix for every failure
+
+### Release gate and everything else
+Monthly, for three to six months you choose before you start. No annual plan.
+- The full product, no feature lock: release gate, spec repair and generated surfaces
+- A weekly feedback session of about 45 minutes
+- A direct chat with the founder
+- A say in the roadmap
+- 50% off everything for 12 months after your agreed term
+
+### Not published yet
+Public pricing is for a product that already works for every team. We are not selling that yet, and we would rather say so.
+- Prices published when the product is ready for teams that want a finished vendor
+- Design partners keep their 50% for 12 months
+Prices in euros, as published on the Doctorine design partner programme.
+
+## Free report, paid gate, generated surfaces as the upgrade.
+Capability
+Free
+Design partner
+Docs Analyser
+Unlimited public portals
+Included
+Agent task eval
+One report on your public docs and spec
+On every spec pull request
+Release gate with receipts
+Not included
+Included
+Spec repair
+Findings in the report
+Pull requests with the fixes
+Generated surfaces
+Not included
+Docs portal, SDKs, CLI, MCP server, Agent Skills
+Weekly session with the founder
+Not included
+Included
+
+## Questions
+
+### Is the eval report really free?
+Yes. It runs on the docs and spec you already publish and needs no payment details.
+
+### Can we pay annually?
+Not for design partner seats. They are a monthly subscription for the three to six months you choose before you start.
+
+### What happens after the design partner term?
+If you complete the months you agreed, you keep 50% off everything for 12 months. That discount is written down before you start.
+
+### When will public plans be published?
+When the product is ready for teams that want a finished vendor. Until then, the design partner seats are the way in.
+
+## Start with the free report.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/security/
+Title: Security and deployment | Doctorine
+Description: What Doctorine touches and where it runs: public docs only for the eval, scoped GitHub App permissions for the gate, EU data residency for the core.
+
+# Security and deployment: what Doctorine touches and where it runs
+The free eval reads only what you already publish. The release gate runs in your repository with narrow GitHub App permissions. Core data stays in the EU, and every limit is written down.
+
+## Public docs in, report out.
+The eval reads your public docs and, if you publish one, your OpenAPI spec. Tasks run against a sandbox that answers from the spec, so no production keys are used and no real data is touched.
+A public, synthetic or redacted definition is enough for a first pass. Do not send credentials or private production data.
+
+## A GitHub App that works only where you let it.
+You choose the repositories. Each operation uses a short-lived, single-repository token instead of a broad installation token.
+Permission
+Access
+Why
+Metadata
+read
+Identify the selected repository and its default branch.
+Contents
+write
+Write generated SDK code and managed release branches, only in repositories you select.
+Pull requests
+write
+Open and update release pull requests. Does not bypass branch protection or required checks.
+Checks
+write
+Publish Doctorine generation and release checks.
+Administration
+read
+Read branch protection before a safe automatic merge. Cannot change settings.
+Excerpt. Doctorine refuses write access to repository and organization secrets, repository and organization administration, webhook management and all user and account permissions. Full permission list
+
+## Each control, with the limit around it.
+
+### EU data at rest for the core data plane
+Core content and tenant stores are in EU regions. 11 of 16 declared subprocessor rows are EU-resident; 5 non-EU carve-outs cover services such as authentication, payments and consented analytics. This is not a claim of EU-only edge processing.
+
+### Tenant isolation in the database
+Tenant-scoped tables use Postgres FORCE ROW LEVEL SECURITY, with cross-tenant probes in the test harness. Application authorization is an extra layer, not the only boundary.
+
+### Immutable artifacts, explicit activation
+Publishing writes content-addressed release artifacts and activates one through a pointer, which makes rollback deterministic.
+
+### Crypto-shred erasure with a receipt
+Erasure destroys the scoped encryption key, reconciles every declared store and emits a completion receipt only after clean verification.
+
+### Audited staff access
+Supported staff sessions and back-office actions are written to audited tables and shown in the customer activity feed.
+
+### Hosted, not self-hosted
+Doctorine runs as a hosted service today. Self-hosting is not available yet.
+Details, subprocessors and residency are in the Doctorine Trust Center. Trust Center
+
+## Found something? Tell us.
+Email security@doctorine.xyz with a description, reproduction steps and impact. We acknowledge within 2 business days, make a triage decision within 5 and keep you informed through the fix. Machine-readable details are at /.well-known/security.txt.
+
+## Questions
+
+### Does Doctorine need our production credentials?
+No. The eval reads public docs and your spec, and tasks run against a sandbox that answers from the spec. Do not send credentials or private production data.
+
+### Can we self-host Doctorine?
+Not today. If running inside your own network is the blocker, tell us, because it decides what we build next.
+
+### How do we report a vulnerability?
+Email security@doctorine.xyz with a description, reproduction steps and impact. We acknowledge within 2 business days and make a triage decision within 5.
+
+---
+
+URL: https://doctorine.xyz/about/
+Title: About Doctorine: proof that APIs still work
+Description: Why Doctorine exists, what we believe about APIs in the agent era, and what is live today versus what we are building with design partners.
+
+# About Doctorine
+We build the check that tells an API team whether agents and developers can still use their API after a change. Doctorine is early software, and says so.
+
+## Agents became the main reader of API docs. Nobody checks what they do with them.
+On Mintlify-hosted docs, agents went from 15.2% of traffic at the start of 2026 to 66% in July, according to Mintlify's midyear report. Generating a client from a spec now takes an agent seconds. What stays scarce is proof that the docs, SDKs and tools are still correct for this release.
+So Doctorine sells proof, not generation: a free report on the docs you have, then a gate in your CI, with generated surfaces as the upgrade.
+Source: Mintlify, The state of docs traffic, 2026 midyear report, 29 July 2026. mintlify.com
+
+## Five rules we build by.
+- 01 Successful use is the outcome An API is only as good as the task a developer or an agent can finish with it. That is what we measure.
+- 02 The approved release is the unit Docs, SDKs, CLI, MCP server and skills belong to one release, and move together or not at all.
+- 03 Remove review, never add it A tool that adds pull requests to review will not be used. A check that removes a step will.
+- 04 Start where teams are On the docs they already host and the spec they already have, without a migration first.
+- 05 Say what is unfinished Doctorine is early software. We label samples as samples and early access as early access.
+
+## What is live, and what is still with design partners.
+
+### Live
+Docs Analyser at doctorine.dev, the hosted docs portal, TypeScript, Python and Go SDKs, the CLI, MCP server, Agent Skills, release receipts and EU residency for the core data plane.
+
+### Free report
+The agent task eval, run on your public docs and spec and sent to you.
+
+### With design partners
+The release gate in your CI and spec repair pull requests.
+
+## Talk to the people building it.
+Email pilot@doctorine.xyz with the API you ship and the release that is hardest to keep aligned. A public or redacted spec is enough to start.
+
+---
+
+URL: https://doctorine.xyz/design-partners/
+Title: Design partners and contact | Doctorine
+Description: Request a free agent task eval report on your public docs, or join the paid design partner group that puts a real API on Doctorine every week.
+
+# Design partners and contact
+Two ways in. Ask for a free eval report on your public docs, or join the small paid group that puts a real API on Doctorine and shapes what it becomes.
+
+## Request a free eval report.
+We run five real tasks against your API on every surface you publish and send you the report, with the cause and the fix for each failure.
+- 01 Your public docs URL Wherever they are hosted.
+- 02 Your OpenAPI spec A link, if it is public. A synthetic or redacted one is fine.
+- 03 Two or three first tasks What your integrators do in week one. We add the rest from your spec.
+- 04 Your role So the report lands with the right level of detail.
+Do not send credentials or private production data.
+
+## A small paid group that uses it every week.
+You get the full product and a direct line to the founder. We get a real API and honest notes on what broke. When the seats fill, we stop taking partners.
+
+### €100 / month
+For one person shipping their own API.
+
+### €300 / month
+For a team. One subscription, one weekly session.
+
+### What you get
+- The full product, no partner-lite plan and no feature lock
+- A Discord or Telegram chat with the founder
+- A weekly feedback session of about 45 minutes
+- A say in the roadmap, and a note of what shipped because of you
+- 50% off everything for 12 months after your agreed term
+
+### What you commit
+- Three to six months, chosen before we start
+- Show up to the weekly session
+- Use Doctorine on a real OpenAPI spec, not a throwaway file
+- Write down what broke
+To apply, email pilot@doctorine.xyz with the seat you want, how many months you can give and the API you will put on it.
+
+## Two addresses, each for one thing.
+
+### pilot@doctorine.xyz
+Eval reports, design partner seats and pilots. Tell us the API surface you deliver, your role and the workflow you most want to validate.
+
+### security@doctorine.xyz
+Vulnerability reports only. We acknowledge within 2 business days.
+
+## Questions
+
+### What should we send for a free eval report?
+Your public docs URL, a link to your OpenAPI spec if it is public, the two or three tasks your integrators do first and your role. No credentials, no private production data.
+
+### How long is the design partner commitment?
+Three to six months, chosen before you start. You pay monthly and use Doctorine on a real OpenAPI spec every week.
+
+### What if the seats are full?
+There are 20 seats for individuals and 20 for companies. When they fill, we stop taking new partners. The free eval report stays open.
+
+---
+
+URL: https://doctorine.xyz/solutions/public-api-teams/
+Title: Doctorine for public API teams
+Description: For teams whose API serves paying clients and partners: check every spec change against real integration tasks before docs, SDKs and tools update.
+
+# For public API teams: ship spec changes your clients can still use
+Your API serves paying clients and partners who pin versions and build on your examples. Doctorine checks every spec change against the tasks they actually do, on every surface, before the change is published.
+
+## Where it breaks today
+- A spec change is merged, but tutorials and examples still describe last month's API.
+- It is hard to tell a bug fix from a breaking change, and for which clients.
+- Approval runs through several reviewers, because nobody can see what was already checked.
+Sample pull request on an example API. Not customer data.
+
+## What changes with Doctorine.
+- Agent task eval: A free eval report on your public docs: which integration tasks agents fail today, and why.
+- Release gate: A check on the spec pull request that holds back any surface that failed.
+- Release gate: A receipt per release, so support can answer which version a client's agent was reading.
+- Spec repair: Spec repair for the examples and descriptions that drifted.
+
+## Three steps, the first one free.
+- 01 Request the free report Send your public docs URL. We run five tasks on every surface you publish.
+- 02 Replay a recent change Put one of your last spec changes through the gate and see what it would have caught.
+- 03 Keep the gate on Run it on every spec pull request for your next releases.
+
+## Questions
+
+### Do we need to move our docs portal?
+No. The eval and the gate work on the docs you host today. The Doctorine portal is an option, not the entry point.
+
+### Can it tell us whether a change is breaking?
+The gate classifies what changed in the spec and which surfaces it touches. When it cannot decide whether a behaviour change is a fix or a breaking change, it asks a person and records the decision in the receipt.
+
+## Related
+
+### Platform teams
+One check on the spec pull request instead of another review layer: rebuild every surface, run the tasks and leave reviewers only real decisions.
+
+### DevRel and docs owners
+See which real tasks coding agents and developers can finish with your docs, which page or example fails them, and what to fix first.
+
+### SDK vendor migration
+Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/solutions/platform-teams/
+Title: Doctorine for API platform teams
+Description: One check on the spec pull request instead of another review layer: rebuild every surface, run the tasks and leave reviewers only real decisions.
+
+# For platform teams: one check in CI instead of another review layer
+Several teams edit one spec, and every change has to reach docs, SDKs, the CLI and the MCP server without a week of coordination. Doctorine runs as a check on the pull request, where your spec already lives.
+
+## Where the time goes
+- Many teams edit the same spec, so every change needs coordination before it is ready.
+- Clients and docs are rebuilt in different tools, on different versions.
+- Every new tool adds pull requests to review, so none of them sticks.
+
+### Partial refunds now round half-up to the minor unit.
+Clients that reconcile totals may see one cent differences. The gate cannot tell whether this is a bug fix or a breaking change for your users.
+
+### The new enum description says delivery reason.
+Your style rule says dispatch, never delivery, for fulfilment. It might be deliberate. That is a call for a person, so the gate asks one.
+What you can skip: 38 wording checks, 212 contract tests and 24 agent tasks passed on this sample change. The gate reviewed them.
+
+## What changes with Doctorine.
+- Release gate: Runs as a GitHub check on the pull request that changes the spec.
+- Release gate: Rebuilds every surface from the same revision and runs contract tests and agent tasks.
+- Release gate: Leaves reviewers only the decisions it could not make, such as classification and wording.
+- Generated surfaces: Generates a missing CLI, MCP server or SDK from the same spec when you need one.
+
+## Three steps, the first one free.
+- 01 Install the GitHub App On the spec repository only. You choose which repositories it can see.
+- 02 Choose the tasks Start from the eval report and keep the tasks that matter to your users.
+- 03 Turn on the check It runs on every spec pull request, next to your other checks.
+
+## Questions
+
+### What access does the GitHub App need?
+It works only in the repositories you select, with short-lived single-repository tokens. It never asks to write secrets or change repository administration.
+
+### Can we run it inside our own network?
+Not today. Self-hosting is not available yet. If it is the blocker, tell us, because it decides what we build next.
+
+## Related
+
+### Public API teams
+For teams whose API serves paying clients and partners: check every spec change against real integration tasks before docs, SDKs and tools update.
+
+### DevRel and docs owners
+See which real tasks coding agents and developers can finish with your docs, which page or example fails them, and what to fix first.
+
+### SDK vendor migration
+Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/solutions/devrel-and-docs/
+Title: Doctorine for DevRel and docs owners
+Description: See which real tasks coding agents and developers can finish with your docs, which page or example fails them, and what to fix first.
+
+# For DevRel and docs owners: know which tasks your readers can finish
+Coding agents now read a large share of API docs, and they fail quietly. Doctorine shows which real tasks agents and developers can complete with your docs, and which page or example to fix first.
+
+## What you cannot see today
+- Tutorials go stale while the reference stays current.
+- Readiness scores say the docs are fine, while agents still fail real tasks.
+- Nobody hears about an integration that failed but reported success.
+On Mintlify-hosted docs, agents went from 15.2% of traffic at the start of 2026 to 66% in July, according to Mintlify's midyear report of 29 July 2026. mintlify.com
+
+## What changes with Doctorine.
+- Agent task eval: Task-level results per surface, with the step where each run went wrong.
+- Docs Analyser: The free Docs Analyser for the static signals agents look for.
+- Release gate: Tasks you care about become checks, so a docs change cannot silently break them.
+- Generated surfaces: llms.txt, Markdown per page and Agent Skills from the same release, when you want them.
+
+## Three steps, the first one free.
+- 01 Run the Docs Analyser Fix the static signals first. It takes minutes.
+- 02 Request the eval report See which tasks fail, and on which page.
+- 03 Make the tasks checks Keep them green on every release with the gate.
+
+## Questions
+
+### Does this replace our docs platform?
+No. Doctorine works on top of docs hosted anywhere. The hosted portal is an option, not a requirement.
+
+### Can we see the tasks before they count?
+Yes. Task definitions and pass criteria come with the report, and you can change them before they become checks.
+
+## Related
+
+### Public API teams
+For teams whose API serves paying clients and partners: check every spec change against real integration tasks before docs, SDKs and tools update.
+
+### Platform teams
+One check on the spec pull request instead of another review layer: rebuild every surface, run the tasks and leave reviewers only real decisions.
+
+### SDK vendor migration
+Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/solutions/sdk-vendor-migration/
+Title: Migrate off a shut-down SDK vendor | Doctorine
+Description: Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.
+
+# Migrating off a shut-down SDK vendor, with proof of what changed
+When Anthropic acquired Stainless, every hosted product was wound down on 18 May 2026, and teams lost the pipeline behind their SDKs. Doctorine imports supported configuration, regenerates the surfaces and gates them, so you can show your users what did and did not change.
+
+## What a forced move puts at risk
+- The generator behind your published SDKs is gone, but your users still depend on its type names.
+- The next vendor could be acquired too.
+- Nobody can show, with evidence, that the regenerated SDK behaves the same.
+Source: Anthropic, Anthropic acquires Stainless, 18 May 2026. www.anthropic.com
+
+## What changes with Doctorine.
+- Generated surfaces: Translate supported configuration from Fern, Stainless, Speakeasy or ReadMe into a draft, with what mapped, degraded and is unsupported listed.
+- Release gate: Run your contract tests and agent tasks on the regenerated SDK before you switch.
+- Release gate: Publish with a receipt that records the spec, generator and output hashes.
+- Security: SDK code is written to repositories you select, through pull requests that respect branch protection.
+
+## Three steps, the first one free.
+- 01 Send your configuration And a link to the SDK you publish today.
+- 02 Review the mapping record See what carried over, what degraded and what needs a decision.
+- 03 Switch when the gate is green Publish only when the regenerated SDK passes your tasks.
+
+## Questions
+
+### Which configurations can you import?
+Supported configuration from Fern, Stainless, Speakeasy or ReadMe becomes a Doctorine draft. The mapping record lists what mapped exactly, what degraded and what needs a decision.
+
+### How do we know nothing broke for our users?
+Your existing tasks run against the regenerated SDK in the gate before anything is published, and the receipt records what shipped.
+
+## Related
+
+### Public API teams
+For teams whose API serves paying clients and partners: check every spec change against real integration tasks before docs, SDKs and tools update.
+
+### Platform teams
+One check on the spec pull request instead of another review layer: rebuild every surface, run the tasks and leave reviewers only real decisions.
+
+### DevRel and docs owners
+See which real tasks coding agents and developers can finish with your docs, which page or example fails them, and what to fix first.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/industries/fintech-and-payments/
+Title: Doctorine for fintech and payments APIs
+Description: Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.
+
+# For fintech and payments APIs: the right amount, every release
+Payment APIs fail in quiet, expensive ways: a refund in the wrong currency unit, a retry that charges twice, a webhook trusted without a valid signature. Doctorine tests those tasks with agents before each change ships.
+
+## The failures that do not throw errors
+- Amounts in minor units that the docs never state, so an agent refunds cents instead of euros.
+- Idempotency keys that exist in the spec but not in the guide, so a retry charges twice.
+- Webhook signatures computed over a body the docs do not describe.
+- 91 / 100: eadiness score 91 / 100 Checks files and headers only
+- 9 / 20: completed 9 / 20 Agreed across 3 runs
+- 93%: eat agreement 93% Same verdict on 56 of 60 runs
+- 6: ixable causes 6 4 in the docs, 2 in the spec
+Sample report on an example API, Acme Payments. Select any cell to see the run. Not customer data.
+
+## What changes with Doctorine.
+- Agent task eval: Payment tasks run on every surface: create, pay safely on retry, refund part, list payouts, verify webhooks.
+- Release gate: No surface ships with a failing money task. Reviewers see what was checked.
+- Release gate: Receipts with hashes and decisions, for the audit trail your reviewers already ask for.
+- Security: EU data at rest for the core data plane, and tasks that never touch production or real money.
+
+## Three steps, the first one free.
+- 01 Request the free report We use your public docs and spec, and a sandbox that answers from the spec.
+- 02 Fix the money tasks first Minor units, idempotency and webhooks are usually one line each.
+- 03 Gate every release Keep those tasks green on every spec change.
+
+## Questions
+
+### Do you need access to our payment systems?
+No. Tasks run against a sandbox that answers from your spec. No production credentials and no real money are involved.
+
+### Where is our data stored?
+Core content and tenant stores are in EU regions, with a few documented carve-outs such as authentication and payments.
+
+## Related
+
+### SaaS with partner APIs
+Check each spec change against the tasks your partners run, and publish docs, SDKs and tools from one release that pinned integrations can trust.
+
+### Developer platforms
+Your users build with coding agents. Measure which surface gets them to a working integration first, at what token cost, and gate each release on it.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/industries/saas-partner-apis/
+Title: Doctorine for SaaS platforms with partner APIs
+Description: Check each spec change against the tasks your partners run, and publish docs, SDKs and tools from one release that pinned integrations can trust.
+
+# For SaaS platforms with partner APIs: one release, every partner
+Partners pin versions, build on your examples and more and more let agents write the integration. Doctorine checks each spec change against partner tasks and publishes docs, SDKs and tools from one release.
+
+## What partners run into
+- Endpoints go live but stay out of the docs until a target partner has tested them, so the spec is not the whole truth.
+- Partners pinned to older versions break on changes that looked like fixes.
+- Tutorials point at an old version while the spec is current.
+Sample pull request on an example API. Not customer data.
+
+## What changes with Doctorine.
+- Release gate: Every spec change is classified, and anything it cannot classify goes to a person before release.
+- Agent task eval: Partner integration tasks run on every surface you give partners.
+- Generated surfaces: A hosted portal with versions and private access for named partners, from the same release.
+- Release gate: A receipt per release, so you can tell a partner exactly what changed.
+
+## Three steps, the first one free.
+- 01 Request the free report On the docs partners use today.
+- 02 Add partner tasks The jobs your partners do first, written from your spec.
+- 03 Gate the next release And send partners the receipt instead of a changelog guess.
+
+## Questions
+
+### Can partners have their own view of the docs?
+The hosted Doctorine portal supports versions and private access, generated from the same release as everything else.
+
+### Do we have to host our docs with you?
+No. The eval and the gate work with docs hosted anywhere.
+
+## Related
+
+### Fintech and payments
+Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.
+
+### Developer platforms
+Your users build with coding agents. Measure which surface gets them to a working integration first, at what token cost, and gate each release on it.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.
+
+---
+
+URL: https://doctorine.xyz/industries/developer-platforms/
+Title: Doctorine for developer platforms
+Description: Your users build with coding agents. Measure which surface gets them to a working integration first, at what token cost, and gate each release on it.
+
+# For developer platforms: be the API agents get right the first time
+Your users build with coding agents, and they judge you by whether the agent's first attempt works. Doctorine measures that per surface, including tokens per completed task, and gates every release on it.
+
+## Where agents lose time and tokens
+- MCP servers that wrap every endpoint thinly, costing tokens and retries.
+- CLIs and SDKs that drift from the docs they came from.
+- Skills that nobody can verify are current.
+Sample outputs for an example API, Acme Payments. Not customer data.
+
+## What changes with Doctorine.
+- Agent task eval: Tasks per surface with tokens per completed task, so you know which surface to point agents at.
+- Generated surfaces: A CLI with JSON output, an MCP server and verified Agent Skills from the same spec.
+- Release gate: Every surface held to the same tasks on every release.
+- Docs Analyser: The free Docs Analyser for discovery signals such as the API Catalog and MCP Server Card.
+
+## Three steps, the first one free.
+- 01 Run the Docs Analyser Discovery was the weakest category in our September research.
+- 02 Request the eval report Compare docs only, CLI, MCP and SDKs on the same tasks.
+- 03 Gate the surfaces agents use Keep the cheapest working surface green.
+
+## Questions
+
+### Which surface do agents do best with?
+It depends on the API, which is why the eval reports each surface separately, with tokens per completed task.
+
+### Do we have to use your MCP server?
+No. The eval and the gate check the MCP server you already run. Generating one is optional.
+
+## Related
+
+### Fintech and payments
+Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.
+
+### SaaS with partner APIs
+Check each spec change against the tasks your partners run, and publish docs, SDKs and tools from one release that pinned integrations can trust.
+
+## Ship the change. Keep the proof.
+Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.

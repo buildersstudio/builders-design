@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="nl" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs, SDK&#x27;s, CLI, MCP en skills uit één spec | Doctorine</title>
+<meta name="description" content="Genereer een docsportaal, TypeScript-, Python- en Go-SDK&#x27;s, een CLI, een MCP-server en Agent Skills uit je OpenAPI-spec, elk gecontroleerd voor release.">
+<link rel="canonical" href="https://doctorine.xyz/nl/gegenereerde-interfaces/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/generated-surfaces/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/gegenereerde-interfaces/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/generated-surfaces/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="Docs, SDK&#x27;s, CLI, MCP en skills uit één spec | Doctorine">
+<meta property="og:description" content="Genereer een docsportaal, TypeScript-, Python- en Go-SDK&#x27;s, een CLI, een MCP-server en Agent Skills uit je OpenAPI-spec, elk gecontroleerd voor release.">
+<meta property="og:url" content="https://doctorine.xyz/nl/gegenereerde-interfaces/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: elke API-wijziging bewezen voordat ze live gaat">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Docs, SDK&#x27;s, CLI, MCP en skills uit één spec | Doctorine">
+<meta name="twitter:description" content="Genereer een docsportaal, TypeScript-, Python- en Go-SDK&#x27;s, een CLI, een MCP-server en Agent Skills uit je OpenAPI-spec, elk gecontroleerd voor release.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://doctorine.xyz/nl/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Gegenereerde interfaces",
+     "item": "https://doctorine.xyz/nl/gegenereerde-interfaces/"
+    }
+   ]
+  },
+  {
+   "@type": "SoftwareApplication",
+   "name": "Doctorine Generated surfaces",
+   "applicationCategory": "DeveloperApplication",
+   "operatingSystem": "Web, GitHub",
+   "url": "https://doctorine.xyz/nl/gegenereerde-interfaces/",
+   "description": "Genereer een docsportaal, TypeScript-, Python- en Go-SDK's, een CLI, een MCP-server en Agent Skills uit je OpenAPI-spec, elk gecontroleerd voor release.",
+   "publisher": {
+    "@id": "https://doctorine.xyz/#org"
+   },
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Design partner, individual",
+     "price": "100",
+     "priceCurrency": "EUR",
+     "url": "https://doctorine.xyz/pricing/"
+    },
+    {
+     "@type": "Offer",
+     "name": "Design partner, company",
+     "price": "300",
+     "priceCurrency": "EUR",
+     "url": "https://doctorine.xyz/pricing/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Welke interfaces kan Doctorine genereren?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Een gehost documentatieportaal, TypeScript-, Python- en Go-SDK's, een CLI, een MCP-server en Agent Skills, allemaal uit dezelfde goedgekeurde OpenAPI-spec."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Moeten we ze allemaal gebruiken?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nee. Genereer alleen de interfaces die je mist en houd de rest. Beide gaan door dezelfde release gate."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Waar staat de SDK-code?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "In repositories die jij kiest. Doctorine schrijft gegenereerde code en releasebranches via zijn GitHub App en opent pull requests die je branch protection respecteren."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Kunnen we configuratie van een andere leverancier meenemen?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ondersteunde configuratie van Fern, Stainless, Speakeasy of ReadMe kan worden omgezet naar een Doctorine-concept, met een overzicht van wat overkwam, wat minder goed overkwam en wat niet wordt ondersteund."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Doctorine home"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Hoofdmenu">
+      <div class="dd cur"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="../agenttaken-evaluatie/index.html"><b>Agenttaken-evaluatie <span class="st">Gratis rapport</span></b><span>Kan een agent de klus klaren met je API? Een gratis rapport.</span></a><a href="../releasecontrole/index.html"><b>Release gate <span class="st">Designpartners</span></b><span>Een CI-check die alleen geslaagde interfaces publiceert.</span></a><a href="../spec-herstel/index.html"><b>Spec-herstel <span class="st">Early access</span></b><span>Vind wat agents blokkeert in je spec en los het op in één pull request.</span></a><a href="index.html"><b>Gegenereerde interfaces <span class="st">Live</span></b><span>Docsportaal, SDK&#x27;s, CLI, MCP-server en skills uit één spec.</span></a><a href="../docs-analyse/index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Gratis: scoor hoe goed agents je docs vinden, lezen en gebruiken.</span></a></div></div>
+      <a href="../oplossingen/index.html">Oplossingen</a><a href="../sectoren/index.html">Sectoren</a><a href="../onderzoek/index.html">Onderzoek</a><a href="../prijzen/index.html">Prijzen</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Taal"><a href="../../en/generated-surfaces/index.html" hreflang="en" lang="en" title="English">EN</a><span aria-current="true" lang="nl">NL</span></div>
+      <a class="btn pri sm" href="../designpartners/index.html#eval">Gratis evaluatie</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu openen"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobiel"><h2>Product</h2><a href="../agenttaken-evaluatie/index.html">Agenttaken-evaluatie <span>Gratis rapport</span></a><a href="../releasecontrole/index.html">Release gate <span>Designpartners</span></a><a href="../spec-herstel/index.html">Spec-herstel <span>Early access</span></a><a href="index.html">Gegenereerde interfaces <span>Live</span></a><a href="../docs-analyse/index.html">Docs Analyser <span>Live</span></a><h2>Ontdek</h2><a href="../oplossingen/index.html">Oplossingen</a><a href="../sectoren/index.html">Sectoren</a><a href="../onderzoek/index.html">Onderzoek</a><a href="../prijzen/index.html">Prijzen</a><h2>Bedrijf</h2><a href="../beveiliging/index.html">Beveiliging</a><a href="../over-ons/index.html">Over ons</a><a href="../designpartners/index.html">Designpartners</a><div class="cta"><a class="btn pri" href="../designpartners/index.html#eval">Vraag een gratis evaluatie aan</a><a class="btn ghost" href="https://doctorine.dev/">Start de Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="phero"><div class="wrap"><nav class="crumbs" aria-label="Kruimelpad"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Gegenereerde interfaces</span></nav><div style="margin-bottom:22px"><span class="status live"><i></i>Live</span></div><h1>Gegenereerde interfaces: docs, SDK's, CLI, MCP en skills uit één spec</h1><p class="lead">Ontbreekt er een interface, dan genereert Doctorine die uit dezelfde goedgekeurde OpenAPI-spec: een gehost documentatieportaal, TypeScript-, Python- en Go-SDK's, een CLI, een MCP-server en Agent Skills. Elk gaat door dezelfde gate, dus alleen wat slaagt wordt gepubliceerd.</p><div class="cta"><a class="btn pri" href="../designpartners/index.html#program">Word designpartner <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="../releasecontrole/index.html">Hoe de gate werkt</a></div></div></section>
+<section class="sec tight" style="padding-top:0;border-top:0" aria-label="Voorbeelduitvoer"><div class="wrap split">
+  <div class="rv"><h2 class="h2" style="font-size:clamp(30px,3.4vw,46px)">Eén release, voor elke manier waarop ontwikkelaars en agents werken.</h2>
+  <p class="lead" style="margin-top:20px">Hetzelfde veld, hetzelfde voorbeeld en dezelfde versie op elke interface. Verandert de spec, dan veranderen ze samen of helemaal niet.</p></div>
+  <div class="rv d1"><div class="ui-stage"><div class="ui"><div class="rp-head"><b>Release 4.13.0, elke interface</b><span class="sample">Voorbeeld-API</span></div>
+<div class="tabs" role="tablist" aria-label="Interfaces"><button class="tab" role="tab" id="tab-docs" aria-controls="tp-docs" aria-selected="true" tabindex="0">Docs portal</button><button class="tab" role="tab" id="tab-ts" aria-controls="tp-ts" aria-selected="false" tabindex="-1">TypeScript</button><button class="tab" role="tab" id="tab-py" aria-controls="tp-py" aria-selected="false" tabindex="-1">Python</button><button class="tab" role="tab" id="tab-go" aria-controls="tp-go" aria-selected="false" tabindex="-1">Go</button><button class="tab" role="tab" id="tab-cli" aria-controls="tp-cli" aria-selected="false" tabindex="-1">CLI</button><button class="tab" role="tab" id="tab-mcp" aria-controls="tp-mcp" aria-selected="false" tabindex="-1">MCP</button><button class="tab" role="tab" id="tab-skill" aria-controls="tp-skill" aria-selected="false" tabindex="-1">Agent Skill</button></div><div class="tabp on" id="tp-docs" role="tabpanel" aria-labelledby="tab-docs"><pre class="term"><span class="cm"># GET https://docs.acme-payments.example/refunds.md</span>
+<span class="k">## Create a refund</span>
+
+POST /v1/refunds
+
+<span class="s">amount</span>  integer, required. Minor units: 1250 is 12.50 EUR.
+<span class="s">reason</span>  one of duplicate, fraudulent, requested_by_customer.
+
+<span class="cm">Also served as llms.txt, Markdown per page and a sitemap.</span></pre><div class="foot"><span>docs.acme-payments.example</span><b>Gepubliceerd vanuit release 4.13.0</b></div></div><div class="tabp" id="tp-ts" role="tabpanel" aria-labelledby="tab-ts"><pre class="term"><span class="k">import</span> { AcmePayments } <span class="k">from</span> <span class="s">"@acme/payments"</span>;
+
+<span class="k">const</span> acme = <span class="k">new</span> AcmePayments({ apiKey: process.env.ACME_KEY });
+<span class="k">const</span> refund = <span class="k">await</span> acme.refunds.create({
+  payment: <span class="s">"pay_8Hq2"</span>,
+  amount: <span class="n2">1250</span>,
+  reason: <span class="s">"requested_by_customer"</span>,
+});</pre><div class="foot"><span>@acme/payments</span><b>212 gegenereerde tests geslaagd</b></div></div><div class="tabp" id="tp-py" role="tabpanel" aria-labelledby="tab-py"><pre class="term"><span class="k">from</span> acme_payments <span class="k">import</span> AcmePayments
+
+acme = AcmePayments(api_key=os.environ[<span class="s">"ACME_KEY"</span>])
+refund = acme.refunds.create(
+    payment=<span class="s">"pay_8Hq2"</span>,
+    amount=<span class="n2">1250</span>,
+    reason=<span class="s">"requested_by_customer"</span>,
+)</pre><div class="foot"><span>acme-payments</span><b>Typecheck en contracttests geslaagd</b></div></div><div class="tabp" id="tp-go" role="tabpanel" aria-labelledby="tab-go"><pre class="term">refund, err := client.Refunds.Create(ctx, acme.RefundCreateParams{
+    Payment: <span class="s">"pay_8Hq2"</span>,
+    Amount:  <span class="n2">1250</span>,
+    Reason:  acme.RefundReasonRequestedByCustomer,
+})</pre><div class="foot"><span>github.com/acme/payments-go</span><b>198 gegenereerde tests geslaagd</b></div></div><div class="tabp" id="tp-cli" role="tabpanel" aria-labelledby="tab-cli"><pre class="term"><span class="pr">$</span> acme refunds create --payment pay_8Hq2 --amount 1250 \
+    --reason requested_by_customer --json
+{
+  <span class="k">"id"</span>: <span class="s">"re_31Kd"</span>,
+  <span class="k">"amount"</span>: <span class="n2">1250</span>,
+  <span class="k">"status"</span>: <span class="s">"succeeded"</span>
+}</pre><div class="foot"><span>acme</span><b>JSON-output klopt met het schema</b></div></div><div class="tabp" id="tp-mcp" role="tabpanel" aria-labelledby="tab-mcp"><pre class="term"><span class="cm">// tools/list, excerpt</span>
+{
+  <span class="k">"name"</span>: <span class="s">"refunds.create"</span>,
+  <span class="k">"description"</span>: <span class="s">"Refund all or part of a payment. amount is in minor units."</span>,
+  <span class="k">"inputSchema"</span>: { <span class="k">"required"</span>: [<span class="s">"payment"</span>, <span class="s">"amount"</span>] }
+}</pre><div class="foot"><span>mcp.acme-payments.example</span><b>5 van 5 agenttaken afgerond</b></div></div><div class="tabp" id="tp-skill" role="tabpanel" aria-labelledby="tab-skill"><pre class="term"><span class="cm">---</span>
+<span class="k">name</span>: acme-refunds
+<span class="k">description</span>: Create full and partial refunds with the Acme Payments API.
+<span class="cm">---</span>
+Amounts are integers in minor units. 1250 is 12.50 EUR.
+Use the reason field, never reason_code.</pre><div class="foot"><span>acme-payments/refunds</span><b>Ondertekend, verwijst alleen naar gepubliceerde operaties</b></div></div></div>
+<p class="caption">Voorbeelduitvoer voor een fictieve API, Acme Payments. Geen klantdata.</p></div></div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="why-h"><div class="wrap two-col">
+  <div class="rv"><span class="label">Waarom het de upgrade is</span><h2 id="why-h" style="margin-top:16px">Genereren is nu goedkoop. Bewijs niet.</h2></div>
+  <div class="body rv d1"><p>Coding agents schrijven op verzoek een client uit een spec, en gratis generators dekken de gangbare talen. Wat schaars blijft, is bewijs dat de output klopt voor deze release.</p>
+  <p>Daarom begint Doctorine met de evaluatie en de gate. Gegenereerde interfaces zijn er wanneer je ze nodig hebt, en ze moeten dezelfde taken halen als de interfaces die je al hebt.</p></div>
+</div></section>
+
+<section class="sec" aria-labelledby="w-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Vandaag live</span><h2 id="w-h">Elke interface gebouwd rond zijn echte taak.</h2></div></div>
+  <div class="cards"><div class="card rv"><span class="label">Docs portal</span><h3>Documentatie voor mensen en agents</h3><p>Gehoste gidsen, referentie, versies, zoeken en afgeschermde toegang, met Markdown per pagina en llms.txt.</p></div><div class="card rv"><span class="label">SDKs</span><h3>TypeScript, Python en Go</h3><p>Clientbibliotheken die hun taalchecks en contracttests moeten halen voordat ze worden geleverd.</p></div><div class="card rv"><span class="label">CLI</span><h3>De API vanuit terminal of CI</h3><p>Commando&#x27;s met JSON-output die klopt met het schema, voor ontwikkelaars, scripts en agents.</p></div><div class="card rv"><span class="label">MCP-server</span><h3>Afgebakende toegang voor agents</h3><p>Tools uit je operaties, met omschrijvingen waar agents mee verder kunnen, en dezelfde release als de docs.</p></div><div class="card rv"><span class="label">Agent Skills</span><h3>Praktische kennis, verpakt</h3><p>Een geverifieerd SKILL.md-artefact dat alleen naar gepubliceerde operaties verwijst.</p></div><a class="card rv" href="../releasecontrole/index.html"><span class="label">Bewijs</span><h3>Eén release voor allemaal</h3><p>Elke interface draagt de hashes van spec, generator en output, en draait samen terug.</p><span class="more">Release gate</span></a></div>
+</div></section>
+<section class="sec paper" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">Vragen</h2></div>
+<div class="faq rv d1"><details><summary>Welke interfaces kan Doctorine genereren?</summary><div class="a"><p>Een gehost documentatieportaal, TypeScript-, Python- en Go-SDK&#x27;s, een CLI, een MCP-server en Agent Skills, allemaal uit dezelfde goedgekeurde OpenAPI-spec.</p></div></details><details><summary>Moeten we ze allemaal gebruiken?</summary><div class="a"><p>Nee. Genereer alleen de interfaces die je mist en houd de rest. Beide gaan door dezelfde release gate.</p></div></details><details><summary>Waar staat de SDK-code?</summary><div class="a"><p>In repositories die jij kiest. Doctorine schrijft gegenereerde code en releasebranches via zijn GitHub App en opent pull requests die je branch protection respecteren.</p></div></details><details><summary>Kunnen we configuratie van een andere leverancier meenemen?</summary><div class="a"><p>Ondersteunde configuratie van Fern, Stainless, Speakeasy of ReadMe kan worden omgezet naar een Doctorine-concept, met een overzicht van wat overkwam, wat minder goed overkwam en wat niet wordt ondersteund.</p></div></details></div></div></section>
+<section class="close" aria-labelledby="close-h"><div class="wrap">
+<div class="rv"><h2 id="close-h">Ship de wijziging. Houd het bewijs.</h2><p>Stuur ons je publieke docs en spec, en we laten zien welke echte taken agents vandaag met je API kunnen afronden. Het rapport is gratis en leest alleen wat je al publiceert.</p>
+<div class="cta"><a class="btn pri" href="../designpartners/index.html#eval">Vraag een gratis evaluatie aan <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Start de Docs Analyser</a></div></div>
+<img class="rv d1" src="../../assets/img/horse-portrait-dark.jpg" width="912" height="941" loading="lazy" alt="Het Doctorine-paard, getekend in fijne lichtpunten op zwart">
+</div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="../index.html"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>De release gate voor API's in het tijdperk van agents. Bewijs dat agents en ontwikkelaars je API nog kunnen gebruiken, bij elke wijziging.</p></div>
+      <div><h2>Product</h2><ul><li><a href="../agenttaken-evaluatie/index.html">Agenttaken-evaluatie</a></li><li><a href="../releasecontrole/index.html">Release gate</a></li><li><a href="../spec-herstel/index.html">Spec-herstel</a></li><li><a href="index.html">Gegenereerde interfaces</a></li><li><a href="../docs-analyse/index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Oplossingen</h2><ul><li><a href="../oplossingen/publieke-api-teams/index.html">Publieke API-teams</a></li><li><a href="../oplossingen/platformteams/index.html">Platformteams</a></li><li><a href="../oplossingen/devrel-en-documentatie/index.html">DevRel en docs-eigenaren</a></li><li><a href="../oplossingen/overstap-sdk-leverancier/index.html">Overstap van SDK-leverancier</a></li></ul></div>
+      <div><h2>Sectoren</h2><ul><li><a href="../sectoren/fintech-en-betalingen/index.html">Fintech en betalingen</a></li><li><a href="../sectoren/saas-met-partner-apis/index.html">SaaS met partner-API&#x27;s</a></li><li><a href="../sectoren/ontwikkelaarsplatformen/index.html">Ontwikkelaarsplatformen</a></li></ul></div>
+      <div><h2>Bedrijf</h2><ul><li><a href="../onderzoek/index.html">Onderzoek</a></li><li><a href="../prijzen/index.html">Prijzen</a></li><li><a href="../beveiliging/index.html">Beveiliging</a></li><li><a href="../over-ons/index.html">Over ons</a></li><li><a href="../designpartners/index.html">Designpartners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Voorbeelddata op deze site gebruikt een fictieve API, Acme Payments. Het is geen klantdata.</span><span>EU-dataresidentie voor het kerndatavlak, met gedocumenteerde uitzonderingen. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

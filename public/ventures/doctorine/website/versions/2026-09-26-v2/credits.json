@@ -1,0 +1,53 @@
+{
+  "note": "Every picture on this version comes from the Doctorine gallery (venture-owned) or was rendered for it. No stock photography and no generated images were used.",
+  "credits": [
+    {
+      "file": "assets/img/mark-paper.svg",
+      "source": "Doctorine gallery",
+      "author": "Doctorine",
+      "url": "/ventures/doctorine/gallery/icons/doctorine-horse-mark-paper.svg"
+    },
+    {
+      "file": "assets/img/mark-ink.svg",
+      "source": "Doctorine gallery",
+      "author": "Doctorine",
+      "url": "/ventures/doctorine/gallery/icons/doctorine-horse-mark-ink.svg"
+    },
+    {
+      "file": "assets/img/horse-portrait-dark.jpg",
+      "source": "Doctorine gallery",
+      "author": "Doctorine",
+      "url": "/ventures/doctorine/gallery/illustrations/horse-portrait-luma-dark.jpg"
+    },
+    {
+      "file": "assets/img/horse-stipple-light.webp",
+      "source": "Doctorine gallery",
+      "author": "Doctorine",
+      "url": "/ventures/doctorine/gallery/illustrations/horse-full-body-stipple-light.webp"
+    },
+    {
+      "file": "assets/img/analyser-home.jpg",
+      "source": "Doctorine gallery",
+      "author": "Doctorine, screenshot of doctorine.dev",
+      "url": "/ventures/doctorine/gallery/screenshots/doctorine-dev-analyser-home.jpg"
+    },
+    {
+      "file": "assets/img/analyser-checklist.webp",
+      "source": "Doctorine gallery",
+      "author": "Doctorine, product cut-out of doctorine.dev",
+      "url": "/ventures/doctorine/gallery/product/analyser-checklist-findability.webp"
+    },
+    {
+      "file": "assets/img/apple-touch-icon.png",
+      "source": "Doctorine venture badge",
+      "author": "Doctorine",
+      "url": "/ventures/doctorine/badge.png"
+    },
+    {
+      "file": "assets/img/og-doctorine.jpg",
+      "source": "Rendered for this site from the brand fonts and colours",
+      "author": "Builders Design",
+      "url": ""
+    }
+  ]
+}

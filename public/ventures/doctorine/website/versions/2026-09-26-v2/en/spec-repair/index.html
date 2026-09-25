@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spec repair: fix your OpenAPI spec in one PR | Doctorine</title>
+<meta name="description" content="Doctorine scores your OpenAPI spec against what SDKs, the CLI, MCP tools and agents need, then opens one pull request with the mechanical fixes.">
+<link rel="canonical" href="https://doctorine.xyz/spec-repair/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/spec-repair/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/spec-herstel/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/spec-repair/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="Spec repair: fix your OpenAPI spec in one PR | Doctorine">
+<meta property="og:description" content="Doctorine scores your OpenAPI spec against what SDKs, the CLI, MCP tools and agents need, then opens one pull request with the mechanical fixes.">
+<meta property="og:url" content="https://doctorine.xyz/spec-repair/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: every API change, proven before it ships">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="nl_NL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Spec repair: fix your OpenAPI spec in one PR | Doctorine">
+<meta name="twitter:description" content="Doctorine scores your OpenAPI spec against what SDKs, the CLI, MCP tools and agents need, then opens one pull request with the mechanical fixes.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://doctorine.xyz/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Spec repair",
+     "item": "https://doctorine.xyz/spec-repair/"
+    }
+   ]
+  },
+  {
+   "@type": "SoftwareApplication",
+   "name": "Doctorine Spec repair",
+   "applicationCategory": "DeveloperApplication",
+   "operatingSystem": "Web, GitHub",
+   "url": "https://doctorine.xyz/spec-repair/",
+   "description": "Doctorine scores your OpenAPI spec against what SDKs, the CLI, MCP tools and agents need, then opens one pull request with the mechanical fixes.",
+   "publisher": {
+    "@id": "https://doctorine.xyz/#org"
+   },
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Design partner, individual",
+     "price": "100",
+     "priceCurrency": "EUR",
+     "url": "https://doctorine.xyz/pricing/"
+    },
+    {
+     "@type": "Offer",
+     "name": "Design partner, company",
+     "price": "300",
+     "priceCurrency": "EUR",
+     "url": "https://doctorine.xyz/pricing/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What does spec repair change on its own?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Only mechanical fixes that do not change what your API means, such as a missing security scheme, a discriminator, consistent naming, examples and documented error responses. Everything else stays a review comment."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does it merge anything?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. It opens one pull request and your team reviews and merges it. Branch protection and required checks stay in force."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What if our spec is far from complete?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "That is where spec repair is most useful. The report shows how far the spec is from what generation and agents need, and which fixes close most of the gap first."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is it available now?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Spec repair is in early access with design partners. Ask for it when you request your eval report."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Doctorine home"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Main">
+      <div class="dd cur"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="../agent-task-eval/index.html"><b>Agent task eval <span class="st">Free report</span></b><span>Can an agent finish the job with your API? A free report.</span></a><a href="../release-gate/index.html"><b>Release gate <span class="st">Design partners</span></b><span>A CI check that publishes only the surfaces that passed.</span></a><a href="index.html"><b>Spec repair <span class="st">Early access</span></b><span>Find what blocks agents in your spec, fix it in one pull request.</span></a><a href="../generated-surfaces/index.html"><b>Generated surfaces <span class="st">Live</span></b><span>Docs portal, SDKs, CLI, MCP server and skills from one spec.</span></a><a href="../docs-analyser/index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Free: score how well agents find, read and use your docs.</span></a></div></div>
+      <a href="../solutions/index.html">Solutions</a><a href="../industries/index.html">Industries</a><a href="../research/index.html">Research</a><a href="../pricing/index.html">Pricing</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Language"><span aria-current="true" lang="en">EN</span><a href="../../nl/spec-herstel/index.html" hreflang="nl" lang="nl" title="Nederlands">NL</a></div>
+      <a class="btn pri sm" href="../design-partners/index.html#eval">Get a free eval</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile"><h2>Product</h2><a href="../agent-task-eval/index.html">Agent task eval <span>Free report</span></a><a href="../release-gate/index.html">Release gate <span>Design partners</span></a><a href="index.html">Spec repair <span>Early access</span></a><a href="../generated-surfaces/index.html">Generated surfaces <span>Live</span></a><a href="../docs-analyser/index.html">Docs Analyser <span>Live</span></a><h2>Explore</h2><a href="../solutions/index.html">Solutions</a><a href="../industries/index.html">Industries</a><a href="../research/index.html">Research</a><a href="../pricing/index.html">Pricing</a><h2>Company</h2><a href="../security/index.html">Security</a><a href="../about/index.html">About</a><a href="../design-partners/index.html">Design partners</a><div class="cta"><a class="btn pri" href="../design-partners/index.html#eval">Get a free eval report</a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="phero"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Spec repair</span></nav><div style="margin-bottom:22px"><span class="status"><i></i>Early access</span></div><h1>Spec repair: fix what stops agents and generators, in one pull request</h1><p class="lead">Point Doctorine at a repository or a spec. It scores the spec against what docs, SDKs, the CLI, MCP tools and agents need, explains each problem in plain terms and opens one pull request with the mechanical fixes. Anything that changes what your API means stays with your team as a review comment.</p><div class="cta"><a class="btn pri" href="../design-partners/index.html#eval">Ask for a spec report <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="#repair-ui">See a sample</a></div></div></section>
+<section class="sec tight" id="repair-ui" style="padding-top:0;border-top:0" aria-label="Sample spec repair"><div class="wrap rv"><div class="ui-stage"><div class="repair" data-base="41">
+<div class="ui"><div class="rp-head"><b>Findings</b><span><span data-count>7</span> fixes selected</span></div><div class="grp" style="--c:var(--red)"><b>Blocks generation <i>3</i></b><div class="fnd on" data-id="sec" data-w="9"><input type="checkbox" checked aria-label="Include fix: No security scheme declared"><div><b>No security scheme declared</b><span>Every operation needs a bearer token, but the spec never says so</span></div><em>64 ops</em></div><div class="fnd" data-id="oneof" data-w="7"><input type="checkbox" checked aria-label="Include fix: oneOf without a discriminator on Shipment.destination"><div><b>oneOf without a discriminator on Shipment.destination</b><span>Address and PickupPoint cannot be told apart</span></div><em>3 ops</em></div><div class="fnd" data-id="circ" data-w="5"><input type="checkbox" checked aria-label="Include fix: Circular $ref between Parcel and Shipment"><div><b>Circular $ref between Parcel and Shipment</b><span>Parcel.shipment points back to Shipment.parcels</span></div><em>2 schemas</em></div></div><div class="grp" style="--c:var(--amber)"><b>Confuses agents and developers <i>4</i></b><div class="fnd" data-id="naming" data-w="6"><input type="checkbox" checked aria-label="Include fix: Mixed naming: shipmentId and shipment_id"><div><b>Mixed naming: shipmentId and shipment_id</b><span>Used in 9 operations, inconsistently</span></div><em>9 ops</em></div><div class="fnd" data-id="examples" data-w="8"><input type="checkbox" checked aria-label="Include fix: No examples on 22 request bodies"><div><b>No examples on 22 request bodies</b><span>Including Create shipment and Book pickup</span></div><em>22 ops</em></div><div class="fnd" data-id="errors" data-w="7"><input type="checkbox" checked aria-label="Include fix: Error responses undocumented"><div><b>Error responses undocumented</b><span>Only 200 is declared on 41 operations</span></div><em>41 ops</em></div><div class="fnd" data-id="unit" data-w="5"><input type="checkbox" checked aria-label="Include fix: weight has no unit"><div><b>weight has no unit</b><span>Grams in code, kilograms in one guide</span></div><em>4 ops</em></div></div><div class="grp" style="--c:var(--blue)"><b>Needs your judgement, left as review comments <i>2</i></b><div class="fnd judge"><span class="bub" aria-hidden="true"></span><div><b>PATCH /shipments/{id} is live but not in the spec</b><span>Found in the router, not in openapi.yaml</span></div><em>comment</em></div><div class="fnd judge"><span class="bub" aria-hidden="true"></span><div><b>status enum adds a value clients may not handle</b><span>in_customs was added in the router last month</span></div><em>comment</em></div></div></div>
+<div class="ui"><div class="health"><div class="now"><b>41</b><span>Spec health now</span></div><span class="arrow" aria-hidden="true">→</span><div class="aft"><b aria-live="polite">88</b><span>After selected fixes</span></div><span class="sample" style="margin-left:auto">Sample repo</span></div>
+<div class="fixview" data-id="sec"><span class="label">Fix in the pull request</span><h3 style="margin-top:8px">No security scheme declared</h3><div class="tags"><span>SDKs</span><span>CLI</span><span>MCP</span><span>Agents</span></div><p>Generated SDKs and the CLI ship without authentication, and agents call the API anonymously and get 401 on every request.</p><div class="diff" role="img" aria-label="Diff of the fix"><span class="">  components:</span><span class="a">+   securitySchemes:</span><span class="a">+     bearerAuth:</span><span class="a">+       type: http</span><span class="a">+       scheme: bearer</span><span class="">  security:</span><span class="a">+   - bearerAuth: []</span></div></div><div class="fixview" data-id="oneof" hidden><span class="label">Fix in the pull request</span><h3 style="margin-top:8px">oneOf without a discriminator on Shipment.destination</h3><div class="tags"><span>SDKs</span><span>Agents</span></div><p>Typed SDKs cannot pick the right class, and agents guess the shape of the destination.</p><div class="diff" role="img" aria-label="Diff of the fix"><span class="">  destination:</span><span class="">    oneOf:</span><span class="">      - $ref: &#x27;#/components/schemas/Address&#x27;</span><span class="">      - $ref: &#x27;#/components/schemas/PickupPoint&#x27;</span><span class="a">+   discriminator:</span><span class="a">+     propertyName: type</span></div></div><div class="fixview" data-id="circ" hidden><span class="label">Fix in the pull request</span><h3 style="margin-top:8px">Circular $ref between Parcel and Shipment</h3><div class="tags"><span>SDKs</span></div><p>Some generators loop or emit untyped fields on circular references.</p><div class="diff" role="img" aria-label="Diff of the fix"><span class="">  Parcel:</span><span class="">    properties:</span><span class="d">-     shipment:</span><span class="d">-       $ref: &#x27;#/components/schemas/Shipment&#x27;</span><span class="a">+     shipment_id:</span><span class="a">+       type: string</span></div></div><div class="fixview" data-id="naming" hidden><span class="label">Fix in the pull request</span><h3 style="margin-top:8px">Mixed naming: shipmentId and shipment_id</h3><div class="tags"><span>SDKs</span><span>CLI</span><span>Agents</span></div><p>One concept with two names produces two parameters in the SDK and two flags in the CLI.</p><div class="diff" role="img" aria-label="Diff of the fix"><span class="">  parameters:</span><span class="d">-   - name: shipment_id</span><span class="a">+   - name: shipmentId</span><span class="">      in: path</span></div></div><div class="fixview" data-id="examples" hidden><span class="label">Fix in the pull request</span><h3 style="margin-top:8px">No examples on 22 request bodies</h3><div class="tags"><span>Docs</span><span>Agents</span></div><p>Without examples, agents invent request bodies and the docs show empty code samples.</p><div class="diff" role="img" aria-label="Diff of the fix"><span class="">  requestBody:</span><span class="">    content:</span><span class="">      application/json:</span><span class="a">+       example:</span><span class="a">+         parcel_count: 2</span><span class="a">+         weight_grams: 1800</span></div></div><div class="fixview" data-id="errors" hidden><span class="label">Fix in the pull request</span><h3 style="margin-top:8px">Error responses undocumented</h3><div class="tags"><span>SDKs</span><span>Agents</span></div><p>SDKs cannot type errors, and agents cannot tell a validation error from an outage.</p><div class="diff" role="img" aria-label="Diff of the fix"><span class="">  responses:</span><span class="">    &#x27;200&#x27;:</span><span class="">      $ref: &#x27;#/components/responses/Shipment&#x27;</span><span class="a">+   &#x27;422&#x27;:</span><span class="a">+     $ref: &#x27;#/components/responses/ValidationError&#x27;</span></div></div><div class="fixview" data-id="unit" hidden><span class="label">Fix in the pull request</span><h3 style="margin-top:8px">weight has no unit</h3><div class="tags"><span>Docs</span><span>Agents</span></div><p>Agents send kilograms where the API expects grams.</p><div class="diff" role="img" aria-label="Diff of the fix"><span class="">  weight:</span><span class="">    type: integer</span><span class="a">+   description: Weight in grams</span><span class="a">+   example: 1800</span></div></div>
+<div class="prbar"><p><b>acme/logistics-api</b> &middot; openapi.yaml &middot; 64 operations</p><span class="gbtn" style="pointer-events:none">Open pull request with <span data-count>7</span> fixes</span></div></div>
+</div><p class="caption">Sample repository and sample findings. Select a finding to see its fix, untick it to leave it out of the pull request.</p></div></div></section>
+
+<section class="sec paper" aria-labelledby="k-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Three kinds of finding</span><h2 id="k-h">Fix the mechanical. Flag the meaningful.</h2></div>
+  <p>Every finding says which surfaces it breaks, so you fix the ones that matter to your users first.</p></div>
+  <div class="cards"><div class="card rv"><span class="label">Fixed in the pull request</span><h3>Blocks generation</h3><p>Problems that stop SDKs, the CLI or MCP tools from being built correctly, such as a missing security scheme or a oneOf without a discriminator.</p></div><div class="card rv"><span class="label">Fixed in the pull request</span><h3>Confuses agents and developers</h3><p>Mixed naming, missing examples, undocumented errors and fields without units, the gaps that make agents guess.</p></div><div class="card rv"><span class="label">Left as a review comment</span><h3>Needs your judgement</h3><p>Endpoints that are live but not in the spec, or enum values clients may not handle. These change what your API means, so a person decides.</p></div></div>
+</div></section>
+
+<section class="sec" aria-labelledby="h-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">How it works</span><h2 id="h-h">From a spec nobody trusts to one reviewable pull request.</h2></div></div>
+  <ol class="how rv"><li><span class="n">01</span><b>Scan</b><span>Doctorine reads openapi.yaml, or the spec behind your public docs, and checks it against what docs, SDKs, the CLI, MCP tools and agents need.</span></li><li><span class="n">02</span><b>Explain</b><span>Each problem is described in plain terms, with the operations it affects and the surfaces it breaks.</span></li><li><span class="n">03</span><b>Open one pull request</b><span>Mechanical fixes land in a single pull request you review like any other. Judgement calls become review comments on the lines they concern.</span></li><li><span class="n">04</span><b>Keep it fixed</b><span>Once merged, the release gate checks every later change, so the same problems do not come back.</span></li></ol>
+</div></section>
+<section class="sec paper" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">Questions</h2></div>
+<div class="faq rv d1"><details><summary>What does spec repair change on its own?</summary><div class="a"><p>Only mechanical fixes that do not change what your API means, such as a missing security scheme, a discriminator, consistent naming, examples and documented error responses. Everything else stays a review comment.</p></div></details><details><summary>Does it merge anything?</summary><div class="a"><p>No. It opens one pull request and your team reviews and merges it. Branch protection and required checks stay in force.</p></div></details><details><summary>What if our spec is far from complete?</summary><div class="a"><p>That is where spec repair is most useful. The report shows how far the spec is from what generation and agents need, and which fixes close most of the gap first.</p></div></details><details><summary>Is it available now?</summary><div class="a"><p>Spec repair is in early access with design partners. Ask for it when you request your eval report.</p></div></details></div></div></section>
+<section class="close" aria-labelledby="close-h"><div class="wrap">
+<div class="rv"><h2 id="close-h">Start with the spec you have.</h2><p>Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.</p>
+<div class="cta"><a class="btn pri" href="../design-partners/index.html#eval">Get a free eval report <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></div>
+<img class="rv d1" src="../../assets/img/horse-portrait-dark.jpg" width="912" height="941" loading="lazy" alt="The Doctorine horse, drawn in fine light points on black">
+</div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="../index.html"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>The release gate for APIs in the agent era. Proof that agents and developers can still use your API, on every change.</p></div>
+      <div><h2>Product</h2><ul><li><a href="../agent-task-eval/index.html">Agent task eval</a></li><li><a href="../release-gate/index.html">Release gate</a></li><li><a href="index.html">Spec repair</a></li><li><a href="../generated-surfaces/index.html">Generated surfaces</a></li><li><a href="../docs-analyser/index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Solutions</h2><ul><li><a href="../solutions/public-api-teams/index.html">Public API teams</a></li><li><a href="../solutions/platform-teams/index.html">Platform teams</a></li><li><a href="../solutions/devrel-and-docs/index.html">DevRel and docs owners</a></li><li><a href="../solutions/sdk-vendor-migration/index.html">SDK vendor migration</a></li></ul></div>
+      <div><h2>Industries</h2><ul><li><a href="../industries/fintech-and-payments/index.html">Fintech and payments</a></li><li><a href="../industries/saas-partner-apis/index.html">SaaS with partner APIs</a></li><li><a href="../industries/developer-platforms/index.html">Developer platforms</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="../research/index.html">Research</a></li><li><a href="../pricing/index.html">Pricing</a></li><li><a href="../security/index.html">Security</a></li><li><a href="../about/index.html">About</a></li><li><a href="../design-partners/index.html">Design partners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Sample data on this site uses an example API called Acme Payments. It is not customer data.</span><span>EU data residency for the core data plane, with documented carve-outs. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

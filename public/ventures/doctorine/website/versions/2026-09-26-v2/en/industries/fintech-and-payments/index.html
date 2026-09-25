@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doctorine for fintech and payments APIs</title>
+<meta name="description" content="Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.">
+<link rel="canonical" href="https://doctorine.xyz/industries/fintech-and-payments/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/industries/fintech-and-payments/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/sectoren/fintech-en-betalingen/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/industries/fintech-and-payments/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="Doctorine for fintech and payments APIs">
+<meta property="og:description" content="Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.">
+<meta property="og:url" content="https://doctorine.xyz/industries/fintech-and-payments/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: every API change, proven before it ships">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="nl_NL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Doctorine for fintech and payments APIs">
+<meta name="twitter:description" content="Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../../../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://doctorine.xyz/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Industries",
+     "item": "https://doctorine.xyz/industries/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Fintech and payments",
+     "item": "https://doctorine.xyz/industries/fintech-and-payments/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Do you need access to our payment systems?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Tasks run against a sandbox that answers from your spec. No production credentials and no real money are involved."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where is our data stored?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Core content and tenant stores are in EU regions, with a few documented carve-outs such as authentication and payments."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="../../index.html" aria-label="Doctorine home"><img src="../../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Main">
+      <div class="dd"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="../../agent-task-eval/index.html"><b>Agent task eval <span class="st">Free report</span></b><span>Can an agent finish the job with your API? A free report.</span></a><a href="../../release-gate/index.html"><b>Release gate <span class="st">Design partners</span></b><span>A CI check that publishes only the surfaces that passed.</span></a><a href="../../spec-repair/index.html"><b>Spec repair <span class="st">Early access</span></b><span>Find what blocks agents in your spec, fix it in one pull request.</span></a><a href="../../generated-surfaces/index.html"><b>Generated surfaces <span class="st">Live</span></b><span>Docs portal, SDKs, CLI, MCP server and skills from one spec.</span></a><a href="../../docs-analyser/index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Free: score how well agents find, read and use your docs.</span></a></div></div>
+      <a href="../../solutions/index.html">Solutions</a><a href="../index.html" aria-current="page">Industries</a><a href="../../research/index.html">Research</a><a href="../../pricing/index.html">Pricing</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Language"><span aria-current="true" lang="en">EN</span><a href="../../../nl/sectoren/fintech-en-betalingen/index.html" hreflang="nl" lang="nl" title="Nederlands">NL</a></div>
+      <a class="btn pri sm" href="../../design-partners/index.html#eval">Get a free eval</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile"><h2>Product</h2><a href="../../agent-task-eval/index.html">Agent task eval <span>Free report</span></a><a href="../../release-gate/index.html">Release gate <span>Design partners</span></a><a href="../../spec-repair/index.html">Spec repair <span>Early access</span></a><a href="../../generated-surfaces/index.html">Generated surfaces <span>Live</span></a><a href="../../docs-analyser/index.html">Docs Analyser <span>Live</span></a><h2>Explore</h2><a href="../../solutions/index.html">Solutions</a><a href="../index.html">Industries</a><a href="../../research/index.html">Research</a><a href="../../pricing/index.html">Pricing</a><h2>Company</h2><a href="../../security/index.html">Security</a><a href="../../about/index.html">About</a><a href="../../design-partners/index.html">Design partners</a><div class="cta"><a class="btn pri" href="../../design-partners/index.html#eval">Get a free eval report</a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="phero"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span aria-hidden="true">/</span><a href="../index.html">Industries</a><span aria-hidden="true">/</span><span aria-current="page">Fintech and payments</span></nav><h1>For fintech and payments APIs: the right amount, every release</h1><p class="lead">Payment APIs fail in quiet, expensive ways: a refund in the wrong currency unit, a retry that charges twice, a webhook trusted without a valid signature. Doctorine tests those tasks with agents before each change ships.</p><div class="cta"><a class="btn pri" href="../../design-partners/index.html#eval">Get a free eval report <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="../../pricing/index.html">See pricing</a></div></div></section>
+<section class="sec paper" aria-labelledby="pn-h"><div class="wrap two-col">
+  <div class="rv"><span class="label">The problem</span><h2 id="pn-h" style="margin-top:16px">The failures that do not throw errors</h2></div>
+  <div class="body rv d1"><ul class="ticks"><li>Amounts in minor units that the docs never state, so an agent refunds cents instead of euros.</li><li>Idempotency keys that exist in the spec but not in the guide, so a retry charges twice.</li><li>Webhook signatures computed over a body the docs do not describe.</li></ul></div></div></section>
+<section class="sec" aria-label="Sample product view"><div class="wrap rv"><div class="ui-stage"><div class="ev-top"><div class="ev-k "><span class="label">Static readiness score</span><b>91<small> / 100</small></b><span>Checks files and headers only</span></div><div class="ev-k bad"><span class="label">Tasks completed</span><b>9<small> / 20</small></b><span>Agreed across 3 runs</span></div><div class="ev-k "><span class="label">Repeat agreement</span><b>93%</b><span>Same verdict on 56 of 60 runs</span></div><div class="ev-k "><span class="label">Fixable causes</span><b>6</b><span>4 in the docs, 2 in the spec</span></div></div>
+<div class="evalui">
+<div class="ui"><div class="rp-head"><b>Tasks by surface</b><span class="sample">Sample report</span></div>
+<div class="grid-wrap"><table class="grid-t" data-play><caption class="sr">Agent task results per surface for the sample Acme Payments API</caption><thead><tr><th scope="col">Integration task</th><th scope="col">Docs only</th><th scope="col">CLI</th><th scope="col">MCP server</th><th scope="col">TypeScript SDK</th></tr></thead><tbody><tr><td><b>Create a customer and save a card</b><span>POST customers, then attach a payment method</span></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Create a customer and save a card, Docs only: Completed"><i>Completed</i><small>18.4k tokens</small></button></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Create a customer and save a card, CLI: Completed"><i>Completed</i><small>6.1k tokens</small></button></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Create a customer and save a card, MCP server: Completed"><i>Completed</i><small>14.2k tokens</small></button></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Create a customer and save a card, TypeScript SDK: Completed"><i>Completed</i><small>9.8k tokens</small></button></td></tr><tr><td><b>Take a payment safely on retry</b><span>Payment with an idempotency key, retried after a timeout</span></td><td><button type="button" class="cell f" data-task="t2" aria-pressed="false" aria-label="Take a payment safely on retry, Docs only: Failed"><i>Failed</i></button></td><td><button type="button" class="cell p" data-task="t2" aria-pressed="false" aria-label="Take a payment safely on retry, CLI: Completed"><i>Completed</i><small>7.4k tokens</small></button></td><td><button type="button" class="cell f" data-task="t2" aria-pressed="false" aria-label="Take a payment safely on retry, MCP server: Failed"><i>Failed</i></button></td><td><button type="button" class="cell p" data-task="t2" aria-pressed="false" aria-label="Take a payment safely on retry, TypeScript SDK: Completed"><i>Completed</i><small>11.2k tokens</small></button></td></tr><tr><td><b>Refund part of a payment</b><span>Partial refund in the right currency unit</span></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" data-start aria-label="Refund part of a payment, Docs only: Failed"><i>Failed</i></button></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" aria-label="Refund part of a payment, CLI: Failed"><i>Failed</i></button></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" aria-label="Refund part of a payment, MCP server: Failed"><i>Failed</i></button></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" aria-label="Refund part of a payment, TypeScript SDK: Failed"><i>Failed</i></button></td></tr><tr><td><b>List every payout from last month</b><span>Follow cursor pagination to the end</span></td><td><button type="button" class="cell f" data-task="t4" aria-pressed="false" aria-label="List every payout from last month, Docs only: Failed"><i>Failed</i></button></td><td><button type="button" class="cell p" data-task="t4" aria-pressed="false" aria-label="List every payout from last month, CLI: Completed"><i>Completed</i><small>8.9k tokens</small></button></td><td><button type="button" class="cell k" data-task="t4" aria-pressed="false" aria-label="List every payout from last month, MCP server: Flaky"><i>Flaky</i></button></td><td><button type="button" class="cell p" data-task="t4" aria-pressed="false" aria-label="List every payout from last month, TypeScript SDK: Completed"><i>Completed</i><small>12.6k tokens</small></button></td></tr><tr><td><b>Verify a webhook signature</b><span>Check the signature header before trusting an event</span></td><td><button type="button" class="cell f" data-task="t5" aria-pressed="false" aria-label="Verify a webhook signature, Docs only: Failed"><i>Failed</i></button></td><td><button type="button" class="cell f" data-task="t5" aria-pressed="false" aria-label="Verify a webhook signature, CLI: Failed"><i>Failed</i></button></td><td><button type="button" class="cell f" data-task="t5" aria-pressed="false" aria-label="Verify a webhook signature, MCP server: Failed"><i>Failed</i></button></td><td><button type="button" class="cell p" data-task="t5" aria-pressed="false" aria-label="Verify a webhook signature, TypeScript SDK: Completed"><i>Completed</i><small>10.4k tokens</small></button></td></tr></tbody></table></div><div class="legend"><span style="--c:var(--green)">Completed</span><span style="--c:var(--red)">Failed the same way in every run</span><span style="--c:var(--amber)">Flaky, not counted</span></div></div>
+<div class="ui" aria-live="polite"><div class="panel side" data-task="t1"><span class="label">Docs only, coding agent</span><h3>Create a customer and save a card</h3><p class="res p">Completed on every surface</p>
+<ol class="tl"><li class="">Found the Customers page<span>Read the create and attach examples</span></li><li class="">Created customer cus_41x<span>201</span></li><li class="">Attached a test card<span>200</span></li></ol><div class="whyf ok"><b>Why it worked</b>Both operations have complete request examples, so every surface finished on the first run.</div>
+</div><div class="panel side" data-task="t2"><span class="label">Docs only, coding agent</span><h3>Take a payment safely on retry</h3><p class="res f">Failed on docs only</p>
+<ol class="tl"><li class="">Found the Payments page<span>No mention of idempotency on the page</span></li><li class="">Created a payment<span>201</span></li><li class="f">Retried after the simulated timeout<span>A second payment was created</span></li></ol><div class="whyf"><b>Why it failed</b>The Idempotency-Key header is in the spec but not in the docs, so an agent that reads only the docs charges twice.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">What would fix it</span><div><b>Docs</b><span>Add the Idempotency-Key header to the Payments guide, with a retry example</span></div><div><b>Check</b><span>Add this task to the release gate</span></div></div></div><div class="panel side" data-task="t3"><span class="label">Docs only, coding agent</span><h3>Refund part of a payment</h3><p class="res f">Failed on docs only</p>
+<ol class="tl"><li class="">Found the Refunds page<span>Read the reference for creating a refund</span></li><li class="">Created a payment of 25.00 EUR<span>Sandbox returned amount 2500</span></li><li class="f">Sent amount 12.5<span>Rejected: amount must be an integer</span></li><li class="f">Retried with amount 12<span>Refunded 0.12 EUR and reported success</span></li></ol><div class="whyf"><b>Why it failed</b>The amount field is in minor units, but nothing says so. The spec describes it as the amount and the page has no example, so every surface inherits the gap.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">What would fix it</span><div><b>Spec</b><span>Describe amount as an integer in minor units, with an example of 1250</span></div><div><b>Docs</b><span>Add a partial refund example to the Refunds page</span></div><div><b>Check</b><span>Add this task to the release gate so the gap cannot return</span></div></div></div><div class="panel side" data-task="t4"><span class="label">Docs only, coding agent</span><h3>List every payout from last month</h3><p class="res k">Flaky on MCP, not counted</p>
+<ol class="tl"><li class="">Found the Payouts list operation<span>GET /v1/payouts</span></li><li class="">Read the first page<span>100 items and a next_cursor</span></li><li class="f">Stopped after page one on docs only<span>The guide never shows next_cursor being used</span></li></ol><div class="whyf"><b>Why it failed</b>Docs only failed the same way in every run. On the MCP server the result changed between runs, so it is reported as flaky and not counted either way.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">What would fix it</span><div><b>Docs</b><span>Show a loop that follows next_cursor to the end</span></div><div><b>MCP</b><span>Describe the cursor in the list tool</span></div></div></div><div class="panel side" data-task="t5"><span class="label">Docs only, coding agent</span><h3>Verify a webhook signature</h3><p class="res f">Failed on docs only</p>
+<ol class="tl"><li class="">Found the Webhooks page<span>Read the event format</span></li><li class="f">Computed the signature over the parsed JSON<span>Signature mismatch on every event</span></li></ol><div class="whyf"><b>Why it failed</b>Signatures are computed over the raw body, but the docs do not say so. Only the TypeScript SDK, which wraps verification, passed.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">What would fix it</span><div><b>Docs</b><span>State that the signature covers the raw request body</span></div><div><b>CLI</b><span>Add a webhooks verify command</span></div></div></div></div>
+</div><p class="caption">Sample report on an example API, Acme Payments. Select any cell to see the run. Not customer data.</p></div></div></section>
+<section class="sec" aria-labelledby="hp-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">How Doctorine helps</span><h2 id="hp-h">What changes with Doctorine.</h2></div></div>
+  <div class="list rv"><a href="../../agent-task-eval/index.html"><b>Agent task eval</b><span>Payment tasks run on every surface: create, pay safely on retry, refund part, list payouts, verify webhooks.</span><i aria-hidden="true">→</i></a><a href="../../release-gate/index.html"><b>Release gate</b><span>No surface ships with a failing money task. Reviewers see what was checked.</span><i aria-hidden="true">→</i></a><a href="../../release-gate/index.html"><b>Release gate</b><span>Receipts with hashes and decisions, for the audit trail your reviewers already ask for.</span><i aria-hidden="true">→</i></a><a href="../../security/index.html"><b>Security</b><span>EU data at rest for the core data plane, and tasks that never touch production or real money.</span><i aria-hidden="true">→</i></a></div>
+</div></section>
+<section class="sec paper" aria-labelledby="st-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Where to start</span><h2 id="st-h">Three steps, the first one free.</h2></div></div>
+  <ol class="how rv"><li><span class="n">01</span><b>Request the free report</b><span>We use your public docs and spec, and a sandbox that answers from the spec.</span></li><li><span class="n">02</span><b>Fix the money tasks first</b><span>Minor units, idempotency and webhooks are usually one line each.</span></li><li><span class="n">03</span><b>Gate every release</b><span>Keep those tasks green on every spec change.</span></li></ol>
+</div></section>
+<section class="sec paper" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">Questions</h2></div>
+<div class="faq rv d1"><details><summary>Do you need access to our payment systems?</summary><div class="a"><p>No. Tasks run against a sandbox that answers from your spec. No production credentials and no real money are involved.</p></div></details><details><summary>Where is our data stored?</summary><div class="a"><p>Core content and tenant stores are in EU regions, with a few documented carve-outs such as authentication and payments.</p></div></details></div></div></section>
+<section class="sec" aria-labelledby="rel-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Industries</span><h2 id="rel-h">Related</h2></div></div>
+  <div class="cards"><a class="card rv" href="../saas-partner-apis/index.html"><h3>SaaS with partner APIs</h3><p>Check each spec change against the tasks your partners run, and publish docs, SDKs and tools from one release that pinned integrations can trust.</p><span class="more">Read more</span></a><a class="card rv" href="../developer-platforms/index.html"><h3>Developer platforms</h3><p>Your users build with coding agents. Measure which surface gets them to a working integration first, at what token cost, and gate each release on it.</p><span class="more">Read more</span></a></div>
+</div></section>
+<section class="close" aria-labelledby="close-h"><div class="wrap">
+<div class="rv"><h2 id="close-h">Ship the change. Keep the proof.</h2><p>Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.</p>
+<div class="cta"><a class="btn pri" href="../../design-partners/index.html#eval">Get a free eval report <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></div>
+<img class="rv d1" src="../../../assets/img/horse-portrait-dark.jpg" width="912" height="941" loading="lazy" alt="The Doctorine horse, drawn in fine light points on black">
+</div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="../../index.html"><img src="../../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>The release gate for APIs in the agent era. Proof that agents and developers can still use your API, on every change.</p></div>
+      <div><h2>Product</h2><ul><li><a href="../../agent-task-eval/index.html">Agent task eval</a></li><li><a href="../../release-gate/index.html">Release gate</a></li><li><a href="../../spec-repair/index.html">Spec repair</a></li><li><a href="../../generated-surfaces/index.html">Generated surfaces</a></li><li><a href="../../docs-analyser/index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Solutions</h2><ul><li><a href="../../solutions/public-api-teams/index.html">Public API teams</a></li><li><a href="../../solutions/platform-teams/index.html">Platform teams</a></li><li><a href="../../solutions/devrel-and-docs/index.html">DevRel and docs owners</a></li><li><a href="../../solutions/sdk-vendor-migration/index.html">SDK vendor migration</a></li></ul></div>
+      <div><h2>Industries</h2><ul><li><a href="index.html">Fintech and payments</a></li><li><a href="../saas-partner-apis/index.html">SaaS with partner APIs</a></li><li><a href="../developer-platforms/index.html">Developer platforms</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="../../research/index.html">Research</a></li><li><a href="../../pricing/index.html">Pricing</a></li><li><a href="../../security/index.html">Security</a></li><li><a href="../../about/index.html">About</a></li><li><a href="../../design-partners/index.html">Design partners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Sample data on this site uses an example API called Acme Payments. It is not customer data.</span><span>EU data residency for the core data plane, with documented carve-outs. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../../../assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Migrate off a shut-down SDK vendor | Doctorine</title>
+<meta name="description" content="Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.">
+<link rel="canonical" href="https://doctorine.xyz/solutions/sdk-vendor-migration/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/solutions/sdk-vendor-migration/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/oplossingen/overstap-sdk-leverancier/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/solutions/sdk-vendor-migration/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="Migrate off a shut-down SDK vendor | Doctorine">
+<meta property="og:description" content="Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.">
+<meta property="og:url" content="https://doctorine.xyz/solutions/sdk-vendor-migration/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: every API change, proven before it ships">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="nl_NL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Migrate off a shut-down SDK vendor | Doctorine">
+<meta name="twitter:description" content="Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../../../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://doctorine.xyz/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Solutions",
+     "item": "https://doctorine.xyz/solutions/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "SDK vendor migration",
+     "item": "https://doctorine.xyz/solutions/sdk-vendor-migration/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Which configurations can you import?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Supported configuration from Fern, Stainless, Speakeasy or ReadMe becomes a Doctorine draft. The mapping record lists what mapped exactly, what degraded and what needs a decision."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How do we know nothing broke for our users?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Your existing tasks run against the regenerated SDK in the gate before anything is published, and the receipt records what shipped."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="../../index.html" aria-label="Doctorine home"><img src="../../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Main">
+      <div class="dd"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="../../agent-task-eval/index.html"><b>Agent task eval <span class="st">Free report</span></b><span>Can an agent finish the job with your API? A free report.</span></a><a href="../../release-gate/index.html"><b>Release gate <span class="st">Design partners</span></b><span>A CI check that publishes only the surfaces that passed.</span></a><a href="../../spec-repair/index.html"><b>Spec repair <span class="st">Early access</span></b><span>Find what blocks agents in your spec, fix it in one pull request.</span></a><a href="../../generated-surfaces/index.html"><b>Generated surfaces <span class="st">Live</span></b><span>Docs portal, SDKs, CLI, MCP server and skills from one spec.</span></a><a href="../../docs-analyser/index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Free: score how well agents find, read and use your docs.</span></a></div></div>
+      <a href="../index.html" aria-current="page">Solutions</a><a href="../../industries/index.html">Industries</a><a href="../../research/index.html">Research</a><a href="../../pricing/index.html">Pricing</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Language"><span aria-current="true" lang="en">EN</span><a href="../../../nl/oplossingen/overstap-sdk-leverancier/index.html" hreflang="nl" lang="nl" title="Nederlands">NL</a></div>
+      <a class="btn pri sm" href="../../design-partners/index.html#eval">Get a free eval</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile"><h2>Product</h2><a href="../../agent-task-eval/index.html">Agent task eval <span>Free report</span></a><a href="../../release-gate/index.html">Release gate <span>Design partners</span></a><a href="../../spec-repair/index.html">Spec repair <span>Early access</span></a><a href="../../generated-surfaces/index.html">Generated surfaces <span>Live</span></a><a href="../../docs-analyser/index.html">Docs Analyser <span>Live</span></a><h2>Explore</h2><a href="../index.html">Solutions</a><a href="../../industries/index.html">Industries</a><a href="../../research/index.html">Research</a><a href="../../pricing/index.html">Pricing</a><h2>Company</h2><a href="../../security/index.html">Security</a><a href="../../about/index.html">About</a><a href="../../design-partners/index.html">Design partners</a><div class="cta"><a class="btn pri" href="../../design-partners/index.html#eval">Get a free eval report</a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="phero"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span aria-hidden="true">/</span><a href="../index.html">Solutions</a><span aria-hidden="true">/</span><span aria-current="page">SDK vendor migration</span></nav><h1>Migrating off a shut-down SDK vendor, with proof of what changed</h1><p class="lead">When Anthropic acquired Stainless, every hosted product was wound down on 18 May 2026, and teams lost the pipeline behind their SDKs. Doctorine imports supported configuration, regenerates the surfaces and gates them, so you can show your users what did and did not change.</p><div class="cta"><a class="btn pri" href="../../design-partners/index.html#eval">Get a free eval report <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="../../pricing/index.html">See pricing</a></div></div></section>
+<section class="sec" aria-labelledby="pn-h"><div class="wrap split">
+  <div class="rv"><span class="label">The problem</span><h2 id="pn-h" style="margin-top:16px">What a forced move puts at risk</h2><ul class="ticks"><li>The generator behind your published SDKs is gone, but your users still depend on its type names.</li><li>The next vendor could be acquired too.</li><li>Nobody can show, with evidence, that the regenerated SDK behaves the same.</li></ul><p class="src-note rv">Source: Anthropic, Anthropic acquires Stainless, 18 May 2026. <a class="tlink" href="https://www.anthropic.com/news/anthropic-acquires-stainless">www.anthropic.com</a></p></div>
+  <div class="rv d1"><div class="codecard"><div class="h"><b>doctorine-sdk-receipt.json</b><span>public receipt from doctorine.xyz</span></div><pre>{
+  <span class="k">"generator"</span>: <span class="s">"@doctorine/sdk-codegen"</span>,
+  <span class="k">"generatorVersion"</span>: <span class="s">"0.11.1"</span>,
+  <span class="k">"kernelVersion"</span>: <span class="s">"0.7.1"</span>,
+  <span class="k">"language"</span>: <span class="s">"ts"</span>,
+  <span class="k">"package"</span>: { <span class="k">"name"</span>: <span class="s">"@doctorine/sdk"</span>, <span class="k">"version"</span>: <span class="s">"0.0.1"</span> },
+  <span class="k">"irSha"</span>:     <span class="s">"43fdb220d025ecb6…"</span>,
+  <span class="k">"configSha"</span>: <span class="s">"90f4aa61c88d9ddf…"</span>,
+  <span class="k">"bundleSha"</span>: <span class="s">"03ab38e66d345b0c…"</span>,
+  <span class="k">"sdkSha"</span>:    <span class="s">"f83bfe23dd2befc0…"</span>
+}</pre></div></div></div></section>
+<section class="sec paper" aria-labelledby="hp-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">How Doctorine helps</span><h2 id="hp-h">What changes with Doctorine.</h2></div></div>
+  <div class="list rv"><a href="../../generated-surfaces/index.html"><b>Generated surfaces</b><span>Translate supported configuration from Fern, Stainless, Speakeasy or ReadMe into a draft, with what mapped, degraded and is unsupported listed.</span><i aria-hidden="true">→</i></a><a href="../../release-gate/index.html"><b>Release gate</b><span>Run your contract tests and agent tasks on the regenerated SDK before you switch.</span><i aria-hidden="true">→</i></a><a href="../../release-gate/index.html"><b>Release gate</b><span>Publish with a receipt that records the spec, generator and output hashes.</span><i aria-hidden="true">→</i></a><a href="../../security/index.html"><b>Security</b><span>SDK code is written to repositories you select, through pull requests that respect branch protection.</span><i aria-hidden="true">→</i></a></div>
+</div></section>
+<section class="sec" aria-labelledby="st-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Where to start</span><h2 id="st-h">Three steps, the first one free.</h2></div></div>
+  <ol class="how rv"><li><span class="n">01</span><b>Send your configuration</b><span>And a link to the SDK you publish today.</span></li><li><span class="n">02</span><b>Review the mapping record</b><span>See what carried over, what degraded and what needs a decision.</span></li><li><span class="n">03</span><b>Switch when the gate is green</b><span>Publish only when the regenerated SDK passes your tasks.</span></li></ol>
+</div></section>
+<section class="sec" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">Questions</h2></div>
+<div class="faq rv d1"><details><summary>Which configurations can you import?</summary><div class="a"><p>Supported configuration from Fern, Stainless, Speakeasy or ReadMe becomes a Doctorine draft. The mapping record lists what mapped exactly, what degraded and what needs a decision.</p></div></details><details><summary>How do we know nothing broke for our users?</summary><div class="a"><p>Your existing tasks run against the regenerated SDK in the gate before anything is published, and the receipt records what shipped.</p></div></details></div></div></section>
+<section class="sec" aria-labelledby="rel-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Solutions</span><h2 id="rel-h">Related</h2></div></div>
+  <div class="cards"><a class="card rv" href="../public-api-teams/index.html"><h3>Public API teams</h3><p>For teams whose API serves paying clients and partners: check every spec change against real integration tasks before docs, SDKs and tools update.</p><span class="more">Read more</span></a><a class="card rv" href="../platform-teams/index.html"><h3>Platform teams</h3><p>One check on the spec pull request instead of another review layer: rebuild every surface, run the tasks and leave reviewers only real decisions.</p><span class="more">Read more</span></a><a class="card rv" href="../devrel-and-docs/index.html"><h3>DevRel and docs owners</h3><p>See which real tasks coding agents and developers can finish with your docs, which page or example fails them, and what to fix first.</p><span class="more">Read more</span></a></div>
+</div></section>
+<section class="close" aria-labelledby="close-h"><div class="wrap">
+<div class="rv"><h2 id="close-h">Ship the change. Keep the proof.</h2><p>Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.</p>
+<div class="cta"><a class="btn pri" href="../../design-partners/index.html#eval">Get a free eval report <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></div>
+<img class="rv d1" src="../../../assets/img/horse-portrait-dark.jpg" width="912" height="941" loading="lazy" alt="The Doctorine horse, drawn in fine light points on black">
+</div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="../../index.html"><img src="../../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>The release gate for APIs in the agent era. Proof that agents and developers can still use your API, on every change.</p></div>
+      <div><h2>Product</h2><ul><li><a href="../../agent-task-eval/index.html">Agent task eval</a></li><li><a href="../../release-gate/index.html">Release gate</a></li><li><a href="../../spec-repair/index.html">Spec repair</a></li><li><a href="../../generated-surfaces/index.html">Generated surfaces</a></li><li><a href="../../docs-analyser/index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Solutions</h2><ul><li><a href="../public-api-teams/index.html">Public API teams</a></li><li><a href="../platform-teams/index.html">Platform teams</a></li><li><a href="../devrel-and-docs/index.html">DevRel and docs owners</a></li><li><a href="index.html">SDK vendor migration</a></li></ul></div>
+      <div><h2>Industries</h2><ul><li><a href="../../industries/fintech-and-payments/index.html">Fintech and payments</a></li><li><a href="../../industries/saas-partner-apis/index.html">SaaS with partner APIs</a></li><li><a href="../../industries/developer-platforms/index.html">Developer platforms</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="../../research/index.html">Research</a></li><li><a href="../../pricing/index.html">Pricing</a></li><li><a href="../../security/index.html">Security</a></li><li><a href="../../about/index.html">About</a></li><li><a href="../../design-partners/index.html">Design partners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Sample data on this site uses an example API called Acme Payments. It is not customer data.</span><span>EU data residency for the core data plane, with documented carve-outs. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../../../assets/site.js" defer></script>
+</body>
+</html>

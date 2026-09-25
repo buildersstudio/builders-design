@@ -24,6 +24,8 @@ public/ventures/<slug>/
   journeys/journeys.json      ICPs and customer journeys, as a post-it wall
   vision/board.json           product vision: research and a kanban of recommended initiatives
   vision/prototypes/<id>/     vision prototypes (self-contained HTML) linked from initiatives
+  website/site.json           the venture's website: languages and versions
+  website/versions/<id>/      one full version of the site (pages per language, assets, sitemap)
 templates/deck.json           the presentation template, always start from it
 ```
 
@@ -151,6 +153,16 @@ The Social page of every venture is a gallery of finished LinkedIn posts, each a
 - Each post: `{ "id", "angle", "format": "portrait" | "square" | "landscape", "layout": "type" | "photo" | "split" | "product" | "stat", "label", "title", "body"?, "stat"?, "photo"?, "dark"?, "shade"?, "color"?, "captions": ["", "", ""] }`. `id` is unique (`"01"`, `"02"` and so on). `photo` is a gallery path (a product cut-out for `product`, a photo for `photo` and `split`); `color` is a key of the brand's deck `palette` (Krans: orange, purple, blue; omit for cream); `stat` is the big number of a stat post; `*words*` in `title` get the brand's emphasis. Never put styling in a post.
 - Day Zero (brand deck style `boot`) has its own layouts: `window` (the Luma cover: wordmark in a window, `title` and `body` as the left and right lines, `stat` the edition), `headline` (a README window, `body` becomes a `> prompt` line), `code` (`title` is the code, one line per row; `dark: true` makes it a terminal) and `guest` (`photo` is an arcade avatar from `gallery/avatars/`, `title` the guest name, `body` the theme). `color` picks the wallpaper. Luma covers are `square` + `window`, and their captions are event descriptions. New guest avatars: cut the portrait out (background removed), then `AVATARS=cutout.png AVATAR_NAME=first-last node scripts/day-zero-pixels.mjs`.
 - `captions` holds three variants of the LinkedIn text for that visual, in the venture's voice, each with a different opening and emphasis: two to four short paragraphs separated by blank lines, the site at the end, real facts only (from `venture.md`, the live site, the brand book), no em dashes, no exclamation marks, no hashtags unless asked.
+
+## Website
+
+The Website section builds and keeps a venture's full website: multi-page, in every language it needs, with every version kept so the evolution stays visible. The platform previews each page per language and device, draws the sitemap (core pages as a tree, CMS collections such as solutions or industries as stacks), checks every page for SEO and LLM conventions from the published HTML, and compares a page across two versions.
+
+- `website/site.json` (schema in `lib/website.ts`): `name`, `domain`, `languages` (`[{ code, label }]`), `defaultLang`, `current` (the version shown by default) and `versions` (`[{ id, title, created, note, status: live | draft | archive, source: built | imported }]`).
+- Each version is a folder `website/versions/<YYYY-MM-DD>-v<n>/` with `<lang>/.../index.html` per page (translated slugs in each language), shared `assets/`, `sitemap.json` (`{ pages: [{ id, path, title, description, type: page | cms, collection, parent, nav, langs: { en: "en/…/index.html" } }], collections: [{ key, label, path }] }`), and at the root `sitemap.xml`, `robots.txt`, `llms.txt` and `llms-full.txt`. Every internal link and asset path is relative, so a version works from its folder.
+- Small edits (copy, a fix, one section) change the current version in place. A new direction, a restructure or a relaunch starts a new version: copy the current folder (the platform's "New version" button does it locally), set it as a draft, and set `current` when it goes live. Never delete old versions; set them to `archive`. To record the site a venture already has, import it as an archive version (full-page screenshots wrapped in HTML are enough).
+- Every page: mobile first and perfect at 390 wide; a unique title under 60 characters and a meta description of 70 to 160; one h1; `<html lang>`; a canonical on the public domain; hreflang for every language plus x-default; Open Graph and Twitter tags; JSON-LD (Organization and WebSite on the home page, SoftwareApplication or Product on product pages, BreadcrumbList on inner pages, FAQPage for real FAQs); alt text on every image. For LLMs: a plain definition of what the venture is near the top of the home page, clear headings, short factual paragraphs, `llms.txt` and a `robots.txt` that allows AI crawlers and points at the sitemap.
+- Design: the bar in BRANDING.md, specific to the venture's industry, built from its brand book or chosen variant. Pictures from the gallery, royalty-free libraries (credited), or the Higgsfield MCP. Never invent customers, logos, testimonials or metrics.
 
 ## Vision
 

@@ -1,0 +1,41 @@
+# Doctorine
+
+> Doctorine is the release gate for APIs in the agent era. Before an API change ships, it checks that coding agents and developers can still complete real tasks with the API's docs, CLI, MCP server, SDKs and Agent Skills, publishes only the surfaces that passed and keeps a receipt of what was checked. It works on top of the docs a team already has and can generate missing surfaces from an OpenAPI spec.
+
+Key facts:
+- Free: the Docs Analyser at https://doctorine.dev/ and an agent task eval report on a team's public docs and spec.
+- Paid: design partner seats at 100 euros a month (individual) or 300 euros a month (company), monthly, for 3 to 6 months, 20 seats each. Public plans are not published yet.
+- Status: Docs Analyser and generated surfaces are live; the eval report is free on request; the release gate and spec repair are with design partners.
+- Data: EU data at rest for the core data plane, with documented non-EU carve-outs such as authentication and payments.
+- Contact: pilot@doctorine.xyz (commercial), security@doctorine.xyz (vulnerabilities).
+- Sample data on the site uses a fictional API called Acme Payments.
+
+## Product
+- [Agent task eval](https://doctorine.xyz/agent-task-eval/): A free report: coding agents try five real integration tasks on your docs, CLI, MCP server and SDKs, three runs each, with the fix for every failure.
+- [Release gate](https://doctorine.xyz/release-gate/): A check on the spec pull request: rebuild every surface, run contract tests and agent tasks, hold back what failed and keep a receipt of each release.
+- [Spec repair](https://doctorine.xyz/spec-repair/): Doctorine scores your OpenAPI spec against what SDKs, the CLI, MCP tools and agents need, then opens one pull request with the mechanical fixes.
+- [Generated surfaces](https://doctorine.xyz/generated-surfaces/): Generate a hosted docs portal, TypeScript, Python and Go SDKs, a CLI, an MCP server and Agent Skills from your OpenAPI spec, each checked before release.
+- [Docs Analyser](https://doctorine.xyz/docs-analyser/): A free check at doctorine.dev: paste a documentation portal and get a 0 to 100 score for how well AI agents can find, read and use it.
+
+## Solutions
+- [Public API teams](https://doctorine.xyz/solutions/public-api-teams/): For teams whose API serves paying clients and partners: check every spec change against real integration tasks before docs, SDKs and tools update.
+- [Platform teams](https://doctorine.xyz/solutions/platform-teams/): One check on the spec pull request instead of another review layer: rebuild every surface, run the tasks and leave reviewers only real decisions.
+- [DevRel and docs owners](https://doctorine.xyz/solutions/devrel-and-docs/): See which real tasks coding agents and developers can finish with your docs, which page or example fails them, and what to fix first.
+- [SDK vendor migration](https://doctorine.xyz/solutions/sdk-vendor-migration/): Lost your SDK pipeline when a vendor shut down? Import supported configuration, regenerate the SDKs and prove what changed before you publish.
+
+## Industries
+- [Fintech and payments](https://doctorine.xyz/industries/fintech-and-payments/): Test the tasks payment APIs get quietly wrong, from refunds in minor units to safe retries and webhook signatures, before every change ships.
+- [SaaS with partner APIs](https://doctorine.xyz/industries/saas-partner-apis/): Check each spec change against the tasks your partners run, and publish docs, SDKs and tools from one release that pinned integrations can trust.
+- [Developer platforms](https://doctorine.xyz/industries/developer-platforms/): Your users build with coding agents. Measure which surface gets them to a working integration first, at what token cost, and gate each release on it.
+
+## Company
+- [Research](https://doctorine.xyz/research/): Aggregate results of the Doctorine Docs Analyser on 33 public API documentation portals, run on 25 September 2026, with method and caveats.
+- [Pricing](https://doctorine.xyz/pricing/): Start free with the Docs Analyser and an agent task eval report. Design partner seats are 100 euros a month for individuals and 300 for companies.
+- [Security](https://doctorine.xyz/security/): What Doctorine touches and where it runs: public docs only for the eval, scoped GitHub App permissions for the gate, EU data residency for the core.
+- [About](https://doctorine.xyz/about/): Why Doctorine exists, what we believe about APIs in the agent era, and what is live today versus what we are building with design partners.
+- [Design partners](https://doctorine.xyz/design-partners/): Request a free agent task eval report on your public docs, or join the paid design partner group that puts a real API on Doctorine every week.
+
+## Optional
+- [Full text of every English page](https://doctorine.xyz/llms-full.txt)
+- [Nederlandse startpagina](https://doctorine.xyz/nl/): the same site in Dutch.
+- [Sample SDK receipt](https://doctorine.xyz/proof/doctorine-sdk-receipt.json)

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How 33 API docs portals look to AI agents | Doctorine</title>
+<meta name="description" content="Aggregate results of the Doctorine Docs Analyser on 33 public API documentation portals, run on 25 September 2026, with method and caveats.">
+<link rel="canonical" href="https://doctorine.xyz/research/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/research/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/onderzoek/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/research/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="How 33 API docs portals look to AI agents | Doctorine">
+<meta property="og:description" content="Aggregate results of the Doctorine Docs Analyser on 33 public API documentation portals, run on 25 September 2026, with method and caveats.">
+<meta property="og:url" content="https://doctorine.xyz/research/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: every API change, proven before it ships">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="nl_NL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How 33 API docs portals look to AI agents | Doctorine">
+<meta name="twitter:description" content="Aggregate results of the Doctorine Docs Analyser on 33 public API documentation portals, run on 25 September 2026, with method and caveats.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://doctorine.xyz/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Research",
+     "item": "https://doctorine.xyz/research/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Which portals were included?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Public documentation portals of 33 API companies, 10 in Europe and 23 elsewhere. 25 run on a bespoke platform, 3 on Mintlify, 2 on GitBook, 2 on Docusaurus and 1 on Redocly. We publish aggregates only."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why did so many scans come back incomplete?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The analyser withholds a score when too many signals cannot be verified. It happened most often when probes for the machine-readable spec and MCP endpoint were limited or unavailable. This may be the analyser's probe budget rather than the sites, and it has not been diagnosed."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can we check our own portal?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. The same analyser is free at doctorine.dev."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "How 33 public API docs portals look to AI agents",
+   "datePublished": "2026-09-25",
+   "inLanguage": "en",
+   "author": {
+    "@id": "https://doctorine.xyz/#org"
+   },
+   "publisher": {
+    "@id": "https://doctorine.xyz/#org"
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Doctorine home"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Main">
+      <div class="dd"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="../agent-task-eval/index.html"><b>Agent task eval <span class="st">Free report</span></b><span>Can an agent finish the job with your API? A free report.</span></a><a href="../release-gate/index.html"><b>Release gate <span class="st">Design partners</span></b><span>A CI check that publishes only the surfaces that passed.</span></a><a href="../spec-repair/index.html"><b>Spec repair <span class="st">Early access</span></b><span>Find what blocks agents in your spec, fix it in one pull request.</span></a><a href="../generated-surfaces/index.html"><b>Generated surfaces <span class="st">Live</span></b><span>Docs portal, SDKs, CLI, MCP server and skills from one spec.</span></a><a href="../docs-analyser/index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Free: score how well agents find, read and use your docs.</span></a></div></div>
+      <a href="../solutions/index.html">Solutions</a><a href="../industries/index.html">Industries</a><a href="index.html" aria-current="page">Research</a><a href="../pricing/index.html">Pricing</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Language"><span aria-current="true" lang="en">EN</span><a href="../../nl/onderzoek/index.html" hreflang="nl" lang="nl" title="Nederlands">NL</a></div>
+      <a class="btn pri sm" href="../design-partners/index.html#eval">Get a free eval</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile"><h2>Product</h2><a href="../agent-task-eval/index.html">Agent task eval <span>Free report</span></a><a href="../release-gate/index.html">Release gate <span>Design partners</span></a><a href="../spec-repair/index.html">Spec repair <span>Early access</span></a><a href="../generated-surfaces/index.html">Generated surfaces <span>Live</span></a><a href="../docs-analyser/index.html">Docs Analyser <span>Live</span></a><h2>Explore</h2><a href="../solutions/index.html">Solutions</a><a href="../industries/index.html">Industries</a><a href="index.html">Research</a><a href="../pricing/index.html">Pricing</a><h2>Company</h2><a href="../security/index.html">Security</a><a href="../about/index.html">About</a><a href="../design-partners/index.html">Design partners</a><div class="cta"><a class="btn pri" href="../design-partners/index.html#eval">Get a free eval report</a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="phero"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Research</span></nav><h1>How 33 public API docs portals look to AI agents</h1><p class="lead">On 25 September 2026 we ran the free Doctorine Docs Analyser on 33 public API documentation portals. Sixteen returned a score and seventeen returned an incomplete scan. Most portals are readable. Few are discoverable. None of this says whether an agent finishes a task.</p><div class="cta"><a class="btn pri" href="https://doctorine.dev/">Check your own portal <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="#method">Method and caveats</a></div></div></section>
+<section class="sec tight" style="padding-top:0;border-top:0" aria-label="Headline numbers"><div class="wrap">
+  <div class="stats rv">
+    <div class="stat"><b>33</b><span>public API docs portals analysed on 25 September 2026</span></div>
+    <div class="stat"><b>16</b><span>returned a score, from 52 to 95</span></div>
+    <div class="stat"><b>74</b><span>median score of the 16 scored sites, mean 74.3</span></div>
+    <div class="stat"><b>6</b><span>scored 80 or more, labelled agent-ready</span></div>
+  </div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="f1-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Findings</span><h2 id="f1-h">Readable, yes. Discoverable, rarely.</h2></div>
+  <p>Counts are out of all 33 sites unless stated. Missing means the check failed.</p></div>
+  <div class="cards two">
+    <div class="chart-card rv"><h3>What most portals are missing</h3><p class="sub">Checks that failed, out of 33 sites</p>
+      <div class="bars"><div class="bar"><span>API Catalog missing</span><span class="tr"><i class="" style="--w:81.8%"></i></span><b>27 / 33</b></div><div class="bar"><span>MCP Server Card missing</span><span class="tr"><i class="" style="--w:81.8%"></i></span><b>27 / 33</b></div><div class="bar"><span>Agent Skills index missing</span><span class="tr"><i class="" style="--w:66.7%"></i></span><b>22 / 33</b></div><div class="bar"><span>Content Signals missing</span><span class="tr"><i class="" style="--w:63.6%"></i></span><b>21 / 33</b></div><div class="bar"><span>Sitemap freshness needs review</span><span class="tr"><i class="n" style="--w:36.4%"></i></span><b>12 / 33</b></div></div></div>
+    <div class="chart-card rv d1"><h3>What most portals already do</h3><p class="sub">Checks that passed</p>
+      <div class="bars"><div class="bar"><span>Readable without JavaScript</span><span class="tr"><i class="g" style="--w:100.0%"></i></span><b>31 / 31 measured</b></div><div class="bar"><span>llms.txt index</span><span class="tr"><i class="g" style="--w:78.8%"></i></span><b>26 / 33</b></div><div class="bar"><span>Markdown for Agents</span><span class="tr"><i class="g" style="--w:57.6%"></i></span><b>19 / 33</b></div></div></div>
+    <div class="chart-card rv"><h3>Category averages</h3><p class="sub">Average score out of 100, among the 16 scored sites</p>
+      <div class="bars"><div class="bar"><span>Agent and API discovery</span><span class="tr"><i class="" style="--w:40.0%"></i></span><b>40</b></div><div class="bar"><span>Readable content</span><span class="tr"><i class="n" style="--w:73.0%"></i></span><b>73</b></div><div class="bar"><span>Findability</span><span class="tr"><i class="n" style="--w:83.0%"></i></span><b>83</b></div><div class="bar"><span>Delivery and efficiency</span><span class="tr"><i class="g" style="--w:91.0%"></i></span><b>91</b></div><div class="bar"><span>Bot policy and trust</span><span class="tr"><i class="g" style="--w:91.0%"></i></span><b>91</b></div></div></div>
+    <div class="chart-card rv d1"><h3>The 16 scores</h3><p class="sub">Each bar is one scored site, placed by score. Green passed Markdown for Agents, red failed it.</p>
+      <div class="dist" role="img" aria-label="Distribution of the 16 scores between 52 and 95. All 9 sites scoring 73 or more passed Markdown for Agents; all 7 scoring below 70 failed it."><i class="lo" style="left:4.0%;height:52%"></i><i class="lo" style="left:12.0%;height:56%"></i><i class="lo" style="left:14.0%;height:57%"></i><i class="lo" style="left:18.0%;height:59%"></i><i class="lo" style="left:18.0%;height:59%"></i><i class="lo" style="left:28.0%;height:64%"></i><i class="lo" style="left:36.0%;height:68%"></i><i class="hi" style="left:46.0%;height:73%"></i><i class="hi" style="left:50.0%;height:75%"></i><i class="hi" style="left:52.0%;height:76%"></i><i class="hi" style="left:74.0%;height:87%"></i><i class="hi" style="left:82.0%;height:91%"></i><i class="hi" style="left:84.0%;height:92%"></i><i class="hi" style="left:84.0%;height:92%"></i><i class="hi" style="left:86.0%;height:93%"></i><i class="hi" style="left:90.0%;height:95%"></i></div>
+      <div class="axis"><span>50</span><span>60</span><span>70</span><span>80</span><span>90</span><span>100</span></div></div>
+  </div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="f2-h"><div class="wrap two-col">
+  <div class="rv"><span class="label">What it means</span><h2 id="f2-h" style="margin-top:16px">Four things the numbers say.</h2></div>
+  <div class="body prose rv d1">
+    <h3>Discovery is the weakest category</h3>
+    <p>Among the 16 scored sites, agent and API discovery averaged 40 out of 100, against 83 to 91 for findability, delivery and bot policy. Agents can read most portals, but struggle to find the API and its tools from the docs alone.</p>
+    <h3>Markdown for Agents splits the field</h3>
+    <p>All 9 sites scoring 73 or more passed Markdown for Agents, and all 7 scoring below 70 failed it. It is the clearest single line between the top and the bottom half of this sample.</p>
+    <h3>llms.txt is common, catalogs are not</h3>
+    <p>26 of 33 sites passed the llms.txt check, while 27 had no API Catalog and 27 had no MCP Server Card. The file most people talk about is already there. The ones that point an agent at the API are not.</p>
+    <h3>A score is not a finished task</h3>
+    <p>None of these checks runs an integration. They say whether an agent can find and read the docs, not whether it can create, pay, refund or list. That is what the agent task eval measures. <a href="../agent-task-eval/index.html">Agent task eval</a></p>
+  </div>
+</div></section>
+
+<section class="sec" id="method" aria-labelledby="m-h"><div class="wrap two-col dark">
+  <div class="rv"><span class="label">Method</span><h2 id="m-h" style="margin-top:16px">How we ran it, and what to be careful with.</h2></div>
+  <div class="body rv d1">
+    <p>Each portal was submitted to the analyser's own endpoint at doctorine.dev, the same call the page makes, on 25 September 2026. The response combines the Cloudflare Agent Ready benchmark signals with Doctorine's own probes.</p>
+    <p>Sites that came back as an incomplete scan were retried up to three more times, 20 to 30 seconds apart. We kept the latest scored run, or otherwise the attempt with the fewest unverified signals. Nothing is estimated: a site without a score is reported without one.</p>
+    <p>The sample is 33 portals, not a random draw of the market, and 17 scans were incomplete. That may reflect the analyser's probe budget rather than the sites, and it has not been diagnosed. Treat the numbers as a snapshot of one day.</p>
+  </div>
+</div></section>
+<section class="sec paper" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">Questions</h2></div>
+<div class="faq rv d1"><details><summary>Which portals were included?</summary><div class="a"><p>Public documentation portals of 33 API companies, 10 in Europe and 23 elsewhere. 25 run on a bespoke platform, 3 on Mintlify, 2 on GitBook, 2 on Docusaurus and 1 on Redocly. We publish aggregates only.</p></div></details><details><summary>Why did so many scans come back incomplete?</summary><div class="a"><p>The analyser withholds a score when too many signals cannot be verified. It happened most often when probes for the machine-readable spec and MCP endpoint were limited or unavailable. This may be the analyser&#x27;s probe budget rather than the sites, and it has not been diagnosed.</p></div></details><details><summary>Can we check our own portal?</summary><div class="a"><p>Yes. The same analyser is free at doctorine.dev.</p></div></details></div></div></section>
+<section class="close" aria-labelledby="close-h"><div class="wrap">
+<div class="rv"><h2 id="close-h">Now find out what agents can finish.</h2><p>Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.</p>
+<div class="cta"><a class="btn pri" href="../design-partners/index.html#eval">Get a free eval report <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></div>
+<img class="rv d1" src="../../assets/img/horse-portrait-dark.jpg" width="912" height="941" loading="lazy" alt="The Doctorine horse, drawn in fine light points on black">
+</div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="../index.html"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>The release gate for APIs in the agent era. Proof that agents and developers can still use your API, on every change.</p></div>
+      <div><h2>Product</h2><ul><li><a href="../agent-task-eval/index.html">Agent task eval</a></li><li><a href="../release-gate/index.html">Release gate</a></li><li><a href="../spec-repair/index.html">Spec repair</a></li><li><a href="../generated-surfaces/index.html">Generated surfaces</a></li><li><a href="../docs-analyser/index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Solutions</h2><ul><li><a href="../solutions/public-api-teams/index.html">Public API teams</a></li><li><a href="../solutions/platform-teams/index.html">Platform teams</a></li><li><a href="../solutions/devrel-and-docs/index.html">DevRel and docs owners</a></li><li><a href="../solutions/sdk-vendor-migration/index.html">SDK vendor migration</a></li></ul></div>
+      <div><h2>Industries</h2><ul><li><a href="../industries/fintech-and-payments/index.html">Fintech and payments</a></li><li><a href="../industries/saas-partner-apis/index.html">SaaS with partner APIs</a></li><li><a href="../industries/developer-platforms/index.html">Developer platforms</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="index.html">Research</a></li><li><a href="../pricing/index.html">Pricing</a></li><li><a href="../security/index.html">Security</a></li><li><a href="../about/index.html">About</a></li><li><a href="../design-partners/index.html">Design partners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Sample data on this site uses an example API called Acme Payments. It is not customer data.</span><span>EU data residency for the core data plane, with documented carve-outs. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

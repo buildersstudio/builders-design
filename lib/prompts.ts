@@ -23,6 +23,8 @@ export function prompt(section: string, name: string, slug: string) {
       return `${base} Build a landing page for ${name} in ${at}/landing/<id>/ using its brand book (${at}/brand). Goal: <what the page is for>.`;
     case "social":
       return `${base} Following the "Social" section of AGENTS.md, write 10 ready-to-post LinkedIn posts for ${name} into ${at}/social/posts.json, each a different visual angle with three caption variants. What to post about: <what happened, e.g. a launch, a rebrand, a release>.`;
+    case "website":
+      return `${base} Following the "Website" section of AGENTS.md, build the website of ${name} in ${at}/website/: a new version in website/versions/<date>-v<n>/ (or small edits in the current version), multi-page and in every language in site.json, with sitemap.json, sitemap.xml, robots.txt and llms.txt, mobile first and SEO and LLM ready. What the site needs: <pages, audience, goal>.`;
     case "vision":
       return `${base} Following the "Vision" section of AGENTS.md, build the product vision board of ${name} in ${at}/vision/board.json: research competitors' winning patterns, the problem, trends and the venture's status from the VSI MCP, then recommend 8 to 12 product initiatives backed by that evidence, with visualisations and vision prototypes for the strongest.`;
     case "journeys":

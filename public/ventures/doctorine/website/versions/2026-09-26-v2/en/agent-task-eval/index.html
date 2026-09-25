@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent task eval: can agents finish the job? | Doctorine</title>
+<meta name="description" content="A free report: coding agents try five real integration tasks on your docs, CLI, MCP server and SDKs, three runs each, with the fix for every failure.">
+<link rel="canonical" href="https://doctorine.xyz/agent-task-eval/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/agent-task-eval/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/agenttaken-evaluatie/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/agent-task-eval/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="Agent task eval: can agents finish the job? | Doctorine">
+<meta property="og:description" content="A free report: coding agents try five real integration tasks on your docs, CLI, MCP server and SDKs, three runs each, with the fix for every failure.">
+<meta property="og:url" content="https://doctorine.xyz/agent-task-eval/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: every API change, proven before it ships">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="nl_NL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent task eval: can agents finish the job? | Doctorine">
+<meta name="twitter:description" content="A free report: coding agents try five real integration tasks on your docs, CLI, MCP server and SDKs, three runs each, with the fix for every failure.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://doctorine.xyz/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Agent task eval",
+     "item": "https://doctorine.xyz/agent-task-eval/"
+    }
+   ]
+  },
+  {
+   "@type": "SoftwareApplication",
+   "name": "Doctorine Agent task eval",
+   "applicationCategory": "DeveloperApplication",
+   "operatingSystem": "Web, GitHub",
+   "url": "https://doctorine.xyz/agent-task-eval/",
+   "description": "A free report: coding agents try five real integration tasks on your docs, CLI, MCP server and SDKs, three runs each, with the fix for every failure.",
+   "publisher": {
+    "@id": "https://doctorine.xyz/#org"
+   },
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Free eval report",
+     "price": "0",
+     "priceCurrency": "EUR",
+     "url": "https://doctorine.xyz/design-partners/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What does the eval need from us?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A public docs URL and, if you publish one, a link to your OpenAPI spec. It does not need access to your repository, your production API or any credentials."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which agents run the tasks?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Two coding agents run every task on every surface you publish, three times each. The report names the agents and versions used, so a run can be reproduced."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How do you keep the results fair?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Tasks are written from your own operations and examples, and you see them in the report. A task counts as passed or failed only when all three runs agree. Anything else is reported as flaky and not counted."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does it call our production API?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Tasks run against a sandbox that answers from your spec, so no production keys are used and no real data is touched."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How is this different from the Docs Analyser?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The Docs Analyser at doctorine.dev is a static check that scores whether agents can find and read your docs. The eval runs real tasks, so it shows whether agents can complete them."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What does it cost?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The eval report is free. Teams that want the same tasks checked on every pull request move to the release gate."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Doctorine home"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Main">
+      <div class="dd cur"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="index.html"><b>Agent task eval <span class="st">Free report</span></b><span>Can an agent finish the job with your API? A free report.</span></a><a href="../release-gate/index.html"><b>Release gate <span class="st">Design partners</span></b><span>A CI check that publishes only the surfaces that passed.</span></a><a href="../spec-repair/index.html"><b>Spec repair <span class="st">Early access</span></b><span>Find what blocks agents in your spec, fix it in one pull request.</span></a><a href="../generated-surfaces/index.html"><b>Generated surfaces <span class="st">Live</span></b><span>Docs portal, SDKs, CLI, MCP server and skills from one spec.</span></a><a href="../docs-analyser/index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Free: score how well agents find, read and use your docs.</span></a></div></div>
+      <a href="../solutions/index.html">Solutions</a><a href="../industries/index.html">Industries</a><a href="../research/index.html">Research</a><a href="../pricing/index.html">Pricing</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Language"><span aria-current="true" lang="en">EN</span><a href="../../nl/agenttaken-evaluatie/index.html" hreflang="nl" lang="nl" title="Nederlands">NL</a></div>
+      <a class="btn pri sm" href="../design-partners/index.html#eval">Get a free eval</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile"><h2>Product</h2><a href="index.html">Agent task eval <span>Free report</span></a><a href="../release-gate/index.html">Release gate <span>Design partners</span></a><a href="../spec-repair/index.html">Spec repair <span>Early access</span></a><a href="../generated-surfaces/index.html">Generated surfaces <span>Live</span></a><a href="../docs-analyser/index.html">Docs Analyser <span>Live</span></a><h2>Explore</h2><a href="../solutions/index.html">Solutions</a><a href="../industries/index.html">Industries</a><a href="../research/index.html">Research</a><a href="../pricing/index.html">Pricing</a><h2>Company</h2><a href="../security/index.html">Security</a><a href="../about/index.html">About</a><a href="../design-partners/index.html">Design partners</a><div class="cta"><a class="btn pri" href="../design-partners/index.html#eval">Get a free eval report</a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="phero"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Agent task eval</span></nav><div style="margin-bottom:22px"><span class="status live"><i></i>Free report</span></div><h1>Agent task eval: can an agent finish the job with your API?</h1><p class="lead">Coding agents try the real integration jobs your users do, against a sandbox built from your spec, on every surface you publish. The report shows which tasks passed, where they failed and the change that fixes each one.</p><div class="cta"><a class="btn pri" href="../design-partners/index.html#eval">Get a free eval report <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="#report">See a sample report</a></div></div></section>
+<section class="sec tight" id="report" aria-label="Sample eval report" style="padding-top:0;border-top:0"><div class="wrap rv"><div class="ui-stage"><div class="ev-top"><div class="ev-k "><span class="label">Static readiness score</span><b>91<small> / 100</small></b><span>Checks files and headers only</span></div><div class="ev-k bad"><span class="label">Tasks completed</span><b>9<small> / 20</small></b><span>Agreed across 3 runs</span></div><div class="ev-k "><span class="label">Repeat agreement</span><b>93%</b><span>Same verdict on 56 of 60 runs</span></div><div class="ev-k "><span class="label">Fixable causes</span><b>6</b><span>4 in the docs, 2 in the spec</span></div></div>
+<div class="evalui">
+<div class="ui"><div class="rp-head"><b>Tasks by surface</b><span class="sample">Sample report</span></div>
+<div class="grid-wrap"><table class="grid-t" data-play><caption class="sr">Agent task results per surface for the sample Acme Payments API</caption><thead><tr><th scope="col">Integration task</th><th scope="col">Docs only</th><th scope="col">CLI</th><th scope="col">MCP server</th><th scope="col">TypeScript SDK</th></tr></thead><tbody><tr><td><b>Create a customer and save a card</b><span>POST customers, then attach a payment method</span></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Create a customer and save a card, Docs only: Completed"><i>Completed</i><small>18.4k tokens</small></button></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Create a customer and save a card, CLI: Completed"><i>Completed</i><small>6.1k tokens</small></button></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Create a customer and save a card, MCP server: Completed"><i>Completed</i><small>14.2k tokens</small></button></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Create a customer and save a card, TypeScript SDK: Completed"><i>Completed</i><small>9.8k tokens</small></button></td></tr><tr><td><b>Take a payment safely on retry</b><span>Payment with an idempotency key, retried after a timeout</span></td><td><button type="button" class="cell f" data-task="t2" aria-pressed="false" aria-label="Take a payment safely on retry, Docs only: Failed"><i>Failed</i></button></td><td><button type="button" class="cell p" data-task="t2" aria-pressed="false" aria-label="Take a payment safely on retry, CLI: Completed"><i>Completed</i><small>7.4k tokens</small></button></td><td><button type="button" class="cell f" data-task="t2" aria-pressed="false" aria-label="Take a payment safely on retry, MCP server: Failed"><i>Failed</i></button></td><td><button type="button" class="cell p" data-task="t2" aria-pressed="false" aria-label="Take a payment safely on retry, TypeScript SDK: Completed"><i>Completed</i><small>11.2k tokens</small></button></td></tr><tr><td><b>Refund part of a payment</b><span>Partial refund in the right currency unit</span></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" data-start aria-label="Refund part of a payment, Docs only: Failed"><i>Failed</i></button></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" aria-label="Refund part of a payment, CLI: Failed"><i>Failed</i></button></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" aria-label="Refund part of a payment, MCP server: Failed"><i>Failed</i></button></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" aria-label="Refund part of a payment, TypeScript SDK: Failed"><i>Failed</i></button></td></tr><tr><td><b>List every payout from last month</b><span>Follow cursor pagination to the end</span></td><td><button type="button" class="cell f" data-task="t4" aria-pressed="false" aria-label="List every payout from last month, Docs only: Failed"><i>Failed</i></button></td><td><button type="button" class="cell p" data-task="t4" aria-pressed="false" aria-label="List every payout from last month, CLI: Completed"><i>Completed</i><small>8.9k tokens</small></button></td><td><button type="button" class="cell k" data-task="t4" aria-pressed="false" aria-label="List every payout from last month, MCP server: Flaky"><i>Flaky</i></button></td><td><button type="button" class="cell p" data-task="t4" aria-pressed="false" aria-label="List every payout from last month, TypeScript SDK: Completed"><i>Completed</i><small>12.6k tokens</small></button></td></tr><tr><td><b>Verify a webhook signature</b><span>Check the signature header before trusting an event</span></td><td><button type="button" class="cell f" data-task="t5" aria-pressed="false" aria-label="Verify a webhook signature, Docs only: Failed"><i>Failed</i></button></td><td><button type="button" class="cell f" data-task="t5" aria-pressed="false" aria-label="Verify a webhook signature, CLI: Failed"><i>Failed</i></button></td><td><button type="button" class="cell f" data-task="t5" aria-pressed="false" aria-label="Verify a webhook signature, MCP server: Failed"><i>Failed</i></button></td><td><button type="button" class="cell p" data-task="t5" aria-pressed="false" aria-label="Verify a webhook signature, TypeScript SDK: Completed"><i>Completed</i><small>10.4k tokens</small></button></td></tr></tbody></table></div><div class="legend"><span style="--c:var(--green)">Completed</span><span style="--c:var(--red)">Failed the same way in every run</span><span style="--c:var(--amber)">Flaky, not counted</span></div></div>
+<div class="ui" aria-live="polite"><div class="panel side" data-task="t1"><span class="label">Docs only, coding agent</span><h3>Create a customer and save a card</h3><p class="res p">Completed on every surface</p>
+<ol class="tl"><li class="">Found the Customers page<span>Read the create and attach examples</span></li><li class="">Created customer cus_41x<span>201</span></li><li class="">Attached a test card<span>200</span></li></ol><div class="whyf ok"><b>Why it worked</b>Both operations have complete request examples, so every surface finished on the first run.</div>
+</div><div class="panel side" data-task="t2"><span class="label">Docs only, coding agent</span><h3>Take a payment safely on retry</h3><p class="res f">Failed on docs only</p>
+<ol class="tl"><li class="">Found the Payments page<span>No mention of idempotency on the page</span></li><li class="">Created a payment<span>201</span></li><li class="f">Retried after the simulated timeout<span>A second payment was created</span></li></ol><div class="whyf"><b>Why it failed</b>The Idempotency-Key header is in the spec but not in the docs, so an agent that reads only the docs charges twice.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">What would fix it</span><div><b>Docs</b><span>Add the Idempotency-Key header to the Payments guide, with a retry example</span></div><div><b>Check</b><span>Add this task to the release gate</span></div></div></div><div class="panel side" data-task="t3"><span class="label">Docs only, coding agent</span><h3>Refund part of a payment</h3><p class="res f">Failed on docs only</p>
+<ol class="tl"><li class="">Found the Refunds page<span>Read the reference for creating a refund</span></li><li class="">Created a payment of 25.00 EUR<span>Sandbox returned amount 2500</span></li><li class="f">Sent amount 12.5<span>Rejected: amount must be an integer</span></li><li class="f">Retried with amount 12<span>Refunded 0.12 EUR and reported success</span></li></ol><div class="whyf"><b>Why it failed</b>The amount field is in minor units, but nothing says so. The spec describes it as the amount and the page has no example, so every surface inherits the gap.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">What would fix it</span><div><b>Spec</b><span>Describe amount as an integer in minor units, with an example of 1250</span></div><div><b>Docs</b><span>Add a partial refund example to the Refunds page</span></div><div><b>Check</b><span>Add this task to the release gate so the gap cannot return</span></div></div></div><div class="panel side" data-task="t4"><span class="label">Docs only, coding agent</span><h3>List every payout from last month</h3><p class="res k">Flaky on MCP, not counted</p>
+<ol class="tl"><li class="">Found the Payouts list operation<span>GET /v1/payouts</span></li><li class="">Read the first page<span>100 items and a next_cursor</span></li><li class="f">Stopped after page one on docs only<span>The guide never shows next_cursor being used</span></li></ol><div class="whyf"><b>Why it failed</b>Docs only failed the same way in every run. On the MCP server the result changed between runs, so it is reported as flaky and not counted either way.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">What would fix it</span><div><b>Docs</b><span>Show a loop that follows next_cursor to the end</span></div><div><b>MCP</b><span>Describe the cursor in the list tool</span></div></div></div><div class="panel side" data-task="t5"><span class="label">Docs only, coding agent</span><h3>Verify a webhook signature</h3><p class="res f">Failed on docs only</p>
+<ol class="tl"><li class="">Found the Webhooks page<span>Read the event format</span></li><li class="f">Computed the signature over the parsed JSON<span>Signature mismatch on every event</span></li></ol><div class="whyf"><b>Why it failed</b>Signatures are computed over the raw body, but the docs do not say so. Only the TypeScript SDK, which wraps verification, passed.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">What would fix it</span><div><b>Docs</b><span>State that the signature covers the raw request body</span></div><div><b>CLI</b><span>Add a webhooks verify command</span></div></div></div></div>
+</div><p class="caption">Sample report on an example API, Acme Payments. Select any cell to see the run. Not customer data.</p></div></div></section>
+
+<section class="sec paper" aria-labelledby="how-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">How it works</span><h2 id="how-h">Five tasks your users do in week one.</h2></div>
+  <p>The eval reads only what you publish. It needs no migration, no login and no production keys.</p></div>
+  <ol class="how rv"><li><span class="n">01</span><b>Read what you publish</b><span>Your public docs, your OpenAPI spec and whichever of the CLI, MCP server and SDKs you ship.</span></li><li><span class="n">02</span><b>Write the tasks</b><span>Five tasks from your own operations and examples, the jobs a new integrator does first: create, pay, refund, list, verify.</span></li><li><span class="n">03</span><b>Run them three times</b><span>Two coding agents attempt each task on each surface, three runs each, against a sandbox that answers from your spec. A task counts only when all runs agree.</span></li><li><span class="n">04</span><b>Report the fix</b><span>Every failure comes with the step where it went wrong, the cause in your docs or spec, and the smallest change that fixes it.</span></li></ol>
+</div></section>
+
+<section class="sec" aria-labelledby="ts-h"><div class="wrap split">
+  <div class="rv"><span class="label">Tasks, not scores</span>
+    <h2 id="ts-h" style="margin-top:16px">A score tells you the files exist. A task tells you it works.</h2>
+    <p class="lead" style="margin-top:22px">Free readiness tools check whether llms.txt, Markdown and sitemaps are there. They cannot tell you whether an agent can refund a payment in the right currency unit.</p>
+    <p style="margin-top:16px;color:var(--muted)">In the sample report above, the same API scores 91 out of 100 on static checks, while agents finish 9 of 20 tasks. <a class="tlink" href="../research/index.html">See what 33 real portals score</a></p></div>
+  <div class="rv d1"><div class="ev-top" style="grid-template-columns:1fr 1fr;margin:0">
+    <div class="ev-k" style="padding:28px"><span class="label">What a readiness score sees</span><b style="font-size:72px">91<small> / 100</small></b><span>llms.txt found, Markdown per page, robots allow agents</span></div>
+    <div class="ev-k bad" style="padding:28px"><span class="label">What agents finished</span><b style="font-size:72px">9<small> / 20</small></b><span>5 tasks, 4 surfaces, 3 runs each</span></div>
+  </div><p class="caption">Both numbers describe the same sample API. Not customer data.</p></div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="get-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">In the report</span><h2 id="get-h">Everything you need to fix it, nothing you have to trust blindly.</h2></div></div>
+  <div class="cards"><div class="card rv"><span class="label">Results</span><h3>Tasks by surface</h3><p>A grid of every task on docs only, CLI, MCP server and each SDK, with what passed, what failed the same way every time and what was flaky.</p></div><div class="card rv"><span class="label">Evidence</span><h3>The run, step by step</h3><p>What the agent read, what it called, what came back and where it went wrong, so you can see the failure instead of a number.</p></div><div class="card rv"><span class="label">Fixes</span><h3>The smallest change</h3><p>For each failure, the line in the spec or the example in the docs that would have saved the run, ready to become a pull request.</p></div><div class="card rv"><span class="label">Cost</span><h3>Tokens per completed task</h3><p>How many tokens each surface needed to finish, so you know which one to point agents at.</p></div><div class="card rv"><span class="label">Reproducible</span><h3>Tasks and criteria included</h3><p>The task definitions and pass criteria come with the report, so you can argue with them or run them again.</p></div><a class="card rv" href="../release-gate/index.html"><span class="label">Next step</span><h3>Keep the tasks as checks</h3><p>The same tasks can run on every spec pull request in the release gate, so a fixed gap cannot quietly return.</p><span class="more">Release gate</span></a></div>
+</div></section>
+<section class="sec" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">Questions</h2></div>
+<div class="faq rv d1"><details><summary>What does the eval need from us?</summary><div class="a"><p>A public docs URL and, if you publish one, a link to your OpenAPI spec. It does not need access to your repository, your production API or any credentials.</p></div></details><details><summary>Which agents run the tasks?</summary><div class="a"><p>Two coding agents run every task on every surface you publish, three times each. The report names the agents and versions used, so a run can be reproduced.</p></div></details><details><summary>How do you keep the results fair?</summary><div class="a"><p>Tasks are written from your own operations and examples, and you see them in the report. A task counts as passed or failed only when all three runs agree. Anything else is reported as flaky and not counted.</p></div></details><details><summary>Does it call our production API?</summary><div class="a"><p>No. Tasks run against a sandbox that answers from your spec, so no production keys are used and no real data is touched.</p></div></details><details><summary>How is this different from the Docs Analyser?</summary><div class="a"><p>The Docs Analyser at doctorine.dev is a static check that scores whether agents can find and read your docs. The eval runs real tasks, so it shows whether agents can complete them.</p></div></details><details><summary>What does it cost?</summary><div class="a"><p>The eval report is free. Teams that want the same tasks checked on every pull request move to the release gate.</p></div></details></div></div></section>
+<section class="close" aria-labelledby="close-h"><div class="wrap">
+<div class="rv"><h2 id="close-h">Find out before the agent does.</h2><p>Send us your public docs and spec, and we will show you which real tasks agents can finish with your API today. The report is free and reads only what you already publish.</p>
+<div class="cta"><a class="btn pri" href="../design-partners/index.html#eval">Get a free eval report <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Run the Docs Analyser</a></div></div>
+<img class="rv d1" src="../../assets/img/horse-portrait-dark.jpg" width="912" height="941" loading="lazy" alt="The Doctorine horse, drawn in fine light points on black">
+</div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="../index.html"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>The release gate for APIs in the agent era. Proof that agents and developers can still use your API, on every change.</p></div>
+      <div><h2>Product</h2><ul><li><a href="index.html">Agent task eval</a></li><li><a href="../release-gate/index.html">Release gate</a></li><li><a href="../spec-repair/index.html">Spec repair</a></li><li><a href="../generated-surfaces/index.html">Generated surfaces</a></li><li><a href="../docs-analyser/index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Solutions</h2><ul><li><a href="../solutions/public-api-teams/index.html">Public API teams</a></li><li><a href="../solutions/platform-teams/index.html">Platform teams</a></li><li><a href="../solutions/devrel-and-docs/index.html">DevRel and docs owners</a></li><li><a href="../solutions/sdk-vendor-migration/index.html">SDK vendor migration</a></li></ul></div>
+      <div><h2>Industries</h2><ul><li><a href="../industries/fintech-and-payments/index.html">Fintech and payments</a></li><li><a href="../industries/saas-partner-apis/index.html">SaaS with partner APIs</a></li><li><a href="../industries/developer-platforms/index.html">Developer platforms</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="../research/index.html">Research</a></li><li><a href="../pricing/index.html">Pricing</a></li><li><a href="../security/index.html">Security</a></li><li><a href="../about/index.html">About</a></li><li><a href="../design-partners/index.html">Design partners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Sample data on this site uses an example API called Acme Payments. It is not customer data.</span><span>EU data residency for the core data plane, with documented carve-outs. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

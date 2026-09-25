@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="nl" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs Analyser: gratis check op agent-readiness | Doctorine</title>
+<meta name="description" content="Een gratis check op doctorine.dev: plak een documentatieportaal en krijg een score van 0 tot 100 voor hoe goed AI-agents het vinden, lezen en gebruiken.">
+<link rel="canonical" href="https://doctorine.xyz/nl/docs-analyse/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/docs-analyser/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/docs-analyse/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/docs-analyser/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="Docs Analyser: gratis check op agent-readiness | Doctorine">
+<meta property="og:description" content="Een gratis check op doctorine.dev: plak een documentatieportaal en krijg een score van 0 tot 100 voor hoe goed AI-agents het vinden, lezen en gebruiken.">
+<meta property="og:url" content="https://doctorine.xyz/nl/docs-analyse/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: elke API-wijziging bewezen voordat ze live gaat">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Docs Analyser: gratis check op agent-readiness | Doctorine">
+<meta name="twitter:description" content="Een gratis check op doctorine.dev: plak een documentatieportaal en krijg een score van 0 tot 100 voor hoe goed AI-agents het vinden, lezen en gebruiken.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://doctorine.xyz/nl/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Docs Analyser",
+     "item": "https://doctorine.xyz/nl/docs-analyse/"
+    }
+   ]
+  },
+  {
+   "@type": "SoftwareApplication",
+   "name": "Doctorine Docs Analyser",
+   "applicationCategory": "DeveloperApplication",
+   "operatingSystem": "Web, GitHub",
+   "url": "https://doctorine.xyz/nl/docs-analyse/",
+   "description": "Een gratis check op doctorine.dev: plak een documentatieportaal en krijg een score van 0 tot 100 voor hoe goed AI-agents het vinden, lezen en gebruiken.",
+   "publisher": {
+    "@id": "https://doctorine.xyz/#org"
+   },
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Free eval report",
+     "price": "0",
+     "priceCurrency": "EUR",
+     "url": "https://doctorine.xyz/design-partners/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Is de Docs Analyser gratis?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ja. Plak een publiek documentatieportaal op doctorine.dev en je krijgt de score en de checklist."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Wat betekent een onvolledige scan?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Als te veel signalen niet te verifiëren zijn, geeft de analyser geen score in plaats van te gokken. In onze meting van september gebeurde dat bij 17 van de 33 portalen, meestal als de controles op de machineleesbare spec en het MCP-endpoint beperkt of niet beschikbaar waren."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Waar komen de checks vandaan?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Het resultaat combineert de signalen van de Cloudflare Agent Ready-benchmark met eigen controles van Doctorine, verdeeld over vijf categorieën."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Betekent een hoge score dat agents onze API kunnen gebruiken?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Niet op zichzelf. Een hoge score betekent dat agents je docs kunnen vinden en lezen. Of ze een taak kunnen afronden, meet de agenttaken-evaluatie."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Doctorine home"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Hoofdmenu">
+      <div class="dd cur"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="../agenttaken-evaluatie/index.html"><b>Agenttaken-evaluatie <span class="st">Gratis rapport</span></b><span>Kan een agent de klus klaren met je API? Een gratis rapport.</span></a><a href="../releasecontrole/index.html"><b>Release gate <span class="st">Designpartners</span></b><span>Een CI-check die alleen geslaagde interfaces publiceert.</span></a><a href="../spec-herstel/index.html"><b>Spec-herstel <span class="st">Early access</span></b><span>Vind wat agents blokkeert in je spec en los het op in één pull request.</span></a><a href="../gegenereerde-interfaces/index.html"><b>Gegenereerde interfaces <span class="st">Live</span></b><span>Docsportaal, SDK&#x27;s, CLI, MCP-server en skills uit één spec.</span></a><a href="index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Gratis: scoor hoe goed agents je docs vinden, lezen en gebruiken.</span></a></div></div>
+      <a href="../oplossingen/index.html">Oplossingen</a><a href="../sectoren/index.html">Sectoren</a><a href="../onderzoek/index.html">Onderzoek</a><a href="../prijzen/index.html">Prijzen</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Taal"><a href="../../en/docs-analyser/index.html" hreflang="en" lang="en" title="English">EN</a><span aria-current="true" lang="nl">NL</span></div>
+      <a class="btn pri sm" href="../designpartners/index.html#eval">Gratis evaluatie</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu openen"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobiel"><h2>Product</h2><a href="../agenttaken-evaluatie/index.html">Agenttaken-evaluatie <span>Gratis rapport</span></a><a href="../releasecontrole/index.html">Release gate <span>Designpartners</span></a><a href="../spec-herstel/index.html">Spec-herstel <span>Early access</span></a><a href="../gegenereerde-interfaces/index.html">Gegenereerde interfaces <span>Live</span></a><a href="index.html">Docs Analyser <span>Live</span></a><h2>Ontdek</h2><a href="../oplossingen/index.html">Oplossingen</a><a href="../sectoren/index.html">Sectoren</a><a href="../onderzoek/index.html">Onderzoek</a><a href="../prijzen/index.html">Prijzen</a><h2>Bedrijf</h2><a href="../beveiliging/index.html">Beveiliging</a><a href="../over-ons/index.html">Over ons</a><a href="../designpartners/index.html">Designpartners</a><div class="cta"><a class="btn pri" href="../designpartners/index.html#eval">Vraag een gratis evaluatie aan</a><a class="btn ghost" href="https://doctorine.dev/">Start de Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="phero"><div class="wrap"><nav class="crumbs" aria-label="Kruimelpad"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Docs Analyser</span></nav><div style="margin-bottom:22px"><span class="status live"><i></i>Live</span></div><h1>Docs Analyser: kunnen AI-agents je docs vinden, lezen en gebruiken?</h1><p class="lead">Een gratis check op doctorine.dev. Plak een documentatieportaal en krijg een score van 0 tot 100 voor hoe goed agents het vinden, lezen en gebruiken, met elk signaal dat slaagde, faalde of aandacht vraagt.</p><div class="cta"><a class="btn pri" href="https://doctorine.dev/">Open doctorine.dev <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="../onderzoek/index.html">Lees het onderzoek</a></div></div></section>
+<section class="sec tight" style="padding-top:0;border-top:0" aria-label="De analyser"><div class="wrap split">
+  <figure class="rv browser"><div class="bh"><i></i><i></i><i></i><span>doctorine.dev</span></div><img src="../../assets/img/analyser-home.jpg" width="1600" height="1000" alt="De startpagina van de Doctorine Docs Analyser op doctorine.dev, met de vraag of AI-agents je docs kunnen gebruiken en een veld voor de URL van een docsportaal"></figure>
+  <div class="rv d1"><span class="label">Wat je krijgt</span>
+    <h2 style="margin-top:16px;font-size:clamp(30px,3.4vw,46px)">Een score, vijf categorieën en elke check daarachter.</h2>
+    <p class="lead" style="margin-top:20px">Elke check zegt geslaagd, mislukt, aandacht nodig of niet te verifiëren, zodat je precies weet welk bestand of welke header je toevoegt.</p>
+    <div class="cta"><a class="btn pri" href="https://doctorine.dev/">Analyseer je docs <span class="ar" aria-hidden="true">→</span></a></div></div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="cat-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Wat het controleert</span><h2 id="cat-h">Vijf categorieën waar agents om geven.</h2></div>
+  <p>Het resultaat combineert de signalen van de Cloudflare Agent Ready-benchmark met eigen controles van Doctorine.</p></div>
+  <div class="list rv"><div><b>Agent- en API-vindbaarheid</b><span>Kan een agent je API en tools vinden: een API Catalog, een MCP Server Card, een Agent Skills-index, een machineleesbare spec en discovery-links.</span><i aria-hidden="true"></i></div><div><b>Vindbaarheid</b><span>Vindt het de juiste pagina: een llms.txt-index, een sitemap met actuele datums en nette redirects.</span><i aria-hidden="true"></i></div><div><b>Leesbare inhoud</b><span>Kan het de pagina lezen: Markdown voor agents, Markdown-kopieën, pagina&#x27;s leesbaar zonder JavaScript en de tokenkosten per pagina.</span><i aria-hidden="true"></i></div><div><b>Levering en efficiëntie</b><span>Komt het efficiënt binnen: gecomprimeerde responses, slim opnieuw ophalen en tijd tot de eerste byte.</span><i aria-hidden="true"></i></div><div><b>Botbeleid en vertrouwen</b><span>Mag het en is het te vertrouwen: robots.txt, content signals, een contentlicentie en een security.txt-contact.</span><i aria-hidden="true"></i></div></div>
+  <figure class="rv" style="margin-top:56px"><img class="cutout" src="../../assets/img/analyser-checklist.webp" width="1400" height="1129" loading="lazy" alt="De checklist Vindbaarheid uit een Docs Analyser-rapport, met elke check en de uitkomst">
+  <figcaption class="caption">Een checklist Vindbaarheid uit een echt Docs Analyser-rapport.</figcaption></figure>
+</div></section>
+
+<section class="sec" aria-labelledby="lim-h"><div class="wrap split">
+  <div class="rv"><span class="label">Wat een score niet vertelt</span>
+    <h2 id="lim-h" style="margin-top:16px">Leesbaar is niet hetzelfde als bruikbaar.</h2></div>
+  <div class="rv d1"><p class="lead">Een portaal kan elke statische check halen en een agent toch halverwege een terugbetaling kwijtraken. De analyser zegt of agents je docs kunnen vinden en lezen. De agenttaken-evaluatie zegt of ze de klus kunnen klaren.</p>
+  <div class="cta"><a class="btn ghost" href="../agenttaken-evaluatie/index.html">Agenttaken-evaluatie <span class="ar" aria-hidden="true">→</span></a></div></div>
+</div></section>
+<section class="sec paper" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">Vragen</h2></div>
+<div class="faq rv d1"><details><summary>Is de Docs Analyser gratis?</summary><div class="a"><p>Ja. Plak een publiek documentatieportaal op doctorine.dev en je krijgt de score en de checklist.</p></div></details><details><summary>Wat betekent een onvolledige scan?</summary><div class="a"><p>Als te veel signalen niet te verifiëren zijn, geeft de analyser geen score in plaats van te gokken. In onze meting van september gebeurde dat bij 17 van de 33 portalen, meestal als de controles op de machineleesbare spec en het MCP-endpoint beperkt of niet beschikbaar waren.</p></div></details><details><summary>Waar komen de checks vandaan?</summary><div class="a"><p>Het resultaat combineert de signalen van de Cloudflare Agent Ready-benchmark met eigen controles van Doctorine, verdeeld over vijf categorieën.</p></div></details><details><summary>Betekent een hoge score dat agents onze API kunnen gebruiken?</summary><div class="a"><p>Niet op zichzelf. Een hoge score betekent dat agents je docs kunnen vinden en lezen. Of ze een taak kunnen afronden, meet de agenttaken-evaluatie.</p></div></details></div></div></section>
+<section class="close" aria-labelledby="close-h"><div class="wrap">
+<div class="rv"><h2 id="close-h">Ship de wijziging. Houd het bewijs.</h2><p>Stuur ons je publieke docs en spec, en we laten zien welke echte taken agents vandaag met je API kunnen afronden. Het rapport is gratis en leest alleen wat je al publiceert.</p>
+<div class="cta"><a class="btn pri" href="../designpartners/index.html#eval">Vraag een gratis evaluatie aan <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Start de Docs Analyser</a></div></div>
+<img class="rv d1" src="../../assets/img/horse-portrait-dark.jpg" width="912" height="941" loading="lazy" alt="Het Doctorine-paard, getekend in fijne lichtpunten op zwart">
+</div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="../index.html"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>De release gate voor API's in het tijdperk van agents. Bewijs dat agents en ontwikkelaars je API nog kunnen gebruiken, bij elke wijziging.</p></div>
+      <div><h2>Product</h2><ul><li><a href="../agenttaken-evaluatie/index.html">Agenttaken-evaluatie</a></li><li><a href="../releasecontrole/index.html">Release gate</a></li><li><a href="../spec-herstel/index.html">Spec-herstel</a></li><li><a href="../gegenereerde-interfaces/index.html">Gegenereerde interfaces</a></li><li><a href="index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Oplossingen</h2><ul><li><a href="../oplossingen/publieke-api-teams/index.html">Publieke API-teams</a></li><li><a href="../oplossingen/platformteams/index.html">Platformteams</a></li><li><a href="../oplossingen/devrel-en-documentatie/index.html">DevRel en docs-eigenaren</a></li><li><a href="../oplossingen/overstap-sdk-leverancier/index.html">Overstap van SDK-leverancier</a></li></ul></div>
+      <div><h2>Sectoren</h2><ul><li><a href="../sectoren/fintech-en-betalingen/index.html">Fintech en betalingen</a></li><li><a href="../sectoren/saas-met-partner-apis/index.html">SaaS met partner-API&#x27;s</a></li><li><a href="../sectoren/ontwikkelaarsplatformen/index.html">Ontwikkelaarsplatformen</a></li></ul></div>
+      <div><h2>Bedrijf</h2><ul><li><a href="../onderzoek/index.html">Onderzoek</a></li><li><a href="../prijzen/index.html">Prijzen</a></li><li><a href="../beveiliging/index.html">Beveiliging</a></li><li><a href="../over-ons/index.html">Over ons</a></li><li><a href="../designpartners/index.html">Designpartners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Voorbeelddata op deze site gebruikt een fictieve API, Acme Payments. Het is geen klantdata.</span><span>EU-dataresidentie voor het kerndatavlak, met gedocumenteerde uitzonderingen. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

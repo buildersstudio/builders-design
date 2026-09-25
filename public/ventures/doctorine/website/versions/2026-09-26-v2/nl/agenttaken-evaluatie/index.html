@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="nl" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenttaken-evaluatie: klaren agents de klus? | Doctorine</title>
+<meta name="description" content="Een gratis rapport: coding agents proberen vijf echte integratietaken met je docs, CLI, MCP-server en SDK&#x27;s, drie runs per taak, met de fix per fout.">
+<link rel="canonical" href="https://doctorine.xyz/nl/agenttaken-evaluatie/">
+<link rel="alternate" hreflang="en" href="https://doctorine.xyz/agent-task-eval/">
+<link rel="alternate" hreflang="nl" href="https://doctorine.xyz/nl/agenttaken-evaluatie/">
+<link rel="alternate" hreflang="x-default" href="https://doctorine.xyz/agent-task-eval/">
+<meta name="theme-color" content="#0D0C0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctorine">
+<meta property="og:title" content="Agenttaken-evaluatie: klaren agents de klus? | Doctorine">
+<meta property="og:description" content="Een gratis rapport: coding agents proberen vijf echte integratietaken met je docs, CLI, MCP-server en SDK&#x27;s, drie runs per taak, met de fix per fout.">
+<meta property="og:url" content="https://doctorine.xyz/nl/agenttaken-evaluatie/">
+<meta property="og:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctorine: elke API-wijziging bewezen voordat ze live gaat">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agenttaken-evaluatie: klaren agents de klus? | Doctorine">
+<meta name="twitter:description" content="Een gratis rapport: coding agents proberen vijf echte integratietaken met je docs, CLI, MCP-server en SDK&#x27;s, drie runs per taak, met de fix per fout.">
+<meta name="twitter:image" content="https://doctorine.xyz/assets/img/og-doctorine.jpg">
+<link rel="icon" href="../../assets/img/mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://doctorine.xyz/nl/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Agenttaken-evaluatie",
+     "item": "https://doctorine.xyz/nl/agenttaken-evaluatie/"
+    }
+   ]
+  },
+  {
+   "@type": "SoftwareApplication",
+   "name": "Doctorine Agent task eval",
+   "applicationCategory": "DeveloperApplication",
+   "operatingSystem": "Web, GitHub",
+   "url": "https://doctorine.xyz/nl/agenttaken-evaluatie/",
+   "description": "Een gratis rapport: coding agents proberen vijf echte integratietaken met je docs, CLI, MCP-server en SDK's, drie runs per taak, met de fix per fout.",
+   "publisher": {
+    "@id": "https://doctorine.xyz/#org"
+   },
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Free eval report",
+     "price": "0",
+     "priceCurrency": "EUR",
+     "url": "https://doctorine.xyz/design-partners/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Wat heeft de evaluatie van ons nodig?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Een publieke docs-URL en, als je die publiceert, een link naar je OpenAPI-spec. Toegang tot je repository, je productie-API of inloggegevens is niet nodig."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Welke agents voeren de taken uit?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Twee coding agents voeren elke taak uit op elke interface die je publiceert, drie keer per taak. Het rapport noemt de gebruikte agents en versies, zodat een run te herhalen is."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Hoe blijven de resultaten eerlijk?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Taken komen uit je eigen operaties en voorbeelden, en je ziet ze in het rapport. Een taak telt alleen als geslaagd of mislukt als alle drie de runs het eens zijn. Al het andere heet wisselend en telt niet mee."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Roept het onze productie-API aan?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nee. Taken draaien tegen een sandbox die antwoordt vanuit je spec, dus er worden geen productiesleutels gebruikt en geen echte data aangeraakt."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Wat is het verschil met de Docs Analyser?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "De Docs Analyser op doctorine.dev is een statische check die scoort of agents je docs kunnen vinden en lezen. De evaluatie draait echte taken, dus je ziet of agents ze ook afronden."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Wat kost het?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Het evaluatierapport is gratis. Teams die dezelfde taken bij elke pull request willen laten controleren, stappen over op de release gate."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Doctorine home"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+    <nav class="mainnav" aria-label="Hoofdmenu">
+      <div class="dd cur"><button type="button" aria-expanded="false" aria-controls="ddp-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ddp" id="ddp-product"><a href="index.html"><b>Agenttaken-evaluatie <span class="st">Gratis rapport</span></b><span>Kan een agent de klus klaren met je API? Een gratis rapport.</span></a><a href="../releasecontrole/index.html"><b>Release gate <span class="st">Designpartners</span></b><span>Een CI-check die alleen geslaagde interfaces publiceert.</span></a><a href="../spec-herstel/index.html"><b>Spec-herstel <span class="st">Early access</span></b><span>Vind wat agents blokkeert in je spec en los het op in één pull request.</span></a><a href="../gegenereerde-interfaces/index.html"><b>Gegenereerde interfaces <span class="st">Live</span></b><span>Docsportaal, SDK&#x27;s, CLI, MCP-server en skills uit één spec.</span></a><a href="../docs-analyse/index.html"><b>Docs Analyser <span class="st">Live</span></b><span>Gratis: scoor hoe goed agents je docs vinden, lezen en gebruiken.</span></a></div></div>
+      <a href="../oplossingen/index.html">Oplossingen</a><a href="../sectoren/index.html">Sectoren</a><a href="../onderzoek/index.html">Onderzoek</a><a href="../prijzen/index.html">Prijzen</a>
+    </nav>
+    <div class="hdr-r">
+      <div class="lang" role="group" aria-label="Taal"><a href="../../en/agent-task-eval/index.html" hreflang="en" lang="en" title="English">EN</a><span aria-current="true" lang="nl">NL</span></div>
+      <a class="btn pri sm" href="../designpartners/index.html#eval">Gratis evaluatie</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu openen"><i></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobiel"><h2>Product</h2><a href="index.html">Agenttaken-evaluatie <span>Gratis rapport</span></a><a href="../releasecontrole/index.html">Release gate <span>Designpartners</span></a><a href="../spec-herstel/index.html">Spec-herstel <span>Early access</span></a><a href="../gegenereerde-interfaces/index.html">Gegenereerde interfaces <span>Live</span></a><a href="../docs-analyse/index.html">Docs Analyser <span>Live</span></a><h2>Ontdek</h2><a href="../oplossingen/index.html">Oplossingen</a><a href="../sectoren/index.html">Sectoren</a><a href="../onderzoek/index.html">Onderzoek</a><a href="../prijzen/index.html">Prijzen</a><h2>Bedrijf</h2><a href="../beveiliging/index.html">Beveiliging</a><a href="../over-ons/index.html">Over ons</a><a href="../designpartners/index.html">Designpartners</a><div class="cta"><a class="btn pri" href="../designpartners/index.html#eval">Vraag een gratis evaluatie aan</a><a class="btn ghost" href="https://doctorine.dev/">Start de Docs Analyser</a></div></nav>
+<main id="main">
+
+<section class="phero"><div class="wrap"><nav class="crumbs" aria-label="Kruimelpad"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Agenttaken-evaluatie</span></nav><div style="margin-bottom:22px"><span class="status live"><i></i>Gratis rapport</span></div><h1>Agenttaken-evaluatie: kan een agent de klus klaren met je API?</h1><p class="lead">Coding agents proberen de echte integratietaken van je gebruikers, tegen een sandbox op basis van je spec, op elke interface die je publiceert. Het rapport laat zien welke taken slaagden, waar ze faalden en welke wijziging elk probleem oplost.</p><div class="cta"><a class="btn pri" href="../designpartners/index.html#eval">Vraag een gratis evaluatie aan <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="#report">Bekijk een voorbeeldrapport</a></div></div></section>
+<section class="sec tight" id="report" aria-label="Voorbeeldrapport" style="padding-top:0;border-top:0"><div class="wrap rv"><div class="ui-stage"><div class="ev-top"><div class="ev-k "><span class="label">Statische readinessscore</span><b>91<small> / 100</small></b><span>Controleert alleen bestanden en headers</span></div><div class="ev-k bad"><span class="label">Taken afgerond</span><b>9<small> / 20</small></b><span>Eensluidend over 3 runs</span></div><div class="ev-k "><span class="label">Herhaalbaarheid</span><b>93%</b><span>Zelfde oordeel bij 56 van 60 runs</span></div><div class="ev-k "><span class="label">Oplosbare oorzaken</span><b>6</b><span>4 in de docs, 2 in de spec</span></div></div>
+<div class="evalui">
+<div class="ui"><div class="rp-head"><b>Taken per interface</b><span class="sample">Voorbeeldrapport</span></div>
+<div class="grid-wrap"><table class="grid-t" data-play><caption class="sr">Resultaten van agenttaken per interface voor de fictieve Acme Payments API</caption><thead><tr><th scope="col">Integratietaak</th><th scope="col">Alleen docs</th><th scope="col">CLI</th><th scope="col">MCP-server</th><th scope="col">TypeScript SDK</th></tr></thead><tbody><tr><td><b>Klant aanmaken en kaart opslaan</b><span>POST customers, daarna een betaalmethode koppelen</span></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Klant aanmaken en kaart opslaan, Alleen docs: Afgerond"><i>Afgerond</i><small>18.4k tokens</small></button></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Klant aanmaken en kaart opslaan, CLI: Afgerond"><i>Afgerond</i><small>6.1k tokens</small></button></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Klant aanmaken en kaart opslaan, MCP-server: Afgerond"><i>Afgerond</i><small>14.2k tokens</small></button></td><td><button type="button" class="cell p" data-task="t1" aria-pressed="false" aria-label="Klant aanmaken en kaart opslaan, TypeScript SDK: Afgerond"><i>Afgerond</i><small>9.8k tokens</small></button></td></tr><tr><td><b>Veilig betalen bij een retry</b><span>Betaling met idempotency key, opnieuw na een time-out</span></td><td><button type="button" class="cell f" data-task="t2" aria-pressed="false" aria-label="Veilig betalen bij een retry, Alleen docs: Mislukt"><i>Mislukt</i></button></td><td><button type="button" class="cell p" data-task="t2" aria-pressed="false" aria-label="Veilig betalen bij een retry, CLI: Afgerond"><i>Afgerond</i><small>7.4k tokens</small></button></td><td><button type="button" class="cell f" data-task="t2" aria-pressed="false" aria-label="Veilig betalen bij een retry, MCP-server: Mislukt"><i>Mislukt</i></button></td><td><button type="button" class="cell p" data-task="t2" aria-pressed="false" aria-label="Veilig betalen bij een retry, TypeScript SDK: Afgerond"><i>Afgerond</i><small>11.2k tokens</small></button></td></tr><tr><td><b>Deel van een betaling terugbetalen</b><span>Gedeeltelijke terugbetaling in de juiste munteenheid</span></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" data-start aria-label="Deel van een betaling terugbetalen, Alleen docs: Mislukt"><i>Mislukt</i></button></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" aria-label="Deel van een betaling terugbetalen, CLI: Mislukt"><i>Mislukt</i></button></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" aria-label="Deel van een betaling terugbetalen, MCP-server: Mislukt"><i>Mislukt</i></button></td><td><button type="button" class="cell f" data-task="t3" aria-pressed="false" aria-label="Deel van een betaling terugbetalen, TypeScript SDK: Mislukt"><i>Mislukt</i></button></td></tr><tr><td><b>Alle uitbetalingen van vorige maand</b><span>Cursorpaginering tot het einde volgen</span></td><td><button type="button" class="cell f" data-task="t4" aria-pressed="false" aria-label="Alle uitbetalingen van vorige maand, Alleen docs: Mislukt"><i>Mislukt</i></button></td><td><button type="button" class="cell p" data-task="t4" aria-pressed="false" aria-label="Alle uitbetalingen van vorige maand, CLI: Afgerond"><i>Afgerond</i><small>8.9k tokens</small></button></td><td><button type="button" class="cell k" data-task="t4" aria-pressed="false" aria-label="Alle uitbetalingen van vorige maand, MCP-server: Wisselend"><i>Wisselend</i></button></td><td><button type="button" class="cell p" data-task="t4" aria-pressed="false" aria-label="Alle uitbetalingen van vorige maand, TypeScript SDK: Afgerond"><i>Afgerond</i><small>12.6k tokens</small></button></td></tr><tr><td><b>Webhook-handtekening verifiëren</b><span>De handtekening controleren voordat je een event vertrouwt</span></td><td><button type="button" class="cell f" data-task="t5" aria-pressed="false" aria-label="Webhook-handtekening verifiëren, Alleen docs: Mislukt"><i>Mislukt</i></button></td><td><button type="button" class="cell f" data-task="t5" aria-pressed="false" aria-label="Webhook-handtekening verifiëren, CLI: Mislukt"><i>Mislukt</i></button></td><td><button type="button" class="cell f" data-task="t5" aria-pressed="false" aria-label="Webhook-handtekening verifiëren, MCP-server: Mislukt"><i>Mislukt</i></button></td><td><button type="button" class="cell p" data-task="t5" aria-pressed="false" aria-label="Webhook-handtekening verifiëren, TypeScript SDK: Afgerond"><i>Afgerond</i><small>10.4k tokens</small></button></td></tr></tbody></table></div><div class="legend"><span style="--c:var(--green)">Afgerond</span><span style="--c:var(--red)">Elke run op dezelfde manier mislukt</span><span style="--c:var(--amber)">Wisselend, telt niet mee</span></div></div>
+<div class="ui" aria-live="polite"><div class="panel side" data-task="t1"><span class="label">Alleen docs, coding agent</span><h3>Klant aanmaken en kaart opslaan</h3><p class="res p">Afgerond op elke interface</p>
+<ol class="tl"><li class="">Vond de pagina Customers<span>Las de voorbeelden voor aanmaken en koppelen</span></li><li class="">Maakte klant cus_41x<span>201</span></li><li class="">Koppelde een testkaart<span>200</span></li></ol><div class="whyf ok"><b>Waarom het werkte</b>Beide operaties hebben complete requestvoorbeelden, dus elke interface slaagde meteen.</div>
+</div><div class="panel side" data-task="t2"><span class="label">Alleen docs, coding agent</span><h3>Veilig betalen bij een retry</h3><p class="res f">Mislukt met alleen docs</p>
+<ol class="tl"><li class="">Vond de pagina Payments<span>Geen vermelding van idempotency op de pagina</span></li><li class="">Maakte een betaling<span>201</span></li><li class="f">Probeerde opnieuw na de gesimuleerde time-out<span>Er werd een tweede betaling aangemaakt</span></li></ol><div class="whyf"><b>Waarom het misging</b>De Idempotency-Key-header staat in de spec maar niet in de docs, dus een agent die alleen de docs leest, rekent twee keer af.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">Wat het oplost</span><div><b>Docs</b><span>Zet de Idempotency-Key-header in de Payments-gids, met een retryvoorbeeld</span></div><div><b>Check</b><span>Voeg deze taak toe aan de release gate</span></div></div></div><div class="panel side" data-task="t3"><span class="label">Alleen docs, coding agent</span><h3>Deel van een betaling terugbetalen</h3><p class="res f">Mislukt met alleen docs</p>
+<ol class="tl"><li class="">Vond de pagina Refunds<span>Las de referentie voor een terugbetaling</span></li><li class="">Maakte een betaling van 25,00 EUR<span>Sandbox gaf amount 2500</span></li><li class="f">Stuurde amount 12.5<span>Geweigerd: amount moet een integer zijn</span></li><li class="f">Probeerde opnieuw met amount 12<span>Betaalde 0,12 EUR terug en meldde succes</span></li></ol><div class="whyf"><b>Waarom het misging</b>Het veld amount is in centen, maar dat staat nergens. De spec noemt het alleen het bedrag en de pagina heeft geen voorbeeld, dus elke interface erft het gat.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">Wat het oplost</span><div><b>Spec</b><span>Beschrijf amount als integer in centen, met een voorbeeld van 1250</span></div><div><b>Docs</b><span>Voeg een voorbeeld van een gedeeltelijke terugbetaling toe</span></div><div><b>Check</b><span>Voeg deze taak toe aan de release gate zodat het gat niet terugkomt</span></div></div></div><div class="panel side" data-task="t4"><span class="label">Alleen docs, coding agent</span><h3>Alle uitbetalingen van vorige maand</h3><p class="res k">Wisselend op MCP, niet meegeteld</p>
+<ol class="tl"><li class="">Vond de lijstoperatie Payouts<span>GET /v1/payouts</span></li><li class="">Las de eerste pagina<span>100 items en een next_cursor</span></li><li class="f">Stopte na pagina één met alleen docs<span>De gids laat nergens zien hoe next_cursor werkt</span></li></ol><div class="whyf"><b>Waarom het misging</b>Met alleen docs ging het elke run op dezelfde manier mis. Op de MCP-server wisselde de uitkomst per run, dus die telt niet mee.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">Wat het oplost</span><div><b>Docs</b><span>Laat een lus zien die next_cursor tot het einde volgt</span></div><div><b>MCP</b><span>Beschrijf de cursor in de lijsttool</span></div></div></div><div class="panel side" data-task="t5"><span class="label">Alleen docs, coding agent</span><h3>Webhook-handtekening verifiëren</h3><p class="res f">Mislukt met alleen docs</p>
+<ol class="tl"><li class="">Vond de pagina Webhooks<span>Las het eventformaat</span></li><li class="f">Berekende de handtekening over de geparste JSON<span>Handtekening klopte bij geen enkel event</span></li></ol><div class="whyf"><b>Waarom het misging</b>Handtekeningen worden over de ruwe body berekend, maar dat staat niet in de docs. Alleen de TypeScript SDK, die verificatie inbouwt, slaagde.</div>
+<div class="fixes"><span class="label" style="margin-top:6px">Wat het oplost</span><div><b>Docs</b><span>Vermeld dat de handtekening over de ruwe requestbody gaat</span></div><div><b>CLI</b><span>Voeg een commando webhooks verify toe</span></div></div></div></div>
+</div><p class="caption">Voorbeeldrapport op een fictieve API, Acme Payments. Kies een cel om de run te zien. Geen klantdata.</p></div></div></section>
+
+<section class="sec paper" aria-labelledby="how-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">Hoe het werkt</span><h2 id="how-h">Vijf taken die je gebruikers in week één doen.</h2></div>
+  <p>De evaluatie leest alleen wat je publiceert. Geen migratie, geen login en geen productiesleutels nodig.</p></div>
+  <ol class="how rv"><li><span class="n">01</span><b>Lees wat je publiceert</b><span>Je publieke docs, je OpenAPI-spec en wat je uitbrengt aan CLI, MCP-server en SDK&#x27;s.</span></li><li><span class="n">02</span><b>Schrijf de taken</b><span>Vijf taken uit je eigen operaties en voorbeelden, het werk dat een nieuwe integrator als eerste doet: aanmaken, betalen, terugbetalen, opvragen, verifiëren.</span></li><li><span class="n">03</span><b>Draai ze drie keer</b><span>Twee coding agents proberen elke taak op elke interface, drie runs per taak, tegen een sandbox die antwoordt vanuit je spec. Een taak telt alleen als alle runs het eens zijn.</span></li><li><span class="n">04</span><b>Rapporteer de fix</b><span>Elke fout komt met de stap waar het misging, de oorzaak in je docs of spec en de kleinste wijziging die het oplost.</span></li></ol>
+</div></section>
+
+<section class="sec" aria-labelledby="ts-h"><div class="wrap split">
+  <div class="rv"><span class="label">Taken, geen scores</span>
+    <h2 id="ts-h" style="margin-top:16px">Een score zegt dat de bestanden bestaan. Een taak zegt dat het werkt.</h2>
+    <p class="lead" style="margin-top:22px">Gratis readinesstools controleren of llms.txt, Markdown en sitemaps er zijn. Ze kunnen niet zeggen of een agent een betaling in de juiste munteenheid kan terugbetalen.</p>
+    <p style="margin-top:16px;color:var(--muted)">In het voorbeeldrapport hierboven scoort dezelfde API 91 van de 100 op statische checks, terwijl agents 9 van de 20 taken afronden. <a class="tlink" href="../onderzoek/index.html">Zie wat 33 echte portalen scoren</a></p></div>
+  <div class="rv d1"><div class="ev-top" style="grid-template-columns:1fr 1fr;margin:0">
+    <div class="ev-k" style="padding:28px"><span class="label">Wat een readinessscore ziet</span><b style="font-size:72px">91<small> / 100</small></b><span>llms.txt gevonden, Markdown per pagina, robots laten agents toe</span></div>
+    <div class="ev-k bad" style="padding:28px"><span class="label">Wat agents afrondden</span><b style="font-size:72px">9<small> / 20</small></b><span>5 taken, 4 interfaces, 3 runs per taak</span></div>
+  </div><p class="caption">Beide cijfers gaan over dezelfde voorbeeld-API. Geen klantdata.</p></div>
+</div></section>
+
+<section class="sec paper" aria-labelledby="get-h"><div class="wrap">
+  <div class="sec-h rv"><div><span class="label">In het rapport</span><h2 id="get-h">Alles om het op te lossen, niets dat je blind moet vertrouwen.</h2></div></div>
+  <div class="cards"><div class="card rv"><span class="label">Resultaten</span><h3>Taken per interface</h3><p>Een raster van elke taak op alleen docs, CLI, MCP-server en elke SDK, met wat slaagde, wat elke keer op dezelfde manier faalde en wat wisselend was.</p></div><div class="card rv"><span class="label">Bewijs</span><h3>De run, stap voor stap</h3><p>Wat de agent las, wat hij aanriep, wat terugkwam en waar het misging, zodat je de fout ziet in plaats van een getal.</p></div><div class="card rv"><span class="label">Fixes</span><h3>De kleinste wijziging</h3><p>Per fout de regel in de spec of het voorbeeld in de docs dat de run had gered, klaar om een pull request te worden.</p></div><div class="card rv"><span class="label">Kosten</span><h3>Tokens per afgeronde taak</h3><p>Hoeveel tokens elke interface nodig had om af te ronden, zodat je weet waar je agents naartoe stuurt.</p></div><div class="card rv"><span class="label">Herhaalbaar</span><h3>Taken en criteria erbij</h3><p>De taakdefinities en slaagcriteria zitten bij het rapport, zodat je ze kunt betwisten of opnieuw draaien.</p></div><a class="card rv" href="../releasecontrole/index.html"><span class="label">Volgende stap</span><h3>Houd de taken als checks</h3><p>Dezelfde taken kunnen bij elke pull request op de spec draaien in de release gate, zodat een gedicht gat niet ongemerkt terugkomt.</p><span class="more">Release gate</span></a></div>
+</div></section>
+<section class="sec" id="faq" aria-labelledby="faq-h"><div class="wrap faq-g">
+<div class="rv"><span class="label">FAQ</span><h2 id="faq-h" style="margin-top:16px">Vragen</h2></div>
+<div class="faq rv d1"><details><summary>Wat heeft de evaluatie van ons nodig?</summary><div class="a"><p>Een publieke docs-URL en, als je die publiceert, een link naar je OpenAPI-spec. Toegang tot je repository, je productie-API of inloggegevens is niet nodig.</p></div></details><details><summary>Welke agents voeren de taken uit?</summary><div class="a"><p>Twee coding agents voeren elke taak uit op elke interface die je publiceert, drie keer per taak. Het rapport noemt de gebruikte agents en versies, zodat een run te herhalen is.</p></div></details><details><summary>Hoe blijven de resultaten eerlijk?</summary><div class="a"><p>Taken komen uit je eigen operaties en voorbeelden, en je ziet ze in het rapport. Een taak telt alleen als geslaagd of mislukt als alle drie de runs het eens zijn. Al het andere heet wisselend en telt niet mee.</p></div></details><details><summary>Roept het onze productie-API aan?</summary><div class="a"><p>Nee. Taken draaien tegen een sandbox die antwoordt vanuit je spec, dus er worden geen productiesleutels gebruikt en geen echte data aangeraakt.</p></div></details><details><summary>Wat is het verschil met de Docs Analyser?</summary><div class="a"><p>De Docs Analyser op doctorine.dev is een statische check die scoort of agents je docs kunnen vinden en lezen. De evaluatie draait echte taken, dus je ziet of agents ze ook afronden.</p></div></details><details><summary>Wat kost het?</summary><div class="a"><p>Het evaluatierapport is gratis. Teams die dezelfde taken bij elke pull request willen laten controleren, stappen over op de release gate.</p></div></details></div></div></section>
+<section class="close" aria-labelledby="close-h"><div class="wrap">
+<div class="rv"><h2 id="close-h">Weet het voordat de agent het merkt.</h2><p>Stuur ons je publieke docs en spec, en we laten zien welke echte taken agents vandaag met je API kunnen afronden. Het rapport is gratis en leest alleen wat je al publiceert.</p>
+<div class="cta"><a class="btn pri" href="../designpartners/index.html#eval">Vraag een gratis evaluatie aan <span class="ar" aria-hidden="true">→</span></a><a class="btn ghost" href="https://doctorine.dev/">Start de Docs Analyser</a></div></div>
+<img class="rv d1" src="../../assets/img/horse-portrait-dark.jpg" width="912" height="941" loading="lazy" alt="Het Doctorine-paard, getekend in fijne lichtpunten op zwart">
+</div></section>
+
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="g">
+      <div class="brand"><a class="logo" href="../index.html"><img src="../../assets/img/mark-paper.svg" alt="" width="30" height="30">Doctorine</a>
+        <p>De release gate voor API's in het tijdperk van agents. Bewijs dat agents en ontwikkelaars je API nog kunnen gebruiken, bij elke wijziging.</p></div>
+      <div><h2>Product</h2><ul><li><a href="index.html">Agenttaken-evaluatie</a></li><li><a href="../releasecontrole/index.html">Release gate</a></li><li><a href="../spec-herstel/index.html">Spec-herstel</a></li><li><a href="../gegenereerde-interfaces/index.html">Gegenereerde interfaces</a></li><li><a href="../docs-analyse/index.html">Docs Analyser</a></li></ul></div>
+      <div><h2>Oplossingen</h2><ul><li><a href="../oplossingen/publieke-api-teams/index.html">Publieke API-teams</a></li><li><a href="../oplossingen/platformteams/index.html">Platformteams</a></li><li><a href="../oplossingen/devrel-en-documentatie/index.html">DevRel en docs-eigenaren</a></li><li><a href="../oplossingen/overstap-sdk-leverancier/index.html">Overstap van SDK-leverancier</a></li></ul></div>
+      <div><h2>Sectoren</h2><ul><li><a href="../sectoren/fintech-en-betalingen/index.html">Fintech en betalingen</a></li><li><a href="../sectoren/saas-met-partner-apis/index.html">SaaS met partner-API&#x27;s</a></li><li><a href="../sectoren/ontwikkelaarsplatformen/index.html">Ontwikkelaarsplatformen</a></li></ul></div>
+      <div><h2>Bedrijf</h2><ul><li><a href="../onderzoek/index.html">Onderzoek</a></li><li><a href="../prijzen/index.html">Prijzen</a></li><li><a href="../beveiliging/index.html">Beveiliging</a></li><li><a href="../over-ons/index.html">Over ons</a></li><li><a href="../designpartners/index.html">Designpartners</a></li><li><a href="mailto:pilot@doctorine.xyz">pilot@doctorine.xyz</a></li></ul></div>
+    </div>
+    <div class="base"><span>Voorbeelddata op deze site gebruikt een fictieve API, Acme Payments. Het is geen klantdata.</span><span>EU-dataresidentie voor het kerndatavlak, met gedocumenteerde uitzonderingen. &copy; 2026 Doctorine</span></div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>
