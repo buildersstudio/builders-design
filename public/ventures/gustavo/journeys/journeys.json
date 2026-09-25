@@ -1,0 +1,633 @@
+{
+  "updated": "2026-09-25",
+  "sources": {
+    "vsi": {
+      "venture": "gustavo-0a8cd19b",
+      "conversations": 8,
+      "compiled": "2026-09-25"
+    },
+    "web": [
+      {
+        "title": "Veracode: 2026 GenAI Code Security Report",
+        "url": "https://www.veracode.com/blog/2026-genai-code-security-report-ai-risk/",
+        "date": "2026-07-28"
+      },
+      {
+        "title": "Ask HN: How is your org managing PR review load as AI multiplies code output?",
+        "url": "https://news.ycombinator.com/item?id=48329446",
+        "date": "2026-06-03"
+      },
+      {
+        "title": "Hacker News: There is an AI code review bubble",
+        "url": "https://news.ycombinator.com/item?id=46766961",
+        "date": "2026-02-07"
+      },
+      {
+        "title": "The Register: Go lib maintainer calls Dependabot a noise machine",
+        "url": "https://www.theregister.com/2026/02/24/github_dependabot_noise_machine/",
+        "date": "2026-02-24"
+      },
+      {
+        "title": "Vanta vs Drata pricing 2026 (Secureleap)",
+        "url": "https://www.secureleap.tech/blog/vanta-vs-drata",
+        "date": "2026-04-25"
+      },
+      {
+        "title": "Claude Help Center: Automated security reviews in Claude Code",
+        "url": "https://support.claude.com/en/articles/11932705-automated-security-reviews-in-claude-code",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Aikido Security pricing (G2)",
+        "url": "https://www.g2.com/products/aikido-security/pricing",
+        "date": "2026-09-25"
+      }
+    ]
+  },
+  "summary": "The evidence is thin and close to home: seven external conversations with four organisations, and two of those organisations sit inside the studio network. What it does show is consistent. Teams shipping several times a week with coding agents let security ride on code quality, run a heavy security sweep only now and then, and reject anything that slows the release or adds a review round. The pain turns sharp when a buyer asks for proof: forms, 500 questions, a pen test. That points to a non-blocking release map whose evidence also answers buyers, and away from another PR reviewer.",
+  "icps": [
+    {
+      "id": "agentic-product-team",
+      "name": "Small product team shipping with coding agents",
+      "segment": "Startups and studios with 2 to 20 engineers, mostly Netherlands, selling B2B or through partners, not yet certified",
+      "who": "Founders and CTOs who own the pipeline, ship several times a week with Claude Code or similar, and answer security questions themselves.",
+      "trigger": "An enterprise buyer or partner sends a security questionnaire or demands a pen test, or a periodic scan turns up something alarming.",
+      "jobs": [
+        "Keep shipping at agent speed without a security incident",
+        "See what each release changed and where the product is exposed",
+        "Answer a buyer's security questions without stopping product work"
+      ],
+      "evidence": "E4",
+      "notes": "E4 pains from three organisations, but two of them (the studio and a startup in its network) supply most of the evidence, and no one outside has committed to anything. A bank-serving vendor in Egypt was a genuinely different persona: cloud AI is forbidden there, so it is parked, not mapped."
+    }
+  ],
+  "journeys": [
+    {
+      "id": "ship-to-proof",
+      "title": "From shipping with agents to proving it is secure",
+      "icp": "agentic-product-team",
+      "question": "Can one non-blocking view of each release both show the team where it is exposed and answer the buyer who asks?",
+      "stages": [
+        {
+          "id": "build-with-agents",
+          "name": "Build with agents",
+          "feel": 0,
+          "asis": [
+            {
+              "text": "Coding agents write most features; a Linear issue sets outcome, scope and done criteria"
+            },
+            {
+              "text": "Security is treated as part of code quality, not as its own step"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Agents pull in new packages that nobody scans before they land",
+              "tier": "E3",
+              "quotes": [
+                "q-studio-deps"
+              ]
+            },
+            {
+              "text": "About 44% of AI coding tasks in Veracode's 2026 tests introduced a vulnerability",
+              "source": "web"
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-studio-quality",
+              "text": "security is quality of standards for us.",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E3",
+              "kind": "workflow",
+              "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+              "ms": 30130,
+              "date": "2026-09-10"
+            },
+            {
+              "id": "q-studio-deps",
+              "text": "the new dependencies I start using, I don't scan them",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+              "ms": 596284,
+              "date": "2026-09-10"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Flag risky new packages and auth changes inside the agent session, before the PR",
+              "impact": 2,
+              "effort": 2,
+              "why": "Feedback lands at the moment of change, where teams said tools help"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "The agent is told which security domains a change touches while it is still writing"
+            }
+          ]
+        },
+        {
+          "id": "review-and-merge",
+          "name": "Review and merge",
+          "feel": -2,
+          "asis": [
+            {
+              "text": "An agentic reviewer runs 3 to 5 rounds per PR; the team fixes, pushes and waits each round"
+            },
+            {
+              "text": "The inline gate is a code quality review, explicitly not a security review"
+            }
+          ],
+          "pains": [
+            {
+              "text": "By the fourth round people merge or stop looking, so quality is felt, not verified",
+              "tier": "E4",
+              "quotes": [
+                "q-studio-headspace"
+              ]
+            },
+            {
+              "text": "CodeRabbit was removed for being too slow; Cubic too, despite good findings",
+              "tier": "E3",
+              "quotes": [
+                "q-studio-coderabbit"
+              ]
+            },
+            {
+              "text": "HN, June 2026: PR review has become the main bottleneck instead of coding",
+              "source": "web"
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-studio-headspace",
+              "text": "I have no headspace yet to figure out how to do security",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E3",
+              "kind": "objection",
+              "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+              "ms": 1320024,
+              "date": "2026-09-10"
+            },
+            {
+              "id": "q-studio-review",
+              "text": "We don't do a code security review. We do a code quality review.",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E3",
+              "kind": "workflow",
+              "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+              "ms": 139685,
+              "date": "2026-09-10"
+            },
+            {
+              "id": "q-studio-coderabbit",
+              "text": "Here I tried CodeRabbit, was too slow, so I killed it",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E3",
+              "kind": "product_feedback",
+              "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+              "ms": 1577665,
+              "date": "2026-09-10"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Stay out of the PR loop entirely; never add a comment round",
+              "impact": 2,
+              "effort": 1,
+              "why": "Every tool that added review latency was removed, whatever it found"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "PR review stays as it is; security runs beside it, not inside it"
+            }
+          ]
+        },
+        {
+          "id": "ship",
+          "name": "Ship",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "3 to 5 releases a week, sometimes intraday; hotfixes go straight to production"
+            },
+            {
+              "text": "Release gates run lint, builds, all tests and a dependency audit"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Ten extra minutes in CI is already enough to frustrate a high-PR team",
+              "tier": "E3",
+              "quotes": [
+                "q-ceo-10min"
+              ]
+            },
+            {
+              "text": "Release security is inside-out tests only; nothing probes the product from outside",
+              "tier": "E3",
+              "quotes": [
+                "q-studio-outside"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-ceo-10min",
+              "text": "the CI/CD pipeline steps by 10 minutes, for example, already, I would get frustrated.",
+              "who": "Founder and CEO, same B2B2B SaaS startup, Netherlands",
+              "tier": "E3",
+              "kind": "objection",
+              "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+              "ms": 714380,
+              "date": "2026-09-11"
+            },
+            {
+              "id": "q-studio-outside",
+              "text": "It's not a proactive outside-in kind of test.",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+              "ms": 1838623,
+              "date": "2026-09-10"
+            },
+            {
+              "id": "q-studio-stream",
+              "text": "And also because it lives, I think, in the release stream.",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E3",
+              "kind": "objection",
+              "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+              "ms": 655761,
+              "date": "2026-09-10"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Per-release map: what the release touched, and a short list of red points to ticket",
+              "impact": 3,
+              "effort": 2,
+              "why": "Asked for directly; non-blocking by design, so it fits the 10-minute budget"
+            },
+            {
+              "text": "Run the map after deploy, off the critical path, and file tickets instead of failing builds",
+              "impact": 2,
+              "effort": 1,
+              "why": "Non-blocking findings are already batched into weekly ticket review"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "Every release gets a map of changed surfaces and a handful of findings as tickets, never a red build"
+            }
+          ]
+        },
+        {
+          "id": "security-sweep",
+          "name": "Periodic security sweep",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "Once every month or two, one person runs the Claude Code security plugin across the codebase"
+            },
+            {
+              "text": "A run takes about 2 hours plus about 6 hours to apply patches"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Only one person runs it, so real findings surface late and by accident",
+              "tier": "E4",
+              "quotes": [
+                "q-studio-whoa"
+              ]
+            },
+            {
+              "text": "Nobody has a map of where the product is exposed, even where it is protected",
+              "tier": "E3",
+              "quotes": [
+                "q-studio-graph",
+                "q-studio-system"
+              ]
+            },
+            {
+              "text": "An agentic security scan burned through €300 of credits in a minute",
+              "tier": "E4",
+              "quotes": [
+                "q-studio-credits"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-studio-whoa",
+              "text": "I'm the only one doing it, and then I'm finding things like, whoa.",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+              "ms": 381313,
+              "date": "2026-09-09"
+            },
+            {
+              "id": "q-studio-graph",
+              "text": "I don't have an overview or a graph that shows me the edges and the components of my business where I'm most vulnerable, even if I'm protected.",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+              "ms": 416313,
+              "date": "2026-09-09"
+            },
+            {
+              "id": "q-studio-system",
+              "text": "A system that shows me what the product is, where the vulnerabilities might be, or even how it's structured to begin with.",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E3",
+              "kind": "product_request",
+              "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+              "ms": 1384644,
+              "date": "2026-09-10"
+            },
+            {
+              "id": "q-studio-credits",
+              "text": "I went through my credits of €300 within a minute.",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E4",
+              "kind": "workflow",
+              "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+              "ms": 321779,
+              "date": "2026-09-09"
+            },
+            {
+              "id": "q-cto-gap",
+              "text": "A gap. This is a huge gap.",
+              "who": "CTO, two-person B2B2B SaaS startup, Netherlands",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "0cbaea85-22b9-44f6-b569-6defe9cc6f02",
+              "ms": 1011141,
+              "date": "2026-09-14"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Keep a living system map from repo and services so each sweep diffs against it, not from scratch",
+              "impact": 3,
+              "effort": 3,
+              "why": "A full sweep is 8 hours because nothing is remembered between runs"
+            },
+            {
+              "text": "Outside-in probe of running services without code access, for exposed endpoints",
+              "impact": 2,
+              "effort": 2,
+              "why": "An open self-hosted ingest endpoint was found by chance, not by any tool"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "The sweep becomes a weekly diff against a living map, with patches proposed for review"
+            }
+          ]
+        },
+        {
+          "id": "prove-it-to-a-buyer",
+          "name": "Prove it to a buyer",
+          "feel": -2,
+          "asis": [
+            {
+              "text": "Uncertified teams answer the buyer's compliance desk by hand, form by form"
+            },
+            {
+              "text": "A pen test before delivery is bought because the contract demands it"
+            }
+          ],
+          "pains": [
+            {
+              "text": "One US prospect answered 'not certified' with 500 questions and a pen test report demand",
+              "tier": "E3",
+              "quotes": [
+                "q-studio-500"
+              ]
+            },
+            {
+              "text": "Compliance platforms were skipped because the founder still does the work",
+              "tier": "E3",
+              "quotes": [
+                "q-ceo-myself"
+              ]
+            },
+            {
+              "text": "Code ships faster than anyone can get certified",
+              "tier": "E3",
+              "quotes": [
+                "q-ceo-faster"
+              ]
+            },
+            {
+              "text": "Vanta and Drata entry tiers start around $7,500 to $10,000 a year",
+              "source": "web"
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-studio-500",
+              "text": "They'll just give you a list of 500 questions.",
+              "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+              "ms": 942798,
+              "date": "2026-09-10"
+            },
+            {
+              "id": "q-ceo-desk",
+              "text": "whenever we go and sell to a bigger enterprise, we have to go to their compliance desk",
+              "who": "Founder and CEO, same B2B2B SaaS startup, Netherlands",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+              "ms": 613690,
+              "date": "2026-09-11"
+            },
+            {
+              "id": "q-ceo-myself",
+              "text": "getting certified is still something I have to do.",
+              "who": "Founder and CEO, same B2B2B SaaS startup, Netherlands",
+              "tier": "E3",
+              "kind": "objection",
+              "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+              "ms": 407000,
+              "date": "2026-09-11"
+            },
+            {
+              "id": "q-ceo-faster",
+              "text": "we're creating faster than people can get certified.",
+              "who": "Founder and CEO, same B2B2B SaaS startup, Netherlands",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+              "ms": 341960,
+              "date": "2026-09-11"
+            },
+            {
+              "id": "q-ceo-filter",
+              "text": "is this going to save me money",
+              "who": "Founder and CEO, same B2B2B SaaS startup, Netherlands",
+              "tier": "E2",
+              "kind": "decision_criteria",
+              "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+              "ms": 407000,
+              "date": "2026-09-11"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Draft questionnaire answers from the team's own scan evidence, with the source of each answer",
+              "impact": 3,
+              "effort": 2,
+              "why": "Founder time on forms is the cost named; it passes the save money or faster test"
+            },
+            {
+              "text": "A shareable security report per product, refreshed every release, for buyers who ask",
+              "impact": 2,
+              "effort": 2,
+              "why": "Buyers accept evidence without a certificate if everything is answered"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "A questionnaire arrives and is answered in a day from evidence the releases already produced"
+            }
+          ]
+        },
+        {
+          "id": "keep-it-true",
+          "name": "Keep it true",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "Renovate or Dependabot opens update PRs; the team ticks boxes and checks each one"
+            },
+            {
+              "text": "GDPR is the one standing requirement; stricter partners may bring SOC 2 or ISO later"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Dependency updates are a manual chore nobody stops work for",
+              "tier": "E4",
+              "quotes": [
+                "q-cto-boxes"
+              ]
+            },
+            {
+              "text": "No way to tell if logs or self-hosted services leak personal data somewhere non-obvious",
+              "tier": "E3",
+              "quotes": [
+                "q-cto-leak"
+              ]
+            },
+            {
+              "text": "A Go maintainer called Dependabot a noise machine and advised turning it off",
+              "source": "web"
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-cto-boxes",
+              "text": "then we would have to like keep clicking those boxes.",
+              "who": "CTO, two-person B2B2B SaaS startup, Netherlands",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "0cbaea85-22b9-44f6-b569-6defe9cc6f02",
+              "ms": 177,
+              "date": "2026-09-14"
+            },
+            {
+              "id": "q-cto-leak",
+              "text": "it would be nice to to just understand if we like if the current infrastructure that we have is leaking at some point that is not too obvious.",
+              "who": "CTO, two-person B2B2B SaaS startup, Netherlands",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "0cbaea85-22b9-44f6-b569-6defe9cc6f02",
+              "ms": 955297,
+              "date": "2026-09-14"
+            },
+            {
+              "id": "q-cto-packs",
+              "text": "I really like the idea of having like some packs of like preset, like you want this compliance, so then like I just click a button.",
+              "who": "CTO, two-person B2B2B SaaS startup, Netherlands",
+              "tier": "E2",
+              "kind": "product_request",
+              "conv": "0cbaea85-22b9-44f6-b569-6defe9cc6f02",
+              "ms": 1263430,
+              "date": "2026-09-14"
+            },
+            {
+              "id": "q-ceo-turnon",
+              "text": "If there's a tool that I can just turn on and it will do it for me, then yeah, super happy to get it.",
+              "who": "Founder and CEO, same B2B2B SaaS startup, Netherlands",
+              "tier": "E2",
+              "kind": "product_request",
+              "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+              "ms": 692879,
+              "date": "2026-09-11"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "A GDPR pack first: trace where personal data flows into logs and third parties",
+              "impact": 2,
+              "effort": 2,
+              "why": "GDPR is the only requirement every partner applies; a leak is the named worry"
+            },
+            {
+              "text": "Bundle safe dependency updates into one PR with a verdict, escalate only risky ones",
+              "impact": 1,
+              "effort": 2,
+              "why": "Real pain for one CTO, but Renovate and Dependabot grouping already chase it"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "Changes that affect personal data or known vulnerable packages show up on the release map"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "title": "Lead with a non-blocking release map, not a PR reviewer",
+      "why": "The repeated request, from a studio founder in three calls, is a map of components, exposure and what each release touched. Every tool that added review rounds or CI minutes was removed, and a 10-minute budget was named.",
+      "tier": "E3"
+    },
+    {
+      "title": "Charge for the moment a buyer asks for proof",
+      "why": "Forms, 500 questions and contractual pen tests are where founder time and money go; the stated buying test is save money or get compliant faster.",
+      "tier": "E3"
+    },
+    {
+      "title": "Do not build another AI code review or dependency bot",
+      "why": "CodeRabbit and Cubic were tried and removed, a homegrown Claude reviewer already works, Anthropic ships security review free, and dependency fixes take a minute or two.",
+      "tier": "E3"
+    },
+    {
+      "title": "Park the on-premises regulated segment",
+      "why": "A bank-serving vendor cannot use cloud AI at all, already runs Snyk and SonarQube on premises, and sees no ROI in AI for its pipeline. Different product, different company.",
+      "tier": "E4"
+    },
+    {
+      "title": "Get ten conversations outside the studio network before building",
+      "why": "Outreach produced 3 replies from 29 messages by 16 September, and most evidence comes from two related organisations. The pattern needs outside confirmation.",
+      "tier": "E4"
+    }
+  ]
+}

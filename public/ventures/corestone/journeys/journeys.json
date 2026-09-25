@@ -1,0 +1,603 @@
+{
+  "updated": "2026-09-25",
+  "sources": {
+    "vsi": {
+      "venture": "corestone-alessandro-d33e8924",
+      "conversations": 10,
+      "compiled": "2026-09-25"
+    },
+    "web": [
+      {
+        "title": "Seequent announced extended gINT support until 31 December 2028 (Geoengineer)",
+        "url": "https://www.geoengineer.org/news/seequent-announced-extended-gint-support-until-dec-31-2028",
+        "date": "2025-05-23"
+      },
+      {
+        "title": "gINT migration to OpenGround (Seequent)",
+        "url": "https://www.seequent.com/help-support/gint-migration-openground/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Raising the bar for ground investigation data quality (Ground Engineering)",
+        "url": "https://www.geplus.co.uk/features/raising-the-bar-for-ground-investigation-data-quality-23-09-2026/",
+        "date": "2026-09-23"
+      },
+      {
+        "title": "GeoDin onsite soil and borehole logging (Geoengineer)",
+        "url": "https://www.geoengineer.org/news/geodin-onsite-soil-and-borehole-logging",
+        "date": "2026-07-15"
+      },
+      {
+        "title": "An alternative to gINT (Eng-Tips)",
+        "url": "https://www.eng-tips.com/threads/an-alternative-to-gint.484397/",
+        "date": "2021-06-18"
+      },
+      {
+        "title": "Automated televiewer data interpretation and validation (Danielson et al., SSIM 2025)",
+        "url": "https://papers.acg.uwa.edu.au/d/2535_48_Danielson/48_Danielson.pdf",
+        "date": "2025"
+      },
+      {
+        "title": "TabLogs pricing",
+        "url": "https://tablogs.com/pricing",
+        "date": "2026-09-25"
+      }
+    ]
+  },
+  "summary": "Ten recorded calls, nine with learnings, agree on where the time goes: not in interpretation or modelling, but in getting field sheets, scanned logs and lab certificates into a table someone can trust. The E4 pains come from design-side geologists, a small drilling firm, mining and exploration geologists and a rail design manager, and they repeat across construction and mining: data arrives as PDF in almost every case, each lab uses its own layout, OCR mangles scans, logs carry errors that only a geologist's eye catches, and the checked data then has to be redrawn by hand. The one E5 is a data pack promised by a small drilling firm. The evidence is thin on who pays and how much: a client-side manager doubts anyone would buy a validation tool, and no specialist contractor has been interviewed for the tender-check angle.",
+  "icps": [
+    {
+      "id": "gi-geologist",
+      "name": "Engineering geologist between field and design",
+      "segment": "Small and mid-size ground investigation firms and the geotechnical teams of design consultancies, Italy, Greece, UK and Iberia; mining resource geologists share the same workflow",
+      "who": "The geologist or geotechnical engineer who receives drilling records, core photos and lab certificates from crews and labs, checks them, and turns them into the tables, logs and sections a designer works from.",
+      "trigger": "A campaign closes and a batch of field sheets, scans and certificates lands, or a project inherits archive boreholes that exist only on paper.",
+      "jobs": [
+        "Get every borehole value out of PDFs and scans into one table",
+        "Catch the errors in third-party logs before they become design parameters",
+        "Produce logs, sections and the report tables without redrawing them",
+        "Hand the designer data in the format the calculation needs"
+      ],
+      "evidence": "E4",
+      "notes": "E4 pains from a design consultancy's geologists, a small drilling firm, two mining geologists and a slate producer; the drilling firm owner promised a data pack (E5). Buyer and budget are untested: the geologists must ask their managers before sharing data."
+    }
+  ],
+  "journeys": [
+    {
+      "id": "field-to-design",
+      "title": "From field records to data a designer can use",
+      "icp": "gi-geologist",
+      "question": "Can Corestone own the step between messy field and lab documents and the first table a geologist trusts, and is that step worth paying for?",
+      "stages": [
+        {
+          "id": "field-capture",
+          "name": "Drill and log in the field",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "Crews log on paper sheets at the rig and photograph core boxes on a phone"
+            },
+            {
+              "text": "Remote sites with no power or signal log by hand; someone retypes it into Excel later"
+            },
+            {
+              "text": "A logging vendor puts manual entry at about 30 minutes per log (vendor claim)",
+              "source": "web"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Field sheets come back in handwriting that is hard or impossible to read",
+              "tier": "E3",
+              "quotes": [
+                "q-handwriting"
+              ]
+            },
+            {
+              "text": "Core photos arrive tilted, reversed, feet in frame, boxes filled right to left",
+              "tier": "E4",
+              "quotes": [
+                "q-photos"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-handwriting",
+              "text": "mi fa paura la scrittura di gallina dei vari utenti",
+              "who": "Owner, small drilling and ground investigation firm, Italy",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "af7bdb65-2249-4ecd-b64f-8dec10de5475",
+              "ms": 904268,
+              "date": "2026-09-16"
+            },
+            {
+              "id": "q-photos",
+              "text": "normalmente si vede la foto con i piedi dentro, la foto inclinata, la foto fatta a rovescio.",
+              "who": "Owner, small drilling and ground investigation firm, Italy",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "af7bdb65-2249-4ecd-b64f-8dec10de5475",
+              "ms": 1470800,
+              "date": "2026-09-16"
+            },
+            {
+              "id": "q-remote",
+              "text": "généralement ça se fait à la main, et après il y a derrière les ressources géologistes ou une personne qui pourrait s'occuper pour refaire ça sur Excel.",
+              "who": "Resource geologist, quarry and mining modelling consultant",
+              "tier": "E4",
+              "kind": "workflow",
+              "conv": "1f0c7846-02c2-4f39-92dc-d08449a27faf",
+              "ms": 135568,
+              "date": "2026-09-20"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "A capture guide and a cheap fixed rig: every box shot nadiral, same light, with a colour card",
+              "impact": 2,
+              "effort": 1,
+              "why": "The drilling firm owner proposed it himself and offered to 3D print the holder"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "Crews shoot each box the same way; sheets and photos land in one project inbox"
+            }
+          ]
+        },
+        {
+          "id": "results-arrive",
+          "name": "Lab and test results arrive",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "Labs send certificates as PDFs, often scans, each lab in its own layout"
+            },
+            {
+              "text": "Each survey method returns its own list: georadar, geoelectric, in-situ tests"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Almost all incoming data is PDF; a real database is rare",
+              "tier": "E4",
+              "quotes": [
+                "q-pdf"
+              ]
+            },
+            {
+              "text": "Every lab has its own certificate layout, so scripts written for one break on the next",
+              "tier": "E4",
+              "quotes": [
+                "q-layout"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-pdf",
+              "text": "Nella stramaggioranza dei casi, e direi il 99% dei casi, PDF.",
+              "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+              "ms": 127500,
+              "date": "2026-09-23"
+            },
+            {
+              "id": "q-layout",
+              "text": "Se il laboratorio A dopo 6 mesi cambia il formato del suo certificato, la procedura scritta 6 mesi prima non funziona più.",
+              "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+              "ms": 585306,
+              "date": "2026-09-23"
+            },
+            {
+              "id": "q-cantread",
+              "text": "we receive more likely PDFs and we are trying with the, directly with the expert to understand because depending on experience, sometimes we cannot read the results.",
+              "who": "Infrastructure project manager, rail design consultancy, Greece",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+              "ms": 2270671,
+              "date": "2026-09-25"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "A certificate reader that does not depend on layout, tuned on the labs a firm actually uses",
+              "impact": 3,
+              "effort": 2,
+              "why": "Layout drift is what breaks the in-house scripts that exist today"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "Certificates dropped in as they come; values read whatever the lab's layout"
+            }
+          ]
+        },
+        {
+          "id": "extract",
+          "name": "Retype into the master workbook",
+          "feel": -2,
+          "asis": [
+            {
+              "text": "Values retyped into a master Excel, one tab per borehole, read by in-house Python"
+            },
+            {
+              "text": "Bluebeam OCR helps on scans, then every number is checked again by hand"
+            },
+            {
+              "text": "gINT support ends in 2028 and HoleBASE in 2027; users are being moved to a cloud subscription",
+              "source": "web"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Extraction, not interpretation, is where most of the time goes",
+              "tier": "E4",
+              "quotes": [
+                "q-extract"
+              ]
+            },
+            {
+              "text": "OCR on scans turns numbers into letters, worst on archive data",
+              "tier": "E4",
+              "quotes": [
+                "q-ocr"
+              ]
+            },
+            {
+              "text": "Logging software saved nothing: moving data on to Leapfrog meant going back to CSV",
+              "tier": "E4",
+              "quotes": [
+                "q-mxdeposit"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-extract",
+              "text": "quello che ci porta via più tempo è estrarre i dati",
+              "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+              "ms": 585306,
+              "date": "2026-09-23"
+            },
+            {
+              "id": "q-ocr",
+              "text": "non li prende, li prende male, il numero diventa una lettera.",
+              "who": "Geotechnical data specialist, international design consultancy, Italy",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+              "ms": 1027580,
+              "date": "2026-09-23"
+            },
+            {
+              "id": "q-mxdeposit",
+              "text": "Era mucho postproceso para meter toda la información en geo y no era inmediato el paso.",
+              "who": "Geologist, Spanish slate producer",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "7dd4b735-2a45-483f-bc6b-108553458079",
+              "ms": 0,
+              "date": "2026-09-17"
+            },
+            {
+              "id": "q-four",
+              "text": "même pour un seul log, tu as minimum 4 fichiers Excel.",
+              "who": "Resource geologist, quarry and mining modelling consultant",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "1f0c7846-02c2-4f39-92dc-d08449a27faf",
+              "ms": 1325997,
+              "date": "2026-09-20"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Batch reading of logs and certificates into one borehole table, every value linked to its page",
+              "impact": 3,
+              "effort": 2,
+              "why": "The one step every call described as manual, in construction and in mining"
+            },
+            {
+              "text": "Export to the firm's own Excel template, AGS 4 and the Leapfrog CSV set",
+              "impact": 3,
+              "effort": 1,
+              "why": "The handoff, not the capture, is what killed the logging tool one team tried"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "One borehole table per project, written in the formats the firm already uses"
+            }
+          ]
+        },
+        {
+          "id": "check",
+          "name": "Check and reinterpret",
+          "feel": -2,
+          "asis": [
+            {
+              "text": "Geologists compare logs with core photos and rerun tests with their own procedures"
+            },
+            {
+              "text": "QA/QC means going back to the paper to see what the logger actually wrote"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Errors in third-party logs are abundant, and the reviewer signs the corrections",
+              "tier": "E4",
+              "quotes": [
+                "q-errors"
+              ]
+            },
+            {
+              "text": "RQD logged at 90% where the photo shows 20%, caught only by eye",
+              "tier": "E4",
+              "quotes": [
+                "q-rqd"
+              ]
+            },
+            {
+              "text": "Hole length differs between files and has to be traced back to photographed PDFs",
+              "tier": "E3",
+              "quotes": [
+                "q-qaqc"
+              ]
+            },
+            {
+              "text": "UK highway AGS files pass format checks, then fail data-quality review and are reissued",
+              "source": "web"
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-errors",
+              "text": "Sì, sì, errori ce ne sono a iosa",
+              "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+              "ms": 466726,
+              "date": "2026-09-23"
+            },
+            {
+              "id": "q-rqd",
+              "text": "comment tu peux mettre le RQD à 90% alors que la photo à cette profondeur-là t'as que 20%?",
+              "who": "Senior engineering geologist, infrastructure tenders",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "6332d8ac-94cc-4db2-83a7-424876c3f7bc",
+              "ms": 1538520,
+              "date": "2026-09-24"
+            },
+            {
+              "id": "q-qaqc",
+              "text": "quand on fait du QA/QC, on part chercher dans le papier ce que la personne a dit.",
+              "who": "Resource geologist, quarry and mining modelling consultant",
+              "tier": "E3",
+              "kind": "workflow",
+              "conv": "1f0c7846-02c2-4f39-92dc-d08449a27faf",
+              "ms": 210849,
+              "date": "2026-09-20"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "A validation report: cross-file checks on depths, lengths, units and values, each flag linked to its page",
+              "impact": 3,
+              "effort": 2,
+              "why": "Turns the geologist's slowest manual check into a list to accept or reject"
+            },
+            {
+              "text": "A photo-based RQD and fracture estimate beside the logged value, the geologist decides",
+              "impact": 2,
+              "effort": 3,
+              "why": "The 90 versus 20 case is the sharpest error heard, but RQD by eye is where incumbents already are"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "Every inconsistency listed with its source; accepted or corrected, and the change recorded"
+            }
+          ]
+        },
+        {
+          "id": "draw",
+          "name": "Draw logs, sections and the report",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "Stratigraphic columns drawn in AutoCAD, or written to DXF by in-house scripts"
+            },
+            {
+              "text": "Reports of 150 to 200 pages assembled by hand from tables and charts"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Most practitioners draw columns in AutoCAD, a tool not made for it",
+              "tier": "E3",
+              "quotes": [
+                "q-autocad"
+              ]
+            },
+            {
+              "text": "Assembling tables and charts into long reports is slow",
+              "tier": "E3",
+              "quotes": [
+                "q-report"
+              ]
+            },
+            {
+              "text": "On Eng-Tips, small firms say gINT costs too much and fall back to Excel logs and AutoCAD fences",
+              "source": "web"
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-autocad",
+              "text": "diciamo che il 90% degli utenti usa in maniera impropria AutoCAD.",
+              "who": "Owner, small drilling and ground investigation firm, Italy",
+              "tier": "E3",
+              "kind": "workflow",
+              "conv": "af7bdb65-2249-4ecd-b64f-8dec10de5475",
+              "ms": 229321,
+              "date": "2026-09-16"
+            },
+            {
+              "id": "q-report",
+              "text": "report che solitamente sono anche molto lunghi. 150-200 pagine, 1000.",
+              "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+              "tier": "E3",
+              "kind": "product_request",
+              "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+              "ms": 837656,
+              "date": "2026-09-23"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Logs and sections generated as DXF from the checked table, with core photos beside each column",
+              "impact": 3,
+              "effort": 2,
+              "why": "Both the drilling firm and the design team named the drawing step, and one wants photos on the log"
+            },
+            {
+              "text": "A draft factual report: tables, charts and appendices pulled from the same table",
+              "impact": 2,
+              "effort": 3,
+              "why": "Requested as the end state, but only after the data is trusted"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "Logs and sections redraw when a value is corrected; the report draft reads the same table"
+            }
+          ]
+        },
+        {
+          "id": "handover",
+          "name": "Hand over to design",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "Tunnel designers need an editable DWG longitudinal profile, not a PDF"
+            },
+            {
+              "text": "Geotechnical and structural teams trade inputs by email across calculation rounds"
+            },
+            {
+              "text": "Designers end up rebuilding boreholes from old PDF appendices, a data platform vendor writes",
+              "source": "web"
+            }
+          ],
+          "pains": [
+            {
+              "text": "A revised input is missed between email rounds and the calculation is rerun",
+              "tier": "E4",
+              "quotes": [
+                "q-crash"
+              ]
+            },
+            {
+              "text": "Sampling happens up to a year before design; by handover the context is lost",
+              "tier": "E3",
+              "quotes": [
+                "q-late"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-dwg",
+              "text": "So you cannot work in a PDF, you need DWG.",
+              "who": "Infrastructure project manager, rail design consultancy, Greece",
+              "tier": "E3",
+              "kind": "decision_criteria",
+              "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+              "ms": 2397120,
+              "date": "2026-09-25"
+            },
+            {
+              "id": "q-crash",
+              "text": "Really, it happens several times and then you have a big crash between the teams.",
+              "who": "Infrastructure project manager, rail design consultancy, Greece",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+              "ms": 1935430,
+              "date": "2026-09-25"
+            },
+            {
+              "id": "q-late",
+              "text": "It comes too late, I forgot what he did",
+              "who": "Infrastructure project manager, rail design consultancy, Greece",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+              "ms": 2229744,
+              "date": "2026-09-25"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "A versioned project record: the designer sees which borehole values changed since the last round",
+              "impact": 2,
+              "effort": 2,
+              "why": "Missed revisions are the only E4 pain heard on the design side"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "The designer gets the DWG profile and the table from one source, with a log of changes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "title": "Start where the time goes: reading and checking logs and lab certificates",
+      "why": "Every call with E4 pains put the hours in extraction and checking, not in modelling; one design team says interpretation is fast once the data is in.",
+      "tier": "E4"
+    },
+    {
+      "title": "Lead with a free validation report on a firm's own logs",
+      "why": "It is the product, the demo and the discovery call in one, and the drilling firm has already promised a data pack to test on.",
+      "tier": "E3"
+    },
+    {
+      "title": "Write into the formats firms already use instead of asking them to move",
+      "why": "A logging tool that added post-processing before Leapfrog was abandoned for CSV; the design team runs its own Excel and Python chain.",
+      "tier": "E4"
+    },
+    {
+      "title": "Keep photo RQD as an assist beside the logged value",
+      "why": "The sharpest error heard is RQD by eye, but core imaging incumbents exist and one slate geologist sees little gain for his rock.",
+      "tier": "E3"
+    },
+    {
+      "title": "Do not build 3D modelling or a Leapfrog substitute",
+      "why": "Advisors ruled it out, and a design team says Italian clients do not pay for 3D ground models today.",
+      "tier": "E3"
+    },
+    {
+      "title": "Test who pays before building for a buyer",
+      "why": "A client-side manager doubts anyone would pay for validation and the design geologists need manager approval to share data; no contractor has been interviewed for the tender angle.",
+      "tier": "E2"
+    }
+  ]
+}

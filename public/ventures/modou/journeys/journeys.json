@@ -1,0 +1,980 @@
+{
+  "updated": "2026-09-25",
+  "sources": {
+    "vsi": {
+      "venture": "leva-10b34a3c",
+      "conversations": 29,
+      "compiled": "2026-09-25"
+    },
+    "web": [
+      {
+        "title": "Cobouw Bouwberichten subscriptions",
+        "url": "https://bouwberichten.nl/abonnement",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "De Mercuur subscriptions",
+        "url": "https://www.demercuur.nl/abonnementen",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "12Build pricing",
+        "url": "https://12build.com/pricing",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Specscan",
+        "url": "https://www.specscan.nl",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "HELDR.AI",
+        "url": "https://heldr.ai",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Glenigan reviews, one and two stars (Trustpilot)",
+        "url": "https://uk.trustpilot.com/review/www.glenigan.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "ConstructConnect reviews (Trustpilot)",
+        "url": "https://www.trustpilot.com/review/www.constructconnect.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Omgevingswet: bouwmelding indienen",
+        "url": "https://omgevingswet.overheid.nl/helpcentrum/aanvragen-melden/bouwmelding-indienen",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Wachtlijst netcongestie groeit naar ruim 15.000 bedrijven",
+        "url": "https://www.duurzaam-ondernemen.nl/wachtlijst-netcongestie-groeit-naar-ruim-15-000-bedrijven-batterijopslag-verdubbelt/",
+        "date": "2026-04"
+      }
+    ]
+  },
+  "summary": "Sixteen supplier calls between 7 and 23 September tested the pitch in venture.md, which project to call and why now, and the answer was mostly no: five commercial leads said finding projects is not their problem, and two said the paid project databases they know arrive late or cost too much. The E4 pains sit after the lead: only a tenth to a quarter of requests are worth pursuing, finding who holds the budget takes hours per lead, and reps spend much of the week asking architects whether the product is still specified. From 23 September the calls moved to estimators at facade subcontractors, a different buyer with strong E4 pains on unreadable tender packages and drawings that contradict the specification, but no pilot or price yet. The two journeys meet at one step: reading the tender documents to find what a party would actually supply.",
+  "icps": [
+    {
+      "id": "supplier-commercial-lead",
+      "name": "Commercial lead at a building-product supplier",
+      "segment": "Makers and distributors of specified building products (facade panels, cladding, profiles, facade PV, bio-based materials), about 8 to 60 staff, Netherlands and Benelux",
+      "who": "Account managers, business developers and front-end specification sellers who work architects early and hand a project to colleagues once the contractor is known.",
+      "trigger": "A sample request, platform enquiry or tender lands and they must decide quickly whether it is real, big enough and reachable at the person who pays.",
+      "jobs": [
+        "Separate the few real, large enough projects from the inbound pile",
+        "Find who decides and funds, not only the junior who asked",
+        "Keep track of where each project stands over a one to two year cycle",
+        "Get the product into the specification before it closes"
+      ],
+      "evidence": "E4",
+      "notes": "E4 pains from four suppliers on triage, decision-makers and status chasing, and one E5 request to be a test user. Five of sixteen supplier calls said more leads is not their problem. Energy-storage sellers were interviewed too and fit worse: the strongest grid signal is a private conversation with the grid operator."
+    },
+    {
+      "id": "facade-subcontractor-estimator",
+      "name": "Estimator at a facade or envelope subcontractor",
+      "segment": "Facade cladding, steel and metalwork subcontractors and general contractors, about 30 to 100 staff with one to seven estimators, Netherlands",
+      "who": "Calculators, work planners and commercial directors who turn a tender package of drawings and specification into a priced quote that can actually be built.",
+      "trigger": "A tender package arrives with a fixed submission date, or the only full-time calculator is about to retire.",
+      "jobs": [
+        "Filter a tender package down to the firm's own scope",
+        "Reconcile specification, drawings and details before pricing",
+        "Derive every component and the labour, not only the square metres",
+        "Get a complete quote out before the deadline"
+      ],
+      "evidence": "E4",
+      "notes": "Eleven calls in three days, 23 to 25 September, after the venture moved its discovery to calculation. E4 pains are consistent across firms, but nobody has committed to a pilot or price, two firms already work with other AI builders and one has turned down two vendor pitches."
+    }
+  ],
+  "journeys": [
+    {
+      "id": "request-to-specified-project",
+      "title": "From a request to a project the supplier is specified on",
+      "icp": "supplier-commercial-lead",
+      "question": "Can Modou keep the state of the projects a supplier already has (real, budget holder, phase, what it would supply) so the team stops chasing and starts at the right person?",
+      "stages": [
+        {
+          "id": "surfaces",
+          "name": "A project surfaces",
+          "feel": 0,
+          "asis": [
+            {
+              "text": "Most projects arrive inbound: sample requests, download forms, architects who know the brand"
+            },
+            {
+              "text": "Paid feeds such as Cobouw, Mercuur and tender calendars are scanned by hand, if anyone still does it"
+            },
+            {
+              "text": "Cobouw Bouwberichten starts at 800 euros a year and De Mercuur at 798 a region a year",
+              "source": "web"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Paid project feeds arrive after the network already called, so the subscription sits idle",
+              "tier": "E3",
+              "quotes": [
+                "q-merchant-network"
+              ]
+            },
+            {
+              "text": "Tender platforms send the whole specification without a take-off, so requests go unbid",
+              "tier": "E4",
+              "quotes": [
+                "q-profiles-unbid"
+              ]
+            },
+            {
+              "text": "Several suppliers say finding projects is not the problem at all",
+              "tier": "E3",
+              "quotes": [
+                "q-biobased-drowning",
+                "q-facade-nomiss"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-merchant-network",
+              "text": "omdat ik natuurlijk al bestaande relaties heb, hoor ik de projecten eigenlijk al eerder",
+              "who": "Architect-facing sales advisor, Dutch brick and facade materials merchant",
+              "tier": "E3",
+              "kind": "product_feedback",
+              "conv": "ecf693cf-3841-4788-9af3-c10b85041992",
+              "ms": 442000,
+              "date": "2026-09-18"
+            },
+            {
+              "id": "q-profiles-unbid",
+              "text": "Dus ja, dan bidden we dat niet aan.",
+              "who": "Account manager, Dutch aluminium profiles supplier",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "3bcff414-1ad1-47b9-8e7b-509502a34517",
+              "ms": 758000,
+              "date": "2026-09-08"
+            },
+            {
+              "id": "q-biobased-drowning",
+              "text": "Ik denk dat we echt omkomen in de leads.",
+              "who": "Marketing manager, Dutch bio-based paving materials supplier",
+              "tier": "E3",
+              "kind": "objection",
+              "conv": "d89943e6-b4ce-493f-bb8d-27b5afbfee6a",
+              "ms": 756000,
+              "date": "2026-09-23"
+            },
+            {
+              "id": "q-facade-nomiss",
+              "text": "Nee, ik heb niet het idee dat we dingen mislopen.",
+              "who": "Sales engineer, Dutch metal facade systems maker",
+              "tier": "E3",
+              "kind": "objection",
+              "conv": "984581ca-35aa-4474-bfa6-d00021600ae1",
+              "ms": 690000,
+              "date": "2026-09-09"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Read every tender and platform request and pull out only the supplier's items and quantities",
+              "impact": 3,
+              "effort": 2,
+              "why": "A supplier paying for a tender platform skips requests it cannot read in time"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "Each request arrives with the supplier's items, quantities and a fit verdict"
+            }
+          ]
+        },
+        {
+          "id": "qualify",
+          "name": "Is it real and big enough?",
+          "feel": -2,
+          "asis": [
+            {
+              "text": "Qualify by feel on square metres, region, project value and sustainability ambition"
+            },
+            {
+              "text": "Send a standard reply asking for the square metres on every platform enquiry"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Only a quarter to a tenth of requests are viable, and triage eats the week",
+              "tier": "E4",
+              "quotes": [
+                "q-solar-quarter",
+                "q-facade-tenpct"
+              ]
+            },
+            {
+              "text": "Eager projects turn out not to exist at the product's price, after samples and visits",
+              "tier": "E3",
+              "quotes": [
+                "q-distributor-real"
+              ]
+            },
+            {
+              "text": "Asking each enquiry for its square metres takes relatively much time",
+              "tier": "E3",
+              "quotes": [
+                "q-cladding-sqm"
+              ]
+            },
+            {
+              "text": "Lead database reviews abroad: users knew more about their projects than the database",
+              "source": "web"
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-solar-quarter",
+              "text": "Een kwart is zeg maar, zoiets.",
+              "who": "Account manager, Dutch facade solar panel maker",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+              "ms": 583000,
+              "date": "2026-09-11"
+            },
+            {
+              "id": "q-facade-tenpct",
+              "text": "Nou, ik denk dat tien procent echt interessant is.",
+              "who": "Sales engineer, Dutch metal facade systems maker",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "984581ca-35aa-4474-bfa6-d00021600ae1",
+              "ms": 249000,
+              "date": "2026-09-09"
+            },
+            {
+              "id": "q-distributor-real",
+              "text": "c'est quasiment aussi important, c'est s'assurer que le projet est réel",
+              "who": "Founder, French premium building materials distributor",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "06a9b06b-6f78-445c-9054-248dd4ac3980",
+              "ms": 938000,
+              "date": "2026-09-10"
+            },
+            {
+              "id": "q-cladding-sqm",
+              "text": "Dus dan kijk ik altijd gewoon standaard een antwoord van: kan je de aantal vierkante meters doorgeven?",
+              "who": "Commercial lead, Dutch recycled facade cladding maker",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "3e091f7e-e724-4dbd-9cb8-a2b2d7b11d5b",
+              "ms": 1681000,
+              "date": "2026-09-21"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Fit verdict per request from the supplier's own rules: minimum square metres, region, ambition, phase",
+              "impact": 3,
+              "effort": 1,
+              "why": "Suppliers already state these thresholds; they just apply them by hand"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "A short list of requests that clear the supplier's own thresholds, with the reason for each"
+            }
+          ]
+        },
+        {
+          "id": "decider",
+          "name": "Who decides and pays?",
+          "feel": -2,
+          "asis": [
+            {
+              "text": "Call the municipality or the architect office to find the owner, and again at each phase"
+            },
+            {
+              "text": "Ask the contact who else is involved; databases often list only a general address"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Finding the responsible person on a public project recurs on every lead, about eight hours a week",
+              "tier": "E4",
+              "quotes": [
+                "q-biobased-owner"
+              ]
+            },
+            {
+              "text": "The architect loves the product but does not fund it; builder and investor surface late",
+              "tier": "E4",
+              "quotes": [
+                "q-solar-funds"
+              ]
+            },
+            {
+              "text": "Contacts reached are often not decision-makers, and seniority changes how price lands",
+              "tier": "E4",
+              "quotes": [
+                "q-distributor-deciders"
+              ]
+            },
+            {
+              "text": "Lead database reviews abroad: nine in ten records lack a direct email to the decision-maker",
+              "source": "web"
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-biobased-owner",
+              "text": "Dus dat is verschrikkelijk moeilijk om te achterhalen wie betrokken is bij een bepaald project.",
+              "who": "Marketing manager, Dutch bio-based paving materials supplier",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "d89943e6-b4ce-493f-bb8d-27b5afbfee6a",
+              "ms": 1261000,
+              "date": "2026-09-23"
+            },
+            {
+              "id": "q-solar-funds",
+              "text": "de architect die vindt het heel vet, maar die financiert het natuurlijk niet",
+              "who": "Account manager, Dutch facade solar panel maker",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+              "ms": 1169000,
+              "date": "2026-09-11"
+            },
+            {
+              "id": "q-distributor-deciders",
+              "text": "Et souvent, on a des gens qui sont pas décisionnaires, qui sont pas decision makers.",
+              "who": "Founder, French premium building materials distributor",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "06a9b06b-6f78-445c-9054-248dd4ac3980",
+              "ms": 698000,
+              "date": "2026-09-10"
+            },
+            {
+              "id": "q-panel-info",
+              "text": "Kijk, dat is heel vaak algemene informatie.",
+              "who": "Account manager, Dutch facade panel manufacturer",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "0178faee-8937-42c0-bfc9-16a562e52632",
+              "ms": 883000,
+              "date": "2026-09-17"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Project roles from public documents: client, developer, builder, architect, and when each changed",
+              "impact": 3,
+              "effort": 3,
+              "why": "Top pain in three calls, but also where public data is thinnest; test before promising it"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "Each project names the budget holder and the document it came from, or says it is unknown"
+            }
+          ]
+        },
+        {
+          "id": "track",
+          "name": "Keep track for two years",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "Chase architects, developers and builders for status by phone and mail"
+            },
+            {
+              "text": "Self-built checklists and CRM reminders stand in for follow-up"
+            },
+            {
+              "text": "Since 2024 simple projects file a building notice, not a checked technical permit",
+              "source": "web"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Much of the week goes to asking whether the product is still specified",
+              "tier": "E4",
+              "quotes": [
+                "q-solar-chase"
+              ]
+            },
+            {
+              "text": "When a project slips there is nothing to do, and the pipeline stalls",
+              "tier": "E3",
+              "quotes": [
+                "q-merchant-delay"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-solar-chase",
+              "text": "achter projecten aangaan, achter architecten aangaan om updates te vragen",
+              "who": "Account manager, Dutch facade solar panel maker",
+              "tier": "E4",
+              "kind": "workflow",
+              "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+              "ms": 1217000,
+              "date": "2026-09-11"
+            },
+            {
+              "id": "q-merchant-checklist",
+              "text": "Ik heb een checklist gemaakt.",
+              "who": "Architect-facing sales advisor, Dutch brick and facade materials merchant",
+              "tier": "E4",
+              "kind": "workflow",
+              "conv": "ecf693cf-3841-4788-9af3-c10b85041992",
+              "ms": 730000,
+              "date": "2026-09-18"
+            },
+            {
+              "id": "q-merchant-delay",
+              "text": "Als een project vertraging heeft, dan kun je hoog en laag springen.",
+              "who": "Architect-facing sales advisor, Dutch brick and facade materials merchant",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "ecf693cf-3841-4788-9af3-c10b85041992",
+              "ms": 825000,
+              "date": "2026-09-18"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Watch each known project for permit, tender, award and delay events and update its state",
+              "impact": 3,
+              "effort": 2,
+              "why": "Matches the 22 September decision: the primary problem is knowledge of state"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "A living file per project; the rep calls when the state changed, not to ask if it did"
+            }
+          ]
+        },
+        {
+          "id": "specify",
+          "name": "Get into the specification",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "Lunch lectures, samples and A-list architect visits two or three times a year"
+            },
+            {
+              "text": "Price indication, then fire and LCA documents, then the formal quote"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Each architect visit needs a fresh reason, and finding it costs time",
+              "tier": "E3",
+              "quotes": [
+                "q-sandwich-reason"
+              ]
+            },
+            {
+              "text": "The front-end rep knows the project, but installers never ask for a quote on it",
+              "tier": "E3",
+              "quotes": [
+                "q-sandwich-chain"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-sandwich-reason",
+              "text": "Kijk, leuk om langskomen om een kop koffie te drinken, daar heeft die architect geen tijd voor.",
+              "who": "Specification lead, Dutch sandwich panel supplier",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "dd46f311-d794-4337-8478-3c6e3b26fa2b",
+              "ms": 720769,
+              "date": "2026-09-08"
+            },
+            {
+              "id": "q-sandwich-chain",
+              "text": "Ik weet dat er een project op de markt komt, maar wij hebben van onze montagebedrijven, van onze klanten nog geen aanvraag gehad van dat werk.",
+              "who": "Specification lead, Dutch sandwich panel supplier",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "dd46f311-d794-4337-8478-3c6e3b26fa2b",
+              "ms": 976065,
+              "date": "2026-09-08"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Alert when a known project is awarded, so the front-end rep can brief the installer team",
+              "impact": 2,
+              "effort": 2,
+              "why": "Handover at award is where a specified product silently drops out"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "Award to a contractor triggers a handover note to the colleague who sells to installers"
+            }
+          ]
+        },
+        {
+          "id": "today",
+          "name": "Decide what to do today",
+          "feel": 0,
+          "asis": [
+            {
+              "text": "Build the day from the CRM, the inbox and memory; some leads run their own AI bots"
+            },
+            {
+              "text": "Project data is counted as pipeline once it has merely been analysed"
+            }
+          ],
+          "pains": [
+            {
+              "text": "A lead only counts once someone has been reached, yet analysis is reported as progress",
+              "tier": "E3",
+              "quotes": [
+                "q-panel-validate"
+              ]
+            },
+            {
+              "text": "Self-built AI bots at about 60 euros a month set the price bar for any tool",
+              "tier": "E4",
+              "quotes": [
+                "q-interior-bot"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-panel-validate",
+              "text": "Want je kunt pas een lead valideren wanneer je pas is gecontacteerd.",
+              "who": "Account manager, Dutch facade panel manufacturer",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "0178faee-8937-42c0-bfc9-16a562e52632",
+              "ms": 814000,
+              "date": "2026-09-17"
+            },
+            {
+              "id": "q-panel-list",
+              "text": "Ik zou daar wel iets in zien, met alle respect.",
+              "who": "Account manager, Dutch facade panel manufacturer",
+              "tier": "E2",
+              "kind": "product_request",
+              "conv": "0178faee-8937-42c0-bfc9-16a562e52632",
+              "ms": 1171000,
+              "date": "2026-09-17"
+            },
+            {
+              "id": "q-interior-bot",
+              "text": "Omdat die werkt als ik niet aan het werk ben.",
+              "who": "Founder, Dutch sustainable interior materials maker",
+              "tier": "E3",
+              "kind": "product_feedback",
+              "conv": "0896eb14-b014-46e9-8b30-7178325d04a7",
+              "ms": 3083000,
+              "date": "2026-09-22"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "A short morning brief in the CRM they already use: which projects changed and who to call",
+              "impact": 2,
+              "effort": 1,
+              "why": "One account manager asked for exactly this ranked list; CRMs differ per firm"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "The day starts from the three projects whose state changed, not from a list of new leads"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "package-to-quote",
+      "title": "From a tender package to a quote that can be built",
+      "icp": "facade-subcontractor-estimator",
+      "question": "Is reading and reconciling the tender package valuable enough on its own that an estimator pays for it, without Modou pricing the work?",
+      "stages": [
+        {
+          "id": "package",
+          "name": "The package arrives",
+          "feel": -2,
+          "asis": [
+            {
+              "text": "A zip of drawings and reports, or hundreds of numbered PDFs with one drawing each"
+            },
+            {
+              "text": "Once a week the team decides whether a project is worth bidding"
+            },
+            {
+              "text": "12Build now sells AI document summaries to subcontractors in its 2,600 euro a year plan",
+              "source": "web"
+            }
+          ],
+          "pains": [
+            {
+              "text": "One to two days go into filtering which files matter before calculation starts",
+              "tier": "E4",
+              "quotes": [
+                "q-steel-pdfs"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-steel-pdfs",
+              "text": "dan krijg je gewoon een paar honderd PDF's met één tekening",
+              "who": "Estimating lead, Dutch steel and facade construction firm",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "8e2c2cc9-0a60-45fd-be26-d90d3a86565a",
+              "ms": 289000,
+              "date": "2026-09-24"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Sort a package by discipline and relevance to the firm's scope before anyone opens a file",
+              "impact": 3,
+              "effort": 2,
+              "why": "The same reader serves suppliers who skip tenders they cannot read"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "The estimator opens only the drawings and sections that touch the firm's scope"
+            }
+          ]
+        },
+        {
+          "id": "reconcile",
+          "name": "Read and reconcile",
+          "feel": -2,
+          "asis": [
+            {
+              "text": "Compare specification, drawings, details and fire certificates by eye"
+            },
+            {
+              "text": "Draw own sections to see how the build-up works, then correct the architect"
+            },
+            {
+              "text": "Specscan and HELDR.AI already read Dutch specifications and models for contractors",
+              "source": "web"
+            }
+          ],
+          "pains": [
+            {
+              "text": "What is drawn fails to comply nine times out of ten, often on fire certificates",
+              "tier": "E4",
+              "quotes": [
+                "q-cladding-nineoften"
+              ]
+            },
+            {
+              "text": "Details do not match the same architect's sections, and specifications contradict drawings",
+              "tier": "E4",
+              "quotes": [
+                "q-gc-details",
+                "q-cladding-spec"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-cladding-nineoften",
+              "text": "Wat er getekend staat, klopt 9 van de 10 keer niet.",
+              "who": "Commercial director, Dutch facade cladding subcontractor",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "bd211cc5-4737-4d93-98c0-1f653cfb5099",
+              "ms": 1069000,
+              "date": "2026-09-24"
+            },
+            {
+              "id": "q-gc-details",
+              "text": "Op het moment dat ik zijn details in zijn doorsnede zet, dan zie ik dat dingen niet kloppen.",
+              "who": "Senior estimator, Dutch general contractor",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "1917fda5-4d80-4c27-863a-c8032f7b00fa",
+              "ms": 1010000,
+              "date": "2026-09-24"
+            },
+            {
+              "id": "q-cladding-spec",
+              "text": "Er zitten altijd tegenstrijdigheden in, kleuren niet omschreven of verkeerde.",
+              "who": "Estimator, Dutch facade cladding contractor",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "d53e8c21-f428-451f-8f11-596cba7a53af",
+              "ms": 1171000,
+              "date": "2026-09-23"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "List contradictions between specification, drawings and details, each with page and line",
+              "impact": 3,
+              "effort": 3,
+              "why": "An estimator asked for exactly this: focus on a few suspect points instead of everything"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "A short list of contradictions with sources, turned into questions for the client"
+            }
+          ]
+        },
+        {
+          "id": "takeoff",
+          "name": "Take off and derive",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "Bluebeam or IBIS for square and linear metres, Excel for gross, net and fixings"
+            },
+            {
+              "text": "Retype results into the ERP or calculation package by hand"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Metres are easy; deciding everything else needed to build it is the real work",
+              "tier": "E4",
+              "quotes": [
+                "q-cladding-art"
+              ]
+            },
+            {
+              "text": "Suppliers quote only the headline panel, so rails, strips and profiles go missing",
+              "tier": "E4",
+              "quotes": [
+                "q-gc-missing"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-cladding-art",
+              "text": "Het is de kunst om te bedenken. Wat heb ik er allemaal nog meer voor nodig om dit te kunnen maken?",
+              "who": "Estimator, Dutch facade cladding contractor",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "d53e8c21-f428-451f-8f11-596cba7a53af",
+              "ms": 176000,
+              "date": "2026-09-23"
+            },
+            {
+              "id": "q-gc-missing",
+              "text": "Want ik mis nog heel veel materialen.",
+              "who": "Senior estimator, Dutch general contractor",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "1917fda5-4d80-4c27-863a-c8032f7b00fa",
+              "ms": 805000,
+              "date": "2026-09-24"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Derive the full kit per product from the supplier's own system rules: battens, fixings, profiles",
+              "impact": 3,
+              "effort": 2,
+              "why": "Suppliers own these rules; publishing them helps their product get priced right"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "Quantities arrive as a checkable work set per build-up, ready for the existing ERP"
+            }
+          ]
+        },
+        {
+          "id": "price",
+          "name": "Price the labour",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "Copy a build-up quoted weeks ago and adjust lines and prices"
+            },
+            {
+              "text": "Estimate assembly hours from experience; norms rarely transfer between sites"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Labour norms for a new product were wrong by a factor of two, so the first job earned nothing",
+              "tier": "E4",
+              "quotes": [
+                "q-cladding-tuition"
+              ]
+            },
+            {
+              "text": "Estimators doubt AI can hold the experience behind cranes, access and crew size",
+              "tier": "E2"
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-cladding-tuition",
+              "text": "Ja, dan is het eerste werk wat we maken: verdienen we niks.",
+              "who": "Commercial director, Dutch facade cladding subcontractor",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "bd211cc5-4737-4d93-98c0-1f653cfb5099",
+              "ms": 868000,
+              "date": "2026-09-24"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Leave pricing to the estimator; attach past build-ups and their actual hours as reference",
+              "impact": 2,
+              "effort": 2,
+              "why": "Reuse is how the fastest estimator already works; automatic labour pricing meets scepticism"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "The estimator prices from a complete scope and the closest past jobs, in the tool they use now"
+            }
+          ]
+        },
+        {
+          "id": "deadline",
+          "name": "Deadline and after",
+          "feel": -1,
+          "asis": [
+            {
+              "text": "Tender dates do not move; a late subcontractor quote is simply out"
+            },
+            {
+              "text": "Around a hundred issued quotes stay open and return with questions"
+            }
+          ],
+          "pains": [
+            {
+              "text": "Deadlines are often unrealistic for the size of the package",
+              "tier": "E3",
+              "quotes": [
+                "q-steel-deadline"
+              ]
+            },
+            {
+              "text": "Questions on old quotes cost about a day a week",
+              "tier": "E4",
+              "quotes": [
+                "q-cladding-shelf"
+              ]
+            },
+            {
+              "text": "Prospects have seen AI vendors over-promise and will not start a second AI track",
+              "tier": "E3",
+              "quotes": [
+                "q-steel-vendors",
+                "q-facade30-pitches"
+              ]
+            }
+          ],
+          "quotes": [
+            {
+              "id": "q-steel-deadline",
+              "text": "Ik vind heel eerlijk, vind ik het heel vaak ook onrealistisch.",
+              "who": "Estimating lead, Dutch steel and facade construction firm",
+              "tier": "E3",
+              "kind": "pain_point",
+              "conv": "8e2c2cc9-0a60-45fd-be26-d90d3a86565a",
+              "ms": 665000,
+              "date": "2026-09-24"
+            },
+            {
+              "id": "q-cladding-shelf",
+              "text": "Ik heb voor jouw beeld 100 offertes op de plank liggen.",
+              "who": "Estimator, Dutch facade cladding contractor",
+              "tier": "E4",
+              "kind": "pain_point",
+              "conv": "d53e8c21-f428-451f-8f11-596cba7a53af",
+              "ms": 341000,
+              "date": "2026-09-23"
+            },
+            {
+              "id": "q-steel-vendors",
+              "text": "Mijn ervaring is dat heel veel die zeggen aan de voorkant dat het allemaal kan, uiteindelijk kan het niet.",
+              "who": "Estimating lead, Dutch steel and facade construction firm",
+              "tier": "E3",
+              "kind": "objection",
+              "conv": "8e2c2cc9-0a60-45fd-be26-d90d3a86565a",
+              "ms": 852000,
+              "date": "2026-09-24"
+            },
+            {
+              "id": "q-facade30-pitches",
+              "text": "die hadden allebei niet wat we wilden",
+              "who": "Owner, Dutch facade cladding firm with about 30 staff",
+              "tier": "E3",
+              "kind": "objection",
+              "conv": "c03f32b9-9459-4253-aed6-c7a72d966846",
+              "ms": 727000,
+              "date": "2026-09-24"
+            }
+          ],
+          "ideas": [
+            {
+              "text": "Replay five past tenders per firm through the reader before selling anything",
+              "impact": 2,
+              "effort": 1,
+              "why": "Firms burned by vendor pitches want proof on their own packages first"
+            }
+          ],
+          "tobe": [
+            {
+              "text": "Quotes go out complete and on time, with the open questions sent to the client early"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "title": "Stop pitching project discovery; sell the state of projects the supplier already has",
+      "why": "Five supplier calls said lead supply is not the problem, while E4 pains sit in triage, finding the budget holder and chasing status. It also matches the 19 and 22 September decisions to sell memory and knowledge of state.",
+      "tier": "E4"
+    },
+    {
+      "title": "Build the tender and request reader first, because both buyers need it",
+      "why": "Suppliers skip tender requests they cannot read and estimators spend days filtering packages. One engine serves both, which lets the evidence choose the buyer.",
+      "tier": "E4"
+    },
+    {
+      "title": "Do not price labour or build an estimating engine",
+      "why": "Estimators say the experience behind labour, cranes and access does not transfer to software, incumbents such as IBIS and Admicom hold the calculation, and two vendor pitches already failed at one firm.",
+      "tier": "E3"
+    },
+    {
+      "title": "Treat the budget holder as a hypothesis, tested on the pilot's 20 to 50 projects",
+      "why": "It is the top supplier pain, but one supplier said it cannot be automated and nobody has checked whether public documents name the funder of private projects.",
+      "tier": "E2"
+    },
+    {
+      "title": "Leave energy storage out of the first ICP",
+      "why": "The strongest grid signal is a private talk with the grid operator, congestion leads are a price fight, and one buyer's boss calls project data nonsense.",
+      "tier": "E3"
+    },
+    {
+      "title": "Ask every pilot for a price before 4 December",
+      "why": "No one has named a price for Modou. The references heard are a recalled 2,000 euros a month for Mercuur, 4,360 euros a year quoted for Cobouw, a 5,000 euro self-approval limit and 60 euro DIY bots.",
+      "tier": "E2"
+    }
+  ]
+}

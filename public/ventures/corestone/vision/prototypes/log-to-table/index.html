@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log to table</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F2EE;--card:#FFFFFF;--ink:#16181B;--muted:#62666D;--faint:#9A9EA5;--line:#E4E2DD;--line2:#D3D0C9;
+  --accent:#1D5C63;--accent-soft:#E1EEEF;--md:#B54708;--md-soft:#FDEFD9;--ok:#067647;--ok-soft:#E3F4EA;--sheet:#FBF8F1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Geist",system-ui,sans-serif;color:var(--ink);background:var(--paper);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.cap{display:flex;align-items:center;gap:14px;padding:9px 24px;background:var(--ink);color:#E9E7E2;font-size:12.5px}
+.cap b{font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:#9FD0D5}
+.cap .r{margin-left:auto;opacity:.65}
+.top{display:flex;align-items:center;gap:20px;padding:14px 28px;border-bottom:1px solid var(--line);background:var(--card)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px;letter-spacing:-.01em}
+.brand svg{width:26px;height:26px}
+.crumbs{color:var(--muted);font-size:13.5px}
+.crumbs b{color:var(--ink);font-weight:500}
+.top .sp{margin-left:auto;display:flex;gap:8px}
+.btn{border:1px solid var(--line2);background:var(--card);border-radius:8px;padding:8px 14px;font-weight:500;font-size:13.5px}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:#fff}
+.lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.app{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:230px minmax(0,.9fr) minmax(0,1.25fr);gap:0;min-height:calc(100vh - 100px)}
+.files{border-right:1px solid var(--line);padding:20px 16px;background:var(--card)}
+.files h2{font-size:14px;font-weight:600;margin:6px 0 14px}
+.file{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border-radius:8px;margin-bottom:2px;cursor:pointer}
+.file:hover{background:#FAF9F7}
+.file.on{background:var(--accent-soft)}
+.file .ic{width:26px;height:32px;border:1px solid var(--line2);border-radius:4px;background:var(--sheet);flex:none;position:relative}
+.file .ic:after{content:"";position:absolute;left:5px;right:5px;top:8px;height:2px;background:#DDD6C8;box-shadow:0 5px 0 #DDD6C8,0 10px 0 #DDD6C8}
+.file b{display:block;font-weight:500;font-size:13.5px}
+.file span{font-size:12px;color:var(--muted)}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.md{background:var(--md)}.dot.q{background:var(--faint)}
+.drop{margin-top:16px;border:1.5px dashed var(--line2);border-radius:10px;padding:14px;text-align:center;color:var(--muted);font-size:12.5px}
+.pane{padding:20px 22px;min-width:0}
+.pane + .pane{border-left:1px solid var(--line)}
+.ph{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.ph h2{font-size:15px;font-weight:600}
+.ph .r{margin-left:auto;color:var(--muted);font-size:12.5px}
+.sheet{background:var(--sheet);border:1px solid var(--line2);border-radius:6px;box-shadow:0 1px 0 rgba(0,0,0,.03),0 8px 24px -12px rgba(0,0,0,.18);transform:rotate(-.6deg);overflow:hidden}
+.sheet svg{display:block;width:100%;height:auto}
+.hint{margin-top:12px;color:var(--muted);font-size:12.5px}
+.tbl{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);white-space:nowrap;background:#FBFAF8}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.n{text-align:right;white-space:nowrap}
+tr.on td{background:var(--accent-soft)}
+.cell-q{white-space:nowrap;background:var(--md-soft);border-radius:5px;padding:1px 6px;color:var(--md);font-weight:600;cursor:pointer}
+.ask{margin-top:14px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--md);border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.ask b{font-weight:600}
+.ask p{color:var(--muted);font-size:13px;margin-top:2px}
+.ask .opts{display:flex;gap:6px}
+.opt{border:1px solid var(--line2);border-radius:8px;padding:6px 14px;font-weight:600;font-size:15px;background:var(--card)}
+.opt.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.exp{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ex{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.ex b{display:block;font-weight:600;font-size:13.5px}
+.ex span{font-size:12px;color:var(--muted)}
+.foot{padding:14px 28px 28px;color:var(--faint);font-size:12.5px;max-width:1440px;margin:0 auto}
+@media (max-width:1180px){.app{grid-template-columns:1fr 1fr}.files{grid-column:1/-1;border-right:0;border-bottom:1px solid var(--line);display:flex;gap:6px;overflow-x:auto;padding:12px 16px}.files h2,.files .lbl,.drop{display:none}.file{flex:none}}
+@media (max-width:760px){
+  .app{grid-template-columns:1fr}.pane + .pane{border-left:0;border-top:1px solid var(--line)}.pane{padding:16px}
+  .top{padding:12px 16px;flex-wrap:wrap}.crumbs{display:none}.cap{padding:8px 16px}.cap .r{display:none}
+  .exp{grid-template-columns:1fr 1fr}.ask{grid-template-columns:1fr}.foot{padding:12px 16px 24px}
+}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype</b> Field sheets and scanned logs in, a checked borehole table out. Sample data, not a real project.<span class="r">Corestone</span></div>
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="9" y="3" width="14" height="26" rx="7" fill="#16181B"/><rect x="9" y="11" width="14" height="2.2" fill="#F4F2EE"/><rect x="9" y="17.5" width="14" height="1.4" fill="#F4F2EE"/><rect x="9" y="22" width="14" height="2.2" fill="#F4F2EE"/></svg>
+    Corestone
+  </div>
+  <div class="crumbs">Projects / <b>Sample viaduct, pier foundations</b> / Read documents</div>
+  <div class="sp"><button class="btn">Validation report</button><button class="btn pri">Approve BH-09</button></div>
+</header>
+
+<div class="app">
+  <aside class="files">
+    <div class="lbl">Batch</div>
+    <h2>24 logs, 29 certificates</h2>
+    <div class="file"><span class="ic"></span><div><b>BH-07 field sheet</b><span><i class="dot ok"></i>Read, 0 questions</span></div></div>
+    <div class="file"><span class="ic"></span><div><b>BH-08 field sheet</b><span><i class="dot ok"></i>Read, 0 questions</span></div></div>
+    <div class="file on"><span class="ic"></span><div><b>BH-09 field sheet</b><span><i class="dot md"></i>Read, 2 questions</span></div></div>
+    <div class="file"><span class="ic"></span><div><b>Lab cert 09-01</b><span><i class="dot ok"></i>Read, 14 values</span></div></div>
+    <div class="file"><span class="ic"></span><div><b>BH-10 scanned log</b><span><i class="dot md"></i>Read, 5 questions</span></div></div>
+    <div class="file"><span class="ic"></span><div><b>BH-11 field sheet</b><span><i class="dot q"></i>Reading</span></div></div>
+    <div class="drop">Drop field sheets, scans, lab PDFs and core photos. Any layout, any lab.</div>
+  </aside>
+
+  <section class="pane">
+    <div class="ph"><h2>BH-09 field sheet, page 1</h2><span class="r">Scan, phone photo</span></div>
+    <div class="sheet">
+      <svg viewBox="0 0 560 700" role="img" aria-label="Sample handwritten borehole field sheet">
+        <rect width="560" height="700" fill="#FBF8F1"/>
+        <text x="28" y="40" font-family="Geist" font-size="15" font-weight="600" fill="#2A2A2A">BOREHOLE RECORD</text>
+        <text x="330" y="40" font-family="Geist" font-size="11" fill="#6B6B6B">Hole</text><text x="362" y="41" font-family="Caveat" font-size="22" fill="#23304A">BH-09</text>
+        <text x="28" y="66" font-family="Geist" font-size="11" fill="#6B6B6B">Date</text><text x="62" y="67" font-family="Caveat" font-size="19" fill="#23304A">12/3</text>
+        <text x="150" y="66" font-family="Geist" font-size="11" fill="#6B6B6B">Rig</text><text x="176" y="67" font-family="Caveat" font-size="19" fill="#23304A">rotary, T2 101</text>
+        <text x="330" y="66" font-family="Geist" font-size="11" fill="#6B6B6B">E / N</text><text x="366" y="67" font-family="Caveat" font-size="19" fill="#23304A">4521.3 / 8810.7</text>
+        <g stroke="#CFC6B4" stroke-width="1">
+          <line x1="20" y1="86" x2="540" y2="86"/><line x1="20" y1="112" x2="540" y2="112"/>
+          <line x1="20" y1="86" x2="20" y2="660"/><line x1="100" y1="86" x2="100" y2="660"/><line x1="360" y1="86" x2="360" y2="660"/><line x1="420" y1="86" x2="420" y2="660"/><line x1="480" y1="86" x2="480" y2="660"/><line x1="540" y1="86" x2="540" y2="660"/>
+          <line x1="20" y1="660" x2="540" y2="660"/>
+        </g>
+        <g font-family="Geist" font-size="10.5" fill="#6B6B6B" font-weight="600"><text x="30" y="103">DEPTH m</text><text x="110" y="103">DESCRIPTION</text><text x="370" y="103">SPT N</text><text x="430" y="103">REC %</text><text x="490" y="103">RQD</text></g>
+        <g font-family="Caveat" font-size="21" fill="#23304A">
+          <text x="30" y="146">0.0 - 1.2</text><text x="110" y="146">made ground, brown</text><text x="110" y="168">sandy, brick frags</text>
+          <line x1="20" y1="186" x2="540" y2="186" stroke="#E2DACB"/>
+          <text x="30" y="216">1.2 - 4.5</text><text x="110" y="216">firm grey CLAY, silty</text><text x="370" y="216">6</text>
+          <line x1="20" y1="240" x2="540" y2="240" stroke="#E2DACB"/>
+          <text x="30" y="270">4.5 - 7.8</text><text x="110" y="270">med dense SAND, fine</text><text x="110" y="292">to med, wet at 5.1</text>
+          <text x="372" y="272" id="q1">8</text>
+          <line x1="20" y1="316" x2="540" y2="316" stroke="#E2DACB"/>
+          <text x="30" y="346">7.8 - 9.6</text><text x="110" y="346">dense GRAVEL, sandy</text><text x="370" y="346">34</text>
+          <line x1="20" y1="370" x2="540" y2="370" stroke="#E2DACB"/>
+          <text x="30" y="400">9.6 - 12.0</text><text x="110" y="400">weathered LIMESTONE</text><text x="110" y="422">v. fractured</text><text x="432" y="400">72</text><text x="492" y="400">18</text>
+          <line x1="20" y1="446" x2="540" y2="446" stroke="#E2DACB"/>
+          <text x="30" y="476">12.0 - 15.0</text><text x="110" y="476">LIMESTONE, grey,</text><text x="110" y="498">mod. strong</text><text x="432" y="476">96</text><text x="492" y="476" id="q2">6?</text>
+          <text x="30" y="600" font-size="19">water strike 5.1, rose to 4.6 after 20 min</text>
+          <text x="30" y="630" font-size="19">EOH 15.0</text>
+        </g>
+        <rect x="360" y="252" width="36" height="28" rx="4" fill="none" stroke="#B54708" stroke-width="2"/>
+        <rect x="484" y="456" width="44" height="28" rx="4" fill="none" stroke="#B54708" stroke-width="2"/>
+        <rect x="20" y="186" width="520" height="54" fill="#1D5C63" opacity=".08"/>
+      </svg>
+    </div>
+    <p class="hint">Orange: values the reader is not sure of. Shaded: the row selected in the table.</p>
+  </section>
+
+  <section class="pane">
+    <div class="ph"><h2>Borehole table</h2><span class="r">6 layers, 23 values, 2 questions</span></div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>From m</th><th>To m</th><th>Description</th><th>Unit</th><th>SPT N</th><th>Rec %</th><th>RQD %</th></tr></thead>
+        <tbody>
+          <tr><td class="n">0.0</td><td class="n">1.2</td><td>Made ground, brown, sandy, brick fragments</td><td>MG</td><td class="n"></td><td class="n"></td><td class="n"></td></tr>
+          <tr class="on"><td class="n">1.2</td><td class="n">4.5</td><td>Firm grey silty CLAY</td><td>A1</td><td class="n">6</td><td class="n"></td><td class="n"></td></tr>
+          <tr><td class="n">4.5</td><td class="n">7.8</td><td>Medium dense fine to medium SAND, wet from 5.1 m</td><td>A2</td><td class="n"><span class="cell-q" id="c1">8 or 9</span></td><td class="n"></td><td class="n"></td></tr>
+          <tr><td class="n">7.8</td><td class="n">9.6</td><td>Dense sandy GRAVEL</td><td>A3</td><td class="n">34</td><td class="n"></td><td class="n"></td></tr>
+          <tr><td class="n">9.6</td><td class="n">12.0</td><td>Weathered LIMESTONE, very fractured</td><td>R1</td><td class="n"></td><td class="n">72</td><td class="n">18</td></tr>
+          <tr><td class="n">12.0</td><td class="n">15.0</td><td>Grey moderately strong LIMESTONE</td><td>R2</td><td class="n"></td><td class="n">96</td><td class="n"><span class="cell-q">6 or 60</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ask">
+      <div><b>SPT N at 5.0 m: is it 8 or 9?</b><p>Both keep the layer in the same density class, so nothing downstream changes. Your answer trains the reader on this crew's handwriting.</p></div>
+      <div class="opts" id="o1"><button class="opt">8</button><button class="opt">9</button></div>
+    </div>
+    <div class="ask">
+      <div><b>RQD at 12.0 to 15.0 m: 6 or 60?</b><p>Recovery is 96% and the rock is described as moderately strong, which fits 60 better. The core photo for this run gives about 58.</p></div>
+      <div class="opts" id="o2"><button class="opt">6</button><button class="opt">60</button></div>
+    </div>
+
+    <div class="lbl" style="margin-top:22px">Export the checked table</div>
+    <div class="exp">
+      <div class="ex"><b>Firm template</b><span>Your master Excel, same tabs</span></div>
+      <div class="ex"><b>AGS 4</b><span>Validated before export</span></div>
+      <div class="ex"><b>Leapfrog CSV set</b><span>Collar, survey, lithology, intervals</span></div>
+      <div class="ex"><b>Log drawing</b><span>DXF, with core photos</span></div>
+    </div>
+  </section>
+</div>
+<p class="foot">Sample data. The borehole, coordinates and values are invented to show the product and do not describe any real site or client.</p>
+<script>
+["o1","o2"].forEach(id=>{const g=document.getElementById(id);g.querySelectorAll(".opt").forEach(b=>b.onclick=()=>g.querySelectorAll(".opt").forEach(x=>x.classList.toggle("on",x===b)))});
+</script>
+</body>
+</html>

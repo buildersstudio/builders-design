@@ -1,0 +1,1665 @@
+{
+ "updated": "2026-09-25",
+ "vision": "Modou keeps the state of every project a building-product supplier is chasing. It reads the requests, tender packages and public documents behind each project and tells the team which ones are real and still open, who holds the budget, what exactly they would supply, and what changed since last week.",
+ "strategy": {
+  "direction": "Stop selling project discovery and sell the state of the projects a supplier already has. Build one reader for tender packages and requests that pulls out the supplier's own items, quantities and contradictions, put it inside a project file that stays current from public documents, and prove both in the 30-day pilot with one supplier on 20 to 50 existing projects. Run the same reader past three estimators in parallel, and let a price, not enthusiasm, decide by 11 December which of the two buyers Modou serves.",
+  "why": [
+   "Five of sixteen supplier calls said finding projects is not the problem: one is drowning in leads, one does not miss projects, one has leads for years, one hears of projects before the database, and one boss calls project data nonsense.",
+   "Discovery is crowded and priced low: Cobouw Bouwberichten runs from 800 to 10,500 euros a year, De Mercuur from 798 a region, Building Radar already scores projects and names decision-makers, and one supplier runs its own signal bots for about 60 euros a month.",
+   "The E4 pains come after the lead: a quarter or a tenth of requests are viable, finding the responsible person takes about eight hours a week, and much of an account manager's week goes to asking whether the product is still specified.",
+   "Unreadable documents hurt both buyers: a profiles supplier skips tender requests without a take-off, a cladding maker asks every enquiry for its square metres, and estimators spend one to two days filtering a package of hundreds of PDFs.",
+   "It follows the venture's own recorded decisions: sell the memory, not the brain (19 September), the primary problem is knowledge of state (22 September), and the next milestone is a 30-day pilot on 20 to 50 existing projects (22 September).",
+   "The only E5 commitments are from suppliers: a sandwich panel supplier asked to be a test user and a facade solar maker agreed to test the MVP. The eleven estimator calls are three days old and hold no commitment yet.",
+   "The reader is the one piece both directions share, so building it first costs nothing if the evidence later picks the estimator."
+  ],
+  "sequence": [
+   {
+    "step": "Collect ten real tender packages and platform requests from two suppliers and five from estimators. Build reader v0: given a supplier's product rules, list its items, quantities and contradictions with page references. Target: at least 7 in 10 items found against a human take-off.",
+    "when": "28 Sep to 9 Oct"
+   },
+   {
+    "step": "Start the 30-day pilot with one supplier, one product line and 20 to 50 existing projects: a project file per project with phase, is it real, budget holder or unknown, items to supply, and a weekly what changed. Targets: the rep confirms the state on at least 7 in 10 projects and Modou flags at least 3 changes before the rep knew.",
+    "when": "12 Oct to 6 Nov"
+   },
+   {
+    "step": "In parallel, replay five past tenders each for three estimator firms through the reader, inside their Bluebeam or IBIS flow, and ask each for a paid pilot price.",
+    "when": "12 Oct to 6 Nov"
+   },
+   {
+    "step": "Put the weekly brief into the CRM the pilot team already uses and test a price between the self-approval line of 5,000 euros a year and the Cobouw and Mercuur plans they know. Sign or lose the first paid pilot.",
+    "when": "9 Nov to 4 Dec"
+   },
+   {
+    "step": "Decision review against the kill criteria: keep the supplier as the ICP, switch to estimators, or stop.",
+    "when": "11 Dec"
+   },
+   {
+    "step": "If continuing, add two suppliers and the award handover alert, and start recording which signals led to won projects.",
+    "when": "Jan to Mar 2027"
+   }
+  ],
+  "notNow": [
+   "A national feed of new project leads: Cobouw, De Mercuur and Building Radar already sell it, and the suppliers interviewed do not lack leads.",
+   "Automated outreach agents: suppliers already build them for about 60 euros a month, and one marketing manager said an agent makes contact feel fake.",
+   "Automatic labour pricing or a full estimating engine: estimators doubt it at E2, IBIS, Admicom and Bouwmakers hold the calculation, and one firm turned down two vendor pitches.",
+   "A rules and certificates framework for every Western European country: large, and no customer asked for it.",
+   "A multi-product rules engine: already deprioritised on 18 September; start with one product line.",
+   "The energy-storage vertical: the key signal is a private talk with the grid operator and congestion leads are a price fight.",
+   "3D visualisation of the build-up: one owner valued it only as a sales picture."
+  ],
+  "killCriteria": [
+   "By 9 October the reader finds fewer than 6 in 10 of a supplier's items on real packages: drop the document layer and test state tracking alone.",
+   "By 6 November the pilot rep calls the project state wrong or stale on more than a third of projects, or opens the file in fewer than two of four weeks: stop the supplier track.",
+   "Public documents name the budget holder on fewer than a quarter of the pilot's projects: drop the decider promise and sell state and scope only.",
+   "By 4 December no supplier accepts a paid pilot at 300 euros a month or more while an estimator firm does: switch the ICP to estimators.",
+   "Neither buyer accepts a paid pilot by 4 December: stop building and return to discovery with the pilot data.",
+   "Building Radar or Cobouw ships per-project state tracking for Dutch suppliers at a similar price before the first paid pilot: narrow to the tender reader."
+  ],
+  "evidenceGaps": [
+   "Nobody has named a price for Modou. The only anchors are a recalled 2,000 euros a month for Mercuur, a 4,360 euro yearly Cobouw quote, a 5,000 euro self-approval limit and 60 euro DIY bots. Ask for a price in every pilot conversation.",
+   "Whether public documents name the funder of private projects in the Netherlands: test on the pilot's 20 to 50 projects in the first two weeks.",
+   "Whether a supplier's reps will read a brief outside their CRM: the pilot tracks weekly opens.",
+   "Most supplier calls are one front-end seller per firm; only two budget owners have spoken. Interview the sales director at the pilot supplier before pricing.",
+   "The estimator evidence is three days old with no follow-up; the five-tender replays are the first real test.",
+   "VSI needs a recompile after the direction decision: hypothesis-state is empty, and icp-state marks contractor estimation as validated while venture.md describes suppliers."
+  ]
+ },
+ "research": {
+  "patterns": [
+   {
+    "title": "Project databases sell volume; buyers complain about freshness and contacts",
+    "text": "The Dutch incumbents sell access to many projects: Cobouw Bouwberichten claims more than 400,000 projects and prices from 800 to 10,500 euros a year, De Mercuur from 798 euros a region. Reviews of the UK and US equivalents repeat the same complaints: the user knew more about their own projects, there is no direct contact for the decision-maker, and annual renewals are hard to cancel. In the calls, one supplier stopped using its Mercuur subscription and two called the price too high.",
+    "evidence": [
+     {
+      "kind": "competitor",
+      "text": "Cobouw Bouwberichten plans: Lite 800, Essential 1,950, Business 4,995 and Pro 10,500 euros a year.",
+      "source": "Cobouw Bouwberichten subscriptions",
+      "url": "https://bouwberichten.nl/abonnement",
+      "date": "2026-09-25"
+     },
+     {
+      "kind": "competitor",
+      "text": "De Mercuur: Regio Select 798 euros a year per region, Web Select 5,120 euros a year.",
+      "source": "De Mercuur subscriptions",
+      "url": "https://www.demercuur.nl/abonnementen",
+      "date": "2026-09-25"
+     },
+     {
+      "kind": "market",
+      "text": "Trustpilot reviewer on Glenigan: \"in all 6 I knew more about the projects than Glenigan\".",
+      "source": "Glenigan reviews (Trustpilot)",
+      "url": "https://uk.trustpilot.com/review/www.glenigan.com",
+      "date": "2026-09-13"
+     },
+     {
+      "kind": "market",
+      "text": "Trustpilot reviewer on Glenigan: \"9/10, there are no direct emails to key decision makers\".",
+      "source": "Glenigan reviews (Trustpilot)",
+      "url": "https://uk.trustpilot.com/review/www.glenigan.com",
+      "date": "2025-11-20"
+     },
+     {
+      "kind": "call",
+      "text": "Weet je, dan vind ik 2000 euro veel geld.",
+      "tier": "E3",
+      "who": "Specification lead, Dutch sandwich panel supplier",
+      "conv": "dd46f311-d794-4337-8478-3c6e3b26fa2b",
+      "ms": 1268385
+     },
+     {
+      "kind": "call",
+      "text": "Voor wat? 4000 euro voor een database.",
+      "tier": "E2",
+      "who": "Business development manager, Dutch construction battery rental company",
+      "conv": "4d42d5f2-b6d4-4605-b5ce-9042307c875d",
+      "ms": 1127744
+     }
+    ]
+   },
+   {
+    "title": "AI now reads Dutch specifications, but for contractors and bidders",
+    "text": "Specscan turns STABU specifications into work packages and flags risks, HELDR.AI pulls quantities from IFC models, drawings and specifications with every value traced to its source, 12Build adds AI document summaries to its 2,600 euro subcontractor plan, and Altura analyses tenders for bidders such as large contractors. None of them keeps a supplier's view of its own open projects over time; that is the gap.",
+    "evidence": [
+     {
+      "kind": "competitor",
+      "text": "Specscan positions itself as the decision layer where risks and deviations become visible before a project is built, aimed at contractors, subcontractors and suppliers.",
+      "source": "Specscan",
+      "url": "https://www.specscan.nl",
+      "date": "2026-09-25"
+     },
+     {
+      "kind": "competitor",
+      "text": "HELDR.AI extracts quantities, surfaces and materials from models, drawings and specifications, traceable to the source.",
+      "source": "HELDR.AI",
+      "url": "https://heldr.ai",
+      "date": "2026-09-25"
+     },
+     {
+      "kind": "competitor",
+      "text": "12Build Connection plan: 2,600 euros a year with AI document summaries and project matching for subcontractors.",
+      "source": "12Build pricing",
+      "url": "https://12build.com/pricing",
+      "date": "2026-09-25"
+     },
+     {
+      "kind": "competitor",
+      "text": "Altura analyses tenders of 200 pages and more for bid teams; plans on request.",
+      "source": "Altura pricing",
+      "url": "https://altura.io/prijzen",
+      "date": "2026-09-25"
+     }
+    ]
+   },
+   {
+    "title": "Signal selling became cheap to build yourself",
+    "text": "Clay raised at a 7.1 billion dollar valuation on 9 September 2026 and sells signal workflows from 167 dollars a month. In the calls, a materials founder runs a fleet of self-built bots for about 60 euros a month and a cladding lead has built his own ChatGPT skills for CRM entry and follow-up. Any Modou layer on top of generic models will be priced against that.",
+    "evidence": [
+     {
+      "kind": "trend",
+      "text": "Clay raised a 115 million dollar Series D at a 7.1 billion dollar valuation.",
+      "source": "Inside AI News",
+      "url": "https://insideai.news/news/agentic-ai/clay-7-1-billion-valuation-ai-agents/10083/",
+      "date": "2026-09-09"
+     },
+     {
+      "kind": "competitor",
+      "text": "Clay Launch plan from 167 dollars a month.",
+      "source": "Clay pricing",
+      "url": "https://www.clay.com/pricing",
+      "date": "2026-09-25"
+     },
+     {
+      "kind": "call",
+      "text": "Als je het beter kan, hoe lang duurt het dan tot een gok of een artefact of zo dat hetzelfde kan?",
+      "tier": "E2",
+      "who": "Founder, Dutch sustainable interior materials maker",
+      "conv": "0896eb14-b014-46e9-8b30-7178325d04a7",
+      "ms": 1969000
+     },
+     {
+      "kind": "call",
+      "text": "Wat ga je met Modou daaraan toevoegen?",
+      "tier": "E3",
+      "who": "Commercial lead, Dutch recycled facade cladding maker",
+      "conv": "3e091f7e-e724-4dbd-9cb8-a2b2d7b11d5b",
+      "ms": 1845000
+     }
+    ]
+   },
+   {
+    "title": "Construction AI money goes to takeoff and estimating",
+    "text": "Bobyard raised a 35 million dollar Series A for AI takeoff and claims three to five times more bids per estimator; Ediphi and Togal raised for estimating. These are US tools built for contractors. They validate the estimator pain and also show where a small Dutch team would meet funded competition.",
+    "evidence": [
+     {
+      "kind": "trend",
+      "text": "Bobyard raised a 35 million dollar Series A led by 8VC for AI takeoff and estimating.",
+      "source": "VC Tavern",
+      "url": "https://vctavern.com/bobyard-raises-35m-series-a-to-expand-ai-powered-construction-takeoff-and-estimating-platform/",
+      "date": "2026-05-05"
+     },
+     {
+      "kind": "signal",
+      "text": "VSI tracks Bobyard, Ediphi and STACK as estimating competitors since the calculation calls.",
+      "tier": "E2",
+      "source": "VSI weekly digest, 25 September"
+     }
+    ]
+   }
+  ],
+  "problem": [
+   {
+    "title": "More leads is not the problem",
+    "text": "Five of sixteen supplier calls rejected the lead-discovery pitch outright, and the paid feeds they know sit idle because the network hears of projects first.",
+    "evidence": [
+     {
+      "kind": "call",
+      "text": "Ik denk dat we echt omkomen in de leads.",
+      "tier": "E3",
+      "who": "Marketing manager, Dutch bio-based paving materials supplier",
+      "conv": "d89943e6-b4ce-493f-bb8d-27b5afbfee6a",
+      "ms": 756000
+     },
+     {
+      "kind": "call",
+      "text": "Nee, ik heb niet het idee dat we dingen mislopen.",
+      "tier": "E3",
+      "who": "Sales engineer, Dutch metal facade systems maker",
+      "conv": "984581ca-35aa-4474-bfa6-d00021600ae1",
+      "ms": 690000
+     },
+     {
+      "kind": "call",
+      "text": "Ja, we hebben zoveel leads in het systeem.",
+      "tier": "E3",
+      "who": "Commercial lead, Dutch battery storage installer",
+      "conv": "000308bb-f5c6-49a7-a39f-70e60352af59",
+      "ms": 1474000
+     },
+     {
+      "kind": "call",
+      "text": "omdat ik natuurlijk al bestaande relaties heb, hoor ik de projecten eigenlijk al eerder",
+      "tier": "E3",
+      "who": "Architect-facing sales advisor, Dutch brick and facade materials merchant",
+      "conv": "ecf693cf-3841-4788-9af3-c10b85041992",
+      "ms": 442000
+     },
+     {
+      "kind": "call",
+      "text": "Maar hij geeft elke keer terug: dat is onzin.",
+      "tier": "E3",
+      "who": "Business development manager, Dutch construction battery rental company",
+      "conv": "4d42d5f2-b6d4-4605-b5ce-9042307c875d",
+      "ms": 1560736
+     }
+    ]
+   },
+   {
+    "title": "The work is after the lead: triage, the budget holder, the status",
+    "text": "Only a quarter or a tenth of inbound requests are worth pursuing, finding who is responsible on a public project takes about eight hours a week, the architect specifies but does not fund, and reps chase status for up to two years.",
+    "evidence": [
+     {
+      "kind": "call",
+      "text": "Een kwart is zeg maar, zoiets.",
+      "tier": "E4",
+      "who": "Account manager, Dutch facade solar panel maker",
+      "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+      "ms": 583000
+     },
+     {
+      "kind": "call",
+      "text": "Nou, ik denk dat tien procent echt interessant is.",
+      "tier": "E4",
+      "who": "Sales engineer, Dutch metal facade systems maker",
+      "conv": "984581ca-35aa-4474-bfa6-d00021600ae1",
+      "ms": 249000
+     },
+     {
+      "kind": "call",
+      "text": "Dus dat is verschrikkelijk moeilijk om te achterhalen wie betrokken is bij een bepaald project.",
+      "tier": "E4",
+      "who": "Marketing manager, Dutch bio-based paving materials supplier",
+      "conv": "d89943e6-b4ce-493f-bb8d-27b5afbfee6a",
+      "ms": 1261000
+     },
+     {
+      "kind": "call",
+      "text": "de architect die vindt het heel vet, maar die financiert het natuurlijk niet",
+      "tier": "E4",
+      "who": "Account manager, Dutch facade solar panel maker",
+      "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+      "ms": 1169000
+     },
+     {
+      "kind": "call",
+      "text": "achter projecten aangaan, achter architecten aangaan om updates te vragen",
+      "tier": "E4",
+      "who": "Account manager, Dutch facade solar panel maker",
+      "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+      "ms": 1217000
+     }
+    ]
+   },
+   {
+    "title": "Documents arrive unreadable on both sides of the bid",
+    "text": "Suppliers receive whole specifications without a take-off, estimators receive hundreds of numbered PDFs, and what is drawn rarely matches the specification or the fire certificates.",
+    "evidence": [
+     {
+      "kind": "call",
+      "text": "Dus ja, dan bidden we dat niet aan.",
+      "tier": "E4",
+      "who": "Account manager, Dutch aluminium profiles supplier",
+      "conv": "3bcff414-1ad1-47b9-8e7b-509502a34517",
+      "ms": 758000
+     },
+     {
+      "kind": "call",
+      "text": "dan krijg je gewoon een paar honderd PDF's met één tekening",
+      "tier": "E4",
+      "who": "Estimating lead, Dutch steel and facade construction firm",
+      "conv": "8e2c2cc9-0a60-45fd-be26-d90d3a86565a",
+      "ms": 289000
+     },
+     {
+      "kind": "call",
+      "text": "Wat er getekend staat, klopt 9 van de 10 keer niet.",
+      "tier": "E4",
+      "who": "Commercial director, Dutch facade cladding subcontractor",
+      "conv": "bd211cc5-4737-4d93-98c0-1f653cfb5099",
+      "ms": 1069000
+     },
+     {
+      "kind": "call",
+      "text": "Want ik mis nog heel veel materialen.",
+      "tier": "E4",
+      "who": "Senior estimator, Dutch general contractor",
+      "conv": "1917fda5-4d80-4c27-863a-c8032f7b00fa",
+      "ms": 805000
+     }
+    ]
+   },
+   {
+    "title": "A lead only counts once someone real has been reached",
+    "text": "One account manager calls analysis-only use of project data a false pipeline, and a founder says the whole job turns on reaching the person who signs, sometimes in the last 48 hours.",
+    "evidence": [
+     {
+      "kind": "call",
+      "text": "Want je kunt pas een lead valideren wanneer je pas is gecontacteerd.",
+      "tier": "E3",
+      "who": "Account manager, Dutch facade panel manufacturer",
+      "conv": "0178faee-8937-42c0-bfc9-16a562e52632",
+      "ms": 814000
+     },
+     {
+      "kind": "call",
+      "text": "Et souvent, on a des gens qui sont pas décisionnaires, qui sont pas decision makers.",
+      "tier": "E4",
+      "who": "Founder, French premium building materials distributor",
+      "conv": "06a9b06b-6f78-445c-9054-248dd4ac3980",
+      "ms": 698000
+     }
+    ]
+   }
+  ],
+  "trends": [
+   {
+    "title": "Housing permits are recovering, so pipelines refill",
+    "text": "CBS counted permits for 23,500 new homes in the first quarter of 2026, 4,700 more than a year earlier, and 226,600 permitted homes not yet built. EIB expects completions to rise from 68,000 in 2025 to 80,000 in 2026. More projects in the pipeline means more to track, not a shortage of leads.",
+    "evidence": [
+     {
+      "kind": "trend",
+      "text": "23,500 new-home permits in Q1 2026, up 4,700 year on year; 226,600 permitted homes not yet built.",
+      "source": "CBS",
+      "url": "https://www.cbs.nl/nl-nl/nieuws/2026/22/meer-vergunde-nieuwbouwwoningen-in-eerste-kwartaal",
+      "date": "2026-05-29"
+     },
+     {
+      "kind": "trend",
+      "text": "EIB forecasts 80,000 completions in 2026 and 84,000 in 2027.",
+      "source": "EIB",
+      "url": "https://www.eib.nl/publicaties/verwachtingen-bouwproductie-en-werkgelegenheid-2026/",
+      "date": "2026"
+     }
+    ]
+   },
+   {
+    "title": "Grid congestion now decides whether projects start",
+    "text": "At the end of 2025 more than 15,000 large users were waiting for a grid connection, 26% more than a year earlier, and only about 5% of requests were approved. Projects stall on connection dates, which makes real and still open a moving question.",
+    "evidence": [
+     {
+      "kind": "trend",
+      "text": "15,014 large users on the offtake wait list at the end of 2025, up 26%.",
+      "source": "Duurzaam Ondernemen",
+      "url": "https://www.duurzaam-ondernemen.nl/wachtlijst-netcongestie-groeit-naar-ruim-15-000-bedrijven-batterijopslag-verdubbelt/",
+      "date": "2026-04"
+     },
+     {
+      "kind": "trend",
+      "text": "Netbeheer Nederland counted 14,044 offtake requests waiting in mid-2025.",
+      "source": "Netbeheer Nederland",
+      "url": "https://www.netbeheernederland.nl/artikelen/nieuws/wachtlijsten-groeien-meer-inzet-op-flexibel-gebruik-essentieel",
+      "date": "2025-10-06"
+     },
+     {
+      "kind": "call",
+      "text": "We lopen af en toe ook nu wel eens tegen die netcongestie aan.",
+      "tier": "E3",
+      "who": "COO, Dutch modular building company",
+      "conv": "8e6382ca-e2d4-400e-b7aa-ac8e6e6a25c9",
+      "ms": 478000
+     }
+    ]
+   },
+   {
+    "title": "The permit record split in two",
+    "text": "Since the Omgevingswet of January 2024 the building permit is split into a spatial and a technical part, and under the Wkb simple projects file a building notice instead of a checked technical permit. Reading permits now means following two records per project.",
+    "evidence": [
+     {
+      "kind": "trend",
+      "text": "Under the Wkb, consequence class 1 projects file a bouwmelding instead of a technical permit check.",
+      "source": "Omgevingswet helpcentrum",
+      "url": "https://omgevingswet.overheid.nl/helpcentrum/aanvragen-melden/bouwmelding-indienen",
+      "date": "2026-09-25"
+     },
+     {
+      "kind": "trend",
+      "text": "Permits for 33,000 homes in January to May 2025 against 38,000 a year earlier.",
+      "source": "Architectenweb",
+      "url": "https://architectenweb.nl/nieuws/artikel.aspx?id=59618",
+      "date": "2025"
+     }
+    ]
+   },
+   {
+    "title": "Estimating knowledge is retiring",
+    "text": "Retirement came up as a pressure in two firms: one loses its only full-time calculator in February and weighs AI instead of a replacement, valuing the role at about 100,000 euros a year, and another sees its older site managers leave.",
+    "evidence": [
+     {
+      "kind": "call",
+      "text": "Kijk, als ik een fulltime call klaar kan besparen, dat scheelt mij even over de duim van een ton per jaar.",
+      "tier": "E2",
+      "who": "Commercial director, Dutch facade cladding subcontractor",
+      "conv": "bd211cc5-4737-4d93-98c0-1f653cfb5099",
+      "ms": 1220000
+     },
+     {
+      "kind": "call",
+      "text": "De oudere uitvoerders nemen afscheid omdat ze met pensioen gaan.",
+      "tier": "E3",
+      "who": "Senior estimator, Dutch general contractor",
+      "conv": "1917fda5-4d80-4c27-863a-c8032f7b00fa",
+      "ms": 569000
+     }
+    ]
+   }
+  ],
+  "status": [
+   {
+    "title": "Twenty-seven external calls, two directions in three weeks",
+    "text": "VSI holds 29 recordings: 16 supplier calls from 7 to 23 September on sales intelligence, 11 estimator calls from 23 to 25 September on calculation, and 2 internal studio reviews. The venture recorded a move to calculation on 24 September, two days after committing to a supplier pilot. Hypothesis-state is empty.",
+    "evidence": [
+     {
+      "kind": "signal",
+      "text": "Pivot recorded 24 September: calculation direction for priced quotes from drawings.",
+      "tier": "E3",
+      "source": "VSI decision-log and pivot-trace"
+     },
+     {
+      "kind": "signal",
+      "text": "Commit 22 September: primary problem is lack of knowledge of state; next milestone is a 30-day pilot with one Dutch supplier on 20 to 50 existing projects.",
+      "tier": "E5",
+      "source": "VSI decision-log"
+     },
+     {
+      "kind": "signal",
+      "text": "Commit 19 September: sell the memory, not the brain.",
+      "tier": "E5",
+      "source": "VSI decision-log"
+     }
+    ]
+   },
+   {
+    "title": "Commitments are test offers, not money",
+    "text": "Thirteen commitments are open and none is met. The strongest are a sandwich panel supplier asking to be a test user and a facade solar maker agreeing to test the MVP. No pilot is paid and no price has been named for Modou.",
+    "evidence": [
+     {
+      "kind": "call",
+      "text": "Dan mag je mij op de lijst zetten.",
+      "tier": "E5",
+      "who": "Specification lead, Dutch sandwich panel supplier",
+      "conv": "dd46f311-d794-4337-8478-3c6e3b26fa2b",
+      "ms": 1567585
+     },
+     {
+      "kind": "signal",
+      "text": "Facade solar maker agreed to test an MVP and give feedback once it is ready.",
+      "tier": "E5",
+      "source": "VSI commitments"
+     },
+     {
+      "kind": "call",
+      "text": "Maar kijk, tot 5000 euro, dan is het te overzien.",
+      "tier": "E2",
+      "who": "Account manager, Dutch facade panel manufacturer",
+      "conv": "0178faee-8937-42c0-bfc9-16a562e52632",
+      "ms": 1436000
+     },
+     {
+      "kind": "signal",
+      "text": "13 commitments open, 0 met.",
+      "tier": "E4",
+      "source": "VSI commitments, 25 September"
+     }
+    ]
+   },
+   {
+    "title": "The risks VSI already lists",
+    "text": "The risk register names prospects building their own AI readers, established estimating software, AI-vendor scepticism, early partners objecting to paying upfront for an unfinished product, and Building Radar's years of outcome data.",
+    "evidence": [
+     {
+      "kind": "signal",
+      "text": "Prospects already build or contract local AI drawing readers.",
+      "tier": "E3",
+      "source": "VSI risk-register"
+     },
+     {
+      "kind": "signal",
+      "text": "A design partner objects to paying upfront while competitors later get the finished product at the same price.",
+      "tier": "E3",
+      "source": "VSI risk-register"
+     },
+     {
+      "kind": "signal",
+      "text": "Building Radar holds years of outcome data on which signals lead to won projects; Modou has none.",
+      "tier": "E2",
+      "source": "VSI risk-register"
+     }
+    ]
+   }
+  ]
+ },
+ "sources": {
+  "vsi": {
+   "venture": "leva-10b34a3c",
+   "conversations": 29,
+   "compiled": "2026-09-25"
+  },
+  "web": [
+   {
+    "title": "Cobouw Bouwberichten subscriptions",
+    "url": "https://bouwberichten.nl/abonnement",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "De Mercuur subscriptions",
+    "url": "https://www.demercuur.nl/abonnementen",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "12Build pricing",
+    "url": "https://12build.com/pricing",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "Building Radar",
+    "url": "https://buildingradar.com/",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "Building Radar pricing",
+    "url": "https://buildingradar.com/pricing",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "Specscan",
+    "url": "https://www.specscan.nl",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "HELDR.AI",
+    "url": "https://heldr.ai",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "Altura pricing",
+    "url": "https://altura.io/prijzen",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "ConstructConnect pricing",
+    "url": "https://www.constructconnect.com/pricing",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "Clay pricing",
+    "url": "https://www.clay.com/pricing",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "Glenigan reviews (Trustpilot)",
+    "url": "https://uk.trustpilot.com/review/www.glenigan.com",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "ConstructConnect reviews (Trustpilot)",
+    "url": "https://www.trustpilot.com/review/www.constructconnect.com",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "CBS: meer vergunde nieuwbouwwoningen in eerste kwartaal",
+    "url": "https://www.cbs.nl/nl-nl/nieuws/2026/22/meer-vergunde-nieuwbouwwoningen-in-eerste-kwartaal",
+    "date": "2026-05-29"
+   },
+   {
+    "title": "EIB: verwachtingen bouwproductie en werkgelegenheid 2026",
+    "url": "https://www.eib.nl/publicaties/verwachtingen-bouwproductie-en-werkgelegenheid-2026/",
+    "date": "2026"
+   },
+   {
+    "title": "Wachtlijst netcongestie groeit naar ruim 15.000 bedrijven",
+    "url": "https://www.duurzaam-ondernemen.nl/wachtlijst-netcongestie-groeit-naar-ruim-15-000-bedrijven-batterijopslag-verdubbelt/",
+    "date": "2026-04"
+   },
+   {
+    "title": "Netbeheer Nederland: wachtlijsten groeien",
+    "url": "https://www.netbeheernederland.nl/artikelen/nieuws/wachtlijsten-groeien-meer-inzet-op-flexibel-gebruik-essentieel",
+    "date": "2025-10-06"
+   },
+   {
+    "title": "Omgevingswet: bouwmelding indienen",
+    "url": "https://omgevingswet.overheid.nl/helpcentrum/aanvragen-melden/bouwmelding-indienen",
+    "date": "2026-09-25"
+   },
+   {
+    "title": "Architectenweb: minder vergunningen onder de Omgevingswet",
+    "url": "https://architectenweb.nl/nieuws/artikel.aspx?id=59618",
+    "date": "2025"
+   },
+   {
+    "title": "Bobyard raises 35M Series A",
+    "url": "https://vctavern.com/bobyard-raises-35m-series-a-to-expand-ai-powered-construction-takeoff-and-estimating-platform/",
+    "date": "2026-05-05"
+   },
+   {
+    "title": "Clay reaches a 7.1 billion dollar valuation",
+    "url": "https://insideai.news/news/agentic-ai/clay-7-1-billion-valuation-ai-agents/10083/",
+    "date": "2026-09-09"
+   },
+   {
+    "title": "Claude Code sales agent costs (SyncGTM)",
+    "url": "https://syncgtm.com/blog/claude-code-sales-agent",
+    "date": "2026-04-25"
+   }
+  ]
+ },
+ "initiatives": [
+  {
+   "id": "project-state",
+   "title": "Project file that keeps itself current",
+   "summary": "One file per project a supplier follows, filled from the supplier's own requests and from permits, tenders and council decisions: phase, is it real, budget holder or unknown, what the supplier would supply, and what changed this week.",
+   "column": "recommended",
+   "bet": "We believe that giving a supplier's reps a project file that updates itself from public documents will replace the status calls and self-built checklists they rely on now. We will know when the pilot rep confirms the state on at least 7 in 10 of 20 to 50 projects and Modou flags at least 3 changes before the rep knew.",
+   "problem": "Reps spend much of the week asking architects and builders whether a project is still on and whether the product is still specified, and keep track with checklists and CRM reminders.",
+   "impact": 3,
+   "effort": 2,
+   "confidence": "E3",
+   "horizon": "now",
+   "risks": [
+    "Public documents may not change often enough for private projects, so the file looks stale. Measure how many of the pilot's projects produce any event in 30 days.",
+    "Reps may trust their network over a file and never open it. Track weekly opens from week one.",
+    "CRMs differ per firm (Dynamics, Zoho, Monday, SAP), and one CRM barely exports data. Start with a weekly email and a CSV into their CRM.",
+    "Building Radar or Cobouw add per-project tracking; the defence is the supplier's own items and requests in the file, which they do not hold."
+   ],
+   "firstMove": "From 28 September, take 20 of the pilot supplier's open projects, find every public document for each by hand, and write the file manually for two weeks. If fewer than half the projects show any change or source worth showing, stop before automating.",
+   "evidence": [
+    {
+     "kind": "call",
+     "text": "achter projecten aangaan, achter architecten aangaan om updates te vragen",
+     "tier": "E4",
+     "who": "Account manager, Dutch facade solar panel maker",
+     "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+     "ms": 1217000
+    },
+    {
+     "kind": "call",
+     "text": "Ik heb een checklist gemaakt.",
+     "tier": "E4",
+     "who": "Architect-facing sales advisor, Dutch brick and facade materials merchant",
+     "conv": "ecf693cf-3841-4788-9af3-c10b85041992",
+     "ms": 730000
+    },
+    {
+     "kind": "call",
+     "text": "Als een project vertraging heeft, dan kun je hoog en laag springen.",
+     "tier": "E3",
+     "who": "Architect-facing sales advisor, Dutch brick and facade materials merchant",
+     "conv": "ecf693cf-3841-4788-9af3-c10b85041992",
+     "ms": 825000
+    },
+    {
+     "kind": "signal",
+     "text": "Commit 22 September: primary problem is lack of knowledge of state; 30-day pilot on 20 to 50 existing projects.",
+     "tier": "E5",
+     "source": "VSI decision-log"
+    },
+    {
+     "kind": "signal",
+     "text": "Commit 19 September: sell the memory, not the brain.",
+     "tier": "E5",
+     "source": "VSI decision-log"
+    },
+    {
+     "kind": "competitor",
+     "text": "Building Radar already scores projects, summarises tenders and names decision-makers for suppliers, priced on request.",
+     "source": "Building Radar",
+     "url": "https://buildingradar.com/",
+     "date": "2026-09-25"
+    },
+    {
+     "kind": "journey",
+     "text": "Stage Keep track for two years: status chasing is the E4 pain; the to-be is a living file per project.",
+     "source": "Modou journeys"
+    }
+   ],
+   "viz": [
+    {
+     "kind": "flow",
+     "title": "A rep's status check today and with a project file (times only where a call gave one)",
+     "before": [
+      {
+       "step": "Remember which projects might have moved"
+      },
+      {
+       "step": "Call or mail the architect, developer or builder"
+      },
+      {
+       "step": "Log the answer in a checklist or CRM reminder"
+      },
+      {
+       "step": "Repeat for a cycle that can run one and a half to two years",
+       "time": "1.5 to 2 years"
+      }
+     ],
+     "after": [
+      {
+       "step": "Modou reads permits, tenders and council decisions for each followed project"
+      },
+      {
+       "step": "The file updates phase, is it real and budget holder, with sources"
+      },
+      {
+       "step": "The rep calls only where the state changed"
+      }
+     ]
+    },
+    {
+     "kind": "quote",
+     "title": "Where the week goes",
+     "text": "achter projecten aangaan, achter architecten aangaan om updates te vragen",
+     "who": "Account manager, Dutch facade solar panel maker",
+     "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+     "ms": 1217000
+    }
+   ],
+   "prototype": "vision/prototypes/project-state/index.html",
+   "notes": []
+  },
+  {
+   "id": "tender-reader",
+   "title": "Tender reader: the supplier's items out of any package",
+   "summary": "Upload or forward a tender package or platform request and get back only the supplier's own items, quantities, specified requirements and contradictions, each with the page it came from.",
+   "column": "recommended",
+   "bet": "We believe that a supplier who sees its own items and quantities pulled out of a full specification will bid on requests it now skips, and that the same reader saves estimators the day or two they spend filtering. We will know when reader v0 finds at least 7 in 10 items against a human take-off on ten real packages, and two firms ask to run their next package through it.",
+   "problem": "Tender platforms send the whole specification without a take-off, so suppliers skip requests, and estimators open hundreds of PDFs one by one before they can start.",
+   "impact": 3,
+   "effort": 2,
+   "confidence": "E3",
+   "horizon": "now",
+   "risks": [
+    "Specscan, HELDR.AI and 12Build already read Dutch specifications; Modou must be better for a supplier's specific product, not in general.",
+    "Scanned drawings and inconsistent numbering may defeat extraction. Test on the messiest packages first.",
+    "Suppliers may not share real packages. Ask the two E5 partners for five each in the first week.",
+    "The supplier-side pain rests on one E4 firm and one E3 firm; the estimator side is stronger but a different buyer."
+   ],
+   "firstMove": "By 9 October, collect ten packages from the two committed suppliers and five from estimators, run reader v0 against a take-off a human did, and report recall, false items and the contradictions found with page references.",
+   "evidence": [
+    {
+     "kind": "call",
+     "text": "Dus ja, dan bidden we dat niet aan.",
+     "tier": "E4",
+     "who": "Account manager, Dutch aluminium profiles supplier",
+     "conv": "3bcff414-1ad1-47b9-8e7b-509502a34517",
+     "ms": 758000
+    },
+    {
+     "kind": "call",
+     "text": "Dus dan kijk ik altijd gewoon standaard een antwoord van: kan je de aantal vierkante meters doorgeven?",
+     "tier": "E3",
+     "who": "Commercial lead, Dutch recycled facade cladding maker",
+     "conv": "3e091f7e-e724-4dbd-9cb8-a2b2d7b11d5b",
+     "ms": 1681000
+    },
+    {
+     "kind": "call",
+     "text": "dan krijg je gewoon een paar honderd PDF's met één tekening",
+     "tier": "E4",
+     "who": "Estimating lead, Dutch steel and facade construction firm",
+     "conv": "8e2c2cc9-0a60-45fd-be26-d90d3a86565a",
+     "ms": 289000
+    },
+    {
+     "kind": "call",
+     "text": "Wat er getekend staat, klopt 9 van de 10 keer niet.",
+     "tier": "E4",
+     "who": "Commercial director, Dutch facade cladding subcontractor",
+     "conv": "bd211cc5-4737-4d93-98c0-1f653cfb5099",
+     "ms": 1069000
+    },
+    {
+     "kind": "competitor",
+     "text": "Specscan turns STABU specifications into work packages and flags deviations for contractors, subcontractors and suppliers.",
+     "source": "Specscan",
+     "url": "https://www.specscan.nl",
+     "date": "2026-09-25"
+    },
+    {
+     "kind": "competitor",
+     "text": "12Build sells AI document summaries and project matching to subcontractors at 2,600 euros a year.",
+     "source": "12Build pricing",
+     "url": "https://12build.com/pricing",
+     "date": "2026-09-25"
+    },
+    {
+     "kind": "journey",
+     "text": "Both journeys share this step: A project surfaces for suppliers, The package arrives for estimators.",
+     "source": "Modou journeys"
+    }
+   ],
+   "viz": [
+    {
+     "kind": "compare",
+     "title": "Who reads a Dutch tender package, and for whom (Modou column is the proposed product)",
+     "columns": [
+      "Modou reader",
+      "Specscan",
+      "HELDR.AI",
+      "12Build AI"
+     ],
+     "rows": [
+      {
+       "label": "Reads specifications and drawings",
+       "values": [
+        "yes",
+        "yes",
+        "yes",
+        "partial"
+       ]
+      },
+      {
+       "label": "Aimed at the building-product supplier",
+       "values": [
+        "yes",
+        "partial",
+        "partial",
+        "no"
+       ]
+      },
+      {
+       "label": "Extracts only one supplier's items and system parts",
+       "values": [
+        "yes",
+        "no",
+        "no",
+        "no"
+       ]
+      },
+      {
+       "label": "Links the package to a project file that stays current",
+       "values": [
+        "yes",
+        "no",
+        "no",
+        "no"
+       ]
+      },
+      {
+       "label": "Public price",
+       "values": [
+        "planned",
+        "no",
+        "no",
+        "yes"
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "flow",
+     "title": "A tender request at a profiles supplier today and with the reader",
+     "before": [
+      {
+       "step": "Platform request arrives with the full specification"
+      },
+      {
+       "step": "Nobody has time to go through all the sheets"
+      },
+      {
+       "step": "The request is not bid"
+      }
+     ],
+     "after": [
+      {
+       "step": "Reader lists the supplier's items, quantities and open questions"
+      },
+      {
+       "step": "Account manager checks and prices"
+      },
+      {
+       "step": "Bid goes out, open questions go to the requester"
+      }
+     ]
+    }
+   ],
+   "prototype": "vision/prototypes/tender-reader/index.html",
+   "notes": []
+  },
+  {
+   "id": "fit-rules",
+   "title": "Fit rules that sort every request",
+   "summary": "Let each supplier write down the thresholds it already applies by feel, such as minimum square metres per region, project value, sustainability ambition and phase, and apply them to every request and project automatically.",
+   "column": "recommended",
+   "bet": "We believe that a fit verdict built from the supplier's own rules will cut the time spent triaging requests that were never viable. We will know when the pilot rep agrees with the verdict on 9 in 10 requests over four weeks.",
+   "problem": "A quarter to a tenth of requests are viable, and the rules that decide it live in people's heads and standard replies.",
+   "impact": 2,
+   "effort": 1,
+   "confidence": "E4",
+   "horizon": "now",
+   "risks": [
+    "Requests often lack the square metres, which is exactly why reps ask; the reader must find area in the documents or the rule cannot fire.",
+    "Rules that are too strict hide small projects from a regular customer, which suppliers make exceptions for."
+   ],
+   "firstMove": "Write the fit rules of the pilot supplier in one session, then score its last 50 requests and compare with what the team actually pursued.",
+   "evidence": [
+    {
+     "kind": "call",
+     "text": "Een kwart is zeg maar, zoiets.",
+     "tier": "E4",
+     "who": "Account manager, Dutch facade solar panel maker",
+     "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+     "ms": 583000
+    },
+    {
+     "kind": "call",
+     "text": "Nou, ik denk dat tien procent echt interessant is.",
+     "tier": "E4",
+     "who": "Sales engineer, Dutch metal facade systems maker",
+     "conv": "984581ca-35aa-4474-bfa6-d00021600ae1",
+     "ms": 249000
+    },
+    {
+     "kind": "call",
+     "text": "Dus in Nederland is het 100 vierkante meter en dan in België, Duitsland, Oostenrijk, Zwitserland 200. Daarbuiten is het 500, dus dat is best een groot verschil.",
+     "tier": "E4",
+     "who": "Account manager, Dutch facade solar panel maker",
+     "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+     "ms": 1048000
+    },
+    {
+     "kind": "call",
+     "text": "Op dit moment is het met name gewoon de. Square meters afstand tot Nederland.",
+     "tier": "E4",
+     "who": "Commercial lead, Dutch recycled facade cladding maker",
+     "conv": "3e091f7e-e724-4dbd-9cb8-a2b2d7b11d5b",
+     "ms": 700000
+    },
+    {
+     "kind": "signal",
+     "text": "A metal facade maker no longer takes projects under 100,000 euros.",
+     "tier": "E3",
+     "source": "VSI conversation intelligence"
+    }
+   ],
+   "viz": [
+    {
+     "kind": "bars",
+     "title": "Share of inbound requests the supplier calls worth pursuing, as stated in calls",
+     "unit": "%",
+     "items": [
+      {
+       "label": "Metal facade systems maker",
+       "value": 10,
+       "note": "about 10% of 40 to 50 requests a month"
+      },
+      {
+       "label": "Battery storage installer",
+       "value": 20,
+       "note": "about 1 in 5 of 4 to 5 leads a day"
+      },
+      {
+       "label": "Facade solar panel maker",
+       "value": 25,
+       "note": "about a quarter of 30 to 40 leads a week"
+      },
+      {
+       "label": "Bio-based paving supplier",
+       "value": 95,
+       "note": "only about 5% dropped"
+      }
+     ]
+    }
+   ],
+   "notes": []
+  },
+  {
+   "id": "budget-holder",
+   "title": "Who holds the budget, from the documents",
+   "summary": "For each project, name the client, developer, investor, builder and architect from permits, tenders, council decisions and press, mark which one funds it, and say unknown when no source does.",
+   "column": "recommended",
+   "bet": "We believe that telling a rep who funds a project, with the document behind it, will stop weeks of work with a contact who cannot sign. We will know when public sources name the budget holder on at least a quarter of the pilot's projects and the rep confirms it on each.",
+   "problem": "The architect specifies but does not pay, the investor surfaces late, and finding the responsible person on a public project costs about eight hours a week.",
+   "impact": 3,
+   "effort": 3,
+   "confidence": "E2",
+   "horizon": "next",
+   "risks": [
+    "Private developers and investors are often not in public documents; the feature may say unknown most of the time.",
+    "One supplier said this is plain hard graft and cannot be automated.",
+    "Personal data: stick to organisations and roles unless a person is named in a public document for that role."
+   ],
+   "firstMove": "During the first two pilot weeks, record for every project whether any public document names the funder, and how long it took by hand.",
+   "evidence": [
+    {
+     "kind": "call",
+     "text": "Dus dat is verschrikkelijk moeilijk om te achterhalen wie betrokken is bij een bepaald project.",
+     "tier": "E4",
+     "who": "Marketing manager, Dutch bio-based paving materials supplier",
+     "conv": "d89943e6-b4ce-493f-bb8d-27b5afbfee6a",
+     "ms": 1261000
+    },
+    {
+     "kind": "call",
+     "text": "de architect die vindt het heel vet, maar die financiert het natuurlijk niet",
+     "tier": "E4",
+     "who": "Account manager, Dutch facade solar panel maker",
+     "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+     "ms": 1169000
+    },
+    {
+     "kind": "call",
+     "text": "Et souvent, on a des gens qui sont pas décisionnaires, qui sont pas decision makers.",
+     "tier": "E4",
+     "who": "Founder, French premium building materials distributor",
+     "conv": "06a9b06b-6f78-445c-9054-248dd4ac3980",
+     "ms": 698000
+    },
+    {
+     "kind": "call",
+     "text": "Ik denk dat dat gewoon een kwestie van noeste arbeid is en gewoon bellen.",
+     "tier": "E3",
+     "who": "Marketing manager, Dutch bio-based paving materials supplier",
+     "conv": "d89943e6-b4ce-493f-bb8d-27b5afbfee6a",
+     "ms": 791000
+    },
+    {
+     "kind": "market",
+     "text": "Trustpilot reviewer on Glenigan: \"9/10, there are no direct emails to key decision makers\".",
+     "source": "Glenigan reviews (Trustpilot)",
+     "url": "https://uk.trustpilot.com/review/www.glenigan.com",
+     "date": "2025-11-20"
+    }
+   ],
+   "viz": [
+    {
+     "kind": "quote",
+     "title": "Why the contact is not enough",
+     "text": "de architect die vindt het heel vet, maar die financiert het natuurlijk niet",
+     "who": "Account manager, Dutch facade solar panel maker",
+     "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+     "ms": 1169000
+    }
+   ],
+   "notes": []
+  },
+  {
+   "id": "crm-brief",
+   "title": "A short brief inside the CRM they already use",
+   "summary": "Each morning or week, a ranked list of the few projects whose state changed and the person to call, written into Dynamics, Zoho, Monday or SAP or sent by mail, instead of a new app to open.",
+   "column": "recommended",
+   "bet": "We believe that a brief of three to five changed projects, delivered where reps already work, will be read where a new dashboard would not. We will know when pilot reps open the brief in at least three of four weeks and act on one item a week.",
+   "problem": "Reps plan the day from the CRM, the inbox and memory, and one account manager asked for exactly a ranked list of the day's highest-impact actions.",
+   "impact": 2,
+   "effort": 2,
+   "confidence": "E2",
+   "horizon": "next",
+   "risks": [
+    "Every firm runs a different CRM and one barely exports data; integration can eat the team.",
+    "Suppliers already have AI assistants writing their mail; a brief must carry facts they cannot get from ChatGPT."
+   ],
+   "firstMove": "Send the pilot team a plain weekly email from the manual project files in October and count opens and replies before touching any CRM.",
+   "evidence": [
+    {
+     "kind": "call",
+     "text": "Ik zou daar wel iets in zien, met alle respect.",
+     "tier": "E2",
+     "who": "Account manager, Dutch facade panel manufacturer",
+     "conv": "0178faee-8937-42c0-bfc9-16a562e52632",
+     "ms": 1171000
+    },
+    {
+     "kind": "call",
+     "text": "Omdat die werkt als ik niet aan het werk ben.",
+     "tier": "E3",
+     "who": "Founder, Dutch sustainable interior materials maker",
+     "conv": "0896eb14-b014-46e9-8b30-7178325d04a7",
+     "ms": 3083000
+    },
+    {
+     "kind": "signal",
+     "text": "CRMs named in calls: Microsoft Dynamics, Zoho, Monday, SAP, HubSpot and a combined CRM and ERP.",
+     "tier": "E3",
+     "source": "VSI conversation intelligence"
+    },
+    {
+     "kind": "call",
+     "text": "Het grote nadeel van dat systeem is dat het heel lastig communiceert met andere systemen.",
+     "tier": "E3",
+     "who": "Specification lead, Dutch sandwich panel supplier",
+     "conv": "dd46f311-d794-4337-8478-3c6e3b26fa2b",
+     "ms": 1618465
+    }
+   ],
+   "viz": [
+    {
+     "kind": "quote",
+     "title": "The ask",
+     "text": "Ik zou daar wel iets in zien, met alle respect.",
+     "who": "Account manager, Dutch facade panel manufacturer",
+     "conv": "0178faee-8937-42c0-bfc9-16a562e52632",
+     "ms": 1171000
+    }
+   ],
+   "notes": []
+  },
+  {
+   "id": "award-handover",
+   "title": "Handover alert when a project is awarded",
+   "summary": "When a followed project is awarded to a contractor, alert the front-end rep and the colleague who sells to installers, with the contractor, the specified product and the date, so the specification survives the handover.",
+   "column": "recommended",
+   "bet": "We believe that an award alert will keep specified products from dropping out when the contractor and installers take over. We will know when the pilot supplier logs at least one quote request it would otherwise have missed.",
+   "problem": "The front-end rep knows the project, but the installers never ask for a quote, and a project awarded to an unknown contractor is close to lost.",
+   "impact": 2,
+   "effort": 2,
+   "confidence": "E3",
+   "horizon": "later",
+   "risks": [
+    "Award notices exist for public tenders but rarely for private work.",
+    "The fix may be internal process, not software."
+   ],
+   "firstMove": "Ask the pilot supplier for its last five projects lost at handover and check whether a public award notice existed in time.",
+   "evidence": [
+    {
+     "kind": "call",
+     "text": "Ik weet dat er een project op de markt komt, maar wij hebben van onze montagebedrijven, van onze klanten nog geen aanvraag gehad van dat werk.",
+     "tier": "E3",
+     "who": "Specification lead, Dutch sandwich panel supplier",
+     "conv": "dd46f311-d794-4337-8478-3c6e3b26fa2b",
+     "ms": 976065
+    },
+    {
+     "kind": "call",
+     "text": "Nou, nee, want als de aanbesteding geweest is en de aannemer is bekend, dan draag ik het over.",
+     "tier": "E3",
+     "who": "Architect-facing sales advisor, Dutch brick and facade materials merchant",
+     "conv": "ecf693cf-3841-4788-9af3-c10b85041992",
+     "ms": 926000
+    },
+    {
+     "kind": "signal",
+     "text": "If a project goes to a contractor the supplier does not know, the chance is called close to nil.",
+     "tier": "E3",
+     "source": "VSI risk-register"
+    }
+   ],
+   "viz": [
+    {
+     "kind": "flow",
+     "title": "From specification to installer quote",
+     "before": [
+      {
+       "step": "Front-end rep works the architect through design"
+      },
+      {
+       "step": "Tender is awarded to a contractor"
+      },
+      {
+       "step": "Installers price the job, often with another brand"
+      },
+      {
+       "step": "No quote request reaches the supplier"
+      }
+     ],
+     "after": [
+      {
+       "step": "Award notice appears for a followed project"
+      },
+      {
+       "step": "Modou alerts both reps with contractor and specified product"
+      },
+      {
+       "step": "Installer colleague calls the contractor's facade subcontractor"
+      }
+     ]
+    }
+   ],
+   "notes": []
+  },
+  {
+   "id": "system-kit",
+   "title": "Complete kit per product from the supplier's system rules",
+   "summary": "Encode each supplier's system rules (battens, fixings, profiles, cut waste, labour notes) so any quantity of its panel expands into the full kit, for its own quotes and for the contractors who price it.",
+   "column": "recommended",
+   "bet": "We believe that suppliers will pay to have their product priced completely by contractors, because missing parts make the product look cheap on paper and expensive on site. We will know when one supplier provides its system rules and two estimators use the kit on a live bid.",
+   "problem": "Suppliers quote only the headline panel, so estimators Google the installation and miss rails, strips and profiles, and new products are priced wrong on the first job.",
+   "impact": 2,
+   "effort": 2,
+   "confidence": "E3",
+   "horizon": "next",
+   "risks": [
+    "The rules engine for many products was deprioritised on 18 September; start with one product line.",
+    "Estimators may prefer their own norms and ignore a supplier's kit."
+   ],
+   "firstMove": "Take the pilot supplier's main product, write its kit rules with its technical team, and test them on three packages from the reader.",
+   "evidence": [
+    {
+     "kind": "call",
+     "text": "Want ik mis nog heel veel materialen.",
+     "tier": "E4",
+     "who": "Senior estimator, Dutch general contractor",
+     "conv": "1917fda5-4d80-4c27-863a-c8032f7b00fa",
+     "ms": 805000
+    },
+    {
+     "kind": "call",
+     "text": "Maar het is met name de vertaling van hoeveel spijkers, hoeveel schroeven, hoeveel producten.",
+     "tier": "E4",
+     "who": "Owner, Dutch facade cladding firm with about 30 staff",
+     "conv": "c03f32b9-9459-4253-aed6-c7a72d966846",
+     "ms": 554000
+    },
+    {
+     "kind": "call",
+     "text": "Ja, dan is het eerste werk wat we maken: verdienen we niks.",
+     "tier": "E4",
+     "who": "Commercial director, Dutch facade cladding subcontractor",
+     "conv": "bd211cc5-4737-4d93-98c0-1f653cfb5099",
+     "ms": 868000
+    },
+    {
+     "kind": "call",
+     "text": "Wij doen dat natuurlijk niet, want wij construeren niet, we zijn gewoon toeleverancier.",
+     "tier": "E3",
+     "who": "Account manager, Dutch aluminium profiles supplier",
+     "conv": "3bcff414-1ad1-47b9-8e7b-509502a34517",
+     "ms": 459000
+    },
+    {
+     "kind": "signal",
+     "text": "Deprioritised 18 September: no complex multi-product rules engine yet.",
+     "tier": "E5",
+     "source": "VSI decision-log"
+    }
+   ],
+   "viz": [
+    {
+     "kind": "quote",
+     "title": "What goes missing",
+     "text": "Want ik mis nog heel veel materialen.",
+     "who": "Senior estimator, Dutch general contractor",
+     "conv": "1917fda5-4d80-4c27-863a-c8032f7b00fa",
+     "ms": 805000
+    }
+   ],
+   "notes": []
+  },
+  {
+   "id": "contradiction-check",
+   "title": "Contradiction check for estimators",
+   "summary": "For facade and envelope estimators, list where the specification, drawings, details and fire requirements disagree, each with page and line, so the estimator reviews a few suspect points instead of everything.",
+   "column": "recommended",
+   "bet": "We believe estimators will pay for a contradiction list that shortens their check of a package, without Modou pricing anything. We will know when three firms replay five past tenders each and one offers a paid pilot by 4 December.",
+   "problem": "What is drawn fails to comply nine times out of ten, details do not match sections, and the estimator re-engineers the build-up unpaid before quoting.",
+   "impact": 3,
+   "effort": 3,
+   "confidence": "E2",
+   "horizon": "next",
+   "risks": [
+    "A different buyer from the supplier, with entrenched tools (Bluebeam, IBIS, Admicom, Bouwmakers) and fatigue from AI vendors.",
+    "Two firms already work with other AI builders and will not start a second track.",
+    "US estimating tools are funded; HELDR.AI and Specscan already read Dutch documents."
+   ],
+   "firstMove": "Ask three estimator firms from the September calls for five past packages with their final quotes, run the reader, and compare its contradictions with the questions they actually sent.",
+   "evidence": [
+    {
+     "kind": "call",
+     "text": "Wat er getekend staat, klopt 9 van de 10 keer niet.",
+     "tier": "E4",
+     "who": "Commercial director, Dutch facade cladding subcontractor",
+     "conv": "bd211cc5-4737-4d93-98c0-1f653cfb5099",
+     "ms": 1069000
+    },
+    {
+     "kind": "call",
+     "text": "Op het moment dat ik zijn details in zijn doorsnede zet, dan zie ik dat dingen niet kloppen.",
+     "tier": "E4",
+     "who": "Senior estimator, Dutch general contractor",
+     "conv": "1917fda5-4d80-4c27-863a-c8032f7b00fa",
+     "ms": 1010000
+    },
+    {
+     "kind": "call",
+     "text": "Ik denk dat je wel de juiste vraag stelt, inderdaad.",
+     "tier": "E2",
+     "who": "Estimator, Dutch facade cladding contractor",
+     "conv": "d53e8c21-f428-451f-8f11-596cba7a53af",
+     "ms": 1246000
+    },
+    {
+     "kind": "call",
+     "text": "Maar stel nou dat ik 30.000 euro moet investeren om iets te laten maken en dan nog eens 10.000 euro per jaar voor een abonnement of voor een rol en weet ik veel wat. Ja, dan is het mij zeker waard.",
+     "tier": "E2",
+     "who": "Commercial director, Dutch facade cladding subcontractor",
+     "conv": "bd211cc5-4737-4d93-98c0-1f653cfb5099",
+     "ms": 1220000
+    },
+    {
+     "kind": "call",
+     "text": "Mijn ervaring is dat heel veel die zeggen aan de voorkant dat het allemaal kan, uiteindelijk kan het niet.",
+     "tier": "E3",
+     "who": "Estimating lead, Dutch steel and facade construction firm",
+     "conv": "8e2c2cc9-0a60-45fd-be26-d90d3a86565a",
+     "ms": 852000
+    },
+    {
+     "kind": "trend",
+     "text": "Bobyard raised a 35 million dollar Series A for AI takeoff and estimating.",
+     "source": "VC Tavern",
+     "url": "https://vctavern.com/bobyard-raises-35m-series-a-to-expand-ai-powered-construction-takeoff-and-estimating-platform/",
+     "date": "2026-05-05"
+    }
+   ],
+   "viz": [
+    {
+     "kind": "matrix",
+     "title": "Where the evidence puts each buyer (placement is a judgement from the calls, not a measurement)",
+     "x": [
+      "Weak pain",
+      "Strong pain"
+     ],
+     "y": [
+      "No commitment",
+      "Commitment"
+     ],
+     "points": [
+      {
+       "label": "Supplier: project state",
+       "x": 0.7,
+       "y": 0.75,
+       "us": true
+      },
+      {
+       "label": "Supplier: new lead discovery",
+       "x": 0.2,
+       "y": 0.3
+      },
+      {
+       "label": "Estimator: contradictions and triage",
+       "x": 0.85,
+       "y": 0.2
+      },
+      {
+       "label": "Estimator: automatic labour pricing",
+       "x": 0.45,
+       "y": 0.1
+      },
+      {
+       "label": "Energy storage: grid signals",
+       "x": 0.35,
+       "y": 0.15
+      }
+     ]
+    }
+   ],
+   "notes": []
+  },
+  {
+   "id": "outcome-loop",
+   "title": "Record which signals led to won projects",
+   "summary": "From the first pilot, log for every project which event came first, what the rep did and whether the product was specified and ordered, so the fit rules and the brief learn from outcomes.",
+   "column": "recommended",
+   "bet": "We believe outcome data on the pilot's projects will become the one asset generic AI tools and new entrants lack. We will know when 50 projects have a recorded outcome by March 2027.",
+   "problem": "Building Radar has years of outcome data and Modou has none, and suppliers cannot attribute samples or visits to projects.",
+   "impact": 2,
+   "effort": 1,
+   "confidence": "E2",
+   "horizon": "later",
+   "risks": [
+    "Construction cycles of one and a half to two years mean few outcomes within the pilot.",
+    "Reps may not record outcomes unless it is one click from the brief."
+   ],
+   "firstMove": "Add won, lost and still open to every project file from the first pilot week.",
+   "evidence": [
+    {
+     "kind": "signal",
+     "text": "Building Radar holds years of outcome data; Modou must instrument its outcome loop from the first pilot.",
+     "tier": "E2",
+     "source": "VSI risk-register"
+    },
+    {
+     "kind": "call",
+     "text": "Je weet het vaak niet zo één op één, want soms stuur je samples op en die liggen ergens en die komen later weer omhoog.",
+     "tier": "E3",
+     "who": "Founder, Dutch sustainable interior materials maker",
+     "conv": "0896eb14-b014-46e9-8b30-7178325d04a7",
+     "ms": 1637000
+    },
+    {
+     "kind": "call",
+     "text": "Dus ik zou zeggen dat je daar ook wel wat uithaalt, maar dat is moeilijk te quantificeren.",
+     "tier": "E3",
+     "who": "Account manager, Dutch facade solar panel maker",
+     "conv": "0d76e759-afec-4db4-ab92-2049dfe84b6d",
+     "ms": 945000
+    }
+   ],
+   "viz": [
+    {
+     "kind": "quote",
+     "title": "Attribution today",
+     "text": "Je weet het vaak niet zo één op één, want soms stuur je samples op en die liggen ergens en die komen later weer omhoog.",
+     "who": "Founder, Dutch sustainable interior materials maker",
+     "conv": "0896eb14-b014-46e9-8b30-7178325d04a7",
+     "ms": 1637000
+    }
+   ],
+   "notes": []
+  },
+  {
+   "id": "lead-feed",
+   "title": "National feed of new project leads",
+   "summary": "A Modou database of new construction projects across the Netherlands, scored for each supplier, as the original venture description proposed.",
+   "column": "parked",
+   "bet": "We believed suppliers would pay for earlier and better-scored project leads than Cobouw or De Mercuur provide.",
+   "problem": "The original problem statement: suppliers hear about projects too late or too early.",
+   "impact": 1,
+   "effort": 3,
+   "confidence": "E3",
+   "horizon": "later",
+   "risks": [
+    "Parked: five of sixteen supplier calls said lead supply is not their problem, the network beats paid feeds on timing, and Cobouw, De Mercuur and Building Radar already sell this from 798 euros a year.",
+    "Revisit only for suppliers of new or compliance-driven products with a thin network, where timing stays the wedge."
+   ],
+   "firstMove": "None now. Keep a list of suppliers with a thin network who say timing is their problem.",
+   "evidence": [
+    {
+     "kind": "call",
+     "text": "Ik denk dat we echt omkomen in de leads.",
+     "tier": "E3",
+     "who": "Marketing manager, Dutch bio-based paving materials supplier",
+     "conv": "d89943e6-b4ce-493f-bb8d-27b5afbfee6a",
+     "ms": 756000
+    },
+    {
+     "kind": "call",
+     "text": "Nee, ik heb niet het idee dat we dingen mislopen.",
+     "tier": "E3",
+     "who": "Sales engineer, Dutch metal facade systems maker",
+     "conv": "984581ca-35aa-4474-bfa6-d00021600ae1",
+     "ms": 690000
+    },
+    {
+     "kind": "call",
+     "text": "Ja, we hebben zoveel leads in het systeem.",
+     "tier": "E3",
+     "who": "Commercial lead, Dutch battery storage installer",
+     "conv": "000308bb-f5c6-49a7-a39f-70e60352af59",
+     "ms": 1474000
+    },
+    {
+     "kind": "competitor",
+     "text": "Cobouw Bouwberichten covers more than 400,000 projects, from 800 euros a year.",
+     "source": "Cobouw Bouwberichten subscriptions",
+     "url": "https://bouwberichten.nl/abonnement",
+     "date": "2026-09-25"
+    },
+    {
+     "kind": "signal",
+     "text": "Decision 22 September: timing stays as the wedge for new-product suppliers and energy only.",
+     "tier": "E5",
+     "source": "VSI decision-log"
+    }
+   ],
+   "viz": [
+    {
+     "kind": "compare",
+     "title": "New-lead discovery is already sold in the Netherlands",
+     "columns": [
+      "Modou feed",
+      "Cobouw Bouwberichten",
+      "De Mercuur",
+      "Building Radar"
+     ],
+     "rows": [
+      {
+       "label": "Dutch project database",
+       "values": [
+        "planned",
+        "yes",
+        "yes",
+        "yes"
+       ]
+      },
+      {
+       "label": "Public price",
+       "values": [
+        "no",
+        "yes",
+        "yes",
+        "no"
+       ]
+      },
+      {
+       "label": "Entry price per year",
+       "values": [
+        "none",
+        "800 euros",
+        "798 euros a region",
+        "on request"
+       ]
+      }
+     ]
+    }
+   ],
+   "notes": []
+  },
+  {
+   "id": "outreach-agent",
+   "title": "Automated outreach agent",
+   "summary": "An agent that drafts and sends outreach to architects and contractors for each project signal.",
+   "column": "parked",
+   "bet": "We believed suppliers would pay for an agent that turns signals into first contact.",
+   "problem": "Reps have little time for proactive outreach.",
+   "impact": 1,
+   "effort": 2,
+   "confidence": "E3",
+   "horizon": "later",
+   "risks": [
+    "Parked: suppliers already build these bots themselves for about 60 euros a month, one marketing manager said an agent makes contact feel fake, and another fears generic AI mail erodes the company voice.",
+    "Hosted AI sales tools and Clay are funded and cheap to start."
+   ],
+   "firstMove": "None now.",
+   "evidence": [
+    {
+     "kind": "call",
+     "text": "Ja, dat een agent dat heel onecht maakt.",
+     "tier": "E3",
+     "who": "Marketing manager, Dutch bio-based paving materials supplier",
+     "conv": "d89943e6-b4ce-493f-bb8d-27b5afbfee6a",
+     "ms": 1451000
+    },
+    {
+     "kind": "call",
+     "text": "Omdat die werkt als ik niet aan het werk ben.",
+     "tier": "E3",
+     "who": "Founder, Dutch sustainable interior materials maker",
+     "conv": "0896eb14-b014-46e9-8b30-7178325d04a7",
+     "ms": 3083000
+    },
+    {
+     "kind": "trend",
+     "text": "One guide puts a self-built Claude Code sales agent at 140 to 300 dollars a month against 2,000 to 5,000 for hosted AI SDR tools; vendor blog, directional.",
+     "source": "SyncGTM",
+     "url": "https://syncgtm.com/blog/claude-code-sales-agent",
+     "date": "2026-04-25"
+    },
+    {
+     "kind": "competitor",
+     "text": "Clay Launch plan from 167 dollars a month.",
+     "source": "Clay pricing",
+     "url": "https://www.clay.com/pricing",
+     "date": "2026-09-25"
+    }
+   ],
+   "viz": [
+    {
+     "kind": "quote",
+     "title": "The objection",
+     "text": "Ja, dat een agent dat heel onecht maakt.",
+     "who": "Marketing manager, Dutch bio-based paving materials supplier",
+     "conv": "d89943e6-b4ce-493f-bb8d-27b5afbfee6a",
+     "ms": 1451000
+    }
+   ],
+   "notes": []
+  },
+  {
+   "id": "energy-signals",
+   "title": "Grid-operator signals for energy-storage sellers",
+   "summary": "Predict which companies will hit grid congestion or have an underused connection, from grid-operator publications, for battery and energy-management sellers.",
+   "column": "parked",
+   "bet": "We believed battery sellers would pay for early congestion signals.",
+   "problem": "Battery sellers prospect by hand, for example by scanning roofs for solar panels.",
+   "impact": 1,
+   "effort": 3,
+   "confidence": "E3",
+   "horizon": "later",
+   "risks": [
+    "Parked: the strongest signal, a company talking to its grid operator about its connection, is private; congestion leads are a price fight with a one in five to one in seven win rate; one buyer's boss dismisses project data.",
+    "Grid congestion stays useful inside the supplier project file as a reason a project may stall."
+   ],
+   "firstMove": "None now; use grid wait-list data only as a stall signal in project files.",
+   "evidence": [
+    {
+     "kind": "call",
+     "text": "Maar de meeste mensen voeren dit gesprek privé met hun netbeheerder.",
+     "tier": "E3",
+     "who": "Commercial lead, Dutch battery storage installer",
+     "conv": "000308bb-f5c6-49a7-a39f-70e60352af59",
+     "ms": 1385000
+    },
+    {
+     "kind": "call",
+     "text": "Want de slagingskans op een congestiecasus blijft 1 op 5, 1 op 6, 1 op 7.",
+     "tier": "E3",
+     "who": "Commercial lead, Dutch battery storage installer",
+     "conv": "000308bb-f5c6-49a7-a39f-70e60352af59",
+     "ms": 1567000
+    },
+    {
+     "kind": "call",
+     "text": "Maar hij geeft elke keer terug: dat is onzin.",
+     "tier": "E3",
+     "who": "Business development manager, Dutch construction battery rental company",
+     "conv": "4d42d5f2-b6d4-4605-b5ce-9042307c875d",
+     "ms": 1560736
+    },
+    {
+     "kind": "trend",
+     "text": "15,014 large users waiting for a grid connection at the end of 2025.",
+     "source": "Duurzaam Ondernemen",
+     "url": "https://www.duurzaam-ondernemen.nl/wachtlijst-netcongestie-groeit-naar-ruim-15-000-bedrijven-batterijopslag-verdubbelt/",
+     "date": "2026-04"
+    }
+   ],
+   "viz": [
+    {
+     "kind": "quote",
+     "title": "Why public signals miss it",
+     "text": "Maar de meeste mensen voeren dit gesprek privé met hun netbeheerder.",
+     "who": "Commercial lead, Dutch battery storage installer",
+     "conv": "000308bb-f5c6-49a7-a39f-70e60352af59",
+     "ms": 1385000
+    }
+   ],
+   "notes": []
+  }
+ ]
+}

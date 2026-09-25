@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buyer answers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F2EE;--card:#FFFFFF;--ink:#16181D;--muted:#5E6470;--faint:#9AA0AA;--line:#E4E1DA;--line2:#D3CFC6;
+  --red:#C8352B;--red-soft:#F8E4E1;--amber:#B26A00;--amber-soft:#F7EBD6;--green:#1F7A4D;--green-soft:#E0EFE6;
+  --accent:#3B5BDB;--accent-soft:#E4E9FB;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Geist",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.cap{display:flex;gap:14px;align-items:center;padding:9px 24px;background:var(--ink);color:#E9E7E2;font-size:12.5px}
+.cap b{font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:#9FB2FF}
+.cap span.r{margin-left:auto;opacity:.65}
+.app{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:calc(100vh - 36px)}
+.nav{border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:3px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;padding:0 8px 18px}
+.brand svg{width:28px;height:28px;border-radius:7px}
+.proj{margin:0 4px 16px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.proj b{display:block;font-weight:500}.proj span{font-size:12px;color:var(--muted)}
+.nav a{display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;color:var(--muted);text-decoration:none}
+.nav a.on{background:var(--card);color:var(--ink);font-weight:500;box-shadow:inset 0 0 0 1px var(--line)}
+.nav a em{font-style:normal;font-size:12px;color:var(--faint)}
+.main{padding:24px 32px 48px;min-width:0}
+.crumb{font-size:13px;color:var(--muted)}
+.head{display:flex;gap:16px;align-items:flex-start;margin:8px 0 18px;flex-wrap:wrap}
+h1{font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.sub{color:var(--muted);margin-top:4px}
+.acts{margin-left:auto;display:flex;gap:8px}
+.btn{border:1px solid var(--line2);background:var(--card);border-radius:8px;padding:8px 14px;font-weight:500;white-space:nowrap}
+.btn.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.sm{padding:5px 11px;font-size:12.5px}
+.lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.progress{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+.bar{display:flex;height:10px;border-radius:999px;overflow:hidden;margin:12px 0 10px;background:var(--bg)}
+.bar span{display:block;height:100%}
+.keys{display:flex;gap:22px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.keys b{color:var(--ink);font-weight:600;margin-right:4px}
+.keys i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px}
+.card .top{display:flex;align-items:center;gap:8px;padding:12px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{font-size:12.5px;border:1px solid var(--line2);border-radius:999px;padding:4px 11px;color:var(--muted);background:var(--card)}
+.tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.q{padding:16px 18px;border-bottom:1px solid var(--line)}
+.q:last-child{border-bottom:0}
+.q .qh{display:flex;gap:10px;align-items:flex-start}
+.q .num{color:var(--faint);font-size:12.5px;min-width:34px;padding-top:1px}
+.q h3{font-size:14px;font-weight:600;line-height:1.35;flex:1}
+.st{font-size:11.5px;border-radius:999px;padding:2px 9px;font-weight:500;white-space:nowrap}
+.st.draft{background:var(--accent-soft);color:var(--accent)}
+.st.need{background:var(--amber-soft);color:var(--amber)}
+.st.ok{background:var(--green-soft);color:var(--green)}
+.ans{margin:8px 0 0 44px;color:#30343B;font-size:13.5px}
+.ev{margin:10px 0 0 44px;display:flex;gap:6px;flex-wrap:wrap}
+.evi{font-size:12px;background:var(--bg);border-radius:6px;padding:3px 9px;color:var(--muted)}
+.evi b{color:var(--ink);font-weight:500}
+.act{margin:10px 0 0 44px;display:flex;gap:8px;align-items:center}
+.q.accepted .act .a{display:none}
+.q.accepted .act .done{display:inline}
+.done{display:none;font-size:12.5px;color:var(--green);font-weight:500}
+.gap{margin:8px 0 0 44px;font-size:13px;color:var(--amber)}
+.report{padding:18px}
+.report h2{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.report .meta{color:var(--muted);font-size:12.5px;margin-top:2px}
+.rows{margin-top:14px;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}
+.row span:last-child{color:var(--muted);text-align:right}
+.row .g{color:var(--green)}.row .a{color:var(--amber)}
+.share{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.side .card+.card{margin-top:16px}
+.time{padding:16px 18px}
+.time .big{font-size:28px;font-weight:600;letter-spacing:-.02em;margin-top:6px}
+.time p{color:var(--muted);font-size:13px;margin-top:2px}
+.note{margin-top:16px;font-size:12.5px;color:var(--muted)}
+@media (max-width:1100px){.grid{grid-template-columns:1fr}}
+@media (max-width:760px){
+  .app{grid-template-columns:1fr}.nav{display:none}.main{padding:18px 16px 40px}
+  .acts{margin-left:0;width:100%}.cap span.r{display:none}h1{font-size:22px}
+  .ans,.ev,.act,.gap{margin-left:0}.q .num{display:none}
+}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype</b><span>Gustavo, working name. The questionnaire, buyer, answers and numbers on this page are sample data.</span><span class="r">Not a live product</span></div>
+<div class="app">
+  <aside class="nav">
+    <div class="brand"><svg viewBox="0 0 256 256"><rect width="256" height="256" fill="#16181D"/><path d="M167.6 88.4A56 56 0 1 0 184 128H132" fill="none" stroke="#F4F2EE" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/></svg>Gustavo</div>
+    <div class="proj"><b>sample-app</b><span>Sample workspace</span></div>
+    <a href="#">Release maps <em>12</em></a>
+    <a href="#">System map</a>
+    <a href="#">Tickets <em>7</em></a>
+    <a href="#" class="on">Buyer answers <em>1</em></a>
+    <a href="#">Settings</a>
+  </aside>
+  <main class="main">
+    <div class="crumb">Buyer answers / Sample enterprise prospect</div>
+    <div class="head">
+      <div>
+        <h1>Vendor security questionnaire, drafted from your own evidence</h1>
+        <div class="sub">Uploaded Monday. Every drafted answer cites the release map, probe or config it came from. You review, the buyer gets the file.</div>
+      </div>
+      <div class="acts"><button class="btn">Download for buyer</button><button class="btn pri" id="acceptAll">Accept all drafted</button></div>
+    </div>
+
+    <section class="progress">
+      <div class="lbl">142 questions</div>
+      <div class="bar"><span style="width:62%;background:var(--accent)"></span><span style="width:21%;background:var(--green)"></span><span style="width:12%;background:var(--amber)"></span><span style="width:5%;background:var(--line2)"></span></div>
+      <div class="keys">
+        <span><i style="background:var(--accent)"></i><b id="kDraft">88</b>drafted from evidence</span>
+        <span><i style="background:var(--green)"></i><b id="kOk">30</b>accepted</span>
+        <span><i style="background:var(--amber)"></i><b>17</b>need you</span>
+        <span><i style="background:var(--line2)"></i><b>7</b>not applicable</span>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <div class="top"><div class="tabs"><button class="tab on">All</button><button class="tab">Need you</button><button class="tab">Access control</button><button class="tab">Data protection</button><button class="tab">Vulnerability management</button></div></div>
+
+        <div class="q">
+          <div class="qh"><span class="num">4.2</span><h3>How often do you test your application for vulnerabilities, and who performs the tests?</h3><span class="st draft">Drafted</span></div>
+          <p class="ans">Every production release is mapped after deploy for changed surfaces and security findings, and an outside-in probe of public services runs weekly. Findings are filed as tickets and reviewed weekly. An external penetration test was last performed in the spring.</p>
+          <div class="ev"><span class="evi"><b>12 release maps</b> since July</span><span class="evi"><b>Outside-in probe</b> weekly</span><span class="evi"><b>Ticket log</b> 7 open, 21 closed</span></div>
+          <div class="act"><button class="btn sm a">Accept</button><button class="btn sm">Edit</button><span class="done">Accepted</span></div>
+        </div>
+
+        <div class="q">
+          <div class="qh"><span class="num">6.1</span><h3>Is customer data logically separated between tenants? Describe the control.</h3><span class="st draft">Drafted</span></div>
+          <p class="ans">Yes. Tenant separation is enforced with row-level security in the database and a tenant check on every API route. Release 214 introduced an export route without the check; it was flagged on the release map and fixed in release 215.</p>
+          <div class="ev"><span class="evi"><b>Release map 214</b> red point</span><span class="evi"><b>Release 215</b> fix merged</span><span class="evi"><b>Database policy</b> 14 tables</span></div>
+          <div class="act"><button class="btn sm a">Accept</button><button class="btn sm">Edit</button><span class="done">Accepted</span></div>
+        </div>
+
+        <div class="q">
+          <div class="qh"><span class="num">7.4</span><h3>Where is personal data stored and processed, including subprocessors and regions?</h3><span class="st draft">Drafted</span></div>
+          <p class="ans">Application data is stored in an EU region. Logs are self-hosted in the same region and contain user identifiers but no names or emails. One subprocessor, the email provider, receives the customer name and email address.</p>
+          <div class="ev"><span class="evi"><b>GDPR data flows</b> 9 traced</span><span class="evi"><b>Hosting config</b> EU region</span><span class="evi"><b>Release map 214</b> new email field</span></div>
+          <div class="act"><button class="btn sm a">Accept</button><button class="btn sm">Edit</button><span class="done">Accepted</span></div>
+        </div>
+
+        <div class="q">
+          <div class="qh"><span class="num">9.3</span><h3>Do you have a documented incident response plan, tested in the last 12 months?</h3><span class="st need">Needs you</span></div>
+          <p class="gap">No evidence found. This is a process question the code cannot answer. A plan template is ready to adapt; the buyer may accept a plan with a test date.</p>
+          <div class="act"><button class="btn sm">Open template</button><button class="btn sm">Mark as planned</button></div>
+        </div>
+
+        <div class="q accepted">
+          <div class="qh"><span class="num">3.1</span><h3>Do you enforce multi-factor authentication for administrative access?</h3><span class="st ok">Accepted</span></div>
+          <p class="ans">Yes. Admin access goes through the identity provider with MFA required; no admin route accepts password-only sessions.</p>
+          <div class="ev"><span class="evi"><b>Identity provider</b> policy</span><span class="evi"><b>Route scan</b> 0 exceptions</span></div>
+        </div>
+      </section>
+
+      <div class="side">
+        <section class="card time">
+          <div class="lbl">Time to a complete draft</div>
+          <div class="big">1 day</div>
+          <p>Sample figure. The founder reviews 17 open questions instead of writing 142 answers.</p>
+        </section>
+        <section class="card">
+          <div class="report">
+            <div class="lbl">Security report for buyers</div>
+            <h2>sample-app security overview</h2>
+            <div class="meta">Refreshed with every release. Last update after release 215.</div>
+            <div class="rows">
+              <div class="row"><span>Release security mapping</span><span class="g">Every release</span></div>
+              <div class="row"><span>Outside-in exposure probe</span><span class="g">Weekly</span></div>
+              <div class="row"><span>Open findings, high</span><span>0</span></div>
+              <div class="row"><span>Personal data flows documented</span><span class="g">9 of 9</span></div>
+              <div class="row"><span>External penetration test</span><span>Spring, report on request</span></div>
+              <div class="row"><span>SOC 2 or ISO 27001</span><span class="a">Not certified, evidence available</span></div>
+            </div>
+            <div class="share"><button class="btn sm">Copy share link</button><button class="btn sm">Send to buyer</button></div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <p class="note">Vision prototype with sample data. The idea: the evidence the release maps already collect answers most of a buyer's questionnaire, and what it cannot answer is shown as a gap, never guessed.</p>
+  </main>
+</div>
+<script>
+const qs=[...document.querySelectorAll('.q')];
+let draft=88, ok=30;
+function upd(){document.getElementById('kDraft').textContent=draft;document.getElementById('kOk').textContent=ok}
+function accept(q){ if(q.classList.contains('accepted')||!q.querySelector('.st.draft')) return; q.classList.add('accepted'); const s=q.querySelector('.st'); s.className='st ok'; s.textContent='Accepted'; draft--; ok++; upd(); }
+qs.forEach(q=>{const b=q.querySelector('.btn.a'); if(b) b.addEventListener('click',()=>accept(q));});
+document.getElementById('acceptAll').addEventListener('click',()=>{qs.forEach(accept); ok+=draft; draft=0; upd();});
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t))));
+</script>
+</body>
+</html>

@@ -1,0 +1,1476 @@
+{
+  "updated": "2026-09-25",
+  "vision": "Corestone is the reader and checker between the field and the design: drop in the drill logs, field sheets, scans, core photos and lab certificates of a campaign, and get back one borehole table where every value is linked to the page it came from, every inconsistency is listed for a geologist to decide, and the logs, sections and exports the firm already uses are drawn from the checked data.",
+  "strategy": {
+    "direction": "Own the step between messy field documents and the first borehole table a geologist trusts: read a campaign's field sheets, scanned logs, lab certificates and core photos, check them against each other, and hand back the checked table, every inconsistency with its source, and the exports and drawings the firm already uses. Reading alone is becoming a commodity, so sell the check: start with a free validation report on a firm's own boreholes, price per project or per file, and treat core-photo RQD as one check inside that report rather than as the product.",
+    "why": [
+      "The hours sit in extraction and checking, not modelling: the calls with E4 pains all put the time there, and one design team says interpretation is fast once the data is in its workbook.",
+      "The pain repeats across construction and mining in the same shape (PDF in almost every case, lab layouts that break scripts, OCR that turns numbers into letters, QA done by going back to paper), so one engine serves both.",
+      "Reading PDF logs is already sold by BoreholeAI, Civils.ai, GeoLayer and Rocscience, which is exactly the '99% already exists' objection; none of them says it checks content across logs, certificates and photos, and UK highway files that pass format validation still fail quality review.",
+      "The sharpest error heard, RQD logged at 90% where the photo shows 20%, is a cross-check, not an extraction, and it is what turns a data tool into something a geologist signs against.",
+      "Imagery AI is mining-first and consolidating (IMDEX bought Datarock, Seequent owns Imago), so a standalone photo RQD product would meet funded incumbents head on; as a check inside a construction validation report it does not.",
+      "The incumbent GI databases are moving users to subscriptions as gINT and HoleBASE support winds down, while small firms on Eng-Tips already say they cannot justify them; per-project pricing fits firms that buy tools, not subscriptions.",
+      "A free report on a firm's own data answers the channel problem too: LinkedIn is restricted and cold email got no replies, while the one E5 is a data pack a firm offered to send."
+    ],
+    "sequence": [
+      {
+        "step": "Run the promised drilling-firm data pack and one anonymised design-firm project through reading and the first twenty checks. Measure field-level accuracy, questions per borehole and flags a geologist accepts. Target: two data sets, at least nine values in ten right before questions.",
+        "when": "28 Sep to 9 Oct"
+      },
+      {
+        "step": "Offer the free validation report to 20 firms from the discovery list (small ground investigation firms and geotechnical teams, Italy and UK first). Deliver 10 reports, debrief each one on the flags, the last campaign's hours and a price per project.",
+        "when": "12 Oct to 6 Nov"
+      },
+      {
+        "step": "For the three most engaged firms, add exports to their own Excel template, AGS 4 and the Leapfrog CSV set, and one DXF log in their template. Ask for the first paid project.",
+        "when": "9 Nov to 4 Dec"
+      },
+      {
+        "step": "Test the tender angle cheaply: two calls with estimators at specialist foundation or tunnelling contractors, walking through a lost-money job, before any build.",
+        "when": "7 Dec to 18 Dec"
+      },
+      {
+        "step": "Decision review against the kill criteria: continue into the certificate reader and photo checks if two firms have paid for a project; otherwise re-plan from the ten debriefs.",
+        "when": "11 Jan 2027"
+      },
+      {
+        "step": "If continuing: photo RQD check with the fixed capture rig, archive rescue for exploration consultancies, and the change record for the design handover.",
+        "when": "Jan to Mar 2027"
+      }
+    ],
+    "notNow": [
+      "3D ground modelling or a Leapfrog substitute: clients in the first market do not pay for 3D models and the established suites own it; export to them instead.",
+      "A standalone core-imaging or televiewer product: funded, consolidating incumbents already sell it to mining.",
+      "The tender GI check for contractors as a build: no contractor has been interviewed; test it with two calls first.",
+      "A shared structural and geotechnical collaboration platform: one voice, a multi-party rollout, and common data environments exist on large projects.",
+      "Technical specification generation: a different buyer and a different product.",
+      "Seat-based subscriptions: firms buy tools, and per-report or per-file pricing is already the venture's working model.",
+      "New industries (construction site documents, energy) before one geotechnical workflow is paid for."
+    ],
+    "killCriteria": [
+      "Fewer than nine values in ten read correctly on the first two real data sets after two weeks of tuning: narrow to typed and digital logs before anything else.",
+      "Geologists reject more than half of the flags as trivial or wrong: the check does not beat the eye, and the report has nothing to sell.",
+      "Fewer than 5 debriefs from 10 delivered reports by 6 November: the report is not a door opener, so change the channel before the product.",
+      "No firm pays for a project by 11 January 2027: stop and re-plan from what the debriefs said about budget.",
+      "If the debriefs show the firms' own scripts or an existing AI digitiser already catch the same errors, stop building checks and find the next unsolved step."
+    ],
+    "evidenceGaps": [
+      "Who pays and from which budget: no price has been discussed in any call. Ask in every report debrief, with a number per project.",
+      "Accuracy on real handwriting and scans: unknown until the first data pack is run, due 9 October.",
+      "How often the errors change a design parameter, not only a cell: grade every flag in the first ten reports.",
+      "Whether UK firms, where AGS files are the norm, feel the extraction pain as much as the Italian and Iberian calls do: book at least three UK conversations by 6 November.",
+      "Whether contractors buy a pre-bid ground check: no contractor has been interviewed.",
+      "How the AI digitisers perform on the same documents: run one data set through a free pilot of a competitor and compare.",
+      "Housekeeping: the compiled VSI ICP and positioning mix in material from other ventures and from public research; recompile them from the calls."
+    ]
+  },
+  "research": {
+    "patterns": [
+      {
+        "title": "One owner holds the incumbents, and it is moving them to the cloud",
+        "text": "Seequent, part of Bentley, owns gINT, HoleBASE, OpenGround, Leapfrog and Imago. gINT support runs to the end of 2028 and users are pointed to OpenGround, whose cloud licences start at published annual prices, while OpenGround Labs adds field-to-lab workflows. Competing databases position on what that move leaves behind: GeoDin on data sovereignty and no tiers, TabLogs on logs per month rather than seats.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "gINT support is extended to the end of 2028 on a reasonable endeavour basis, and users are pointed to OpenGround.",
+            "url": "https://www.geoengineer.org/news/seequent-announced-extended-gint-support-until-dec-31-2028",
+            "source": "Geoengineer",
+            "date": "2025-05-23"
+          },
+          {
+            "kind": "competitor",
+            "text": "OpenGround lists cloud licences at $2,420 a year for i3, with Base and Advanced bundles at $233 and $673 a year.",
+            "url": "https://www.seequent.com/products-solutions/openground/",
+            "source": "Seequent OpenGround",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "OpenGround Labs brings field-to-lab workflows and automated test certificates into OpenGround.",
+            "url": "https://geoprac.net/2026/02/ground-investigation-for-civil-infrastructure-gets-more-robust-with-integration-of-lab-and-field-geotechnical-data/",
+            "source": "GeoPrac",
+            "date": "2026-02-04"
+          },
+          {
+            "kind": "competitor",
+            "text": "GeoDin positions against OpenGround on data sovereignty, with on-premise or private cloud and no credits or tiers.",
+            "url": "https://www.geodin.com/alternative-for/openground",
+            "source": "GeoDin: alternative for OpenGround",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "TabLogs sells cloud boring logs by logs per month, not seats, with published monthly plans.",
+            "url": "https://tablogs.com/pricing",
+            "source": "TabLogs pricing",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "Reading PDF logs is already a crowded, fast category",
+        "text": "BoreholeAI, Civils.ai, GeoLayer, BoreDM and Rocscience all sell AI digitising of borehole logs into AGS and Excel, on speed, formats and volume claims. Extraction alone will not differentiate Corestone; what none of them states is a content check across logs, certificates and photos.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "BoreholeAI turns a PDF log into XLSX, AGS, CSV and JSON in under three minutes, with a confidence score per cell.",
+            "url": "https://www.boreholeai.com/",
+            "source": "BoreholeAI homepage",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Civils.ai digitises boreholes to AGS 4.1 and Excel and claims more than 100,000 boreholes processed for over 200 firms.",
+            "url": "https://civils.ai/geotechnical-engineering-ai-automation",
+            "source": "Civils.ai geotechnical automation",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "GeoLayer reads scanned and handwritten logs (depth, strata, SPT, RQD) and exports XLSX, AGS4, gINT, OpenGround and DXF, with a free pilot.",
+            "url": "https://geolayer.tech/",
+            "source": "GeoLayer homepage",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "BoreDM combines cloud logging, lab and CPT data, AI digitising of PDF logs, sections and export to Leapfrog.",
+            "url": "https://boredm.com/",
+            "source": "BoreDM homepage",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Rocscience describes an OCR feature in RSLog that digitises paper borehole logs.",
+            "url": "https://www.rocscience.com/learning/digitizing-paper-borehole-logs-with-ocr",
+            "source": "Rocscience: digitizing paper borehole logs with OCR",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "Imagery AI is mining-first and consolidating",
+        "text": "Datarock, now fully owned by IMDEX, Seequent Imago and WellCAD ISI read core and televiewer images for RQD and structures, sold mainly to mining. Datarock says buyers now ask how the AI fits existing practice rather than whether it works, which favours a check inside an existing workflow over a new tool.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Datarock reads core, chip and televiewer imagery for RQD and fractures and claims more than 27 million metres of core analysed.",
+            "url": "https://datarock.com.au/",
+            "source": "Datarock homepage",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "trend",
+            "text": "IMDEX completed the acquisition of Datarock for about A$31 million.",
+            "url": "https://www.sharecafe.com.au/2026/02/02/imdex-completes-31-million-datarock-acquisition/",
+            "source": "ShareCafe",
+            "date": "2026-02-02"
+          },
+          {
+            "kind": "competitor",
+            "text": "Seequent Imago stores core imagery and uses machine learning for RQD and depth mapping, feeding Leapfrog and MX Deposit.",
+            "url": "https://www.seequent.com/products-solutions/imago/",
+            "source": "Seequent Imago",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "WellCAD ISI offers manual, computer-assisted and automatic structure picking on televiewer images, with RQD.",
+            "url": "https://wellcad.com/addon/image-structure-isi/",
+            "source": "WellCAD Image and Structure Interpretation",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "market",
+            "text": "Datarock reports that buyers now ask how AI fits core-shed practice and modelling software, not whether it can predict RQD.",
+            "url": "https://datarock.com.au/reflections-on-crossing-the-chasm/",
+            "source": "Datarock: Reflections on crossing the chasm",
+            "date": "2026-03-16"
+          }
+        ]
+      }
+    ],
+    "problem": [
+      {
+        "title": "The hours go into getting data out of documents",
+        "text": "Design-side geologists receive PDFs in almost every case, each lab uses its own layout, and scanned archives defeat OCR. Seequent's own survey puts data management at more than a quarter of working time.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "Nella stramaggioranza dei casi, e direi il 99% dei casi, PDF.",
+            "tier": "E4",
+            "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+            "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+            "ms": 127500
+          },
+          {
+            "kind": "call",
+            "text": "quello che ci porta via più tempo è estrarre i dati",
+            "tier": "E4",
+            "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+            "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+            "ms": 585306
+          },
+          {
+            "kind": "trend",
+            "text": "Seequent's survey of over 1,000 geoprofessionals finds more than a quarter of working time goes on data management.",
+            "url": "https://www.seequent.com/geoprofessionals-increasingly-turning-to-ai-reveals-new-survey/",
+            "source": "Seequent survey",
+            "date": "2026-01-28"
+          }
+        ]
+      },
+      {
+        "title": "Valid format is not valid data",
+        "text": "Logs carry errors that only a geologist's eye catches today, from RQD far above what the photo shows to hole lengths that differ between files. In the UK, AGS files that pass the free format validator still fail National Highways' quality checks and are reissued.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "comment tu peux mettre le RQD à 90% alors que la photo à cette profondeur-là t'as que 20%?",
+            "tier": "E4",
+            "who": "Senior engineering geologist, infrastructure tenders",
+            "conv": "6332d8ac-94cc-4db2-83a7-424876c3f7bc",
+            "ms": 1538520
+          },
+          {
+            "kind": "call",
+            "text": "Sì, sì, errori ce ne sono a iosa",
+            "tier": "E4",
+            "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+            "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+            "ms": 466726
+          },
+          {
+            "kind": "trend",
+            "text": "National Highways holds about 23,000 AGS files; files that passed format validation still failed its data-quality checks and were reissued.",
+            "url": "https://www.geplus.co.uk/features/raising-the-bar-for-ground-investigation-data-quality-23-09-2026/",
+            "source": "Ground Engineering",
+            "date": "2026-09-23"
+          }
+        ]
+      },
+      {
+        "title": "The buyer is not settled",
+        "text": "The people with the pain are geologists who need a manager's approval to share data; a client-side manager doubts anyone would pay for validation; contractors resist tools that add compliance cost, and firms prefer buying tools to subscriptions.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "I'm just not aware that there is anyone who would Really go out of their way and spend money on such a tool.",
+            "tier": "E2",
+            "who": "Project manager, client-side civil engineering consultancy, UK",
+            "conv": "8871f2d3-8d98-4d3b-9c98-28cf92c1c474",
+            "ms": 1461969
+          },
+          {
+            "kind": "call",
+            "text": "Credo di sì, però dobbiamo parlarne con i nostri responsabili, quindi possiamo tenerci in contatto.",
+            "tier": "E2",
+            "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+            "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+            "ms": 1179150
+          },
+          {
+            "kind": "signal",
+            "text": "Risk register: target customers may prefer one-time tool purchases over subscriptions.",
+            "tier": "E3",
+            "source": "VSI risk-register"
+          }
+        ]
+      }
+    ],
+    "trends": [
+      {
+        "title": "Data standards are tightening on quality, not only format",
+        "text": "AGS 4.2 was issued at the end of 2025, National Highways now checks AGS content, and in the US DIGGS reached version 3.0 in March 2026. Clients increasingly expect data that is right, not just well formed.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "AGS 4.2 is the current data format, issued on 31 December 2025, and the AGS offers a free validator.",
+            "url": "https://www.ags.org.uk/data-format/",
+            "source": "AGS data format",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "trend",
+            "text": "National Highways holds about 23,000 AGS files; files that passed format validation still failed its data-quality checks and were reissued.",
+            "url": "https://www.geplus.co.uk/features/raising-the-bar-for-ground-investigation-data-quality-23-09-2026/",
+            "source": "Ground Engineering",
+            "date": "2026-09-23"
+          },
+          {
+            "kind": "trend",
+            "text": "DIGGS, the US geotechnical data standard, released version 3.0 in March 2026.",
+            "url": "https://www.geoinstitute.org/special-projects/diggs/news",
+            "source": "Geo-Institute DIGGS news",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "The sector wants automation because it lacks people",
+        "text": "In the GE100 2026, skills shortage is the top concern and automation and AI the main opportunity named. Small firms already say the incumbent tools cost too much for them.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "In the GE100 2026, 54% name automation and AI as the main opportunity and 73% name skills shortage as the top concern.",
+            "url": "https://www.geplus.co.uk/features/ge100/ge100-2026-geotechnical-sector-holds-firm-despite-deepening-downturn-11-09-2026/",
+            "source": "Ground Engineering GE100 2026",
+            "date": "2026-09-11"
+          },
+          {
+            "kind": "market",
+            "text": "On Eng-Tips, small firms describe gINT subscriptions as too costly and fall back to Excel logs and AutoCAD fence diagrams.",
+            "url": "https://www.eng-tips.com/threads/an-alternative-to-gint.484397/",
+            "source": "Eng-Tips: An alternative to gINT",
+            "date": "2021-06-18"
+          }
+        ]
+      },
+      {
+        "title": "Incumbent migrations open a window",
+        "text": "With gINT and HoleBASE support winding down, firms face a migration anyway, which is the moment they reconsider how data gets in.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "gINT support is extended to the end of 2028 on a reasonable endeavour basis, and users are pointed to OpenGround.",
+            "url": "https://www.geoengineer.org/news/seequent-announced-extended-gint-support-until-dec-31-2028",
+            "source": "Geoengineer",
+            "date": "2025-05-23"
+          },
+          {
+            "kind": "competitor",
+            "text": "OpenGround lists cloud licences at $2,420 a year for i3, with Base and Advanced bundles at $233 and $673 a year.",
+            "url": "https://www.seequent.com/products-solutions/openground/",
+            "source": "Seequent OpenGround",
+            "date": "2026-09-25"
+          }
+        ]
+      }
+    ],
+    "status": [
+      {
+        "title": "Strong on pain, silent on price",
+        "text": "Ten recorded calls, nine with learnings, give E4 pains across construction and mining and one E5 commitment (a data pack). No call has discussed a price, and both design-partner answers were hedged.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "The drilling firm owner committed to send photos, logs and templates for a test.",
+            "tier": "E5",
+            "who": "Owner, small drilling and ground investigation firm, Italy",
+            "conv": "af7bdb65-2249-4ecd-b64f-8dec10de5475",
+            "ms": 1698298
+          },
+          {
+            "kind": "call",
+            "text": "Yes, send me that and I'm really happy to have a discussion. I don't know if I can do this designer, but okay.",
+            "tier": "E2",
+            "who": "Infrastructure project manager, rail design consultancy, Greece",
+            "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+            "ms": 3530514
+          },
+          {
+            "kind": "signal",
+            "text": "Metrics scorecard: 14 tracked metrics, none with a baseline.",
+            "tier": "E3",
+            "source": "VSI metrics-scorecard"
+          }
+        ]
+      },
+      {
+        "title": "The direction has moved faster than the evidence",
+        "text": "The compiled ICP moved five times in three days and the current thesis (tender checks for contractors) was reasoned from public data; the calls point to the geologist between field and design.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "The ICP has moved five times in three days, and none of the moves was decided by a customer conversation.",
+            "tier": "E3",
+            "source": "VSI icp-state and decision-log"
+          },
+          {
+            "kind": "signal",
+            "text": "Venture thesis on tender mispricing is open, with one supporting source.",
+            "tier": "E3",
+            "source": "VSI hypothesis-state"
+          }
+        ]
+      },
+      {
+        "title": "The channel is the bottleneck",
+        "text": "LinkedIn outreach was restricted on 22 September and about 51 cold emails got no replies; the recorded calls came through warm introductions.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "LinkedIn restricted on 22 September; cold email about 51 sent, no replies logged.",
+            "tier": "E3",
+            "source": "VSI gtm-strategy"
+          },
+          {
+            "kind": "call",
+            "text": "Este es un poco difícil de hablar con la gente. En esta industria nadie te responde.",
+            "tier": "E2",
+            "who": "Geologist, Spanish slate producer",
+            "conv": "7dd4b735-2a45-483f-bc6b-108553458079",
+            "ms": 0
+          }
+        ]
+      },
+      {
+        "title": "The hardest objection is still open",
+        "text": "The objection that almost all of this already exists is recorded as the hardest and unanswered, and the competitor scan confirms it for extraction. The answer the evidence supports is the content check, which no competitor states.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "Objection pattern: product perceived as an undifferentiated commodity, five mentions, rising.",
+            "tier": "E3",
+            "source": "VSI objection-pattern"
+          },
+          {
+            "kind": "competitor",
+            "text": "BoreholeAI turns a PDF log into XLSX, AGS, CSV and JSON in under three minutes, with a confidence score per cell.",
+            "url": "https://www.boreholeai.com/",
+            "source": "BoreholeAI homepage",
+            "date": "2026-09-25"
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "vsi": {
+      "venture": "corestone-alessandro-d33e8924",
+      "conversations": 10,
+      "compiled": "2026-09-25"
+    },
+    "web": [
+      {
+        "title": "BoreholeAI homepage",
+        "url": "https://www.boreholeai.com/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "GeoLayer homepage",
+        "url": "https://geolayer.tech/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Ground Engineering",
+        "url": "https://www.geplus.co.uk/features/raising-the-bar-for-ground-investigation-data-quality-23-09-2026/",
+        "date": "2026-09-23"
+      },
+      {
+        "title": "GeoPrac",
+        "url": "https://geoprac.net/2026/02/ground-investigation-for-civil-infrastructure-gets-more-robust-with-integration-of-lab-and-field-geotechnical-data/",
+        "date": "2026-02-04"
+      },
+      {
+        "title": "Seequent survey",
+        "url": "https://www.seequent.com/geoprofessionals-increasingly-turning-to-ai-reveals-new-survey/",
+        "date": "2026-01-28"
+      },
+      {
+        "title": "Eng-Tips: An alternative to gINT",
+        "url": "https://www.eng-tips.com/threads/an-alternative-to-gint.484397/",
+        "date": "2021-06-18"
+      },
+      {
+        "title": "BoreDM homepage",
+        "url": "https://boredm.com/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Datarock homepage",
+        "url": "https://datarock.com.au/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Seequent Imago",
+        "url": "https://www.seequent.com/products-solutions/imago/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Geoengineer",
+        "url": "https://www.geoengineer.org/news/geodin-onsite-soil-and-borehole-logging",
+        "date": "2026-07-15"
+      },
+      {
+        "title": "GeoDin: alternative for OpenGround",
+        "url": "https://www.geodin.com/alternative-for/openground",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Civils.ai geotechnical automation",
+        "url": "https://civils.ai/geotechnical-engineering-ai-automation",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Geoengineer",
+        "url": "https://www.geoengineer.org/news/seequent-announced-extended-gint-support-until-dec-31-2028",
+        "date": "2025-05-23"
+      },
+      {
+        "title": "Seequent OpenGround",
+        "url": "https://www.seequent.com/products-solutions/openground/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "TabLogs pricing",
+        "url": "https://tablogs.com/pricing",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Rocscience: digitizing paper borehole logs with OCR",
+        "url": "https://www.rocscience.com/learning/digitizing-paper-borehole-logs-with-ocr",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "ShareCafe",
+        "url": "https://www.sharecafe.com.au/2026/02/02/imdex-completes-31-million-datarock-acquisition/",
+        "date": "2026-02-02"
+      },
+      {
+        "title": "WellCAD Image and Structure Interpretation",
+        "url": "https://wellcad.com/addon/image-structure-isi/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Datarock: Reflections on crossing the chasm",
+        "url": "https://datarock.com.au/reflections-on-crossing-the-chasm/",
+        "date": "2026-03-16"
+      },
+      {
+        "title": "AGS data format",
+        "url": "https://www.ags.org.uk/data-format/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Geo-Institute DIGGS news",
+        "url": "https://www.geoinstitute.org/special-projects/diggs/news",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Ground Engineering GE100 2026",
+        "url": "https://www.geplus.co.uk/features/ge100/ge100-2026-geotechnical-sector-holds-firm-despite-deepening-downturn-11-09-2026/",
+        "date": "2026-09-11"
+      }
+    ]
+  },
+  "initiatives": [
+    {
+      "id": "log-to-table",
+      "title": "Log to table: field sheets, scans and logs read into one borehole table",
+      "summary": "Read a batch of handwritten field sheets, scanned logs and digital logs into one borehole table per project, with every value linked to the page and position it came from and every uncertain character asked as a question, then write it into the firm's own Excel template, AGS 4 and the Leapfrog CSV set.",
+      "column": "recommended",
+      "bet": "We believe that reading a campaign's field sheets and logs into a checked table, with the source of every value one click away, will save engineering geologists the retyping step they all describe as the slowest part of the job. We will know when three firms send a second batch unprompted after the first one comes back.",
+      "problem": "Almost all incoming ground data is PDF or paper; geologists retype it into a master workbook, OCR on scans turns numbers into letters, and QA means going back to the paper to see what the logger wrote.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "Accuracy on real handwriting is too low for the table to be trusted, so geologists check every value anyway and save nothing. Measure field-level accuracy on the promised data pack before building anything else.",
+        "Firms that already have an Excel and Python chain see this as a small improvement, the hardest objection heard so far. The answer has to be the traced source and the checks, not the typing.",
+        "Data sharing needs a manager's approval at design firms, which slows every pilot. Offer to run on anonymised or archive projects first.",
+        "The pain is real but the time saved is hard to put a number on, so the price has to be set per project or per file rather than argued from hours."
+      ],
+      "firstMove": "In the two weeks from 28 September, run the drilling firm's promised pack of phone photos, logs and templates plus one anonymised design-firm project through extraction, record accuracy per field (depths, descriptions, SPT, RQD, recovery), time per borehole, and how many values needed a question. If fewer than nine values in ten are right before questions, narrow to typed and digital logs first.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Nella stramaggioranza dei casi, e direi il 99% dei casi, PDF.",
+          "tier": "E4",
+          "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+          "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+          "ms": 127500
+        },
+        {
+          "kind": "call",
+          "text": "quello che ci porta via più tempo è estrarre i dati",
+          "tier": "E4",
+          "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+          "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+          "ms": 585306
+        },
+        {
+          "kind": "call",
+          "text": "OCR on scanned certificates mangles values: non li prende, li prende male, il numero diventa una lettera.",
+          "tier": "E4",
+          "who": "Geotechnical data specialist, international design consultancy, Italy",
+          "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+          "ms": 1027580
+        },
+        {
+          "kind": "call",
+          "text": "Moving logging data into Leapfrog meant so much post-processing that the team went back to CSV tables.",
+          "tier": "E4",
+          "who": "Geologist, Spanish slate producer",
+          "conv": "7dd4b735-2a45-483f-bc6b-108553458079",
+          "ms": 0
+        },
+        {
+          "kind": "call",
+          "text": "The owner committed to send phone photos of stratigraphies, log outputs and bibliographic templates for a test.",
+          "tier": "E5",
+          "who": "Owner, small drilling and ground investigation firm, Italy",
+          "conv": "af7bdb65-2249-4ecd-b64f-8dec10de5475",
+          "ms": 1698298
+        },
+        {
+          "kind": "competitor",
+          "text": "BoreholeAI turns a PDF log into XLSX, AGS, CSV and JSON in under three minutes, with a confidence score per cell.",
+          "url": "https://www.boreholeai.com/",
+          "source": "BoreholeAI homepage",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "GeoLayer reads scanned and handwritten logs (depth, strata, SPT, RQD) and exports XLSX, AGS4, gINT, OpenGround and DXF, with a free pilot.",
+          "url": "https://geolayer.tech/",
+          "source": "GeoLayer homepage",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "flow",
+          "title": "One campaign, today and with Corestone (steps from the calls, no timings measured yet)",
+          "before": [
+            {
+              "step": "Paper sheets and phone photos from the rig"
+            },
+            {
+              "step": "PDF and scanned certificates from the lab"
+            },
+            {
+              "step": "Retype into the master Excel, OCR where it works"
+            },
+            {
+              "step": "Go back to the paper to check what the logger wrote"
+            },
+            {
+              "step": "Rebuild the four files a modelling tool needs"
+            }
+          ],
+          "after": [
+            {
+              "step": "Drop the batch into one project"
+            },
+            {
+              "step": "Answer the questions the reader could not resolve"
+            },
+            {
+              "step": "Open any value at its source page"
+            },
+            {
+              "step": "Export to the firm's template, AGS 4 or Leapfrog CSV"
+            }
+          ]
+        },
+        {
+          "kind": "matrix",
+          "title": "Positioning, judged from public product pages",
+          "x": [
+            "Needs clean, structured input",
+            "Reads paper, scans and handwriting"
+          ],
+          "y": [
+            "Stores and reformats data",
+            "Checks the data's content"
+          ],
+          "points": [
+            {
+              "label": "Corestone",
+              "x": 0.85,
+              "y": 0.85,
+              "us": true
+            },
+            {
+              "label": "BoreholeAI",
+              "x": 0.75,
+              "y": 0.35
+            },
+            {
+              "label": "Civils.ai",
+              "x": 0.75,
+              "y": 0.3
+            },
+            {
+              "label": "GeoLayer",
+              "x": 0.85,
+              "y": 0.3
+            },
+            {
+              "label": "OpenGround",
+              "x": 0.25,
+              "y": 0.45
+            },
+            {
+              "label": "GeoDin",
+              "x": 0.2,
+              "y": 0.4
+            },
+            {
+              "label": "AGS validator",
+              "x": 0.1,
+              "y": 0.25
+            }
+          ]
+        }
+      ],
+      "prototype": "vision/prototypes/log-to-table/index.html",
+      "notes": []
+    },
+    {
+      "id": "validation-report",
+      "title": "Validation report: every inconsistency in a campaign, linked to its source",
+      "summary": "Cross-check a campaign's logs, certificates, collar and survey files and core photos against each other, and return a report of every inconsistency (depths, hole lengths, units, copied values, coordinates, RQD against the photo), each linked to the page, graded by whether it would change a design parameter, and waiting for a geologist's decision.",
+      "column": "recommended",
+      "bet": "We believe that a free validation report on a firm's own boreholes will show errors the firm did not know it had, and will open a conversation about paying to run it on every campaign. We will know when at least 3 of the first 10 firms that receive a report ask for it on a live project.",
+      "problem": "Errors in third-party logs are abundant and the reviewing geologist signs the corrections, yet the only check today is a person comparing files, photos and paper by eye.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Most reports find little that matters, so they read as a nice-to-have. Grade every flag by whether it would change a design parameter and lead with those.",
+        "Checks that are rule-based are already free in AGS validators, so a report that only checks format has no value. The report must check content across files and against photos.",
+        "Contractors see validation as another layer of cost; a client-side manager doubted anyone would pay. Sell it to the geologist who signs the data, not to the party being checked.",
+        "False flags waste the reviewer's time and kill trust quickly. Track the share of flags the geologist accepts."
+      ],
+      "firstMove": "In the two weeks from 28 September, write the first twenty checks (hole length across files, depth order, units, values copied from certificates, coordinates against the site plan, logged RQD against photo estimate), run them on the first two data sets, and have one geologist grade every flag as real, trivial or wrong.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Sì, sì, errori ce ne sono a iosa",
+          "tier": "E4",
+          "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+          "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+          "ms": 466726
+        },
+        {
+          "kind": "call",
+          "text": "comment tu peux mettre le RQD à 90% alors que la photo à cette profondeur-là t'as que 20%?",
+          "tier": "E4",
+          "who": "Senior engineering geologist, infrastructure tenders",
+          "conv": "6332d8ac-94cc-4db2-83a7-424876c3f7bc",
+          "ms": 1538520
+        },
+        {
+          "kind": "call",
+          "text": "The ideal tool creates the four drillhole files from the base data and runs the QC across them, because a hole length that differs between files forces a trip back to the photographed PDFs.",
+          "tier": "E3",
+          "who": "Resource geologist, quarry and mining modelling consultant",
+          "conv": "1f0c7846-02c2-4f39-92dc-d08449a27faf",
+          "ms": 1397448
+        },
+        {
+          "kind": "call",
+          "text": "I'm just not aware that there is anyone who would Really go out of their way and spend money on such a tool.",
+          "tier": "E2",
+          "who": "Project manager, client-side civil engineering consultancy, UK",
+          "conv": "8871f2d3-8d98-4d3b-9c98-28cf92c1c474",
+          "ms": 1461969
+        },
+        {
+          "kind": "signal",
+          "text": "Venture idea on record: send twenty borehole logs or one AGS export, get back every inconsistency found, as lead magnet, discovery call and demo in one.",
+          "tier": "E2",
+          "source": "VSI decision-log"
+        },
+        {
+          "kind": "trend",
+          "text": "National Highways holds about 23,000 AGS files; files that passed format validation still failed its data-quality checks and were reissued.",
+          "url": "https://www.geplus.co.uk/features/raising-the-bar-for-ground-investigation-data-quality-23-09-2026/",
+          "source": "Ground Engineering",
+          "date": "2026-09-23"
+        },
+        {
+          "kind": "competitor",
+          "text": "BoreholeAI turns a PDF log into XLSX, AGS, CSV and JSON in under three minutes, with a confidence score per cell.",
+          "url": "https://www.boreholeai.com/",
+          "source": "BoreholeAI homepage",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "compare",
+          "title": "What each tool says it does with ground investigation documents (Corestone column is the proposed product; others from public pages)",
+          "columns": [
+            "Corestone",
+            "BoreholeAI",
+            "Civils.ai",
+            "GeoLayer",
+            "OpenGround",
+            "AGS validator"
+          ],
+          "rows": [
+            {
+              "label": "Reads PDF or scanned logs",
+              "values": [
+                "yes",
+                "yes",
+                "yes",
+                "yes",
+                "partial",
+                "no"
+              ]
+            },
+            {
+              "label": "Confidence shown per value",
+              "values": [
+                "yes",
+                "yes",
+                "not stated",
+                "not stated",
+                "not stated",
+                "no"
+              ]
+            },
+            {
+              "label": "Checks file format",
+              "values": [
+                "yes",
+                "not stated",
+                "not stated",
+                "not stated",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "Checks content across logs, certificates and photos",
+              "values": [
+                "yes",
+                "not stated",
+                "not stated",
+                "not stated",
+                "not stated",
+                "no"
+              ]
+            },
+            {
+              "label": "Flags graded by effect on design parameters",
+              "values": [
+                "yes",
+                "no",
+                "no",
+                "no",
+                "no",
+                "no"
+              ]
+            },
+            {
+              "label": "Every decision recorded with its source",
+              "values": [
+                "yes",
+                "not stated",
+                "not stated",
+                "not stated",
+                "partial",
+                "no"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "quote",
+          "title": "The error only an eye catches today",
+          "text": "comment tu peux mettre le RQD à 90% alors que la photo à cette profondeur-là t'as que 20%?",
+          "who": "Senior engineering geologist, infrastructure tenders",
+          "conv": "6332d8ac-94cc-4db2-83a7-424876c3f7bc",
+          "ms": 1538520
+        }
+      ],
+      "prototype": "vision/prototypes/validation-report/index.html",
+      "notes": []
+    },
+    {
+      "id": "certificate-reader",
+      "title": "Lab certificate reader that does not break when the layout changes",
+      "summary": "Read laboratory and in-situ test certificates (grading, Atterberg limits, CBR, Proctor, triaxial, pressuremeter, UCS) from any lab's PDF or scan into the same table, keeping the raw values and the lab's interpreted ones side by side.",
+      "column": "recommended",
+      "bet": "We believe that a reader that handles any lab's certificate layout will replace the scripts and OCR that design teams maintain today. We will know when a design team stops maintaining its own parser for one lab it uses often.",
+      "problem": "Every lab issues its own certificate layout, so a parser written for one lab fails on the next and breaks when the lab changes format; there is no European standard for delivering test results.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "now",
+      "risks": [
+        "Tests with curves (pressuremeter, oedometer, triaxial) need more than values read; if the curve is what matters, extraction alone is not enough.",
+        "In markets where AGS files are the norm, certificates may already arrive structured, which shrinks the problem there. Check the share of AGS deliveries in the first UK conversations.",
+        "Raw lab numbers are rarely disputed, so the value may sit in speed rather than in catching errors."
+      ],
+      "firstMove": "Collect certificates from at least five different labs through the first two data sets, and measure how many values are read correctly without any lab-specific template.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Se il laboratorio A dopo 6 mesi cambia il formato del suo certificato, la procedura scritta 6 mesi prima non funziona più.",
+          "tier": "E4",
+          "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+          "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+          "ms": 585306
+        },
+        {
+          "kind": "call",
+          "text": "Lab results arrive as PDFs in tabular form, and depending on experience the team sometimes cannot read them without going back to the expert.",
+          "tier": "E3",
+          "who": "Infrastructure project manager, rail design consultancy, Greece",
+          "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+          "ms": 2270671
+        },
+        {
+          "kind": "signal",
+          "text": "Lab certificate layout drift is the one pain VSI has promoted to emerging across two firms (E3 and E4).",
+          "tier": "E4",
+          "source": "VSI signals"
+        },
+        {
+          "kind": "signal",
+          "text": "Manual entry and reconciliation of lab samples is the top pain theme, 18 mentions and rising.",
+          "tier": "E3",
+          "source": "VSI pain-themes"
+        },
+        {
+          "kind": "competitor",
+          "text": "OpenGround Labs brings field-to-lab workflows and automated test certificates into OpenGround.",
+          "url": "https://geoprac.net/2026/02/ground-investigation-for-civil-infrastructure-gets-more-robust-with-integration-of-lab-and-field-geotechnical-data/",
+          "source": "GeoPrac",
+          "date": "2026-02-04"
+        },
+        {
+          "kind": "trend",
+          "text": "Seequent's survey of over 1,000 geoprofessionals finds more than a quarter of working time goes on data management.",
+          "url": "https://www.seequent.com/geoprofessionals-increasingly-turning-to-ai-reveals-new-survey/",
+          "source": "Seequent survey",
+          "date": "2026-01-28"
+        }
+      ],
+      "viz": [],
+      "notes": []
+    },
+    {
+      "id": "drawings-out",
+      "title": "Logs and sections drawn from the checked table",
+      "summary": "Generate borehole logs with core photos beside each column, fence sections between holes and the editable DWG or DXF longitudinal profile a tunnel or rail designer asks for, redrawn automatically whenever a value in the table is corrected.",
+      "column": "recommended",
+      "bet": "We believe that drawing logs and sections from the checked table will remove the AutoCAD redrawing that follows every campaign and make corrections cheap. We will know when a firm submits a report with logs drawn by Corestone.",
+      "problem": "Stratigraphic columns are drawn by hand in AutoCAD or by in-house scripts, designers need editable DWG rather than PDF, and every correction means redrawing.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "next",
+      "risks": [
+        "Every firm has its own log template and client standard; matching them may cost more than the drawing itself.",
+        "Established tools already produce logs from structured data, so this only wins when it comes with the reading and checking in front of it.",
+        "Sections between holes involve interpretation that geologists will not delegate; keep the correlation lines editable and never automatic."
+      ],
+      "firstMove": "Take one firm's existing log template and reproduce it as DXF from the table of the first data set, then ask the geologist what they would change before signing it.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "diciamo che il 90% degli utenti usa in maniera impropria AutoCAD.",
+          "tier": "E3",
+          "who": "Owner, small drilling and ground investigation firm, Italy",
+          "conv": "af7bdb65-2249-4ecd-b64f-8dec10de5475",
+          "ms": 229321
+        },
+        {
+          "kind": "call",
+          "text": "In-house Python reads the master Excel and writes tables, charts and stratigraphic columns as DXF.",
+          "tier": "E4",
+          "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+          "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+          "ms": 198652
+        },
+        {
+          "kind": "call",
+          "text": "So you cannot work in a PDF, you need DWG.",
+          "tier": "E3",
+          "who": "Infrastructure project manager, rail design consultancy, Greece",
+          "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+          "ms": 2397120
+        },
+        {
+          "kind": "call",
+          "text": "Stratigraphic columns should carry the core photos beside the texture; automatic or with modest rework, it simplifies a lot.",
+          "tier": "E2",
+          "who": "Owner, small drilling and ground investigation firm, Italy",
+          "conv": "af7bdb65-2249-4ecd-b64f-8dec10de5475",
+          "ms": 808381
+        },
+        {
+          "kind": "market",
+          "text": "On Eng-Tips, small firms describe gINT subscriptions as too costly and fall back to Excel logs and AutoCAD fence diagrams.",
+          "url": "https://www.eng-tips.com/threads/an-alternative-to-gint.484397/",
+          "source": "Eng-Tips: An alternative to gINT",
+          "date": "2021-06-18"
+        },
+        {
+          "kind": "competitor",
+          "text": "BoreDM combines cloud logging, lab and CPT data, AI digitising of PDF logs, sections and export to Leapfrog.",
+          "url": "https://boredm.com/",
+          "source": "BoreDM homepage",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [],
+      "notes": []
+    },
+    {
+      "id": "photo-rqd-assist",
+      "title": "Core photo check: RQD and fractures estimated beside the logged value",
+      "summary": "Read core-box photos to estimate recovery, RQD and fracture positions per run, show the estimate beside the logged value in the validation report, and give crews a simple capture guide and fixed rig so every photo is nadiral, lit the same and carries a colour card.",
+      "column": "recommended",
+      "bet": "We believe that an RQD estimate from the photo, shown next to the value in the log, will catch the errors that become wrong rock mass parameters, without asking anyone to trust an AI log. We will know when geologists accept the photo estimate over the logged value in at least one flag in five.",
+      "problem": "RQD is judged by eye and rounded, logged values can be far from what the photo shows, and today's field photos are too inconsistent for any machine to read.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E2",
+      "horizon": "next",
+      "risks": [
+        "Core imaging incumbents already sell automated RQD, mostly to mining; as a standalone product this competes head on with them.",
+        "Photo quality from the field is poor today, and the fix needs crews to change habits.",
+        "In some rocks the photo carries little information: a slate geologist sees no gain without looking at the core itself.",
+        "Estimates on soft or broken core may be unreliable enough to create false flags."
+      ],
+      "firstMove": "Photograph ten core boxes with the fixed-rig method proposed by the drilling firm owner, estimate RQD per run, and compare with an experienced geologist's log of the same boxes.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "RQD is judged by eye from photos and rounded: called 50 when it may be 55, 58 or 60, and that precision feeds the calculation.",
+          "tier": "E3",
+          "who": "Senior engineering geologist, infrastructure tenders",
+          "conv": "6332d8ac-94cc-4db2-83a7-424876c3f7bc",
+          "ms": 1612356
+        },
+        {
+          "kind": "call",
+          "text": "normalmente si vede la foto con i piedi dentro, la foto inclinata, la foto fatta a rovescio.",
+          "tier": "E4",
+          "who": "Owner, small drilling and ground investigation firm, Italy",
+          "conv": "af7bdb65-2249-4ecd-b64f-8dec10de5475",
+          "ms": 1470800
+        },
+        {
+          "kind": "call",
+          "text": "Digital cameras that compute RQD exist and work, but in slate you gain little unless you see the core itself.",
+          "tier": "E2",
+          "who": "Geologist, Spanish slate producer",
+          "conv": "7dd4b735-2a45-483f-bc6b-108553458079",
+          "ms": 0
+        },
+        {
+          "kind": "call",
+          "text": "Photographing the core tray and getting rock type, RQD, fractures and their direction from the image would be the ultimate tool.",
+          "tier": "E2",
+          "who": "Resource geologist, quarry and mining modelling consultant",
+          "conv": "1f0c7846-02c2-4f39-92dc-d08449a27faf",
+          "ms": 298286
+        },
+        {
+          "kind": "call",
+          "text": "A senior geologist has never seen RQD produced from photos in any project document he reviewed.",
+          "tier": "E2",
+          "who": "Senior engineering geologist, infrastructure tenders",
+          "conv": "768f5564-b094-48ea-9705-1ce781543f5f",
+          "ms": 1813027
+        },
+        {
+          "kind": "competitor",
+          "text": "Datarock reads core, chip and televiewer imagery for RQD and fractures and claims more than 27 million metres of core analysed.",
+          "url": "https://datarock.com.au/",
+          "source": "Datarock homepage",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Seequent Imago stores core imagery and uses machine learning for RQD and depth mapping, feeding Leapfrog and MX Deposit.",
+          "url": "https://www.seequent.com/products-solutions/imago/",
+          "source": "Seequent Imago",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "compare",
+          "title": "Core and televiewer imagery tools (Corestone column is the proposed assist)",
+          "columns": [
+            "Corestone",
+            "Datarock",
+            "Imago",
+            "WellCAD ISI"
+          ],
+          "rows": [
+            {
+              "label": "RQD or fractures from imagery",
+              "values": [
+                "yes",
+                "yes",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "Main market on its own pages",
+              "values": [
+                "construction GI",
+                "mining",
+                "mining",
+                "borehole geophysics"
+              ]
+            },
+            {
+              "label": "Estimate shown against the logged value in a validation report",
+              "values": [
+                "yes",
+                "not stated",
+                "not stated",
+                "no"
+              ]
+            },
+            {
+              "label": "Sold as part of reading the whole campaign's documents",
+              "values": [
+                "yes",
+                "no",
+                "no",
+                "no"
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "archive-rescue",
+      "title": "Archive rescue: old paper boreholes translated, georeferenced and mapped",
+      "summary": "Read decades-old scanned borehole records in any language, translate descriptions, detect the likely coordinate reference system, flag the ambiguous ones, and place the holes on a map with the rest of the project's data.",
+      "column": "recommended",
+      "bet": "We believe that turning a box of old paper borehole records into mapped, usable data in days rather than weeks will win exploration and feasibility work where the archive is the first thing a project touches. We will know when one consultancy pays for an archive job.",
+      "problem": "Pre-existing records are paper, often 30 to 40 years old and in another language; coordinates sit in local reference systems that shift positions by tens of metres, and twenty to fifty logs become many hours of work.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "next",
+      "risks": [
+        "Archive work comes in bursts at project starts, which makes revenue lumpy.",
+        "Resource geologists often exclude historical data because methods changed, which limits the value in mining.",
+        "Guessing a coordinate system wrongly is worse than not guessing; every inference must be shown as a question."
+      ],
+      "firstMove": "Ask the exploration geologist for one archive pack from a past project and time the full digitisation with and without the reader.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Local coordinate systems resemble international ones but shift positions by 20 to 50 metres, and resolving it takes a lot of attention and time.",
+          "tier": "E4",
+          "who": "Exploration geologist, Italian mining consultancy",
+          "conv": "0a1cc4b1-b160-4689-b350-d6bfba506ea9",
+          "ms": 908953
+        },
+        {
+          "kind": "call",
+          "text": "Packs of 30 to 40 year old paper documents in another language must be translated and re-georeferenced before past holes can be placed.",
+          "tier": "E4",
+          "who": "Exploration geologist, Italian mining consultancy",
+          "conv": "0a1cc4b1-b160-4689-b350-d6bfba506ea9",
+          "ms": 779089
+        },
+        {
+          "kind": "call",
+          "text": "One log is trivial, but 20 or 50 become a real problem: many hours of work before the data is usable.",
+          "tier": "E3",
+          "who": "Exploration geologist, Italian mining consultancy",
+          "conv": "0a1cc4b1-b160-4689-b350-d6bfba506ea9",
+          "ms": 1038496
+        },
+        {
+          "kind": "call",
+          "text": "Scanned archive data is the worst case, frequent enough to matter across projects.",
+          "tier": "E4",
+          "who": "Geotechnical data specialist, international design consultancy, Italy",
+          "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+          "ms": 1027580
+        },
+        {
+          "kind": "call",
+          "text": "Historical drill data is usually excluded in resource work because sampling or analysis methods changed.",
+          "tier": "E3",
+          "who": "Resource geologist, quarry and mining modelling consultant",
+          "conv": "1f0c7846-02c2-4f39-92dc-d08449a27faf",
+          "ms": 434576
+        },
+        {
+          "kind": "market",
+          "text": "A data platform vendor writes that final PDFs are dead ends and designers rebuild boreholes from old PDF appendices.",
+          "url": "https://www.geoengineer.org/news/geodin-onsite-soil-and-borehole-logging",
+          "source": "Geoengineer",
+          "date": "2026-07-15"
+        }
+      ],
+      "viz": [],
+      "notes": []
+    },
+    {
+      "id": "change-record",
+      "title": "Change record for the design handover",
+      "summary": "Keep every borehole value versioned with its source and the geologist's decision, so each calculation round shows the designer exactly which values changed since the last one, and the ground data is shared from one place instead of by email.",
+      "column": "recommended",
+      "bet": "We believe that a clear record of what changed between rounds will stop the missed revisions that force calculations to be rerun, and will make the checked table the thing both disciplines work from. We will know when a design team asks to invite its structural engineers into a project.",
+      "problem": "Geotechnical and structural teams trade inputs by email across several calculation rounds; a revised input is missed or confused, and the calculation is rerun.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "The evidence comes from one project manager; the pain may be specific to cross-border teams.",
+        "A shared workspace between firms is a multi-party rollout, far harder than a tool one geologist adopts.",
+        "Common data environments already exist on large projects; this only matters where they do not reach the ground data."
+      ],
+      "firstMove": "Ask the rail design manager to share the exchange spreadsheet already shown in the call, and map which fields change between rounds.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Really, it happens several times and then you have a big crash between the teams.",
+          "tier": "E4",
+          "who": "Infrastructure project manager, rail design consultancy, Greece",
+          "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+          "ms": 1935430
+        },
+        {
+          "kind": "call",
+          "text": "No shared structural and geotechnical exchange platform seen at firms of 100 to 500 people, only perhaps at the very largest.",
+          "tier": "E3",
+          "who": "Infrastructure project manager, rail design consultancy, Greece",
+          "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+          "ms": 1390949
+        },
+        {
+          "kind": "call",
+          "text": "Changing file types is the easiest part and creates little problem; the deliverable comes once a month.",
+          "tier": "E3",
+          "who": "Infrastructure project manager, rail design consultancy, Greece",
+          "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+          "ms": 2460371
+        },
+        {
+          "kind": "journey",
+          "text": "Handover is the stage where time lost turns into rework and liability, not only hours."
+        },
+        {
+          "kind": "competitor",
+          "text": "GeoDin positions against OpenGround on data sovereignty, with on-premise or private cloud and no credits or tiers.",
+          "url": "https://www.geodin.com/alternative-for/openground",
+          "source": "GeoDin: alternative for OpenGround",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [],
+      "notes": []
+    },
+    {
+      "id": "report-draft",
+      "title": "Draft factual report from the checked data",
+      "summary": "Assemble the tables, charts, logs and appendices of a factual ground investigation report from the checked table, in the firm's own structure, leaving interpretation to the geologist.",
+      "column": "parked",
+      "bet": "We believe that once the data is trusted, drafting the factual report from it will remove days of assembly on reports of 150 to 200 pages. We will know when a firm edits a Corestone draft rather than starting from its own template.",
+      "problem": "Ground investigation reports run to hundreds of pages and are assembled by hand from tables and charts.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Parked until the table is trusted: a report drafted from unchecked data only moves the errors further down the line.",
+        "Report structure varies by firm, client and country, so templating it early is expensive.",
+        "Only one team asked for it, and as the end state of a longer chain."
+      ],
+      "firstMove": "None for now; revisit when three firms use the validation report on live projects.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "A structured geodatabase linked to packages that return graphs, tables and a draft report would speed up reports of 150 to 200 pages.",
+          "tier": "E3",
+          "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+          "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+          "ms": 837656
+        },
+        {
+          "kind": "call",
+          "text": "Once the data exists, reporting against a fixed terms of reference should be simple to generate.",
+          "tier": "E3",
+          "who": "Exploration geologist, Italian mining consultancy",
+          "conv": "0a1cc4b1-b160-4689-b350-d6bfba506ea9",
+          "ms": 1352777
+        },
+        {
+          "kind": "signal",
+          "text": "Venture next step ranks a geodatabase with automated reporting as next, after discovery.",
+          "tier": "E3",
+          "source": "VSI venture-next-step"
+        },
+        {
+          "kind": "trend",
+          "text": "Seequent's survey of over 1,000 geoprofessionals finds more than a quarter of working time goes on data management.",
+          "url": "https://www.seequent.com/geoprofessionals-increasingly-turning-to-ai-reveals-new-survey/",
+          "source": "Seequent survey",
+          "date": "2026-01-28"
+        }
+      ],
+      "viz": [],
+      "notes": []
+    },
+    {
+      "id": "tender-gi-check",
+      "title": "Tender GI check for specialist contractors",
+      "summary": "Read a tender's ground investigation package against public borehole records and a contractor's past jobs, and flag gaps and inconsistencies that would change the price before the bid goes in.",
+      "column": "parked",
+      "bet": "We believe that specialist foundation and tunnelling contractors will pay to find ground data gaps before they bid rather than as claims after award. We will know when two contractors send a live tender package to check.",
+      "problem": "Contractors price from the interpretive report in the few weeks a bid allows; inconsistencies surface later on site as claims or losses.",
+      "impact": 3,
+      "effort": 3,
+      "confidence": "E1",
+      "horizon": "later",
+      "risks": [
+        "Parked because no contractor has been interviewed: the thesis rests on public tender notices and reasoning, not on a customer conversation.",
+        "Bid teams work under deadline and may not take on a new step.",
+        "It needs the same reading and checking engine as the validation report, so it can follow it cheaply if the demand appears."
+      ],
+      "firstMove": "Book two calls with estimators at specialist foundation or tunnelling contractors and walk through their last lost-money job before building anything for this.",
+      "evidence": [
+        {
+          "kind": "signal",
+          "text": "Venture thesis: subsurface contracts end above tendered value because of how they were specified or bid; open, with one supporting source and no contractor call.",
+          "tier": "E3",
+          "source": "VSI hypothesis-state"
+        },
+        {
+          "kind": "signal",
+          "text": "Every move on the ICP was reasoned from public data; none was decided by a customer conversation.",
+          "tier": "E3",
+          "source": "VSI decision-log"
+        },
+        {
+          "kind": "call",
+          "text": "Preparing a general tender offer takes three weeks in the best case, mostly gathering information and writing the methodology.",
+          "tier": "E3",
+          "who": "Senior engineering geologist, infrastructure tenders",
+          "conv": "6332d8ac-94cc-4db2-83a7-424876c3f7bc",
+          "ms": 906439
+        },
+        {
+          "kind": "call",
+          "text": "Tender procedures are slow because the data needed for the bid cannot be readily selected.",
+          "tier": "E3",
+          "who": "Infrastructure project manager, rail design consultancy, Greece",
+          "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+          "ms": 2864859
+        },
+        {
+          "kind": "competitor",
+          "text": "GeoLayer reads scanned and handwritten logs (depth, strata, SPT, RQD) and exports XLSX, AGS4, gINT, OpenGround and DXF, with a free pilot.",
+          "url": "https://geolayer.tech/",
+          "source": "GeoLayer homepage",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [],
+      "notes": []
+    },
+    {
+      "id": "3d-ground-model",
+      "title": "Light 3D borehole viewer and ground model",
+      "summary": "Place boreholes at their coordinates over topography, correlate them into a simple 3D ground model and overlay a tunnel or pit design to estimate volumes.",
+      "column": "parked",
+      "bet": "We believe that a simple 3D view of the boreholes would help firms that cannot justify the established modelling suites. We will know when a client fee pays for a 3D model on a project that would not have had one.",
+      "problem": "Correlating between boreholes is the critical step in modelling, and the established suites are expensive and heavy for small campaigns.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Parked: clients in the first market do not pay for 3D ground models today, so the design team does not even propose them.",
+        "The established modelling suites own this and the venture's advisors ruled out building a substitute.",
+        "3D interpolation is where errors come from; a light tool could spread them with more confidence than it deserves."
+      ],
+      "firstMove": "None for now; exports to the modelling tools firms already use cover the need.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "No current project pays enough for 3D geological modelling; Italian clients still value it at a very low level.",
+          "tier": "E3",
+          "who": "Geologist, geotechnical team of an international design consultancy, Italy",
+          "conv": "24f24725-4fd7-4a43-b3c8-5e5d39033a2a",
+          "ms": 406449
+        },
+        {
+          "kind": "call",
+          "text": "noi non si deve fare un Leapfrog, no, perché Leapfrog c'è già, Datamine c'è già, Micromine c'è già.",
+          "tier": "E4",
+          "who": "Exploration geologist, advisor to the venture",
+          "conv": "768f5564-b094-48ea-9705-1ce781543f5f",
+          "ms": 1127836
+        },
+        {
+          "kind": "call",
+          "text": "An advisor argued the first build should be 3D visualisation of boreholes on topography, ahead of RQD.",
+          "tier": "E2",
+          "who": "Exploration geologist, advisor to the venture",
+          "conv": "768f5564-b094-48ea-9705-1ce781543f5f",
+          "ms": 1822622
+        },
+        {
+          "kind": "competitor",
+          "text": "Civils.ai digitises boreholes to AGS 4.1 and Excel and claims more than 100,000 boreholes processed for over 200 firms.",
+          "url": "https://civils.ai/geotechnical-engineering-ai-automation",
+          "source": "Civils.ai geotechnical automation",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [],
+      "notes": []
+    },
+    {
+      "id": "spec-generator",
+      "title": "Technical specification generator for tenders",
+      "summary": "Generate the standard part of a construction tender's technical specifications from a project description, leaving only the project-specific clauses to write.",
+      "column": "parked",
+      "bet": "We believe that design managers would use a generator for the standard 70 to 80 percent of specifications. We will know when a design manager reuses a generated specification on a real tender.",
+      "problem": "Tender and specification writing is largely copy and paste, and nobody has templated specifications well.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Parked: it is a different product for a different buyer, with no link to ground data or to what Corestone reads.",
+        "One person asked for it, and general-purpose AI writing tools already cover much of it."
+      ],
+      "firstMove": "None; log further mentions in discovery and revisit only if several design managers raise it unprompted.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Something that you cannot put it in a template, and this is really very useful if somebody could do that, is the specifications.",
+          "tier": "E2",
+          "who": "Infrastructure project manager, rail design consultancy, Greece",
+          "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+          "ms": 2961997
+        },
+        {
+          "kind": "call",
+          "text": "A ready-made specification package agreed at government level made about 80% of a tender copy and paste in Greece.",
+          "tier": "E3",
+          "who": "Infrastructure project manager, rail design consultancy, Greece",
+          "conv": "d5b6d488-8808-4b57-a0b7-23990e1aa60f",
+          "ms": 3024630
+        },
+        {
+          "kind": "signal",
+          "text": "Specification templating appears as a candidate signal from a single conversation, with no link to ground data.",
+          "tier": "E2",
+          "source": "VSI signals"
+        }
+      ],
+      "viz": [],
+      "notes": []
+    }
+  ]
+}

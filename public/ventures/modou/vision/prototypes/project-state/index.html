@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modou project files</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F3EE;--card:#FFFFFF;--ink:#16181B;--muted:#5E6167;--faint:#8F9197;--line:#E3E1D9;--line2:#D3D0C5;
+  --accent:#C9501C;--accent-soft:#FAE8DE;--accent-ink:#8A3310;
+  --good:#1E7A4C;--good-soft:#E1F1E7;--warn:#A86208;--warn-soft:#F8EBD6;--bad:#B3261E;--bad-soft:#F7E2DF;
+  --blue:#2D5B8A;--blue-soft:#E3ECF5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Instrument Sans",system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.cap{display:flex;gap:14px;align-items:center;padding:9px 22px;background:var(--ink);color:#EDEBE4;font-size:12.5px}
+.cap b{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#F2A57F;font-weight:600}
+.cap .r{margin-left:auto;opacity:.65}
+.app{display:grid;grid-template-columns:228px minmax(0,1fr);min-height:calc(100vh - 36px)}
+.nav{border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:3px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.02em;padding:0 8px 18px}
+.brand i{width:26px;height:26px;border-radius:7px;background:var(--ink);display:grid;place-items:center}
+.brand i:after{content:"";width:10px;height:10px;border:2.5px solid #F2A57F;border-radius:2px;transform:rotate(45deg)}
+.ws{margin:0 4px 16px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.ws b{display:block;font-weight:600;font-size:13.5px}.ws span{font-size:12px;color:var(--muted)}
+.nav a{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:13.5px}
+.nav a.on{background:var(--card);color:var(--ink);font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
+.nav a em{font-style:normal;font-size:12px;color:var(--faint)}
+.nav .sep{height:1px;background:var(--line);margin:12px 6px}
+.nav .foot{margin-top:auto;font-size:12px;color:var(--faint);padding:0 8px;line-height:1.5}
+.main{padding:24px 30px 44px;min-width:0}
+.lbl{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.top{display:flex;align-items:flex-end;gap:18px;margin-bottom:18px;flex-wrap:wrap}
+h1{font-size:28px;font-weight:600;letter-spacing:-.025em;line-height:1.15;margin-top:4px}
+.top p{color:var(--muted);margin-top:4px;max-width:640px}
+.top .acts{margin-left:auto;display:flex;gap:8px}
+.btn{border:1px solid var(--line2);background:var(--card);border-radius:8px;padding:8px 14px;font-weight:500;font-size:13.5px;white-space:nowrap}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:#fff}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi b{display:block;font-size:26px;font-weight:600;letter-spacing:-.02em;margin-top:4px}
+.kpi span{font-size:12.5px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:16px;align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.ph{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.ph h2{font-size:15px;font-weight:600}
+.chips{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.chip{padding:5px 10px;border-radius:999px;border:1px solid var(--line2);font-size:12.5px;color:var(--muted)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.row{display:grid;grid-template-columns:minmax(0,2fr) 116px 136px minmax(0,1.3fr);gap:12px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--line);cursor:pointer;text-align:left;width:100%}
+.row:last-child{border-bottom:0}
+.row:hover{background:#FAF9F5}
+.row.on{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+.row.head{cursor:default;background:#FAF9F5;padding:9px 16px}
+.row.head span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.pname b{display:block;font-weight:600}
+.pname span{font-size:12.5px;color:var(--muted)}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.tag:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.t-good{background:var(--good-soft);color:var(--good)}.t-warn{background:var(--warn-soft);color:var(--warn)}.t-bad{background:var(--bad-soft);color:var(--bad)}.t-blue{background:var(--blue-soft);color:var(--blue)}.t-mute{background:#EFEEE8;color:var(--muted)}
+.chg{font-size:12.5px;color:var(--ink)}
+.chg em{display:block;font-style:normal;color:var(--faint);font-size:12px}
+.phase{font-size:12.5px}
+.phase i{display:flex;gap:3px;margin-top:5px}
+.phase i s{flex:1;height:4px;border-radius:2px;background:#E7E5DD}
+.phase i s.f{background:var(--ink)}
+.det{padding:18px 18px 20px}
+.det h3{font-size:19px;font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.det .sub{color:var(--muted);font-size:13px;margin-top:3px}
+.sec{margin-top:18px}
+.sec .lbl{margin-bottom:8px;display:block}
+.move{background:var(--ink);color:#F4F2EC;border-radius:12px;padding:14px 15px;margin-top:16px}
+.move .lbl{color:#F2A57F}
+.move p{margin-top:6px;font-size:14px;line-height:1.45}
+.move .btns{display:flex;gap:8px;margin-top:12px}
+.move .btn{background:transparent;color:#F4F2EC;border-color:#4A4D52}
+.move .btn.pri{background:#F2A57F;border-color:#F2A57F;color:var(--ink)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fact{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.fact span{font-size:12px;color:var(--muted)}
+.fact b{display:block;font-weight:600;margin-top:2px}
+.fact small{display:block;font-size:11.5px;color:var(--faint);margin-top:3px}
+.people{display:flex;flex-direction:column;gap:6px}
+.person{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+.person i{width:34px;height:34px;border-radius:50%;background:#EFEEE8;display:grid;place-items:center;font-style:normal;font-weight:600;font-size:12px;color:var(--muted)}
+.person b{font-weight:600;font-size:13.5px}.person span{display:block;font-size:12px;color:var(--muted)}
+.person.key{border-color:#EDB89C;background:#FFF8F4}
+.tl{position:relative;padding-left:18px}
+.tl:before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.ev{position:relative;padding:0 0 12px}
+.ev:before{content:"";position:absolute;left:-17px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--card);border:2px solid var(--line2)}
+.ev.new:before{border-color:var(--accent);background:var(--accent)}
+.ev b{font-weight:600;font-size:13.5px}
+.ev span{display:block;font-size:12px;color:var(--muted)}
+.ev a{font-size:12px;color:var(--blue);text-decoration:none}
+.supply{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.supply div{display:flex;justify-content:space-between;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line);font-size:13px}
+.supply div:last-child{border-bottom:0}
+.supply div span{color:var(--muted)}
+.note{font-size:12px;color:var(--faint);margin-top:14px}
+@media (max-width:1100px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){
+  .app{grid-template-columns:1fr}
+  .nav{flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--line);padding:12px 16px;gap:4px}
+  .brand{padding:0 8px 0 0}.ws,.nav .sep,.nav .foot{display:none}
+  .main{padding:18px 16px 36px}
+  .row{grid-template-columns:1fr auto;row-gap:8px}
+  .row.head{display:none}
+  .row .phase{grid-column:1/2}.row .real{grid-column:2/3;justify-self:end}
+  .row .chg{grid-column:1/3}
+  .facts{grid-template-columns:1fr}
+  .top .acts{margin-left:0}
+  .cap .r{display:none}
+}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype</b><span>What Modou could look like for a building-product supplier. Sample data: projects, people and documents are invented.</span><span class="r">Not a live product</span></div>
+<div class="app">
+  <nav class="nav">
+    <div class="brand"><i></i>Modou</div>
+    <div class="ws"><b>Sample supplier</b><span>Facade panels, NL and Belgium</span></div>
+    <a class="on" href="#">Today <em>3</em></a>
+    <a href="#">Projects <em>38</em></a>
+    <a href="#">Requests <em>12</em></a>
+    <a href="#">Tender packages <em>4</em></a>
+    <div class="sep"></div>
+    <a href="#">Fit rules</a>
+    <a href="#">Team</a>
+    <div class="foot">Synced with your CRM this morning. Sources: permits, tenders, council decisions, press and the documents in your requests.</div>
+  </nav>
+  <main class="main">
+    <div class="top">
+      <div>
+        <span class="lbl">Friday 25 September</span>
+        <h1>Three projects changed since Monday</h1>
+        <p>Modou checked the 38 projects your team is following. Call where the state changed; leave the rest until something moves.</p>
+      </div>
+      <div class="acts"><button class="btn">Add project</button><button class="btn pri">Send brief to team</button></div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><span>Projects followed</span><b>38</b></div>
+      <div class="kpi"><span>Changed this week</span><b>3</b></div>
+      <div class="kpi"><span>Budget holder known</span><b>21 of 38</b></div>
+      <div class="kpi"><span>Stalled over 60 days</span><b>6</b></div>
+    </div>
+
+    <div class="grid">
+      <section class="panel">
+        <div class="ph"><h2>Projects</h2>
+          <div class="chips" id="chips">
+            <button class="chip on" data-f="all">All</button>
+            <button class="chip" data-f="changed">Changed</button>
+            <button class="chip" data-f="risk">At risk</button>
+          </div>
+        </div>
+        <div class="row head"><span>Project</span><span>Phase</span><span>Is it real</span><span>What changed</span></div>
+        <div id="list"></div>
+      </section>
+      <aside class="panel" id="detail"></aside>
+    </div>
+    <p class="note">Every fact links to the document it came from. When Modou cannot find something it says unknown rather than guessing.</p>
+  </main>
+</div>
+<script>
+const P=[
+ {id:1,name:"Waterfront apartments, 96 homes",place:"Zwolle",phase:3,phaseN:"Final design",real:["good","Permit filed"],chg:"Contractor selected",when:"Tuesday",tags:["changed"],
+  facts:[["Permit","Filed 22 Sep","Municipal permit register"],["Funding","Housing association, budget approved","Council decision, 4 Sep"],["Our scope","about 2,400 m² facade panel","Elevations in the tender package"],["Fit rules","Clears 500 m² and region","Your fit rules"]],
+  people:[["DV","Development manager","Housing association, holds the budget",true],["JA","Project architect","Architecture office, specifies materials",false],["BK","Work planner","Main contractor, selected Tuesday",false]],
+  events:[["Contractor selected in two-stage tender","Tuesday 22 Sep","Tender notice",true],["Environmental permit application filed","Tuesday 22 Sep","Municipal permit register",true],["Final design presented to residents","2 Sep","Housing association newsletter",false],["Budget approved for 96 homes","4 Sep","Council decision",false]],
+  supply:[["Facade panel, anthracite","about 2,400 m²"],["Aluminium corner profile","about 1,150 m"],["Ventilated rail system","about 2,400 m²"]],
+  move:"The contractor is new to you. Brief your installer colleague today and ask the development manager to keep your panel in the specification before the work planner requests alternatives."},
+ {id:2,name:"School campus renovation",place:"Apeldoorn",phase:4,phaseN:"Tender",real:["good","Tender published"],chg:"Tender deadline moved",when:"Wednesday",tags:["changed"],
+  facts:[["Tender","Published, closes 30 Oct","Public tender platform"],["Funding","Municipal budget","Tender notice"],["Our scope","about 900 m² panel, fire class required on north side","Specification section 43"],["Fit rules","Clears 500 m²","Your fit rules"]],
+  people:[["GM","Project manager","Municipality, contracting authority",true],["RS","Architect","Specifies facade, not the payer",false]],
+  events:[["Deadline moved from 16 Oct to 30 Oct","Wednesday 23 Sep","Tender notice update",true],["Tender published with full specification","8 Sep","Public tender platform",false]],
+  supply:[["Facade panel, fire-rated","about 900 m²"],["Window surround profile","about 420 m"]],
+  move:"Two more weeks before the deadline. Send the fire certificate to the architect now; the specification asks for a class your standard panel only meets with the rated core."},
+ {id:3,name:"Distribution centre extension",place:"Tilburg",phase:2,phaseN:"Preliminary design",real:["warn","Grid at risk"],chg:"Grid connection on wait list",when:"Thursday",tags:["changed","risk"],
+  facts:[["Permit","Not filed","Municipal permit register"],["Funding","Unknown","No source found"],["Our scope","Unknown until drawings are shared","No package yet"],["Fit rules","Likely clears 500 m²","Site plan area"]],
+  people:[["??","Budget holder","Unknown: investor not named in public documents",true],["LT","Architect","Asked for samples in August",false]],
+  events:[["Site listed on grid operator wait list","Thursday 24 Sep","Grid operator capacity map",true],["Zoning plan change approved","12 Aug","Council decision",false],["Sample request from architect","5 Aug","Your CRM",false]],
+  supply:[["Scope","Unknown"]],
+  move:"The project may slip on grid capacity. Do not send more samples; ask the architect who the investor is and set a reminder for the permit filing."},
+ {id:4,name:"Care home new build, 60 units",place:"Deventer",phase:3,phaseN:"Final design",real:["good","Funded"],chg:"No change",when:"41 days",tags:[],
+  facts:[["Permit","Granted 30 Jul","Municipal permit register"],["Funding","Care provider, approved","Annual report"],["Our scope","about 1,300 m²","Drawings from request"],["Fit rules","Clears 500 m²","Your fit rules"]],
+  people:[["CZ","Real estate manager","Care provider, holds the budget",true],["PW","Architect","Specifies",false]],
+  events:[["Permit granted","30 Jul","Municipal permit register",false]],
+  supply:[["Facade panel","about 1,300 m²"]],
+  move:"Nothing moved. Next likely event is the tender for the main contractor; Modou will tell you when it is published."},
+ {id:5,name:"Office transformation to 140 flats",place:"Utrecht",phase:1,phaseN:"Sketch design",real:["bad","Permit refused"],chg:"Permit refused",when:"66 days",tags:["risk"],
+  facts:[["Permit","Refused 21 Jul","Municipal permit register"],["Funding","Private developer","Press release"],["Our scope","Unknown","No package"],["Fit rules","Clears 500 m²","Press release area"]],
+  people:[["OB","Developer","Private developer",true]],
+  events:[["Permit refused, objection period open","21 Jul","Municipal permit register",false]],
+  supply:[["Scope","Unknown"]],
+  move:"Stalled for 66 days after a refused permit. Park it; Modou will reopen it if a new application appears."}
+];
+const tone={good:"t-good",warn:"t-warn",bad:"t-bad"};
+let sel=1,filt="all";
+function bars(n){let s="";for(let i=1;i<=6;i++)s+=`<s class="${i<=n?'f':''}"></s>`;return s}
+function list(){
+  const L=document.getElementById("list");
+  L.innerHTML=P.filter(p=>filt==="all"||p.tags.includes(filt)).map(p=>`
+   <button class="row ${p.id===sel?'on':''}" data-id="${p.id}">
+     <div class="pname"><b>${p.name}</b><span>${p.place}</span></div>
+     <div class="phase">${p.phaseN}<i>${bars(p.phase)}</i></div>
+     <div class="real"><span class="tag ${tone[p.real[0]]}">${p.real[1]}</span></div>
+     <div class="chg">${p.chg}<em>${p.tags.includes("changed")?p.when:"Quiet for "+p.when}</em></div>
+   </button>`).join("");
+  L.querySelectorAll(".row").forEach(r=>r.onclick=()=>{sel=+r.dataset.id;list();detail()});
+}
+function detail(){
+  const p=P.find(x=>x.id===sel);
+  document.getElementById("detail").innerHTML=`
+   <div class="det">
+     <span class="lbl">${p.place} · ${p.phaseN}</span>
+     <h3 style="margin-top:6px">${p.name}</h3>
+     <div class="sub">${p.tags.includes("changed")?"Changed "+p.when:"No change for "+p.when}</div>
+     <div class="move"><span class="lbl">Next move</span><p>${p.move}</p><div class="btns"><button class="btn pri">Add to today</button><button class="btn">Dismiss</button></div></div>
+     <div class="sec"><span class="lbl">Is it real</span><div class="facts">${p.facts.map(f=>`<div class="fact"><span>${f[0]}</span><b>${f[1]}</b><small>${f[2]}</small></div>`).join("")}</div></div>
+     <div class="sec"><span class="lbl">Who decides</span><div class="people">${p.people.map(x=>`<div class="person ${x[3]?'key':''}"><i>${x[0]}</i><div><b>${x[1]}</b><span>${x[2]}</span></div>${x[3]?'<span class="tag t-blue">Budget</span>':''}</div>`).join("")}</div></div>
+     <div class="sec"><span class="lbl">What you would supply</span><div class="supply">${p.supply.map(s=>`<div><span>${s[0]}</span><b>${s[1]}</b></div>`).join("")}</div></div>
+     <div class="sec"><span class="lbl">What happened</span><div class="tl">${p.events.map(e=>`<div class="ev ${e[3]?'new':''}"><b>${e[0]}</b><span>${e[1]}</span><a href="#">${e[2]}</a></div>`).join("")}</div></div>
+   </div>`;
+}
+document.querySelectorAll("#chips .chip").forEach(c=>c.onclick=()=>{
+  document.querySelectorAll("#chips .chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");filt=c.dataset.f;
+  const v=P.filter(p=>filt==="all"||p.tags.includes(filt));if(!v.find(p=>p.id===sel)&&v[0])sel=v[0].id;list();detail();
+});
+list();detail();
+</script>
+</body>
+</html>

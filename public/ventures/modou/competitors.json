@@ -1,52 +1,14 @@
 [
-  {
-    "name": "Building Radar",
-    "url": "https://www.buildingradar.com",
-    "kind": "direct"
-  },
-  {
-    "name": "ibau",
-    "url": "https://www.ibau.de",
-    "kind": "direct"
-  },
-  {
-    "name": "Glenigan",
-    "url": "https://www.glenigan.com",
-    "kind": "direct"
-  },
-  {
-    "name": "BCI Central",
-    "url": "https://www.bcicentral.com",
-    "kind": "direct"
-  },
-  {
-    "name": "ConstructConnect",
-    "url": "https://www.constructconnect.com",
-    "kind": "direct"
-  },
-  {
-    "name": "Dodge Construction Network",
-    "url": "https://www.construction.com",
-    "kind": "direct"
-  },
-  {
-    "name": "Stotles",
-    "url": "https://www.stotles.com",
-    "kind": "adjacent"
-  },
-  {
-    "name": "Tendium",
-    "url": "https://tendium.com",
-    "kind": "adjacent"
-  },
-  {
-    "name": "Altura",
-    "url": "https://altura.io",
-    "kind": "adjacent"
-  },
-  {
-    "name": "Clay",
-    "url": "https://www.clay.com",
-    "kind": "adjacent"
-  }
+  { "name": "Cobouw Bouwberichten", "url": "https://bouwberichten.nl", "kind": "direct" },
+  { "name": "De Mercuur", "url": "https://www.demercuur.nl", "kind": "direct" },
+  { "name": "Building Radar", "url": "https://buildingradar.com", "kind": "direct" },
+  { "name": "12Build", "url": "https://12build.com/nl/", "kind": "direct" },
+  { "name": "Specscan", "url": "https://www.specscan.nl", "kind": "direct" },
+  { "name": "HELDR.AI", "url": "https://heldr.ai", "kind": "direct" },
+  { "name": "Altura", "url": "https://altura.io", "kind": "adjacent" },
+  { "name": "Glenigan", "url": "https://www.glenigan.com", "kind": "adjacent" },
+  { "name": "ConstructConnect", "url": "https://www.constructconnect.com", "kind": "adjacent" },
+  { "name": "Dodge Construction Network", "url": "https://www.construction.com", "kind": "adjacent" },
+  { "name": "Bobyard", "url": "https://www.bobyard.com", "kind": "adjacent" },
+  { "name": "Clay", "url": "https://www.clay.com", "kind": "adjacent" }
 ]

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Release map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F2EE;--card:#FFFFFF;--ink:#16181D;--muted:#5E6470;--faint:#9AA0AA;--line:#E4E1DA;--line2:#D3CFC6;
+  --red:#C8352B;--red-soft:#F8E4E1;--amber:#B26A00;--amber-soft:#F7EBD6;--green:#1F7A4D;--green-soft:#E0EFE6;
+  --accent:#3B5BDB;--accent-soft:#E4E9FB;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Geist",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.cap{display:flex;gap:14px;align-items:center;padding:9px 24px;background:var(--ink);color:#E9E7E2;font-size:12.5px}
+.cap b{font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:#9FB2FF}
+.cap span.r{margin-left:auto;opacity:.65}
+.app{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:calc(100vh - 36px)}
+.nav{border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:3px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;padding:0 8px 18px}
+.brand svg{width:28px;height:28px;border-radius:7px}
+.proj{margin:0 4px 16px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.proj b{display:block;font-weight:500}.proj span{font-size:12px;color:var(--muted)}
+.nav a{display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;color:var(--muted);text-decoration:none}
+.nav a.on{background:var(--card);color:var(--ink);font-weight:500;box-shadow:inset 0 0 0 1px var(--line)}
+.nav a em{font-style:normal;font-size:12px;color:var(--faint)}
+.main{padding:24px 32px 48px;min-width:0}
+.crumb{font-size:13px;color:var(--muted)}
+.head{display:flex;gap:16px;align-items:flex-start;margin:8px 0 18px;flex-wrap:wrap}
+h1{font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.sub{color:var(--muted);margin-top:4px}
+.acts{margin-left:auto;display:flex;gap:8px}
+.btn{border:1px solid var(--line2);background:var(--card);border-radius:8px;padding:8px 14px;font-weight:500;white-space:nowrap}
+.btn.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat .v{font-size:24px;font-weight:600;letter-spacing:-.02em;margin-top:4px}
+.stat .n{font-size:12.5px;color:var(--muted)}
+.stat.ok{border-color:#BFDCCB;background:var(--green-soft)}
+.stat.ok .v{color:var(--green)}
+.grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:16px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px}
+.card .top{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.card .top .r{margin-left:auto;display:flex;gap:6px}
+.chip{font-size:12px;border:1px solid var(--line2);border-radius:999px;padding:3px 10px;color:var(--muted);background:var(--card)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.map{padding:8px 10px 4px}
+.map svg{width:100%;height:auto;display:block}
+.node rect{fill:#fff;stroke:var(--line2);stroke-width:1.2}
+.node text{font-family:"Geist",sans-serif;font-size:12.5px;fill:var(--ink)}
+.node text.s{font-size:11px;fill:var(--muted)}
+.node.changed rect{stroke:var(--accent);stroke-width:2;fill:var(--accent-soft)}
+.node.sel rect{stroke:var(--ink);stroke-width:2.4}
+.node{cursor:pointer}
+.edge{stroke:var(--line2);stroke-width:1.4;fill:none}
+.edge.changed{stroke:var(--accent);stroke-width:2}
+.edge.public{stroke-dasharray:4 4}
+.dot{fill:var(--red)}.dot.amber{fill:var(--amber)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;padding:6px 18px 16px;font-size:12.5px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-2px}
+.find{padding:14px 18px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px}
+.find:last-child{border-bottom:0}
+.find.dim{opacity:.35}
+.sev{width:10px;height:10px;border-radius:50%;background:var(--red);margin-top:5px}
+.sev.amber{background:var(--amber)}
+.find h3{font-size:14px;font-weight:600;line-height:1.35}
+.find p{grid-column:2;color:var(--muted);font-size:13px}
+.find .where{grid-column:2;display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{font-size:11.5px;background:var(--bg);border-radius:6px;padding:2px 8px;color:var(--muted)}
+.find .do{grid-column:2;display:flex;gap:8px;margin-top:8px;align-items:center}
+.find .do .btn{padding:5px 11px;font-size:12.5px}
+.find .do .done{font-size:12.5px;color:var(--green);font-weight:500;display:none}
+.find.ticketed .do .btn.t{display:none}.find.ticketed .do .done{display:inline}
+.touch{margin-top:16px}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:10px 18px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top}
+th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.n{text-align:right;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.pill{display:inline-block;font-size:11.5px;border-radius:999px;padding:2px 9px;font-weight:500}
+.pill.new{background:var(--accent-soft);color:var(--accent)}
+.pill.risk{background:var(--red-soft);color:var(--red)}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.note{margin-top:16px;font-size:12.5px;color:var(--muted)}
+@media (max-width:1100px){.grid{grid-template-columns:1fr}.strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){
+  .app{grid-template-columns:1fr}.nav{display:none}.main{padding:18px 16px 40px}
+  .acts{margin-left:0;width:100%}.cap span.r{display:none}h1{font-size:22px}
+  th:nth-child(3),td:nth-child(3){display:none}th,td{padding:9px 12px}
+}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype</b><span>Gustavo, working name. Every repository, release, number and finding on this page is sample data.</span><span class="r">Not a live product</span></div>
+<div class="app">
+  <aside class="nav">
+    <div class="brand"><svg viewBox="0 0 256 256"><rect width="256" height="256" fill="#16181D"/><path d="M167.6 88.4A56 56 0 1 0 184 128H132" fill="none" stroke="#F4F2EE" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/></svg>Gustavo</div>
+    <div class="proj"><b>sample-app</b><span>Sample workspace</span></div>
+    <a href="#" class="on">Release maps <em>12</em></a>
+    <a href="#">System map</a>
+    <a href="#">Tickets <em>7</em></a>
+    <a href="#">Buyer answers</a>
+    <a href="#">Settings</a>
+  </aside>
+  <main class="main">
+    <div class="crumb">Release maps / Release 214</div>
+    <div class="head">
+      <div>
+        <h1>Release 214 touched auth, the API and the chat tools</h1>
+        <div class="sub">Shipped Wednesday 14:02 without waiting. The map ran after deploy, off the release path.</div>
+      </div>
+      <div class="acts"><button class="btn">Compare with 213</button><button class="btn pri" id="ticketAll">File all as tickets</button></div>
+    </div>
+
+    <div class="strip">
+      <div class="stat ok"><div class="lbl">Release</div><div class="v">Not blocked</div><div class="n">Map finished 6 min after deploy</div></div>
+      <div class="stat"><div class="lbl">Surfaces changed</div><div class="v">4 of 11</div><div class="n">38 files across 4 security domains</div></div>
+      <div class="stat"><div class="lbl">Red points</div><div class="v" id="redCount">4</div><div class="n">2 reachable from outside</div></div>
+      <div class="stat"><div class="lbl">Evidence kept</div><div class="v">Yes</div><div class="n">Reused in buyer answers</div></div>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <div class="top"><span class="lbl">System map</span><div class="r"><button class="chip on" data-f="all">Everything</button><button class="chip" data-f="changed">Changed in 214</button></div></div>
+        <div class="map">
+          <svg viewBox="0 0 760 440" role="img" aria-label="Sample system map with changed components highlighted">
+            <g id="edges">
+              <path class="edge public" d="M110 80 L250 80"/>
+              <path class="edge changed" d="M370 80 L470 80"/>
+              <path class="edge changed" d="M310 106 L310 190"/>
+              <path class="edge" d="M370 216 L470 216"/>
+              <path class="edge changed" d="M530 106 L530 190"/>
+              <path class="edge" d="M250 216 L170 216 L170 330"/>
+              <path class="edge public" d="M65 106 L65 356 L110 356"/>
+              <path class="edge" d="M310 242 L310 330"/>
+              <path class="edge" d="M530 242 L530 330"/>
+              <path class="edge changed" d="M610 80 L670 80 L670 190"/>
+            </g>
+            <g class="node" data-id="web"><rect x="250" y="54" width="120" height="52" rx="10"/><text x="266" y="77">Web app</text><text class="s" x="266" y="94">public</text></g>
+            <g class="node changed" data-id="auth"><rect x="470" y="54" width="140" height="52" rx="10"/><text x="486" y="77">Auth and sessions</text><text class="s" x="486" y="94">changed</text><circle class="dot" cx="602" cy="58" r="7"/></g>
+            <g class="node changed" data-id="api"><rect x="250" y="190" width="120" height="52" rx="10"/><text x="266" y="213">API</text><text class="s" x="266" y="230">changed, public</text><circle class="dot" cx="362" cy="194" r="7"/></g>
+            <g class="node" data-id="db"><rect x="470" y="190" width="120" height="52" rx="10"/><text x="486" y="213">Postgres</text><text class="s" x="486" y="230">row-level security</text></g>
+            <g class="node changed" data-id="chat"><rect x="600" y="190" width="140" height="52" rx="10"/><text x="616" y="213">Chat with tools</text><text class="s" x="616" y="230">changed</text><circle class="dot amber" cx="732" cy="194" r="7"/></g>
+            <g class="node" data-id="queue"><rect x="110" y="330" width="120" height="52" rx="10"/><text x="126" y="353">Ingest queue</text><text class="s" x="126" y="370">self-hosted</text><circle class="dot" cx="222" cy="334" r="7"/></g>
+            <g class="node" data-id="logs"><rect x="250" y="330" width="120" height="52" rx="10"/><text x="266" y="353">Logs</text><text class="s" x="266" y="370">self-hosted</text></g>
+            <g class="node changed" data-id="email"><rect x="470" y="330" width="120" height="52" rx="10"/><text x="486" y="353">Email provider</text><text class="s" x="486" y="370">third party</text></g>
+            <g class="node" data-id="users"><rect x="20" y="54" width="90" height="52" rx="10"/><text x="36" y="77">Internet</text><text class="s" x="36" y="94">anyone</text></g>
+          </svg>
+        </div>
+        <div class="legend"><span><i style="background:var(--accent-soft);box-shadow:inset 0 0 0 2px var(--accent)"></i>Changed in this release</span><span><i style="background:var(--red)"></i>Red point</span><span><i style="background:var(--amber)"></i>Worth a look</span><span>Dashed line: reachable from the internet</span></div>
+      </section>
+
+      <section class="card" id="finds">
+        <div class="top"><span class="lbl">Red points</span><div class="r"><span class="chip">Ranked by reach</span></div></div>
+        <div class="find" data-node="api">
+          <span class="sev"></span><h3>New export endpoint returns other tenants' rows when the tenant header is missing</h3>
+          <p>Added in this release. Reachable from the internet with any valid session.</p>
+          <div class="where"><span class="tag">api/export</span><span class="tag">Authorization</span><span class="tag">Outside in</span></div>
+          <div class="do"><button class="btn t">Create ticket</button><button class="btn">Suggested fix</button><span class="done">Ticket filed</span></div>
+        </div>
+        <div class="find" data-node="auth">
+          <span class="sev"></span><h3>Session lifetime raised from 1 day to 30 days with no rotation</h3>
+          <p>Config change in auth. Long-lived tokens widen the window if one leaks.</p>
+          <div class="where"><span class="tag">auth/config</span><span class="tag">Sessions</span></div>
+          <div class="do"><button class="btn t">Create ticket</button><button class="btn">Suggested fix</button><span class="done">Ticket filed</span></div>
+        </div>
+        <div class="find" data-node="queue">
+          <span class="sev"></span><h3>Ingest dashboard answers on a public URL without a login</h3>
+          <p>Not changed in this release, still open since release 209. Found by the outside-in probe.</p>
+          <div class="where"><span class="tag">Ingest queue</span><span class="tag">Exposure</span><span class="tag">Outside in</span></div>
+          <div class="do"><button class="btn t">Create ticket</button><button class="btn">Suggested fix</button><span class="done">Ticket filed</span></div>
+        </div>
+        <div class="find" data-node="chat">
+          <span class="sev amber"></span><h3>Chat tool can now read invoices; a prompt in a customer note can ask for them</h3>
+          <p>New tool permission. The injection test pulled one sample invoice in 3 of 10 runs.</p>
+          <div class="where"><span class="tag">chat/tools</span><span class="tag">Prompt injection</span></div>
+          <div class="do"><button class="btn t">Create ticket</button><button class="btn">Suggested fix</button><span class="done">Ticket filed</span></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="card touch">
+      <div class="top"><span class="lbl">What release 214 touched</span></div>
+      <table>
+        <thead><tr><th>Surface</th><th>Change</th><th>Security domain</th><th class="n">Files</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>API</td><td>New export endpoint, two query changes</td><td>Authorization</td><td class="n">17</td><td><span class="pill risk">1 red point</span></td></tr>
+          <tr><td>Auth and sessions</td><td>Session lifetime and cookie settings</td><td>Sessions</td><td class="n">4</td><td><span class="pill risk">1 red point</span></td></tr>
+          <tr><td>Chat with tools</td><td>Invoice lookup tool added</td><td>Prompt injection</td><td class="n">9</td><td><span class="pill new">Worth a look</span></td></tr>
+          <tr><td>Email provider</td><td>New template sends the customer name</td><td>Personal data</td><td class="n">8</td><td><span class="pill ok">Recorded for GDPR</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <p class="note">Vision prototype with sample data. The idea: the release ships as usual, the map runs after deploy, and findings become tickets for the weekly review instead of failing the build.</p>
+  </main>
+</div>
+<script>
+const finds=[...document.querySelectorAll('.find')];
+const nodes=[...document.querySelectorAll('.node')];
+function select(id){
+  nodes.forEach(n=>n.classList.toggle('sel',n.dataset.id===id));
+  finds.forEach(f=>f.classList.toggle('dim',!!id&&f.dataset.node!==id));
+}
+let cur=null;
+nodes.forEach(n=>n.addEventListener('click',()=>{cur=cur===n.dataset.id?null:n.dataset.id;select(cur)}));
+function count(){document.getElementById('redCount').textContent=finds.filter(f=>!f.classList.contains('ticketed')).length}
+finds.forEach(f=>f.querySelector('.btn.t').addEventListener('click',()=>{f.classList.add('ticketed');count()}));
+document.getElementById('ticketAll').addEventListener('click',()=>{finds.forEach(f=>f.classList.add('ticketed'));count()});
+document.querySelectorAll('.chip[data-f]').forEach(c=>c.addEventListener('click',()=>{
+  document.querySelectorAll('.chip[data-f]').forEach(x=>x.classList.toggle('on',x===c));
+  const only=c.dataset.f==='changed';
+  nodes.forEach(n=>n.style.opacity=only&&!n.classList.contains('changed')?.25:1);
+}));
+</script>
+</body>
+</html>

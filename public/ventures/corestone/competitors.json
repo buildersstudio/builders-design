@@ -1,47 +1,14 @@
 [
-  {
-    "name": "Civils.ai",
-    "url": "https://civils.ai",
-    "kind": "direct"
-  },
-  {
-    "name": "BoreholeAI",
-    "url": "https://www.boreholeai.com",
-    "kind": "direct"
-  },
-  {
-    "name": "GeoLayer",
-    "url": "https://geolayer.tech",
-    "kind": "direct"
-  },
-  {
-    "name": "BoreDM",
-    "url": "https://boredm.com",
-    "kind": "direct"
-  },
-  {
-    "name": "Datarock",
-    "url": "https://datarock.com.au",
-    "kind": "direct"
-  },
-  {
-    "name": "StratoBayes",
-    "url": "https://www.stratobayes.com",
-    "kind": "direct"
-  },
-  {
-    "name": "OpenGround",
-    "url": "https://www.bentley.com/products/openground/",
-    "kind": "direct"
-  },
-  {
-    "name": "Seequent",
-    "url": "https://www.seequent.com",
-    "kind": "adjacent"
-  },
-  {
-    "name": "Veracio",
-    "url": "https://www.veracio.com",
-    "kind": "adjacent"
-  }
+  { "name": "OpenGround", "url": "https://www.bentley.com/products/openground/", "kind": "direct" },
+  { "name": "BoreholeAI", "url": "https://www.boreholeai.com", "kind": "direct" },
+  { "name": "Civils.ai", "url": "https://civils.ai", "kind": "direct" },
+  { "name": "GeoLayer", "url": "https://geolayer.tech", "kind": "direct" },
+  { "name": "BoreDM", "url": "https://boredm.com", "kind": "direct" },
+  { "name": "Rocscience RSLog", "url": "https://www.rocscience.com/software/rslog", "kind": "direct" },
+  { "name": "GeoDin", "url": "https://www.geodin.com", "kind": "direct" },
+  { "name": "Datarock", "url": "https://datarock.com.au", "kind": "direct" },
+  { "name": "WellCAD ISI", "url": "https://wellcad.com/addon/image-structure-isi/", "kind": "direct" },
+  { "name": "Imago", "url": "https://www.seequent.com/products-solutions/imago/", "kind": "direct" },
+  { "name": "Veracio", "url": "https://www.veracio.com", "kind": "adjacent" },
+  { "name": "Datamine", "url": "https://www.dataminesoftware.com", "kind": "adjacent" }
 ]

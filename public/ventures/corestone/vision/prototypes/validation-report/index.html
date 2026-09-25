@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Validation report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F2EE;--card:#FFFFFF;--ink:#16181B;--muted:#62666D;--faint:#9A9EA5;--line:#E4E2DD;--line2:#D3D0C9;
+  --stone:#8C7B67;--stone-soft:#EFE9E1;
+  --hi:#B42318;--hi-soft:#FBE7E4;--md:#B54708;--md-soft:#FDEFD9;--lo:#475467;--lo-soft:#EDEFF2;
+  --ok:#067647;--ok-soft:#E3F4EA;--accent:#1D5C63;--accent-soft:#E1EEEF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Geist",system-ui,sans-serif;color:var(--ink);background:var(--paper);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.cap{display:flex;align-items:center;gap:14px;padding:9px 24px;background:var(--ink);color:#E9E7E2;font-size:12.5px}
+.cap b{font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:#9FD0D5}
+.cap .r{margin-left:auto;opacity:.65}
+.top{display:flex;align-items:center;gap:20px;padding:14px 28px;border-bottom:1px solid var(--line);background:var(--card)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px;letter-spacing:-.01em}
+.brand svg{width:26px;height:26px}
+.crumbs{color:var(--muted);font-size:13.5px}
+.crumbs b{color:var(--ink);font-weight:500}
+.top .sp{margin-left:auto;display:flex;gap:8px}
+.btn{border:1px solid var(--line2);background:var(--card);border-radius:8px;padding:8px 14px;font-weight:500;font-size:13.5px}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:#fff}
+.lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.wrap{max-width:1440px;margin:0 auto;padding:26px 28px 48px}
+.head{display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap}
+h1{font-size:30px;font-weight:600;letter-spacing:-.02em;line-height:1.1;margin:6px 0 6px}
+.sub{color:var(--muted);max-width:760px}
+.stamp{margin-left:auto;display:flex;gap:10px;align-items:center;font-size:13px;color:var(--muted)}
+.stamp i{width:8px;height:8px;border-radius:50%;background:var(--md);display:inline-block}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:22px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi .v{font-size:28px;font-weight:600;letter-spacing:-.02em;margin-top:4px}
+.kpi .n{font-size:12.5px;color:var(--muted);margin-top:2px}
+.kpi.hi .v{color:var(--hi)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:20px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px}
+.card-h{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.card-h h2{font-size:15px;font-weight:600}
+.chips{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.chip{border:1px solid var(--line2);border-radius:999px;padding:4px 11px;font-size:12.5px;color:var(--muted)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr.row{cursor:pointer}
+tr.row:hover td{background:#FAF9F7}
+tr.sel td{background:var(--accent-soft)}
+tr.sel td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+.sev{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:2px 8px;border-radius:6px}
+.sev.hi{background:var(--hi-soft);color:var(--hi)}
+.sev.md{background:var(--md-soft);color:var(--md)}
+.sev.lo{background:var(--lo-soft);color:var(--lo)}
+.chk b{display:block;font-weight:500}
+.chk span{color:var(--muted);font-size:12.5px}
+.val{white-space:nowrap}
+.val s{color:var(--faint)}
+.val b{font-weight:600}
+.src{color:var(--accent);font-size:12.5px;white-space:nowrap}
+.side{position:sticky;top:16px;display:flex;flex-direction:column;gap:16px}
+.pad{padding:16px 18px}
+.det h3{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:6px 0 4px}
+.det p{color:var(--muted)}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.cmp>div{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.cmp .k{font-size:12px;color:var(--muted)}
+.cmp .v{font-size:24px;font-weight:600;margin-top:2px}
+.cmp .bad .v{color:var(--hi)}
+.fig{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#FBFAF8}
+.fig figcaption{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);padding:8px 12px;border-top:1px solid var(--line)}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.hist{font-size:12.5px;color:var(--muted);margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar{display:grid;grid-template-columns:150px 1fr 34px;gap:10px;align-items:center;font-size:13px}
+.bar .t{height:8px;border-radius:4px;background:var(--stone-soft);overflow:hidden}
+.bar .t i{display:block;height:100%;background:var(--stone)}
+.bar .n{text-align:right;color:var(--muted)}
+.foot{margin-top:18px;color:var(--faint);font-size:12.5px}
+@media (max-width:1100px){.grid{grid-template-columns:1fr}.side{position:static}.kpis{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){
+  .wrap{padding:18px 16px 36px}.top{padding:12px 16px;flex-wrap:wrap}.crumbs{display:none}.cap{padding:8px 16px}.cap .r{display:none}
+  h1{font-size:24px}.kpis{grid-template-columns:repeat(2,1fr)}.stamp{margin-left:0}
+  .hide-s{display:none}th,td{padding:10px 10px}.bar{grid-template-columns:110px 1fr 28px}
+}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype</b> A validation report on a firm's own drill logs and lab certificates. Sample data, not a real project.<span class="r">Corestone</span></div>
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="9" y="3" width="14" height="26" rx="7" fill="#16181B"/><rect x="9" y="11" width="14" height="2.2" fill="#F4F2EE"/><rect x="9" y="17.5" width="14" height="1.4" fill="#F4F2EE"/><rect x="9" y="22" width="14" height="2.2" fill="#F4F2EE"/></svg>
+    Corestone
+  </div>
+  <div class="crumbs">Projects / <b>Sample viaduct, pier foundations</b> / Validation</div>
+  <div class="sp"><button class="btn">Download PDF</button><button class="btn pri">Export clean dataset</button></div>
+</header>
+
+<main class="wrap">
+  <div class="head">
+    <div>
+      <div class="lbl">Validation report</div>
+      <h1>24 boreholes read, 37 things to check before this goes to design</h1>
+      <p class="sub">Every value was read from the field sheets, logs and lab certificates you uploaded, cross-checked across files, and linked back to the page it came from. Nothing has been changed: each flag waits for a geologist's decision.</p>
+    </div>
+    <div class="stamp"><i></i> 28 open, 9 resolved</div>
+  </div>
+
+  <section class="kpis">
+    <div class="kpi"><div class="lbl">Documents</div><div class="v">61</div><div class="n">24 logs, 29 certificates, 8 photo sets</div></div>
+    <div class="kpi"><div class="lbl">Values read</div><div class="v">3,412</div><div class="n">96 read with low confidence</div></div>
+    <div class="kpi hi"><div class="lbl">High</div><div class="v">9</div><div class="n">would change a design parameter</div></div>
+    <div class="kpi"><div class="lbl">Medium</div><div class="v">18</div><div class="n">inconsistent between files</div></div>
+    <div class="kpi"><div class="lbl">Low</div><div class="v">10</div><div class="n">format, units, missing fields</div></div>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <div class="card-h">
+        <h2>Flags</h2>
+        <div class="chips" id="chips">
+          <button class="chip on" data-f="all">All 37</button>
+          <button class="chip" data-f="hi">High</button>
+          <button class="chip" data-f="md">Medium</button>
+          <button class="chip" data-f="lo">Low</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>Severity</th><th>Check</th><th>Hole</th><th class="hide-s">Depth</th><th>Stated / found</th><th class="hide-s">Source</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      </div>
+    </section>
+
+    <aside class="side">
+      <section class="card pad det" id="det"></section>
+      <section class="card pad">
+        <div class="lbl" style="margin-bottom:12px">Where the flags come from</div>
+        <div class="bars">
+          <div class="bar"><span>Core photo vs log</span><span class="t"><i style="width:73%"></i></span><span class="n">11</span></div>
+          <div class="bar"><span>Depth and length</span><span class="t"><i style="width:60%"></i></span><span class="n">9</span></div>
+          <div class="bar"><span>Certificate vs log</span><span class="t"><i style="width:47%"></i></span><span class="n">7</span></div>
+          <div class="bar"><span>Coordinates</span><span class="t"><i style="width:27%"></i></span><span class="n">4</span></div>
+          <div class="bar"><span>Units and format</span><span class="t"><i style="width:40%"></i></span><span class="n">6</span></div>
+        </div>
+      </section>
+    </aside>
+  </div>
+  <p class="foot">Sample data. Borehole ids, values and counts are invented to show the product and do not describe any real site or client.</p>
+</main>
+
+<script>
+const F=[
+ {id:1,s:"hi",c:"RQD logged vs core photo",d:"Photo estimate far below the logged value",h:"BH-07",z:"14.0 to 15.5 m",st:"90%",fd:"22%",src:"Log p.3, photo box 5",
+  t:"RQD logged at 90%, photo reads about 22%",p:"Pieces of 10 cm or more cover about a fifth of the run in the box photo. The value feeds the rock mass parameters for pier P4.",photo:true},
+ {id:2,s:"hi",c:"Certificate vs log",d:"UCS on the certificate differs from the log",h:"BH-12",z:"21.3 m",st:"38 MPa",fd:"3.8 MPa",src:"Lab cert 12-04 p.2",
+  t:"UCS copied as 38 MPa, certificate says 3.8",p:"A decimal lost when the value was retyped. The certificate is the source; the log should follow it."},
+ {id:3,s:"hi",c:"Hole length across files",d:"Collar file and lithology file disagree",h:"BH-03",z:"End of hole",st:"30.0 m",fd:"25.5 m",src:"Collar.xlsx, Litho.xlsx",
+  t:"End of hole is 30.0 m in one file, 25.5 m in another",p:"The field sheet shows 25.5 m and a note that the rig stopped on refusal. Intervals below 25.5 m have no source."},
+ {id:4,s:"md",c:"Handwriting read with low confidence",d:"SPT blow count could be 8 or 9",h:"BH-09",z:"6.0 m",st:"8?",fd:"8 or 9",src:"Field sheet p.1",
+  t:"SPT N at 6.0 m reads as 8 or 9",p:"The digit is ambiguous in the scan. Both values keep the layer in the same class, so this changes no parameter."},
+ {id:5,s:"md",c:"Coordinates",d:"Local grid looks shifted from the national grid",h:"BH-18",z:"Collar",st:"Local",fd:"about 35 m offset",src:"Site plan p.1",
+  t:"Collar sits about 35 m from its plotted position",p:"The coordinates look like a local grid similar to the national one. Confirm the reference system before sections are drawn."},
+ {id:6,s:"md",c:"Depth order",d:"Core boxes filled right to left",h:"BH-21",z:"9.0 to 12.0 m",st:"left to right",fd:"right to left",src:"Photo box 3",
+  t:"Box 3 reads right to left",p:"Depth markers run the other way from the rest of the hole. RQD and recovery for this run were recomputed in the right order."},
+ {id:7,s:"lo",c:"Units",d:"Moisture content without units",h:"BH-05",z:"3.2 m",st:"18",fd:"18 %",src:"Lab cert 05-01 p.1",
+  t:"Moisture content has no unit",p:"Every other certificate from this lab reports percent. Assumed percent, flagged for confirmation."},
+ {id:8,s:"lo",c:"Missing field",d:"Water strike not recorded",h:"BH-14",z:"-",st:"blank",fd:"not stated",src:"Field sheet p.2",
+  t:"No water strike recorded",p:"The sheet leaves the groundwater section empty. It may be dry, or it may be missing."}
+];
+const lab={hi:"High",md:"Medium",lo:"Low"};
+let sel=1,filt="all";
+const photo=`<figure class="fig"><svg viewBox="0 0 420 150" width="100%" role="img" aria-label="Sample core box photo with fractures marked">
+<rect x="0" y="0" width="420" height="150" fill="#6B5842"/>
+${[0,1,2,3].map(r=>`<rect x="14" y="${14+r*33}" width="392" height="26" rx="4" fill="#3E3328"/>`).join("")}
+${(()=>{let o="";const rows=[[40,22,64,8,18,30,12,70,26,40,18],[14,20,9,30,12,48,10,16,22,60,40,30],[80,12,40,16,24,9,70,18,36,40],[20,34,12,90,16,22,40,30,50]];rows.forEach((row,r)=>{let x=18;row.forEach(w=>{const ww=Math.min(w*1.05,406-x);if(ww<=2)return;const good=w>=36;o+=`<rect x="${x}" y="${17+r*33}" width="${ww-3}" height="20" rx="3" fill="${good?'#C9B79C':'#A8977F'}"/>`;if(!good)o+=`<line x1="${x+ww-2}" y1="${15+r*33}" x2="${x+ww-2}" y2="${39+r*33}" stroke="#E0463A" stroke-width="1.6"/>`;x+=ww;});});return o})()}
+</svg><figcaption><span>Box 5, 14.0 to 15.5 m, sample image</span><span>Red lines: fractures read</span></figcaption></figure>`;
+function rows(){
+  const b=document.getElementById("rows");
+  b.innerHTML=F.filter(f=>filt==="all"||f.s===filt).map(f=>`<tr class="row${f.id===sel?" sel":""}" data-id="${f.id}">
+  <td><span class="sev ${f.s}">${lab[f.s]}</span></td>
+  <td class="chk"><b>${f.c}</b><span>${f.d}</span></td>
+  <td>${f.h}</td><td class="hide-s">${f.z}</td>
+  <td class="val"><s>${f.st}</s> <b>${f.fd}</b></td>
+  <td class="src hide-s">${f.src}</td></tr>`).join("")+`<tr><td colspan="6" style="color:var(--faint);font-size:12.5px">The sample shows 8 of the 37 flags.</td></tr>`;
+  b.querySelectorAll("tr.row").forEach(tr=>tr.onclick=()=>{sel=+tr.dataset.id;rows();det()});
+  return;
+  b.querySelectorAll("tr").forEach(tr=>tr.onclick=()=>{sel=+tr.dataset.id;rows();det()});
+}
+function det(){
+  const f=F.find(x=>x.id===sel);
+  document.getElementById("det").innerHTML=`<span class="sev ${f.s}">${lab[f.s]}</span> <span class="lbl" style="margin-left:6px">${f.h}, ${f.z}</span>
+  <h3>${f.t}</h3><p>${f.p}</p>
+  <div class="cmp"><div><div class="k">Stated in the file</div><div class="v">${f.st}</div></div><div class="bad"><div class="k">Found by the check</div><div class="v">${f.fd}</div></div></div>
+  ${f.photo?photo:`<figure class="fig"><svg viewBox="0 0 420 120" width="100%" role="img" aria-label="Sample scanned page with the value highlighted"><rect width="420" height="120" fill="#FBFAF7"/>${[18,34,50,66,82,98].map(y=>`<rect x="20" y="${y}" width="${200+((y*7)%140)}" height="6" rx="3" fill="#E4E0D8"/>`).join("")}<rect x="236" y="44" width="92" height="26" rx="4" fill="none" stroke="#1D5C63" stroke-width="2"/><text x="248" y="63" font-family="Caveat" font-size="20" fill="#2B2B2B">${f.st}</text></svg><figcaption><span>${f.src}, sample page</span><span>Outlined: the value read</span></figcaption></figure>`}
+  <div class="acts"><button class="btn pri">Accept ${f.fd}</button><button class="btn">Keep ${f.st}</button><button class="btn">Ask the lab or driller</button></div>
+  <div class="hist">Decision is recorded with your name, the date and the source, and the logs and sections are redrawn from the corrected table.</div>`;
+}
+document.querySelectorAll("#chips .chip").forEach(c=>c.onclick=()=>{filt=c.dataset.f;document.querySelectorAll("#chips .chip").forEach(x=>x.classList.toggle("on",x===c));const v=F.filter(f=>filt==="all"||f.s===filt);if(!v.find(f=>f.id===sel)&&v[0])sel=v[0].id;rows();det()});
+rows();det();
+</script>
+</body>
+</html>

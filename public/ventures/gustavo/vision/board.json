@@ -1,0 +1,1429 @@
+{
+  "updated": "2026-09-25",
+  "vision": "Gustavo (a working name) is the security view that keeps pace with teams shipping agent-written code: after every release it shows what changed, where the product is exposed and what to fix, without ever blocking the release, and it turns that same evidence into the answers a buyer or regulator asks for.",
+  "strategy": {
+    "direction": "Build the release map and sell it on the buyer's question: a non-blocking view of what each release changed and where the product is exposed, whose evidence also drafts the security questionnaire when an enterprise buyer asks. Run it as a done-for-you service for the first teams, and spend the next six weeks mostly on ten conversations outside the studio network, because most of today's evidence comes from two organisations inside it.",
+    "why": [
+      "The most repeated product request is a view: a map of the system's components and exposure, and per release what changed and a few red points to ticket (E3, a studio founder in three calls; echoed by a CTO who found an open endpoint by chance).",
+      "Every tool that added review rounds or CI time was removed whatever it found: CodeRabbit and Cubic for latency, Dependabot for living in the release stream, and a 10-minute CI budget was named. Only an off-path product survives.",
+      "Money moves when a buyer asks: forms at the compliance desk, 500 questions, contractual pen tests, with an external pen test put at about €5,000. The stated buying test is save money or get compliant faster, which buyer proof passes and a scanner does not.",
+      "PR-time security is being given away by the model vendors (Claude Code security review, Claude Code Security) and bundled by a $1B incumbent at $350 a month, so a reviewer or scanner alone is not a business.",
+      "Regulation is moving to continuous evidence: CRA reporting within 24 hours from 11 September 2026 presumes knowing what is in each release, which a release map records.",
+      "A service first answers the one willingness-to-pay signal on record, a founder who would pay a licence fee to a provider that does the work, and it needs no product to test the price."
+    ],
+    "sequence": [
+      {
+        "step": "Book ten conversations outside the studio network with founders or CTOs of 2 to 20 engineer teams who received a security questionnaire, pen test demand or partner requirement in the last six months. Ask for the last questionnaire, the hours it took and what they paid. Target: ten held, five questionnaires shared.",
+        "when": "28 Sep to 23 Oct"
+      },
+      {
+        "step": "Concierge release maps for three teams, two in the network and one outside, delivered by hand after each of four releases with an outside-in probe. Target: two of three teams turn at least one red point into a fix.",
+        "when": "28 Sep to 30 Oct"
+      },
+      {
+        "step": "Draft answers to two real questionnaires from the concierge evidence within 48 hours each, and record time saved and corrections.",
+        "when": "12 Oct to 6 Nov"
+      },
+      {
+        "step": "Offer a paid first review with release map and questionnaire answers, priced below the €5,000 external pen test anchor, to every team that shared a questionnaire. Target: two paid.",
+        "when": "2 Nov to 4 Dec"
+      },
+      {
+        "step": "Decision review against the kill criteria: automate the map as a GitHub App that runs after deploy if two teams paid and three kept opening it; otherwise re-plan from the ten conversations.",
+        "when": "7 Dec"
+      },
+      {
+        "step": "If continuing, ship the automated release map to the paying teams and the GDPR pack as the first preset.",
+        "when": "Jan to Mar 2027"
+      }
+    ],
+    "notNow": [
+      "Another AI reviewer in the pull request: the teams interviewed removed the ones they tried, and Anthropic gives security review away.",
+      "A dependency update bot: contested pain, crowded by Renovate, Dependabot and Aikido autofix.",
+      "On-premises or sovereign deployment for regulated vendors: cloud AI is forbidden there and the one buyer sees no ROI.",
+      "A full SOC 2 or ISO automation platform against Vanta and Drata; start with answering the buyer, not running the audit.",
+      "An autonomous SOC or runtime monitoring: a different buyer, and the founder of the one team interviewed said telemetry is not for him.",
+      "Brand, domain launch or public site before a price has been tested; the first ten conversations come from direct outreach and introductions."
+    ],
+    "killCriteria": [
+      "Fewer than 4 of the 10 outside teams received a security questionnaire, pen test demand or partner requirement in the last six months: the trigger is too rare at this stage, so move up-market or change the problem.",
+      "Concierge maps find nothing a team chooses to fix in 2 of 3 teams: the view has no value beyond reassurance.",
+      "Teams stop opening the map after the second release: visibility is wanted in interviews but not used.",
+      "By 4 December no team outside the studio network pays for a first review at any price: stop and re-plan.",
+      "Teams refuse to connect repositories or infrastructure to a startup: the product needs a code-free entry, or it is not viable.",
+      "Aikido or Anthropic ship a release map with buyer answers free before the first paid pilot: narrow to the done-for-you service or stop."
+    ],
+    "evidenceGaps": [
+      "How often teams of 2 to 20 engineers actually face a buyer questionnaire or pen test demand: ask all ten conversations, count, by 23 October.",
+      "Who pays and from which budget: founder, CTO or sales. Ask about the last security or compliance purchase in every conversation.",
+      "Price: nobody has been quoted. Test a single price below the pen test anchor in November.",
+      "Whether AI-drafted answers are trusted by buyers: ask the teams who share a questionnaire whether their buyer would accept evidence-backed answers.",
+      "Whether the map's findings are repeatable enough to trust, given the non-determinism objection: run the same map twice per release in the concierge phase and compare.",
+      "Whether sovereignty changes decisions for small EU teams: one question in every conversation, counted.",
+      "Housekeeping: add titles and roles to VSI speakers, fix the misattributed compiled quotes, and record outside calls rather than internal ones."
+    ]
+  },
+  "research": {
+    "patterns": [
+      {
+        "title": "Bundle everything, price it flat, and small teams come",
+        "text": "Aikido sells code, cloud and runtime scanning as one platform with a free tier and flat plans that include 10 users, and became a unicorn in January 2026, which the studio's own call read as the incumbent with the same ICP. The pattern that wins small teams is one install that replaces several point tools, not a better single scanner.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Aikido: free for 2 users, then $350, $700 or $1,050 a month with 10 users included.",
+            "source": "G2: Aikido Security pricing",
+            "url": "https://www.g2.com/products/aikido-security/pricing",
+            "date": "2026-07"
+          },
+          {
+            "kind": "competitor",
+            "text": "Aikido raised $60M at a $1B valuation on 14 January 2026.",
+            "source": "GlobeNewswire: Aikido Security raises $60M Series B at $1B valuation",
+            "url": "https://www.globenewswire.com/news-release/2026/01/14/3218567/0/en/aikido-security-raises-60-million-series-b-at-1-billion-valuation-to-lead-software-security.html",
+            "date": "2026-01-14"
+          },
+          {
+            "kind": "call",
+            "text": "And I think it's also the ICP that Aikido has.",
+            "who": "Venture studio partner, internal coaching call",
+            "tier": "E3",
+            "conv": "8a941a67-ca76-48ea-913b-4326eaea2451",
+            "ms": 424196
+          }
+        ]
+      },
+      {
+        "title": "Compliance platforms sell the audit, and the founder still does the work",
+        "text": "Vanta and Drata organise evidence for an auditor and start around $7,500 to $10,000 a year before renewal increases. The newer pattern is done-for-you: vendors such as Oneleet bundle the platform with the pen test and audit readiness, which is what the one founder who skipped Vanta said he would pay for. The Delve scandal showed how badly the market wants speed, and how fragile a certificate without real evidence is.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Vanta Core from about $10,000 a year, Drata Foundation from about $7,500, with 15 to 25% renewal increases warned.",
+            "source": "Secureleap: Vanta vs Drata 2026",
+            "url": "https://www.secureleap.tech/blog/vanta-vs-drata",
+            "date": "2026-04-25"
+          },
+          {
+            "kind": "call",
+            "text": "getting certified is still something I have to do.",
+            "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+            "tier": "E3",
+            "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+            "ms": 407000
+          },
+          {
+            "kind": "competitor",
+            "text": "Oneleet sells compliance, security assessments and audit readiness in one platform for SaaS companies.",
+            "source": "Oneleet",
+            "url": "https://www.oneleet.com",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "trend",
+            "text": "A whistleblower alleged 493 of 494 SOC 2 reports from one AI compliance startup were near identical; YC removed it in April 2026.",
+            "source": "Corporate Compliance Insights: SOC 2 is broken. The Delve scandal is showing us how",
+            "url": "https://www.corporatecomplianceinsights.com/soc-2-broken-delve-scandal-shows/",
+            "date": "2026-04"
+          }
+        ]
+      },
+      {
+        "title": "Model vendors now give security review away",
+        "text": "Anthropic ships a security review command and GitHub Action for Claude Code, and launched Claude Code Security in February 2026; CodeRabbit and Devin sell security scans on top of review. A team already running a homegrown Claude reviewer gets PR-level security for close to nothing, so PR-time findings are not a product on their own.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Claude Code's /security-review and GitHub Action check PRs for injection, auth flaws, insecure data handling and dependencies.",
+            "source": "Claude Help Center: Automated security reviews in Claude Code",
+            "url": "https://support.claude.com/en/articles/11932705-automated-security-reviews-in-claude-code",
+            "date": "2026"
+          },
+          {
+            "kind": "trend",
+            "text": "Claude Code Security launched on 19 to 20 February 2026 and cybersecurity stocks fell on the news.",
+            "source": "Yahoo Finance: Cybersecurity stocks drop as Anthropic launches Claude Code Security",
+            "url": "https://finance.yahoo.com/news/cybersecurity-stocks-drop-anthropic-launches-203607452.html",
+            "date": "2026-02-20"
+          },
+          {
+            "kind": "call",
+            "text": "They have this new feature called security scan. They run 100 adversary agents at the same time.",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E4",
+            "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+            "ms": 321779
+          },
+          {
+            "kind": "competitor",
+            "text": "CodeRabbit sells security reviews and deep scans next to its PR reviewer.",
+            "source": "CodeRabbit Security",
+            "url": "https://www.coderabbit.ai/security",
+            "date": "2026"
+          }
+        ]
+      },
+      {
+        "title": "Prevention moves into the coding agent",
+        "text": "OX VibeSec governs which agents, MCP servers and packages may run and corrects insecure patterns while code is generated, and Drata now monitors AI agents inside the company. Incumbents are moving to the moment of generation, which matches what the studio founder said works: tools that speak at the moment of change, in the IDE.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "OX VibeSec embeds security context into code-generation agents and governs agents, MCP servers and packages.",
+            "source": "OX Security: VibeSec",
+            "url": "https://www.ox.security/vibesec/",
+            "date": "2026"
+          },
+          {
+            "kind": "competitor",
+            "text": "Drata announced limited availability of AI Agent Governance on 4 August 2026.",
+            "source": "Business Wire: Drata extends its platform to monitor and govern AI agents",
+            "url": "https://www.businesswire.com/news/home/20260804704925/en/Drata-Extends-Trust-Management-Platform-to-Continuously-Monitor-and-Govern-AI-Agents",
+            "date": "2026-08-04"
+          },
+          {
+            "kind": "call",
+            "text": "Those two are running directly in my IDE. I think that's really powerful",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E3",
+            "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+            "ms": 1088485
+          }
+        ]
+      },
+      {
+        "title": "Noise is how this category loses users",
+        "text": "Dependabot was called a noise machine by a Go maintainer after thousands of PRs on unaffected repos, and Hacker News threads on AI review describe twenty speculative reasons around one real error. Every tool the interviewed teams dropped was dropped for noise or latency, not for missing findings.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "Dependabot \"opened thousands of PRs [pull requests] against unaffected repositories\"",
+            "source": "The Register: Go lib maintainer calls Dependabot a noise machine",
+            "url": "https://www.theregister.com/2026/02/24/github_dependabot_noise_machine/",
+            "date": "2026-02-24"
+          },
+          {
+            "kind": "market",
+            "text": "Practitioner on HN: \"It's really hard to get it not to tell you 20 highly speculative reasons why the code is problematic along with the one critical error.\"",
+            "source": "Hacker News: There is an AI code review bubble",
+            "url": "https://news.ycombinator.com/item?id=46766961",
+            "date": "2026-02-07"
+          },
+          {
+            "kind": "call",
+            "text": "And also because it lives, I think, in the release stream.",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E3",
+            "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+            "ms": 655761
+          }
+        ]
+      }
+    ],
+    "problem": [
+      {
+        "title": "Security rides on code quality, and quality is felt rather than verified",
+        "text": "Both small teams let the agentic quality review stand in for a security review. After three to five review rounds people merge or stop looking, and asked how he knows the code is sound, the studio founder said you don't.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "We don't do a code security review. We do a code quality review.",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E3",
+            "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+            "ms": 139685
+          },
+          {
+            "kind": "call",
+            "text": "You don't. So if you look at this, you do feel like it understands what it's doing, right?",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E3",
+            "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+            "ms": 1577665
+          },
+          {
+            "kind": "call",
+            "text": "Related to code, we don't do anything.",
+            "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+            "tier": "E3",
+            "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+            "ms": 530233
+          },
+          {
+            "kind": "market",
+            "text": "Practitioner on HN: \"AI is generating way more code than humans can review, and the 'looks fine' bar is what the AI gets held to.\"",
+            "source": "Hacker News: Are developers trusting AI-generated code too much?",
+            "url": "https://news.ycombinator.com/item?id=47425058",
+            "date": "2026-03-18"
+          }
+        ]
+      },
+      {
+        "title": "The real security check is heavy and rare",
+        "text": "The strongest security practice seen is a Claude Code security plugin run every month or two by one person: about 2 hours to run and about 6 to patch. Findings arrive weeks after the code shipped, and an agentic scan elsewhere spent €300 in a minute.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "it's not something you can run every time because it's really long running.",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E4",
+            "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+            "ms": 342189
+          },
+          {
+            "kind": "call",
+            "text": "I'm the only one doing it, and then I'm finding things like, whoa.",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E4",
+            "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+            "ms": 381313
+          },
+          {
+            "kind": "call",
+            "text": "I went through my credits of €300 within a minute.",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E4",
+            "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+            "ms": 321779
+          }
+        ]
+      },
+      {
+        "title": "Nobody can see what was built or where it is exposed",
+        "text": "The one repeated product request is a view: a graph of the system's components and edges, where it is vulnerable, and what each release touched. A CTO found an open self-hosted ingest endpoint by chance and could not tell whether other services leak.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "I don't have an overview or a graph that shows me the edges and the components of my business where I'm most vulnerable, even if I'm protected.",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E3",
+            "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+            "ms": 416313
+          },
+          {
+            "kind": "call",
+            "text": "A system that shows me what the product is, where the vulnerabilities might be, or even how it's structured to begin with.",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E3",
+            "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+            "ms": 1384644
+          },
+          {
+            "kind": "call",
+            "text": "A gap. This is a huge gap.",
+            "who": "CTO, two-person B2B2B SaaS startup, Netherlands",
+            "tier": "E4",
+            "conv": "0cbaea85-22b9-44f6-b569-6defe9cc6f02",
+            "ms": 1011141
+          },
+          {
+            "kind": "signal",
+            "text": "Compiled next step: build a per-release visual graph and security review list; it rests on a single short call.",
+            "tier": "E2",
+            "source": "VSI venture-next-step, 15 September"
+          }
+        ]
+      },
+      {
+        "title": "Proof for buyers costs founder time, and that is where money moves",
+        "text": "Without a certificate, every enterprise deal goes through the buyer's compliance desk: forms, a 500-question list, a mandatory external pen test. An external pen test was put at about €5,000 in today's money, and pen tests were bought because contracts demanded them.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "They'll just give you a list of 500 questions.",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E3",
+            "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+            "ms": 942798
+          },
+          {
+            "kind": "call",
+            "text": "whenever we go and sell to a bigger enterprise, we have to go to their compliance desk",
+            "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+            "tier": "E3",
+            "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+            "ms": 613690
+          },
+          {
+            "kind": "call",
+            "text": "that would be today's money maybe €5,000, right, to do the pen test of external company.",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E3",
+            "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+            "ms": 92566
+          },
+          {
+            "kind": "call",
+            "text": "we also got pen tested before delivery last year because of contractual obligations",
+            "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+            "tier": "E4",
+            "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+            "ms": 203718
+          }
+        ]
+      },
+      {
+        "title": "Until a buyer or regulator asks, pace wins",
+        "text": "Early teams rank pace above security, see compliance as a nuisance until someone demands SOC 2, and one outreach reply said security was not a concern yet. The trigger is external, which makes the buyer's question, not the vulnerability, the moment to sell.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "for us, pace is more important than the backlash we would get if something were to go wrong right now.",
+            "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+            "tier": "E4",
+            "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+            "ms": 661000
+          },
+          {
+            "kind": "call",
+            "text": "they see it as a nuisance, not as a process.",
+            "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+            "tier": "E3",
+            "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+            "ms": 1179327
+          },
+          {
+            "kind": "call",
+            "text": "but I don't care about security so far.",
+            "who": "CTO reached through outreach, as relayed in an internal call",
+            "tier": "E2",
+            "conv": "8a941a67-ca76-48ea-913b-4326eaea2451",
+            "ms": 328448
+          }
+        ]
+      },
+      {
+        "title": "Regulated vendors need the opposite product",
+        "text": "A software vendor serving banks cannot use cloud AI or any cloud service, runs Snyk and SonarQube on premises, pen tests every release in house and twice a year with a third party, and sees no ROI in AI for its pipeline. It would accept AI only to format results into a template, with no code passed in.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "For highly regulated companies like ours, cloud AI is not even an option, right?",
+            "who": "CTO, software vendor serving banks, Egypt",
+            "tier": "E4",
+            "conv": "5b86c95c-a3cf-4c8b-9ebb-2847860feed1",
+            "ms": 98000
+          },
+          {
+            "kind": "call",
+            "text": "So at the end of the day, it's the cost is the main factor here.",
+            "who": "CTO, software vendor serving banks, Egypt",
+            "tier": "E4",
+            "conv": "5b86c95c-a3cf-4c8b-9ebb-2847860feed1",
+            "ms": 506000
+          },
+          {
+            "kind": "call",
+            "text": "I don't think it will give like great insight as you think.",
+            "who": "CTO, software vendor serving banks, Egypt",
+            "tier": "E3",
+            "conv": "5b86c95c-a3cf-4c8b-9ebb-2847860feed1",
+            "ms": 825000
+          },
+          {
+            "kind": "call",
+            "text": "That's not as long as it doesn't have any code in it, yeah, okay.",
+            "who": "CTO, software vendor serving banks, Egypt",
+            "tier": "E2",
+            "conv": "5b86c95c-a3cf-4c8b-9ebb-2847860feed1",
+            "ms": 1302000
+          }
+        ]
+      }
+    ],
+    "trends": [
+      {
+        "title": "AI writes more code, and its security has not improved",
+        "text": "Veracode's 2026 tests of over 100 models put the security pass rate of AI-generated code at 56%, barely up from 55%, while AI writes a growing share of committed code. The volume of unreviewed risk grows with adoption.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Average security pass rate 56%, about 44% of tasks introduced a vulnerability.",
+            "source": "Veracode: 2026 GenAI Code Security Report",
+            "url": "https://www.veracode.com/blog/2026-genai-code-security-report-ai-risk/",
+            "date": "2026-07-28"
+          }
+        ]
+      },
+      {
+        "title": "Review, not writing, is now the bottleneck",
+        "text": "Practitioners describe PR review as the main bottleneck as agents multiply output, and push trivial checks to automation so humans judge intent. A security product that adds to the review queue fights the strongest current in engineering.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "Practitioner on HN: \"PR review has become the main bottleneck instead of coding\"",
+            "source": "Ask HN: How is your org managing PR review load as AI multiplies code output?",
+            "url": "https://news.ycombinator.com/item?id=48329446",
+            "date": "2026-06-03"
+          },
+          {
+            "kind": "market",
+            "text": "Practitioner on HN: \"We pushed trivial checks onto automation so humans only look at intent and design.\"",
+            "source": "Ask HN: How is your org managing PR review load as AI multiplies code output?",
+            "url": "https://news.ycombinator.com/item?id=48329446",
+            "date": "2026-06-03"
+          }
+        ]
+      },
+      {
+        "title": "EU rules move from certificates to continuous evidence",
+        "text": "Since 11 September 2026 the Cyber Resilience Act requires anyone selling software into the EU to report actively exploited vulnerabilities within 24 hours, which presumes knowing what is in each release. DORA pulls ICT suppliers of financial firms into threat-led testing. Proof is becoming a running obligation, not a yearly document.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "CRA reporting of exploited vulnerabilities and severe incidents applies from 11 September 2026, 24 hours for an early warning.",
+            "source": "DEV: What changes on 11 September 2026 for small software vendors (EU Cyber Resilience Act)",
+            "url": "https://dev.to/crakit/what-changes-on-11-september-2026-for-small-software-vendors-eu-cyber-resilience-act-1fg9",
+            "date": "2026"
+          },
+          {
+            "kind": "trend",
+            "text": "DORA has applied since 17 January 2025 and can bring ICT third-party providers into threat-led penetration tests.",
+            "source": "Noerr: Threat-led penetration testing under DORA",
+            "url": "https://www.noerr.com/en/insights/hacking-by-regulation-threat-led-penetration-testing-under-dora",
+            "date": "2025"
+          },
+          {
+            "kind": "call",
+            "text": "how can we prove that we're secure without going to an ISO or SOC 2?",
+            "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+            "tier": "E3",
+            "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+            "ms": 341960
+          }
+        ]
+      },
+      {
+        "title": "Sovereignty is a selling condition in Europe",
+        "text": "Two conversations raised data sovereignty unprompted: European users asking where their data goes when a product comes from big tech, and buyers refusing US-owned clouds even in-region. For small cost-sensitive teams it was judged less decisive, so it is a positioning asset more than a gate.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "especially in Europe, people more and more concerning how the data processes and how the data store and share.",
+            "who": "Founder, pre-seed AI governance startup for SMEs",
+            "tier": "E3",
+            "conv": "928240aa-281a-4861-b3b9-b7766b0ffe28",
+            "ms": 485000
+          },
+          {
+            "kind": "call",
+            "text": "Again, some companies would say, like, no, we are afraid of like the US guidelines",
+            "who": "CTO, software vendor serving banks, Egypt",
+            "tier": "E2",
+            "conv": "5b86c95c-a3cf-4c8b-9ebb-2847860feed1",
+            "ms": 1702000
+          }
+        ]
+      }
+    ],
+    "status": [
+      {
+        "title": "Seven outside conversations, four organisations, no buyer yet",
+        "text": "VSI holds eight recordings: seven with outside or studio-network speakers and one internal coaching call. They cover four organisations, and three of the seven are with one studio founder, whose venture studio also hosts this venture; two more are with a startup in the same network. One call yielded nothing because the counterpart was too early. No price has been tested, no pilot offered, and no product name exists yet.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "Eight conversations from 9 to 24 September 2026; the compiled workflow map is empty and there is one pain cluster.",
+            "tier": "E4",
+            "source": "VSI conversations, workflow-map and pain-clusters, 25 September"
+          },
+          {
+            "kind": "call",
+            "text": "I don't think that we are the best candidate to support you with this for now",
+            "who": "Founder, pre-seed AI governance startup for SMEs",
+            "tier": "E3",
+            "conv": "928240aa-281a-4861-b3b9-b7766b0ffe28",
+            "ms": 892000
+          }
+        ]
+      },
+      {
+        "title": "Outreach is the bottleneck",
+        "text": "By 16 September, 29 outreach messages had produced 3 replies and one call, and LinkedIn's monthly connection limit had been reached. The coaching call asked for 10 to 15 calls before reading any pattern; there are seven.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "29 messages, 3 replies, 1 booked call as of 16 September.",
+            "tier": "E4",
+            "source": "VSI internal call learnings"
+          },
+          {
+            "kind": "call",
+            "text": "if we want to help and we don't have like 10, 15 calls under the belt at some point, it's gonna be really hard to understand the market better",
+            "who": "Venture studio partner, internal coaching call",
+            "tier": "E3",
+            "conv": "8a941a67-ca76-48ea-913b-4326eaea2451",
+            "ms": 1292902
+          }
+        ]
+      },
+      {
+        "title": "The small buying signals that exist",
+        "text": "One CTO agreed to send the architecture diagram and its next version for review, and one CEO offered his compliance documentation and said he would happily adopt a tool he can switch on. Both are E2 to E3 and both come from the same startup.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "Sure, sure. Okay.",
+            "who": "CTO, two-person B2B2B SaaS startup, Netherlands",
+            "tier": "E3",
+            "conv": "0cbaea85-22b9-44f6-b569-6defe9cc6f02",
+            "ms": 1195122
+          },
+          {
+            "kind": "call",
+            "text": "I have some compliance documentation that forces me to do specific things. I can definitely share that with you.",
+            "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+            "tier": "E2",
+            "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+            "ms": 530233
+          }
+        ]
+      },
+      {
+        "title": "The compiled layer needs care",
+        "text": "Compiled VSI summaries attribute some quotes to the wrong speaker (a founder's own pitch is credited to the counterpart, and one startup's quote to another company), and the only compiled next step rests on a five-minute call. This board uses per-call learnings and excludes the founder's own statements as evidence.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "pain-themes credits a Netherlands CEO's quote to a different speaker; venture-next-step cites one learning.",
+            "tier": "E2",
+            "source": "VSI pain-themes and venture-next-step"
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "vsi": {
+      "venture": "gustavo-0a8cd19b",
+      "conversations": 8,
+      "compiled": "2026-09-25"
+    },
+    "web": [
+      {
+        "title": "Veracode: 2026 GenAI Code Security Report",
+        "url": "https://www.veracode.com/blog/2026-genai-code-security-report-ai-risk/",
+        "date": "2026-07-28"
+      },
+      {
+        "title": "G2: Aikido Security pricing",
+        "url": "https://www.g2.com/products/aikido-security/pricing",
+        "date": "2026-07"
+      },
+      {
+        "title": "GlobeNewswire: Aikido Security raises $60M Series B at $1B valuation",
+        "url": "https://www.globenewswire.com/news-release/2026/01/14/3218567/0/en/aikido-security-raises-60-million-series-b-at-1-billion-valuation-to-lead-software-security.html",
+        "date": "2026-01-14"
+      },
+      {
+        "title": "Secureleap: Vanta vs Drata 2026",
+        "url": "https://www.secureleap.tech/blog/vanta-vs-drata",
+        "date": "2026-04-25"
+      },
+      {
+        "title": "Claude Help Center: Automated security reviews in Claude Code",
+        "url": "https://support.claude.com/en/articles/11932705-automated-security-reviews-in-claude-code",
+        "date": "2026"
+      },
+      {
+        "title": "Yahoo Finance: Cybersecurity stocks drop as Anthropic launches Claude Code Security",
+        "url": "https://finance.yahoo.com/news/cybersecurity-stocks-drop-anthropic-launches-203607452.html",
+        "date": "2026-02-20"
+      },
+      {
+        "title": "OX Security: VibeSec",
+        "url": "https://www.ox.security/vibesec/",
+        "date": "2026"
+      },
+      {
+        "title": "The Register: Go lib maintainer calls Dependabot a noise machine",
+        "url": "https://www.theregister.com/2026/02/24/github_dependabot_noise_machine/",
+        "date": "2026-02-24"
+      },
+      {
+        "title": "Hacker News: There is an AI code review bubble",
+        "url": "https://news.ycombinator.com/item?id=46766961",
+        "date": "2026-02-07"
+      },
+      {
+        "title": "Ask HN: How is your org managing PR review load as AI multiplies code output?",
+        "url": "https://news.ycombinator.com/item?id=48329446",
+        "date": "2026-06-03"
+      },
+      {
+        "title": "Hacker News: Are developers trusting AI-generated code too much?",
+        "url": "https://news.ycombinator.com/item?id=47425058",
+        "date": "2026-03-18"
+      },
+      {
+        "title": "Hacker News: That's not SOC 2 compliant",
+        "url": "https://news.ycombinator.com/item?id=49308073",
+        "date": "2026-08-16"
+      },
+      {
+        "title": "Corporate Compliance Insights: SOC 2 is broken. The Delve scandal is showing us how",
+        "url": "https://www.corporatecomplianceinsights.com/soc-2-broken-delve-scandal-shows/",
+        "date": "2026-04"
+      },
+      {
+        "title": "DEV: What changes on 11 September 2026 for small software vendors (EU Cyber Resilience Act)",
+        "url": "https://dev.to/crakit/what-changes-on-11-september-2026-for-small-software-vendors-eu-cyber-resilience-act-1fg9",
+        "date": "2026"
+      },
+      {
+        "title": "Noerr: Threat-led penetration testing under DORA",
+        "url": "https://www.noerr.com/en/insights/hacking-by-regulation-threat-led-penetration-testing-under-dora",
+        "date": "2025"
+      },
+      {
+        "title": "AWS Marketplace: Jit listing",
+        "url": "https://aws.amazon.com/marketplace/pp/prodview-26zahvcaclo6s",
+        "date": "2026"
+      },
+      {
+        "title": "Business Wire: Drata extends its platform to monitor and govern AI agents",
+        "url": "https://www.businesswire.com/news/home/20260804704925/en/Drata-Extends-Trust-Management-Platform-to-Continuously-Monitor-and-Govern-AI-Agents",
+        "date": "2026-08-04"
+      },
+      {
+        "title": "Oneleet",
+        "url": "https://www.oneleet.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "CodeRabbit Security",
+        "url": "https://www.coderabbit.ai/security",
+        "date": "2026"
+      },
+      {
+        "title": "Aikido Security",
+        "url": "https://www.aikido.dev",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Vanta",
+        "url": "https://www.vanta.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Drata",
+        "url": "https://drata.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Snyk",
+        "url": "https://snyk.io",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Semgrep",
+        "url": "https://semgrep.dev",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "SonarQube",
+        "url": "https://www.sonarsource.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Checkmarx",
+        "url": "https://checkmarx.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "GitLab application security testing",
+        "url": "https://about.gitlab.com/solutions/application-security-testing/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Chainguard",
+        "url": "https://www.chainguard.dev",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "GitHub: anthropics/claude-code-security-review",
+        "url": "https://github.com/anthropics/claude-code-security-review",
+        "date": "2026"
+      }
+    ]
+  },
+  "initiatives": [
+    {
+      "id": "release-map",
+      "title": "Release map: what each release touched and where it is exposed",
+      "summary": "After every deploy, a non-blocking map of the system's components and edges, the parts the release changed, and a short list of red points filed as tickets, never a failed build.",
+      "bet": "We believe that small teams shipping with coding agents will keep a security view that costs them nothing in the release path and shows what changed and where they are exposed. We will know when 3 of 5 concierge teams open the map on at least half their releases for four weeks and turn at least one red point into a fix.",
+      "problem": "Security is either a quality review that misses it or an 8-hour sweep once a month or two; nobody sees what the agents built or which surfaces a release opened.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Teams say they want visibility but never open it; the studio founder himself said he rarely looks back.",
+        "A map that is not accurate enough on real repos turns into noise, the failure mode of the whole category.",
+        "Aikido or Anthropic add a release view to tools teams already have.",
+        "Most evidence comes from two organisations inside the studio network."
+      ],
+      "firstMove": "From 28 September, build the map by hand for three teams (the two network teams and one outside), using their repos, deploy config and a Claude Code security run, and deliver it after each of their next four releases. Count opens, tickets created and hours spent per map.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "I don't have an overview or a graph that shows me the edges and the components of my business where I'm most vulnerable, even if I'm protected.",
+          "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+          "tier": "E3",
+          "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+          "ms": 416313
+        },
+        {
+          "kind": "call",
+          "text": "the CI/CD pipeline steps by 10 minutes, for example, already, I would get frustrated.",
+          "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+          "tier": "E3",
+          "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+          "ms": 714380
+        },
+        {
+          "kind": "call",
+          "text": "A system that shows me what the product is, where the vulnerabilities might be, or even how it's structured to begin with.",
+          "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+          "tier": "E3",
+          "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+          "ms": 1384644
+        },
+        {
+          "kind": "signal",
+          "text": "Compiled next step: a per-release visual graph and security review list.",
+          "tier": "E2",
+          "source": "VSI venture-next-step, 15 September"
+        },
+        {
+          "kind": "market",
+          "text": "Practitioner on HN: \"PR review has become the main bottleneck instead of coding\"",
+          "source": "Ask HN: How is your org managing PR review load as AI multiplies code output?",
+          "url": "https://news.ycombinator.com/item?id=48329446",
+          "date": "2026-06-03"
+        },
+        {
+          "kind": "journey",
+          "text": "Ship and Periodic sweep stages score -1; release security is inside-out tests only.",
+          "source": "Gustavo journeys: From shipping with agents to proving it is secure"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "flow",
+          "title": "Security on a release today and with the map (today's times from calls; map times are design targets)",
+          "before": [
+            {
+              "step": "Agentic quality review, 3 to 5 rounds",
+              "time": "about 5 min a round"
+            },
+            {
+              "step": "Release ships with inside-out tests only"
+            },
+            {
+              "step": "Security plugin run, one person, every month or two",
+              "time": "about 2 h"
+            },
+            {
+              "step": "Apply patches from the sweep",
+              "time": "about 6 h"
+            }
+          ],
+          "after": [
+            {
+              "step": "Release ships unchanged"
+            },
+            {
+              "step": "Map diffs the release against the living system map",
+              "time": "target under 10 min, off the release path"
+            },
+            {
+              "step": "Two to five red points filed as tickets"
+            },
+            {
+              "step": "Weekly ticket review decides what to fix"
+            }
+          ]
+        },
+        {
+          "kind": "compare",
+          "title": "Where each tool puts security in the delivery loop (Gustavo column is the proposed product)",
+          "columns": [
+            "Gustavo release map",
+            "Aikido",
+            "CodeRabbit",
+            "Claude Code security review"
+          ],
+          "rows": [
+            {
+              "label": "Stays off the release path",
+              "values": [
+                "yes",
+                "partial",
+                "no",
+                "partial"
+              ]
+            },
+            {
+              "label": "Shows what a release changed across the system",
+              "values": [
+                "yes",
+                "no",
+                "partial",
+                "no"
+              ]
+            },
+            {
+              "label": "Keeps a map of components and exposure over time",
+              "values": [
+                "yes",
+                "partial",
+                "no",
+                "no"
+              ]
+            },
+            {
+              "label": "Adds PR comment rounds",
+              "values": [
+                "no",
+                "partial",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "Evidence reusable for buyers",
+              "values": [
+                "yes",
+                "partial",
+                "no",
+                "no"
+              ]
+            }
+          ]
+        }
+      ],
+      "prototype": "vision/prototypes/release-map/index.html",
+      "column": "recommended",
+      "notes": []
+    },
+    {
+      "id": "buyer-proof",
+      "title": "Answer the buyer: questionnaires and a trust report from release evidence",
+      "summary": "When a buyer sends a security questionnaire, draft every answer from the evidence the release maps already hold, cite the source of each answer, flag the gaps, and publish a refreshed security report per product.",
+      "bet": "We believe that founders who lose days to compliance desks will pay for answers drafted from their own evidence, because it saves money or gets them compliant faster. We will know when 2 of the first 5 teams with a live questionnaire accept a paid pilot and send back a completed questionnaire drafted by us.",
+      "problem": "Uncertified teams answer 500-question lists and forms by hand, and the only alternative they know, a compliance platform, still leaves the work with the founder.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Questionnaires are too rare for teams this early; the call view was that certification matters from about $1M to $10M in revenue.",
+        "Answers built on AI output invite the non-determinism objection and legal exposure if wrong.",
+        "Vanta, Drata and questionnaire tools already automate answers from policies.",
+        "No price has been tested with anyone."
+      ],
+      "firstMove": "Ask each of the ten outside conversations for their last security questionnaire. For the first two who share one, draft the answers by hand from their repo and infrastructure within 48 hours and record time saved and answers they had to correct.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "They'll just give you a list of 500 questions.",
+          "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+          "tier": "E3",
+          "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+          "ms": 942798
+        },
+        {
+          "kind": "call",
+          "text": "whenever we go and sell to a bigger enterprise, we have to go to their compliance desk",
+          "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+          "tier": "E3",
+          "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+          "ms": 613690
+        },
+        {
+          "kind": "call",
+          "text": "is this going to save me money",
+          "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+          "tier": "E2",
+          "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+          "ms": 407000
+        },
+        {
+          "kind": "call",
+          "text": "getting certified is still something I have to do.",
+          "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+          "tier": "E3",
+          "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+          "ms": 407000
+        },
+        {
+          "kind": "competitor",
+          "text": "Vanta Core from about $10,000 a year, Drata Foundation from about $7,500.",
+          "source": "Secureleap: Vanta vs Drata 2026",
+          "url": "https://www.secureleap.tech/blog/vanta-vs-drata",
+          "date": "2026-04-25"
+        },
+        {
+          "kind": "trend",
+          "text": "CRA reporting within 24 hours applies from 11 September 2026 for software sold into the EU.",
+          "source": "DEV: What changes on 11 September 2026 for small software vendors (EU Cyber Resilience Act)",
+          "url": "https://dev.to/crakit/what-changes-on-11-september-2026-for-small-software-vendors-eu-cyber-resilience-act-1fg9",
+          "date": "2026"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "What small teams pay for security and compliance tooling, per year in USD (public pricing)",
+          "unit": "USD",
+          "items": [
+            {
+              "label": "Aikido Basic, 10 users, annual",
+              "value": 3780,
+              "note": "G2, July 2026"
+            },
+            {
+              "label": "Jit, up to 5 developers",
+              "value": 3000,
+              "note": "AWS Marketplace"
+            },
+            {
+              "label": "Drata Foundation, entry",
+              "value": 7500,
+              "note": "Secureleap"
+            },
+            {
+              "label": "Vanta Core, entry",
+              "value": 10000,
+              "note": "Secureleap"
+            }
+          ]
+        },
+        {
+          "kind": "quote",
+          "title": "The question behind the product",
+          "text": "how can we prove that we're secure without going to an ISO or SOC 2?",
+          "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+          "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+          "ms": 341960
+        }
+      ],
+      "prototype": "vision/prototypes/buyer-proof/index.html",
+      "column": "recommended",
+      "notes": []
+    },
+    {
+      "id": "concierge-audit",
+      "title": "Done-for-you security review as the first paid offer",
+      "summary": "Sell the outcome before the software: a fixed-price outside-in review and release map run by the venture for a small team, using existing scanners and Claude Code, delivered with fixes as pull requests.",
+      "bet": "We believe that founders who never adopted self-serve compliance tools will pay for a service that does the work, at a price under an external pen test. We will know when 2 teams outside the studio network pay for a first review by 4 December.",
+      "problem": "Every self-serve tool leaves the work with the founder, and the ones who care most say they have no headspace for security.",
+      "impact": 2,
+      "effort": 1,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "A service does not scale and may trap the venture in consulting.",
+        "The price anchor from calls is an external pen test at about €5,000, and a review is not a pen test a buyer will accept.",
+        "Teams may take the report and never return."
+      ],
+      "firstMove": "Write a one-page offer with scope, a price below the €5,000 external pen test anchor and a five-day turnaround, and put it in front of every outside conversation from 12 October.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "If there's a tool that I can just turn on and it will do it for me, then yeah, super happy to get it.",
+          "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+          "tier": "E2",
+          "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+          "ms": 692879
+        },
+        {
+          "kind": "call",
+          "text": "You still pay license fee, but at At least least they take care of it. So that's for me way more interesting.",
+          "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+          "tier": "E3",
+          "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+          "ms": 407000
+        },
+        {
+          "kind": "call",
+          "text": "I have no headspace yet to figure out how to do security",
+          "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+          "tier": "E3",
+          "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+          "ms": 1320024
+        },
+        {
+          "kind": "competitor",
+          "text": "Oneleet bundles compliance, security assessments and audit readiness for SaaS companies.",
+          "source": "Oneleet",
+          "url": "https://www.oneleet.com",
+          "date": "2026-09-25"
+        }
+      ],
+      "column": "recommended",
+      "notes": []
+    },
+    {
+      "id": "outside-in-probe",
+      "title": "Outside-in probe of running services, without code access",
+      "summary": "Map the services a product exposes from the outside, find open endpoints, missing auth and leaky admin panels, and put them on the release map, with no source code shared.",
+      "bet": "We believe that exposure in self-hosted infrastructure, not code, is where small agent-built products are most likely to leak, and that a code-free probe lowers the trust barrier to start. We will know when the probe finds at least one real exposure in 2 of the first 5 teams.",
+      "problem": "Release security is inside-out tests only; a CTO found an open ingest endpoint on a public URL by chance.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "next",
+      "risks": [
+        "Attack surface management is a mature category with free tools.",
+        "Probing needs explicit permission and careful legal terms.",
+        "Findings may be rare on well-configured platforms such as Vercel."
+      ],
+      "firstMove": "Run an authorised external scan on the three concierge teams in October and log every finding with severity and how it was found.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "A gap. This is a huge gap.",
+          "who": "CTO, two-person B2B2B SaaS startup, Netherlands",
+          "tier": "E4",
+          "conv": "0cbaea85-22b9-44f6-b569-6defe9cc6f02",
+          "ms": 1011141
+        },
+        {
+          "kind": "call",
+          "text": "It's not a proactive outside-in kind of test.",
+          "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+          "tier": "E3",
+          "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+          "ms": 1838623
+        },
+        {
+          "kind": "journey",
+          "text": "Periodic sweep stage: an open self-hosted ingest endpoint was found by chance, not by any tool.",
+          "source": "Gustavo journeys: From shipping with agents to proving it is secure"
+        }
+      ],
+      "column": "recommended",
+      "notes": []
+    },
+    {
+      "id": "ai-feature-risk",
+      "title": "Prompt injection checks for products with an AI chat",
+      "summary": "For products whose chat can call tools, test the chat as an attack vector: injected instructions, data exfiltration through tools and over-broad permissions, reported on the release map.",
+      "bet": "We believe that teams adding tool-using chat to their products see it as their biggest risk and have no way to test it. We will know when 3 of 10 outside conversations name AI features as a security concern without being prompted.",
+      "problem": "A tool-using chat is an injection vector straight into the product's data, and the teams building one have no view of that exposure.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "next",
+      "risks": [
+        "Evidence is one conversation.",
+        "Specialist LLM security vendors and open red-teaming tools already exist.",
+        "Tests on stochastic systems are hard to make repeatable."
+      ],
+      "firstMove": "Add one question on AI features to every outside conversation and run a manual injection test on one concierge product that has a chat.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "If I'm a product that has a chat that has tools into the core of my product, then the chat is my biggest security risk. But I don't have a view on that.",
+          "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+          "tier": "E3",
+          "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+          "ms": 432713
+        },
+        {
+          "kind": "call",
+          "text": "Yeah, you want to make sure that they don't inject all that crap, right?",
+          "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+          "tier": "E3",
+          "conv": "76e71baf-d4e1-41b7-82c8-69047b77a80c",
+          "ms": 197310
+        },
+        {
+          "kind": "trend",
+          "text": "OX VibeSec reports a supply-chain defence for an MCP vulnerability, a sign agent tooling is now attack surface.",
+          "source": "OX Security: VibeSec",
+          "url": "https://www.ox.security/vibesec/",
+          "date": "2026"
+        },
+        {
+          "kind": "competitor",
+          "text": "Anthropic's own security review GitHub Action says it is not hardened against prompt injection and should only review trusted PRs.",
+          "source": "GitHub: anthropics/claude-code-security-review",
+          "url": "https://github.com/anthropics/claude-code-security-review",
+          "date": "2026"
+        }
+      ],
+      "column": "recommended",
+      "notes": []
+    },
+    {
+      "id": "gdpr-pack",
+      "title": "GDPR data-flow pack as the first compliance preset",
+      "summary": "Trace where personal data travels, into logs, observability, third parties and hosting regions, flag leaks on the release map, and produce the evidence a partner asks for under GDPR.",
+      "bet": "We believe that GDPR, the one requirement every partner applies, is a better first pack than SOC 2 for EU teams this early. We will know when 3 teams accept the pack's findings as their record of processing evidence.",
+      "problem": "Logs carry user IDs into self-hosted observability and nobody can tell whether data leaks somewhere non-obvious.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "next",
+      "risks": [
+        "GDPR is mostly legal and process, not code, so the product may cover too little of it.",
+        "Privacy tools already map data flows.",
+        "The preset-pack request is E2 from one CTO."
+      ],
+      "firstMove": "During the concierge reviews, list every personal-data flow found in code and infrastructure and ask each team whether it would hand that list to a partner.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "there is one like a consistent requirement which is GDPR",
+          "who": "CTO, two-person B2B2B SaaS startup, Netherlands",
+          "tier": "E3",
+          "conv": "0cbaea85-22b9-44f6-b569-6defe9cc6f02",
+          "ms": 868504
+        },
+        {
+          "kind": "call",
+          "text": "it would be nice to to just understand if we like if the current infrastructure that we have is leaking at some point that is not too obvious.",
+          "who": "CTO, two-person B2B2B SaaS startup, Netherlands",
+          "tier": "E3",
+          "conv": "0cbaea85-22b9-44f6-b569-6defe9cc6f02",
+          "ms": 955297
+        },
+        {
+          "kind": "call",
+          "text": "I really like the idea of having like some packs of like preset, like you want this compliance, so then like I just click a button.",
+          "who": "CTO, two-person B2B2B SaaS startup, Netherlands",
+          "tier": "E2",
+          "conv": "0cbaea85-22b9-44f6-b569-6defe9cc6f02",
+          "ms": 1263430
+        }
+      ],
+      "column": "recommended",
+      "notes": []
+    },
+    {
+      "id": "agent-session-guard",
+      "title": "Security hints inside the coding agent",
+      "summary": "A Claude Code skill or MCP server that knows the system map and tells the agent which security domains a change touches, and which new packages are risky, while it is still writing.",
+      "bet": "We believe that feedback at the moment of change is the only kind agent-first teams keep. We will know when a team keeps the skill installed for a month and its hints change at least one change per week.",
+      "problem": "Findings arrive at PR time or weeks later, when developers are already done; new packages suggested by the agent are adopted unscanned.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "later",
+      "risks": [
+        "OX VibeSec and Anthropic already move into generation time.",
+        "Hints add tokens and latency to every session.",
+        "Only valuable once the system map exists."
+      ],
+      "firstMove": "After the release map works for three teams, expose it as a read-only MCP resource and test it with one team for two weeks.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Those two are running directly in my IDE. I think that's really powerful",
+          "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+          "tier": "E3",
+          "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+          "ms": 1088485
+        },
+        {
+          "kind": "call",
+          "text": "the new dependencies I start using, I don't scan them",
+          "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+          "tier": "E3",
+          "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+          "ms": 596284
+        },
+        {
+          "kind": "competitor",
+          "text": "OX VibeSec corrects insecure patterns as code is generated.",
+          "source": "OX Security: VibeSec",
+          "url": "https://www.ox.security/vibesec/",
+          "date": "2026"
+        }
+      ],
+      "column": "recommended",
+      "notes": []
+    },
+    {
+      "id": "dependency-verdict",
+      "title": "One pull request for safe dependency updates, with a verdict",
+      "column": "parked",
+      "summary": "Bundle security and minor updates into a single PR, check whether they break the application, and escalate only the risky ones.",
+      "bet": "We believe that teams would drop Renovate's checkbox dashboard for one verdict per week. We will know when a team merges the bundle without opening it for four weeks.",
+      "problem": "Renovate and Dependabot turn updates into box-ticking and PR sprawl.",
+      "impact": 1,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "later",
+      "risks": [
+        "Parked: the pain is real for one CTO (E4) but the studio founder fixes dependency failures in a minute or two, so it is contested.",
+        "Renovate grouping, Dependabot cooldowns and Aikido autofix already chase it.",
+        "It would make the venture a dependency tool, far from the release map and buyer proof."
+      ],
+      "firstMove": "None now. Revisit if 3 of 10 outside conversations rank dependency updates as a top-three pain.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "then we would have to like keep clicking those boxes.",
+          "who": "CTO, two-person B2B2B SaaS startup, Netherlands",
+          "tier": "E4",
+          "conv": "0cbaea85-22b9-44f6-b569-6defe9cc6f02",
+          "ms": 177
+        },
+        {
+          "kind": "call",
+          "text": "And then we update that, but that takes me a minute or 2.",
+          "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+          "tier": "E3",
+          "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+          "ms": 562140
+        },
+        {
+          "kind": "market",
+          "text": "Dependabot described as \"a noise machine\" by a Go maintainer.",
+          "source": "The Register: Go lib maintainer calls Dependabot a noise machine",
+          "url": "https://www.theregister.com/2026/02/24/github_dependabot_noise_machine/",
+          "date": "2026-02-24"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "pr-security-review",
+      "title": "Another AI security reviewer in the pull request",
+      "column": "parked",
+      "summary": "An AI reviewer that comments on security issues in every pull request, cheaper than CodeRabbit.",
+      "bet": "We believe that a cheaper PR security reviewer wins teams that find CodeRabbit too expensive. We will know when a team replaces its current reviewer with it.",
+      "problem": "CodeRabbit was called very expensive by one team.",
+      "impact": 1,
+      "effort": 2,
+      "confidence": "E3",
+      "horizon": "later",
+      "risks": [
+        "Parked: the teams that tried PR reviewers removed them for latency, not price, and one runs a homegrown Claude reviewer that works.",
+        "Anthropic ships a security review GitHub Action and Claude Code Security; competing on price with the model vendor is a losing position.",
+        "It adds rounds to the loop that is already the bottleneck."
+      ],
+      "firstMove": "None. Keep the release map strictly off the PR path.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "Here I tried CodeRabbit, was too slow, so I killed it",
+          "who": "Founder, venture studio shipping agent-built SaaS, Netherlands",
+          "tier": "E3",
+          "conv": "490a4d0a-436d-4b4d-b45d-b71a61e4f358",
+          "ms": 1577665
+        },
+        {
+          "kind": "call",
+          "text": "So if there's a cheaper alternative, I'm super open to that because it is something that needs to live more.",
+          "who": "Founder and CEO, B2B2B SaaS startup, Netherlands",
+          "tier": "E2",
+          "conv": "b5b24dbb-f9f8-47a0-9655-57f173e492f0",
+          "ms": 341960
+        },
+        {
+          "kind": "competitor",
+          "text": "Claude Code's /security-review command and GitHub Action review PRs for common vulnerability classes.",
+          "source": "Claude Help Center: Automated security reviews in Claude Code",
+          "url": "https://support.claude.com/en/articles/11932705-automated-security-reviews-in-claude-code",
+          "date": "2026"
+        },
+        {
+          "kind": "market",
+          "text": "Practitioner on HN: \"The signal to noise ratio problem is unexpectedly difficult\"",
+          "source": "Hacker News: There is an AI code review bubble",
+          "url": "https://news.ycombinator.com/item?id=46766961",
+          "date": "2026-02-07"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "sovereign-onprem",
+      "title": "On-premises security AI for regulated vendors",
+      "column": "parked",
+      "summary": "A self-hosted, small-model version of the product for vendors serving banks and other regulated buyers who cannot use cloud AI.",
+      "bet": "We believe that sovereign buyers will pay for on-premises AI security tooling. We will know when a regulated vendor funds a pilot including its own GPUs.",
+      "problem": "Regulated vendors cannot use cloud AI and doubt generative AI next to deterministic scanners.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E4",
+      "horizon": "later",
+      "risks": [
+        "Parked: the one regulated buyer sees no ROI, already runs Snyk and SonarQube on premises, and objects to non-deterministic findings.",
+        "It needs 8 to 32 billion parameter models on customer GPUs and custom deployments, a different company.",
+        "Regulated buyers do not take one-size-fits-all products."
+      ],
+      "firstMove": "None now. Keep one question on sovereignty in every conversation and revisit if EU teams make it a buying condition.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "For highly regulated companies like ours, cloud AI is not even an option, right?",
+          "who": "CTO, software vendor serving banks, Egypt",
+          "tier": "E4",
+          "conv": "5b86c95c-a3cf-4c8b-9ebb-2847860feed1",
+          "ms": 98000
+        },
+        {
+          "kind": "call",
+          "text": "So at the end of the day, it's the cost is the main factor here.",
+          "who": "CTO, software vendor serving banks, Egypt",
+          "tier": "E4",
+          "conv": "5b86c95c-a3cf-4c8b-9ebb-2847860feed1",
+          "ms": 506000
+        },
+        {
+          "kind": "call",
+          "text": "when it comes to higher regulated environments, you cannot create like one solution fits all.",
+          "who": "CTO, software vendor serving banks, Egypt",
+          "tier": "E2",
+          "conv": "5b86c95c-a3cf-4c8b-9ebb-2847860feed1",
+          "ms": 1566000
+        }
+      ],
+      "viz": [
+        {
+          "kind": "matrix",
+          "title": "Where the interviewed segments sit (placement is a judgement from the calls)",
+          "x": [
+            "Can use cloud AI",
+            "Cloud AI forbidden"
+          ],
+          "y": [
+            "Security bought only when asked",
+            "Security built into every release"
+          ],
+          "points": [
+            {
+              "label": "Agent-first startup, NL",
+              "x": 0.2,
+              "y": 0.2
+            },
+            {
+              "label": "Venture studio, NL",
+              "x": 0.15,
+              "y": 0.35
+            },
+            {
+              "label": "Bank-serving vendor, Egypt",
+              "x": 0.9,
+              "y": 0.9
+            },
+            {
+              "label": "Gustavo release map",
+              "x": 0.25,
+              "y": 0.6,
+              "us": true
+            }
+          ]
+        }
+      ],
+      "notes": []
+    }
+  ]
+}

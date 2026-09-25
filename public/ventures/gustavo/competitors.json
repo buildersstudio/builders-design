@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Aikido Security",
+    "url": "https://www.aikido.dev",
+    "kind": "direct"
+  },
+  {
+    "name": "OX Security",
+    "url": "https://www.ox.security",
+    "kind": "direct"
+  },
+  {
+    "name": "CodeRabbit",
+    "url": "https://www.coderabbit.ai",
+    "kind": "direct"
+  },
+  {
+    "name": "Snyk",
+    "url": "https://snyk.io",
+    "kind": "direct"
+  },
+  {
+    "name": "Vanta",
+    "url": "https://www.vanta.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Oneleet",
+    "url": "https://www.oneleet.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Drata",
+    "url": "https://drata.com",
+    "kind": "direct"
+  },
+  {
+    "name": "Semgrep",
+    "url": "https://semgrep.dev",
+    "kind": "adjacent"
+  },
+  {
+    "name": "SonarQube",
+    "url": "https://www.sonarsource.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Checkmarx",
+    "url": "https://checkmarx.com",
+    "kind": "adjacent"
+  },
+  {
+    "name": "GitLab",
+    "url": "https://about.gitlab.com/solutions/application-security-testing/",
+    "kind": "adjacent"
+  },
+  {
+    "name": "Chainguard",
+    "url": "https://www.chainguard.dev",
+    "kind": "adjacent"
+  }
+]

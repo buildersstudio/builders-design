@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modou tender reader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F3EE;--card:#FFFFFF;--ink:#16181B;--muted:#5E6167;--faint:#8F9197;--line:#E3E1D9;--line2:#D3D0C5;
+  --accent:#C9501C;--accent-soft:#FAE8DE;
+  --good:#1E7A4C;--good-soft:#E1F1E7;--warn:#A86208;--warn-soft:#F8EBD6;--bad:#B3261E;--bad-soft:#F7E2DF;--blue:#2D5B8A;--blue-soft:#E3ECF5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Instrument Sans",system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.cap{display:flex;gap:14px;align-items:center;padding:9px 22px;background:var(--ink);color:#EDEBE4;font-size:12.5px}
+.cap b{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#F2A57F;font-weight:600}
+.cap .r{margin-left:auto;opacity:.65}
+.app{display:grid;grid-template-columns:228px minmax(0,1fr);min-height:calc(100vh - 36px)}
+.nav{border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:3px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.02em;padding:0 8px 18px}
+.brand i{width:26px;height:26px;border-radius:7px;background:var(--ink);display:grid;place-items:center}
+.brand i:after{content:"";width:10px;height:10px;border:2.5px solid #F2A57F;border-radius:2px;transform:rotate(45deg)}
+.ws{margin:0 4px 16px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.ws b{display:block;font-weight:600;font-size:13.5px}.ws span{font-size:12px;color:var(--muted)}
+.nav a{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:13.5px}
+.nav a.on{background:var(--card);color:var(--ink);font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
+.nav a em{font-style:normal;font-size:12px;color:var(--faint)}
+.nav .sep{height:1px;background:var(--line);margin:12px 6px}
+.main{padding:24px 30px 44px;min-width:0}
+.lbl{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.crumb{font-size:13px;color:var(--muted)}
+.top{display:flex;align-items:flex-end;gap:18px;margin:6px 0 18px;flex-wrap:wrap}
+h1{font-size:28px;font-weight:600;letter-spacing:-.025em;line-height:1.15}
+.top p{color:var(--muted);margin-top:4px}
+.top .acts{margin-left:auto;display:flex;gap:8px}
+.btn{border:1px solid var(--line2);background:var(--card);border-radius:8px;padding:8px 14px;font-weight:500;font-size:13.5px;white-space:nowrap}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:#fff}
+.verdict{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:var(--good-soft);border:1px solid #BFDFCB;border-radius:14px;padding:16px 18px;margin-bottom:16px}
+.verdict .ic{width:40px;height:40px;border-radius:10px;background:var(--good);display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px}
+.verdict b{font-size:16px;font-weight:600}
+.verdict span{display:block;color:#35604A;font-size:13px;margin-top:2px}
+.verdict .nums{display:flex;gap:22px}
+.verdict .nums div{text-align:right}
+.verdict .nums b{display:block;font-size:22px;letter-spacing:-.02em}
+.verdict .nums small{font-size:12px;color:#35604A}
+.cols{display:grid;grid-template-columns:232px minmax(0,1fr) 296px;gap:16px;align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.ph{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.ph h2{font-size:15px;font-weight:600}
+.ph .n{margin-left:auto;font-size:12.5px;color:var(--muted)}
+.files{padding:12px 16px 16px}
+.bar{display:flex;height:10px;border-radius:5px;overflow:hidden;margin:4px 0 14px}
+.bar i{display:block;height:100%}
+.fl{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:13px}
+.fl:last-child{border-bottom:0}
+.fl span{display:flex;align-items:center;gap:8px}
+.fl span:before{content:"";width:9px;height:9px;border-radius:2px;background:var(--c)}
+.fl b{font-weight:600}
+.fl.skip{color:var(--muted)}
+.tabs{display:flex;gap:4px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.tab{padding:7px 12px;border-radius:8px;font-size:13.5px;color:var(--muted);font-weight:500}
+.tab.on{background:var(--ink);color:#fff}
+.tab em{font-style:normal;margin-left:6px;font-size:12px;opacity:.7}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;text-align:left;padding:9px 16px;background:#FAF9F5;border-bottom:1px solid var(--line)}
+td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13.5px}
+tr:last-child td{border-bottom:0}
+td b{font-weight:600;display:block}
+td small{color:var(--muted);font-size:12px}
+td.q{text-align:right;white-space:nowrap;font-weight:600}
+.src{display:inline-block;white-space:nowrap;font-size:12px;color:var(--blue);background:var(--blue-soft);padding:2px 8px;border-radius:6px;margin:3px 4px 0 0}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.tag:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.t-good{background:var(--good-soft);color:var(--good)}.t-warn{background:var(--warn-soft);color:var(--warn)}.t-bad{background:var(--bad-soft);color:var(--bad)}
+.con{padding:14px 16px;border-bottom:1px solid var(--line)}
+.con:last-child{border-bottom:0}
+.con .h{display:flex;gap:10px;align-items:center}
+.con .h b{font-weight:600}
+.con .h .tag{margin-left:auto}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.vs div{border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:13px}
+.vs div small{display:block;font-size:11.5px;color:var(--faint);margin-bottom:2px}
+.side{padding:16px}
+.qs{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.qs label{display:grid;grid-template-columns:18px 1fr;gap:9px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:10px 11px;font-size:13px;cursor:pointer}
+.qs input{margin-top:3px;accent-color:var(--accent)}
+.draft{margin-top:14px;background:#FAF9F5;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px;color:var(--muted);line-height:1.5}
+.side .btn{width:100%;margin-top:10px}
+.links{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.links div{display:flex;justify-content:space-between;font-size:13px;padding:5px 0}
+.links div span{color:var(--muted)}
+.hide{display:none}
+@media (max-width:1240px){.cols{grid-template-columns:240px minmax(0,1fr)}.cols .right{grid-column:1/3}}
+@media (max-width:760px){
+  .app{grid-template-columns:1fr}
+  .nav{flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--line);padding:12px 16px;gap:4px}
+  .brand{padding:0 8px 0 0}.ws,.nav .sep{display:none}
+  .main{padding:18px 16px 36px}
+  .cols{grid-template-columns:1fr}.cols .right{grid-column:auto}
+  .verdict{grid-template-columns:auto 1fr}.verdict .nums{grid-column:1/3;justify-content:flex-start}
+  .verdict .nums div{text-align:left}
+  th:nth-child(2),td:nth-child(2){display:none}
+  .vs{grid-template-columns:1fr}
+  .top .acts{margin-left:0}
+  .cap .r{display:none}
+}
+</style>
+</head>
+<body>
+<div class="cap"><b>Vision prototype</b><span>What the Modou tender reader could look like for a building-product supplier. Sample data: the project, files and quantities are invented.</span><span class="r">Not a live product</span></div>
+<div class="app">
+  <nav class="nav">
+    <div class="brand"><i></i>Modou</div>
+    <div class="ws"><b>Sample supplier</b><span>Facade panels, NL and Belgium</span></div>
+    <a href="#">Today <em>3</em></a>
+    <a href="#">Projects <em>38</em></a>
+    <a href="#">Requests <em>12</em></a>
+    <a class="on" href="#">Tender packages <em>4</em></a>
+    <div class="sep"></div>
+    <a href="#">Product rules</a>
+    <a href="#">Fit rules</a>
+  </nav>
+  <main class="main">
+    <div class="crumb">Tender packages / Received from a platform request, Wednesday 23 September</div>
+    <div class="top">
+      <div>
+        <h1>School campus renovation, Apeldoorn</h1>
+        <p>312 files read. Your scope sits in 41 of them. Deadline for your price: 30 October.</p>
+      </div>
+      <div class="acts"><button class="btn">Open package</button><button class="btn pri">Add to project file</button></div>
+    </div>
+
+    <div class="verdict">
+      <div class="ic">&#10003;</div>
+      <div><b>Worth bidding: clears your fit rules</b><span>About 900 m² of panel against your 500 m² minimum, inside your region, municipal client with budget in the tender notice.</span></div>
+      <div class="nums"><div><b>6</b><small>items found</small></div><div><b>3</b><small>contradictions</small></div><div><b>41</b><small>files in scope</small></div></div>
+    </div>
+
+    <div class="cols">
+      <section class="panel">
+        <div class="ph"><h2>Files</h2><span class="n">312</span></div>
+        <div class="files">
+          <div class="bar"><i style="width:13%;background:var(--accent)"></i><i style="width:30%;background:#B9B6AB"></i><i style="width:20%;background:#CFCCC2"></i><i style="width:19%;background:#DEDBD2"></i><i style="width:18%;background:#E9E7E0"></i></div>
+          <div class="fl" style="--c:var(--accent)"><span>Facade and envelope</span><b>41</b></div>
+          <div class="fl skip" style="--c:#B9B6AB"><span>Installations</span><b>94</b></div>
+          <div class="fl skip" style="--c:#CFCCC2"><span>Structure</span><b>63</b></div>
+          <div class="fl skip" style="--c:#DEDBD2"><span>Foundations</span><b>58</b></div>
+          <div class="fl skip" style="--c:#E9E7E0"><span>Interior and other</span><b>56</b></div>
+          <p class="lbl" style="margin-top:14px">Read in scope</p>
+          <div class="fl" style="--c:var(--ink)"><span>Specification, chapter 43</span><b>1</b></div>
+          <div class="fl" style="--c:var(--ink)"><span>Elevations</span><b>8</b></div>
+          <div class="fl" style="--c:var(--ink)"><span>Facade details</span><b>27</b></div>
+          <div class="fl" style="--c:var(--ink)"><span>Fire safety report</span><b>1</b></div>
+          <div class="fl" style="--c:var(--ink)"><span>Window schedule</span><b>4</b></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="tabs" id="tabs">
+          <button class="tab on" data-t="items">Your items<em>6</em></button>
+          <button class="tab" data-t="con">Contradictions<em>3</em></button>
+        </div>
+        <div id="items">
+          <table>
+            <thead><tr><th>Item</th><th>Found in</th><th style="text-align:right">Quantity</th><th>Check</th></tr></thead>
+            <tbody>
+              <tr><td><b>Facade panel, fire-rated core</b><small>North and east elevations</small></td><td><span class="src">Spec 43.21.10</span><span class="src">A-301</span></td><td class="q">about 520 m²</td><td><span class="tag t-good">Clear</span></td></tr>
+              <tr><td><b>Facade panel, standard core</b><small>South and west elevations</small></td><td><span class="src">Spec 43.21.20</span><span class="src">A-302</span></td><td class="q">about 380 m²</td><td><span class="tag t-good">Clear</span></td></tr>
+              <tr><td><b>Ventilated rail system</b><small>Derived from your system rules</small></td><td><span class="src">Your product rules</span></td><td class="q">about 900 m²</td><td><span class="tag t-good">Derived</span></td></tr>
+              <tr><td><b>Window surround profile</b><small>Around 64 windows</small></td><td><span class="src">Window schedule</span><span class="src">D-07</span></td><td class="q">about 420 m</td><td><span class="tag t-warn">Check sizes</span></td></tr>
+              <tr><td><b>Aluminium corner profile</b><small>External corners</small></td><td><span class="src">D-12</span><span class="src">A-301</span></td><td class="q">about 180 m</td><td><span class="tag t-good">Clear</span></td></tr>
+              <tr><td><b>Colour</b><small>Two values in the package</small></td><td><span class="src">Spec 43.21.10</span><span class="src">A-301</span></td><td class="q">RAL 7016 or 9005</td><td><span class="tag t-bad">Contradiction</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="con" class="hide">
+          <div class="con"><div class="h"><b>Colour differs between specification and elevation</b><span class="tag t-bad">Ask before pricing</span></div>
+            <div class="vs"><div><small>Specification 43.21.10</small>Colour RAL 7016, anthracite</div><div><small>Elevation A-301</small>Colour RAL 9005, deep black</div></div></div>
+          <div class="con"><div class="h"><b>Fire class on the north side not met by the drawn detail</b><span class="tag t-bad">Ask before pricing</span></div>
+            <div class="vs"><div><small>Fire safety report, section 5</small>Class B-s1,d0 required on the north elevation</div><div><small>Detail D-12</small>Standard core drawn, which does not reach that class</div></div></div>
+          <div class="con"><div class="h"><b>Panel length exceeds your product maximum</b><span class="tag t-warn">Offer an alternative</span></div>
+            <div class="vs"><div><small>Detail D-07</small>Panels of 3,050 mm between windows</div><div><small>Your product rules</small>Maximum panel length 3,000 mm</div></div></div>
+        </div>
+      </section>
+
+      <aside class="panel right">
+        <div class="ph"><h2>Questions for the requester</h2></div>
+        <div class="side">
+          <span class="lbl">Selected</span>
+          <div class="qs">
+            <label><input type="checkbox" checked>Which colour applies: RAL 7016 in the specification or RAL 9005 on elevation A-301?</label>
+            <label><input type="checkbox" checked>May we price the fire-rated core on the north elevation, as the fire safety report requires?</label>
+            <label><input type="checkbox">Is a joint at 3,000 mm acceptable between the windows in detail D-07?</label>
+          </div>
+          <div class="draft">Draft ready in your name, in Dutch, with page references. Nothing is sent until you approve it.</div>
+          <button class="btn pri">Review draft</button>
+          <div class="links">
+            <span class="lbl">Project file</span>
+            <div><span>Phase</span><b>Tender</b></div>
+            <div><span>Contracting authority</span><b>Municipality</b></div>
+            <div><span>Budget holder</span><b>Municipality, per tender notice</b></div>
+            <div><span>Deadline</span><b>30 October</b></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+<script>
+document.querySelectorAll("#tabs .tab").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll("#tabs .tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");
+  document.getElementById("items").classList.toggle("hide",t.dataset.t!=="items");
+  document.getElementById("con").classList.toggle("hide",t.dataset.t!=="con");
+});
+</script>
+</body>
+</html>
