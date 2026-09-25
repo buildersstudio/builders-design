@@ -1,0 +1,2415 @@
+{
+  "updated": "2026-09-25",
+  "vision": "Doctorine is the release gate for APIs in the agent era: before a change ships, it proves that coding agents and developers can still complete real tasks with the docs, CLI, MCP server, SDKs and skills, publishes only the surfaces that passed, and keeps a receipt of what was checked. It works on top of the docs a team already has and generates the missing surfaces when the team wants them.",
+  "strategy": {
+    "direction": "Sell proof, not generation: make Doctorine the check that coding agents and developers can still complete real tasks against an API after every change, offered first as a free eval report on the docs a team already has and then as a paid release gate in its CI, with the generated surfaces as the upgrade rather than the pitch. Use the next eight weeks to turn that report into ten conversations with the people who own API budgets, because none has happened yet.",
+    "why": [
+      "Generation is being given away or done by agents: Fern gives Python and TypeScript SDKs away up to 200 endpoints, free client generators passed 26M monthly downloads, and the one public-API prospect calls the generation work nothing.",
+      "The counted market pain is correctness over time: of 68 practitioner quotes, staleness leads with 12, and broken SDKs (9), drift (8) and versioning (5) outweigh price (8) and vendor risk (7).",
+      "The only E4 customer pain on record is review and approval taking two to three weeks, and the same prospect said a tool that adds review will not be used, so the product must remove review, which only verification can do.",
+      "Static readiness scoring is free from four vendors and their scores disagree (97 to 100 on one, 17 to 83 on another), while agents still fail most real API tasks (43.7% on MCP, under 40% on web APIs), and no docs or SDK vendor gates a release on task success.",
+      "A report on a team's existing public docs needs no migration, which removes the heaviest first ask; no conversation mentions an active migration, and the corporate lead does not want to develop for a tool he buys.",
+      "It is the founder's own thesis made measurable: successful use is the outcome, the approved release is the unit, and the Phase 2 gate asks for one publishable before and after result, which the eval produces.",
+      "It fixes the distribution problem with the same work: a report on a company's own API is a reason to reply that cold messages were not."
+    ],
+    "sequence": [
+      {
+        "step": "Stop adding surfaces and build the eval harness v0: five tasks per API, two agents, three runs each, with repeat agreement measured. Check which of the 200 target companies publish a valid spec.",
+        "when": "28 Sep to 9 Oct"
+      },
+      {
+        "step": "Run the eval on 30 target APIs and send each company its report, addressed to the head of platform, API product or DevRel, ten of them through studio CTO-network introductions. Goal: ten buyer conversations, each asked about the last change, its approval time, its budget line and a price.",
+        "when": "12 Oct to 6 Nov"
+      },
+      {
+        "step": "Replay five real spec changes through the gate for the three most engaged teams, on their own repositories as a GitHub Action, with a repair pull request where their spec needs one. Decide design partner terms explicitly: free report, paid gate.",
+        "when": "9 Nov to 4 Dec"
+      },
+      {
+        "step": "Relaunch doctorine.dev with published criteria and the live task eval, served separately from the generation pipeline, and publish the first before and after result with a partner's agreement.",
+        "when": "7 Dec to 18 Dec"
+      },
+      {
+        "step": "Decision review against the kill criteria: continue into change-review rules and the CLI-first surface if two teams keep the gate on; otherwise re-plan from what the ten conversations said.",
+        "when": "11 Jan 2027"
+      },
+      {
+        "step": "If continuing, convert two gates to paid plans and build the first change-review rules the partners asked for.",
+        "when": "Jan to Mar 2027"
+      }
+    ],
+    "notNow": [
+      "New SDK languages, Terraform, more CLI commands or a knowledge layer: the surface is already ahead of the evidence that any part of it is wanted.",
+      "Charging for llms.txt, a docs MCP server or skills: every competitor gives them away.",
+      "A public launch of the generation pipeline before the single-server queue is fixed; launch the eval, which is cheap to serve, on its own.",
+      "The paid migration programme and the free portal with badges as growth engines: nobody has asked to migrate, and the free portal is already free at four funded vendors.",
+      "The diff-to-docs writing agent: writing is not where the time goes, and Mintlify already sells it.",
+      "Self-hosting, SOC 2 and new input formats beyond OpenAPI until two buyers name them as the blocker.",
+      "More automated LinkedIn volume as the main channel; replace it with report-led outreach and warm introductions."
+    ],
+    "killCriteria": [
+      "Fewer than 10 of the first 30 APIs show a reproducible agent task failure with a fixable cause: there is nothing to sell, so return to the spec-repair or governance options.",
+      "The same task flips between pass and fail in more than 20% of repeat runs after two weeks of tuning: the eval cannot become a gate.",
+      "By 6 November, fewer than 5 buyer conversations booked from 30 reports: the report is not a door opener, so change the channel before changing the product.",
+      "Of the buyer conversations held, fewer than 3 ask to run the eval on a change before release: verification is interesting but not a purchase.",
+      "By 11 January, no team keeps the gate on for four releases and none names a budget at €249 a month or more: stop and re-plan.",
+      "If most conversations say the blocker is having no usable spec, make spec repair the entry product instead of the eval.",
+      "If Mintlify, Fern or Cloudflare ship task-completion gating free before the first paid pilot, narrow to the parts they cannot copy quickly: cross-surface receipts and change review."
+    ],
+    "evidenceGaps": [
+      "Who pays and from which budget: no buyer has been interviewed. Find out in the ten report-led conversations by 6 November, asking about the last developer-experience purchase.",
+      "Whether agents fail on target APIs in ways a team cares about: unknown until the first 30 runs, due 9 October.",
+      "Whether review and approval is the bottleneck beyond one large company: ask each conversation for the days from merge to publication on its last change.",
+      "What share of the target list has a usable OpenAPI spec: a one-day script over the 200 companies' public specs.",
+      "Whether the eval is reproducible and affordable per run: measure agreement and cost in the harness from the first week.",
+      "Whether hosted SaaS, EU residency or independence changes a decision: one question in every conversation, counted.",
+      "Housekeeping that affects every answer: enable transcript access, merge the duplicate recording, correct the misattributed pain and the false deal, and recompile the ICP and next-step classes."
+    ]
+  },
+  "research": {
+    "patterns": [
+      {
+        "title": "Generators get bought or given away; portals keep earning",
+        "text": "Stainless reported about $1M ARR on hundreds of customers before Anthropic bought it and closed the hosted products; liblab and Fern were bought by Postman, which now gives Python and TypeScript SDKs away up to 200 endpoints; Speakeasy moved its front door to AI governance. Mintlify, the docs-first player, is the only independent here with a disclosed eight-figure ARR. Generation looks like a feature consolidators buy, not a standalone business.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Stainless: about $1M ARR on hundreds of paying customers in December 2024.",
+            "source": "SiliconANGLE: Stainless gets $25M in funding",
+            "url": "https://siliconangle.com/2024/12/10/stainless-software-gets-25m-funding-bring-ai-generated-sdks-developers/",
+            "date": "2024-12-10"
+          },
+          {
+            "kind": "trend",
+            "text": "Anthropic acquired Stainless and wound down every hosted product on 18 May 2026.",
+            "source": "Anthropic acquires Stainless",
+            "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+            "date": "2026-05-18"
+          },
+          {
+            "kind": "competitor",
+            "text": "Postman acquired Fern on 8 January 2026, after liblab in November 2025.",
+            "source": "Business Wire: Postman acquires Fern",
+            "url": "https://www.businesswire.com/news/home/20260107174767/en/",
+            "date": "2026-01-08"
+          },
+          {
+            "kind": "competitor",
+            "text": "Fern's SDK tier is free for Python and TypeScript up to 200 endpoints.",
+            "source": "Fern pricing",
+            "url": "https://buildwithfern.com/pricing",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Speakeasy's homepage now leads with the AI control plane for enterprise AI governance.",
+            "source": "Speakeasy homepage",
+            "url": "https://www.speakeasy.com",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Mintlify grew ARR from low seven figures to over eight figures during 2025.",
+            "source": "Mintlify: 2025, a year in review",
+            "url": "https://www.mintlify.com/blog/2025-year-in-review",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "Everyone sells sync; nobody sells proof",
+        "text": "Fern sells one pipeline so docs and SDKs cannot disagree, Bump.sh says docs and MCP stay in sync with every release, GitBook sells trust. None ships an auditable verdict per surface for one release. On the breadth versus governance map Doctorine sits alone in the top right, which is either white space or a sign buyers do not pay for governance separately.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Bump.sh: developers read your docs, agents call your APIs through MCP, both stay in sync with every release; diff, breaking changes and rollback from $120 a month.",
+            "source": "Bump.sh pricing and homepage",
+            "url": "https://bump.sh/pricing",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Doctorine's public sample receipt records spec, generator, kernel and output hashes.",
+            "source": "Doctorine sample SDK receipt",
+            "url": "https://doctorine.xyz/proof/doctorine-sdk-receipt.json",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Redocly checks MCP drift in CI and ships an AI reviewer in early access.",
+            "source": "Redocly: Your docs, ready for AI agents",
+            "url": "https://redocly.com/blog/ai-features-summer-2026",
+            "date": "2026"
+          }
+        ]
+      },
+      {
+        "title": "Agent features are free; money is in usage and controls",
+        "text": "MCP servers, llms.txt and skill files are included on the free tiers of Mintlify, ReadMe, GitBook and Fern. Revenue comes from AI credits, outcome pricing and enterprise controls. Charging for any agent surface on its own is no longer viable.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Mintlify Starter at $0 includes an MCP server; Pro is $450 a month with 10,000 AI credits.",
+            "source": "Mintlify pricing",
+            "url": "https://www.mintlify.com/pricing",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Mintlify moved to outcome pricing on 8 September 2026: nothing is charged when nothing is delivered.",
+            "source": "Mintlify: Simpler, outcome-based AI pricing",
+            "url": "https://www.mintlify.com/blog/outcome-based-ai-pricing",
+            "date": "2026-09-08"
+          },
+          {
+            "kind": "competitor",
+            "text": "ReadMe includes an MCP server and llms.txt on the free plan; Pro is $250 a month billed annually.",
+            "source": "ReadMe pricing",
+            "url": "https://readme.com/pricing",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Mintlify auto-generates skill.md from docs.",
+            "source": "Mintlify: skill.md, an open standard for agent skills",
+            "url": "https://www.mintlify.com/blog/skill-md",
+            "date": "2026-01-21"
+          }
+        ]
+      },
+      {
+        "title": "Forced shutdowns create the only real switching moments",
+        "text": "Scalar, Fern, Speakeasy and WorkOS all published Stainless migration content within weeks; Bump.sh is harvesting Oracle Apiary before its October 2026 shutdown. Buyers switch when a vendor disappears, rarely by choice, and after Stainless they also ask what happens if the next small vendor is bought.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Scalar published its Stainless wind-down guide and reads stainless.yml directly.",
+            "source": "Scalar: the Stainless wind-down",
+            "url": "https://scalar.com/blog/posts/2026-08-16-stainless-wind-down",
+            "date": "2026-08-16"
+          },
+          {
+            "kind": "competitor",
+            "text": "Fern offers backward-compatible migration for Stainless TypeScript and Python SDKs.",
+            "source": "Fern: Migrate from Stainless today",
+            "url": "https://buildwithfern.com/post/fern-vs-stainless-sdk-generator",
+            "date": "2026"
+          },
+          {
+            "kind": "market",
+            "text": "WorkOS: SDK generation is infrastructure you do not want controlled by a vendor whose incentives may no longer align with yours.",
+            "source": "WorkOS: Stainless alternatives",
+            "url": "https://workos.com/blog/stainless-alternatives",
+            "date": "2026-05-27"
+          },
+          {
+            "kind": "trend",
+            "text": "Bump.sh: Apiary shuts down on 31 October 2026.",
+            "source": "Bump.sh: Farewell Apiary",
+            "url": "https://bump.sh/blog/farewell-apiary/",
+            "date": "2025-07-04"
+          }
+        ]
+      },
+      {
+        "title": "Free, visible wedges on the public web spread fastest",
+        "text": "Redoc and Scalar's open-source renderers seeded their paid suites, Mintlify's free sites carry its name across startups, and Zuplo gives its portal away to sell the gateway. Wedges that live on the public web spread faster than ones that live in CI. For Doctorine, the eval report on a public API is that kind of wedge; a free portal is not, because it is already free everywhere.",
+        "evidence": [
+          {
+            "kind": "competitor",
+            "text": "Zuplo includes its developer portal on every plan, from $0.",
+            "source": "Zuplo pricing",
+            "url": "https://zuplo.com/pricing",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Scalar publishes its prices from $150 a month on top of an open-source reference renderer.",
+            "source": "Scalar pricing",
+            "url": "https://scalar.com/pricing",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Mintlify reports 20,000+ companies and 100M readers a year.",
+            "source": "Mintlify raises $45M Series B",
+            "url": "https://www.mintlify.com/blog/series-b",
+            "date": "2026-04-14"
+          }
+        ]
+      }
+    ],
+    "problem": [
+      {
+        "title": "The counted pain is correctness over time, not generation",
+        "text": "Across 68 practitioner quotes from Hacker News, Reddit, GitHub, Stack Overflow, review sites and blogs, the largest cluster is docs going stale (12), followed by broken generated SDKs (9), setup friction (9), spec drift from live behaviour (8) and price (8). Stale, broken, drifting and unversioned output together outweigh every commercial complaint. The count is what this research surfaced, not a random sample.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "Practitioner on Hacker News: \"The generator is usually the easy half. The hard part is keeping the generated SDK honest when API semantics change\"",
+            "source": "Hacker News: we built our own SDK and MCP generator",
+            "url": "https://news.ycombinator.com/item?id=48200281",
+            "date": "2026-05-20"
+          },
+          {
+            "kind": "market",
+            "text": "Practitioner on Reddit: \"Documentation is out of date the second it's written and ends up in your tech debt stack.\"",
+            "source": "r/ExperiencedDevs: How do you keep documentation up to date?",
+            "url": "https://reddit.com/r/ExperiencedDevs/comments/1nebg0u/",
+            "date": "2025-09-11"
+          },
+          {
+            "kind": "market",
+            "text": "Practitioner on Hacker News: \"someone spends 30-60 minutes in Devtools figuring out what the server actually returned\"",
+            "source": "Ask HN: How do you catch OpenAPI drift before the UI breaks?",
+            "url": "https://news.ycombinator.com/item?id=47245103",
+            "date": "2026-03-04"
+          },
+          {
+            "kind": "market",
+            "text": "Practitioner on Hacker News: generated clients are \"often they are simply broken (the generated code just straight up doesn't compile)\"",
+            "source": "Hacker News: OpenAPI has been lackluster",
+            "url": "https://news.ycombinator.com/item?id=36145131",
+            "date": "2023-05-31"
+          },
+          {
+            "kind": "market",
+            "text": "Postman 2025: 55% of API teams name inconsistent or outdated documentation as their biggest collaboration blocker.",
+            "source": "Postman 2025 State of the API Report",
+            "url": "https://www.postman.com/state-of-api/2025/",
+            "date": "2025-10-08"
+          }
+        ]
+      },
+      {
+        "title": "Review and approval take the time; writing takes seconds",
+        "text": "The one prospect who publishes a public API as his job says agents make the change in seconds and approval takes two to three weeks, through copy specialists, other teams and QA. He also warned that any tool adding review work will not be adopted. This is the only E4 customer pain on record, and it points at governance of the change, not at more generated output.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "it may take 2, 3 weeks for a single change to be published in the website, in our documentation website.",
+            "tier": "E4",
+            "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+            "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+            "ms": 745655
+          },
+          {
+            "kind": "call",
+            "text": "We do it all by AI and AI agents. So the actual work is nothing.",
+            "tier": "E4",
+            "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+            "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+            "ms": 745655
+          },
+          {
+            "kind": "call",
+            "text": "if it needs more reviews, more PR reviews, and more time and money, then it won't work for us.",
+            "tier": "E3",
+            "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+            "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+            "ms": 4469159
+          }
+        ]
+      },
+      {
+        "title": "The input is often missing or broken",
+        "text": "Doctorine assumes a clean, approved OpenAPI contract. 17.2% of the specs in the largest public directory are invalid, generation needs repair to go from 76% to 94.2% coverage, and the corporate practitioner says most teams have no usable spec and will not admit it. Even a good spec deliberately omits endpoints that are live.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "688 of 3,992 specs in APIs.guru are invalid.",
+            "source": "APIs.guru metrics",
+            "url": "https://api.apis.guru/v2/metrics.json",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "market",
+            "text": "MCP generation: 76% of tools out of the box, 94.2% after automated spec repair.",
+            "source": "From REST to MCP: an empirical study of API wrapping and automated server generation",
+            "url": "https://arxiv.org/abs/2507.16044",
+            "date": "2026-04-06"
+          },
+          {
+            "kind": "call",
+            "text": "So those trash APIs that just work, that's 90% of the people you're going to talk to.",
+            "tier": "E3",
+            "who": "Senior developer and engineering lead inside a corporation",
+            "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591",
+            "ms": 2230484
+          },
+          {
+            "kind": "call",
+            "text": "Yeah, it is a source of truth, but maybe not the whole truth.",
+            "tier": "E3",
+            "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+            "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+            "ms": 1523639
+          }
+        ]
+      },
+      {
+        "title": "Agents fail silently on APIs, and static scores cannot see it",
+        "text": "Agents now read more docs than people, and they fail most real API tasks: under 44% on real MCP servers and under 40% on web API integration for open models. The failure leaves no error log. Static readiness scores check files and headers, disagree with each other, and do not measure whether a task was completed.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "GPT-5 solved 43.7% of real MCP tasks.",
+            "source": "MCP-Universe: benchmarking LLMs with real-world MCP servers",
+            "url": "https://arxiv.org/abs/2508.14704",
+            "date": "2025-08-21"
+          },
+          {
+            "kind": "market",
+            "text": "No open-source model solved more than 40% of web API integration tasks.",
+            "source": "Benchmarking Web API Integration Code Generation (WAPIIBench)",
+            "url": "https://arxiv.org/abs/2509.20172",
+            "date": "2026-07-03"
+          },
+          {
+            "kind": "trend",
+            "text": "Sites scoring 97 to 100 on one agent score scored 17 to 83 on another.",
+            "source": "Fern Agent Scores versus Cloudflare Is Your Site Agent-Ready",
+            "url": "https://na-329bd696.mintlify.app/posts/agent-scores",
+            "date": "2026-04"
+          },
+          {
+            "kind": "market",
+            "text": "Vercel's own evaluation, quoted on Hacker News: \"In 56% of eval cases, the skill was never invoked.\"",
+            "source": "Hacker News: Agent Skills",
+            "url": "https://news.ycombinator.com/item?id=46871173",
+            "date": "2026-02-03"
+          }
+        ]
+      },
+      {
+        "title": "After Stainless, buyers price vendor risk",
+        "text": "Vendor risk, lock-in, shutdown and lack of self-hosting drew 7 mentions, sharpened by the Stainless closure. The reaction targets small vendors in particular, which matters for a pre-revenue company asking to host a team's docs and pipeline.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "Hacker News: closing the service will make everyone turn away from similar solutions if they are provided by a startup.",
+            "source": "Hacker News: Anthropic acquires Stainless",
+            "url": "https://news.ycombinator.com/item?id=48182281",
+            "date": "2026-05-18"
+          },
+          {
+            "kind": "market",
+            "text": "ReadMe reviewer: no way to self-host ReadMe.",
+            "source": "AWS Marketplace: ReadMe reviews (syndicated G2)",
+            "url": "https://aws.amazon.com/marketplace/reviews/reviews-list/prodview-2wc22jlpydma6",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "call",
+            "text": "if there's a tool, we bring it, we deploy it in our own infrastructure and connect.",
+            "tier": "E4",
+            "who": "Senior developer and engineering lead inside a corporation",
+            "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591",
+            "ms": 923084
+          }
+        ]
+      },
+      {
+        "title": "Price and metering draw resentment",
+        "text": "Eight complaints concern price, opaque tiers and AI credits. Mintlify's Pro list price has risen to $450 a month, and a mid-market gap sits between free tiers and $450, where only Scalar publishes prices.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "Mintlify reviewer: \"AI credits are easily the worst part about Mintlify. They really do not go far, even for mid-sized organizations.\"",
+            "source": "AWS Marketplace: Mintlify reviews (syndicated G2)",
+            "url": "https://aws.amazon.com/marketplace/reviews/reviews-list/prodview-j22mqmlkdwlva",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "Scalar Pro is $150 a month and Business $600, with each extra SDK $150 to $600.",
+            "source": "Scalar pricing",
+            "url": "https://scalar.com/pricing",
+            "date": "2026-09-25"
+          }
+        ]
+      }
+    ],
+    "trends": [
+      {
+        "title": "Agents are now the main reader of API docs",
+        "text": "On Mintlify-hosted docs, agents went from 15.2% of traffic at the start of 2026 to 66% in July and about two to one in August, and Claude Code and Cursor are 95.6% of identified agent traffic. The reader Doctorine must satisfy first is a coding agent.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Agents 66% of docs traffic in July 2026.",
+            "source": "Mintlify: The state of docs traffic, 2026 midyear report",
+            "url": "https://www.mintlify.com/blog/state-of-docs-traffic",
+            "date": "2026-07-29"
+          },
+          {
+            "kind": "trend",
+            "text": "257M agent requests against 131M human page loads in August 2026.",
+            "source": "Mintlify: Highlights from the 2026 State of Knowledge Report",
+            "url": "https://www.mintlify.com/blog/the-state-of-knowledge-2026-highlights",
+            "date": "2026-09-16"
+          },
+          {
+            "kind": "trend",
+            "text": "Claude Code and Cursor are 95.6% of identified agent traffic.",
+            "source": "Mintlify: The state of agent traffic in documentation",
+            "url": "https://www.mintlify.com/blog/state-of-ai",
+            "date": "2026-04-03"
+          }
+        ]
+      },
+      {
+        "title": "The field consolidated into labs and platforms in nine months",
+        "text": "Postman bought liblab and Fern, Anthropic bought and closed Stainless, and Speakeasy pivoted to governing enterprise AI. Independent, spec-native vendors that do docs plus SDKs plus agent outputs are fewer than a year ago, and independence is newly valuable, but only with enough presence to trust continuity.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Anthropic acquired Stainless on 18 May 2026 and is winding down its hosted products.",
+            "source": "Anthropic acquires Stainless",
+            "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+            "date": "2026-05-18"
+          },
+          {
+            "kind": "trend",
+            "text": "Postman acquired Fern on 8 January 2026.",
+            "source": "Business Wire: Postman acquires Fern",
+            "url": "https://www.businesswire.com/news/home/20260107174767/en/",
+            "date": "2026-01-08"
+          },
+          {
+            "kind": "trend",
+            "text": "Speakeasy launched its AI control plane on 30 April 2026.",
+            "source": "PR Newswire: Speakeasy defines the AI control plane",
+            "url": "https://www.prnewswire.com/news-releases/speakeasy-defines-the-ai-control-plane--the-governing-layer-enterprises-need-to-safely-scale-ai-302759058.html",
+            "date": "2026-04-30"
+          }
+        ]
+      },
+      {
+        "title": "Static agent-readiness scoring became a free commodity",
+        "text": "Fern (open source, on the AFDocs checks), Mintlify, Cloudflare and ReadMe all launched free readiness scores between March and August 2026. doctorine.dev entered a crowded field, and without published criteria it has a trust gap against AFDocs-based tools.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "Fern Agent Score launched 7 April 2026.",
+            "source": "Fern: How we built Agent Score to improve Fern Docs",
+            "url": "https://buildwithfern.com/post/agent-score",
+            "date": "2026-04-07"
+          },
+          {
+            "kind": "trend",
+            "text": "Cloudflare Agent Readiness score launched 17 April 2026.",
+            "source": "Cloudflare: Introducing the Agent Readiness score",
+            "url": "https://blog.cloudflare.com/agent-readiness/",
+            "date": "2026-04-17"
+          },
+          {
+            "kind": "trend",
+            "text": "Mintlify Agent Score is built on the AFDocs standard.",
+            "source": "Mintlify Agent Score",
+            "url": "https://www.mintlify.com/score",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "trend",
+            "text": "AFDocs defines the checks as an open specification.",
+            "source": "Agent-Friendly Documentation Spec",
+            "url": "https://agentdocsspec.com/",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "competitor",
+            "text": "doctorine.dev gives a 0 to 100 score; its criteria are not published on the page.",
+            "source": "Doctorine agent readiness analyzer",
+            "url": "https://doctorine.dev",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "MCP won the protocol, not the quality",
+        "text": "MCP is everywhere, but most company servers are thin wrappers, many lack auth, and the 2026-07-28 revision made the core stateless and deprecated dynamic client registration and SSE, forcing rework on every server. Practitioners push back on token cost and move to CLIs and code mode.",
+        "evidence": [
+          {
+            "kind": "trend",
+            "text": "2026-07-28 spec: stateless core, server discovery, DCR and HTTP+SSE deprecated.",
+            "source": "MCP blog: The 2026-07-28 Specification",
+            "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+            "date": "2026-07-28"
+          },
+          {
+            "kind": "market",
+            "text": "38.7% of company MCP servers had no auth; 50% of operators have no public REST API.",
+            "source": "Bloomberry: I analyzed 1400 MCP servers",
+            "url": "https://bloomberry.com/blog/we-analyzed-1400-mcp-servers-heres-what-we-learned/",
+            "date": "2026-03-27"
+          },
+          {
+            "kind": "trend",
+            "text": "Cloudflare Code Mode exposes a 2,500-endpoint API through two tools in about 1,000 tokens.",
+            "source": "InfoQ: Cloudflare launches Code Mode MCP server",
+            "url": "https://www.infoq.com/news/2026/04/cloudflare-code-mode-mcp-server/",
+            "date": "2026-04"
+          },
+          {
+            "kind": "market",
+            "text": "Show HN mcp2cli: \"Over 25 turns with 120 tools, that's 362,000 tokens just for schemas.\"",
+            "source": "Show HN: Mcp2cli, one CLI for every API",
+            "url": "https://news.ycombinator.com/item?id=47305149",
+            "date": "2026-03-09"
+          }
+        ]
+      },
+      {
+        "title": "Skills are the newest surface, and trust is the open problem",
+        "text": "Agent Skills became an open standard in December 2025 and API companies publish their own. Curated skills help agents substantially, self-generated ones do not, and audits find a large share of marketplace skills unsafe. A skill generated from the approved contract and signed by the owner answers a real gap, though no buyer has asked for it yet.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "Curated skills lifted pass rates from 33.9% to 50.5%; self-generated skills averaged a 1.3-point loss.",
+            "source": "SkillsBench: how well agent skills work across diverse tasks",
+            "url": "https://arxiv.org/abs/2602.12670",
+            "date": "2026-02"
+          },
+          {
+            "kind": "market",
+            "text": "13.4% of 3,984 marketplace skills had a critical issue.",
+            "source": "Help Net Security: malicious AI agent skills can slip past scanners",
+            "url": "https://www.helpnetsecurity.com/2026/07/09/malicious-ai-agent-skills-scan/",
+            "date": "2026-07-09"
+          }
+        ]
+      },
+      {
+        "title": "Generation became cheap enough to do in CI for free",
+        "text": "Free TypeScript client generators are growing fast, coding agents write clients from a spec on demand, and the discovery prospect calls the generation work nothing. What stays scarce is proof that the output is correct for the release.",
+        "evidence": [
+          {
+            "kind": "market",
+            "text": "@hey-api/openapi-ts grew from 0.70M downloads in January 2025 to 17.7M in August 2026.",
+            "source": "npm downloads API",
+            "url": "https://api.npmjs.org/downloads/",
+            "date": "2026-09-25"
+          },
+          {
+            "kind": "market",
+            "text": "Cloudflare estimated at least 6 to 9 months for one high-quality in-house SDK before automating.",
+            "source": "Cloudflare: Lessons from building an automated SDK pipeline",
+            "url": "https://blog.cloudflare.com/lessons-from-building-an-automated-sdk-pipeline/",
+            "date": "2024-04-23"
+          },
+          {
+            "kind": "call",
+            "text": "the functionality could be achieved before. I mean, even now we can achieve.",
+            "tier": "E2",
+            "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+            "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+            "ms": 3495595
+          }
+        ]
+      }
+    ],
+    "status": [
+      {
+        "title": "Four outside voices, none of them a buyer",
+        "text": "VSI holds eight recordings: four external conversations with individual engineers, one duplicate upload, one sound check and two internal studio calls. Only one external speaker publishes a public API as his job, and he said his company has no problem the product solves. No head of engineering, CTO, DevRel lead, technical writer or API product manager has been interviewed, no price has been tested with anyone outside, and no call has had a follow-up.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "0 paying customers, 0 ARR, 0 signed design partners; all 18 tracked metrics have no baseline.",
+            "tier": "E4",
+            "source": "VSI metrics-scorecard, 11 September"
+          },
+          {
+            "kind": "call",
+            "text": "we don't have a problem from [company] side of view, So that a tool like this can solve.",
+            "tier": "E3",
+            "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+            "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+            "ms": 4151738
+          },
+          {
+            "kind": "call",
+            "text": "I don't see any use case for it for the moment for the [company]. For the clients of [company] may be useful.",
+            "tier": "E3",
+            "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+            "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+            "ms": 3684722
+          }
+        ]
+      },
+      {
+        "title": "No signal is corroborated by two independent people",
+        "text": "Of 88 signals, none is validated and 82 rest on a single conversation. The six that appear twice are artefacts: five pair a call with its own duplicate upload, one pairs the prospect with an internal restatement of him. The ICP marked validated (DevRel, technical writers, API product managers) has never been spoken to; its evidence is the founder's documents and job listings.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "88 signals: 78 candidate, 10 emerging, none validated or decision grade.",
+            "tier": "E1",
+            "source": "VSI signals"
+          },
+          {
+            "kind": "signal",
+            "text": "icp-state marks DevRel, technical writer and API PM personas as validated at fit 0.9 with no conversation behind it.",
+            "tier": "E2",
+            "source": "VSI icp-state, 1 September"
+          }
+        ]
+      },
+      {
+        "title": "The product is broad and live; the load and the proof are not",
+        "text": "Import, deterministic builds, portal, three SDK languages, a 39-command CLI, two MCP servers, skills and EU residency are live. Generation still runs on one server that queues at about ten concurrent users, the migration and Phase 1 spec gates show no recorded progress, and the only competitive benchmark is self-run. The surface is ahead of the evidence that any single part of it is wanted.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "Capabilities claimed live, including deterministic content-addressed builds enforced in CI.",
+            "tier": "E3",
+            "source": "VSI capability-inventory, 1 September"
+          },
+          {
+            "kind": "signal",
+            "text": "About ten concurrent users create a queue where the last waits about ten minutes; a public launch is held back for that reason.",
+            "tier": "E4",
+            "source": "VSI internal weekly"
+          },
+          {
+            "kind": "competitor",
+            "text": "Doctorine homepage: portal, TypeScript, Python and Go SDKs, CLI, MCP and Agent Skills, each checked, only what passed published.",
+            "source": "Doctorine homepage",
+            "url": "https://doctorine.xyz",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "Positioning is still several stories",
+        "text": "In the same few weeks the product has been described as a release system, as agent-friendly docs hosting, as maintenance-cost reduction, as trust in generation and, on the share card, as making an API easier to adopt, while the portal is both the entry wedge and the cherry on top. These can be reconciled into one story (the gate is the product, surfaces are outputs) but that has not been stated.",
+        "evidence": [
+          {
+            "kind": "call",
+            "text": "What I am selling at the end, like the highest level, is trust in the generation of those documents.",
+            "tier": "E2",
+            "who": "Founder, internal studio weekly",
+            "conv": "44647daf-345d-4159-949f-c922edaa76d1",
+            "ms": 1597457
+          },
+          {
+            "kind": "call",
+            "text": "We don't do docs generation, we do hosting of the docs in an extremely agent-friendly manner",
+            "tier": "E2",
+            "who": "Founder, internal studio weekly",
+            "conv": "44647daf-345d-4159-949f-c922edaa76d1",
+            "ms": 1360076
+          },
+          {
+            "kind": "competitor",
+            "text": "doctorine.xyz headline: ship docs from your OpenAPI spec; check each output; publish only what passed.",
+            "source": "Doctorine homepage",
+            "url": "https://doctorine.xyz",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "The channel has not produced a conversation yet",
+        "text": "The LinkedIn channel, the primary GTM plan, has not yet booked a call; one external conversation happened in the week of the 11 September weekly and one since. The €100 design partner programme has two expressions of interest and no partner. The free analyzer is live but its launch and any scan or sign-up data are not recorded.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "One GTM experiment on record, reviewing LinkedIn profiles in the Netherlands, status running, result null.",
+            "tier": "E1",
+            "source": "VSI gtm-experiments"
+          },
+          {
+            "kind": "competitor",
+            "text": "Design partner programme: 20 individual seats at €100 a month and 20 company seats at €300 a month.",
+            "source": "Doctorine design partners",
+            "url": "https://doctorine.xyz/design-partners/",
+            "date": "2026-09-25"
+          }
+        ]
+      },
+      {
+        "title": "The compiled context needs cleaning before it guides decisions",
+        "text": "The review-bottleneck pain is attributed to internal speakers rather than the prospect, a former employer appears as a dormant deal, the only objection pattern is a third party's public post, two of five champions are internal, and the newest call is missing from every compiled class. Most classes are 24 to 38 days old and predate the three most informative calls.",
+        "evidence": [
+          {
+            "kind": "signal",
+            "text": "pain-themes and champion-signal attribute the 2 to 3 week review bottleneck to internal speakers; it came from the prospect.",
+            "tier": "E1",
+            "source": "VSI dossier, contradictions"
+          },
+          {
+            "kind": "signal",
+            "text": "No context class compiled after the 17 September call; the 18 September digest does not mention it.",
+            "tier": "E1",
+            "source": "VSI weekly-digest"
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "vsi": {
+      "venture": "batch-0-aria",
+      "conversations": 8,
+      "compiled": "2026-09-25"
+    },
+    "web": [
+      {
+        "title": "Doctorine homepage",
+        "url": "https://doctorine.xyz",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Doctorine agent readiness analyzer",
+        "url": "https://doctorine.dev",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Doctorine design partners",
+        "url": "https://doctorine.xyz/design-partners/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Doctorine MCP",
+        "url": "https://doctorine.xyz/platform/mcp/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Doctorine migrations",
+        "url": "https://doctorine.xyz/solutions/migrations/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Doctorine sample SDK receipt",
+        "url": "https://doctorine.xyz/proof/doctorine-sdk-receipt.json",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Fern pricing",
+        "url": "https://buildwithfern.com/pricing",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Fern: Migrate from Stainless today",
+        "url": "https://buildwithfern.com/post/fern-vs-stainless-sdk-generator",
+        "date": "2026"
+      },
+      {
+        "title": "Fern: How we built Agent Score to improve Fern Docs",
+        "url": "https://buildwithfern.com/post/agent-score",
+        "date": "2026-04-07"
+      },
+      {
+        "title": "Business Wire: Postman acquires Fern",
+        "url": "https://www.businesswire.com/news/home/20260107174767/en/",
+        "date": "2026-01-08"
+      },
+      {
+        "title": "Anthropic acquires Stainless",
+        "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+        "date": "2026-05-18"
+      },
+      {
+        "title": "Stainless is joining Anthropic",
+        "url": "https://www.stainless.com/blog/stainless-is-joining-anthropic/",
+        "date": "2026-05-18"
+      },
+      {
+        "title": "Hacker News: Anthropic acquires Stainless",
+        "url": "https://news.ycombinator.com/item?id=48182281",
+        "date": "2026-05-18"
+      },
+      {
+        "title": "Ask HN: What are Stainless users doing now?",
+        "url": "https://news.ycombinator.com/item?id=48202774",
+        "date": "2026-05-20"
+      },
+      {
+        "title": "Hacker News: we built our own SDK and MCP generator",
+        "url": "https://news.ycombinator.com/item?id=48200281",
+        "date": "2026-05-20"
+      },
+      {
+        "title": "SiliconANGLE: Stainless gets $25M in funding",
+        "url": "https://siliconangle.com/2024/12/10/stainless-software-gets-25m-funding-bring-ai-generated-sdks-developers/",
+        "date": "2024-12-10"
+      },
+      {
+        "title": "Speakeasy homepage",
+        "url": "https://www.speakeasy.com",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "PR Newswire: Speakeasy defines the AI control plane",
+        "url": "https://www.prnewswire.com/news-releases/speakeasy-defines-the-ai-control-plane--the-governing-layer-enterprises-need-to-safely-scale-ai-302759058.html",
+        "date": "2026-04-30"
+      },
+      {
+        "title": "Mintlify raises $45M Series B",
+        "url": "https://www.mintlify.com/blog/series-b",
+        "date": "2026-04-14"
+      },
+      {
+        "title": "Mintlify: 2025, a year in review",
+        "url": "https://www.mintlify.com/blog/2025-year-in-review",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Mintlify: The state of docs traffic, 2026 midyear report",
+        "url": "https://www.mintlify.com/blog/state-of-docs-traffic",
+        "date": "2026-07-29"
+      },
+      {
+        "title": "Mintlify: The state of agent traffic in documentation",
+        "url": "https://www.mintlify.com/blog/state-of-ai",
+        "date": "2026-04-03"
+      },
+      {
+        "title": "Mintlify: Highlights from the 2026 State of Knowledge Report",
+        "url": "https://www.mintlify.com/blog/the-state-of-knowledge-2026-highlights",
+        "date": "2026-09-16"
+      },
+      {
+        "title": "Mintlify pricing",
+        "url": "https://www.mintlify.com/pricing",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Mintlify Agent Score",
+        "url": "https://www.mintlify.com/score",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Mintlify: skill.md, an open standard for agent skills",
+        "url": "https://www.mintlify.com/blog/skill-md",
+        "date": "2026-01-21"
+      },
+      {
+        "title": "Cloudflare: Introducing the Agent Readiness score",
+        "url": "https://blog.cloudflare.com/agent-readiness/",
+        "date": "2026-04-17"
+      },
+      {
+        "title": "Fern Agent Scores versus Cloudflare Is Your Site Agent-Ready",
+        "url": "https://na-329bd696.mintlify.app/posts/agent-scores",
+        "date": "2026-04"
+      },
+      {
+        "title": "Agent-Friendly Documentation Spec",
+        "url": "https://agentdocsspec.com/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "MCP-Universe: benchmarking LLMs with real-world MCP servers",
+        "url": "https://arxiv.org/abs/2508.14704",
+        "date": "2025-08-21"
+      },
+      {
+        "title": "Benchmarking Web API Integration Code Generation (WAPIIBench)",
+        "url": "https://arxiv.org/abs/2509.20172",
+        "date": "2026-07-03"
+      },
+      {
+        "title": "From REST to MCP: an empirical study of API wrapping and automated server generation",
+        "url": "https://arxiv.org/abs/2507.16044",
+        "date": "2026-04-06"
+      },
+      {
+        "title": "APIs.guru metrics",
+        "url": "https://api.apis.guru/v2/metrics.json",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "SkillsBench: how well agent skills work across diverse tasks",
+        "url": "https://arxiv.org/abs/2602.12670",
+        "date": "2026-02"
+      },
+      {
+        "title": "Help Net Security: malicious AI agent skills can slip past scanners",
+        "url": "https://www.helpnetsecurity.com/2026/07/09/malicious-ai-agent-skills-scan/",
+        "date": "2026-07-09"
+      },
+      {
+        "title": "The Hacker News: first malicious MCP server found stealing emails",
+        "url": "https://thehackernews.com/2025/09/first-malicious-mcp-server-found.html",
+        "date": "2025-09"
+      },
+      {
+        "title": "Bloomberry: I analyzed 1400 MCP servers",
+        "url": "https://bloomberry.com/blog/we-analyzed-1400-mcp-servers-heres-what-we-learned/",
+        "date": "2026-03-27"
+      },
+      {
+        "title": "Show HN: Mcp2cli, one CLI for every API",
+        "url": "https://news.ycombinator.com/item?id=47305149",
+        "date": "2026-03-09"
+      },
+      {
+        "title": "Anthropic Engineering: Code execution with MCP",
+        "url": "https://www.anthropic.com/engineering/code-execution-with-mcp",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "InfoQ: Cloudflare launches Code Mode MCP server",
+        "url": "https://www.infoq.com/news/2026/04/cloudflare-code-mode-mcp-server/",
+        "date": "2026-04"
+      },
+      {
+        "title": "Postman 2025 State of the API Report",
+        "url": "https://www.postman.com/state-of-api/2025/",
+        "date": "2025-10-08"
+      },
+      {
+        "title": "Ask HN: How do you catch OpenAPI drift before the UI breaks?",
+        "url": "https://news.ycombinator.com/item?id=47245103",
+        "date": "2026-03-04"
+      },
+      {
+        "title": "r/ExperiencedDevs: How do you keep documentation up to date?",
+        "url": "https://reddit.com/r/ExperiencedDevs/comments/1nebg0u/",
+        "date": "2025-09-11"
+      },
+      {
+        "title": "Hacker News: OpenAPI has been lackluster",
+        "url": "https://news.ycombinator.com/item?id=36145131",
+        "date": "2023-05-31"
+      },
+      {
+        "title": "WorkOS: Stainless alternatives",
+        "url": "https://workos.com/blog/stainless-alternatives",
+        "date": "2026-05-27"
+      },
+      {
+        "title": "Scalar pricing",
+        "url": "https://scalar.com/pricing",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Scalar: the Stainless wind-down",
+        "url": "https://scalar.com/blog/posts/2026-08-16-stainless-wind-down",
+        "date": "2026-08-16"
+      },
+      {
+        "title": "Cloudflare: Lessons from building an automated SDK pipeline",
+        "url": "https://blog.cloudflare.com/lessons-from-building-an-automated-sdk-pipeline/",
+        "date": "2024-04-23"
+      },
+      {
+        "title": "npm downloads API",
+        "url": "https://api.npmjs.org/downloads/",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "AWS Marketplace: ReadMe reviews (syndicated G2)",
+        "url": "https://aws.amazon.com/marketplace/reviews/reviews-list/prodview-2wc22jlpydma6",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "AWS Marketplace: Mintlify reviews (syndicated G2)",
+        "url": "https://aws.amazon.com/marketplace/reviews/reviews-list/prodview-j22mqmlkdwlva",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Bump.sh pricing and homepage",
+        "url": "https://bump.sh/pricing",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Bump.sh: Farewell Apiary",
+        "url": "https://bump.sh/blog/farewell-apiary/",
+        "date": "2025-07-04"
+      },
+      {
+        "title": "Fern CLI generator",
+        "url": "https://buildwithfern.com/cli",
+        "date": "2026-06"
+      },
+      {
+        "title": "Hacker News: Agent Skills",
+        "url": "https://news.ycombinator.com/item?id=46871173",
+        "date": "2026-02-03"
+      },
+      {
+        "title": "MCP blog: The 2026-07-28 Specification",
+        "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+        "date": "2026-07-28"
+      },
+      {
+        "title": "Stack Overflow 2025 Developer Survey: AI",
+        "url": "https://survey.stackoverflow.co/2025/ai",
+        "date": "2025"
+      },
+      {
+        "title": "r/node: tired of fixing inconsistent OpenAPI specs",
+        "url": "https://reddit.com/r/node/comments/1r76obi/",
+        "date": "2026-02-17"
+      },
+      {
+        "title": "GitHub Community: keeping API documentation in sync with GitHub",
+        "url": "https://github.com/orgs/community/discussions/205083",
+        "date": "2026-08-16"
+      },
+      {
+        "title": "Redocly: Your docs, ready for AI agents",
+        "url": "https://redocly.com/blog/ai-features-summer-2026",
+        "date": "2026"
+      },
+      {
+        "title": "Zuplo pricing",
+        "url": "https://zuplo.com/pricing",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Context7 plans",
+        "url": "https://context7.com/plans",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Arcade.dev: Smithery is now part of Arcade.dev",
+        "url": "https://www.arcade.dev/blog/smithery-joins-arcade/",
+        "date": "2026-08-05"
+      },
+      {
+        "title": "ReadMe pricing",
+        "url": "https://readme.com/pricing",
+        "date": "2026-09-25"
+      },
+      {
+        "title": "Mintlify: Simpler, outcome-based AI pricing",
+        "url": "https://www.mintlify.com/blog/outcome-based-ai-pricing",
+        "date": "2026-09-08"
+      }
+    ]
+  },
+  "initiatives": [
+    {
+      "id": "agent-task-eval",
+      "title": "Agent task evals: can an agent finish the job with your API?",
+      "summary": "Turn doctorine.dev from a static readiness score into a run where coding agents attempt real integration tasks against the API using its docs, CLI, SDKs and MCP server, and report which tasks passed, where they failed and what fix would have saved them.",
+      "column": "recommended",
+      "bet": "We believe that showing an API team a failed agent task on their own API, with the exact page, schema or missing example that caused it, will start a conversation with the person who owns the API budget, where a static score does not. We will know when at least 3 of the first 30 teams sent a report ask to rerun it on a change before release.",
+      "problem": "Four free scanners already give a readiness score and they disagree with each other, while agents fail most real API tasks silently: nobody sees the integration that was never built.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Most target APIs pass most tasks, so the report has nothing alarming to show. Settle it on the first 30 runs before building anything else.",
+        "Results flip between runs because agents are stochastic, which would make a report unconvincing and a gate impossible. Measure repeat agreement from day one.",
+        "Running agents against live APIs needs sandbox credentials the team will not hand over. Start with read-only and mocked endpoints generated from the spec.",
+        "Mintlify, Fern or Cloudflare add task evals to their free scores. The defence is linking each failure to a fix that Doctorine applies and gates, not the score itself.",
+        "No customer has asked for this yet: the demand side is untested, only the market gap is visible."
+      ],
+      "firstMove": "In the two weeks from 28 September, write five integration tasks per API for 30 companies on the target list that publish an OpenAPI spec, run Claude Code and one other agent three times each against their public docs, and record pass rate, repeat agreement, tokens and the cause of every failure. If fewer than a third of APIs show a reproducible failure, stop and rethink before sending anything.",
+      "evidence": [
+        {
+          "kind": "competitor",
+          "text": "Fern, Mintlify, Cloudflare and ReadMe all give away static agent-readiness scores; Fern's is open source on the AFDocs checks.",
+          "source": "Fern: How we built Agent Score to improve Fern Docs",
+          "url": "https://buildwithfern.com/post/agent-score",
+          "date": "2026-04-07"
+        },
+        {
+          "kind": "trend",
+          "text": "The two scoring schools disagree sharply: sites scoring 97 to 100 on Fern's score got 17 to 83 on Cloudflare's.",
+          "source": "Fern Agent Scores versus Cloudflare Is Your Site Agent-Ready",
+          "url": "https://na-329bd696.mintlify.app/posts/agent-scores",
+          "date": "2026-04"
+        },
+        {
+          "kind": "market",
+          "text": "Even GPT-5 solved only 43.7% of real-world MCP tasks in the MCP-Universe benchmark.",
+          "source": "MCP-Universe: benchmarking LLMs with real-world MCP servers",
+          "url": "https://arxiv.org/abs/2508.14704",
+          "date": "2025-08-21"
+        },
+        {
+          "kind": "market",
+          "text": "No open-source model solved more than 40% of web API integration tasks in WAPIIBench, with hallucinated endpoints and wrong arguments.",
+          "source": "Benchmarking Web API Integration Code Generation (WAPIIBench)",
+          "url": "https://arxiv.org/abs/2509.20172",
+          "date": "2026-07-03"
+        },
+        {
+          "kind": "market",
+          "text": "Fern on agent failure: \"The agent doesn't throw an error. It just answers anyway, with whatever it can hallucinate.\"",
+          "source": "Fern: How we built Agent Score to improve Fern Docs",
+          "url": "https://buildwithfern.com/post/agent-score",
+          "date": "2026-04-07"
+        },
+        {
+          "kind": "trend",
+          "text": "Agents made up 66% of docs traffic on Mintlify-hosted sites in July 2026, up from 15.2% at the start of the year.",
+          "source": "Mintlify: The state of docs traffic, 2026 midyear report",
+          "url": "https://www.mintlify.com/blog/state-of-docs-traffic",
+          "date": "2026-07-29"
+        },
+        {
+          "kind": "call",
+          "text": "if the agent by some means misses that there's a SCILMD file, then you are going to basically read the docs again.",
+          "tier": "E3",
+          "who": "Engineer, very large e-commerce marketplace with a public developer portal",
+          "conv": "d30b491d-4cea-44d8-b619-32f7772ec9f5",
+          "ms": 2578611
+        },
+        {
+          "kind": "signal",
+          "text": "Founder principle: successful use, not the interface, is the outcome; the Phase 2 exit gate asks for one publishable before and after result.",
+          "tier": "E5",
+          "source": "VSI product-principles and decision-log"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "compare",
+          "title": "What each free agent tool measures (the Doctorine column is the proposed eval)",
+          "columns": [
+            "Doctorine eval",
+            "Fern Agent Score",
+            "Mintlify Agent Score",
+            "Cloudflare Agent Readiness"
+          ],
+          "rows": [
+            {
+              "label": "Static checks on the docs site",
+              "values": [
+                "yes",
+                "yes",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "Criteria published",
+              "values": [
+                "planned",
+                "yes",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "Agent attempts a real task against the API",
+              "values": [
+                "yes",
+                "no",
+                "no",
+                "no"
+              ]
+            },
+            {
+              "label": "Covers SDK, CLI and MCP, not only docs",
+              "values": [
+                "yes",
+                "no",
+                "no",
+                "partial"
+              ]
+            },
+            {
+              "label": "Failure linked to a fix that is gated on release",
+              "values": [
+                "yes",
+                "no",
+                "no",
+                "no"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "quote",
+          "title": "The failure nobody sees",
+          "text": "No error logs. No bounce rate spike. Just developers getting bad suggestions and integrations that never get built.",
+          "who": "Fern, Agent Score launch post"
+        }
+      ],
+      "prototype": "vision/prototypes/agent-task-eval/index.html",
+      "notes": []
+    },
+    {
+      "id": "release-gate",
+      "title": "Release gate with receipts, in the team's own CI",
+      "summary": "A CI check on the pull request that changes the spec: it rebuilds every surface, runs contract checks and the agent task suite, classifies the change, holds back any surface that failed and writes a receipt of what shipped, with one-step rollback of all surfaces together.",
+      "column": "recommended",
+      "bet": "We believe that API teams will pay to see, on the pull request, exactly which surfaces passed and which were held back, because it replaces a layer of manual review rather than adding one. We will know when two teams keep the gate switched on in CI for four consecutive releases and one of them accepts a paid plan.",
+      "problem": "Every vendor claims docs and SDKs stay in sync; none shows an auditable verdict per surface for one release, and the one prospect on record says anything that adds review work will not be adopted.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Buyers do not pay for governance separately: Doctorine sits alone in the broad-and-governed corner of the map, which can mean white space or no market.",
+        "The gate adds pull requests per language to review instead of removing work, the exact objection raised in discovery.",
+        "Fern already fails builds on breaking changes and Bump.sh diffs and rolls back docs and MCP, so parity is required before any difference counts.",
+        "Only one external voice describes the review bottleneck, and he said his own company has no problem this solves."
+      ],
+      "firstMove": "Take the spec history of one public API from the eval run, replay its last five changes through the gate, and show the result to the backend developer from the September discovery call and to two heads of platform from the eval outreach. Ask one question: which of these checks would let you skip a review step you do today?",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "The most time-consuming part is, as always, reviewing the changes and getting approvals.",
+          "tier": "E4",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 745655
+        },
+        {
+          "kind": "call",
+          "text": "if it needs more reviews, more PR reviews, and more time and money, then it won't work for us.",
+          "tier": "E3",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 4469159
+        },
+        {
+          "kind": "call",
+          "text": "sometimes it is very hard to decide if this this change is a bug fix or a breaking change.",
+          "tier": "E4",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 273305
+        },
+        {
+          "kind": "competitor",
+          "text": "Doctorine already publishes a sample receipt with bundle, config, IR and SDK hashes and the generator and kernel versions.",
+          "source": "Doctorine sample SDK receipt",
+          "url": "https://doctorine.xyz/proof/doctorine-sdk-receipt.json",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Bump.sh sells diff, breaking-change detection and rollback for docs and MCP from $120 a month; its headline is that docs and MCP stay in sync with every release.",
+          "source": "Bump.sh pricing and homepage",
+          "url": "https://bump.sh/pricing",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "market",
+          "text": "Practitioner advice on GitHub: enforce validation and the docs build in CI so an API change cannot be merged without the relevant checks passing.",
+          "source": "GitHub Community: keeping API documentation in sync with GitHub",
+          "url": "https://github.com/orgs/community/discussions/205083",
+          "date": "2026-08-16"
+        },
+        {
+          "kind": "market",
+          "text": "Only 17% of API teams use contract testing (Postman web summary, not cross-checked in the PDF).",
+          "source": "Postman 2025 State of the API Report",
+          "url": "https://www.postman.com/state-of-api/2025/",
+          "date": "2025-10-08"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "matrix",
+          "title": "Breadth of outputs from one contract versus release governance rigour (analyst coordinates)",
+          "x": [
+            "One output",
+            "All surfaces"
+          ],
+          "y": [
+            "Publish on push",
+            "Gated and proven"
+          ],
+          "points": [
+            {
+              "label": "Doctorine",
+              "x": 0.95,
+              "y": 0.9,
+              "us": true
+            },
+            {
+              "label": "Fern (Postman)",
+              "x": 0.85,
+              "y": 0.6
+            },
+            {
+              "label": "Scalar",
+              "x": 0.85,
+              "y": 0.5
+            },
+            {
+              "label": "Postman",
+              "x": 0.8,
+              "y": 0.55
+            },
+            {
+              "label": "APIMatic",
+              "x": 0.75,
+              "y": 0.55
+            },
+            {
+              "label": "Speakeasy",
+              "x": 0.7,
+              "y": 0.6
+            },
+            {
+              "label": "Redocly",
+              "x": 0.45,
+              "y": 0.75
+            },
+            {
+              "label": "Mintlify",
+              "x": 0.45,
+              "y": 0.35
+            },
+            {
+              "label": "Bump.sh",
+              "x": 0.4,
+              "y": 0.7
+            },
+            {
+              "label": "ReadMe",
+              "x": 0.35,
+              "y": 0.35
+            },
+            {
+              "label": "GitBook",
+              "x": 0.3,
+              "y": 0.4
+            }
+          ]
+        },
+        {
+          "kind": "flow",
+          "title": "A public API change as the discovery call describes it, and with a gate",
+          "before": [
+            {
+              "step": "Agent writes the spec change",
+              "time": "seconds"
+            },
+            {
+              "step": "Developers and other models review it"
+            },
+            {
+              "step": "Content specialists approve every term"
+            },
+            {
+              "step": "QA calls the endpoints by hand"
+            },
+            {
+              "step": "Change appears on the docs site",
+              "time": "2 to 3 weeks"
+            }
+          ],
+          "after": [
+            {
+              "step": "Agent writes the spec change",
+              "time": "seconds"
+            },
+            {
+              "step": "Gate rebuilds and checks every surface"
+            },
+            {
+              "step": "Reviewers see only flagged terms and failed checks"
+            },
+            {
+              "step": "Passed surfaces publish, failed ones are held back with a receipt"
+            }
+          ]
+        }
+      ],
+      "prototype": "vision/prototypes/release-gate/index.html",
+      "notes": []
+    },
+    {
+      "id": "change-review",
+      "title": "Change review that shortens approval, not writing",
+      "summary": "Rules that run on the spec change itself: company terminology and wording, bug-fix versus breaking classification with the consumers it affects, and staged or partner-only visibility for endpoints that are live but not yet public.",
+      "column": "recommended",
+      "bet": "We believe that the weeks between a spec change and its publication are spent on judgement calls a rule engine can pre-answer, and that the reviewer who owns wording and versioning will pull this into the team. We will know when a reviewer at a design partner approves a change using only the flagged items.",
+      "problem": "Generating the change takes seconds; approving the terms, deciding whether it breaks clients and choosing who may see it takes weeks and involves people outside engineering.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "next",
+      "risks": [
+        "Terminology and visibility rules are company-specific, so each customer becomes a configuration project.",
+        "The pain comes from one large company; mid-size teams with fewer reviewers may not have it.",
+        "Redocly already sells linting, scorecards and an AI reviewer to governance buyers."
+      ],
+      "firstMove": "In each of the ten buyer conversations, ask about the last API change that shipped: how many days from merge to publication, who approved it, and which step they would remove. Build nothing until at least four describe a review step longer than a week.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "it may take 2, 3 weeks for a single change to be published in the website, in our documentation website.",
+          "tier": "E4",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 745655
+        },
+        {
+          "kind": "call",
+          "text": "For the dispatch, we cannot say delivery.",
+          "tier": "E3",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 2035313
+        },
+        {
+          "kind": "call",
+          "text": "Although the public API themselves are published, but somehow invisible from the documents.",
+          "tier": "E4",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 992423
+        },
+        {
+          "kind": "call",
+          "text": "Yeah, it is a source of truth, but maybe not the whole truth.",
+          "tier": "E3",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 1523639
+        },
+        {
+          "kind": "market",
+          "text": "Only 26% of API teams use semantic versioning (Postman web summary).",
+          "source": "Postman 2025 State of the API Report",
+          "url": "https://www.postman.com/state-of-api/2025/",
+          "date": "2025-10-08"
+        },
+        {
+          "kind": "competitor",
+          "text": "Redocly ships lint, Arazzo testing and an AI pull-request Reviewer in early access.",
+          "source": "Redocly: Your docs, ready for AI agents",
+          "url": "https://redocly.com/blog/ai-features-summer-2026",
+          "date": "2026"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "Recurring complaints across 68 practitioner quotes (a quote can carry two tags)",
+          "unit": "mentions",
+          "items": [
+            {
+              "label": "Docs go stale, keeping docs and SDKs current costs people",
+              "value": 12
+            },
+            {
+              "label": "Generated SDKs broken or non-idiomatic",
+              "value": 9
+            },
+            {
+              "label": "Tool setup, editor and UX friction",
+              "value": 9
+            },
+            {
+              "label": "Spec and docs drift from live API behaviour",
+              "value": 8
+            },
+            {
+              "label": "Price, opaque pricing, AI credits",
+              "value": 8
+            },
+            {
+              "label": "Vendor risk, lock-in, shutdown, no self-hosting",
+              "value": 7
+            },
+            {
+              "label": "MCP and agent auth and security",
+              "value": 6
+            },
+            {
+              "label": "Versioning and breaking changes",
+              "value": 5
+            },
+            {
+              "label": "Agents do not discover or use docs, llms.txt, skills",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "kind": "quote",
+          "title": "Where the time goes",
+          "text": "We do it all by AI and AI agents. So the actual work is nothing.",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 745655
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "spec-repair-pr",
+      "title": "Spec repair: report how bad the spec is, then open the pull request",
+      "summary": "Point Doctorine at a repository or spec; it scores the spec against what generation and agents need, explains each problem in plain terms, and opens one pull request with the mechanical fixes, leaving judgement calls as review comments.",
+      "column": "recommended",
+      "bet": "We believe that most teams we approach have a spec too broken to generate from, and that a free repair pull request is the fastest way to earn the right to run the gate on their repository. We will know when 3 of 10 teams merge a repair pull request we opened.",
+      "problem": "The product starts from an approved, clean OpenAPI contract, and the practitioners say most teams do not have one, or will not admit it.",
+      "impact": 3,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Teams with no spec at all need spec inference from code across languages, which is a much larger product; keep it out of scope.",
+        "Linters are free and healthy (Spectral 6.0M and Redocly CLI 7.6M monthly downloads), so the repair must go further than a lint report.",
+        "Teams do not merge pull requests from outside vendors into their spec.",
+        "The only request for this came from one engineering lead whose projects stop at Swagger."
+      ],
+      "firstMove": "Measure the input before building: for the 200-company target list, find which publish an OpenAPI spec, validate each one, and count the errors that block generation. Then hand-run a repair on three and open the pull requests on public repositories where the spec lives.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "So my problem is I have a lot of APIs that are not OpenAPI compatible.",
+          "tier": "E4",
+          "who": "Senior developer and engineering lead inside a corporation",
+          "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591",
+          "ms": 679524
+        },
+        {
+          "kind": "call",
+          "text": "give me a button that I can click and it raises a PR directly",
+          "tier": "E3",
+          "who": "Senior developer and engineering lead inside a corporation",
+          "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591",
+          "ms": 768364
+        },
+        {
+          "kind": "call",
+          "text": "the people you're gonna reach out to are gonna tell you they have OpenAPI expect APIs. They do not.",
+          "tier": "E3",
+          "who": "Senior developer and engineering lead inside a corporation",
+          "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591",
+          "ms": 2230484
+        },
+        {
+          "kind": "market",
+          "text": "688 of 3,992 specs in the APIs.guru directory are invalid (17.2%).",
+          "source": "APIs.guru metrics",
+          "url": "https://api.apis.guru/v2/metrics.json",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "market",
+          "text": "Automated MCP generation worked for 76% of tools out of the box and 94.2% after automated spec repair, across 80 real contracts.",
+          "source": "From REST to MCP: an empirical study of API wrapping and automated server generation",
+          "url": "https://arxiv.org/abs/2507.16044",
+          "date": "2026-04-06"
+        },
+        {
+          "kind": "market",
+          "text": "Practitioner on r/node: \"Mixed casing, missing security schemes, or just poor documentation that breaks our SDK generators.\"",
+          "source": "r/node: tired of fixing inconsistent OpenAPI specs",
+          "url": "https://reddit.com/r/node/comments/1r76obi/",
+          "date": "2026-02-17"
+        },
+        {
+          "kind": "signal",
+          "text": "OpenAPI import quality on messy real specs is the founder's own number-one product risk; the Phase 1 gate of 25 representative specs has no recorded progress.",
+          "tier": "E3",
+          "source": "VSI risk-register and decision-log"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "What spec repair changes, in the one published study",
+          "unit": "% of tools generated",
+          "items": [
+            {
+              "label": "MCP tools generated from the spec as published",
+              "value": 76
+            },
+            {
+              "label": "After automated spec repair",
+              "value": 94.2
+            }
+          ]
+        }
+      ],
+      "prototype": "vision/prototypes/spec-repair-pr/index.html",
+      "notes": []
+    },
+    {
+      "id": "work-on-top",
+      "title": "Work on top of the docs a team already has",
+      "summary": "Make the eval, the gate and the repair work against a spec in Git and docs hosted anywhere, so a team can start without migrating its portal, and treat the Doctorine portal as an option rather than the entry point.",
+      "column": "recommended",
+      "bet": "We believe that asking a team to move its docs portal before it has seen any proof is the main reason the migration wedge has produced no conversation, and that a no-migration start will turn more first calls into a trial. We will know when a team on another docs vendor runs the gate on its own repository within two weeks of a first call.",
+      "problem": "The plan's first programme is a paid repository migration, but no conversation mentions an active migration, the discovery prospect is content with his hosted docs vendor, and the engineering lead does not want to develop for a tool he buys.",
+      "impact": 3,
+      "effort": 1,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Without hosting, Doctorine gives up the recurring surface where docs vendors make their money.",
+        "Docs vendors may block or rate-limit the checks against sites they host.",
+        "Teams without their spec in Git cannot use it either."
+      ],
+      "firstMove": "Run the first 30 evals only against public docs and specs the companies already host elsewhere, and in each follow-up offer the gate as a GitHub Action on their repository rather than a portal move. Count how many accept each offer.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "if I buy your tool, I don't want to develop for it.",
+          "tier": "E2",
+          "who": "Senior developer and engineering lead inside a corporation",
+          "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591",
+          "ms": 1113792
+        },
+        {
+          "kind": "call",
+          "text": "This MCP is just for the documentation.",
+          "tier": "E2",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 2525225
+        },
+        {
+          "kind": "signal",
+          "text": "No conversation mentions an active migration off an incumbent; migration evidence comes entirely from competitors' public case studies.",
+          "tier": "E1",
+          "source": "VSI dossier, open questions"
+        },
+        {
+          "kind": "competitor",
+          "text": "Mintlify serves 20,000+ companies; replacing it is a hard first ask for an unknown vendor.",
+          "source": "Mintlify raises $45M Series B",
+          "url": "https://www.mintlify.com/blog/series-b",
+          "date": "2026-04-14"
+        },
+        {
+          "kind": "competitor",
+          "text": "Docs vendors give MCP servers and llms.txt away on free tiers, so a portal move buys the team nothing new on those surfaces.",
+          "source": "ReadMe pricing",
+          "url": "https://readme.com/pricing",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "call",
+          "text": "For sure hallucinated because the docs portal is just the cherry on top.",
+          "tier": "E2",
+          "who": "Founder, internal studio weekly",
+          "conv": "44647daf-345d-4159-949f-c922edaa76d1",
+          "ms": 1253451
+        }
+      ],
+      "viz": [
+        {
+          "kind": "matrix",
+          "title": "Distribution today versus independence from a platform or lab (analyst coordinates)",
+          "x": [
+            "No installed base",
+            "Default tool"
+          ],
+          "y": [
+            "Owned by a platform or lab",
+            "Independent"
+          ],
+          "points": [
+            {
+              "label": "Doctorine",
+              "x": 0.02,
+              "y": 1.0,
+              "us": true
+            },
+            {
+              "label": "Postman",
+              "x": 1.0,
+              "y": 0.55
+            },
+            {
+              "label": "Mintlify",
+              "x": 0.8,
+              "y": 0.9
+            },
+            {
+              "label": "Redocly",
+              "x": 0.6,
+              "y": 0.9
+            },
+            {
+              "label": "Stainless",
+              "x": 0.6,
+              "y": 0.0
+            },
+            {
+              "label": "Fern",
+              "x": 0.55,
+              "y": 0.3
+            },
+            {
+              "label": "Scalar",
+              "x": 0.55,
+              "y": 0.9
+            },
+            {
+              "label": "ReadMe",
+              "x": 0.5,
+              "y": 0.95
+            },
+            {
+              "label": "Speakeasy",
+              "x": 0.4,
+              "y": 0.8
+            },
+            {
+              "label": "Bump.sh",
+              "x": 0.2,
+              "y": 0.9
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "cli-first",
+      "title": "Lead with the CLI and MCP for agents, ship SDKs on request",
+      "summary": "Narrow what Doctorine leads with to the surfaces agents use best, a CLI with JSON output and a curated MCP server, measured by the task eval, and generate language SDKs only when a customer asks for a language.",
+      "column": "recommended",
+      "bet": "We believe that in agent-driven integration a well-designed CLI completes more tasks for fewer tokens than an SDK or a wide MCP server, and that proving it with the eval is a sharper message than listing three SDK languages. We will know when the eval shows the CLI path beating the SDK path on task success across ten APIs.",
+      "problem": "The headline promises SDKs in three languages, but the discovery prospect calls SDKs possibly overkill for agents, SDKs that track the latest spec can break clients pinned to a version, and free TypeScript clients are winning on volume.",
+      "impact": 2,
+      "effort": 1,
+      "confidence": "E2",
+      "horizon": "now",
+      "risks": [
+        "Paying SDK buyers still exist: Stainless customers need maintained SDKs, and per-SDK prices of $150 to $600 a month prove the budget.",
+        "Fern already ships an agent-first CLI generator with JSON output and dry-run.",
+        "The CLI advantage may disappear as MCP adds progressive discovery and cacheable lists."
+      ],
+      "firstMove": "Add a surface comparison to the first eval runs: the same five tasks through docs only, the generated CLI, the MCP server and the TypeScript SDK, and publish the pass rate and token cost per surface for the ten APIs where all four exist.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "CLI, yeah, today when we use it with AI agents, that could be much more efficient.",
+          "tier": "E2",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 3596165
+        },
+        {
+          "kind": "call",
+          "text": "it's not expensive for them to ask agents to look at the OpenAPI spec and write the code for themselves.",
+          "tier": "E2",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 3684722
+        },
+        {
+          "kind": "call",
+          "text": "once the SDK upgraded based on the API spec upgrades, then that would cause some unwanted behavioral changes.",
+          "tier": "E3",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 3684722
+        },
+        {
+          "kind": "market",
+          "text": "Show HN mcp2cli: 30 tools cost about 3,600 tokens a turn as MCP schemas; the project claims 96 to 99% fewer tokens as a CLI.",
+          "source": "Show HN: Mcp2cli, one CLI for every API",
+          "url": "https://news.ycombinator.com/item?id=47305149",
+          "date": "2026-03-09"
+        },
+        {
+          "kind": "trend",
+          "text": "Anthropic documents code execution against MCP cutting one workflow from 150,000 to 2,000 tokens.",
+          "source": "Anthropic Engineering: Code execution with MCP",
+          "url": "https://www.anthropic.com/engineering/code-execution-with-mcp",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Fern's CLI generator emits a static binary with JSON output, dry-run and schema introspection for agents.",
+          "source": "Fern CLI generator",
+          "url": "https://buildwithfern.com/cli",
+          "date": "2026-06"
+        },
+        {
+          "kind": "market",
+          "text": "openapi-typescript had 26.0M npm downloads in a month and hey-api grew from 0.70M to 17.7M a month since January 2025.",
+          "source": "npm downloads API",
+          "url": "https://api.npmjs.org/downloads/",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "Tokens for one workflow, direct MCP tools versus code execution (Anthropic engineering)",
+          "unit": "tokens",
+          "items": [
+            {
+              "label": "Tool definitions and results through MCP",
+              "value": 150000
+            },
+            {
+              "label": "Code execution against the same tools",
+              "value": 2000
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "signed-skills",
+      "title": "Publisher-signed skills and MCP servers with provenance",
+      "summary": "Sign every skill and MCP server Doctorine publishes with the API owner's identity, list them at a well-known address with the receipt of the release they came from, so an agent or a security team can check the artefact is the vendor's and current.",
+      "column": "recommended",
+      "bet": "We believe that as skills and MCP servers become a supply-chain risk, security teams will require proof that an agent artefact comes from the API owner and matches the current release, and that Doctorine's receipts make that proof cheap. We will know when a security or platform lead asks for signing in a buyer conversation without being prompted.",
+      "problem": "Anyone can publish a skill or an MCP server that claims to be a vendor's; audits find a large share of marketplace skills unsafe, and impersonated MCP packages have already stolen data.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E1",
+      "horizon": "later",
+      "risks": [
+        "No buyer or practitioner has asked for it; the evidence is all market and security research.",
+        "A standard signing scheme may arrive from the MCP registry or agentskills.io and make a Doctorine format irrelevant; build on theirs.",
+        "Large companies already run internal skill registries in Git."
+      ],
+      "firstMove": "Add one question to the ten buyer conversations: who in your company would decide whether an agent may use a third-party skill or MCP server, and what would they need to see? Only if two name a security owner, draft the signed manifest on the existing receipt.",
+      "evidence": [
+        {
+          "kind": "market",
+          "text": "Snyk found 13.4% of 3,984 marketplace skills with a critical issue; one campaign planted 341 malicious skills.",
+          "source": "Help Net Security: malicious AI agent skills can slip past scanners",
+          "url": "https://www.helpnetsecurity.com/2026/07/09/malicious-ai-agent-skills-scan/",
+          "date": "2026-07-09"
+        },
+        {
+          "kind": "market",
+          "text": "A malicious postmark-mcp npm package impersonated a real vendor and copied every email to an attacker.",
+          "source": "The Hacker News: first malicious MCP server found stealing emails",
+          "url": "https://thehackernews.com/2025/09/first-malicious-mcp-server-found.html",
+          "date": "2025-09"
+        },
+        {
+          "kind": "market",
+          "text": "Curated skills raised agent pass rates from 33.9% to 50.5%, while self-generated skills lost 1.3 points on average.",
+          "source": "SkillsBench: how well agent skills work across diverse tasks",
+          "url": "https://arxiv.org/abs/2602.12670",
+          "date": "2026-02"
+        },
+        {
+          "kind": "market",
+          "text": "38.7% of company MCP servers had no authentication and 2.4% did rate limiting.",
+          "source": "Bloomberry: I analyzed 1400 MCP servers",
+          "url": "https://bloomberry.com/blog/we-analyzed-1400-mcp-servers-heres-what-we-learned/",
+          "date": "2026-03-27"
+        },
+        {
+          "kind": "call",
+          "text": "At my company, skill.md is normal... We have a central skills registry, like let's say it's a Git repo",
+          "tier": "E2",
+          "who": "Engineer, very large e-commerce marketplace with a public developer portal",
+          "conv": "d30b491d-4cea-44d8-b619-32f7772ec9f5",
+          "ms": 1219481
+        },
+        {
+          "kind": "competitor",
+          "text": "Doctorine already separates a read-only published MCP from an OAuth-scoped, audited workspace MCP.",
+          "source": "Doctorine MCP",
+          "url": "https://doctorine.xyz/platform/mcp/",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "bars",
+          "title": "Agent pass rate by kind of skill (SkillsBench, 86 tasks)",
+          "unit": "% pass",
+          "items": [
+            {
+              "label": "No skill",
+              "value": 33.9
+            },
+            {
+              "label": "Curated skill",
+              "value": 50.5
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "stainless-regen",
+      "title": "Regenerate orphaned Stainless SDKs, with a receipt",
+      "summary": "Import stainless.yml and the existing generated SDK, regenerate it with matching type names, and show a receipt proving the public surface did not change, for teams that lost their pipeline when Stainless closed.",
+      "column": "shortlist",
+      "bet": "We believe that some Stainless customers outside the AI labs still have no regeneration pipeline four months after the shutdown and will try a vendor who proves the regenerated SDK is identical at the surface. We will know when 3 of 20 maintainers contacted let us regenerate one SDK.",
+      "problem": "Stainless customers kept their code but lost the pipeline that kept it current, which is the only forced-switch trigger in this market with a proven budget.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E1",
+      "horizon": "now",
+      "risks": [
+        "Fern, Scalar, Speakeasy and WorkOS published migration paths within weeks of the shutdown; the easy switchers have gone.",
+        "The buyer who just lost a startup vendor is the least willing to adopt another very small one; the Hacker News reaction was about exactly that.",
+        "It pulls Doctorine back toward SDK generation, the part of the market being given away."
+      ],
+      "firstMove": "Search public GitHub for SDK repositories with Stainless-generated headers and no commits since May, pick 20 outside the AI labs, and offer each maintainer a free regeneration with a surface-diff receipt. Stop after two weeks if fewer than three reply.",
+      "evidence": [
+        {
+          "kind": "market",
+          "text": "A Stainless customer on Hacker News: their SDKs, come September, will need to be maintained by someone other than Stainless.",
+          "source": "Ask HN: What are Stainless users doing now?",
+          "url": "https://news.ycombinator.com/item?id=48202774",
+          "date": "2026-05-20"
+        },
+        {
+          "kind": "trend",
+          "text": "Anthropic acquired Stainless on 18 May 2026 and wound down the hosted products; new signups, projects and SDKs stopped that day.",
+          "source": "Stainless is joining Anthropic",
+          "url": "https://www.stainless.com/blog/stainless-is-joining-anthropic/",
+          "date": "2026-05-18"
+        },
+        {
+          "kind": "competitor",
+          "text": "Scalar reads stainless.yml directly and Fern matches Stainless type names for backward-compatible migration.",
+          "source": "Scalar: the Stainless wind-down",
+          "url": "https://scalar.com/blog/posts/2026-08-16-stainless-wind-down",
+          "date": "2026-08-16"
+        },
+        {
+          "kind": "market",
+          "text": "Hacker News on the shutdown: closing the service will make everyone turn away from similar solutions if they are provided by a startup.",
+          "source": "Hacker News: Anthropic acquires Stainless",
+          "url": "https://news.ycombinator.com/item?id=48182281",
+          "date": "2026-05-18"
+        },
+        {
+          "kind": "competitor",
+          "text": "Doctorine already maps Fern, Stainless, Speakeasy and ReadMe configuration into mapped, degraded and unsupported buckets.",
+          "source": "Doctorine migrations",
+          "url": "https://doctorine.xyz/solutions/migrations/",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Stainless had about $1M ARR on hundreds of customers in December 2024.",
+          "source": "SiliconANGLE: Stainless gets $25M in funding",
+          "url": "https://siliconangle.com/2024/12/10/stainless-software-gets-25m-funding-bring-ai-generated-sdks-developers/",
+          "date": "2024-12-10"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "compare",
+          "title": "Where a Stainless customer can go now",
+          "columns": [
+            "Doctorine",
+            "Fern (Postman)",
+            "Scalar",
+            "Speakeasy"
+          ],
+          "rows": [
+            {
+              "label": "Reads stainless.yml or matches its types",
+              "values": [
+                "yes",
+                "yes",
+                "yes",
+                "partial"
+              ]
+            },
+            {
+              "label": "Machine-readable receipt with output hashes per release",
+              "values": [
+                "yes",
+                "no",
+                "no",
+                "no"
+              ]
+            },
+            {
+              "label": "Independent of a platform or lab",
+              "values": [
+                "yes",
+                "no",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "Published pricing for SDKs",
+              "values": [
+                "no",
+                "partial",
+                "yes",
+                "no"
+              ]
+            },
+            {
+              "label": "Installed base",
+              "values": [
+                "none",
+                "200+ customers",
+                "16k-star open source",
+                "Enterprise"
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "self-host",
+      "title": "Self-hosted licence with bring-your-own model keys",
+      "summary": "Ship the generator, gate and eval as a container a company runs inside its own network with its own LLM keys, bought on an annual licence key.",
+      "column": "parked",
+      "bet": "We believe that corporate API teams will only adopt a tool that runs inside their network, and that a self-hosted licence opens that segment. We will know when two buyers name self-hosting as the blocker and a budget to remove it.",
+      "problem": "The one corporate practitioner deploys every vendor tool on his own infrastructure with his own keys, and review sites list no self-hosting as a docs vendor weakness.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Parked: one voice asked for it, and he is not a buyer for this product today.",
+        "Parked: packaging, upgrades and support for on-premises installs would consume the capacity the eval and gate need.",
+        "Parked: without SOC 2 or audited DR, the corporations that require self-hosting will also require compliance Doctorine does not have.",
+        "Keep the EU data residency claim, which is already built, as the answer for European buyers in the meantime."
+      ],
+      "firstMove": "None for now. Ask each of the ten buyer conversations whether hosted SaaS would block a pilot, and revisit when two say yes with a budget.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "if there's a tool, we bring it, we deploy it in our own infrastructure and connect.",
+          "tier": "E4",
+          "who": "Senior developer and engineering lead inside a corporation",
+          "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591",
+          "ms": 923084
+        },
+        {
+          "kind": "call",
+          "text": "they're never gonna say, you know what, sure, you handle all of our, uh, documents.",
+          "tier": "E3",
+          "who": "Senior developer and engineering lead inside a corporation",
+          "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591",
+          "ms": 2103040
+        },
+        {
+          "kind": "market",
+          "text": "ReadMe reviewer: \"ReadMe is a software-as-a-service offering only, and there is no way to self-host ReadMe.\"",
+          "source": "AWS Marketplace: ReadMe reviews (syndicated G2)",
+          "url": "https://aws.amazon.com/marketplace/reviews/reviews-list/prodview-2wc22jlpydma6",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Mintlify offers self-hosting and EU hosting only on its Enterprise plan.",
+          "source": "Mintlify pricing",
+          "url": "https://www.mintlify.com/pricing",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Doctorine already runs its core data plane in EU regions, with documented carve-outs.",
+          "source": "Doctorine homepage",
+          "url": "https://doctorine.xyz",
+          "date": "2026-09-25"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "quote",
+          "title": "The constraint, from one voice",
+          "text": "they're never gonna say, you know what, sure, you handle all of our, uh, documents.",
+          "who": "Senior developer and engineering lead inside a corporation",
+          "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591",
+          "ms": 2103040
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "diff-to-docs",
+      "title": "Agent that writes the docs update from the code diff",
+      "summary": "An agent that reads a code change, writes the prose update and applies it across every affected page.",
+      "column": "parked",
+      "bet": "We believe that writing the human-readable update is the step teams skip, and that automating it keeps tutorials current. We will know when a team merges agent-written updates without editing them.",
+      "problem": "Hand-written tutorials go stale while the spec stays current.",
+      "impact": 1,
+      "effort": 2,
+      "confidence": "E2",
+      "horizon": "later",
+      "risks": [
+        "Parked: the evidenced cost is reviewing and approving, not writing; this adds more text to review.",
+        "Parked: 83% of surveyed companies already have agents drafting doc updates, and Mintlify ships a writing agent and automations.",
+        "Parked: practitioners already distrust plausible but wrong AI-written docs.",
+        "The stale-tutorial pain is real; the gate addresses it better by flagging which tutorials a change invalidates."
+      ],
+      "firstMove": "None for now. Fold the stale-tutorial pain into the gate as a check that lists tutorials referencing changed operations.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "For sure, the OpenAPI spec will be updated automatically, but we will live with existing outdated tutorials",
+          "tier": "E4",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 273305
+        },
+        {
+          "kind": "call",
+          "text": "If it adds that review layer, that may be a new pain in the ass for the companies.",
+          "tier": "E3",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 4469159
+        },
+        {
+          "kind": "trend",
+          "text": "83% of 329 companies say agents now draft doc updates, 74% with human review; agents were directed to update Mintlify docs 367,000 times from February to August 2026.",
+          "source": "Mintlify: Highlights from the 2026 State of Knowledge Report",
+          "url": "https://www.mintlify.com/blog/the-state-of-knowledge-2026-highlights",
+          "date": "2026-09-16"
+        },
+        {
+          "kind": "competitor",
+          "text": "Mintlify prices an automated docs update at 250 credits, and charges nothing when nothing is delivered.",
+          "source": "Mintlify: Simpler, outcome-based AI pricing",
+          "url": "https://www.mintlify.com/blog/outcome-based-ai-pricing",
+          "date": "2026-09-08"
+        },
+        {
+          "kind": "market",
+          "text": "Stack Overflow 2025: 66% name AI solutions that are almost right, but not quite, as their top frustration.",
+          "source": "Stack Overflow 2025 Developer Survey: AI",
+          "url": "https://survey.stackoverflow.co/2025/ai",
+          "date": "2025"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "quote",
+          "title": "Why it is parked",
+          "text": "The most time-consuming part is, as always, reviewing the changes and getting approvals.",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 745655
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "free-portal-badges",
+      "title": "Free portal forever, grown with powered-by badges",
+      "summary": "Give the hosted portal away permanently to verified domains and grow through powered-by badges on open-source maintainers' sites.",
+      "column": "parked",
+      "bet": "We believe that a free portal with a badge creates backlinks and inbound that convert when teams hit a paid feature gate. We will know when badges produce sign-ups from API companies, not only maintainers.",
+      "problem": "Doctorine has no distribution, and free visible wedges are how the docs leaders grew.",
+      "impact": 2,
+      "effort": 2,
+      "confidence": "E1",
+      "horizon": "later",
+      "risks": [
+        "Parked: the free portal is already taken by four funded vendors at $0, including Mintlify with 20,000 companies and Fern backed by Postman.",
+        "Parked: open-source maintainers are not the API companies in the ICP, so the badges land on the wrong audience.",
+        "Parked: generation still runs on one server that queues at about ten concurrent users, so a free launch would fail on load.",
+        "The pattern is right; the wedge should be the eval report, which is cheap to serve and unique."
+      ],
+      "firstMove": "None for now. Keep the portal free for design partners and revisit after the eval relaunch.",
+      "evidence": [
+        {
+          "kind": "competitor",
+          "text": "Fern Docs is free with a custom domain and MCP server; a struck-through $250 shows it used to be paid.",
+          "source": "Fern pricing",
+          "url": "https://buildwithfern.com/pricing",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Mintlify's free Starter includes custom domain, auth, MCP server and API playground.",
+          "source": "Mintlify pricing",
+          "url": "https://www.mintlify.com/pricing",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Zuplo includes its developer portal on every plan to sell the gateway.",
+          "source": "Zuplo pricing",
+          "url": "https://zuplo.com/pricing",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "signal",
+          "text": "Generation compiles on a single unscaled server; about ten concurrent users create a queue of roughly ten minutes.",
+          "tier": "E4",
+          "source": "VSI capability-inventory and internal weekly"
+        },
+        {
+          "kind": "signal",
+          "text": "Plan: portal permanently free, gated by domain verification, as an SEO and backlink engine through powered-by badges. Untested.",
+          "tier": "E2",
+          "source": "VSI pricing-strategy"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "compare",
+          "title": "Free hosted API docs portal today",
+          "columns": [
+            "Doctorine",
+            "Mintlify",
+            "Fern",
+            "ReadMe"
+          ],
+          "rows": [
+            {
+              "label": "Free tier",
+              "values": [
+                "planned",
+                "yes",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "Docs MCP on free",
+              "values": [
+                "planned",
+                "yes",
+                "yes",
+                "yes"
+              ]
+            },
+            {
+              "label": "Installed base",
+              "values": [
+                "none",
+                "20,000+ companies",
+                "200+ customers",
+                "Independent since 2014"
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "paid-migration",
+      "title": "Paid repository migration as the first programme",
+      "summary": "Lead with a paid four to eight week migration from an incumbent docs or SDK vendor into Doctorine, with release proof and measured use.",
+      "column": "parked",
+      "bet": "We believe that migration is the highest-intent switching moment and that teams will pay for one done with measurable parity. We will know when a design partner pays for a migration.",
+      "problem": "The written plan makes paid migration the first design-partner programme and rules out free production migrations.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E1",
+      "horizon": "next",
+      "risks": [
+        "Parked: no external conversation mentions an active migration; the evidence comes from competitors' case studies.",
+        "Parked: charging for a migration before a first conversation is booked applies price rigour where the constraint is getting any qualified conversation at all.",
+        "Parked: a migration is the heaviest possible first ask of a team that has never seen the product work on its own API.",
+        "The migration importer stays useful as the later step once the gate has run on a team's repository."
+      ],
+      "firstMove": "None for now. Make the first offer a free eval report and a gate on the team's own repository, and record whether any of them then asks to move its portal.",
+      "evidence": [
+        {
+          "kind": "signal",
+          "text": "Decision: first programme is paid repository migration plus release proof plus measured successful use; no free production migration.",
+          "tier": "E5",
+          "source": "VSI decision-log"
+        },
+        {
+          "kind": "signal",
+          "text": "Traction: 0 paying customers, 0 signed design partners; two people showed interest in the €100 design partner programme.",
+          "tier": "E4",
+          "source": "VSI metrics-scorecard"
+        },
+        {
+          "kind": "call",
+          "text": "that cost needs to be justified, right?... very tricky to convince. I mean, big companies to invest more money on this.",
+          "tier": "E2",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 4469159
+        },
+        {
+          "kind": "competitor",
+          "text": "Doctorine's design partner programme asks €100 a month for individuals and €300 for companies, for three to six months.",
+          "source": "Doctorine design partners",
+          "url": "https://doctorine.xyz/design-partners/",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "trend",
+          "text": "Bump.sh is harvesting Oracle Apiary users before its 31 October 2026 shutdown: migrations follow forced shutdowns, not choice.",
+          "source": "Bump.sh: Farewell Apiary",
+          "url": "https://bump.sh/blog/farewell-apiary/",
+          "date": "2025-07-04"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "quote",
+          "title": "Why it is parked",
+          "text": "if I buy your tool, I don't want to develop for it.",
+          "who": "Senior developer and engineering lead inside a corporation",
+          "conv": "62bac027-0bb7-4cd4-a9f0-2ce2fb4d8591",
+          "ms": 1113792
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "consumer-kit",
+      "title": "Integrator kit for teams consuming other companies' APIs",
+      "summary": "Sell agent-ready CLIs, MCP servers and skills for third-party APIs to the teams that integrate them, instead of to the API owners.",
+      "column": "parked",
+      "bet": "We believe that API consumers feel integration pain more than producers and would pay for agent-ready access to the APIs they use. We will know when a consumer team pays for a kit for an API it does not own.",
+      "problem": "The discovery prospect saw more value for his company's API clients than for his own team.",
+      "impact": 2,
+      "effort": 3,
+      "confidence": "E1",
+      "horizon": "later",
+      "risks": [
+        "Parked: the consumer side is crowded and funded: Composio, Context7, Arcade with Smithery, and Postman's network.",
+        "Parked: without the owner's approval there is no approved contract, which removes Doctorine's reason to exist.",
+        "Keep the insight as a channel: an eval that shows consumers failing on an API is the argument to the owner."
+      ],
+      "firstMove": "None for now. Use consumer failures in the eval report as the reason for the API owner to act.",
+      "evidence": [
+        {
+          "kind": "call",
+          "text": "I don't see any use case for it for the moment for the [company]. For the clients of [company] may be useful.",
+          "tier": "E3",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 3684722
+        },
+        {
+          "kind": "call",
+          "text": "it looks like be more useful for consumers than the producers",
+          "tier": "E2",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 4151738
+        },
+        {
+          "kind": "competitor",
+          "text": "Context7 serves up-to-date library docs to coding agents, with team plans from $30 per user.",
+          "source": "Context7 plans",
+          "url": "https://context7.com/plans",
+          "date": "2026-09-25"
+        },
+        {
+          "kind": "competitor",
+          "text": "Arcade.dev acquired the Smithery MCP registry on 5 August 2026.",
+          "source": "Arcade.dev: Smithery is now part of Arcade.dev",
+          "url": "https://www.arcade.dev/blog/smithery-joins-arcade/",
+          "date": "2026-08-05"
+        }
+      ],
+      "viz": [
+        {
+          "kind": "quote",
+          "title": "The line that points at consumers",
+          "text": "it looks like be more useful for consumers than the producers",
+          "who": "Backend developer, large multi-country commerce SaaS with a versioned public REST API",
+          "conv": "106b41fb-ee7e-43f7-aa74-8c9f54aa40d9",
+          "ms": 4151738
+        }
+      ],
+      "notes": []
+    }
+  ]
+}
